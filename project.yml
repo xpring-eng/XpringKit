@@ -7,3 +7,9 @@ targets:
     type: framework
     platform: iOS
     sources: [XpringKit]
+  XpringKitTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources: [Tests]
+    dependencies:
+      - target: XpringKit
