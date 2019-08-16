@@ -8,6 +8,10 @@ jobs:
       - checkout
 
       - run:
+          name: "Install Dependencies"
+          command: brew install xcodegen
+
+      - run:
           name: "Generate Project"
           command: xcodegen generate
 
