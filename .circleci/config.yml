@@ -12,18 +12,14 @@ jobs:
         command: xcodegen generate
 
       - run:
-        name: "Build"
+        name: "Build and Test"
         command: |
-          set -o pipefail && xcodebuild test -scheme XpringKit -destination 'platform=iOS Simulator,name=iPhone X,OS=12.4' ONLY_ACTIVE_ARCH=YES | xcpretty
+          set -o pipefail && xcodebuild test -scheme XpringKit -derivedDataPath Build/ -destination 'platform=iOS Simulator,name=iPhone X,OS=12.4' ONLY_ACTIVE_ARCH=YES | xcpretty
 
-      # Collect XML test results data to show in the UI,
-      # and save the same XML files under test-results folder
-      # in the Artifacts tab
-      - store_test_results:
-          path: test_output/report.xml
-      - store_artifacts:
-          path: /tmp/test-results
-          destination: scan-test-results
-      - store_artifacts:
-          path: ~/Library/Logs/scan
-          destination: scan-logs
+      - run:
+        name: "Generate Code Coverage"
+        command: bundle exec slather
+
+      - run:
+        name: "Upload Code Coverage"
+        command: "coveralls"
