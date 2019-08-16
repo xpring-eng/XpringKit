@@ -21,4 +21,4 @@ jobs:
 
       - run:
         name: "Upload Code Coverage"
-        command: "coveralls"
+        command: coveralls
