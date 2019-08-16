@@ -10,7 +10,7 @@ jobs:
       - run:
           name: "Install Dependencies"
           command: |
-            brew install xcodegen
+            brew install xcodegen swiftlint
             sudo gem install slather
 
       - run:

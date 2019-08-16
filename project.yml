@@ -11,6 +11,9 @@ targets:
       testTargets:
         - XpringKitTests
       gatherCoverageData: true
+    postCompileScripts:
+      - script: swiftlint --config .swiftlint.yml
+        name: SwiftLint
   XpringKitTests:
     type: bundle.unit-test
     platform: iOS
