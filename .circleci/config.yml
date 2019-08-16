@@ -11,7 +11,7 @@ jobs:
           name: "Install Dependencies"
           command: |
             brew install xcodegen
-            gem install slather
+            sudo gem install slather
 
       - run:
           name: "Generate Project"
