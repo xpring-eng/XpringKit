@@ -1,0 +1,9 @@
+# Specification for XpringKit's XCode project.
+name: XpringKit
+options:
+  bundleIdPrefix: io.xpring
+targets:
+  MyFramework:
+    type: framework
+    platform: iOS
+    sources: [XpringKit]
