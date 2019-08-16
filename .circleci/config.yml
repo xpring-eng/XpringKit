@@ -1,0 +1,8 @@
+version: 2
+jobs:
+  build:
+    macos:
+      xcode: "10.3"
+
+    steps:
+      - checkout
