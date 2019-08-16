@@ -22,9 +22,5 @@ jobs:
           command: set -o pipefail && xcodebuild test -scheme XpringKit -destination 'platform=iOS Simulator,name=iPhone X,OS=12.2' ONLY_ACTIVE_ARCH=YES | xcpretty
 
       - run:
-          name: "Generate Code Coverage"
+          name: "Generate and Upload Code Coverage"
           command: slather
-
-      - run:
-          name: "Upload Code Coverage"
-          command: coveralls
