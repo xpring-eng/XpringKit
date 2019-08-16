@@ -1,3 +1,5 @@
+# Use xcodegen to generate XCode projects.
+*.xcodeproj
 
 # Created by https://www.gitignore.io/api/osx,xcode,swift,carthage,cocoapods
 # Edit at https://www.gitignore.io/?templates=osx,xcode,swift,carthage,cocoapods

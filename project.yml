@@ -3,7 +3,7 @@ name: XpringKit
 options:
   bundleIdPrefix: io.xpring
 targets:
-  MyFramework:
+  XpringKit:
     type: framework
     platform: iOS
     sources: [XpringKit]
