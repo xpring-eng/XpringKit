@@ -1,4 +1,4 @@
 # .slather.yml
 coverage_service: coveralls
 xcodeproj: XpringKit.xcodeproj
-scheme: XpringKitTests
+scheme: XpringKit
