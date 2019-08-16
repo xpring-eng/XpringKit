@@ -23,7 +23,7 @@ jobs:
 
       - run:
           name: "Generate Code Coverage"
-          command: bundle exec slather
+          command: slather
 
       - run:
           name: "Upload Code Coverage"
