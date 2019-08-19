@@ -14,13 +14,14 @@ targets:
     preBuildScripts:
       - script: |
                 mkdir -p ./XpringKit/generated
-                protoc --proto_path=./terram-protos/models --swift_out=./XpringKit/generated --swiftgrpc_out=./XpringKit/generated ./terram-protos/models/*.proto
+                protoc --proto_path=./terram-protos/models --proto_path=./terram-protos/services --swift_opt=Visibility=Public --swift_out=./XpringKit/generated --swiftgrpc_out=./XpringKit/generated ./terram-protos/*/*.proto
         name: Build Protos
     postCompileScripts:
       - script: swiftlint --config .swiftlint.yml
         name: SwiftLint
     dependencies:
       - carthage: SwiftProtobuf
+      - carthage: SwiftGRPC
   XpringKitTests:
     type: bundle.unit-test
     platform: iOS
