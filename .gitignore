@@ -1,5 +1,5 @@
 # Ignore generated files.
-generated/
+XpringKit/generated/
 
 # Use xcodegen to generate XCode projects.
 *.xcodeproj

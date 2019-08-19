@@ -38,4 +38,4 @@ opt_in_rules:
 excluded:
   - Carthage/
   - Pods/
-  - generated/
+  - XpringKit/generated/
