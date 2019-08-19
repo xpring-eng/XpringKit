@@ -8,10 +8,14 @@ jobs:
       - checkout
 
       - run:
-          name: "Install Dependencies"
+          name: "Install Tooling"
           command: |
-            brew install xcodegen swiftlint
+            brew install xcodegen swiftlint carthage
             sudo gem install slather
+
+      - run:
+          name: "Build Dependencies"
+          command: carthage update
 
       - run:
           name: "Generate Project"

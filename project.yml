@@ -6,14 +6,21 @@ targets:
   XpringKit:
     type: framework
     platform: iOS
-    sources: [XpringKit]
+    sources: [XpringKit, generated]
     scheme:
       testTargets:
         - XpringKitTests
       gatherCoverageData: true
+    preBuildScripts:
+      - script: |
+                mkdir -p ./generated
+                protoc --proto_path=./terram-protos/models --swift_out=./generated --swiftgrpc_out=./generated ./terram-protos/models/*.proto
+        name: Build Protos
     postCompileScripts:
       - script: swiftlint --config .swiftlint.yml
         name: SwiftLint
+    dependencies:
+      - carthage: SwiftProtobuf
   XpringKitTests:
     type: bundle.unit-test
     platform: iOS
