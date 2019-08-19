@@ -1,3 +1,6 @@
+# Ignore generated files.
+generated/
+
 # Use xcodegen to generate XCode projects.
 *.xcodeproj
 
