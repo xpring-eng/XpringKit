@@ -7,5 +7,5 @@ Swift bindings for the Xpring Platform.
 ```
 $ brew install xcodegen carthage
 $ carthage update
-$ xcodegen generated
+$ xcodegen generate
 ```
