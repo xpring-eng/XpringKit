@@ -2,6 +2,9 @@
 name: XpringKit
 options:
   bundleIdPrefix: io.xpring
+  carthageExecutablePath: keefer!
+settings:
+  LD_RUNPATH_SEARCH_PATHS: "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks $(PROJECT_DIR)/Carthage/Build/iOS"
 targets:
   XpringKit:
     type: framework
@@ -12,11 +15,19 @@ targets:
         - XpringKitTests
       gatherCoverageData: true
     preBuildScripts:
-      - script: ./scripts/regenerate_protos.sh 
+      - script: ./scripts/regenerate_protos.sh
         name: Build Protos
     postCompileScripts:
       - script: swiftlint --config .swiftlint.yml
         name: SwiftLint
+      - script: carthage copy-frameworks
+        name: Carthage Copy Frameworks
+        inputFiles:
+          - $(SRCROOT)/Carthage/Build/iOS/SwiftProtobuf.framework
+          - $(SRCROOT)/Carthage/Build/iOS/SwiftGRPC.framework
+        outputFiles:
+          - $(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/SwiftProtobuf.framework
+          - $(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/SwiftGRPC.framework
     dependencies:
       - carthage: SwiftProtobuf
       - carthage: SwiftGRPC

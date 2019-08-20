@@ -25,7 +25,7 @@ jobs:
 
       - run:
           name: "Build Dependencies"
-          command: carthage update
+          command: carthage bootstrap --cache-builds
           no_output_timeout: 30m
 
       - run:
