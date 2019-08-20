@@ -7,9 +7,14 @@ jobs:
     steps:
       - checkout
 
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "Cartfile.resolved" }}
+
       - run:
           name: "Install Tooling"
           command: |
+            export HOMEBREW_NO_AUTO_UPDATE=1
             brew install xcodegen swiftlint carthage swift-protobuf grpc-swift
             sudo gem install slather
 
@@ -25,6 +30,10 @@ jobs:
           no_output_timeout: 30m
 
       - run:
+          name: "Generate Protos"
+          command: ./scripts/regenerate_protos.sh
+
+      - run:
           name: "Generate Project"
           command: xcodegen generate
 
@@ -35,3 +44,8 @@ jobs:
       - run:
           name: "Generate and Upload Code Coverage"
           command: slather
+
+      - save_cache:
+          paths:
+            - Carthage
+          key: v1-dependencies-{{ checksum "Cartfile.resolved" }}
