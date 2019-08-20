@@ -7,6 +7,11 @@ public class XpringClient {
         self.networkClient = networkClient
     }
 
+    /// Get the balance for the given address.
+    ///
+    /// - Parameter address: The address to retrieve the balance for.
+    /// - Throws: An error if there was a problem communicating to the Xpring Network.
+    /// - Returns: An XRPAmount containing the balance of the address.
     public func getBalance(for address: Address) throws -> XRPAmount {
         let accountInfoRequest = AccountInfoRequest.with {
             $0.address = address
