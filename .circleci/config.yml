@@ -36,6 +36,11 @@ jobs:
           name: "Generate Project"
           command: xcodegen generate
 
+      - save_cache:
+          paths:
+            - Carthage
+          key: v1-dependencies-{{ checksum "Cartfile.resolved" }}
+
       - run:
           name: "Build and Test"
           command: set -o pipefail && xcodebuild test -scheme XpringKit -destination 'platform=iOS Simulator,name=iPhone X,OS=12.2' ONLY_ACTIVE_ARCH=YES | xcpretty
@@ -43,8 +48,3 @@ jobs:
       - run:
           name: "Generate and Upload Code Coverage"
           command: slather
-
-      - save_cache:
-          paths:
-            - Carthage
-          key: v1-dependencies-{{ checksum "Cartfile.resolved" }}
