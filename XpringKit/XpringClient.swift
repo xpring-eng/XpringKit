@@ -1,12 +1,3 @@
-public protocol NetworkClient {
-    func getAccountInfo(_ request: AccountInfoRequest) throws -> AccountInfo
-}
-
-extension RippledServiceClient: NetworkClient {
-}
-
-public typealias Address = String
-
 /// An interface into the Xpring Platform.
 public class XpringClient {
     /// A network client that will make and receive requests.
