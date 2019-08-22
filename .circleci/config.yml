@@ -2,7 +2,25 @@ version: 2
 jobs:
   build:
     macos:
-      xcode: "10.3"
+      xcode: "10.2"
 
     steps:
       - checkout
+
+      - run:
+          name: "Install Dependencies"
+          command: |
+            brew install xcodegen swiftlint
+            sudo gem install slather
+
+      - run:
+          name: "Generate Project"
+          command: xcodegen generate
+
+      - run:
+          name: "Build and Test"
+          command: set -o pipefail && xcodebuild test -scheme XpringKit -destination 'platform=iOS Simulator,name=iPhone X,OS=12.2' ONLY_ACTIVE_ARCH=YES | xcpretty
+
+      - run:
+          name: "Generate and Upload Code Coverage"
+          command: slather

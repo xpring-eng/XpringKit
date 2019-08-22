@@ -3,7 +3,20 @@ name: XpringKit
 options:
   bundleIdPrefix: io.xpring
 targets:
-  MyFramework:
+  XpringKit:
     type: framework
     platform: iOS
     sources: [XpringKit]
+    scheme:
+      testTargets:
+        - XpringKitTests
+      gatherCoverageData: true
+    postCompileScripts:
+      - script: swiftlint --config .swiftlint.yml
+        name: SwiftLint
+  XpringKitTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources: [Tests]
+    dependencies:
+      - target: XpringKit
