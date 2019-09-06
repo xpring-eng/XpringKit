@@ -7,6 +7,7 @@ targets:
     type: framework
     platform: iOS
     sources: [XpringKit]
+    resources: [XpringKit/Resources]
     scheme:
       testTargets:
         - XpringKitTests
