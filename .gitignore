@@ -1,6 +1,9 @@
 # Use xcodegen to generate XCode projects.
 *.xcodeproj
 
+# Ignore bundled javascript.
+XpringKit/Resources/bundled.js
+
 # Created by https://www.gitignore.io/api/osx,xcode,swift,carthage,cocoapods
 # Edit at https://www.gitignore.io/?templates=osx,xcode,swift,carthage,cocoapods
 
