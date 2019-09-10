@@ -8,6 +8,11 @@ jobs:
       - checkout
 
       - run:
+          name: "Pull Submodules"
+          command: |
+            git submodule update --init --recursive
+
+      - run:
           name: "Install Dependencies"
           command: |
             brew install xcodegen swiftlint
