@@ -12,8 +12,11 @@ targets:
       testTargets:
         - XpringKitTests
       gatherCoverageData: true
+    preBuildScripts:
+      - script: ./scripts/bundle_js.sh
+        name: Bundle JS
     postCompileScripts:
-      - script: swiftlint --config .swiftlint.yml
+      - script: swiftlint autocorrect --config .swiftlint.yml
         name: SwiftLint
   XpringKitTests:
     type: bundle.unit-test
