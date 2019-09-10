@@ -1,13 +1,13 @@
 import XCTest
 import XpringKit
 
-class TerramTest: XCTestCase {
+class TerramJSTest: XCTestCase {
     private var terram: Terram!
 
     override func setUp() {
         super.setUp()
 
-        guard let terram = Terram() else {
+        guard let terram = TerramJS() else {
             XCTFail("Could not instantiate Terram :( Check for a missing Javascript resource?")
             return
         }
