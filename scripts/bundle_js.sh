@@ -1,3 +1,7 @@
+#!/usr/bin/env bash
+
+set -e -o pipefail
+
 WORKING_DIR=$(pwd)
 
 echo "Bundling JS"
