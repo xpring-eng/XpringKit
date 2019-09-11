@@ -1,8 +1,8 @@
 import Foundation
 import JavaScriptCore
 
-/// A javascript implementation of cryptographic primitives.
-public class TerramJS {
+/// A javascript implementation of cryptographic utilities.
+public class TerramUtilsJS {
     /// The javascript context.
     private let context: JSContext
 
@@ -41,7 +41,7 @@ public class TerramJS {
     }
 }
 
-extension TerramJS: Terram {
+extension TerramUtilsJS: TerramUtils {
     public func isValid(address: String) -> Bool {
         let result = isValidAddressFunction.call(withArguments: [ address ])!
         return result.toBool()
