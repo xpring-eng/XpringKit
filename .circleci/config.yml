@@ -1,4 +1,4 @@
-version: 2
+version: 2.1
 jobs:
   build:
     macos:
@@ -7,15 +7,39 @@ jobs:
     steps:
       - checkout
 
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "Cartfile.resolved" }}
+
       - run:
-          name: "Install Dependencies"
+          name: "Install Tooling"
           command: |
-            brew install xcodegen swiftlint
+            brew install xcodegen swiftlint carthage swift-protobuf grpc-swift
             sudo gem install slather
+
+      - run:
+          name: "Pull Submodules"
+          command: |
+            git submodule init
+            git submodule update --remote
+
+      - run:
+          name: "Build Dependencies"
+          command: carthage bootstrap --cache-builds
+          no_output_timeout: 30m
+
+      - run:
+          name: "Generate Protos"
+          command: ./scripts/regenerate_protos.sh
 
       - run:
           name: "Generate Project"
           command: xcodegen generate
+
+      - save_cache:
+          paths:
+            - Carthage
+          key: v1-dependencies-{{ checksum "Cartfile.resolved" }}
 
       - run:
           name: "Build and Test"
