@@ -10,7 +10,7 @@ echo "Regenerating Protocol Buffers"
 
 # Run carthage bootstrap to build dependencies.
 echo "Bootstrapping Carthage Dependencies"
-carthage bootstrap --platform iOS
+carthage bootstrap --platform iOS --cache-builds
 
 # Generate the project.
 echo "Generating Project"
