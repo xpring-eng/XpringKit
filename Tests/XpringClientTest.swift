@@ -5,11 +5,11 @@ final class XpringClientTest: XCTestCase {
     func testGetBalanceWithSuccess() {
         // GIVEN a Xpring client which will successfully return a balance from a mocked network call.
         let balance = "1000"
-        let accountInfo = AccountInfo.with {
-            $0.accountData = AccountData.with {
-                $0.balance = balance
-            }
-        }
+				let accountInfo = Io_Xpring_AccountInfo.with {
+					$0.balance = Io_Xpring_XRPAmount.with {
+						$0.drops = balance
+					}
+				}
         let networkClient = FakeNetworkClient(accountInfoResult: .success(accountInfo))
         let xpringClient = XpringClient(networkClient: networkClient)
 

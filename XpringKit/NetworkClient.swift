@@ -5,5 +5,5 @@ public protocol NetworkClient {
     /// - Parameter request: Request parameters for an `AccountInfo`.
     /// - Throws: An error if there was a problem communicating with the Xpring Network.
     /// - Returns: An AccountInfo object that corresponds to the request.
-    func getAccountInfo(_ request: AccountInfoRequest) throws -> AccountInfo
+    func getAccountInfo(_ request: Io_Xpring_GetAccountInfoRequest) throws -> Io_Xpring_AccountInfo
 }

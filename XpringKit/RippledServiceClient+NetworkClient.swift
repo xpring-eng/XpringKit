@@ -1,3 +1,3 @@
-/// Conforms RippledServiceClient to NetworkClient protocol.
-extension RippledServiceClient: NetworkClient {
+/// Conforms XRPLedgerServiceClient to NetworkClient protocol.
+extension Io_Xpring_XRPLedgerServiceClient: NetworkClient {
 }
