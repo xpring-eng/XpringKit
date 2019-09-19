@@ -1,6 +1,5 @@
 # Ignore generated files.
 XpringKit/generated/
-XpringKit/Resources/
 
 # Ignore bundled JavaScript.
 XpringKit/Resources/bundled.js
