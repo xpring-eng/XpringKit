@@ -15,7 +15,7 @@ jobs:
           name: "Install Tooling"
           command: |
             brew install xcodegen swiftlint carthage swift-protobuf grpc-swift
-            sudo npm -g i grpc-tools
+            sudo npm -g i --build-from-resource grpc-tools
             sudo gem install slather
 
       - run:
