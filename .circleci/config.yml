@@ -17,7 +17,7 @@ jobs:
             brew update
             brew install xcodegen swiftlint carthage swift-protobuf grpc-swift
             brew upgrade
-            sudo npm i -g --build-from-resource grpc-tools
+            sudo npm i -g grpc-tools
             sudo gem install slather
 
       - run:
