@@ -1,5 +1,9 @@
 # Ignore generated files.
 XpringKit/generated/
+XpringKit/Resources/
+
+# Ignore bundled JavaScript.
+XpringKit/Resources/bundled.js
 
 # Use xcodegen to generate XCode projects.
 *.xcodeproj

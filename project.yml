@@ -9,15 +9,13 @@ targets:
     type: framework
     platform: iOS
     sources: [XpringKit]
+    resources: [XpringKit/Resources]
     scheme:
       testTargets:
         - XpringKitTests
       gatherCoverageData: true
-    preBuildScripts:
-      - script: ./scripts/regenerate_protos.sh
-        name: Build Protos
     postCompileScripts:
-      - script: swiftlint --config .swiftlint.yml
+      - script: swiftlint autocorrect --config .swiftlint.yml
         name: SwiftLint
       - script: carthage copy-frameworks
         name: Carthage Copy Frameworks
