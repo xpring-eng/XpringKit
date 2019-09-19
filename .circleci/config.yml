@@ -24,17 +24,9 @@ jobs:
             git submodule update --remote
 
       - run:
-          name: "Build Dependencies"
-          command: carthage bootstrap --cache-builds
+          name: "Build Dependencies and Generate Project"
+          command: ./scripts/generate_project.sh
           no_output_timeout: 30m
-
-      - run:
-          name: "Generate Protos"
-          command: ./scripts/regenerate_protos.sh
-
-      - run:
-          name: "Generate Project"
-          command: xcodegen generate
 
       - save_cache:
           paths:
