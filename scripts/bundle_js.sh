@@ -19,5 +19,5 @@ echo "Done Bundling JS"
 
 cd $WORKING_DIR
 echo "Copying Artifacts"
-mkdir -p ./XpringKit/Resourses
+mkdir -p ./XpringKit/Resources
 cp terram/dist/bundled.js ./XpringKit/Resources/
