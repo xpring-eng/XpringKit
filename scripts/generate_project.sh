@@ -12,6 +12,10 @@ echo "Regenerating Protocol Buffers"
 echo "Bootstrapping Carthage Dependencies"
 carthage bootstrap --platform iOS --cache-builds
 
+# Bundle javascript from Terram.
+echo "Bundling JavaScript"
+./scripts/bundle_js.sh
+
 # Generate the project.
 echo "Generating Project"
 xcodegen generate
