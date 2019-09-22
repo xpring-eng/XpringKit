@@ -2,6 +2,7 @@ import Foundation
 import JavaScriptCore
 
 /// A javascript implementation of cryptographic utilities.
+// TODO: Is there a memory leak problem with a strong reference to JSValue in this class?
 public class TerramUtilsJS {
     /// The javascript context.
     private let context: JSContext
