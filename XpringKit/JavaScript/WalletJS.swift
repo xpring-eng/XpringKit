@@ -48,12 +48,17 @@ internal class WalletJSFactory {
 		return result.toWalletGenerationResult()
 	}
 
-	public func wallet(mnemonic: String, derivationPath: String) -> WalletJS {
-		let result = generateWalletFromMnemonicFunction.call(withArguments: [ mnemonic, derivationPath ])!
+	public func wallet(mnemonic: String, derivationPath: String? = nil) -> WalletJS? {
+		var arguments = [mnemonic]
+		if let derivationPath = derivationPath {
+			arguments.append(derivationPath)
+		}
+
+		let result = generateWalletFromMnemonicFunction.call(withArguments: arguments)!
 		return result.toWallet()
 	}
 
-	public func wallet(seed: String) -> WalletJS {
+	public func wallet(seed: String) -> WalletJS? {
 		let result = generateWalletFromSeedFunction.call(withArguments: [ seed ])!
 		return result.toWallet()
 	}
