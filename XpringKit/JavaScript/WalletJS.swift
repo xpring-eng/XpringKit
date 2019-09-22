@@ -8,6 +8,12 @@ internal class WalletJSFactory {
 	private let generateRandomWalletFunction: JSValue
 	private let generateWalletFromMnemonicFunction: JSValue
 	private let generateWalletFromSeedFunction: JSValue
+	private let getDefaultDerivationPathFunction: JSValue
+
+	public var defaultDerivationPath: String {
+		let result = getDefaultDerivationPathFunction.call(withArguments: [])!
+		return result.toString()
+	}
 
 	public init?() {
 		let bundle = Bundle(for: type(of: self))
@@ -30,9 +36,11 @@ internal class WalletJSFactory {
 			let generateRandomWalletFunction = wallet.objectForKeyedSubscript("generateRandomWallet"),
 			let generateWalletFromMnemonicFunction = wallet.objectForKeyedSubscript("generateWalletFromMnemonic"),
 			let generateWalletFromSeedFunction = wallet.objectForKeyedSubscript("generateWalletFromSeed"),
+			let getDefaultDerivationPathFunction = wallet.objectForKeyedSubscript("getDefaultDerivationPath"),
 			!generateRandomWalletFunction.isUndefined,
 			!generateWalletFromMnemonicFunction.isUndefined,
-			!generateWalletFromSeedFunction.isUndefined
+			!generateWalletFromSeedFunction.isUndefined,
+			!getDefaultDerivationPathFunction.isUndefined
 		else {
 				return nil
 		}
@@ -41,10 +49,12 @@ internal class WalletJSFactory {
 		self.generateRandomWalletFunction = generateRandomWalletFunction
 		self.generateWalletFromMnemonicFunction = generateWalletFromMnemonicFunction
 		self.generateWalletFromSeedFunction = generateWalletFromSeedFunction
+		self.getDefaultDerivationPathFunction = getDefaultDerivationPathFunction
 	}
 
 	public func generateRandomWallet() -> WalletGenerationResultJS {
-		let result = generateRandomWalletFunction.call(withArguments: [])!
+		let randomBytesHex = RandomBytes.randomBytes(numBytes: 16).toHex()
+		let result = generateRandomWalletFunction.call(withArguments: [ randomBytesHex ])!
 		return result.toWalletGenerationResult()
 	}
 

@@ -12,6 +12,8 @@ internal struct WalletGenerationResultJS {
 
 // TODO: Expose default derivation path.
 public class Wallet {
+	public static var defaultDerivationPath: String { return walletFactory.defaultDerivationPath }
+
 	// Probably make these static?
 	// Consider injection
 	private static let walletFactory = WalletJSFactory()!

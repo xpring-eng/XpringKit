@@ -4,6 +4,12 @@ import XCTest
 
 // TODO: Reconcile tests with the ones in terram.
 class WalletTest: XCTestCase {
+	// TODO Refactor;
+	func testToHex() {
+		let bytes: [UInt8] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+		XCTAssertEqual(bytes.toHex(), "0123456789ABCDEF")
+	}
+
 	// TODO: Invalid seed test, here and in terram
 	func testGenerateWalletFromSeed() {
 		guard let wallet = Wallet(seed: "snYP7oArxKepd3GPDcrjMsJYiJeJB") else {
@@ -15,12 +21,11 @@ class WalletTest: XCTestCase {
 		XCTAssertEqual(wallet.address, "rByLcEZ7iwTBAK8FfjtpFuT7fCzt4kF4r2")
 	}
 
-//	func testGenerateRandomWallet() {
-//		let wallet = self.terramWallet.generateRandomWallet()
-//		XCTAssertNotNil(wallet)
-//		XCTAssertEqual(wallet.derivationPath, self.terramWallet.getDefaultDerivationPath())
-//	}
-//
+	func testGenerateRandomWallet() {
+		let walletGenerationResult = Wallet.generateRandomWallet()
+		XCTAssertEqual(walletGenerationResult.derivationPath, Wallet.defaultDerivationPath)
+	}
+
 	func testGenerateWalletFromMnemonicNoDerivationPath() {
 		let mnemonic = "abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon about"
 		guard let wallet = Wallet(mnemonic: mnemonic) else {
