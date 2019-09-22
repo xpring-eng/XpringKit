@@ -17,6 +17,8 @@ public class Wallet {
 
 	private let walletJS: WalletJS
 
+	public var address: String { return walletJS.address }
+
 	public static func generateRandomWallet() -> WalletGenerationResult {
 		let walletGenerationResultJS = Wallet.walletFactory.generateRandomWallet()
 		return WalletGenerationResult(

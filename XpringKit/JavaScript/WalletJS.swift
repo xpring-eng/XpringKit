@@ -66,8 +66,6 @@ internal class WalletJS {
 	public let publicKey: String
 	public let privateKey: String
 	public let address: String
-	public let mnemonic: String
-	public let derivationPath: String
 
 	// TODO: Take a context in here too?
 	// TOOD: Shoudl this be failable?
@@ -77,15 +75,11 @@ internal class WalletJS {
 			let publicKey = value.invokeMethod("getPublicKey", withArguments: []),
 			let privateKey = value.invokeMethod("getPrivateKey", withArguments: []),
 			let address = value.invokeMethod("getAddress", withArguments: []),
-			let mnemonic = value.invokeMethod("getMnemonic", withArguments: []),
-			let derivationPath = value.invokeMethod("getDerivationPath", withArguments: []),
 			!publicKey.isUndefined,
 			!privateKey.isUndefined,
-			!address.isUndefined,
-			!mnemonic.isUndefined,
-			!derivationPath.isUndefined
-			else {
-				return nil
+			!address.isUndefined
+		else {
+			return nil
 		}
 
 		javascriptWallet = value
@@ -93,8 +87,6 @@ internal class WalletJS {
 		self.publicKey = publicKey.toString()
 		self.privateKey = privateKey.toString()
 		self.address = address.toString()
-		self.mnemonic = mnemonic.toString()
-		self.derivationPath = derivationPath.toString()
 	}
 
 	public func sign(input: String) -> String? {
