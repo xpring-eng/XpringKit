@@ -3,6 +3,13 @@ import JavaScriptCore
 
 /// Provides wallet functionality backed by JavaScript.
 internal class JavaScriptWallet {
+	/// String constants which refer to named JavaScript resources.
+	// TODO(keefertaylor): Wire these
+	private enum ResourceNames {
+		public static let getAddress = "getAddress"
+	}
+
+	/// An underlying reference to a JavaScript wallet.
 	private let javaScriptWallet: JSValue
 
 	/// Returns the address of this `JavaScriptWallet` on the XRP Ledger.
