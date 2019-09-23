@@ -4,12 +4,22 @@ import XCTest
 
 final class XpringClientTest: XCTestCase {
 	func testIntegrationTest() {
-		let grpcURL = "grpc.xpring.tech:80"
+		let grpcURL = "127.0.0.1:3002" //"grpc.xpring.tech:80"
 		let networkClient = Io_Xpring_XRPLedgerServiceClient(address: grpcURL, secure: false)
-		// TODO: Fix this api
 		let xpringClient = XpringClient(networkClient: networkClient)
-		let balance = try! xpringClient.getBalance(for: "rsegqrgSP8XmhCYwL9enkZ9BNDNawfPZnn")
+
+		let wallet = Wallet(seed: "snYP7oArxKepd3GPDcrjMsJYiJeJB")!
+		XCTAssertEqual(wallet.address, "rByLcEZ7iwTBAK8FfjtpFuT7fCzt4kF4r2")
+
+		let balance = try! xpringClient.getBalance(for: wallet.address)
 		print(balance)
+
+		let amount = Io_Xpring_XRPAmount.with { $0.drops = "1" }
+		let result = try! xpringClient.send(amount, to: "rsegqrgSP8XmhCYwL9enkZ9BNDNawfPZnn", from: wallet)
+		print(result)
+
+		let balance2 = try! xpringClient.getBalance(for: wallet.address)
+		print(balance2)
 	}
 
 	func testGetBalanceWithSuccess() {

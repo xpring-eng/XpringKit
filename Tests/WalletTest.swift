@@ -15,7 +15,7 @@ class WalletTest: XCTestCase {
 
 		let bytes = [UInt8](try! tx.serializedData())
 		let hex = bytes.toHex()
-		print(hex)
+//		print(hex)
 	}
 
 	// TODO: Invalid seed test, here and in terram

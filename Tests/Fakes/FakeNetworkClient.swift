@@ -23,4 +23,12 @@ extension FakeNetworkClient: NetworkClient {
             throw error
         }
     }
+
+	public func getFee(_ request: Io_Xpring_GetFeeRequest) throws -> Io_Xpring_Fee {
+		fatalError()
+	}
+
+	public func submitSignedTransaction(_ request: Io_Xpring_SubmitSignedTransactionRequest) throws -> Io_Xpring_SubmitSignedTransactionResponse {
+		fatalError()
+	}
 }

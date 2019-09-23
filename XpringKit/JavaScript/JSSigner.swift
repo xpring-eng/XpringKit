@@ -55,11 +55,12 @@ internal class JSSigner {
 		self.bytesToHexFunction = bytesToHexFunction
 	}
 
-	public func sign(_ transaction: Io_Xpring_Transaction, with wallet: Wallet) {
+	public func sign(_ transaction: Io_Xpring_Transaction, with wallet: Wallet) -> Io_Xpring_SignedTransaction? {
+		print("Transaction: \(transaction)")
 		// TODO: remove force try.
 		let serializedTransaction = try! transaction.serializedData()
 		let serializedTransactionHex = [UInt8](serializedTransaction).toHex()
-		print("Serialized to: \(serializedTransactionHex)")
+//		print("Serialized to: \(serializedTransactionHex)")
 
 		// TODO: Could we pass bytes directly?
 		let bytes = hexToBytesFunction.call(withArguments: [serializedTransactionHex ])!
@@ -68,11 +69,11 @@ internal class JSSigner {
 			let deserializeBinaryTransactionFunction = transactionClass.objectForKeyedSubscript("deserializeBinary"),
 			!deserializeBinaryTransactionFunction.isUndefined
 		else {
-			return
+			return nil
 		}
 
 		let transactionJS = deserializeBinaryTransactionFunction.call(withArguments: [ bytes ] )!
-		print("SEQUENCE: \(transactionJS.invokeMethod("getSequence", withArguments: []))")
+//		print("SEQUENCE: \(transactionJS.invokeMethod("getSequence", withArguments: []))")
 
 		let walletJS = walletClass.construct(withArguments: [ wallet.publicKey, wallet.privateKey])
 
@@ -81,7 +82,10 @@ internal class JSSigner {
 		let serializedSignedTransactionHex = bytesToHexFunction.call(withArguments: [serializedSignedTransaction])!.toString()!
 		let nativeData = serializedSignedTransactionHex.hexadecimal!
 		let serializedSignedTransactionNative = try! Io_Xpring_SignedTransaction(serializedData: nativeData)
-		print(serializedSignedTransactionNative)
+//		print(serializedSignedTransactionNative)
+
+		print("Serialized Transaction: \(serializedSignedTransactionNative)")
+		return serializedSignedTransactionNative
 	}
 }
 

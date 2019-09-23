@@ -6,4 +6,6 @@ public protocol NetworkClient {
 	/// - Throws: An error if there was a problem communicating with the Xpring Network.
 	/// - Returns: An AccountInfo object that corresponds to the request.
 	func getAccountInfo(_ request: Io_Xpring_GetAccountInfoRequest) throws -> Io_Xpring_AccountInfo
+	func getFee(_ request: Io_Xpring_GetFeeRequest) throws -> Io_Xpring_Fee
+	func submitSignedTransaction(_ request: Io_Xpring_SubmitSignedTransactionRequest) throws -> Io_Xpring_SubmitSignedTransactionResponse
 }
