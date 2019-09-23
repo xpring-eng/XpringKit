@@ -1,6 +1,6 @@
 /// A property bag which contains artifacts from generating a new `Wallet`.
 public struct WalletGenerationResult {
-	/// The underlying javascript based `WalletGenerationResult`.
+	/// The underlying JavaScript based `WalletGenerationResult`.
 	private let javaScriptWalletGenerationResult: JavaScriptWalletGenerationResult
 
 	/// The mnemonic that was used to generate the new `Wallet`.

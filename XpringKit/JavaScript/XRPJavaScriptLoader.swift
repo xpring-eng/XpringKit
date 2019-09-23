@@ -14,16 +14,16 @@ internal enum XRPJavaScriptLoader {
 		public static let missingResource = "Could not find the requested resource: %s"
 
 		/// Unknown error.
-		public static let unknownLoadingError = "Unknown error occurred while loading javascript resources for the XRP Ledger. "
+		public static let unknownLoadingError = "Unknown error occurred while loading JavaScript resources for the XRP Ledger. "
 	}
 
 	/// Constant values used to load resources.
 	private enum Resources {
 		/// The resource name of the bundled JavaScript.
-		public static let javascriptResourceName = "bundled"
+		public static let javaScriptResourceName = "bundled"
 
 		/// The file extension of the bundled JavaScript.
-		public static let javascriptFileExtension = "js"
+		public static let javaScriptFileExtension = "js"
 	}
 
 	/// A `JSContext` which is initialized with XRP Ledger functionality.
@@ -38,13 +38,13 @@ internal enum XRPJavaScriptLoader {
 		}
 
 		guard
-			let fileURL = bundle.url(forResource: Resources.javascriptResourceName, withExtension: Resources.javascriptFileExtension),
-			let javascript = try? String(contentsOf: fileURL)
+			let fileURL = bundle.url(forResource: Resources.javaScriptResourceName, withExtension: Resources.javaScriptFileExtension),
+			let javaScript = try? String(contentsOf: fileURL)
 		else {
 			fatalError(LoaderErrors.missingBundledJS)
 		}
 
-		context.evaluateScript(javascript)
+		context.evaluateScript(javaScript)
 		return context
 	}
 

@@ -12,7 +12,7 @@ internal class JavaScriptUtils {
 	/// The JavaScript context.
 	private let context: JSContext
 
-	/// Native javascript functions wrapped by this class.
+	/// Native javaScript functions wrapped by this class.
 	private let isValidAddressFunction: JSValue
 
 	/// Initialize a JavaScriptUtils object.

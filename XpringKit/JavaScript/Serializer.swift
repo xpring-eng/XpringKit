@@ -19,7 +19,7 @@ internal class JavaScriptSerializer {
 	private let walletClass: JSValue
 
 	/// Initialize a new JavaScriptSerializer.
-	// TODO(keefertaylor): Context needs to get injected so that objects don't move between contexts.
+	// TODO(keefertaylor): Context needs to get injected so that objects don't move between contexts. Remove this injection when Context exists as a shared Singleton.
 	public init(context: JSContext) {
 		self.context = context
 

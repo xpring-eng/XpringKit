@@ -32,8 +32,11 @@ internal class JavaScriptWallet {
 
 	/// Initialize a new JavaScriptWallet.
 	///
-	/// - Parameter javascriptWallet: A reference to a JavaScript wallet.
+	/// - Parameter javaScriptWallet: A reference to a JavaScript wallet.
 	public init?(javaScriptWallet: JSValue) {
+		guard !javaScriptWallet.isUndefined else {
+			return nil
+		}
 		self.javaScriptWallet = javaScriptWallet
 	}
 

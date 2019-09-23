@@ -14,7 +14,7 @@ internal class JavaScriptWalletFactory {
 	/// The JavaScript context.
 	private let context: JSContext
 
-	/// Native javascript functions used to create `JavaScriptWallet` objects.
+	/// Native javaScript functions used to create `JavaScriptWallet` objects.
 	private let generateRandomWalletFunction: JSValue
 	private let generateWalletFromMnemonicFunction: JSValue
 	private let generateWalletFromSeedFunction: JSValue

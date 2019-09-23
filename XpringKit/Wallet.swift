@@ -26,8 +26,8 @@ public class Wallet {
 	///
 	/// - Returns: Artifacts of the generation process in a WalletGenerationResult.
 	public static func generateRandomWallet() -> WalletGenerationResult {
-		let javascriptWalletGenerationResult = Wallet.javaScriptWalletFactory.generateRandomWallet()
-		return WalletGenerationResult(javaScriptWalletGenerationResult: javascriptWalletGenerationResult)
+		let javaScriptWalletGenerationResult = Wallet.javaScriptWalletFactory.generateRandomWallet()
+		return WalletGenerationResult(javaScriptWalletGenerationResult: javaScriptWalletGenerationResult)
 	}
 
 	/// Initialize a new `Wallet` with a mnemonic and a derivation path.
