@@ -10,6 +10,14 @@ class WalletTest: XCTestCase {
 		XCTAssertEqual(bytes.toHex(), "0123456789ABCDEF")
 	}
 
+	func testSerialize() {
+		let tx = Io_Xpring_Transaction.with { $0.sequence = 12 }
+
+		let bytes = [UInt8](try! tx.serializedData())
+		let hex = bytes.toHex()
+		print(hex)
+	}
+
 	// TODO: Invalid seed test, here and in terram
 	func testGenerateWalletFromSeed() {
 		guard let wallet = Wallet(seed: "snYP7oArxKepd3GPDcrjMsJYiJeJB") else {

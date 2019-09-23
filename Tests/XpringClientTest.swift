@@ -1,7 +1,17 @@
 import XCTest
-import XpringKit
+// TODO: Remove testable
+@testable import XpringKit
 
 final class XpringClientTest: XCTestCase {
+	func testIntegrationTest() {
+		let grpcURL = "grpc.xpring.tech:80"
+		let networkClient = Io_Xpring_XRPLedgerServiceClient(address: grpcURL, secure: false)
+		// TODO: Fix this api
+		let xpringClient = XpringClient(networkClient: networkClient)
+		let balance = try! xpringClient.getBalance(for: "rsegqrgSP8XmhCYwL9enkZ9BNDNawfPZnn")
+		print(balance)
+	}
+
 	func testGetBalanceWithSuccess() {
 		// GIVEN a Xpring client which will successfully return a balance from a mocked network call.
 		let balance = "1000"
