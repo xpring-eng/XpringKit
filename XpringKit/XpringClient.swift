@@ -1,8 +1,3 @@
-/// TODO: make this compile, move, name appropriately
-public enum XpringClientError: Error {
-	case signingError
-}
-
 /// An interface into the Xpring Platform.
 /// TODO(keefertaylor): Rename this to XRPClient.
 public class XpringClient {
@@ -58,7 +53,7 @@ public class XpringClient {
 		}
 
 		guard let signedTransaction = Signer.sign(transaction, with: sourceWallet) else {
-			throw XpringClientError.signingError
+			throw XRPLedgerError.signingError
 		}
 
 		let submitSignedTransactionRequest = Io_Xpring_SubmitSignedTransactionRequest.with {

@@ -55,7 +55,7 @@ internal class JavaScriptWalletFactory {
 	public func generateRandomWallet() -> JavaScriptWalletGenerationResult {
 		let randomBytesHex = RandomBytesUtil.randomBytes(numBytes: 16).toHex()
 		let result = generateRandomWalletFunction.call(withArguments: [ randomBytesHex ])!
-		return result.toWalletGenerationResult()
+		return result.toWalletGenerationResult()!
 	}
 
 	public func wallet(mnemonic: String, derivationPath: String? = nil) -> WalletJS? {

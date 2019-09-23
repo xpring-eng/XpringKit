@@ -16,43 +16,17 @@ internal class JavaScriptSigner {
 	///
 	/// - Note: Initialization will fail if the expected bundle is missing or malformed.
 	public init?() {
-		let bundle = Bundle(for: type(of: self))
+		context = XRPJavaScriptLoader.XRPJavaScriptContext
 
-		guard
-			let context = JSContext(),
-			let fileURL = bundle.url(forResource: "bundled", withExtension: "js"),
-			let javascript = try? String(contentsOf: fileURL)
-		else {
-			return nil
-		}
+		// TODO(keefer): Naming?
+		// TODO(keefer): Drop some of these classes.
+		hexToBytesFunction = XRPJavaScriptLoader.load("fromHexString", from: context)
+		bytesToHexFunction = XRPJavaScriptLoader.load("toHexString", from: context)
+		transactionClass = XRPJavaScriptLoader.load("Transaction", from: context)
+		walletClass = XRPJavaScriptLoader.load("Wallet", from: context)
 
-		context.evaluateScript(javascript)
-
-		guard
-			let entrypoint = context.objectForKeyedSubscript("EntryPoint"),
-			let `default` = entrypoint.objectForKeyedSubscript("default"),
-			let signer = `default`.objectForKeyedSubscript("Signer"),
-			let transactionClass = `default`.objectForKeyedSubscript("Transaction"),
-			let walletClass = `default`.objectForKeyedSubscript("Wallet"),
-			let hexToBytesFunction = `default`.objectForKeyedSubscript("fromHexString"),
-			let bytesToHexFunction = `default`.objectForKeyedSubscript("toHexString"),
-			let signFunction = signer.objectForKeyedSubscript("signTransaction"),
-			!signFunction.isUndefined,
-			!hexToBytesFunction.isUndefined,
-			!transactionClass.isUndefined,
-			!walletClass.isUndefined,
-			!bytesToHexFunction.isUndefined
-		else {
-			return nil
-		}
-
-		self.context = context
-
-		self.signFunction = signFunction
-		self.transactionClass = transactionClass
-		self.walletClass = walletClass
-		self.hexToBytesFunction = hexToBytesFunction
-		self.bytesToHexFunction = bytesToHexFunction
+		let signer = XRPJavaScriptLoader.load("Signer", from: context)
+		signFunction = XRPJavaScriptLoader.load("signTransaction", from: signer)
 	}
 
 	public func sign(_ transaction: Io_Xpring_Transaction, with wallet: Wallet) -> Io_Xpring_SignedTransaction? {
