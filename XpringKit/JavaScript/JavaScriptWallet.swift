@@ -1,117 +1,49 @@
 import Foundation
 import JavaScriptCore
 
-internal class JavaScriptWalletFactory {
-	/// The javascript context.
-	private let context: JSContext
+/// Provides wallet functionality backed by JavaScript.
+internal class JavaScriptWallet {
+	private let javaScriptWallet: JSValue
 
-	private let generateRandomWalletFunction: JSValue
-	private let generateWalletFromMnemonicFunction: JSValue
-	private let generateWalletFromSeedFunction: JSValue
-	private let getDefaultDerivationPathFunction: JSValue
-
-	public var defaultDerivationPath: String {
-		let result = getDefaultDerivationPathFunction.call(withArguments: [])!
-		return result.toString()
+	/// Returns the address of this `JavaScriptWallet` on the XRP Ledger.
+	public var address: Address {
+		let value = javaScriptWallet.invokeMethod("getAddress", withArguments: [])!
+		return value.toString()
 	}
 
-	public init?() {
-		let bundle = Bundle(for: type(of: self))
-
-		// TODO: Refactor to a loader class
-		guard
-			let context = JSContext(),
-			let fileURL = bundle.url(forResource: "bundled", withExtension: "js"),
-			let javascript = try? String(contentsOf: fileURL)
-			else {
-				return nil
-		}
-
-		context.evaluateScript(javascript)
-
-		guard
-			let entrypoint = context.objectForKeyedSubscript("EntryPoint"),
-			let `default` = entrypoint.objectForKeyedSubscript("default"),
-			let wallet = `default`.objectForKeyedSubscript("Wallet"),
-			let generateRandomWalletFunction = wallet.objectForKeyedSubscript("generateRandomWallet"),
-			let generateWalletFromMnemonicFunction = wallet.objectForKeyedSubscript("generateWalletFromMnemonic"),
-			let generateWalletFromSeedFunction = wallet.objectForKeyedSubscript("generateWalletFromSeed"),
-			let getDefaultDerivationPathFunction = wallet.objectForKeyedSubscript("getDefaultDerivationPath"),
-			!generateRandomWalletFunction.isUndefined,
-			!generateWalletFromMnemonicFunction.isUndefined,
-			!generateWalletFromSeedFunction.isUndefined,
-			!getDefaultDerivationPathFunction.isUndefined
-		else {
-				return nil
-		}
-
-		self.context = context
-		self.generateRandomWalletFunction = generateRandomWalletFunction
-		self.generateWalletFromMnemonicFunction = generateWalletFromMnemonicFunction
-		self.generateWalletFromSeedFunction = generateWalletFromSeedFunction
-		self.getDefaultDerivationPathFunction = getDefaultDerivationPathFunction
+	/// Returns a hex encoded public key corresponding to this `JavaScriptWallet`.
+	public var publicKey: String {
+		let value = javaScriptWallet.invokeMethod("getPublicKey", withArguments: [])!
+		return value.toString()
 	}
 
-	public func generateRandomWallet() -> JavaScriptWalletGenerationResult {
-		let randomBytesHex = RandomBytesUtil.randomBytes(numBytes: 16).toHex()
-		let result = generateRandomWalletFunction.call(withArguments: [ randomBytesHex ])!
-		return result.toWalletGenerationResult()!
+	/// Returns a hex encoded private key corresponding to this `JavaScriptWallet`.
+	public var privateKey: String {
+		let value = javaScriptWallet.invokeMethod("getPrivateKey", withArguments: [])!
+		return value.toString()
 	}
 
-	public func wallet(mnemonic: String, derivationPath: String? = nil) -> WalletJS? {
-		var arguments = [mnemonic]
-		if let derivationPath = derivationPath {
-			arguments.append(derivationPath)
-		}
-
-		let result = generateWalletFromMnemonicFunction.call(withArguments: arguments)!
-		return result.toWallet()
+	/// Initialize a new JavaScriptWallet.
+	///
+	/// - Parameter javascriptWallet: A reference to a JavaScript wallet.
+	public init?(javaScriptWallet: JSValue) {
+		self.javaScriptWallet = javaScriptWallet
 	}
 
-	public func wallet(seed: String) -> WalletJS? {
-		let result = generateWalletFromSeedFunction.call(withArguments: [ seed ])!
-		return result.toWallet()
-	}
-}
-
-// TOOD: Refactor to JSWallet / JS Utils
-internal class WalletJS {
-	private let javascriptWallet: JSValue
-
-	public let publicKey: String
-	public let privateKey: String
-	public let address: String
-
-	// TODO: Take a context in here too?
-	// TOOD: Shoudl this be failable?
-	// TODO: Refactor these strings to be better.
-	public init?(value: JSValue) {
-		guard
-			let publicKey = value.invokeMethod("getPublicKey", withArguments: []),
-			let privateKey = value.invokeMethod("getPrivateKey", withArguments: []),
-			let address = value.invokeMethod("getAddress", withArguments: []),
-			!publicKey.isUndefined,
-			!privateKey.isUndefined,
-			!address.isUndefined
-		else {
-			return nil
-		}
-
-		javascriptWallet = value
-
-		self.publicKey = publicKey.toString()
-		self.privateKey = privateKey.toString()
-		self.address = address.toString()
-	}
-
-	public func sign(input: String) -> String? {
-		let result = javascriptWallet.invokeMethod("sign", withArguments: [ input ])!
+	/// Sign the given input.
+	///
+	/// - Parameter input: Input to sign.
+	/// - Returns: A hexadecimal encoded signature.
+	public func sign(input: Hex) -> String? {
+		let result = javaScriptWallet.invokeMethod("sign", withArguments: [ input ])!
 		guard !result.isUndefined else {
 			return nil
 		}
 		return result.toString()
 	}
 
+	/// TODO(keefertaylor): Implement.
+	/// TODO(keefertaylor): Document.
 	public func verify() -> Bool {
 		return false
 	}

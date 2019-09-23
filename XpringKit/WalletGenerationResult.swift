@@ -10,7 +10,7 @@ public struct WalletGenerationResult {
 	public var derivationPath: String { return javaScriptWalletGenerationResult.derivationPath }
 
 	/// The newly generated `Wallet`.
-	public var wallet: Wallet { return Wallet(walletJS: javaScriptWalletGenerationResult.wallet) }
+	public var wallet: Wallet { return Wallet(javaScriptWallet: javaScriptWalletGenerationResult.wallet) }
 
 	/// Initialize a new `WalletGenerationResult` backed by a JavaScript implementation.
 	internal init(javaScriptWalletGenerationResult: JavaScriptWalletGenerationResult) {

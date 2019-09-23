@@ -1,7 +1,7 @@
 /// Provides utility functions for working in the XRP Ecosystem.
 public enum Utils {
 	/// The underlying JavaScript based utilities.
-	private static let javaScriptUtils = JavaScriptUtils()!
+	private static let javaScriptUtils = JavaScriptUtils()
 
 	/// Check if the given address is a valid XRP address.
 	///
