@@ -4,7 +4,7 @@ import XCTest
 
 final class XpringClientTest: XCTestCase {
 	func testIntegrationTest() {
-		let grpcURL = "127.0.0.1:3002" //"grpc.xpring.tech:80"
+		let grpcURL = "grpc.xpring.tech:80"
 		let networkClient = Io_Xpring_XRPLedgerServiceClient(address: grpcURL, secure: false)
 		let xpringClient = XpringClient(networkClient: networkClient)
 

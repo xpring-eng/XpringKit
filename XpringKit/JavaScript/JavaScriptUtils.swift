@@ -1,7 +1,7 @@
 import Foundation
 import JavaScriptCore
 
-internal class UtilsJS {
+internal class JavaScriptUtils {
 	/// The javascript context.
 	private let context: JSContext
 

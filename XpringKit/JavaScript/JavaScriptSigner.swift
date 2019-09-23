@@ -1,7 +1,7 @@
 import Foundation
 import JavaScriptCore
 
-internal class JSSigner {
+internal class JavaScriptSigner {
 	/// The javascript context.
 	private let context: JSContext
 

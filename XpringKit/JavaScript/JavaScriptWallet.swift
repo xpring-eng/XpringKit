@@ -1,7 +1,7 @@
 import Foundation
 import JavaScriptCore
 
-internal class WalletJSFactory {
+internal class JavaScriptWalletFactory {
 	/// The javascript context.
 	private let context: JSContext
 
@@ -52,8 +52,8 @@ internal class WalletJSFactory {
 		self.getDefaultDerivationPathFunction = getDefaultDerivationPathFunction
 	}
 
-	public func generateRandomWallet() -> WalletGenerationResultJS {
-		let randomBytesHex = RandomBytes.randomBytes(numBytes: 16).toHex()
+	public func generateRandomWallet() -> JavaScriptWalletGenerationResult {
+		let randomBytesHex = RandomBytesUtil.randomBytes(numBytes: 16).toHex()
 		let result = generateRandomWalletFunction.call(withArguments: [ randomBytesHex ])!
 		return result.toWalletGenerationResult()
 	}

@@ -1,12 +1,12 @@
 import JavaScriptCore
 
 extension JSValue {
-	internal func toWalletGenerationResult() -> WalletGenerationResultJS {
+	internal func toWalletGenerationResult() -> JavaScriptWalletGenerationResult {
 		let mnemonic = self.objectForKeyedSubscript("mnemonic")!.toString()!
 		let derivationPath = self.objectForKeyedSubscript("derivationPath")!.toString()!
 		let wallet = self.objectForKeyedSubscript("wallet")!.toWallet()!
 
-		return WalletGenerationResultJS(
+		return JavaScriptWalletGenerationResult(
 			mnemonic: mnemonic,
 			derivationPath: derivationPath,
 			wallet: wallet
