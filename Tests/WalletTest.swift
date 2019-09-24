@@ -1,25 +1,7 @@
 import XCTest
-// TODO: No need for testability
-@testable import XpringKit
+import XpringKit
 
-// TODO: Reconcile tests with the ones in terram.
 class WalletTest: XCTestCase {
-	// TODO Refactor;
-	// TODO: REmove this function?
-	func testToHex() {
-		let bytes: [UInt8] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
-//		XCTAssertEqual(bytes.toHex(), "0123456789ABCDEF")
-	}
-
-	func testSerialize() {
-		let tx = Io_Xpring_Transaction.with { $0.sequence = 12 }
-
-		let bytes = [UInt8](try! tx.serializedData())
-		let hex = bytes.toHex()
-//		print(hex)
-	}
-
-	// TODO: Invalid seed test, here and in terram
 	func testGenerateWalletFromSeed() {
 		guard let wallet = Wallet(seed: "snYP7oArxKepd3GPDcrjMsJYiJeJB") else {
 			XCTFail("Could not generate wallet")
@@ -28,6 +10,11 @@ class WalletTest: XCTestCase {
 
 		XCTAssertNotNil(wallet)
 		XCTAssertEqual(wallet.address, "rByLcEZ7iwTBAK8FfjtpFuT7fCzt4kF4r2")
+	}
+
+	func testGenerateWalletFromInvalidSeed() {
+		let wallet = Wallet(seed: "xrp")
+		XCTAssertNil(wallet)
 	}
 
 	func testGenerateRandomWallet() {
@@ -109,5 +96,78 @@ class WalletTest: XCTestCase {
 		}
 
 		XCTAssertNil(wallet.sign(input: "xrp"))
+	}
+
+	func testVerify() {
+		let mnemonic = "abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon about"
+		let derivationPath = "m/44'/144'/0'/0/0"
+		guard let wallet = Wallet(mnemonic: mnemonic, derivationPath: derivationPath) else {
+			XCTFail("Could not generate wallet")
+			return
+		}
+
+		let message = "74657374206d657373616765"
+		let signature = "3045022100E10177E86739A9C38B485B6AA04BF2B9AA00E79189A1132E7172B70F400ED1170220566BD64AA3F01DDE8D99DFFF0523D165E7DD2B9891ABDA1944E2F3A52CCCB83A"
+
+		XCTAssertTrue(wallet.verify(message: message, signature: signature))
+	}
+
+	func testVerifyInvalidSignature() {
+		let mnemonic = "abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon about"
+		let derivationPath = "m/44'/144'/0'/0/0"
+		guard let wallet = Wallet(mnemonic: mnemonic, derivationPath: derivationPath) else {
+			XCTFail("Could not generate wallet")
+			return
+		}
+
+		let message = "74657374206d657373616765"
+		let signature = "DEADBEEF"
+
+		XCTAssertFalse(wallet.verify(message: message, signature: signature))
+	}
+
+	func testVerifyBadMessage() {
+		let mnemonic = "abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon about"
+		let derivationPath = "m/44'/144'/0'/0/0"
+		guard let wallet = Wallet(mnemonic: mnemonic, derivationPath: derivationPath) else {
+			XCTFail("Could not generate wallet")
+			return
+		}
+
+		let message = "xrp"
+		let signature = "3045022100E10177E86739A9C38B485B6AA04BF2B9AA00E79189A1132E7172B70F400ED1170220566BD64AA3F01DDE8D99DFFF0523D165E7DD2B9891ABDA1944E2F3A52CCCB83A"
+
+		XCTAssertFalse(wallet.verify(message: message, signature: signature))
+	}
+
+	func testSignAndVerifyEmptyString() {
+		let mnemonic = "abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon about"
+		let derivationPath = "m/44'/144'/0'/0/0"
+		guard let wallet = Wallet(mnemonic: mnemonic, derivationPath: derivationPath) else {
+			XCTFail("Could not generate wallet")
+			return
+		}
+
+		let message = ""
+
+		guard let signature = wallet.sign(input: message) else {
+			XCTFail("Failed to sign message")
+			return
+		}
+		XCTAssertTrue(wallet.verify(message: message, signature: signature))
+	}
+
+	func testVerifyEmptyStringBadSignature() {
+		let mnemonic = "abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon about"
+		let derivationPath = "m/44'/144'/0'/0/0"
+		guard let wallet = Wallet(mnemonic: mnemonic, derivationPath: derivationPath) else {
+			XCTFail("Could not generate wallet")
+			return
+		}
+
+		let message = ""
+		let signature = "DEADBEEF"
+
+		XCTAssertFalse(wallet.verify(message: message, signature: signature))
 	}
 }

@@ -9,9 +9,6 @@ internal class JavaScriptSigner {
 		public static let signTransaction = "signTransaction"
 	}
 
-	/// The JavaScript context.
-	private let context: JSContext
-
 	/// A JavaScriptSerializer which can convert native objects to JavaScript.
 	private let javaScriptSerializer: JavaScriptSerializer
 
@@ -22,7 +19,7 @@ internal class JavaScriptSigner {
 	///
 	/// - Note: Initialization will fail if the expected bundle is missing or malformed.
 	public init() {
-		context = XRPJavaScriptLoader.XRPJavaScriptContext
+		let context = XRPJavaScriptLoader.XRPJavaScriptContext
 
 		let signer = XRPJavaScriptLoader.load(ResourceNames.signer, from: context)
 		signTransactionFunction = XRPJavaScriptLoader.load(ResourceNames.signTransaction, from: signer)

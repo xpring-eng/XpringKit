@@ -79,7 +79,6 @@ internal enum XRPJavaScriptLoader {
 	///		- resourceName: The name of the resource to load.
 	///		- value: The value to load a resource from.
 	/// - Returns: A `JSValue` referring to the requested resource.
-	// TODO(keefer): Drop context parameter when context becomes a singleton.
 	public static func load(_ resourceName: String, from value: JSValue) -> JSValue {
 		guard
 			let resource = value.objectForKeyedSubscript(resourceName),

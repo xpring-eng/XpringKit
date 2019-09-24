@@ -1,6 +1,5 @@
 import JavaScriptCore
 
-// TODO(keefertaylor): Rename file
 internal class JavaScriptSerializer {
 	/// String constants which refer to named JavaScript resources.
 	private enum ResourceNames {
@@ -8,9 +7,6 @@ internal class JavaScriptSerializer {
 		public static let transaction = "Transaction"
 		public static let wallet = "Wallet"
 	}
-
-	/// The JavaScript context.
-	private let context: JSContext
 
 	/// References to JavaScript functions.
 	private let deserializeTransactionFunction: JSValue
@@ -21,8 +17,6 @@ internal class JavaScriptSerializer {
 	/// Initialize a new JavaScriptSerializer.
 	// TODO(keefertaylor): Context needs to get injected so that objects don't move between contexts. Remove this injection when Context exists as a shared Singleton.
 	public init(context: JSContext) {
-		self.context = context
-
 		walletClass = XRPJavaScriptLoader.load(ResourceNames.wallet, from: context)
 
 		let transactionClass = XRPJavaScriptLoader.load(ResourceNames.transaction, from: context)

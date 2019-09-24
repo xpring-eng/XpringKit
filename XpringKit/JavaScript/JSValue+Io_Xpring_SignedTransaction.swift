@@ -1,7 +1,6 @@
 import JavaScriptCore
 
 /// Allows conversion of `JSValue` objects to `Io_Xpring_SignedTransaction` objects.
-// TODO(keefertaylor): Reverse naming on category files.
 internal extension JSValue {
 	private enum ResourceNames {
 		public static let serializeBinary = "serializeBinary"

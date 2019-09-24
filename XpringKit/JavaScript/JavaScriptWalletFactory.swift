@@ -11,9 +11,6 @@ internal class JavaScriptWalletFactory {
 		public static let getDefaultDerivationPath = "getDefaultDerivationPath"
 	}
 
-	/// The JavaScript context.
-	private let context: JSContext
-
 	/// Native javaScript functions used to create `JavaScriptWallet` objects.
 	private let generateRandomWalletFunction: JSValue
 	private let generateWalletFromMnemonicFunction: JSValue
@@ -28,7 +25,7 @@ internal class JavaScriptWalletFactory {
 
 	/// Initialize a new `JavaScriptWalletFactory`.
 	public init() {
-		context = XRPJavaScriptLoader.XRPJavaScriptContext
+		let context = XRPJavaScriptLoader.XRPJavaScriptContext
 
 		let wallet = XRPJavaScriptLoader.load(ResourceNames.wallet, from: context)
 		generateRandomWalletFunction = XRPJavaScriptLoader.load(ResourceNames.generateRandomWallet, from: wallet)

@@ -70,9 +70,13 @@ public class Wallet {
 		return self.javaScriptWallet.sign(input: input)
 	}
 
-	// TODO(keefertaylor): Implement
-	// TODO(keefertaylor): Document.
-	public func verify() -> Bool {
-		return self.javaScriptWallet.verify()
+	/// Verify that a given signature is valid for the given message.
+	///
+	/// - Parameters:
+	///		- message: A message in hex format.
+	///		- signature A signature in hex format.
+	///	- Returns: A boolean indicating the validity of the signature.
+	public func verify(message: String, signature: String) -> Bool {
+		return self.javaScriptWallet.verify(message: message, signature: signature)
 	}
 }

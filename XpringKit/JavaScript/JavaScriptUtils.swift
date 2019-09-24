@@ -9,15 +9,12 @@ internal class JavaScriptUtils {
 		public static let utils = "Utils"
 	}
 
-	/// The JavaScript context.
-	private let context: JSContext
-
 	/// Native javaScript functions wrapped by this class.
 	private let isValidAddressFunction: JSValue
 
 	/// Initialize a JavaScriptUtils object.
 	public init() {
-		context = XRPJavaScriptLoader.XRPJavaScriptContext
+		let context = XRPJavaScriptLoader.XRPJavaScriptContext
 		let utils = XRPJavaScriptLoader.load(ResourceNames.utils, from: context)
 		isValidAddressFunction = XRPJavaScriptLoader.load(ResourceNames.isValidAddress, from: utils)
 	}

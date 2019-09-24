@@ -4,9 +4,12 @@ import JavaScriptCore
 /// Provides wallet functionality backed by JavaScript.
 internal class JavaScriptWallet {
 	/// String constants which refer to named JavaScript resources.
-	// TODO(keefertaylor): Wire these
 	private enum ResourceNames {
 		public static let getAddress = "getAddress"
+		public static let getPrivateKey = "getPrivateKey"
+		public static let getPublicKey = "getPublicKey"
+		public static let sign = "sign"
+		public static let verify = "verify"
 	}
 
 	/// An underlying reference to a JavaScript wallet.
@@ -14,19 +17,19 @@ internal class JavaScriptWallet {
 
 	/// Returns the address of this `JavaScriptWallet` on the XRP Ledger.
 	public var address: Address {
-		let value = javaScriptWallet.invokeMethod("getAddress", withArguments: [])!
+		let value = javaScriptWallet.invokeMethod(ResourceNames.getAddress, withArguments: [])!
 		return value.toString()
 	}
 
 	/// Returns a hex encoded public key corresponding to this `JavaScriptWallet`.
 	public var publicKey: String {
-		let value = javaScriptWallet.invokeMethod("getPublicKey", withArguments: [])!
+		let value = javaScriptWallet.invokeMethod(ResourceNames.getPublicKey, withArguments: [])!
 		return value.toString()
 	}
 
 	/// Returns a hex encoded private key corresponding to this `JavaScriptWallet`.
 	public var privateKey: String {
-		let value = javaScriptWallet.invokeMethod("getPrivateKey", withArguments: [])!
+		let value = javaScriptWallet.invokeMethod(ResourceNames.getPrivateKey, withArguments: [])!
 		return value.toString()
 	}
 
@@ -45,16 +48,21 @@ internal class JavaScriptWallet {
 	/// - Parameter input: Input to sign.
 	/// - Returns: A hexadecimal encoded signature.
 	public func sign(input: Hex) -> String? {
-		let result = javaScriptWallet.invokeMethod("sign", withArguments: [ input ])!
+		let result = javaScriptWallet.invokeMethod(ResourceNames.sign, withArguments: [ input ])!
 		guard !result.isUndefined else {
 			return nil
 		}
 		return result.toString()
 	}
 
-	/// TODO(keefertaylor): Implement.
-	/// TODO(keefertaylor): Document.
-	public func verify() -> Bool {
-		return false
+	/// Verify that a given signature is valid for the given message.
+	///
+	/// - Parameters:
+	///		- message: A message in hex format.
+	///		- signature A signature in hex format.
+	///	- Returns: A boolean indicating the validity of the signature.
+	public func verify(message: String, signature: String) -> Bool {
+		let result = javaScriptWallet.invokeMethod(ResourceNames.verify, withArguments: [message, signature])!
+		return result.toBool()
 	}
 }
