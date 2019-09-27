@@ -5,7 +5,7 @@ set -e -o pipefail
 WORKING_DIR=$(pwd)
 
 echo "Bundling JS"
-cd xpring-common-protocol-buffers
+cd xpring-common-js
 
 echo ">> Installing Node Dependencies"
 npm i
