@@ -5,7 +5,7 @@ set -e -o pipefail
 WORKING_DIR=$(pwd)
 
 echo "Bundling JS"
-cd terram
+cd xpring-common-protocol-buffers
 
 echo ">> Installing Node Dependencies"
 npm i
@@ -20,4 +20,4 @@ echo "Done Bundling JS"
 cd $WORKING_DIR
 echo "Copying Artifacts"
 mkdir -p ./XpringKit/Resources
-cp terram/dist/bundled.js ./XpringKit/Resources/
+cp xpring-common-protocol-buffers/dist/bundled.js ./XpringKit/Resources/
