@@ -1,0 +1,1076 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 51;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		004CE447B535A5DDAAC7881D /* JavaScriptWalletFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6411247733F228E6454489A5 /* JavaScriptWalletFactory.swift */; };
+		0884B145F6EA3DFA747966D2 /* SwiftProtobuf.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6D4D56F206D17777FA6E54E1 /* SwiftProtobuf.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0911ACB7075E91476780E084 /* ByteArray+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DD77F8CDC039E5870305B91 /* ByteArray+Hex.swift */; };
+		0D2B6D2BDBFEA265178B74BE /* fiat_amount.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D388B81E54EFF183B52C96B /* fiat_amount.pb.swift */; };
+		0F49532FCD38B077540E4627 /* SignerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9235E33F4B53ED0FD35D50 /* SignerTests.swift */; };
+		1053167CEB5E37D821825F29 /* Address+Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = B26D12954276D34124999E61 /* Address+Test.swift */; };
+		1194FDFC16C03EBA2B6D6C5D /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B4505055EADFAE26992AF3B /* NetworkClient.swift */; };
+		138FBD4E100E3D90656346EB /* RippledServiceClient+NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACC165482A69C013773E743E /* RippledServiceClient+NetworkClient.swift */; };
+		14C52DF737EB8AAF92188760 /* transaction.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63746318EFEF269F11698161 /* transaction.pb.swift */; };
+		1762612E093C2CE2658EF529 /* XpringKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1EA17318980B00CB10EAF3D4 /* XpringKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		177C7EB5457C7873594BB71C /* xrp_ledger.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA071C002701FF9AEF2C2B0 /* xrp_ledger.grpc.swift */; };
+		1B837832A7F24AE4BFCBA83D /* get_account_info_request.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4A173BD30FAD23D9B68B0E /* get_account_info_request.pb.swift */; };
+		1DE5DD931D662C2AE9A11278 /* account_info.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88FF35FE995B5EA7A4F5C0FF /* account_info.pb.swift */; };
+		1E6AFE0AF006DE4A93E6C447 /* RippledServiceClient+NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACC165482A69C013773E743E /* RippledServiceClient+NetworkClient.swift */; };
+		203845E470989D16A042A55C /* Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD54D1CD3F440E73218FF8B /* Hex.swift */; };
+		205CE177E9CE35786EFD462D /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8561A4CDC03D07B17AAB8924 /* Address.swift */; };
+		205EA5A430DFABF45C2A221F /* SwiftGRPC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58A74192BD297BC4E78F9B95 /* SwiftGRPC.framework */; };
+		260AFFFF6F99434B982D02A3 /* xrp_amount.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD81AC2984EC4A639432DD2A /* xrp_amount.pb.swift */; };
+		28430C7E1BD753FC9BEE2746 /* XRPJavaScriptLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265F737D13784A1A6341E3E4 /* XRPJavaScriptLoader.swift */; };
+		2D9D7BFF942A6DB46A9E602D /* XpringKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2A961F46C813F5BA0254F222 /* XpringKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		2DFB7C1BCA54ED07FCEE083A /* WalletGenerationResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADD0BDE0881A1C6DDE6D939A /* WalletGenerationResult.swift */; };
+		2E74A8B58BC16DD3EBD77AE3 /* Wallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA89B2B4CE85050623E1F1A /* Wallet.swift */; };
+		3290ACBFC35352A9E8A83C27 /* Signer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C987E39201D5B0AA9E73428E /* Signer.swift */; };
+		33029981213FB4ACE5212A17 /* payment.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6EF3A93761E93C0D04B24B /* payment.pb.swift */; };
+		360692E23671949068769D0C /* SwiftProtobuf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D4D56F206D17777FA6E54E1 /* SwiftProtobuf.framework */; };
+		376D7AD384530628CC2CC2F1 /* JavaScriptSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC429E0E63319A1BE3AE8240 /* JavaScriptSerializer.swift */; };
+		3D64D171483F28464E621B42 /* Wallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA89B2B4CE85050623E1F1A /* Wallet.swift */; };
+		3F30AAD98A595AEB8402D5A1 /* XpringClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = F39CB9BAD86A33B832774635 /* XpringClient.swift */; };
+		3F6D4DA2D7DAEE9DA8DA5551 /* get_fee_request.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944EFFFB8A6091E800186EFB /* get_fee_request.pb.swift */; };
+		3F729F19C5CECB8B8B412A90 /* SwiftGRPC.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B776589D95D938D60AB4917C /* SwiftGRPC.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		418FA404281A1EB7FC192194 /* JavaScriptUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E0C0E9FDF3E68693B2C4B9 /* JavaScriptUtils.swift */; };
+		4358ECC24A624D8C4C3F9CF4 /* RandomBytesUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6652A59C1C60CE0A44DB808D /* RandomBytesUtil.swift */; };
+		44BB5E8E869A5F2DBE53D878 /* get_account_info_request.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4A173BD30FAD23D9B68B0E /* get_account_info_request.pb.swift */; };
+		52FEEA10075B52FD7F425E46 /* XRPJavaScriptLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265F737D13784A1A6341E3E4 /* XRPJavaScriptLoader.swift */; };
+		559ED2AB9EF5FD27838AA624 /* FakeNetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ACE19B61522015207CC5FB4 /* FakeNetworkClient.swift */; };
+		567AA63408E8F1A026494AAF /* XpringKitTestError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8113A7B1A4F26A434C63CDF8 /* XpringKitTestError.swift */; };
+		5711148BBF4FEC0E148012F4 /* xrp_ledger.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA071C002701FF9AEF2C2B0 /* xrp_ledger.grpc.swift */; };
+		574A277447AA41AF2AD7261F /* SwiftProtobuf.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1E488ABD93CCADA4769887E2 /* SwiftProtobuf.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		57C790A9F7337BE05048955A /* JavaScriptSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC429E0E63319A1BE3AE8240 /* JavaScriptSerializer.swift */; };
+		5B26BAE3B828F53E183BA400 /* submit_signed_transaction_response.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FFBB6C39F5953828C74D239 /* submit_signed_transaction_response.pb.swift */; };
+		5B2931FD0FA9B76E09BA277F /* SignerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9235E33F4B53ED0FD35D50 /* SignerTests.swift */; };
+		5CD4DBD5BDCBFFEAD88ABBCA /* account_info.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88FF35FE995B5EA7A4F5C0FF /* account_info.pb.swift */; };
+		5DD0CF7ED7032C6DD176EC72 /* JavaScriptWalletGenerationResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 875501A3CB68BA56309F3BDF /* JavaScriptWalletGenerationResult.swift */; };
+		60192567F9541AE1CBBA12A6 /* XpringClientTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417F70AD82ED47833D8638DB /* XpringClientTest.swift */; };
+		63B18D39F60D62F5BC608675 /* payment.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6EF3A93761E93C0D04B24B /* payment.pb.swift */; };
+		6933342C51E08FAFA80E5244 /* Signer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C987E39201D5B0AA9E73428E /* Signer.swift */; };
+		6D466CF490A24AC326A743E6 /* bundled.js in Resources */ = {isa = PBXBuildFile; fileRef = EE83B9D92E9AB2959A1C76A5 /* bundled.js */; };
+		6F01B174655CF9505B5BA44B /* RandomBytesUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6652A59C1C60CE0A44DB808D /* RandomBytesUtil.swift */; };
+		712A85D43E83845BBC6C1FA6 /* WalletTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05F8765E9BE754C41FCEB39 /* WalletTest.swift */; };
+		7210FB6A92F5DB55ABBFFAEB /* JavaScriptUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E0C0E9FDF3E68693B2C4B9 /* JavaScriptUtils.swift */; };
+		750022BD598A2EE522126E3B /* signed_transaction.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA800F4C8B445863A19E547 /* signed_transaction.pb.swift */; };
+		79415A03BDDA31881344FB83 /* XpringKitTestError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8113A7B1A4F26A434C63CDF8 /* XpringKitTestError.swift */; };
+		7B4DACB74AC645F871515879 /* UtilsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D0F50AF49F103E1E0B3D50 /* UtilsTest.swift */; };
+		7B9ADCFF14AF87E6751F8E46 /* Address+Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = B26D12954276D34124999E61 /* Address+Test.swift */; };
+		7DA4A6E51E3AFAFBED32306F /* currency.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BEFEBC1AAB0132A6C7440B /* currency.pb.swift */; };
+		81696621C0B84D6070610A93 /* SwiftProtobuf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E488ABD93CCADA4769887E2 /* SwiftProtobuf.framework */; };
+		81C5E3886C4126C4CF497F8B /* ByteArray+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DD77F8CDC039E5870305B91 /* ByteArray+Hex.swift */; };
+		8848947D5A23B459EBBD1C2E /* JavaScriptWalletFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6411247733F228E6454489A5 /* JavaScriptWalletFactory.swift */; };
+		888D5093DCACA5DA3969155B /* xrp_ledger.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1384056BF33A696E0FB72E50 /* xrp_ledger.pb.swift */; };
+		8A397E24E4E2CCBBE4589159 /* JSValue+Io_Xpring_SignedTransaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95CE66647327A90B43EB0E94 /* JSValue+Io_Xpring_SignedTransaction.swift */; };
+		8C6760A32342739F00848AAD /* BoringSSL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C6760A12342739F00848AAD /* BoringSSL.framework */; };
+		8C6760A42342739F00848AAD /* CgRPC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C6760A22342739F00848AAD /* CgRPC.framework */; };
+		8C6760A92342744200848AAD /* BoringSSL.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8C6760A52342744100848AAD /* BoringSSL.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		8C6760AA2342744200848AAD /* CgRPC.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8C6760A72342744200848AAD /* CgRPC.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		8D12BD51DEC1CDE10E7BEE66 /* XpringClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = F39CB9BAD86A33B832774635 /* XpringClient.swift */; };
+		8FC35678AE62B871ABB68F4F /* JSValue+JavaScriptWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A8DF813EA75BD18BE4F7E7 /* JSValue+JavaScriptWallet.swift */; };
+		989315F8E85E2F007A4B37D5 /* fiat_amount.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D388B81E54EFF183B52C96B /* fiat_amount.pb.swift */; };
+		99A0B0264D9AED1A071597E0 /* xrp_amount.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD81AC2984EC4A639432DD2A /* xrp_amount.pb.swift */; };
+		99C1C3D26CE29D9EBF964776 /* SwiftGRPC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B776589D95D938D60AB4917C /* SwiftGRPC.framework */; };
+		9BCE823D3967D26A26C5F83A /* JSValue+Io_Xpring_SignedTransaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95CE66647327A90B43EB0E94 /* JSValue+Io_Xpring_SignedTransaction.swift */; };
+		9C4F498B7586CE1B089E587A /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC9FE3C197FEAD7C98B45EAC /* Utils.swift */; };
+		9EFB58D2F944DBD1BD71A714 /* signed_transaction.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA800F4C8B445863A19E547 /* signed_transaction.pb.swift */; };
+		A216E345871DD47CBEC3E791 /* XpringClientTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417F70AD82ED47833D8638DB /* XpringClientTest.swift */; };
+		A7B6C114F36033B99B1A07D6 /* submit_signed_transaction_request.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E59B88FC8EA85680CB46773 /* submit_signed_transaction_request.pb.swift */; };
+		AAD60573E91B3A0CC1EA8FC7 /* submit_signed_transaction_response.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FFBB6C39F5953828C74D239 /* submit_signed_transaction_response.pb.swift */; };
+		AD92D934BB53C1859A37C4CD /* JavaScriptSigner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92DF0085EF32E1A8F9FC3FFF /* JavaScriptSigner.swift */; };
+		AEA1DA055AC51BCCB1F31A11 /* JavaScriptWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C5EEE32B50B1DA49AD37B9 /* JavaScriptWallet.swift */; };
+		B06CE3FB0739F0EF7DDFE74C /* fee.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DDCBA2B158736EC1BF44901 /* fee.pb.swift */; };
+		B525EDC4B7BBAB3CF674891F /* FakeNetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ACE19B61522015207CC5FB4 /* FakeNetworkClient.swift */; };
+		BA728401FA7A7D16FC23A699 /* fee.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DDCBA2B158736EC1BF44901 /* fee.pb.swift */; };
+		BB7F2FBF9503319AD3D9120F /* SwiftGRPC.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 58A74192BD297BC4E78F9B95 /* SwiftGRPC.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		BEF208F007A9147A3422B5BC /* JavaScriptWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C5EEE32B50B1DA49AD37B9 /* JavaScriptWallet.swift */; };
+		BFE994A94E819B4ACB5DD083 /* XpringKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A961F46C813F5BA0254F222 /* XpringKit.framework */; };
+		C1119E71DBAA8D0A9CC9E275 /* JavaScriptWalletGenerationResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 875501A3CB68BA56309F3BDF /* JavaScriptWalletGenerationResult.swift */; };
+		C96B86F7E67405016867D3EC /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC9FE3C197FEAD7C98B45EAC /* Utils.swift */; };
+		D568D029304542FFFE4BF029 /* currency.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BEFEBC1AAB0132A6C7440B /* currency.pb.swift */; };
+		D6B744875D9A6AA6BB314AD5 /* xrp_ledger.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1384056BF33A696E0FB72E50 /* xrp_ledger.pb.swift */; };
+		DB26AC6D896AF31860B1CCE8 /* WalletGenerationResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADD0BDE0881A1C6DDE6D939A /* WalletGenerationResult.swift */; };
+		DD3AAD707E92A1DEBD1C7A36 /* get_fee_request.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944EFFFB8A6091E800186EFB /* get_fee_request.pb.swift */; };
+		DE97916A0CF7F8BB7853108D /* submit_signed_transaction_request.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E59B88FC8EA85680CB46773 /* submit_signed_transaction_request.pb.swift */; };
+		DF2A9BC219387399F91B7D56 /* XpringKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1EA17318980B00CB10EAF3D4 /* XpringKit.framework */; };
+		E10F7220286981A765668D95 /* bundled.js in Resources */ = {isa = PBXBuildFile; fileRef = EE83B9D92E9AB2959A1C76A5 /* bundled.js */; };
+		E48C20215EBBCB8C44B08A0B /* XRPLedgerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367711CBA6DD24C5C890B35F /* XRPLedgerError.swift */; };
+		E4DE5E80EB10CE7EC39BC7CA /* UtilsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D0F50AF49F103E1E0B3D50 /* UtilsTest.swift */; };
+		E61AFD4EEDA5BEB92FB1D0BF /* Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD54D1CD3F440E73218FF8B /* Hex.swift */; };
+		E9490A92BBADB2B40C7B0CFB /* JSValue+JavaScriptWalletGenerationResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B4FBDD3CCA9E931913B59C /* JSValue+JavaScriptWalletGenerationResult.swift */; };
+		EBD43CC9507B11932FE0FAFA /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8561A4CDC03D07B17AAB8924 /* Address.swift */; };
+		F047D499C409455893734DDE /* JavaScriptSigner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92DF0085EF32E1A8F9FC3FFF /* JavaScriptSigner.swift */; };
+		F1325A49C497A4C39141E751 /* WalletTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05F8765E9BE754C41FCEB39 /* WalletTest.swift */; };
+		F2FC131ECE631D33B7010580 /* JSValue+JavaScriptWalletGenerationResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B4FBDD3CCA9E931913B59C /* JSValue+JavaScriptWalletGenerationResult.swift */; };
+		F41382C64F2ACB1F096350F8 /* transaction.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63746318EFEF269F11698161 /* transaction.pb.swift */; };
+		FB60706C284D4869588ACD12 /* XRPLedgerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367711CBA6DD24C5C890B35F /* XRPLedgerError.swift */; };
+		FF78A09CEC303B89851054E5 /* JSValue+JavaScriptWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A8DF813EA75BD18BE4F7E7 /* JSValue+JavaScriptWallet.swift */; };
+		FFDD4E05736F1A79B6DB680B /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B4505055EADFAE26992AF3B /* NetworkClient.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		045BD31678AEF7B31FD11C21 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FCEE33D2FC20D4ADECCA6BF3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 24ACFB1C81710699ECDD24CB;
+			remoteInfo = XpringKit_iOS;
+		};
+		3DC32DBEA756A8C6D3E58705 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FCEE33D2FC20D4ADECCA6BF3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A12D87922461CD48ADB6B018;
+			remoteInfo = XpringKit_macOS;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		4BB7D29CABBA1557303B4049 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				8C6760A92342744200848AAD /* BoringSSL.framework in Embed Frameworks */,
+				BB7F2FBF9503319AD3D9120F /* SwiftGRPC.framework in Embed Frameworks */,
+				8C6760AA2342744200848AAD /* CgRPC.framework in Embed Frameworks */,
+				574A277447AA41AF2AD7261F /* SwiftProtobuf.framework in Embed Frameworks */,
+				1762612E093C2CE2658EF529 /* XpringKit.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9AB1F7C745FB1FDC9BE8C468 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				2D9D7BFF942A6DB46A9E602D /* XpringKit.framework in Embed Frameworks */,
+				3F729F19C5CECB8B8B412A90 /* SwiftGRPC.framework in Embed Frameworks */,
+				0884B145F6EA3DFA747966D2 /* SwiftProtobuf.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		01B4FBDD3CCA9E931913B59C /* JSValue+JavaScriptWalletGenerationResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JSValue+JavaScriptWalletGenerationResult.swift"; sourceTree = "<group>"; };
+		0DD77F8CDC039E5870305B91 /* ByteArray+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ByteArray+Hex.swift"; sourceTree = "<group>"; };
+		0E59B88FC8EA85680CB46773 /* submit_signed_transaction_request.pb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = submit_signed_transaction_request.pb.swift; sourceTree = "<group>"; };
+		1384056BF33A696E0FB72E50 /* xrp_ledger.pb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = xrp_ledger.pb.swift; sourceTree = "<group>"; };
+		1DDCBA2B158736EC1BF44901 /* fee.pb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = fee.pb.swift; sourceTree = "<group>"; };
+		1E488ABD93CCADA4769887E2 /* SwiftProtobuf.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SwiftProtobuf.framework; sourceTree = "<group>"; };
+		1EA17318980B00CB10EAF3D4 /* XpringKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = XpringKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		21A8DF813EA75BD18BE4F7E7 /* JSValue+JavaScriptWallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JSValue+JavaScriptWallet.swift"; sourceTree = "<group>"; };
+		265F737D13784A1A6341E3E4 /* XRPJavaScriptLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XRPJavaScriptLoader.swift; sourceTree = "<group>"; };
+		2A961F46C813F5BA0254F222 /* XpringKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = XpringKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		367711CBA6DD24C5C890B35F /* XRPLedgerError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XRPLedgerError.swift; sourceTree = "<group>"; };
+		3FFBB6C39F5953828C74D239 /* submit_signed_transaction_response.pb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = submit_signed_transaction_response.pb.swift; sourceTree = "<group>"; };
+		417F70AD82ED47833D8638DB /* XpringClientTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XpringClientTest.swift; sourceTree = "<group>"; };
+		4BA800F4C8B445863A19E547 /* signed_transaction.pb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = signed_transaction.pb.swift; sourceTree = "<group>"; };
+		4D388B81E54EFF183B52C96B /* fiat_amount.pb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = fiat_amount.pb.swift; sourceTree = "<group>"; };
+		58A74192BD297BC4E78F9B95 /* SwiftGRPC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SwiftGRPC.framework; sourceTree = "<group>"; };
+		63746318EFEF269F11698161 /* transaction.pb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = transaction.pb.swift; sourceTree = "<group>"; };
+		6411247733F228E6454489A5 /* JavaScriptWalletFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JavaScriptWalletFactory.swift; sourceTree = "<group>"; };
+		6652A59C1C60CE0A44DB808D /* RandomBytesUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomBytesUtil.swift; sourceTree = "<group>"; };
+		6B4505055EADFAE26992AF3B /* NetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClient.swift; sourceTree = "<group>"; };
+		6D4D56F206D17777FA6E54E1 /* SwiftProtobuf.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SwiftProtobuf.framework; sourceTree = "<group>"; };
+		7ACE19B61522015207CC5FB4 /* FakeNetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeNetworkClient.swift; sourceTree = "<group>"; };
+		7B9235E33F4B53ED0FD35D50 /* SignerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignerTests.swift; sourceTree = "<group>"; };
+		8113A7B1A4F26A434C63CDF8 /* XpringKitTestError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XpringKitTestError.swift; sourceTree = "<group>"; };
+		8561A4CDC03D07B17AAB8924 /* Address.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Address.swift; sourceTree = "<group>"; };
+		875501A3CB68BA56309F3BDF /* JavaScriptWalletGenerationResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JavaScriptWalletGenerationResult.swift; sourceTree = "<group>"; };
+		88FF35FE995B5EA7A4F5C0FF /* account_info.pb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = account_info.pb.swift; sourceTree = "<group>"; };
+		8C6760A12342739F00848AAD /* BoringSSL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BoringSSL.framework; path = Carthage/Build/Mac/BoringSSL.framework; sourceTree = "<group>"; };
+		8C6760A22342739F00848AAD /* CgRPC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CgRPC.framework; path = Carthage/Build/Mac/CgRPC.framework; sourceTree = "<group>"; };
+		8C6760A52342744100848AAD /* BoringSSL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BoringSSL.framework; path = Carthage/Build/Mac/BoringSSL.framework; sourceTree = "<group>"; };
+		8C6760A62342744100848AAD /* SwiftGRPC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftGRPC.framework; path = Carthage/Build/Mac/SwiftGRPC.framework; sourceTree = "<group>"; };
+		8C6760A72342744200848AAD /* CgRPC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CgRPC.framework; path = Carthage/Build/Mac/CgRPC.framework; sourceTree = "<group>"; };
+		8C6760A82342744200848AAD /* SwiftProtobuf.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftProtobuf.framework; path = Carthage/Build/Mac/SwiftProtobuf.framework; sourceTree = "<group>"; };
+		8CA071C002701FF9AEF2C2B0 /* xrp_ledger.grpc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = xrp_ledger.grpc.swift; sourceTree = "<group>"; };
+		92DF0085EF32E1A8F9FC3FFF /* JavaScriptSigner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JavaScriptSigner.swift; sourceTree = "<group>"; };
+		944EFFFB8A6091E800186EFB /* get_fee_request.pb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = get_fee_request.pb.swift; sourceTree = "<group>"; };
+		95CE66647327A90B43EB0E94 /* JSValue+Io_Xpring_SignedTransaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JSValue+Io_Xpring_SignedTransaction.swift"; sourceTree = "<group>"; };
+		ACC165482A69C013773E743E /* RippledServiceClient+NetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RippledServiceClient+NetworkClient.swift"; sourceTree = "<group>"; };
+		ADD0BDE0881A1C6DDE6D939A /* WalletGenerationResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletGenerationResult.swift; sourceTree = "<group>"; };
+		B26D12954276D34124999E61 /* Address+Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Address+Test.swift"; sourceTree = "<group>"; };
+		B776589D95D938D60AB4917C /* SwiftGRPC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SwiftGRPC.framework; sourceTree = "<group>"; };
+		BB6EF3A93761E93C0D04B24B /* payment.pb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = payment.pb.swift; sourceTree = "<group>"; };
+		BC9FE3C197FEAD7C98B45EAC /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		C1D0F50AF49F103E1E0B3D50 /* UtilsTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilsTest.swift; sourceTree = "<group>"; };
+		C987E39201D5B0AA9E73428E /* Signer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Signer.swift; sourceTree = "<group>"; };
+		CC429E0E63319A1BE3AE8240 /* JavaScriptSerializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JavaScriptSerializer.swift; sourceTree = "<group>"; };
+		CFA89B2B4CE85050623E1F1A /* Wallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wallet.swift; sourceTree = "<group>"; };
+		D05F8765E9BE754C41FCEB39 /* WalletTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletTest.swift; sourceTree = "<group>"; };
+		D2BEFEBC1AAB0132A6C7440B /* currency.pb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = currency.pb.swift; sourceTree = "<group>"; };
+		D9713E57588F07A7974AB830 /* XpringKitTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = XpringKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DCF6B999FCE0C29CC7A59D45 /* XpringKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = XpringKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		EB4A173BD30FAD23D9B68B0E /* get_account_info_request.pb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = get_account_info_request.pb.swift; sourceTree = "<group>"; };
+		EE83B9D92E9AB2959A1C76A5 /* bundled.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = bundled.js; sourceTree = "<group>"; };
+		F39CB9BAD86A33B832774635 /* XpringClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XpringClient.swift; sourceTree = "<group>"; };
+		F5E0C0E9FDF3E68693B2C4B9 /* JavaScriptUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JavaScriptUtils.swift; sourceTree = "<group>"; };
+		F8C5EEE32B50B1DA49AD37B9 /* JavaScriptWallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JavaScriptWallet.swift; sourceTree = "<group>"; };
+		FCD54D1CD3F440E73218FF8B /* Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hex.swift; sourceTree = "<group>"; };
+		FD81AC2984EC4A639432DD2A /* xrp_amount.pb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = xrp_amount.pb.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		693EC403948C5859B445823F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BFE994A94E819B4ACB5DD083 /* XpringKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BA65C296758FB8766FBA69E8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DF2A9BC219387399F91B7D56 /* XpringKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D78BE88CF57466D7E5A78C1C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8C6760A32342739F00848AAD /* BoringSSL.framework in Frameworks */,
+				8C6760A42342739F00848AAD /* CgRPC.framework in Frameworks */,
+				205EA5A430DFABF45C2A221F /* SwiftGRPC.framework in Frameworks */,
+				81696621C0B84D6070610A93 /* SwiftProtobuf.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E497FA3D1B436D18BFD43EBD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				360692E23671949068769D0C /* SwiftProtobuf.framework in Frameworks */,
+				99C1C3D26CE29D9EBF964776 /* SwiftGRPC.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		009F4F860C930900CA85DF4C /* JavaScript */ = {
+			isa = PBXGroup;
+			children = (
+				CC429E0E63319A1BE3AE8240 /* JavaScriptSerializer.swift */,
+				92DF0085EF32E1A8F9FC3FFF /* JavaScriptSigner.swift */,
+				F5E0C0E9FDF3E68693B2C4B9 /* JavaScriptUtils.swift */,
+				F8C5EEE32B50B1DA49AD37B9 /* JavaScriptWallet.swift */,
+				6411247733F228E6454489A5 /* JavaScriptWalletFactory.swift */,
+				875501A3CB68BA56309F3BDF /* JavaScriptWalletGenerationResult.swift */,
+				95CE66647327A90B43EB0E94 /* JSValue+Io_Xpring_SignedTransaction.swift */,
+				21A8DF813EA75BD18BE4F7E7 /* JSValue+JavaScriptWallet.swift */,
+				01B4FBDD3CCA9E931913B59C /* JSValue+JavaScriptWalletGenerationResult.swift */,
+				265F737D13784A1A6341E3E4 /* XRPJavaScriptLoader.swift */,
+			);
+			path = JavaScript;
+			sourceTree = "<group>";
+		};
+		07D01DAB4FF83BA669FDA499 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				B26D12954276D34124999E61 /* Address+Test.swift */,
+				8113A7B1A4F26A434C63CDF8 /* XpringKitTestError.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		0A3200BF089828BCE3ECEC66 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2A961F46C813F5BA0254F222 /* XpringKit.framework */,
+				1EA17318980B00CB10EAF3D4 /* XpringKit.framework */,
+				D9713E57588F07A7974AB830 /* XpringKitTests.xctest */,
+				DCF6B999FCE0C29CC7A59D45 /* XpringKitTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		287FB39E169194BD52DF18EC /* XpringKit */ = {
+			isa = PBXGroup;
+			children = (
+				8561A4CDC03D07B17AAB8924 /* Address.swift */,
+				0DD77F8CDC039E5870305B91 /* ByteArray+Hex.swift */,
+				FCD54D1CD3F440E73218FF8B /* Hex.swift */,
+				6B4505055EADFAE26992AF3B /* NetworkClient.swift */,
+				6652A59C1C60CE0A44DB808D /* RandomBytesUtil.swift */,
+				ACC165482A69C013773E743E /* RippledServiceClient+NetworkClient.swift */,
+				C987E39201D5B0AA9E73428E /* Signer.swift */,
+				BC9FE3C197FEAD7C98B45EAC /* Utils.swift */,
+				CFA89B2B4CE85050623E1F1A /* Wallet.swift */,
+				ADD0BDE0881A1C6DDE6D939A /* WalletGenerationResult.swift */,
+				F39CB9BAD86A33B832774635 /* XpringClient.swift */,
+				367711CBA6DD24C5C890B35F /* XRPLedgerError.swift */,
+				38B3196B9E4FD35835BEE810 /* generated */,
+				009F4F860C930900CA85DF4C /* JavaScript */,
+				8058BBA834F5576882B0C08C /* Resources */,
+			);
+			path = XpringKit;
+			sourceTree = "<group>";
+		};
+		38B3196B9E4FD35835BEE810 /* generated */ = {
+			isa = PBXGroup;
+			children = (
+				88FF35FE995B5EA7A4F5C0FF /* account_info.pb.swift */,
+				D2BEFEBC1AAB0132A6C7440B /* currency.pb.swift */,
+				1DDCBA2B158736EC1BF44901 /* fee.pb.swift */,
+				4D388B81E54EFF183B52C96B /* fiat_amount.pb.swift */,
+				EB4A173BD30FAD23D9B68B0E /* get_account_info_request.pb.swift */,
+				944EFFFB8A6091E800186EFB /* get_fee_request.pb.swift */,
+				BB6EF3A93761E93C0D04B24B /* payment.pb.swift */,
+				4BA800F4C8B445863A19E547 /* signed_transaction.pb.swift */,
+				0E59B88FC8EA85680CB46773 /* submit_signed_transaction_request.pb.swift */,
+				3FFBB6C39F5953828C74D239 /* submit_signed_transaction_response.pb.swift */,
+				63746318EFEF269F11698161 /* transaction.pb.swift */,
+				FD81AC2984EC4A639432DD2A /* xrp_amount.pb.swift */,
+				8CA071C002701FF9AEF2C2B0 /* xrp_ledger.grpc.swift */,
+				1384056BF33A696E0FB72E50 /* xrp_ledger.pb.swift */,
+			);
+			path = generated;
+			sourceTree = "<group>";
+		};
+		4B68BC3EC276CB975F2EA0F9 /* Fakes */ = {
+			isa = PBXGroup;
+			children = (
+				7ACE19B61522015207CC5FB4 /* FakeNetworkClient.swift */,
+			);
+			path = Fakes;
+			sourceTree = "<group>";
+		};
+		4C5EADE3006A426BBF0F5C9F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8C6760A12342739F00848AAD /* BoringSSL.framework */,
+				8C6760A22342739F00848AAD /* CgRPC.framework */,
+				D0B2CC3200C991751870213B /* Carthage */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		8058BBA834F5576882B0C08C /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				EE83B9D92E9AB2959A1C76A5 /* bundled.js */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		A743325004105077661E3407 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				B776589D95D938D60AB4917C /* SwiftGRPC.framework */,
+				6D4D56F206D17777FA6E54E1 /* SwiftProtobuf.framework */,
+			);
+			path = iOS;
+			sourceTree = "<group>";
+		};
+		B45F6B0DBC21518A0F9075B8 /* Mac */ = {
+			isa = PBXGroup;
+			children = (
+				58A74192BD297BC4E78F9B95 /* SwiftGRPC.framework */,
+				1E488ABD93CCADA4769887E2 /* SwiftProtobuf.framework */,
+			);
+			path = Mac;
+			sourceTree = "<group>";
+		};
+		BBAD321263700FD683CDB723 = {
+			isa = PBXGroup;
+			children = (
+				8C6760A52342744100848AAD /* BoringSSL.framework */,
+				8C6760A72342744200848AAD /* CgRPC.framework */,
+				8C6760A62342744100848AAD /* SwiftGRPC.framework */,
+				8C6760A82342744200848AAD /* SwiftProtobuf.framework */,
+				CB9535AD222E7D0A4AEA492D /* Tests */,
+				287FB39E169194BD52DF18EC /* XpringKit */,
+				4C5EADE3006A426BBF0F5C9F /* Frameworks */,
+				0A3200BF089828BCE3ECEC66 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		CB9535AD222E7D0A4AEA492D /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				7B9235E33F4B53ED0FD35D50 /* SignerTests.swift */,
+				C1D0F50AF49F103E1E0B3D50 /* UtilsTest.swift */,
+				D05F8765E9BE754C41FCEB39 /* WalletTest.swift */,
+				417F70AD82ED47833D8638DB /* XpringClientTest.swift */,
+				4B68BC3EC276CB975F2EA0F9 /* Fakes */,
+				07D01DAB4FF83BA669FDA499 /* Helpers */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
+		D0B2CC3200C991751870213B /* Carthage */ = {
+			isa = PBXGroup;
+			children = (
+				A743325004105077661E3407 /* iOS */,
+				B45F6B0DBC21518A0F9075B8 /* Mac */,
+			);
+			name = Carthage;
+			path = Carthage/Build;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		24ACFB1C81710699ECDD24CB /* XpringKit_iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7BA8FE527DC7BE7FF80239CC /* Build configuration list for PBXNativeTarget "XpringKit_iOS" */;
+			buildPhases = (
+				004E39AE4BB22B98A9607A01 /* Sources */,
+				751AE346C9B77FEB1B14A857 /* SwiftLint */,
+				2FC2717DCC21C577314715EE /* Resources */,
+				E497FA3D1B436D18BFD43EBD /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = XpringKit_iOS;
+			productName = XpringKit_iOS;
+			productReference = 2A961F46C813F5BA0254F222 /* XpringKit.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		8333C33328B6276EB403E1B1 /* XpringKitTests_iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E297DD85A482E745EB6971F6 /* Build configuration list for PBXNativeTarget "XpringKitTests_iOS" */;
+			buildPhases = (
+				8E8E62B8EBC976CF2C2FD834 /* Sources */,
+				693EC403948C5859B445823F /* Frameworks */,
+				9AB1F7C745FB1FDC9BE8C468 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				EE0AF8EDCB2D07531F7AB154 /* PBXTargetDependency */,
+			);
+			name = XpringKitTests_iOS;
+			productName = XpringKitTests_iOS;
+			productReference = D9713E57588F07A7974AB830 /* XpringKitTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		94A5F797EC8A5E0A00112752 /* XpringKitTests_macOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DE1C2C903A3D9332AC35F1CF /* Build configuration list for PBXNativeTarget "XpringKitTests_macOS" */;
+			buildPhases = (
+				34E3DE1F00648D7AFA5C9223 /* Sources */,
+				BA65C296758FB8766FBA69E8 /* Frameworks */,
+				4BB7D29CABBA1557303B4049 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				97703165081C6EE1C1F37FC2 /* PBXTargetDependency */,
+			);
+			name = XpringKitTests_macOS;
+			productName = XpringKitTests_macOS;
+			productReference = DCF6B999FCE0C29CC7A59D45 /* XpringKitTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		A12D87922461CD48ADB6B018 /* XpringKit_macOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 42FD0CB8CDA00F240CE3C6E3 /* Build configuration list for PBXNativeTarget "XpringKit_macOS" */;
+			buildPhases = (
+				CF8BF04BC4F0BD3EE88FCAAC /* Sources */,
+				1A831B35A547D74992BCE1B6 /* SwiftLint */,
+				8181CA1761747D043FA78A24 /* Resources */,
+				D78BE88CF57466D7E5A78C1C /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = XpringKit_macOS;
+			productName = XpringKit_macOS;
+			productReference = 1EA17318980B00CB10EAF3D4 /* XpringKit.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		FCEE33D2FC20D4ADECCA6BF3 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1020;
+			};
+			buildConfigurationList = C0A52FC1F46AB2CDA8428A29 /* Build configuration list for PBXProject "XpringKit" */;
+			compatibilityVersion = "Xcode 10.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = BBAD321263700FD683CDB723;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8333C33328B6276EB403E1B1 /* XpringKitTests_iOS */,
+				94A5F797EC8A5E0A00112752 /* XpringKitTests_macOS */,
+				24ACFB1C81710699ECDD24CB /* XpringKit_iOS */,
+				A12D87922461CD48ADB6B018 /* XpringKit_macOS */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		2FC2717DCC21C577314715EE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6D466CF490A24AC326A743E6 /* bundled.js in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8181CA1761747D043FA78A24 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E10F7220286981A765668D95 /* bundled.js in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1A831B35A547D74992BCE1B6 /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "swiftlint autocorrect --config .swiftlint.yml";
+		};
+		751AE346C9B77FEB1B14A857 /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "swiftlint autocorrect --config .swiftlint.yml";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		004E39AE4BB22B98A9607A01 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				205CE177E9CE35786EFD462D /* Address.swift in Sources */,
+				81C5E3886C4126C4CF497F8B /* ByteArray+Hex.swift in Sources */,
+				E61AFD4EEDA5BEB92FB1D0BF /* Hex.swift in Sources */,
+				8A397E24E4E2CCBBE4589159 /* JSValue+Io_Xpring_SignedTransaction.swift in Sources */,
+				FF78A09CEC303B89851054E5 /* JSValue+JavaScriptWallet.swift in Sources */,
+				F2FC131ECE631D33B7010580 /* JSValue+JavaScriptWalletGenerationResult.swift in Sources */,
+				376D7AD384530628CC2CC2F1 /* JavaScriptSerializer.swift in Sources */,
+				F047D499C409455893734DDE /* JavaScriptSigner.swift in Sources */,
+				418FA404281A1EB7FC192194 /* JavaScriptUtils.swift in Sources */,
+				BEF208F007A9147A3422B5BC /* JavaScriptWallet.swift in Sources */,
+				8848947D5A23B459EBBD1C2E /* JavaScriptWalletFactory.swift in Sources */,
+				C1119E71DBAA8D0A9CC9E275 /* JavaScriptWalletGenerationResult.swift in Sources */,
+				1194FDFC16C03EBA2B6D6C5D /* NetworkClient.swift in Sources */,
+				6F01B174655CF9505B5BA44B /* RandomBytesUtil.swift in Sources */,
+				1E6AFE0AF006DE4A93E6C447 /* RippledServiceClient+NetworkClient.swift in Sources */,
+				3290ACBFC35352A9E8A83C27 /* Signer.swift in Sources */,
+				9C4F498B7586CE1B089E587A /* Utils.swift in Sources */,
+				2E74A8B58BC16DD3EBD77AE3 /* Wallet.swift in Sources */,
+				DB26AC6D896AF31860B1CCE8 /* WalletGenerationResult.swift in Sources */,
+				28430C7E1BD753FC9BEE2746 /* XRPJavaScriptLoader.swift in Sources */,
+				FB60706C284D4869588ACD12 /* XRPLedgerError.swift in Sources */,
+				8D12BD51DEC1CDE10E7BEE66 /* XpringClient.swift in Sources */,
+				1DE5DD931D662C2AE9A11278 /* account_info.pb.swift in Sources */,
+				D568D029304542FFFE4BF029 /* currency.pb.swift in Sources */,
+				B06CE3FB0739F0EF7DDFE74C /* fee.pb.swift in Sources */,
+				989315F8E85E2F007A4B37D5 /* fiat_amount.pb.swift in Sources */,
+				1B837832A7F24AE4BFCBA83D /* get_account_info_request.pb.swift in Sources */,
+				DD3AAD707E92A1DEBD1C7A36 /* get_fee_request.pb.swift in Sources */,
+				63B18D39F60D62F5BC608675 /* payment.pb.swift in Sources */,
+				9EFB58D2F944DBD1BD71A714 /* signed_transaction.pb.swift in Sources */,
+				DE97916A0CF7F8BB7853108D /* submit_signed_transaction_request.pb.swift in Sources */,
+				5B26BAE3B828F53E183BA400 /* submit_signed_transaction_response.pb.swift in Sources */,
+				14C52DF737EB8AAF92188760 /* transaction.pb.swift in Sources */,
+				99A0B0264D9AED1A071597E0 /* xrp_amount.pb.swift in Sources */,
+				177C7EB5457C7873594BB71C /* xrp_ledger.grpc.swift in Sources */,
+				D6B744875D9A6AA6BB314AD5 /* xrp_ledger.pb.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		34E3DE1F00648D7AFA5C9223 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1053167CEB5E37D821825F29 /* Address+Test.swift in Sources */,
+				559ED2AB9EF5FD27838AA624 /* FakeNetworkClient.swift in Sources */,
+				5B2931FD0FA9B76E09BA277F /* SignerTests.swift in Sources */,
+				7B4DACB74AC645F871515879 /* UtilsTest.swift in Sources */,
+				712A85D43E83845BBC6C1FA6 /* WalletTest.swift in Sources */,
+				60192567F9541AE1CBBA12A6 /* XpringClientTest.swift in Sources */,
+				79415A03BDDA31881344FB83 /* XpringKitTestError.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8E8E62B8EBC976CF2C2FD834 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7B9ADCFF14AF87E6751F8E46 /* Address+Test.swift in Sources */,
+				B525EDC4B7BBAB3CF674891F /* FakeNetworkClient.swift in Sources */,
+				0F49532FCD38B077540E4627 /* SignerTests.swift in Sources */,
+				E4DE5E80EB10CE7EC39BC7CA /* UtilsTest.swift in Sources */,
+				F1325A49C497A4C39141E751 /* WalletTest.swift in Sources */,
+				A216E345871DD47CBEC3E791 /* XpringClientTest.swift in Sources */,
+				567AA63408E8F1A026494AAF /* XpringKitTestError.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CF8BF04BC4F0BD3EE88FCAAC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EBD43CC9507B11932FE0FAFA /* Address.swift in Sources */,
+				0911ACB7075E91476780E084 /* ByteArray+Hex.swift in Sources */,
+				203845E470989D16A042A55C /* Hex.swift in Sources */,
+				9BCE823D3967D26A26C5F83A /* JSValue+Io_Xpring_SignedTransaction.swift in Sources */,
+				8FC35678AE62B871ABB68F4F /* JSValue+JavaScriptWallet.swift in Sources */,
+				E9490A92BBADB2B40C7B0CFB /* JSValue+JavaScriptWalletGenerationResult.swift in Sources */,
+				57C790A9F7337BE05048955A /* JavaScriptSerializer.swift in Sources */,
+				AD92D934BB53C1859A37C4CD /* JavaScriptSigner.swift in Sources */,
+				7210FB6A92F5DB55ABBFFAEB /* JavaScriptUtils.swift in Sources */,
+				AEA1DA055AC51BCCB1F31A11 /* JavaScriptWallet.swift in Sources */,
+				004CE447B535A5DDAAC7881D /* JavaScriptWalletFactory.swift in Sources */,
+				5DD0CF7ED7032C6DD176EC72 /* JavaScriptWalletGenerationResult.swift in Sources */,
+				FFDD4E05736F1A79B6DB680B /* NetworkClient.swift in Sources */,
+				4358ECC24A624D8C4C3F9CF4 /* RandomBytesUtil.swift in Sources */,
+				138FBD4E100E3D90656346EB /* RippledServiceClient+NetworkClient.swift in Sources */,
+				6933342C51E08FAFA80E5244 /* Signer.swift in Sources */,
+				C96B86F7E67405016867D3EC /* Utils.swift in Sources */,
+				3D64D171483F28464E621B42 /* Wallet.swift in Sources */,
+				2DFB7C1BCA54ED07FCEE083A /* WalletGenerationResult.swift in Sources */,
+				52FEEA10075B52FD7F425E46 /* XRPJavaScriptLoader.swift in Sources */,
+				E48C20215EBBCB8C44B08A0B /* XRPLedgerError.swift in Sources */,
+				3F30AAD98A595AEB8402D5A1 /* XpringClient.swift in Sources */,
+				5CD4DBD5BDCBFFEAD88ABBCA /* account_info.pb.swift in Sources */,
+				7DA4A6E51E3AFAFBED32306F /* currency.pb.swift in Sources */,
+				BA728401FA7A7D16FC23A699 /* fee.pb.swift in Sources */,
+				0D2B6D2BDBFEA265178B74BE /* fiat_amount.pb.swift in Sources */,
+				44BB5E8E869A5F2DBE53D878 /* get_account_info_request.pb.swift in Sources */,
+				3F6D4DA2D7DAEE9DA8DA5551 /* get_fee_request.pb.swift in Sources */,
+				33029981213FB4ACE5212A17 /* payment.pb.swift in Sources */,
+				750022BD598A2EE522126E3B /* signed_transaction.pb.swift in Sources */,
+				A7B6C114F36033B99B1A07D6 /* submit_signed_transaction_request.pb.swift in Sources */,
+				AAD60573E91B3A0CC1EA8FC7 /* submit_signed_transaction_response.pb.swift in Sources */,
+				F41382C64F2ACB1F096350F8 /* transaction.pb.swift in Sources */,
+				260AFFFF6F99434B982D02A3 /* xrp_amount.pb.swift in Sources */,
+				5711148BBF4FEC0E148012F4 /* xrp_ledger.grpc.swift in Sources */,
+				888D5093DCACA5DA3969155B /* xrp_ledger.pb.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		97703165081C6EE1C1F37FC2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A12D87922461CD48ADB6B018 /* XpringKit_macOS */;
+			targetProxy = 3DC32DBEA756A8C6D3E58705 /* PBXContainerItemProxy */;
+		};
+		EE0AF8EDCB2D07531F7AB154 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 24ACFB1C81710699ECDD24CB /* XpringKit_iOS */;
+			targetProxy = 045BD31678AEF7B31FD11C21 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		1A53A138DAF624ADDD384D36 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "io.xpring.XpringKit-macOS";
+				PRODUCT_NAME = XpringKit;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = Debug;
+		};
+		1B53DA72FD51CDCA4D2CCCF9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_VERSION = 5.0;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		2A996D83A460890FD68B8F66 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "io.xpring.XpringKit-macOS";
+				PRODUCT_NAME = XpringKit;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = Release;
+		};
+		2E7743C0CD55371BFB458235 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "io.xpring.XpringKitTests-iOS";
+				PRODUCT_NAME = XpringKitTests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		79736EE579E62374A83E2609 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "io.xpring.XpringKitTests-iOS";
+				PRODUCT_NAME = XpringKitTests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		851B60754B3473B865AAC316 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "io.xpring.XpringKitTests-macOS";
+				PRODUCT_NAME = XpringKitTests;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		B9CC46D34DCA7966151CBB65 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "io.xpring.XpringKitTests-macOS";
+				PRODUCT_NAME = XpringKitTests;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		D469C709197F8DA0DC20859B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "io.xpring.XpringKit-iOS";
+				PRODUCT_NAME = XpringKit;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = Release;
+		};
+		D6FAE2CFD7E3B0172CF7BDE1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		E63642CE4172864D2F9FF682 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "io.xpring.XpringKit-iOS";
+				PRODUCT_NAME = XpringKit;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		42FD0CB8CDA00F240CE3C6E3 /* Build configuration list for PBXNativeTarget "XpringKit_macOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1A53A138DAF624ADDD384D36 /* Debug */,
+				2A996D83A460890FD68B8F66 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = "";
+		};
+		7BA8FE527DC7BE7FF80239CC /* Build configuration list for PBXNativeTarget "XpringKit_iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E63642CE4172864D2F9FF682 /* Debug */,
+				D469C709197F8DA0DC20859B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = "";
+		};
+		C0A52FC1F46AB2CDA8428A29 /* Build configuration list for PBXProject "XpringKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D6FAE2CFD7E3B0172CF7BDE1 /* Debug */,
+				1B53DA72FD51CDCA4D2CCCF9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		DE1C2C903A3D9332AC35F1CF /* Build configuration list for PBXNativeTarget "XpringKitTests_macOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				851B60754B3473B865AAC316 /* Debug */,
+				B9CC46D34DCA7966151CBB65 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = "";
+		};
+		E297DD85A482E745EB6971F6 /* Build configuration list for PBXNativeTarget "XpringKitTests_iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2E7743C0CD55371BFB458235 /* Debug */,
+				79736EE579E62374A83E2609 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = "";
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = FCEE33D2FC20D4ADECCA6BF3 /* Project object */;
+}
