@@ -44,7 +44,7 @@ Xpring is working on building a zero-config way for XRP node users to deploy and
 
 ## Usage
 ### Wallets
-A wallet is a fundamental model object in XpringKit which provides key management, address derivation, and signing functionality. Wallets can be derived from either a seed or a mnemonic and derivation path.
+A wallet is a fundamental model object in XpringKit which provides key management, address derivation, and signing functionality. Wallets can be derived from either a seed or a mnemonic and derivation path. You can also choose to generate a new random HD wallet.
 
 #### Wallet Derivation
 XpringKit can derive a wallet from a seed or it can derive a hierarchical deterministic wallet (HDWallet) from a mnemonic and derivation path.
