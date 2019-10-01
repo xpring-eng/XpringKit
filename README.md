@@ -14,7 +14,7 @@ XpringKit provides the following features:
 
 ## Installation
 
-XpringKit utilizes two components to access the Xpring platform.
+XpringKit utilizes two components to access the Xpring platform:
 1) The XpringKit client side library (This library)
 2) A server side component that handles requests from this library and proxies them to an XRP node.
 
