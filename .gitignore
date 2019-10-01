@@ -1,4 +1,5 @@
-
+# Ignore generated files.
+XpringKit/generated/
 
 # Created by https://www.gitignore.io/api/osx,xcode,swift,carthage,cocoapods
 # Edit at https://www.gitignore.io/?templates=osx,xcode,swift,carthage,cocoapods
