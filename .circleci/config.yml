@@ -38,7 +38,7 @@ jobs:
 
       - run:
           name: "Build and Test"
-          command: set -o pipefail && xcodebuild test -scheme XpringKit -destination 'platform=iOS Simulator,name=iPhone X,OS=12.2' ONLY_ACTIVE_ARCH=YES | xcpretty
+          command: set -o pipefail && xcodebuild test -scheme XpringKit_iOS -destination 'platform=iOS Simulator,name=iPhone X,OS=12.2' ONLY_ACTIVE_ARCH=YES | xcpretty
 
       - run:
           name: "Generate and Upload Code Coverage"
