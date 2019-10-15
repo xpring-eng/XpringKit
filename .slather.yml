@@ -1,7 +1,7 @@
 # .slather.yml
 coverage_service: coveralls
 xcodeproj: XpringKit.xcodeproj
-scheme: XpringKit_iOS
+scheme: break_cache
 ci_service: circleci
 ignore:
   - Tests/*
