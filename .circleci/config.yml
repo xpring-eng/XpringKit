@@ -18,7 +18,7 @@ jobs:
             brew install xcodegen swiftlint carthage swift-protobuf grpc-swift
             brew upgrade
             npm i -g grpc-tools
-           sudo gem install slather
+            sudo gem install slather
 
       - run:
           name: "Pull Submodules"
