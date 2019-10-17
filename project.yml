@@ -20,6 +20,7 @@ targets:
     dependencies:
       - carthage: SwiftProtobuf
       - carthage: SwiftGRPC
+      - carthage: BigInt
   XpringKitTests:
     type: bundle.unit-test
     platform: [iOS, macOS]
