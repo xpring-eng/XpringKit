@@ -18,7 +18,7 @@ jobs:
             brew install xcodegen swiftlint carthage swift-protobuf grpc-swift
             brew upgrade
             npm i -g grpc-tools
-#            sudo gem install slather
+           sudo gem install slather
 
       - run:
           name: "Pull Submodules"
@@ -40,6 +40,8 @@ jobs:
           name: "Build and Test"
           command: set -o pipefail && xcodebuild test -scheme XpringKit_iOS -destination 'platform=iOS Simulator,name=iPhone X,OS=12.2' ONLY_ACTIVE_ARCH=YES | xcpretty
 
-#      - run:
-#          name: "Generate and Upload Code Coverage"
-#          command: slather
+     - run:
+          name: "Generate and Upload Code Coverage"
+          command: |
+            bundle exec slather
+            bash <(curl -s https://codecov.io/bash) -f path/to/xml_report/cobertura.xml -X coveragepy -X gcov -X xcode

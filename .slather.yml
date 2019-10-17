@@ -1,5 +1,5 @@
 # .slather.yml
-coverage_service: coveralls
+coverage_service: cobertura_xml
 xcodeproj: XpringKit.xcodeproj
 scheme: XpringKit_iOS
 ci_service: circleci
