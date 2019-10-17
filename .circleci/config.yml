@@ -42,4 +42,6 @@ jobs:
 
       - run:
           name: "Generate and Upload Code Coverage"
-          command: slather
+          command: |
+            slather
+            bash <(curl -s https://codecov.io/bash) -f ./cobertura.xml -X coveragepy -X gcov -X xcode
