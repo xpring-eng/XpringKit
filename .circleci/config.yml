@@ -18,7 +18,7 @@ jobs:
             brew install xcodegen swiftlint carthage swift-protobuf grpc-swift
             brew upgrade
             npm i -g grpc-tools
-            sudo gem install slather
+            sudo gem install slather cocoapods
 
       - run:
           name: "Pull Submodules"
@@ -37,8 +37,12 @@ jobs:
           key: v1-dependencies-{{ checksum "Cartfile.resolved" }}
 
       - run:
-          name: "Build and Test"
+          name: "Build and Test (Carthage)"
           command: set -o pipefail && xcodebuild test -scheme XpringKit_iOS -destination 'platform=iOS Simulator,name=iPhone X,OS=12.2' ONLY_ACTIVE_ARCH=YES | xcpretty
+
+      - run:
+          name: "Build and Test (CocoaPods)"
+          command: pod lib lint
 
       - run:
           name: "Generate and Upload Code Coverage"

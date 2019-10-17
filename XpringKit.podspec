@@ -3,7 +3,11 @@ Pod::Spec.new do |spec|
   spec.version      = "1.0.3"
   spec.summary      = "XpringKit provides a Swift based SDK for interacting with Xpring Platform (XRP/ILP)"
 
-  spec.description  = "XpringKit provides a Swift based SDK for interacting with Xpring Platform (XRP/ILP)"
+  spec.description  = "
+    XpringKit provides a Swift based SDK for interacting with Xpring Platform (XRP/ILP)
+
+    XpringKit is part of the Xpring SDK. To learn more, visit: http://github.com/xpring-eng/Xpring-SDK.
+  "
 
   spec.homepage     = "http://xpring.io"
   spec.license      = "MIT"
