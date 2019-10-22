@@ -29,26 +29,26 @@ jobs:
             git submodule init
             git submodule update --init --recursive
 
-      - run:
-          name: "Build Dependencies and Generate Project"
-          command: ./scripts/generate_project.sh
-          no_output_timeout: 30m
+      # - run:
+      #     name: "Build Dependencies and Generate Project"
+      #     command: ./scripts/generate_project.sh
+      #     no_output_timeout: 30m
 
-      - save_cache:
-          paths:
-            - Carthage
-          key: v1-dependencies-{{ checksum "Cartfile.resolved" }}
-
-      - run:
-          name: "Build and Test (Carthage)"
-          command: set -o pipefail && xcodebuild test -scheme XpringKit_iOS -destination 'platform=iOS Simulator,name=iPhone X,OS=12.2' ONLY_ACTIVE_ARCH=YES | xcpretty
+      # - save_cache:
+      #     paths:
+      #       - Carthage
+      #     key: v1-dependencies-{{ checksum "Cartfile.resolved" }}
+      #
+      # - run:
+      #     name: "Build and Test (Carthage)"
+      #     command: set -o pipefail && xcodebuild test -scheme XpringKit_iOS -destination 'platform=iOS Simulator,name=iPhone X,OS=12.2' ONLY_ACTIVE_ARCH=YES | xcpretty
 
       - run:
           name: "Build and Test (CocoaPods)"
           command: pod lib lint
-
-      - run:
-          name: "Generate and Upload Code Coverage"
-          command: |
-            slather
-            bash <(curl -s https://codecov.io/bash) -f ./cobertura.xml -X coveragepy -X gcov -X xcode
+      #
+      # - run:
+      #     name: "Generate and Upload Code Coverage"
+      #     command: |
+      #       slather
+      #       bash <(curl -s https://codecov.io/bash) -f ./cobertura.xml -X coveragepy -X gcov -X xcode
