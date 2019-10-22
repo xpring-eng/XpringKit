@@ -15,7 +15,11 @@ jobs:
           name: "Install Tooling"
           command: |
             brew update
-            brew install xcodegen swiftlint carthage swift-protobuf grpc-swift
+            brew install xcodegen
+            brew install swiftlint
+            brew install carthage
+            brew install swift-protobuf
+            brew install grpc-swift
             brew upgrade
             npm i -g grpc-tools
             sudo gem install slather cocoapods
