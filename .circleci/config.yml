@@ -17,7 +17,6 @@ jobs:
             brew update
             brew install xcodegen
             brew install swiftlint
-            brew install carthage
             brew install swift-protobuf
             brew install grpc-swift
             brew upgrade
