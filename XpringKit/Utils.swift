@@ -12,4 +12,26 @@ public enum Utils {
 	public static func isValid(address: Address) -> Bool {
 		return javaScriptUtils.isValid(address: address)
 	}
+
+  /// Encode the given classic address and tag into an x-address.
+  ///
+  /// - SeeAlso: https://xrpaddress.info/
+  ///
+  /// - Parameters:
+  ///   -  classicAddress: A classic address to encode.
+  ///   - tag: An optional tag to encode. Defaults to nil.
+  /// - Returns: A new x-address if inputs were valid, otherwise undefined.
+  public static func encode(classicAddress: Address, tag: UInt32? = nil) -> Address? {
+    return javaScriptUtils.encode(classicAddress: classicAddress, tag: tag)
+  }
+
+  /// Decode a classic address from a given x-address.
+  ///
+  /// - SeeAlso: https://xrpaddress.info/
+  ///
+  /// - Parameter xAddress: The xAddress to decode.
+  /// - Returns: a tuple containing the decoded address and tag.
+  public static func decode(xAddress: Address) -> (classicAddress: String, tag: UInt32?)? {
+    return javaScriptUtils.decode(xAddress: xAddress)
+  }
 }

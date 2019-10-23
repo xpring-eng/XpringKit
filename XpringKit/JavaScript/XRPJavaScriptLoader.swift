@@ -48,7 +48,7 @@ internal enum XRPJavaScriptLoader {
 		return context
 	}
 
-	/// Load a class or function from the default entry point on the given JSContext.
+	/// Load a class, parameter or function from the default entry point on the given JSContext.
 	///
 	/// This method loads value from `EntryPoint.default.<value>`.
 	///
@@ -71,7 +71,7 @@ internal enum XRPJavaScriptLoader {
 		return load(resourceName, from: `default`)
 	}
 
-	/// Load a class or function as a keyed subscript from the given value.
+	/// Load a class, parameter or function as a keyed subscript from the given value.
 	///
 	/// - Note: This function will crash if the requested resource does not exist.
 	///
@@ -80,14 +80,27 @@ internal enum XRPJavaScriptLoader {
 	///		- value: The value to load a resource from.
 	/// - Returns: A `JSValue` referring to the requested resource.
 	public static func load(_ resourceName: String, from value: JSValue) -> JSValue {
-		guard
-			let resource = value.objectForKeyedSubscript(resourceName),
-			!resource.isUndefined
-		else {
+    guard let resource = failableLoad(resourceName, from: value) else {
 			let errorMessage = String(format: LoaderErrors.missingResource, resourceName)
 			fatalError(errorMessage)
 		}
 
 		return resource
 	}
+
+  /// Load a class, parameter or function as a keyed subscript from the given value.
+  ///
+  /// - Parameters:
+  ///    - resourceName: The name of the resource to load.
+  ///    - value: The value to load a resource from.
+  /// - Returns: A `JSValue` referring to the requested resource.
+  public static func failableLoad(_ resourceName: String, from value: JSValue) -> JSValue? {
+    guard
+      let resource = value.objectForKeyedSubscript(resourceName),
+      !resource.isUndefined
+    else {
+      return nil
+    }
+    return resource
+  }
 }
