@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name         = "XpringKit"
-  spec.version      = "1.0.4"
+  spec.version      = "1.0.5"
   spec.summary      = "XpringKit provides a Swift based SDK for interacting with Xpring Platform (XRP/ILP)"
 
   spec.description  = "
@@ -12,7 +12,7 @@ Pod::Spec.new do |spec|
   spec.homepage     = "http://xpring.io"
   spec.license      = "MIT"
   spec.author       = { "Xpring Engineering" => "xpring@ripple.com" }
-  spec.source       = { :git => "https://github.com/xpring-eng/XpringKit.git", :tag => "1.0.4" }
+  spec.source       = { :git => "https://github.com/xpring-eng/XpringKit.git", :tag => "1.0.5" }
 
   spec.swift_versions = [4.2]
   spec.requires_arc = true
@@ -21,11 +21,8 @@ Pod::Spec.new do |spec|
 
   spec.prepare_command = "git submodule update --init --recursive && ./scripts/generate_project_cocoapods.sh"
 
-  # spec.script_phase = { :name => 'Generate Protocol Buffers', :script => '${SOURCE_ROOT}/scripts/regenerate_protos.sh' }
-  # spec.script_phase = { :name => 'Generate Protocol Buffers', :script => '${SOURCE_ROOT}/scripts/bundle_js.sh' }
-
   spec.source_files  = "XpringKit/**/*.swift"
-  spec.resources =     [ "XpringKit/Resources/*", "XpringKit/scripts/*" ]
+  spec.resources =     [ "XpringKit/Resources/*" ]
 
   spec.dependency 'SwiftGRPC'
   spec.dependency 'SwiftProtobuf'
