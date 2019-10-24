@@ -17,10 +17,10 @@ Pod::Spec.new do |spec|
   spec.swift_versions = [4.2]
   spec.requires_arc = true
   spec.ios.deployment_target = '8.0'
-  spec.osx.deployment_target = '10.10'
+  # spec.osx.deployment_target = '10.10'
 
   spec.source_files  = "XpringKit/**/*.swift"
-  spec.resources = "XpringKit/Resources/*"
+  spec.resources =     "XpringKit/Resources/*"
 
   spec.dependency 'SwiftGRPC'
   spec.dependency 'SwiftProtobuf'
