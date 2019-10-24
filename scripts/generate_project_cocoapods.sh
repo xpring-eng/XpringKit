@@ -8,7 +8,7 @@ echo "Generating XpringKit Project"
 echo "Regenerating Protocol Buffers"
 ./scripts/regenerate_protos.sh
 
-# Bundle javascript from Terram.
+# Bundle JavaScript from Xpring Common JavaScript.
 echo "Bundling JavaScript"
 ./scripts/bundle_js.sh
 
