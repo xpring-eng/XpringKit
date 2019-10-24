@@ -19,8 +19,13 @@ Pod::Spec.new do |spec|
   spec.ios.deployment_target = '8.0'
   spec.osx.deployment_target = '10.10'
 
+  spec.prepare_command = "git submodule update --init --recursive && ./scripts/generate_project_cocoapods.sh"
+
+  # spec.script_phase = { :name => 'Generate Protocol Buffers', :script => '${SOURCE_ROOT}/scripts/regenerate_protos.sh' }
+  # spec.script_phase = { :name => 'Generate Protocol Buffers', :script => '${SOURCE_ROOT}/scripts/bundle_js.sh' }
+
   spec.source_files  = "XpringKit/**/*.swift"
-  spec.resources =     "XpringKit/Resources/*"
+  spec.resources =     [ "XpringKit/Resources/*", "XpringKit/scripts/*" ]
 
   spec.dependency 'SwiftGRPC'
   spec.dependency 'SwiftProtobuf'

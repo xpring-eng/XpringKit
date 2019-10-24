@@ -31,7 +31,7 @@ jobs:
             git submodule update --init --recursive
 
       - run:
-          name: "Build Dependencies and Generate Project"
+          name: "Generate Project - Carthage"
           command: ./scripts/generate_project.sh
           no_output_timeout: 30m
 
@@ -43,6 +43,14 @@ jobs:
       - run:
           name: "Build and Test (Carthage)"
           command: set -o pipefail && xcodebuild test -scheme XpringKit_iOS -destination 'platform=iOS Simulator,name=iPhone 11,OS=13.1' ONLY_ACTIVE_ARCH=YES | xcpretty
+
+      - run:
+          name: "Clean Project"
+          command: "./scripts/clean_project.sh"
+
+      - run:
+          name: "Generate Project - CocoaPods"
+          comand: ./scripts/generate_project_cocoapods.sh
 
       - run:
           name: "Build and Test (CocoaPods)"
