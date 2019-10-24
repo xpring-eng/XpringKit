@@ -12,6 +12,10 @@ jobs:
             - v1-dependencies-{{ checksum "Cartfile.resolved" }}
 
       - run:
+          name: "System Information"
+          command: xcodebuild -version            
+
+      - run:
           name: "Install Tooling"
           command: |
             brew update
