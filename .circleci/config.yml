@@ -50,7 +50,7 @@ jobs:
 
       - run:
           name: "Generate Project - CocoaPods"
-          comand: ./scripts/generate_project_cocoapods.sh
+          command: ./scripts/generate_project_cocoapods.sh
 
       - run:
           name: "Build and Test (CocoaPods)"
