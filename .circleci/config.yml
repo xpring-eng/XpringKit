@@ -42,7 +42,7 @@ jobs:
 
       - run:
           name: "Build and Test (Carthage)"
-          command: set -o pipefail && xcodebuild test -scheme XpringKit_iOS -destination 'platform=iOS Simulator,name=iPhone X,OS=12.2' ONLY_ACTIVE_ARCH=YES | xcpretty
+          command: set -o pipefail && xcodebuild test -scheme XpringKit_iOS -destination 'platform=iOS Simulator,name=iPhone 11,OS=13.1' ONLY_ACTIVE_ARCH=YES | xcpretty
 
       - run:
           name: "Build and Test (CocoaPods)"
