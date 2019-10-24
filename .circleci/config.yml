@@ -56,8 +56,8 @@ jobs:
           name: "Build and Test (CocoaPods)"
           command: pod lib lint
 
-      - run:
-      #     name: "Generate and Upload Code Coverage"
+      # - run:
+      #    name: "Generate and Upload Code Coverage"
       #     command: |
       #       slather
       #       bash <(curl -s https://codecov.io/bash) -f ./cobertura.xml -X coveragepy -X gcov -X xcode
