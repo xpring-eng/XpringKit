@@ -2,7 +2,7 @@ version: 2.1
 jobs:
   build:
     macos:
-      xcode: "10.2"
+      xcode: "11.1"
 
     steps:
       - checkout
@@ -13,7 +13,7 @@ jobs:
 
       - run:
           name: "System Information"
-          command: xcodebuild -version            
+          command: xcodebuild -version
 
       - run:
           name: "Install Tooling"
