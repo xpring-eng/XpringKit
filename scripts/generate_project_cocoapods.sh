@@ -8,15 +8,11 @@ echo "Generating XpringKit Project"
 echo "Regenerating Protocol Buffers"
 ./scripts/regenerate_protos.sh
 
-# Run carthage bootstrap to build dependencies.
-echo "Bootstrapping Carthage Dependencies"
-carthage bootstrap --platform iOS --cache-builds
-
-# Bundle JavaScript from Xpring Common JS.
+# Bundle JavaScript from Xpring Common JavaScript.
 echo "Bundling JavaScript"
 ./scripts/bundle_js.sh
 
 # Generate the project.
 echo "Generating Project"
-xcodegen generate
+xcodegen generate -s project_cocoapods.yml
 open XpringKit.xcodeproj

@@ -2,7 +2,7 @@ version: 2.1
 jobs:
   build:
     macos:
-      xcode: "10.2"
+      xcode: "11.1.0"
 
     steps:
       - checkout
@@ -10,6 +10,10 @@ jobs:
       - restore_cache:
           keys:
             - v1-dependencies-{{ checksum "Cartfile.resolved" }}
+
+      - run:
+          name: "System Information"
+          command: xcodebuild -version
 
       - run:
           name: "Install Tooling"
@@ -27,7 +31,7 @@ jobs:
             git submodule update --init --recursive
 
       - run:
-          name: "Build Dependencies and Generate Project"
+          name: "Generate Project - Carthage"
           command: ./scripts/generate_project.sh
           no_output_timeout: 30m
 
@@ -38,11 +42,19 @@ jobs:
 
       - run:
           name: "Build and Test (Carthage)"
-          command: set -o pipefail && xcodebuild test -scheme XpringKit_iOS -destination 'platform=iOS Simulator,name=iPhone X,OS=12.2' ONLY_ACTIVE_ARCH=YES | xcpretty
+          command: set -o pipefail && xcodebuild test -scheme XpringKit_iOS -destination 'platform=iOS Simulator,name=iPhone 11,OS=13.1' ONLY_ACTIVE_ARCH=YES | xcpretty
 
-#      - run:
-#          name: "Build and Test (CocoaPods)"
-#          command: pod lib lint
+      - run:
+          name: "Clean Project"
+          command: "./scripts/clean_project.sh"
+
+      - run:
+          name: "Generate Project - CocoaPods"
+          command: ./scripts/generate_project_cocoapods.sh
+
+      - run:
+          name: "Build and Test (CocoaPods)"
+          command: pod lib lint
 
       - run:
           name: "Generate and Upload Code Coverage"

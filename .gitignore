@@ -3,6 +3,11 @@
 # Created by https://www.gitignore.io/api/osx,xcode,swift,carthage,cocoapods
 # Edit at https://www.gitignore.io/?templates=osx,xcode,swift,carthage,cocoapods
 
+# Ignore Generated Files
+**/generated/*
+*.xcodeProj
+XpringKit/Resources/bundled.js
+
 ### Carthage ###
 # Carthage
 
