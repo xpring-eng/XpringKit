@@ -74,7 +74,7 @@ internal class JavaScriptUtils {
   /// - Parameters:
   ///   -  classicAddress: A classic address to encode.
   ///   - tag: An optional tag to encode. Defaults to nil.
-  /// - Returns: A new x-address if inputs were valid, otherwise undefined.
+  /// - Returns: A new X-address if inputs were valid, otherwise undefined.
   public func encode(classicAddress: Address, tag: UInt32? = nil) -> Address? {
     var arguments: [Any] = [ classicAddress ]
     if tag != nil {
@@ -85,7 +85,7 @@ internal class JavaScriptUtils {
     return result.isUndefined ? nil : result.toString()
   }
 
-  /// Decode a classic address from a given x-address.
+  /// Decode a classic address from a given X-address.
   ///
   /// - SeeAlso: https://xrpaddress.info/
   ///
