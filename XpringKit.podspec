@@ -24,6 +24,7 @@ Pod::Spec.new do |spec|
   spec.source_files  = "XpringKit/**/*.swift"
   spec.resources =     [ "XpringKit/Resources/*" ]
 
+  spec.dependency 'BigInt'
   spec.dependency 'SwiftGRPC'
   spec.dependency 'SwiftProtobuf'
 
