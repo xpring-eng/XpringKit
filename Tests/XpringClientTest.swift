@@ -28,16 +28,18 @@ final class XpringClientTest: XCTestCase {
 		$0.engineResultCode = engineResultCode
 	}
 
+  /// A network client that always succeeds.
+  static let successfulFakeNetworkClient = FakeNetworkClient(
+    accountInfoResult: .success(XpringClientTest.accountInfo),
+    feeResult: .success(XpringClientTest.fee),
+    submitSignedTransactionResult: .success(XpringClientTest.submitTransactionResponse)
+  )
+
 	// MARK: - Balance
 
 	func testGetBalanceWithSuccess() {
 		// GIVEN a Xpring client which will successfully return a balance from a mocked network call.
-		let networkClient = FakeNetworkClient(
-			accountInfoResult: .success(XpringClientTest.accountInfo),
-			feeResult: .success(XpringClientTest.fee),
-			submitSignedTransactionResult: .success(XpringClientTest.submitTransactionResponse)
-		)
-		let xpringClient = XpringClient(networkClient: networkClient)
+    let xpringClient = XpringClient(networkClient: XpringClientTest.successfulFakeNetworkClient)
 
 		// WHEN the balance is requested.
 		guard let balance = try? xpringClient.getBalance(for: .testAddress) else {
@@ -66,12 +68,7 @@ final class XpringClientTest: XCTestCase {
 
 	func testSendWithSuccess() {
 		// GIVEN a Xpring client which will successfully return a balance from a mocked network call.
-		let networkClient = FakeNetworkClient(
-			accountInfoResult: .success(XpringClientTest.accountInfo),
-			feeResult: .success(XpringClientTest.fee),
-			submitSignedTransactionResult: .success(XpringClientTest.submitTransactionResponse)
-		)
-		let xpringClient = XpringClient(networkClient: networkClient)
+    let xpringClient = XpringClient(networkClient: XpringClientTest.successfulFakeNetworkClient)
 
 		// WHEN XRP is sent.
 		guard
@@ -87,6 +84,34 @@ final class XpringClientTest: XCTestCase {
 		// THEN the engine result code is as expected.
 		XCTAssertEqual(result.engineResultCode, XpringClientTest.engineResultCode)
 	}
+
+  func testSendWithInvalidAddress() {
+    // GIVEN a Xpring client and an invalid destination address.
+    let xpringClient = XpringClient(networkClient: XpringClientTest.successfulFakeNetworkClient)
+    let destinationAddress = "xrp"
+
+    // WHEN XRP is sent to an invalid address THEN an error is thrown.
+    XCTAssertThrowsError(try xpringClient.send(
+      XpringClientTest.sendAmount,
+      to: destinationAddress,
+      from: XpringClientTest.wallet
+    ))
+  }
+
+  func testSendWithXAddressAndTag() {
+    // GIVEN a Xpring client, an X - Address and a destination tag.
+    let xpringClient = XpringClient(networkClient: XpringClientTest.successfulFakeNetworkClient)
+    let xAddress = "XVfC9CTCJh6GN2x8bnrw3LtdbqiVCUFyQVMzRrMGUZpokKH"
+    let destinationTag: UInt32 = 123
+
+    // WHEN XRP is sent THEN an error is thrown.
+    XCTAssertThrowsError(try xpringClient.send(
+      XpringClientTest.sendAmount,
+      to: xAddress,
+      destinationTag: destinationTag,
+      from: XpringClientTest.wallet
+    ))
+  }
 
 	func testSendWithAccountInfoFailure() {
 		// GIVEN a Xpring client which will fail to return account info.
