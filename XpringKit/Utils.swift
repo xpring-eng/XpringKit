@@ -54,4 +54,12 @@ public enum Utils {
   public static func decode(xAddress: Address) -> (classicAddress: String, tag: UInt32?)? {
     return javaScriptUtils.decode(xAddress: xAddress)
   }
+
+  /// Convert the given transaction blob to a transaction hash.
+  ///
+  /// - Parameter transactionBlobHex: A hexadecimal encoded transaction blob.
+  /// - Returns: A hex encoded hash if the input was valid, otherwise undefined.
+  public static func toTransactionHash(transactionBlobHex: Hex) -> Hex? {
+    return javaScriptUtils.toTransactionHash(transactionBlobHex: transactionBlobHex)
+  }
 }

@@ -12,10 +12,15 @@ internal class JavaScriptUtils {
     public static let isValidClassicAddress = "isValidClassicAddress"
     public static let isValidXAddress = "isValidXAddress"
     public static let tag = "tag"
+    public static let transactionBlobToTransactionHash = "transactionBlobToTransactionHash"
     public static let utils = "Utils"
   }
 
-  /// Native javaScript functions wrapped by this class.
+  /// The JavaScript class.
+  private let utils: JSValue
+
+  /// Native JavaScript functions wrapped by this class.
+  // TODO(keefertaylor): This class should use the same pattern as JSWallet, where `invokeMethod` is called on a class object and direct function references are not kept. 
   private let encodeXAddressFunction: JSValue
   private let decodeXAddressFunction: JSValue
   private let isValidAddressFunction: JSValue
@@ -26,7 +31,7 @@ internal class JavaScriptUtils {
   public init() {
     let context = XRPJavaScriptLoader.XRPJavaScriptContext
 
-    let utils = XRPJavaScriptLoader.load(ResourceNames.utils, from: context)
+    utils = XRPJavaScriptLoader.load(ResourceNames.utils, from: context)
     encodeXAddressFunction = XRPJavaScriptLoader.load(ResourceNames.encodeXAddress, from: utils)
     decodeXAddressFunction = XRPJavaScriptLoader.load(ResourceNames.decodeXAddress, from: utils)
     isValidAddressFunction = XRPJavaScriptLoader.load(ResourceNames.isValidAddress, from: utils)
@@ -102,5 +107,17 @@ internal class JavaScriptUtils {
       return (classicAddress, tag.toUInt32())
     }
     return (classicAddress, nil)
+  }
+
+  /// Convert the given transaction blob to a transaction hash.
+  ///
+  /// - Parameter transactionBlobHex: A hexadecimal encoded transaction blob.
+  /// - Returns: A hex encoded hash if the input was valid, otherwise undefined.
+  public func toTransactionHash(transactionBlobHex: Hex) -> Hex? {
+    let result = utils.invokeMethod(ResourceNames.transactionBlobToTransactionHash, withArguments: [transactionBlobHex])!
+    guard !result.isUndefined else {
+        return nil
+    }
+    return result.toString()
   }
 }

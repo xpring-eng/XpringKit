@@ -1,5 +1,6 @@
+import BigInt
+
 /// An interface into the Xpring Platform.
-/// TODO(keefertaylor): Rename this to XRPClient.
 public class XpringClient {
 	/// A network client that will make and receive requests.
 	private let networkClient: NetworkClient
@@ -23,35 +24,35 @@ public class XpringClient {
 	///
 	/// - Parameter address: The address to retrieve the balance for.
 	/// - Throws: An error if there was a problem communicating with the XRP Ledger.
-	/// - Returns: An XRPAmount containing the balance of the address.
-	public func getBalance(for address: Address) throws -> Io_Xpring_XRPAmount {
+	/// - Returns: An unsigned integer containing the balance of the address in drops.
+	public func getBalance(for address: Address) throws -> BigUInt {
 		let accountInfo = try getAccountInfo(for: address)
-		return accountInfo.balance
+    return BigUInt(stringLiteral: accountInfo.balance.drops)
 	}
 
 	/// Send XRP to a recipient on the XRP Ledger.
 	///
 	/// - Parameters:
-	///		- amount: The amount of XRP to send.
+	///		- amount: An unsigned integer representing the amount of XRP to send.
 	///		- destinationAddress: The address which will receive the XRP.
 	///		- sourceWallet: The wallet sending the XRP.
 	/// - Throws: An error if there was a problem communicating with the XRP Ledger.
 	/// - Returns: A response from the ledger.
-  public func send(_ amount: Io_Xpring_XRPAmount, to destinationAddress: Address, from sourceWallet: Wallet) throws -> Io_Xpring_SubmitSignedTransactionResponse {
+  public func send(_ amount: BigUInt, to destinationAddress: Address, from sourceWallet: Wallet) throws -> Io_Xpring_SubmitSignedTransactionResponse {
     return try send(amount, to: destinationAddress, destinationTag: nil, from: sourceWallet)
   }
 
   /// Send XRP to a recipient on the XRP Ledger.
   ///
   /// - Parameters:
-  ///    - amount: The amount of XRP to send.
+	///		- amount: An unsigned integer representing the amount of XRP to send.
   ///    - destinationAddress: The address which will receive the XRP.
   ///    - destinationTag: A tag for the destination address.
   ///    - sourceWallet: The wallet sending the XRP.
   /// - Throws: An error if there was a problem communicating with the XRP Ledger.
   /// - Returns: A response from the ledger.
   public func send(
-    _ amount: Io_Xpring_XRPAmount,
+    _ amount: BigUInt,
     to destinationAddress: Address,
     destinationTag: UInt32?,
     from sourceWallet: Wallet
@@ -71,13 +72,17 @@ public class XpringClient {
 		let accountInfo = try getAccountInfo(for: sourceWallet.address)
 		let fee = try getFee()
 
+    let xrpAmount = Io_Xpring_XRPAmount.with {
+      $0.drops = String(amount)
+    }
+
 		let transaction = Io_Xpring_Transaction.with {
 			$0.account = sourceWallet.address
 			$0.fee = fee.amount
 			$0.sequence = accountInfo.sequence
 			$0.payment = Io_Xpring_Payment.with {
 				$0.destination = destinationXAddress
-				$0.xrpAmount = amount
+				$0.xrpAmount = xrpAmount
 			}
 			$0.signingPublicKeyHex = sourceWallet.publicKey
 		}
