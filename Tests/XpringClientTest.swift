@@ -1,20 +1,18 @@
+import BigInt
 import XCTest
 @testable import XpringKit
 
 final class XpringClientTest: XCTestCase {
 	static let wallet = Wallet(seed: "snYP7oArxKepd3GPDcrjMsJYiJeJB")!
 	static let destinationAddress = "rU6K7V3Po4snVhBBaU29sesqs2qTQJWDw1"
-	static let sendDrops = "20"
-	static let sendAmount = Io_Xpring_XRPAmount.with {
-		$0.drops = sendDrops
-	}
+	static let sendAmount = BigUInt(stringLiteral: "20")
 
 	static let feeDrops = "15"
-	static let balance = "1000"
+	static let balance = BigUInt(stringLiteral: "1000")
 	static let sequence: UInt64 = 2
 	static let accountInfo = Io_Xpring_AccountInfo.with {
 		$0.balance = Io_Xpring_XRPAmount.with {
-			$0.drops = balance
+			$0.drops = String(balance)
 		}
 		$0.sequence = sequence
 	}
@@ -42,13 +40,13 @@ final class XpringClientTest: XCTestCase {
 		let xpringClient = XpringClient(networkClient: networkClient)
 
 		// WHEN the balance is requested.
-		guard let xrpAmount = try? xpringClient.getBalance(for: .testAddress) else {
+		guard let balance = try? xpringClient.getBalance(for: .testAddress) else {
 			XCTFail("Exception should not be thrown when trying to get a balance")
 			return
 		}
 
 		// THEN the balance is correct.
-		XCTAssertEqual(xrpAmount.drops, XpringClientTest.balance)
+		XCTAssertEqual(balance, XpringClientTest.balance)
 	}
 
 	func testGetBalanceWithFailure() {

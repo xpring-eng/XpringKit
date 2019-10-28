@@ -16,25 +16,27 @@ internal class JavaScriptUtils {
     public static let utils = "Utils"
   }
 
-  /// Native javaScript functions wrapped by this class.
+  /// The JavaScript class.
+  private let utils: JSValue
+
+  /// Native JavaScript functions wrapped by this class.
+  // TODO(keefertaylor): This class should use the same pattern as JSWallet, where `invokeMethod` is called on a class object and direct function references are not kept. 
   private let encodeXAddressFunction: JSValue
   private let decodeXAddressFunction: JSValue
   private let isValidAddressFunction: JSValue
   private let isValidClassicAddressFunction: JSValue
   private let isValidXAddressFunction: JSValue
-  private let transactionBlobToTransactionHashFunction: JSValue
 
   /// Initialize a JavaScriptUtils object.
   public init() {
     let context = XRPJavaScriptLoader.XRPJavaScriptContext
 
-    let utils = XRPJavaScriptLoader.load(ResourceNames.utils, from: context)
+    utils = XRPJavaScriptLoader.load(ResourceNames.utils, from: context)
     encodeXAddressFunction = XRPJavaScriptLoader.load(ResourceNames.encodeXAddress, from: utils)
     decodeXAddressFunction = XRPJavaScriptLoader.load(ResourceNames.decodeXAddress, from: utils)
     isValidAddressFunction = XRPJavaScriptLoader.load(ResourceNames.isValidAddress, from: utils)
     isValidClassicAddressFunction = XRPJavaScriptLoader.load(ResourceNames.isValidClassicAddress, from: utils)
     isValidXAddressFunction = XRPJavaScriptLoader.load(ResourceNames.isValidXAddress, from: utils)
-    transactionBlobToTransactionHashFunction = XRPJavaScriptLoader.load(ResourceNames.transactionBlobToTransactionHash, from: utils)
   }
 
   /// Check if the given address is a valid XRP address.
@@ -112,7 +114,7 @@ internal class JavaScriptUtils {
   /// - Parameter transactionBlobHex: A hexadecimal encoded transaction blob.
   /// - Returns: A hex encoded hash if the input was valid, otherwise undefined.
   public func toTransactionHash(transactionBlobHex: Hex) -> Hex? {
-    let result = transactionBlobToTransactionHashFunction.call(withArguments: [transactionBlobHex])!
+    let result = utils.invokeMethod(ResourceNames.transactionBlobToTransactionHash, withArguments: [transactionBlobHex])!
     guard !result.isUndefined else {
         return nil
     }
