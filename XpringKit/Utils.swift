@@ -13,6 +13,26 @@ public enum Utils {
 		return javaScriptUtils.isValid(address: address)
 	}
 
+  /// Validate if the given string is a valid X-address on the XRP Ledger.
+  ///
+  /// - SeeAlso: https://xrpaddress.info/
+  ///
+  /// - Parameter address: An address to check.
+  /// - Returns true if the address is a valid X-address, otherwise false.
+  public static func isValidXAddress(address: Address) -> Bool {
+    return javaScriptUtils.isValidXAddress(address: address)
+  }
+
+  /// Validate if the given string is a valid  classic address on the XRP Ledger.
+  ///
+  /// - SeeAlso: https://xrpaddress.info/
+  ///
+  /// - Parameter address: An address to check.
+  /// - Returns true if the address is a valid classic address, otherwise false.
+  public static func isValidClassicAddress(address: Address) -> Bool {
+    return javaScriptUtils.isValidClassicAddress(address: address)
+  }
+
   /// Encode the given classic address and tag into an x-address.
   ///
   /// - SeeAlso: https://xrpaddress.info/
