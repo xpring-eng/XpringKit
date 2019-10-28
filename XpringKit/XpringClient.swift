@@ -45,10 +45,10 @@ public class XpringClient {
   /// Send XRP to a recipient on the XRP Ledger.
   ///
   /// - Parameters:
-	///		- amount: An unsigned integer representing the amount of XRP to send.
-  ///    - destinationAddress: The address which will receive the XRP.
-  ///    - destinationTag: A tag for the destination address.
-  ///    - sourceWallet: The wallet sending the XRP.
+  ///   - amount: An unsigned integer representing the amount of XRP to send.
+  ///   - destinationAddress: The address which will receive the XRP.
+  ///   - destinationTag: A tag for the destination address.
+  ///   - sourceWallet: The wallet sending the XRP.
   /// - Throws: An error if there was a problem communicating with the XRP Ledger.
   /// - Returns: A response from the ledger.
   public func send(
