@@ -28,16 +28,18 @@ final class XpringClientTest: XCTestCase {
 		$0.engineResultCode = engineResultCode
 	}
 
+  /// A network client that always succeeds.
+  static let successfulFakeNetworkClient = FakeNetworkClient(
+    accountInfoResult: .success(XpringClientTest.accountInfo),
+    feeResult: .success(XpringClientTest.fee),
+    submitSignedTransactionResult: .success(XpringClientTest.submitTransactionResponse)
+  )
+
 	// MARK: - Balance
 
 	func testGetBalanceWithSuccess() {
 		// GIVEN a Xpring client which will successfully return a balance from a mocked network call.
-		let networkClient = FakeNetworkClient(
-			accountInfoResult: .success(XpringClientTest.accountInfo),
-			feeResult: .success(XpringClientTest.fee),
-			submitSignedTransactionResult: .success(XpringClientTest.submitTransactionResponse)
-		)
-		let xpringClient = XpringClient(networkClient: networkClient)
+    let xpringClient = XpringClient(networkClient: XpringClientTest.successfulFakeNetworkClient)
 
 		// WHEN the balance is requested.
 		guard let balance = try? xpringClient.getBalance(for: .testAddress) else {
@@ -66,12 +68,7 @@ final class XpringClientTest: XCTestCase {
 
 	func testSendWithSuccess() {
 		// GIVEN a Xpring client which will successfully return a balance from a mocked network call.
-		let networkClient = FakeNetworkClient(
-			accountInfoResult: .success(XpringClientTest.accountInfo),
-			feeResult: .success(XpringClientTest.fee),
-			submitSignedTransactionResult: .success(XpringClientTest.submitTransactionResponse)
-		)
-		let xpringClient = XpringClient(networkClient: networkClient)
+    let xpringClient = XpringClient(networkClient: XpringClientTest.successfulFakeNetworkClient)
 
 		// WHEN XRP is sent.
 		guard
