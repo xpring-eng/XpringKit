@@ -12,6 +12,7 @@ internal class JavaScriptUtils {
     public static let isValidClassicAddress = "isValidClassicAddress"
     public static let isValidXAddress = "isValidXAddress"
     public static let tag = "tag"
+    public static let transactionBlobToTransactionHash = "transactionBlobToTransactionHash"
     public static let utils = "Utils"
   }
 
@@ -21,6 +22,7 @@ internal class JavaScriptUtils {
   private let isValidAddressFunction: JSValue
   private let isValidClassicAddressFunction: JSValue
   private let isValidXAddressFunction: JSValue
+  private let transactionBlobToTransactionHashFunction: JSValue
 
   /// Initialize a JavaScriptUtils object.
   public init() {
@@ -32,6 +34,7 @@ internal class JavaScriptUtils {
     isValidAddressFunction = XRPJavaScriptLoader.load(ResourceNames.isValidAddress, from: utils)
     isValidClassicAddressFunction = XRPJavaScriptLoader.load(ResourceNames.isValidClassicAddress, from: utils)
     isValidXAddressFunction = XRPJavaScriptLoader.load(ResourceNames.isValidXAddress, from: utils)
+    transactionBlobToTransactionHashFunction = XRPJavaScriptLoader.load(ResourceNames.transactionBlobToTransactionHash, from: utils)
   }
 
   /// Check if the given address is a valid XRP address.
@@ -102,5 +105,17 @@ internal class JavaScriptUtils {
       return (classicAddress, tag.toUInt32())
     }
     return (classicAddress, nil)
+  }
+
+  /// Convert the given transaction blob to a transaction hash.
+  ///
+  /// - Parameter transactionBlobHex: A hexadecimal encoded transaction blob.
+  /// - Returns: A hex encoded hash if the input was valid, otherwise undefined.
+  public func toTransactionHash(transactionBlobHex: Hex) -> Hex? {
+    let result = transactionBlobToTransactionHashFunction.call(withArguments: [transactionBlobHex])!
+    guard !result.isUndefined else {
+        return nil
+    }
+    return result.toString()
   }
 }
