@@ -37,7 +37,37 @@ public class XpringClient {
 	///		- sourceWallet: The wallet sending the XRP.
 	/// - Throws: An error if there was a problem communicating with the XRP Ledger.
 	/// - Returns: A response from the ledger.
-	public func send(_ amount: Io_Xpring_XRPAmount, to destinationAddress: Address, from sourceWallet: Wallet) throws -> Io_Xpring_SubmitSignedTransactionResponse {
+  public func send(_ amount: Io_Xpring_XRPAmount, to destinationAddress: Address, from sourceWallet: Wallet) throws -> Io_Xpring_SubmitSignedTransactionResponse {
+    return try send(amount, to: destinationAddress, destinationTag: nil, from: sourceWallet)
+  }
+
+  /// Send XRP to a recipient on the XRP Ledger.
+  ///
+  /// - Parameters:
+  ///    - amount: The amount of XRP to send.
+  ///    - destinationAddress: The address which will receive the XRP.
+  ///    - destinationTag: A tag for the destination address.
+  ///    - sourceWallet: The wallet sending the XRP.
+  /// - Throws: An error if there was a problem communicating with the XRP Ledger.
+  /// - Returns: A response from the ledger.
+  public func send(
+    _ amount: Io_Xpring_XRPAmount,
+    to destinationAddress: Address,
+    destinationTag: UInt32?,
+    from sourceWallet: Wallet
+  ) throws -> Io_Xpring_SubmitSignedTransactionResponse {
+    guard Utils.isValid(address: destinationAddress) else {
+      throw XRPLedgerError.invalidAddress(destinationAddress)
+    }
+
+    guard !Utils.isValidXAddress(address: destinationAddress) || destinationTag == nil else {
+      throw XRPLedgerError.invalidInputs("Can't have an xAddress and a tag.")
+    }
+
+    guard let destinationXAddress = Utils.isValidXAddress(address: destinationAddress) ? destinationAddress : Utils.encode(classicAddress: destinationAddress, tag: destinationTag) else {
+      throw XRPLedgerError.unknown("Couldn't encode X-Address")
+    }
+
 		let accountInfo = try getAccountInfo(for: sourceWallet.address)
 		let fee = try getFee()
 
@@ -46,7 +76,7 @@ public class XpringClient {
 			$0.fee = fee.amount
 			$0.sequence = accountInfo.sequence
 			$0.payment = Io_Xpring_Payment.with {
-				$0.destination = destinationAddress
+				$0.destination = destinationXAddress
 				$0.xrpAmount = amount
 			}
 			$0.signingPublicKeyHex = sourceWallet.publicKey

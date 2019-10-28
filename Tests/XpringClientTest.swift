@@ -1,143 +1,68 @@
 import XCTest
 @testable import XpringKit
 
+extension Wallet {
+  public static let testWallet = Wallet(seed: "saNTy6oyVyMhCScBdKUNg2tFWwPKa")!
+}
+
 final class XpringClientTest: XCTestCase {
-	static let wallet = Wallet(seed: "snYP7oArxKepd3GPDcrjMsJYiJeJB")!
-	static let destinationAddress = "rU6K7V3Po4snVhBBaU29sesqs2qTQJWDw1"
-	static let sendDrops = "20"
-	static let sendAmount = Io_Xpring_XRPAmount.with {
-		$0.drops = sendDrops
-	}
+  let xrpClient = XpringClient(grpcURL: .grpcURL)
 
-	static let feeDrops = "15"
-	static let balance = "1000"
-	static let sequence: UInt64 = 2
-	static let accountInfo = Io_Xpring_AccountInfo.with {
-		$0.balance = Io_Xpring_XRPAmount.with {
-			$0.drops = balance
-		}
-		$0.sequence = sequence
-	}
+  func testClassicAddressSend() {
+    // An address to receive XRP.
+    let recipientAddress = "rsegqrgSP8XmhCYwL9enkZ9BNDNawfPZnn"
 
-	static let fee = Io_Xpring_Fee.with {
-		$0.amount = Io_Xpring_XRPAmount.with {
-			$0.drops = feeDrops
-		}
-	}
+    let result = try! xrpClient.send(.oneDrop, to: recipientAddress, from: .testWallet)
 
-	static let engineResultCode: Int64 = 0
-	static let submitTransactionResponse = Io_Xpring_SubmitSignedTransactionResponse.with {
-		$0.engineResultCode = engineResultCode
-	}
+    print("Sent to a classic address with result: \(result.engineResultMessage)")
+  }
 
-	// MARK: - Balance
+  func testClassicAddressWithTag() {
+    // An address and tag to receive XRP.
+    let recipientAddress = "rsegqrgSP8XmhCYwL9enkZ9BNDNawfPZnn"
+    let recipientTag: UInt32 = 123
 
-	func testGetBalanceWithSuccess() {
-		// GIVEN a Xpring client which will successfully return a balance from a mocked network call.
-		let networkClient = FakeNetworkClient(
-			accountInfoResult: .success(XpringClientTest.accountInfo),
-			feeResult: .success(XpringClientTest.fee),
-			submitSignedTransactionResult: .success(XpringClientTest.submitTransactionResponse)
-		)
-		let xpringClient = XpringClient(networkClient: networkClient)
+    let result = try! xrpClient.send(.twoDrops, to: recipientAddress, destinationTag: recipientTag, from: .testWallet)
+    print("Sent to a classic address and a tag with result: \(result.engineResultMessage)")
+  }
 
-		// WHEN the balance is requested.
-		guard let xrpAmount = try? xpringClient.getBalance(for: .testAddress) else {
-			XCTFail("Exception should not be thrown when trying to get a balance")
-			return
-		}
+  func testXAddress() {
+    // An X-Address that's going to get some XRP
+    let recipientAddress = "X7cBcY4bdTTzk3LHmrKAK6GyrirkXfTSaLz88QUHWjDGoao"
+    let result = try! xrpClient.send(.threeDrops, to: recipientAddress, from: .testWallet)
+    print("Sent to a classic address with result: \(result.engineResultMessage)")
+  }
 
-		// THEN the balance is correct.
-		XCTAssertEqual(xrpAmount.drops, XpringClientTest.balance)
-	}
+  func testSendWithEncodeXAddress() {
+    // Some classic address inputs
+    let recipientAddress = "rsegqrgSP8XmhCYwL9enkZ9BNDNawfPZnn"
+    let recipientTag: UInt32 = 123
 
-	func testGetBalanceWithFailure() {
-		// GIVEN a Xpring client which will throw an error when a balance is requested.
-		let networkClient = FakeNetworkClient(
-			accountInfoResult: .failure(XpringKitTestError.mockFailure),
-			feeResult: .success(XpringClientTest.fee),
-			submitSignedTransactionResult: .success(XpringClientTest.submitTransactionResponse)
-		)
-		let xpringClient = XpringClient(networkClient: networkClient)
+    // Make an X-Address!
+    let xAddress = Utils.encode(classicAddress: recipientAddress, tag: recipientTag)!
+    print("Derived the corresponding X-Address as: \(xAddress)")
 
-		// WHEN the balance is requested THEN the error is thrown.
-		XCTAssertThrowsError(try xpringClient.getBalance(for: .testAddress))
-	}
+    // Send to that address
+    let result = try! xrpClient.send(.fourDrops, to: xAddress, from: .testWallet)
+    print("Sent to a derived X-Address result: \(result.engineResultMessage)")
+  }
 
-	// MARK: - Send
+  override func setUp() {
+    print("\n\n")
+  }
 
-	func testSendWithSuccess() {
-		// GIVEN a Xpring client which will successfully return a balance from a mocked network call.
-		let networkClient = FakeNetworkClient(
-			accountInfoResult: .success(XpringClientTest.accountInfo),
-			feeResult: .success(XpringClientTest.fee),
-			submitSignedTransactionResult: .success(XpringClientTest.submitTransactionResponse)
-		)
-		let xpringClient = XpringClient(networkClient: networkClient)
+  override func tearDown() {
+    print("\n\n")
+  }
+}
 
-		// WHEN XRP is sent.
-		guard
-			let result = try? xpringClient.send(
-				XpringClientTest.sendAmount,
-				to: XpringClientTest.destinationAddress,
-				from: XpringClientTest.wallet)
-		else {
-			XCTFail("Exception should not be thrown when trying to send XRP")
-			return
-		}
+extension Io_Xpring_XRPAmount {
+  public static let oneDrop = Io_Xpring_XRPAmount.with { $0.drops = "1" }
+  public static let twoDrops = Io_Xpring_XRPAmount.with { $0.drops = "2" }
+  public static let threeDrops = Io_Xpring_XRPAmount.with { $0.drops = "3" }
+  public static let fourDrops = Io_Xpring_XRPAmount.with { $0.drops = "4" }
+}
 
-		// THEN the engine result code is as expected.
-		XCTAssertEqual(result.engineResultCode, XpringClientTest.engineResultCode)
-	}
-
-	func testSendWithAccountInfoFailure() {
-		// GIVEN a Xpring client which will fail to return account info.
-		let networkClient = FakeNetworkClient(
-			accountInfoResult: .failure(XpringKitTestError.mockFailure),
-			feeResult: .success(XpringClientTest.fee),
-			submitSignedTransactionResult: .success(XpringClientTest.submitTransactionResponse)
-		)
-		let xpringClient = XpringClient(networkClient: networkClient)
-
-		// WHEN a send is attempted then an error is thrown.
-		XCTAssertThrowsError(try xpringClient.send(
-			XpringClientTest.sendAmount,
-			to: XpringClientTest.destinationAddress,
-			from: XpringClientTest.wallet
-		))
-	}
-
-	func testSendWithFeeFailure() {
-		// GIVEN a Xpring client which will fail to return a fee.
-		let networkClient = FakeNetworkClient(
-			accountInfoResult: .success(XpringClientTest.accountInfo),
-			feeResult: .failure(XpringKitTestError.mockFailure),
-			submitSignedTransactionResult: .success(XpringClientTest.submitTransactionResponse)
-		)
-		let xpringClient = XpringClient(networkClient: networkClient)
-
-		// WHEN a send is attempted then an error is thrown.
-		XCTAssertThrowsError(try xpringClient.send(
-			XpringClientTest.sendAmount,
-			to: XpringClientTest.destinationAddress,
-			from: XpringClientTest.wallet
-		))
-	}
-
-	func testSendWithSubmitFailure() {
-		// GIVEN a Xpring client which will fail to submit a transaction.
-		let networkClient = FakeNetworkClient(
-			accountInfoResult: .success(XpringClientTest.accountInfo),
-			feeResult: .success(XpringClientTest.fee),
-			submitSignedTransactionResult: .failure(XpringKitTestError.mockFailure)
-		)
-		let xpringClient = XpringClient(networkClient: networkClient)
-
-		// WHEN a send is attempted then an error is thrown.
-		XCTAssertThrowsError(try xpringClient.send(
-			XpringClientTest.sendAmount,
-			to: XpringClientTest.destinationAddress,
-			from: XpringClientTest.wallet
-		))
-	}
+extension String {
+  public static let grpcURL = "grpc.xpring.tech:80"
 }
