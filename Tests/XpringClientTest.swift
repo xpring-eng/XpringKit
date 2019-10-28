@@ -25,9 +25,9 @@ final class XpringClientTest: XCTestCase {
 		}
 	}
 
-	static let engineResultCode: Int64 = 0
+	static let transactionBlobHex = "DEADBEEF"
 	static let submitTransactionResponse = Io_Xpring_SubmitSignedTransactionResponse.with {
-		$0.engineResultCode = engineResultCode
+		$0.transactionBlob = transactionBlobHex
 	}
 
 	// MARK: - Balance
@@ -77,7 +77,7 @@ final class XpringClientTest: XCTestCase {
 
 		// WHEN XRP is sent.
 		guard
-			let result = try? xpringClient.send(
+			let transactionHash = try? xpringClient.send(
 				XpringClientTest.sendAmount,
 				to: XpringClientTest.destinationAddress,
 				from: XpringClientTest.wallet)
@@ -87,7 +87,7 @@ final class XpringClientTest: XCTestCase {
 		}
 
 		// THEN the engine result code is as expected.
-		XCTAssertEqual(result.engineResultCode, XpringClientTest.engineResultCode)
+    XCTAssertEqual(transactionHash, Utils.toTransactionHash(transactionBlobHex: XpringClientTest.transactionBlobHex))
 	}
 
 	func testSendWithAccountInfoFailure() {
