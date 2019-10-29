@@ -37,8 +37,8 @@ public class XpringClient {
 	///		- destinationAddress: The address which will receive the XRP.
 	///		- sourceWallet: The wallet sending the XRP.
 	/// - Throws: An error if there was a problem communicating with the XRP Ledger.
-	/// - Returns: A response from the ledger.
-  public func send(_ amount: BigUInt, to destinationAddress: Address, from sourceWallet: Wallet) throws -> Io_Xpring_SubmitSignedTransactionResponse {
+	/// - Returns: A transaction hash for the submitted transaction.
+	public func send(_ amount: BigUInt, to destinationAddress: Address, from sourceWallet: Wallet) throws -> TransactionHash {
     return try send(amount, to: destinationAddress, destinationTag: nil, from: sourceWallet)
   }
 
@@ -50,13 +50,13 @@ public class XpringClient {
   ///   - destinationTag: A tag for the destination address.
   ///   - sourceWallet: The wallet sending the XRP.
   /// - Throws: An error if there was a problem communicating with the XRP Ledger.
-  /// - Returns: A response from the ledger.
+	/// - Returns: A transaction hash for the submitted transaction.
   public func send(
     _ amount: BigUInt,
     to destinationAddress: Address,
     destinationTag: UInt32?,
     from sourceWallet: Wallet
-  ) throws -> Io_Xpring_SubmitSignedTransactionResponse {
+  ) throws -> TransactionHash {
     guard Utils.isValid(address: destinationAddress) else {
       throw XRPLedgerError.invalidAddress(destinationAddress)
     }
@@ -95,7 +95,11 @@ public class XpringClient {
 			$0.signedTransaction = signedTransaction
 		}
 
-		return try networkClient.submitSignedTransaction(submitSignedTransactionRequest)
+		let submitTransactionResponse = try networkClient.submitSignedTransaction(submitSignedTransactionRequest)
+    guard let hash = Utils.toTransactionHash(transactionBlobHex: submitTransactionResponse.transactionBlob) else {
+      throw XRPLedgerError.unknown("Could not hash transaction blob: \(submitTransactionResponse.transactionBlob)")
+    }
+    return hash
 	}
 
 	/// Retrieve the current fee to submit a transaction to the XRP Ledger.
