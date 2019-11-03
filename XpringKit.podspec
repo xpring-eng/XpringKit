@@ -19,7 +19,7 @@ Pod::Spec.new do |spec|
   spec.ios.deployment_target = '8.0'
   spec.osx.deployment_target = '10.10'
 
-  spec.prepare_command = "git submodule update --init --recursive"
+  spec.prepare_command = "git submodule update --init --recursive && ./scripts/bundle_js.sh && ./scripts/regenerate_protos.sh"
 
   spec.source_files  = "XpringKit/**/*.swift"
   spec.resources =     [ "XpringKit/Resources/*" ]
