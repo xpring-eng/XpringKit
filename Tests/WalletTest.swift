@@ -9,7 +9,7 @@ class WalletTest: XCTestCase {
 		}
 
 		XCTAssertNotNil(wallet)
-		XCTAssertEqual(wallet.address, "rByLcEZ7iwTBAK8FfjtpFuT7fCzt4kF4r2")
+		XCTAssertEqual(wallet.address, "XVnJMYQFqA8EAijpKh5EdjEY5JqyxykMKKSbrUX8uchF6U8")
 	}
 
 	func testGenerateWalletFromInvalidSeed() {
@@ -31,7 +31,7 @@ class WalletTest: XCTestCase {
 
 		XCTAssertEqual(wallet.publicKey, "031D68BC1A142E6766B2BDFB006CCFE135EF2E0E2E94ABB5CF5C9AB6104776FBAE")
 		XCTAssertEqual(wallet.privateKey, "0090802A50AA84EFB6CDB225F17C27616EA94048C179142FECF03F4712A07EA7A4")
-		XCTAssertEqual(wallet.address, "rHsMGQEkVNJmpGWs8XUBoTBiAAbwxZN5v3")
+		XCTAssertEqual(wallet.address, "XVMFQQBMhdouRqhPMuawgBMN1AVFTofPAdRsXG5RkPtUPNQ")
 	}
 
 	func testGenerateWalletFromMnemonicDerivationPath0() {
@@ -44,7 +44,7 @@ class WalletTest: XCTestCase {
 
 		XCTAssertEqual(wallet.publicKey, "031D68BC1A142E6766B2BDFB006CCFE135EF2E0E2E94ABB5CF5C9AB6104776FBAE")
 		XCTAssertEqual(wallet.privateKey, "0090802A50AA84EFB6CDB225F17C27616EA94048C179142FECF03F4712A07EA7A4")
-		XCTAssertEqual(wallet.address, "rHsMGQEkVNJmpGWs8XUBoTBiAAbwxZN5v3")
+		XCTAssertEqual(wallet.address, "XVMFQQBMhdouRqhPMuawgBMN1AVFTofPAdRsXG5RkPtUPNQ")
 	}
 
 	func testGenerateWalletFromMnemonicDerivationPath1() {
@@ -57,7 +57,7 @@ class WalletTest: XCTestCase {
 
 		XCTAssertEqual(wallet.publicKey, "038BF420B5271ADA2D7479358FF98A29954CF18DC25155184AEAD05796DA737E89")
 		XCTAssertEqual(wallet.privateKey, "000974B4CFE004A2E6C4364CBF3510A36A352796728D0861F6B555ED7E54A70389")
-		XCTAssertEqual(wallet.address, "r3AgF9mMBFtaLhKcg96weMhbbEFLZ3mx17")
+		XCTAssertEqual(wallet.address, "X7uRz9jfzHUFEjZTZ7rMVzFuTGZTHWcmkKjvGkNqVbfMhca")
 	}
 
 	func testGenerateWalletFromMnemonicInvalidDerivationPath() {
