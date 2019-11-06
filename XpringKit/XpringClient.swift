@@ -9,7 +9,7 @@ public class XpringClient {
 	///
 	/// - Parameter grpcURL: A url for a remote gRPC service which will handle network requests.
 	public convenience init(grpcURL: String) {
-		let networkClient = Io_Xpring_XRPLedgerServiceClient(address: grpcURL, secure: false)
+		let networkClient = Io_Xpring_XRPLedgerAPIServiceClient(address: grpcURL, secure: false)
 		self.init(networkClient: networkClient)
 	}
 
