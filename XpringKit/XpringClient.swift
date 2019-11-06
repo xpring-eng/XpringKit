@@ -29,7 +29,7 @@ public class XpringClient {
     guard Utils.isValidXAddress(address: address) else {
       throw XRPLedgerError.invalidInputs("Please use the X-Address format. See: https://xrpaddress.info/.")
     }
-    
+
 		let accountInfo = try getAccountInfo(for: address)
     return BigUInt(stringLiteral: accountInfo.balance.drops)
 	}
