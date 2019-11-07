@@ -50,7 +50,7 @@ internal enum XRPJavaScriptLoader {
 
 	/// Load a class, parameter or function from the default entry point on the given JSContext.
 	///
-	/// This method loads value from `EntryPoint.default.<value>`.
+	/// This method loads value from `EntryPoint.<value>`.
 	///
 	/// - Note: This function will crash if the requested resource does not exist.
 	///
@@ -62,13 +62,12 @@ internal enum XRPJavaScriptLoader {
 	public static func load(_ resourceName: String, from context: JSContext) -> JSValue {
 		guard
 			let entrypoint = context.objectForKeyedSubscript("EntryPoint"),
-			let `default` = entrypoint.objectForKeyedSubscript("default"),
-			!`default`.isUndefined
+			!entrypoint.isUndefined
 		else {
 			fatalError(LoaderErrors.missingEntrypoint)
 		}
 
-		return load(resourceName, from: `default`)
+		return load(resourceName, from: entrypoint)
 	}
 
 	/// Load a class, parameter or function as a keyed subscript from the given value.
