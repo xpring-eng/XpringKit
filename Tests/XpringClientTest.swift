@@ -4,7 +4,7 @@ import XCTest
 
 final class XpringClientTest: XCTestCase {
 	static let wallet = Wallet(seed: "snYP7oArxKepd3GPDcrjMsJYiJeJB")!
-	static let destinationAddress = "rU6K7V3Po4snVhBBaU29sesqs2qTQJWDw1"
+	static let destinationAddress = "XVfC9CTCJh6GN2x8bnrw3LtdbqiVCUFyQVMzRrMGUZpokKH"
 	static let sendAmount = BigUInt(stringLiteral: "20")
 
 	static let feeDrops = "15"
@@ -42,7 +42,7 @@ final class XpringClientTest: XCTestCase {
     let xpringClient = XpringClient(networkClient: XpringClientTest.successfulFakeNetworkClient)
 
 		// WHEN the balance is requested.
-		guard let balance = try? xpringClient.getBalance(for: .testAddress) else {
+    guard let balance = try? xpringClient.getBalance(for: XpringClientTest.destinationAddress) else {
 			XCTFail("Exception should not be thrown when trying to get a balance")
 			return
 		}
@@ -50,6 +50,18 @@ final class XpringClientTest: XCTestCase {
 		// THEN the balance is correct.
 		XCTAssertEqual(balance, XpringClientTest.balance)
 	}
+
+  func testGetBalanceWithClassicAddress() {
+    // GIVEN a classic address.
+    guard let classicAddressComponents = Utils.decode(xAddress: XpringClientTest.destinationAddress) else {
+      XCTFail("Failed to decode X-Address.")
+      return
+    }
+    let xpringClient = XpringClient(networkClient: XpringClientTest.successfulFakeNetworkClient)
+
+    // WHEN the balance is requested THEN an error is thrown.
+    XCTAssertThrowsError(try xpringClient.getBalance(for: classicAddressComponents.classicAddress))
+  }
 
 	func testGetBalanceWithFailure() {
 		// GIVEN a Xpring client which will throw an error when a balance is requested.
@@ -85,6 +97,22 @@ final class XpringClientTest: XCTestCase {
     XCTAssertEqual(transactionHash, Utils.toTransactionHash(transactionBlobHex: XpringClientTest.transactionBlobHex))
 	}
 
+  func testSendWithClassicAddress() {
+    // GIVEN a classic address.
+    guard let classicAddressComponents = Utils.decode(xAddress: XpringClientTest.destinationAddress) else {
+      XCTFail("Failed to decode X-Address.")
+      return
+    }
+    let xpringClient = XpringClient(networkClient: XpringClientTest.successfulFakeNetworkClient)
+
+    // WHEN XRP is sent to a classic address THEN an error is thrown.
+    XCTAssertThrowsError(try xpringClient.send(
+      XpringClientTest.sendAmount,
+      to: classicAddressComponents.classicAddress,
+      from: XpringClientTest.wallet
+    ))
+  }
+
   func testSendWithInvalidAddress() {
     // GIVEN a Xpring client and an invalid destination address.
     let xpringClient = XpringClient(networkClient: XpringClientTest.successfulFakeNetworkClient)
@@ -94,21 +122,6 @@ final class XpringClientTest: XCTestCase {
     XCTAssertThrowsError(try xpringClient.send(
       XpringClientTest.sendAmount,
       to: destinationAddress,
-      from: XpringClientTest.wallet
-    ))
-  }
-
-  func testSendWithXAddressAndTag() {
-    // GIVEN a Xpring client, an X - Address and a destination tag.
-    let xpringClient = XpringClient(networkClient: XpringClientTest.successfulFakeNetworkClient)
-    let xAddress = "XVfC9CTCJh6GN2x8bnrw3LtdbqiVCUFyQVMzRrMGUZpokKH"
-    let destinationTag: UInt32 = 123
-
-    // WHEN XRP is sent THEN an error is thrown.
-    XCTAssertThrowsError(try xpringClient.send(
-      XpringClientTest.sendAmount,
-      to: xAddress,
-      destinationTag: destinationTag,
       from: XpringClientTest.wallet
     ))
   }

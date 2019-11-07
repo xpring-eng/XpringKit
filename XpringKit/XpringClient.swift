@@ -22,10 +22,14 @@ public class XpringClient {
 
 	/// Get the balance for the given address.
 	///
-	/// - Parameter address: The address to retrieve the balance for.
-	/// - Throws: An error if there was a problem communicating with the XRP Ledger.
+	/// - Parameter address: The X-Address to retrieve the balance for.
+	/// - Throws: An error if there was a problem communicating with the XRP Ledger or the inputs were invalid.
 	/// - Returns: An unsigned integer containing the balance of the address in drops.
 	public func getBalance(for address: Address) throws -> BigUInt {
+    guard Utils.isValidXAddress(address: address) else {
+      throw XRPLedgerError.invalidInputs("Please use the X-Address format. See: https://xrpaddress.info/.")
+    }
+
 		let accountInfo = try getAccountInfo(for: address)
     return BigUInt(stringLiteral: accountInfo.balance.drops)
 	}
@@ -34,39 +38,13 @@ public class XpringClient {
 	///
 	/// - Parameters:
 	///		- amount: An unsigned integer representing the amount of XRP to send.
-	///		- destinationAddress: The address which will receive the XRP.
+	///		- destinationAddress: The X-Address which will receive the XRP.
 	///		- sourceWallet: The wallet sending the XRP.
-	/// - Throws: An error if there was a problem communicating with the XRP Ledger.
+  /// - Throws: An error if there was a problem communicating with the XRP Ledger or the inputs were invalid.
 	/// - Returns: A transaction hash for the submitted transaction.
 	public func send(_ amount: BigUInt, to destinationAddress: Address, from sourceWallet: Wallet) throws -> TransactionHash {
-    return try send(amount, to: destinationAddress, destinationTag: nil, from: sourceWallet)
-  }
-
-  /// Send XRP to a recipient on the XRP Ledger.
-  ///
-  /// - Parameters:
-  ///   - amount: An unsigned integer representing the amount of XRP to send.
-  ///   - destinationAddress: The address which will receive the XRP.
-  ///   - destinationTag: A tag for the destination address.
-  ///   - sourceWallet: The wallet sending the XRP.
-  /// - Throws: An error if there was a problem communicating with the XRP Ledger.
-	/// - Returns: A transaction hash for the submitted transaction.
-  public func send(
-    _ amount: BigUInt,
-    to destinationAddress: Address,
-    destinationTag: UInt32?,
-    from sourceWallet: Wallet
-  ) throws -> TransactionHash {
-    guard Utils.isValid(address: destinationAddress) else {
-      throw XRPLedgerError.invalidAddress(destinationAddress)
-    }
-
-    guard !Utils.isValidXAddress(address: destinationAddress) || destinationTag == nil else {
-      throw XRPLedgerError.invalidInputs("Can't have an xAddress and a tag.")
-    }
-
-    guard let destinationXAddress = Utils.isValidXAddress(address: destinationAddress) ? destinationAddress : Utils.encode(classicAddress: destinationAddress, tag: destinationTag) else {
-      throw XRPLedgerError.unknown("Couldn't encode X-Address")
+    guard Utils.isValidXAddress(address: destinationAddress) else {
+      throw XRPLedgerError.invalidInputs("Please use the X-Address format. See: https://xrpaddress.info/.")
     }
 
 		let accountInfo = try getAccountInfo(for: sourceWallet.address)
@@ -81,7 +59,7 @@ public class XpringClient {
 			$0.fee = fee.amount
 			$0.sequence = accountInfo.sequence
 			$0.payment = Io_Xpring_Payment.with {
-				$0.destination = destinationXAddress
+				$0.destination = destinationAddress
 				$0.xrpAmount = xrpAmount
 			}
 			$0.signingPublicKeyHex = sourceWallet.publicKey
