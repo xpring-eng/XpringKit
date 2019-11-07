@@ -50,7 +50,7 @@ internal enum XRPJavaScriptLoader {
 
 	/// Load a class, parameter or function from the default entry point on the given JSContext.
 	///
-	/// This method loads value from `EntryPoint.default.<value>`.
+	/// This method loads value from `EntryPoint.<value>`.
 	///
 	/// - Note: This function will crash if the requested resource does not exist.
 	///
