@@ -1,4 +1,5 @@
 import BigInt
+import Foundation
 
 /// An interface into the Xpring Platform.
 public class XpringClient {
@@ -62,7 +63,7 @@ public class XpringClient {
 				$0.destination = destinationAddress
 				$0.xrpAmount = xrpAmount
 			}
-			$0.signingPublicKeyHex = sourceWallet.publicKey
+      $0.signingPublicKeyHex = sourceWallet.publicKey
 		}
 
 		guard let signedTransaction = Signer.sign(transaction, with: sourceWallet) else {

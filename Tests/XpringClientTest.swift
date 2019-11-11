@@ -9,7 +9,7 @@ final class XpringClientTest: XCTestCase {
 
 	static let feeDrops = "15"
 	static let balance = BigUInt(stringLiteral: "1000")
-	static let sequence: UInt64 = 2
+	static let sequence: UInt32 = 2
 	static let accountInfo = Io_Xpring_AccountInfo.with {
 		$0.balance = Io_Xpring_XRPAmount.with {
 			$0.drops = String(balance)
