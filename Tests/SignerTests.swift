@@ -16,7 +16,7 @@ class SignerTests: XCTestCase {
 				}
 				$0.destination = "rsegqrgSP8XmhCYwL9enkZ9BNDNawfPZnn"
 			}
-      $0.signingPublicKeyHex = wallet.publicKey
+			$0.signingPublicKeyHex = wallet.publicKey
 		}
 
 		guard let signedTransaction = Signer.sign(transaction, with: wallet) else {
