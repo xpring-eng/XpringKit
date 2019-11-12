@@ -1,4 +1,5 @@
-[![CircleCI](https://img.shields.io/circleci/build/github/xpring-eng/xpringkit/master?style=flat-square&token=0ed9e0790d44d163a5bf2793724fc85d98c3845b)](https://circleci.com/gh/xpring-eng/xpringkit/tree/master) [![CodeCov](https://img.shields.io/codecov/c/github/xpring-eng/xpringkit/master?style=flat-square&token=08b799e2895a4dd6add40c4621880c1a)]((https://codecov.io/gh/xpring-eng/xpringkit))
+[![CircleCI](https://img.shields.io/circleci/build/github/xpring-eng/XpringKit/master?style=flat-square&token=0ed9e0790d44d163a5bf2793724fc85d98c3845b)](https://circleci.com/gh/xpring-eng/XpringKit/tree/master)
+[![CodeCov](https://img.shields.io/codecov/c/github/xpring-eng/xpringkit/master?style=flat-square&token=08b799e2895a4dd6add40c4621880c1a)]((https://codecov.io/gh/xpring-eng/xpringkit))
 
 # XpringKit
 
@@ -179,8 +180,8 @@ The Utils object provides an easy way to validate addresses.
 ```swift
 import XpringKit
 
-let rippleAddress = rnysDDrRXxz9z66DmCmfWpq4Z5s4TyUP3G
-let bitcoinAddress = 1DiqLtKZZviDxccRpowkhVowsbLSNQWBE8
+let rippleAddress = "rnysDDrRXxz9z66DmCmfWpq4Z5s4TyUP3G"
+let bitcoinAddress = "1DiqLtKZZviDxccRpowkhVowsbLSNQWBE8"
 
 Utils.isValid(address: rippleAddress); // returns true
 Utils.isValid(address: bitcoinAddress); // returns false
