@@ -1,4 +1,4 @@
-[![CircleCI](https://img.shields.io/circleci/build/github/xpring-eng/XpringKit/master?style=flat-square&token=0ed9e0790d44d163a5bf2793724fc85d98c3845b)](https://circleci.com/gh/xpring-eng/XpringKit/tree/master)
+[![CircleCI](https://img.shields.io/circleci/build/github/xpring-eng/XpringKit?style=flat-square)](https://circleci.com/gh/xpring-eng/XpringKit/tree/master)
 [![CodeCov](https://img.shields.io/codecov/c/github/xpring-eng/xpringkit/master?style=flat-square&token=08b799e2895a4dd6add40c4621880c1a)]((https://codecov.io/gh/xpring-eng/xpringkit))
 
 # XpringKit
