@@ -1,4 +1,4 @@
-[![CircleCI](https://img.shields.io/circleci/build/github/xpring-eng/XpringKit/master?style=flat-square&token=0ed9e0790d44d163a5bf2793724fc85d98c3845b)](https://circleci.com/gh/xpring-eng/XpringKit/tree/master)
+[![CircleCI](https://img.shields.io/circleci/build/github/xpring-eng/XpringKit/master?style=flat-square)](https://circleci.com/gh/xpring-eng/XpringKit/tree/master)
 [![CodeCov](https://img.shields.io/codecov/c/github/xpring-eng/xpringkit/master?style=flat-square&token=08b799e2895a4dd6add40c4621880c1a)]((https://codecov.io/gh/xpring-eng/xpringkit))
 
 # XpringKit
@@ -46,6 +46,9 @@ grpc.xpring.tech:80
 Xpring is working on building a zero-config way for XRP node users to deploy and use the adapter as an open-source component of [rippled](https://github.com/ripple/rippled). Watch this space!
 
 ## Usage
+
+**Note:** Xpring SDK only works with the X-Address format. For more information about this format, see the [Utilities section](#utilities) and <http://xrpaddress.info>.
+
 ### Wallets
 A wallet is a fundamental model object in XpringKit which provides key management, address derivation, and signing functionality. Wallets can be derived from either a seed or a mnemonic and derivation path. You can also choose to generate a new random HD wallet.
 
@@ -102,7 +105,7 @@ let mnemonic = "abandon abandon abandon abandon abandon abandon abandon abandon 
 
 let wallet = Wallet(mnemonic: mnemonic)!
 
-print(wallet.address) // rHsMGQEkVNJmpGWs8XUBoTBiAAbwxZN5v3
+print(wallet.address) // XVMFQQBMhdouRqhPMuawgBMN1AVFTofPAdRsXG5RkPtUPNQ
 print(wallet.publicKey) // 031D68BC1A142E6766B2BDFB006CCFE135EF2E0E2E94ABB5CF5C9AB6104776FBAE
 print(wallet.privateKey) // 0090802A50AA84EFB6CDB225F17C27616EA94048C179142FECF03F4712A07EA7A4
 ```
@@ -144,10 +147,10 @@ import XpringKit
 let remoteURL = "grpc.xpring.tech:80"
 let xpringClient = new XpringClient(grpcURL: remoteURL)
 
-let address = "rHsMGQEkVNJmpGWs8XUBoTBiAAbwxZN5v3"
+let address = "XVMFQQBMhdouRqhPMuawgBMN1AVFTofPAdRsXG5RkPtUPNQ"
 
 let balance = try! xpringClient.getBalance(for: address)
-print(balance.drops) // Logs a balance in drops of XRP
+print(balance) // Logs a balance in drops of XRP
 ```
 
 #### Sending XRP
@@ -164,12 +167,12 @@ let xpringClient = XpringClient(grpcURL: remoteURL)
 let generationResult = Wallet.generateRandomWallet()!
 
 // Destination address.
-let address = "rHsMGQEkVNJmpGWs8XUBoTBiAAbwxZN5v3"
+let address = "X7u4MQVhU2YxS4P9fWzQjnNuDRUkP3GM6kiVjTjcQgUU3Jr"
 
-// Amount of XRP to send
-let amount = XRPAmount.with { $0.drops = "10" }
+// Amount of XRP to send, in drops.
+let amount = BigInt(stringLiteral: "10")
 
-let result = try! xpringClient.send(amount, to: destinationAddress, from: senderWallet)
+let transactionHash = try! xpringClient.send(amount, to: destinationAddress, from: senderWallet)
 ```
 
 ### Utilities
@@ -180,11 +183,48 @@ The Utils object provides an easy way to validate addresses.
 ```swift
 import XpringKit
 
-let rippleAddress = "rnysDDrRXxz9z66DmCmfWpq4Z5s4TyUP3G"
+let rippleClassicAddress = "rnysDDrRXxz9z66DmCmfWpq4Z5s4TyUP3G"
+let rippleXAddress = "X7jjQ4d6bz1qmjwxYUsw6gtxSyjYv5iWPqPEjGqqhn9Woti"
 let bitcoinAddress = "1DiqLtKZZviDxccRpowkhVowsbLSNQWBE8"
 
 Utils.isValid(address: rippleAddress); // returns true
 Utils.isValid(address: bitcoinAddress); // returns false
+```
+
+You can also validate if an address is an X-Address or a classic address.
+```swift
+import XpringKit
+
+let rippleClassicAddress = "rnysDDrRXxz9z66DmCmfWpq4Z5s4TyUP3G"
+let rippleXAddress = "X7jjQ4d6bz1qmjwxYUsw6gtxSyjYv5iWPqPEjGqqhn9Woti"
+let bitcoinAddress = "1DiqLtKZZviDxccRpowkhVowsbLSNQWBE8"
+
+Utils.isValidXAddress(address: rippleClassicAddress); // returns false
+Utils.isValidXAddress(address: rippleXAddress); // returns true
+Utils.isValidXAddress(address: bitcoinAddress); // returns false
+
+Utils.isValidClassicAddress(address: rippleClassicAddress); // returns true
+Utils.isValidClassicAddress(address: rippleXAddress); // returns false
+Utils.isValidClassicAddress(address: bitcoinAddress); // returns false
+```
+
+### X-Address Encoding
+
+You can encode and decode X-Addresses with the SDK.
+
+```swift
+import XpringKit
+
+let rippleClassicAddress = "rnysDDrRXxz9z66DmCmfWpq4Z5s4TyUP3G"
+let tag: UInt32 = 12345;
+
+// Encode an X-Address.
+let xAddress = Utils.encode(classicAddress: address, tag: tag) // X7jjQ4d6bz1qmjwxYUsw6gtxSyjYv5xRB7JM3ht8XC4P45P
+
+// Decode an X-Address.
+let classicAddressTuple = Utils.decode(xAddress: address)!
+print(classicAddressTuple.classicAddress); // rnysDDrRXxz9z66DmCmfWpq4Z5s4TyUP3G
+print(classicAddressTuple.tag); // 12345
 ```
 
 # Contributing
