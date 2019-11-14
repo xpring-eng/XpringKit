@@ -1,4 +1,5 @@
-[![CircleCI](https://img.shields.io/circleci/build/github/xpring-eng/xpringkit/master?style=flat-square&token=0ed9e0790d44d163a5bf2793724fc85d98c3845b)](https://circleci.com/gh/xpring-eng/xpringkit/tree/master) [![CodeCov](https://img.shields.io/codecov/c/github/xpring-eng/xpringkit/master?style=flat-square&token=08b799e2895a4dd6add40c4621880c1a)]((https://codecov.io/gh/xpring-eng/xpringkit))
+[![CircleCI](https://img.shields.io/circleci/build/github/xpring-eng/XpringKit/master?style=flat-square&token=0ed9e0790d44d163a5bf2793724fc85d98c3845b)](https://circleci.com/gh/xpring-eng/XpringKit/tree/master)
+[![CodeCov](https://img.shields.io/codecov/c/github/xpring-eng/xpringkit/master?style=flat-square&token=08b799e2895a4dd6add40c4621880c1a)]((https://codecov.io/gh/xpring-eng/xpringkit))
 
 # XpringKit
 
@@ -179,28 +180,23 @@ The Utils object provides an easy way to validate addresses.
 ```swift
 import XpringKit
 
-let rippleAddress = rnysDDrRXxz9z66DmCmfWpq4Z5s4TyUP3G
-let bitcoinAddress = 1DiqLtKZZviDxccRpowkhVowsbLSNQWBE8
+let rippleAddress = "rnysDDrRXxz9z66DmCmfWpq4Z5s4TyUP3G"
+let bitcoinAddress = "1DiqLtKZZviDxccRpowkhVowsbLSNQWBE8"
 
 Utils.isValid(address: rippleAddress); // returns true
 Utils.isValid(address: bitcoinAddress); // returns false
 ```
 
-## Development
-To get set up for development on XpringKit, use the following steps:
+# Contributing
 
-```shell
-# Clone repository
-$ git clone https://github.com/xpring-eng/xpringkit.git
-$ cd xpringkit
+Pull requests are welcome! To get started with building this library and opening pull requests, please see [contributing.md](CONTRIBUTING.md).
 
-# Pull submodules
-$ git submodule init
-$ git submodule update --remote
+Thank you to all the users who have contributed to this library!
 
-# Install required tooling
-$ brew install xcodegen swiftlint carthage swift-protobuf grpc-swift
+<a href="https://github.com/xpring-eng/xpringkit/graphs/contributors">
+  <img src="https://contributors-img.firebaseapp.com/image?repo=xpring-eng/xpringkit" />
+</a>
 
-# Generate project
-$ ./scripts/generate_project.sh
-```
+# License
+
+Xpring SDK is available under the MIT license. See the [LICENSE](LICENSE) file for more info.

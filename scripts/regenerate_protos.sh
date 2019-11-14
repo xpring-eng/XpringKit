@@ -2,7 +2,7 @@
 
 set -e -o pipefail
 
-echo "Regenerating Terram Protos..."
+echo "Regenerating Common Protos..."
 
 mkdir -p ./XpringKit/generated
 protoc \
