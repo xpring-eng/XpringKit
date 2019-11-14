@@ -1,7 +1,7 @@
 import BigInt
 
 /// An interface into the Xpring Platform.
-public class XpringClient {
+public class DefaultXpringClient: XpringClientDecorator {
 	/// A network client that will make and receive requests.
 	private let networkClient: NetworkClient
 

@@ -8,7 +8,7 @@ public protocol XpringClientDecorator {
   /// - Throws: An error if there was a problem communicating with the XRP Ledger or the inputs were invalid.
   /// - Returns: An unsigned integer containing the balance of the address in drops.
   func getBalance(for address: Address) throws -> BigUInt
-  
+
   /// Send XRP to a recipient on the XRP Ledger.
   ///
   /// - Parameters:
