@@ -12,7 +12,7 @@ extension String {
   public static let remoteURL = "grpc.xpring.tech:80"
 
   /// An address on the chain to receive funds.
-  public static let recipientAddress = "rsegqrgSP8XmhCYwL9enkZ9BNDNawfPZnn"
+  public static let recipientAddress = "X7cBcY4bdTTzk3LHmrKAK6GyrirkXfLHGFxzke5zTmYMfw4"
 }
 
 extension BigUInt {
