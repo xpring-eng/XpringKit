@@ -11,20 +11,26 @@ public class FakeNetworkClient {
 	/// Result of a call to submitSignedTransaction.
 	private let submitSignedTransactionResult: Result<Io_Xpring_SubmitSignedTransactionResponse, Error>
 
+  /// Result of a call to getLatestValidatedLedgerSequence.
+  private let latestValidatedLedgerSequenceResult: Result<Io_Xpring_LedgerSequence, Error>
+
 	/// Initialize a new fake NetworkClient.
 	///
-	/// - Parameter accountInfoResult: A result which will be used to determine the behavior of getAccountInfo()
-	/// - Parameter feeResult: A result which will be used to determine the behavior of getFee()
-	/// - Parameter submitSignedTransactionResult: A result which will be used to determine the behavior of submitSignedTransaction()
-    public init(
-			accountInfoResult: Result<Io_Xpring_AccountInfo, Error>,
-			feeResult: Result<Io_Xpring_Fee, Error>,
-			submitSignedTransactionResult: Result<Io_Xpring_SubmitSignedTransactionResponse, Error>
-		) {
-			self.accountInfoResult = accountInfoResult
-			self.feeResult = feeResult
-			self.submitSignedTransactionResult = submitSignedTransactionResult
-    }
+	/// - Parameter accountInfoResult: A result which will be used to determine the behavior of getAccountInfo().
+	/// - Parameter feeResult: A result which will be used to determine the behavior of getFee().
+	/// - Parameter submitSignedTransactionResult: A result which will be used to determine the behavior of submitSignedTransaction().
+  /// - Parameter latestValidatedLedgerSequenceResult: A result which will be used to determine behavior of getLatestValidatedLedgerSequence().
+  public init(
+    accountInfoResult: Result<Io_Xpring_AccountInfo, Error>,
+    feeResult: Result<Io_Xpring_Fee, Error>,
+    submitSignedTransactionResult: Result<Io_Xpring_SubmitSignedTransactionResponse, Error>,
+    latestValidatedLedgerSequenceResult: Result<Io_Xpring_LedgerSequence, Error>
+  ) {
+    self.accountInfoResult = accountInfoResult
+    self.feeResult = feeResult
+    self.submitSignedTransactionResult = submitSignedTransactionResult
+    self.latestValidatedLedgerSequenceResult = latestValidatedLedgerSequenceResult
+  }
 }
 
 /// Conform to NetworkClient protocol, returning faked results.
@@ -55,4 +61,13 @@ extension FakeNetworkClient: NetworkClient {
 			throw error
 		}
 	}
+
+  public func getLatestValidatedLedgerSequence(_ request: Io_Xpring_GetLatestValidatedLedgerSequenceRequest) throws -> Io_Xpring_LedgerSequence {
+    switch latestValidatedLedgerSequenceResult {
+    case .success(let result):
+      return result
+    case .failure(let error):
+      throw error
+    }
+  }
 }

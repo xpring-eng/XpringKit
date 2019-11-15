@@ -2,6 +2,9 @@ import BigInt
 
 /// An interface into the Xpring Platform.
 public class XpringClient {
+  /// A margin to pad the current ledger sequence with when submitting transactions.
+  private let ledgerSequenceMargin: UInt32 = 10
+
 	/// A network client that will make and receive requests.
 	private let networkClient: NetworkClient
 
@@ -49,6 +52,7 @@ public class XpringClient {
 
 		let accountInfo = try getAccountInfo(for: sourceWallet.address)
 		let fee = try getFee()
+    let lastValidatedLedgerSequence = try getLatestValidatedLedgerSequence()
 
     let xrpAmount = Io_Xpring_XRPAmount.with {
       $0.drops = String(amount)
@@ -63,6 +67,7 @@ public class XpringClient {
 				$0.xrpAmount = xrpAmount
 			}
 			$0.signingPublicKeyHex = sourceWallet.publicKey
+      $0.lastLedgerSequence = lastValidatedLedgerSequence + ledgerSequenceMargin
 		}
 
 		guard let signedTransaction = Signer.sign(transaction, with: sourceWallet) else {
@@ -101,4 +106,14 @@ public class XpringClient {
 
 		return try networkClient.getAccountInfo(getAccountInfoRequest)
 	}
+
+  /// Retrieve the latest validated ledger sequence on the XRP Ledger.
+  ///
+  /// - Throws: An error if there was a problem communicating with the XRP Ledger.
+  /// - Returns: The index of the latest validated ledger.
+  private func getLatestValidatedLedgerSequence() throws -> UInt32 {
+    let getLatestValidatedLedgerSequenceRequest = Io_Xpring_GetLatestValidatedLedgerSequenceRequest()
+    let ledgerSequence = try networkClient.getLatestValidatedLedgerSequence(getLatestValidatedLedgerSequenceRequest)
+    return UInt32(ledgerSequence.index)
+  }
 }

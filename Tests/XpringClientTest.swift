@@ -23,6 +23,10 @@ final class XpringClientTest: XCTestCase {
 		}
 	}
 
+  static let ledgerSequence = Io_Xpring_LedgerSequence.with {
+    $0.index = 12
+  }
+
 	static let transactionBlobHex = "DEADBEEF"
 	static let submitTransactionResponse = Io_Xpring_SubmitSignedTransactionResponse.with {
 		$0.transactionBlob = transactionBlobHex
@@ -32,7 +36,8 @@ final class XpringClientTest: XCTestCase {
   static let successfulFakeNetworkClient = FakeNetworkClient(
     accountInfoResult: .success(XpringClientTest.accountInfo),
     feeResult: .success(XpringClientTest.fee),
-    submitSignedTransactionResult: .success(XpringClientTest.submitTransactionResponse)
+    submitSignedTransactionResult: .success(XpringClientTest.submitTransactionResponse),
+    latestValidatedLedgerSequenceResult: .success(XpringClientTest.ledgerSequence)
   )
 
 	// MARK: - Balance
@@ -68,7 +73,8 @@ final class XpringClientTest: XCTestCase {
 		let networkClient = FakeNetworkClient(
 			accountInfoResult: .failure(XpringKitTestError.mockFailure),
 			feeResult: .success(XpringClientTest.fee),
-			submitSignedTransactionResult: .success(XpringClientTest.submitTransactionResponse)
+      submitSignedTransactionResult: .success(XpringClientTest.submitTransactionResponse),
+      latestValidatedLedgerSequenceResult: .success(XpringClientTest.ledgerSequence)
 		)
 		let xpringClient = XpringClient(networkClient: networkClient)
 
@@ -131,7 +137,8 @@ final class XpringClientTest: XCTestCase {
 		let networkClient = FakeNetworkClient(
 			accountInfoResult: .failure(XpringKitTestError.mockFailure),
 			feeResult: .success(XpringClientTest.fee),
-			submitSignedTransactionResult: .success(XpringClientTest.submitTransactionResponse)
+			submitSignedTransactionResult: .success(XpringClientTest.submitTransactionResponse),
+      latestValidatedLedgerSequenceResult: .success(XpringClientTest.ledgerSequence)
 		)
 		let xpringClient = XpringClient(networkClient: networkClient)
 
@@ -148,7 +155,8 @@ final class XpringClientTest: XCTestCase {
 		let networkClient = FakeNetworkClient(
 			accountInfoResult: .success(XpringClientTest.accountInfo),
 			feeResult: .failure(XpringKitTestError.mockFailure),
-			submitSignedTransactionResult: .success(XpringClientTest.submitTransactionResponse)
+			submitSignedTransactionResult: .success(XpringClientTest.submitTransactionResponse),
+      latestValidatedLedgerSequenceResult: .success(XpringClientTest.ledgerSequence)
 		)
 		let xpringClient = XpringClient(networkClient: networkClient)
 
@@ -160,12 +168,31 @@ final class XpringClientTest: XCTestCase {
 		))
 	}
 
+  func testSendWithLatestLedgerSequenceFailure() {
+    // GIVEN a Xpring client which will fail to return the latest validated ledger sequence.
+    let networkClient = FakeNetworkClient(
+      accountInfoResult: .success(XpringClientTest.accountInfo),
+      feeResult: .success(XpringClientTest.fee),
+      submitSignedTransactionResult: .success(XpringClientTest.submitTransactionResponse),
+      latestValidatedLedgerSequenceResult: .failure(XpringKitTestError.mockFailure)
+    )
+    let xpringClient = XpringClient(networkClient: networkClient)
+
+    // WHEN a send is attempted then an error is thrown.
+    XCTAssertThrowsError(try xpringClient.send(
+      XpringClientTest.sendAmount,
+      to: XpringClientTest.destinationAddress,
+      from: XpringClientTest.wallet
+    ))
+  }
+
 	func testSendWithSubmitFailure() {
 		// GIVEN a Xpring client which will fail to submit a transaction.
 		let networkClient = FakeNetworkClient(
 			accountInfoResult: .success(XpringClientTest.accountInfo),
 			feeResult: .success(XpringClientTest.fee),
-			submitSignedTransactionResult: .failure(XpringKitTestError.mockFailure)
+			submitSignedTransactionResult: .failure(XpringKitTestError.mockFailure),
+      latestValidatedLedgerSequenceResult: .success(XpringClientTest.ledgerSequence)
 		)
 		let xpringClient = XpringClient(networkClient: networkClient)
 
