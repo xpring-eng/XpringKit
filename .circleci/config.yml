@@ -45,7 +45,7 @@ jobs:
 
       - run:
           name: "Build and Test (CocoaPods)"
-          command: pod lib lint
+          command: pod lib lint --verbose
 
       - run:
           name: "Generate and Upload Code Coverage"
