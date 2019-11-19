@@ -47,12 +47,19 @@ extension Io_Xpring_SubmitSignedTransactionResponse {
   }
 }
 
+extension Io_Xpring_LedgerSequence {
+  static let ledgerSequence = Io_Xpring_LedgerSequence.with {
+    $0.index = 12
+  }
+}
+
 extension FakeNetworkClient {
   /// A network client that always succeeds.
   static let successfulFakeNetworkClient = FakeNetworkClient(
-    accountInfoResult: .success(.accountInfo),
-    feeResult: .success(.fee),
-    submitSignedTransactionResult: .success(.submitTransactionResponse)
+    accountInfoResult: .success(XpringClientTest.accountInfo),
+    feeResult: .success(XpringClientTest.fee),
+    submitSignedTransactionResult: .success(XpringClientTest.submitTransactionResponse),
+    latestValidatedLedgerSequenceResult: .success(XpringClientTest.ledgerSequence)
   )
 }
 
@@ -89,8 +96,9 @@ final class DefaultXpringClientTest: XCTestCase {
 		// GIVEN a Xpring client which will throw an error when a balance is requested.
 		let networkClient = FakeNetworkClient(
 			accountInfoResult: .failure(XpringKitTestError.mockFailure),
-			feeResult: .success(.fee),
-			submitSignedTransactionResult: .success(.submitTransactionResponse)
+			feeResult: .success(XpringClientTest.fee),
+      submitSignedTransactionResult: .success(XpringClientTest.submitTransactionResponse),
+      latestValidatedLedgerSequenceResult: .success(XpringClientTest.ledgerSequence)
 		)
 		let xpringClient = XpringClient(networkClient: networkClient)
 
@@ -152,8 +160,9 @@ final class DefaultXpringClientTest: XCTestCase {
 		// GIVEN a Xpring client which will fail to return account info.
 		let networkClient = FakeNetworkClient(
 			accountInfoResult: .failure(XpringKitTestError.mockFailure),
-			feeResult: .success(.fee),
-			submitSignedTransactionResult: .success(.submitTransactionResponse)
+			feeResult: .success(XpringClientTest.fee),
+			submitSignedTransactionResult: .success(XpringClientTest.submitTransactionResponse),
+      latestValidatedLedgerSequenceResult: .success(XpringClientTest.ledgerSequence)
 		)
 		let xpringClient = XpringClient(networkClient: networkClient)
 
@@ -170,7 +179,8 @@ final class DefaultXpringClientTest: XCTestCase {
 		let networkClient = FakeNetworkClient(
 			accountInfoResult: .success(.accountInfo),
 			feeResult: .failure(XpringKitTestError.mockFailure),
-			submitSignedTransactionResult: .success(.submitTransactionResponse)
+			submitSignedTransactionResult: .success(XpringClientTest.submitTransactionResponse),
+      latestValidatedLedgerSequenceResult: .success(XpringClientTest.ledgerSequence)
 		)
 		let xpringClient = XpringClient(networkClient: networkClient)
 
@@ -182,12 +192,31 @@ final class DefaultXpringClientTest: XCTestCase {
 		))
 	}
 
+  func testSendWithLatestLedgerSequenceFailure() {
+    // GIVEN a Xpring client which will fail to return the latest validated ledger sequence.
+    let networkClient = FakeNetworkClient(
+      accountInfoResult: .success(XpringClientTest.accountInfo),
+      feeResult: .success(XpringClientTest.fee),
+      submitSignedTransactionResult: .success(XpringClientTest.submitTransactionResponse),
+      latestValidatedLedgerSequenceResult: .failure(XpringKitTestError.mockFailure)
+    )
+    let xpringClient = XpringClient(networkClient: networkClient)
+
+    // WHEN a send is attempted then an error is thrown.
+    XCTAssertThrowsError(try xpringClient.send(
+      XpringClientTest.sendAmount,
+      to: XpringClientTest.destinationAddress,
+      from: XpringClientTest.wallet
+    ))
+  }
+
 	func testSendWithSubmitFailure() {
 		// GIVEN a Xpring client which will fail to submit a transaction.
 		let networkClient = FakeNetworkClient(
-			accountInfoResult: .success(.accountInfo),
-			feeResult: .success(.fee),
-			submitSignedTransactionResult: .failure(XpringKitTestError.mockFailure)
+			accountInfoResult: .success(XpringClientTest.accountInfo),
+			feeResult: .success(XpringClientTest.fee),
+			submitSignedTransactionResult: .failure(XpringKitTestError.mockFailure),
+      latestValidatedLedgerSequenceResult: .success(XpringClientTest.ledgerSequence)
 		)
 		let xpringClient = XpringClient(networkClient: networkClient)
 
