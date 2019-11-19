@@ -7,10 +7,6 @@ jobs:
     steps:
       - checkout
 
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "Cartfile.resolved" }}
-
       - run:
           name: "System Information"
           command: xcodebuild -version
@@ -23,4 +19,4 @@ jobs:
 
       - run:
           name: "Build and Test (CocoaPods)"
-          command: pod lib lint --verbose
+          command: pod lib lint --platforms=ios --verbose
