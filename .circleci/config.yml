@@ -18,37 +18,38 @@ jobs:
       - run:
           name: "Install Tooling"
           command: |
-            brew update
-            brew install xcodegen swiftlint swift-protobuf grpc-swift
-            brew upgrade
+   #         brew update
+   #         brew install xcodegen swiftlint swift-protobuf grpc-swift
+   #         brew upgrade
             npm i -g grpc-tools
-            sudo gem install slather cocoapods
+            brew install swift-protobuf grpc-swift
+ #           sudo gem install slather cocoapods
 
-      - run:
-          name: "Pull Submodules"
-          command: |
-            git submodule update --init --recursive
+  #    - run:
+  #        name: "Pull Submodules"
+  #        command: |
+  #          git submodule update --init --recursive
 
-      - run:
-          name: "Generate Project - Carthage"
-          command: ./scripts/generate_project.sh
-          no_output_timeout: 30m
+#      - run:
+#          name: "Generate Project - Carthage"
+#          command: ./scripts/generate_project.sh
+#          no_output_timeout: 30m
 
-      - save_cache:
-          paths:
-            - Carthage
-          key: v1-dependencies-{{ checksum "Cartfile.resolved" }}
+ #     - save_cache:
+ #         paths:
+ #           - Carthage
+ #         key: v1-dependencies-{{ checksum "Cartfile.resolved" }}
 
-      - run:
-          name: "Build and Test (Carthage)"
-          command: set -o pipefail && xcodebuild test -scheme XpringKit_iOS -destination 'platform=iOS Simulator,name=iPhone 11,OS=13.1' ONLY_ACTIVE_ARCH=YES | xcpretty
+ #     - run:
+ #         name: "Build and Test (Carthage)"
+ #         command: set -o pipefail && xcodebuild test -scheme XpringKit_iOS -destination 'platform=iOS Simulator,name=iPhone 11,OS=13.1' ONLY_ACTIVE_ARCH=YES | xcpretty
 
       - run:
           name: "Build and Test (CocoaPods)"
           command: pod lib lint --verbose
 
-      - run:
-          name: "Generate and Upload Code Coverage"
-          command: |
-            slather
-            bash <(curl -s https://codecov.io/bash) -f ./cobertura.xml -X coveragepy -X gcov -X xcode
+ #     - run:
+ #         name: "Generate and Upload Code Coverage"
+ #         command: |
+ #           slather
+ #           bash <(curl -s https://codecov.io/bash) -f ./cobertura.xml -X coveragepy -X gcov -X xcode
