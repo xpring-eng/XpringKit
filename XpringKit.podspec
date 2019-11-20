@@ -30,5 +30,6 @@ Pod::Spec.new do |spec|
 
   spec.test_spec "Tests" do |test_spec|
     test_spec.source_files = ["Tests/**/*.swift"]
+    test_spec.dependency 'BigInt'
   end
 end
