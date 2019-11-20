@@ -28,8 +28,12 @@ Pod::Spec.new do |spec|
   spec.dependency 'SwiftGRPC'
   spec.dependency 'SwiftProtobuf'
 
+  # spec.frameworks = 'Foundation'
+
   spec.test_spec "Tests" do |test_spec|
     test_spec.source_files = ["Tests/**/*.swift"]
     test_spec.dependency 'BigInt'
+
+    # test_spec.frameworks = 'Foundation'
   end
 end
