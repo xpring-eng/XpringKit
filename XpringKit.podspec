@@ -16,7 +16,7 @@ Pod::Spec.new do |spec|
 
   spec.swift_versions = [4.2]
   spec.requires_arc = true
-  spec.ios.deployment_target = '11.0'
+  spec.ios.deployment_target = '1w.0'
   spec.osx.deployment_target = '10.10'
 
   spec.prepare_command = "git submodule update --init --recursive && ./scripts/bundle_js.sh && ./scripts/regenerate_protos.sh"
@@ -27,10 +27,14 @@ Pod::Spec.new do |spec|
   spec.dependency 'BigInt'
   spec.dependency 'SwiftGRPC'
   spec.dependency 'SwiftProtobuf'
+  
+  spec.frameworks = "Foundation"
 
   spec.test_spec "Tests" do |test_spec|
     test_spec.source_files = ["Tests/**/*.swift"]
 
     test_spec.dependency 'BigInt'
+    
+    test_spec.frameworks = "Foundation"
   end
 end
