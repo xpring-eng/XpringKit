@@ -5,7 +5,6 @@ import XCTest
 
 final class XpringClientTest: XCTestCase {
 	static let wallet = Wallet(seed: "snYP7oArxKepd3GPDcrjMsJYiJeJB")!
-	static let destinationAddress = "XVfC9CTCJh6GN2x8bnrw3LtdbqiVCUFyQVMzRrMGUZpokKH"
 
 	// MARK: - Balance
 	func testGetBalanceWithSuccess() {
