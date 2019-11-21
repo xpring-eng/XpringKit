@@ -27,4 +27,11 @@ public protocol NetworkClient {
   /// - Throws: An error if there was a problem communicating with the XRP Ledger.
   /// - Returns: A  `LedgerSequence` object which contains the index.
   func getLatestValidatedLedgerSequence(_ request: Io_Xpring_GetLatestValidatedLedgerSequenceRequest) throws -> Io_Xpring_LedgerSequence
+
+  /// Retrieve transaction status for a given transaction hash from the XRP Ledger.
+  ///
+  /// - Parameter request: Request parameters for retrieving transaction status.
+  /// - Throws: An error if there was a problem communicating with the XRP Ledger.
+  /// - Returns: A `TransactionStatus`  for the transactioon.
+  func getTransactionStatus(_ request: Io_Xpring_GetTransactionStatusRequest) throws -> Io_Xpring_TransactionStatus
 }

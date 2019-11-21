@@ -70,6 +70,7 @@
 		7B54EC43CDEB457E0A065ED2 /* IntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B42C1A6AD7B7AC4F5483751E /* IntegrationTests.swift */; };
 		7B9ADCFF14AF87E6751F8E46 /* Address+Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = B26D12954276D34124999E61 /* Address+Test.swift */; };
 		7DA4A6E51E3AFAFBED32306F /* currency.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BEFEBC1AAB0132A6C7440B /* currency.pb.swift */; };
+		7F29A55A5EE4CB4A41C73E2B /* TransactionStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB02CC192CD7AE7E3218E98 /* TransactionStatus.swift */; };
 		81696621C0B84D6070610A93 /* SwiftProtobuf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E488ABD93CCADA4769887E2 /* SwiftProtobuf.framework */; };
 		81C5E3886C4126C4CF497F8B /* ByteArray+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DD77F8CDC039E5870305B91 /* ByteArray+Hex.swift */; };
 		8665AF97EFA52EE4A094CAC6 /* get_latest_validated_ledger_sequence_request.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFD34F71A81FED319AFC579E /* get_latest_validated_ledger_sequence_request.pb.swift */; };
@@ -80,6 +81,7 @@
 		8D18C4538BFC9A307CD4659E /* BigInt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3E837E32019F19EDE7F76CC /* BigInt.framework */; };
 		8E20C020282A1D047B37D006 /* ledger_sequence.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56D70978C361F6E73333A5E /* ledger_sequence.pb.swift */; };
 		8FC35678AE62B871ABB68F4F /* JSValue+JavaScriptWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A8DF813EA75BD18BE4F7E7 /* JSValue+JavaScriptWallet.swift */; };
+		952227251108B99C69F0EEBE /* TransactionStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB02CC192CD7AE7E3218E98 /* TransactionStatus.swift */; };
 		989315F8E85E2F007A4B37D5 /* fiat_amount.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D388B81E54EFF183B52C96B /* fiat_amount.pb.swift */; };
 		99A0B0264D9AED1A071597E0 /* xrp_amount.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD81AC2984EC4A639432DD2A /* xrp_amount.pb.swift */; };
 		99C1C3D26CE29D9EBF964776 /* SwiftGRPC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B776589D95D938D60AB4917C /* SwiftGRPC.framework */; };
@@ -218,6 +220,7 @@
 		C1D0F50AF49F103E1E0B3D50 /* UtilsTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilsTest.swift; sourceTree = "<group>"; };
 		C90607EA7652B0A5C9E360F6 /* get_transaction_status_request.pb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = get_transaction_status_request.pb.swift; sourceTree = "<group>"; };
 		C987E39201D5B0AA9E73428E /* Signer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Signer.swift; sourceTree = "<group>"; };
+		CBB02CC192CD7AE7E3218E98 /* TransactionStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionStatus.swift; sourceTree = "<group>"; };
 		CC429E0E63319A1BE3AE8240 /* JavaScriptSerializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JavaScriptSerializer.swift; sourceTree = "<group>"; };
 		CFA89B2B4CE85050623E1F1A /* Wallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wallet.swift; sourceTree = "<group>"; };
 		CFD34F71A81FED319AFC579E /* get_latest_validated_ledger_sequence_request.pb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = get_latest_validated_ledger_sequence_request.pb.swift; sourceTree = "<group>"; };
@@ -324,6 +327,7 @@
 				ACC165482A69C013773E743E /* RippledServiceClient+NetworkClient.swift */,
 				C987E39201D5B0AA9E73428E /* Signer.swift */,
 				FB2C2BF0895DEDD1C9AB5D2D /* TransactionHash.swift */,
+				CBB02CC192CD7AE7E3218E98 /* TransactionStatus.swift */,
 				BC9FE3C197FEAD7C98B45EAC /* Utils.swift */,
 				CFA89B2B4CE85050623E1F1A /* Wallet.swift */,
 				ADD0BDE0881A1C6DDE6D939A /* WalletGenerationResult.swift */,
@@ -621,6 +625,7 @@
 				1E6AFE0AF006DE4A93E6C447 /* RippledServiceClient+NetworkClient.swift in Sources */,
 				3290ACBFC35352A9E8A83C27 /* Signer.swift in Sources */,
 				4060097AAC967721CFA653BB /* TransactionHash.swift in Sources */,
+				952227251108B99C69F0EEBE /* TransactionStatus.swift in Sources */,
 				9C4F498B7586CE1B089E587A /* Utils.swift in Sources */,
 				2E74A8B58BC16DD3EBD77AE3 /* Wallet.swift in Sources */,
 				DB26AC6D896AF31860B1CCE8 /* WalletGenerationResult.swift in Sources */,
@@ -699,6 +704,7 @@
 				138FBD4E100E3D90656346EB /* RippledServiceClient+NetworkClient.swift in Sources */,
 				6933342C51E08FAFA80E5244 /* Signer.swift in Sources */,
 				79FD2BD66600BDE782DE7C0A /* TransactionHash.swift in Sources */,
+				7F29A55A5EE4CB4A41C73E2B /* TransactionStatus.swift in Sources */,
 				C96B86F7E67405016867D3EC /* Utils.swift in Sources */,
 				3D64D171483F28464E621B42 /* Wallet.swift in Sources */,
 				2DFB7C1BCA54ED07FCEE083A /* WalletGenerationResult.swift in Sources */,
