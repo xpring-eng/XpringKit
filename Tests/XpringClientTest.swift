@@ -7,8 +7,8 @@ extension TransactionHash {
 }
 
 extension String {
-  public static let transactionStatusCodeSuccess = "tesSuccess"
-  public static let transactionStatusCodeFailure = "tecFailure"
+  public static let transactionStatusCodeSuccess = "tesSUCCESS"
+  public static let transactionStatusCodeFailure = "tecFAILURE"
 }
 
 extension Io_Xpring_TransactionStatus {
@@ -226,8 +226,8 @@ final class XpringClientTest: XCTestCase {
 		))
 	}
 
-  func testGetTransactionStatusWithInvalidatedTransactionAndFailureCode() {
-    // GIVEN a XpringClient which returns an invalidated transaction and a failed transaction status code.
+  func testGetTransactionStatusWithUnvalidatedTransactionAndFailureCode() {
+    // GIVEN a XpringClient which returns an unvalidated transaction and a failed transaction status code.
     let transactionStatusResponse = Io_Xpring_TransactionStatus.with {
       $0.validated = false
       $0.transactionStatusCode = .transactionStatusCodeFailure
@@ -248,8 +248,8 @@ final class XpringClientTest: XCTestCase {
     XCTAssertEqual(transactionStatus, .pending)
   }
 
-  func testGetTransactionStatusWithInvalidatedTransactionAndSuccessCode() {
-    // GIVEN a XpringClient which returns an invalidated transaction and a succeeded transaction status code.
+  func testGetTransactionStatusWithUnvalidatedTransactionAndSuccessCode() {
+    // GIVEN a XpringClient which returns an unvalidated transaction and a succeeded transaction status code.
     let transactionStatusResponse = Io_Xpring_TransactionStatus.with {
       $0.validated = false
       $0.transactionStatusCode = .transactionStatusCodeSuccess
