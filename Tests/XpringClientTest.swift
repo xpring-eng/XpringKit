@@ -2,6 +2,22 @@ import BigInt
 import XCTest
 @testable import XpringKit
 
+extension TransactionHash {
+  public static let transactionHash = "DEADBEEF"
+}
+
+extension String {
+  public static let transactionStatusCodeSuccess = "tesSUCCESS"
+  public static let transactionStatusCodeFailure = "tecFAILURE"
+}
+
+extension Io_Xpring_TransactionStatus {
+  public static let transactionStatus = Io_Xpring_TransactionStatus.with {
+    $0.validated = true
+    $0.transactionStatusCode = .transactionStatusCodeSuccess
+  }
+}
+
 final class XpringClientTest: XCTestCase {
 	static let wallet = Wallet(seed: "snYP7oArxKepd3GPDcrjMsJYiJeJB")!
 	static let destinationAddress = "XVfC9CTCJh6GN2x8bnrw3LtdbqiVCUFyQVMzRrMGUZpokKH"
@@ -37,7 +53,8 @@ final class XpringClientTest: XCTestCase {
     accountInfoResult: .success(XpringClientTest.accountInfo),
     feeResult: .success(XpringClientTest.fee),
     submitSignedTransactionResult: .success(XpringClientTest.submitTransactionResponse),
-    latestValidatedLedgerSequenceResult: .success(XpringClientTest.ledgerSequence)
+    latestValidatedLedgerSequenceResult: .success(XpringClientTest.ledgerSequence),
+    transactionStatusResult: .success(.transactionStatus)
   )
 
 	// MARK: - Balance
@@ -74,7 +91,8 @@ final class XpringClientTest: XCTestCase {
 			accountInfoResult: .failure(XpringKitTestError.mockFailure),
 			feeResult: .success(XpringClientTest.fee),
       submitSignedTransactionResult: .success(XpringClientTest.submitTransactionResponse),
-      latestValidatedLedgerSequenceResult: .success(XpringClientTest.ledgerSequence)
+      latestValidatedLedgerSequenceResult: .success(XpringClientTest.ledgerSequence),
+      transactionStatusResult: .success(.transactionStatus)
 		)
 		let xpringClient = XpringClient(networkClient: networkClient)
 
@@ -138,7 +156,8 @@ final class XpringClientTest: XCTestCase {
 			accountInfoResult: .failure(XpringKitTestError.mockFailure),
 			feeResult: .success(XpringClientTest.fee),
 			submitSignedTransactionResult: .success(XpringClientTest.submitTransactionResponse),
-      latestValidatedLedgerSequenceResult: .success(XpringClientTest.ledgerSequence)
+      latestValidatedLedgerSequenceResult: .success(XpringClientTest.ledgerSequence),
+      transactionStatusResult: .success(.transactionStatus)
 		)
 		let xpringClient = XpringClient(networkClient: networkClient)
 
@@ -156,7 +175,8 @@ final class XpringClientTest: XCTestCase {
 			accountInfoResult: .success(XpringClientTest.accountInfo),
 			feeResult: .failure(XpringKitTestError.mockFailure),
 			submitSignedTransactionResult: .success(XpringClientTest.submitTransactionResponse),
-      latestValidatedLedgerSequenceResult: .success(XpringClientTest.ledgerSequence)
+      latestValidatedLedgerSequenceResult: .success(XpringClientTest.ledgerSequence),
+      transactionStatusResult: .success(.transactionStatus)
 		)
 		let xpringClient = XpringClient(networkClient: networkClient)
 
@@ -174,7 +194,8 @@ final class XpringClientTest: XCTestCase {
       accountInfoResult: .success(XpringClientTest.accountInfo),
       feeResult: .success(XpringClientTest.fee),
       submitSignedTransactionResult: .success(XpringClientTest.submitTransactionResponse),
-      latestValidatedLedgerSequenceResult: .failure(XpringKitTestError.mockFailure)
+      latestValidatedLedgerSequenceResult: .failure(XpringKitTestError.mockFailure),
+      transactionStatusResult: .success(.transactionStatus)
     )
     let xpringClient = XpringClient(networkClient: networkClient)
 
@@ -192,15 +213,119 @@ final class XpringClientTest: XCTestCase {
 			accountInfoResult: .success(XpringClientTest.accountInfo),
 			feeResult: .success(XpringClientTest.fee),
 			submitSignedTransactionResult: .failure(XpringKitTestError.mockFailure),
-      latestValidatedLedgerSequenceResult: .success(XpringClientTest.ledgerSequence)
+      latestValidatedLedgerSequenceResult: .success(XpringClientTest.ledgerSequence),
+      transactionStatusResult: .success(.transactionStatus)
 		)
 		let xpringClient = XpringClient(networkClient: networkClient)
 
-		// WHEN a send is attempted then an error is thrown.
+		// WHEN a send is attempted THEN an error is thrown.
 		XCTAssertThrowsError(try xpringClient.send(
 			XpringClientTest.sendAmount,
 			to: XpringClientTest.destinationAddress,
 			from: XpringClientTest.wallet
 		))
 	}
+
+  func testGetTransactionStatusWithUnvalidatedTransactionAndFailureCode() {
+    // GIVEN a XpringClient which returns an unvalidated transaction and a failed transaction status code.
+    let transactionStatusResponse = Io_Xpring_TransactionStatus.with {
+      $0.validated = false
+      $0.transactionStatusCode = .transactionStatusCodeFailure
+    }
+    let networkClient = FakeNetworkClient(
+      accountInfoResult: .success(XpringClientTest.accountInfo),
+      feeResult: .success(XpringClientTest.fee),
+      submitSignedTransactionResult: .success(XpringClientTest.submitTransactionResponse),
+      latestValidatedLedgerSequenceResult: .success(XpringClientTest.ledgerSequence),
+      transactionStatusResult: .success(transactionStatusResponse)
+    )
+    let xpringClient = XpringClient(networkClient: networkClient)
+
+    // WHEN the transaction status is retrieved.
+    let transactionStatus = try? xpringClient.getTransactionStatus(for: .transactionHash)
+
+    // THEN the transaction status is pending.
+    XCTAssertEqual(transactionStatus, .pending)
+  }
+
+  func testGetTransactionStatusWithUnvalidatedTransactionAndSuccessCode() {
+    // GIVEN a XpringClient which returns an unvalidated transaction and a succeeded transaction status code.
+    let transactionStatusResponse = Io_Xpring_TransactionStatus.with {
+      $0.validated = false
+      $0.transactionStatusCode = .transactionStatusCodeSuccess
+    }
+    let networkClient = FakeNetworkClient(
+      accountInfoResult: .success(XpringClientTest.accountInfo),
+      feeResult: .success(XpringClientTest.fee),
+      submitSignedTransactionResult: .success(XpringClientTest.submitTransactionResponse),
+      latestValidatedLedgerSequenceResult: .success(XpringClientTest.ledgerSequence),
+      transactionStatusResult: .success(transactionStatusResponse)
+    )
+    let xpringClient = XpringClient(networkClient: networkClient)
+
+    // WHEN the transaction status is retrieved.
+    let transactionStatus = try? xpringClient.getTransactionStatus(for: .transactionHash)
+
+    // THEN the transaction status is pending.
+    XCTAssertEqual(transactionStatus, .pending)
+  }
+
+  func testGetTransactionStatusWithValidatedTransactionAndFailureCode() {
+    // GIVEN a XpringClient which returns a validated transaction and a failed transaction status code.
+    let transactionStatusResponse = Io_Xpring_TransactionStatus.with {
+      $0.validated = true
+      $0.transactionStatusCode = .transactionStatusCodeFailure
+    }
+    let networkClient = FakeNetworkClient(
+      accountInfoResult: .success(XpringClientTest.accountInfo),
+      feeResult: .success(XpringClientTest.fee),
+      submitSignedTransactionResult: .success(XpringClientTest.submitTransactionResponse),
+      latestValidatedLedgerSequenceResult: .success(XpringClientTest.ledgerSequence),
+      transactionStatusResult: .success(transactionStatusResponse)
+    )
+    let xpringClient = XpringClient(networkClient: networkClient)
+
+    // WHEN the transaction status is retrieved.
+    let transactionStatus = try? xpringClient.getTransactionStatus(for: .transactionHash)
+
+    // THEN the transaction status is failed.
+    XCTAssertEqual(transactionStatus, .failed)
+  }
+
+  func testGetTransactionStatusWithValidatedTransactionAndSuccessCode() {
+    // GIVEN a XpringClient which returns a validated transaction and a succeeded transaction status code.
+    let transactionStatusResponse = Io_Xpring_TransactionStatus.with {
+      $0.validated = true
+      $0.transactionStatusCode = .transactionStatusCodeSuccess
+    }
+    let networkClient = FakeNetworkClient(
+      accountInfoResult: .success(XpringClientTest.accountInfo),
+      feeResult: .success(XpringClientTest.fee),
+      submitSignedTransactionResult: .success(XpringClientTest.submitTransactionResponse),
+      latestValidatedLedgerSequenceResult: .success(XpringClientTest.ledgerSequence),
+      transactionStatusResult: .success(transactionStatusResponse)
+    )
+    let xpringClient = XpringClient(networkClient: networkClient)
+
+    // WHEN the transaction status is retrieved.
+    let transactionStatus = try? xpringClient.getTransactionStatus(for: .transactionHash)
+
+    // THEN the transaction status is succeeded.
+    XCTAssertEqual(transactionStatus, .succeeded)
+  }
+
+  func testGetTransactionStatusWithServerFailure() {
+    // GIVEN a XpringClient which fails to return a transaction status.
+    let networkClient = FakeNetworkClient(
+      accountInfoResult: .success(XpringClientTest.accountInfo),
+      feeResult: .success(XpringClientTest.fee),
+      submitSignedTransactionResult: .success(XpringClientTest.submitTransactionResponse),
+      latestValidatedLedgerSequenceResult: .success(XpringClientTest.ledgerSequence),
+      transactionStatusResult: .failure(XpringKitTestError.mockFailure)
+    )
+    let xpringClient = XpringClient(networkClient: networkClient)
+
+    // WHEN the transaction status is retrieved THEN an error is thrown.
+    XCTAssertThrowsError(try xpringClient.getTransactionStatus(for: .transactionHash))
+  }
 }

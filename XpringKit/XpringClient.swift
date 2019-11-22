@@ -37,6 +37,22 @@ public class XpringClient {
     return BigUInt(stringLiteral: accountInfo.balance.drops)
 	}
 
+  /// Retrieve the transaction status for a given transaction hash.
+  ///
+  /// - Parameter transactionHash: The hash of the transaction.
+  /// - Throws: An error if there was a problem communicating with the XRP Ledger.
+  /// - Returns: The status of the given transaction.
+  public func getTransactionStatus(for transactionHash: TransactionHash) throws -> TransactionStatus {
+    let transactionStatusRequest = Io_Xpring_GetTransactionStatusRequest.with { $0.transactionHash = transactionHash }
+    let transactionStatus = try networkClient.getTransactionStatus(transactionStatusRequest)
+
+    // Return pending if the transaction is not validated.
+    guard transactionStatus.validated else {
+      return .pending
+    }
+    return transactionStatus.transactionStatusCode.starts(with: "tes") ? .succeeded : .failed
+  }
+
 	/// Send XRP to a recipient on the XRP Ledger.
 	///
 	/// - Parameters:
