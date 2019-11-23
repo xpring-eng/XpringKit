@@ -20,6 +20,10 @@ extension BigUInt {
   public static let drops = BigUInt(1)
 }
 
+extension TransactionHash {
+  public static let successfulTransactionHash = "2CBBD2523478848DA256F8EBFCBD490DD6048A4A5094BF8E3034F57EA6AA0522"
+}
+
 /// Integration tests run against a live remote client.
 final class IntegrationTests: XCTestCase {
   private let client = XpringClient(grpcURL: .remoteURL)
@@ -37,6 +41,15 @@ final class IntegrationTests: XCTestCase {
       _ = try client.send(.drops, to: .recipientAddress, from: .testWallet)
     } catch {
       XCTFail("Failed sending XRP with error: \(error)")
+    }
+  }
+
+  func testGetTransactionStatus() {
+    do {
+      let transactionStatus = try client.getTransactionStatus(for: .successfulTransactionHash)
+      XCTAssertEqual(transactionStatus, .succeeded)
+    } catch {
+      XCTFail("Failed retrieving transaction hash with error: \(error)")
     }
   }
 }

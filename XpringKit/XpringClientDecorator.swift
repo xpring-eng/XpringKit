@@ -9,6 +9,13 @@ public protocol XpringClientDecorator {
   /// - Returns: An unsigned integer containing the balance of the address in drops.
   func getBalance(for address: Address) throws -> BigUInt
 
+  /// Retrieve the transaction status for a given transaction hash.
+  ///
+  /// - Parameter transactionHash: The hash of the transaction.
+  /// - Throws: An error if there was a problem communicating with the XRP Ledger.
+  /// - Returns: The status of the given transaction.
+  func getTransactionStatus(for transactionHash: TransactionHash) throws -> TransactionStatus
+
   /// Send XRP to a recipient on the XRP Ledger.
   ///
   /// - Parameters:

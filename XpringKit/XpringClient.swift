@@ -20,6 +20,15 @@ public class XpringClient: XpringClientDecorator {
     return try decoratedClient.getBalance(for: address)
   }
 
+  /// Retrieve the transaction status for a given transaction hash.
+  ///
+  /// - Parameter transactionHash: The hash of the transaction.
+  /// - Throws: An error if there was a problem communicating with the XRP Ledger.
+  /// - Returns: The status of the given transaction.
+  public func getTransactionStatus(for transactionHash: TransactionHash) throws -> TransactionStatus {
+    return try decoratedClient.getTransactionStatus(for: transactionHash)
+  }
+
   /// Send XRP to a recipient on the XRP Ledger.
   ///
   /// - Parameters:
