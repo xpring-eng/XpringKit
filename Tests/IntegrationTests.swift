@@ -43,13 +43,13 @@ final class IntegrationTests: XCTestCase {
       XCTFail("Failed sending XRP with error: \(error)")
     }
   }
-  
+
   func testGetTransactionStatus() {
     do {
       let transactionStatus = try client.getTransactionStatus(for: .successfulTransactionHash)
       XCTAssertEqual(transactionStatus, .succeeded)
     } catch {
-      XCTFail("Failed retrieving transaction hash with error: \(error)");
+      XCTFail("Failed retrieving transaction hash with error: \(error)")
     }
   }
 }
