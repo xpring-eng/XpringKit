@@ -2,6 +2,9 @@ import BigInt
 
 /// A decorator for a XpringClient.
 public protocol XpringClientDecorator {
+  /// The network client which can make requests a remote node.
+  var networkClient: NetworkClient { get }
+
   /// Get the balance for the given address.
   ///
   /// - Parameter address: The X-Address to retrieve the balance for.
@@ -25,4 +28,10 @@ public protocol XpringClientDecorator {
   /// - Throws: An error if there was a problem communicating with the XRP Ledger or the inputs were invalid.
   /// - Returns: A transaction hash for the submitted transaction.
   func send(_ amount: BigUInt, to destinationAddress: Address, from sourceWallet: Wallet) throws -> TransactionHash
+
+  /// Retrieve the latest validated ledger sequence on the XRP Ledger.
+  ///
+  /// - Throws: An error if there was a problem communicating with the XRP Ledger.
+  /// - Returns: The index of the latest validated ledger.
+  func getLatestValidatedLedgerSequence() throws -> UInt32
 }

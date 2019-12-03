@@ -1,14 +1,15 @@
 import BigInt
 
 /// An interface into the Xpring Platform.
-public class XpringClient: XpringClientDecorator {
+public class XpringClient {
   private let decoratedClient: XpringClientDecorator
 
   /// Initialize a new XpringClient.
   ///
   /// - Parameter grpcURL: A remote URL for a rippled gRPC service.
   public init(grpcURL: String) {
-    decoratedClient = DefaultXpringClient(grpcURL: grpcURL)
+    let defaultClient = DefaultXpringClient(grpcURL: grpcURL)
+    decoratedClient = ReliableSubmissionXpringClient(decoratedClient: defaultClient)
   }
 
   /// Get the balance for the given address.
