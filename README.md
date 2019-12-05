@@ -139,7 +139,7 @@ let xpringClient = XpringClient(grpcURL: remoteURL)
 
 #### Retrieving a Balance
 
-A `XpringClient` can check the balance of an account on the ledger.
+A `XpringClient` can check the balance of an account on the XRP Ledger.
 
 ```swift
 import XpringKit
@@ -153,9 +153,34 @@ let balance = try! xpringClient.getBalance(for: address)
 print(balance) // Logs a balance in drops of XRP
 ```
 
+### Checking Transaction Status
+
+A `XpringClient` can check the status of an operation on the XRP Ledger. 
+
+Transaction states can be:
+- `suceeded`: If the operation was successfully applied.
+- `failed:` If the operation was validated and not applied, or if the operation will never validate.
+- `pending`: If the operation has not yet been validated, but still may be.
+- `unknown`: If the operation status could not be determined.
+
+These states are determined by the `TransactionStatus` enum.
+
+```swift
+import XpringKit
+
+let remoteURL = "grpc.xpring.tech:80"
+let xpringClient = new XpringClient(grpcURL: remoteURL)
+
+let transactionHash = "2CBBD2523478848DA256F8EBFCBD490DD6048A4A5094BF8E3034F57EA6AA0522"
+
+let transactionStatus = xpringClient.getTransactionStatus(for: transactionHash) // TransactionStatus.succeeded
+```
+
 #### Sending XRP
 
-A `XpringClient` can send XRP to other accounts on the ledger.
+A `XpringClient` can send XRP to other accounts on the XRP Ledger.
+
+**Note:** that the payment operation will block until the operation reaches a definitive and irreversible success or failure state.
 
 ```swift
 import XpringKit
