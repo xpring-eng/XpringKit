@@ -11,6 +11,8 @@ public class ReliableSubmissionXpringClient {
 }
 
 extension ReliableSubmissionXpringClient: XpringClientDecorator {
+
+  // TODO(network client doesn't need to be public
   public var networkClient: NetworkClient {
     return decoratedClient.networkClient
   }
@@ -27,6 +29,10 @@ extension ReliableSubmissionXpringClient: XpringClientDecorator {
     return try decoratedClient.getLatestValidatedLedgerSequence()
   }
 
+  public func getRawTransactionStatus(for transactionHash: TransactionHash) throws -> Io_Xpring_TransactionStatus {
+    return try decoratedClient.getRawTransactionStatus(for: transactionHash)
+  }
+
   public func send(_ amount: BigUInt, to destinationAddress: Address, from sourceWallet: Wallet) throws -> TransactionHash {
     let ledgerCloseTime: TimeInterval = 4
 
@@ -35,8 +41,7 @@ extension ReliableSubmissionXpringClient: XpringClientDecorator {
     Thread.sleep(forTimeInterval: ledgerCloseTime)
 
     // Get transaction status.
-    let transactionStatusRequest = Io_Xpring_GetTransactionStatusRequest.with { $0.transactionHash = transactionHash }
-    var transactionStatus = try networkClient.getTransactionStatus(transactionStatusRequest)
+    var transactionStatus = try getRawTransactionStatus(for: transactionHash)
     let lastLedgerSequence = transactionStatus.lastLedgerSequence
     if (lastLedgerSequence == 0) {
       throw XRPLedgerError.unknown("The transaction did not have a lastLedgerSequence field so transaction status cannot be reliably determined.")
@@ -46,11 +51,12 @@ extension ReliableSubmissionXpringClient: XpringClientDecorator {
     var latestLedgerSequence = try getLatestValidatedLedgerSequence()
 
     // Poll until the transaction is validated, or until the lastLedgerSequence has been passed.
-    while (lastLedgerSequence <= latestLedgerSequence && !transactionStatus.validated) {
+    while (latestLedgerSequence <= lastLedgerSequence && !transactionStatus.validated) {
       Thread.sleep(forTimeInterval: ledgerCloseTime)
 
       latestLedgerSequence = try getLatestValidatedLedgerSequence()
-      transactionStatus = try networkClient.getTransactionStatus(transactionStatusRequest)
+      print("got latest: \(latestLedgerSequence)")
+      transactionStatus = try getRawTransactionStatus(for: transactionHash)
     }
 
     return transactionHash

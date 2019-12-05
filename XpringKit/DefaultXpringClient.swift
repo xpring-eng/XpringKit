@@ -67,8 +67,7 @@ extension DefaultXpringClient: XpringClientDecorator {
   /// - Throws: An error if there was a problem communicating with the XRP Ledger.
   /// - Returns: The status of the given transaction.
   public func getTransactionStatus(for transactionHash: TransactionHash) throws -> TransactionStatus {
-    let transactionStatusRequest = Io_Xpring_GetTransactionStatusRequest.with { $0.transactionHash = transactionHash }
-    let transactionStatus = try networkClient.getTransactionStatus(transactionStatusRequest)
+    let transactionStatus = try getRawTransactionStatus(for: transactionHash)
 
     // Return pending if the transaction is not validated.
     guard transactionStatus.validated else {
@@ -133,5 +132,15 @@ extension DefaultXpringClient: XpringClientDecorator {
     let getLatestValidatedLedgerSequenceRequest = Io_Xpring_GetLatestValidatedLedgerSequenceRequest()
     let ledgerSequence = try networkClient.getLatestValidatedLedgerSequence(getLatestValidatedLedgerSequenceRequest)
     return UInt32(ledgerSequence.index)
+  }
+
+  /// Retrieve the raw transaction status for the given transaction hash.
+  ///
+  /// - Parameter transactionHash: The hash of the transaction.
+  /// - Throws: An error if there was a problem communicating with the XRP Ledger.
+  /// - Returns: The status of the given transaction.
+  public func getRawTransactionStatus(for transactionHash: TransactionHash) throws -> Io_Xpring_TransactionStatus {
+    let transactionStatusRequest = Io_Xpring_GetTransactionStatusRequest.with { $0.transactionHash = transactionHash }
+    return try networkClient.getTransactionStatus(transactionStatusRequest)
   }
 }

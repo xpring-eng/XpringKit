@@ -73,10 +73,6 @@ extension Io_Xpring_TransactionStatus {
   }
 }
 
-extension TransactionHash {
-  public static let transactionHash = "DEADBEEF"
-}
-
 final class DefaultXpringClientTest: XCTestCase {
   // MARK: - Balance
 
@@ -259,7 +255,7 @@ final class DefaultXpringClientTest: XCTestCase {
     let xpringClient = DefaultXpringClient(networkClient: networkClient)
 
     // WHEN the transaction status is retrieved.
-    let transactionStatus = try? xpringClient.getTransactionStatus(for: .transactionHash)
+    let transactionStatus = try? xpringClient.getTransactionStatus(for: .testTransactionHash)
 
     // THEN the transaction status is pending.
     XCTAssertEqual(transactionStatus, .pending)
@@ -281,7 +277,7 @@ final class DefaultXpringClientTest: XCTestCase {
     let xpringClient = DefaultXpringClient(networkClient: networkClient)
 
     // WHEN the transaction status is retrieved.
-    let transactionStatus = try? xpringClient.getTransactionStatus(for: .transactionHash)
+    let transactionStatus = try? xpringClient.getTransactionStatus(for: .testTransactionHash)
 
     // THEN the transaction status is pending.
     XCTAssertEqual(transactionStatus, .pending)
@@ -303,7 +299,7 @@ final class DefaultXpringClientTest: XCTestCase {
     let xpringClient = DefaultXpringClient(networkClient: networkClient)
 
     // WHEN the transaction status is retrieved.
-    let transactionStatus = try? xpringClient.getTransactionStatus(for: .transactionHash)
+    let transactionStatus = try? xpringClient.getTransactionStatus(for: .testTransactionHash)
 
     // THEN the transaction status is failed.
     XCTAssertEqual(transactionStatus, .failed)
@@ -325,7 +321,7 @@ final class DefaultXpringClientTest: XCTestCase {
     let xpringClient = DefaultXpringClient(networkClient: networkClient)
 
     // WHEN the transaction status is retrieved.
-    let transactionStatus = try? xpringClient.getTransactionStatus(for: .transactionHash)
+    let transactionStatus = try? xpringClient.getTransactionStatus(for: .testTransactionHash)
 
     // THEN the transaction status is succeeded.
     XCTAssertEqual(transactionStatus, .succeeded)
@@ -343,6 +339,6 @@ final class DefaultXpringClientTest: XCTestCase {
     let xpringClient = DefaultXpringClient(networkClient: networkClient)
 
     // WHEN the transaction status is retrieved THEN an error is thrown.
-    XCTAssertThrowsError(try xpringClient.getTransactionStatus(for: .transactionHash))
+    XCTAssertThrowsError(try xpringClient.getTransactionStatus(for: .testTransactionHash))
   }
 }

@@ -34,4 +34,11 @@ public protocol XpringClientDecorator {
   /// - Throws: An error if there was a problem communicating with the XRP Ledger.
   /// - Returns: The index of the latest validated ledger.
   func getLatestValidatedLedgerSequence() throws -> UInt32
+
+  /// Retrieve the raw transaction status for the given transaction hash.
+  ///
+  /// - Parameter transactionHash: The hash of the transaction.
+  /// - Throws: An error if there was a problem communicating with the XRP Ledger.
+  /// - Returns: The status of the given transaction.
+  func getRawTransactionStatus(for transactionHash: TransactionHash) throws -> Io_Xpring_TransactionStatus
 }
