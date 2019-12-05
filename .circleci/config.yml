@@ -23,6 +23,7 @@ jobs:
             brew upgrade
             npm i -g grpc-tools
             sudo gem install slather cocoapods
+            npm rebuild
 
       - run:
           name: "Pull Submodules"
