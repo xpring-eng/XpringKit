@@ -1,7 +1,7 @@
 import BigInt
 
 /// An interface into the Xpring Platform.
-public class DefaultXpringClient: XpringClientDecorator {
+public class DefaultXpringClient {
   /// A margin to pad the current ledger sequence with when submitting transactions.
   private let ledgerSequenceMargin: UInt32 = 10
 
@@ -23,6 +23,30 @@ public class DefaultXpringClient: XpringClientDecorator {
 		self.networkClient = networkClient
 	}
 
+  /// Retrieve an `AccountInfo` for an address on the XRP Ledger.
+  ///
+  /// - Parameter address: The address to retrieve information about.
+  /// - Throws: An error if there was a problem communicating with the XRP Ledger.
+  /// - Returns: An `AccountInfo` containing data about the given address.
+  private func getAccountInfo(for address: Address) throws -> Io_Xpring_AccountInfo {
+    let getAccountInfoRequest = Io_Xpring_GetAccountInfoRequest.with {
+      $0.address = address
+    }
+
+    return try networkClient.getAccountInfo(getAccountInfoRequest)
+  }
+
+  /// Retrieve the current fee to submit a transaction to the XRP Ledger.
+  ///
+  /// - Throws: An error if there was a problem communicating with the XRP Ledger.
+  /// - Returns: A `Fee` for submitting a transaction to the ledger.
+  private func getFee() throws -> Io_Xpring_Fee {
+    let getFeeRequest = Io_Xpring_GetFeeRequest()
+    return try networkClient.getFee(getFeeRequest)
+  }
+}
+
+extension DefaultXpringClient: XpringClientDecorator {
 	/// Get the balance for the given address.
 	///
 	/// - Parameter address: The X-Address to retrieve the balance for.
@@ -36,6 +60,21 @@ public class DefaultXpringClient: XpringClientDecorator {
 		let accountInfo = try getAccountInfo(for: address)
     return BigUInt(stringLiteral: accountInfo.balance.drops)
 	}
+
+  /// Retrieve the transaction status for a given transaction hash.
+  ///
+  /// - Parameter transactionHash: The hash of the transaction.
+  /// - Throws: An error if there was a problem communicating with the XRP Ledger.
+  /// - Returns: The status of the given transaction.
+  public func getTransactionStatus(for transactionHash: TransactionHash) throws -> TransactionStatus {
+    let transactionStatus = try getRawTransactionStatus(for: transactionHash)
+
+    // Return pending if the transaction is not validated.
+    guard transactionStatus.validated else {
+      return .pending
+    }
+    return transactionStatus.transactionStatusCode.starts(with: "tes") ? .succeeded : .failed
+  }
 
 	/// Send XRP to a recipient on the XRP Ledger.
 	///
@@ -85,51 +124,23 @@ public class DefaultXpringClient: XpringClientDecorator {
     return hash
   }
 
-	/// Retrieve the current fee to submit a transaction to the XRP Ledger.
-	///
-	/// - Throws: An error if there was a problem communicating with the XRP Ledger.
-	/// - Returns: A `Fee` for submitting a transaction to the ledger.
-	private func getFee() throws -> Io_Xpring_Fee {
-		let getFeeRequest = Io_Xpring_GetFeeRequest()
-		return try networkClient.getFee(getFeeRequest)
-	}
-
-	/// Retrieve an `AccountInfo` for an address on the XRP Ledger.
-	///
-	/// - Parameter address: The address to retrieve information about.
-	/// - Throws: An error if there was a problem communicating with the XRP Ledger.
-	/// - Returns: An `AccountInfo` containing data about the given address.
-	private func getAccountInfo(for address: Address) throws -> Io_Xpring_AccountInfo {
-		let getAccountInfoRequest = Io_Xpring_GetAccountInfoRequest.with {
-			$0.address = address
-		}
-
-		return try networkClient.getAccountInfo(getAccountInfoRequest)
-  }
-
-  /// Retrieve the transaction status for a given transaction hash.
-  ///
-  /// - Parameter transactionHash: The hash of the transaction.
-  /// - Throws: An error if there was a problem communicating with the XRP Ledger.
-  /// - Returns: The status of the given transaction.
-  public func getTransactionStatus(for transactionHash: TransactionHash) throws -> TransactionStatus {
-    let transactionStatusRequest = Io_Xpring_GetTransactionStatusRequest.with { $0.transactionHash = transactionHash }
-    let transactionStatus = try networkClient.getTransactionStatus(transactionStatusRequest)
-
-    // Return pending if the transaction is not validated.
-    guard transactionStatus.validated else {
-      return .pending
-    }
-    return transactionStatus.transactionStatusCode.starts(with: "tes") ? .succeeded : .failed
-  }
-
   /// Retrieve the latest validated ledger sequence on the XRP Ledger.
   ///
   /// - Throws: An error if there was a problem communicating with the XRP Ledger.
   /// - Returns: The index of the latest validated ledger.
-  private func getLatestValidatedLedgerSequence() throws -> UInt32 {
+  public func getLatestValidatedLedgerSequence() throws -> UInt32 {
     let getLatestValidatedLedgerSequenceRequest = Io_Xpring_GetLatestValidatedLedgerSequenceRequest()
     let ledgerSequence = try networkClient.getLatestValidatedLedgerSequence(getLatestValidatedLedgerSequenceRequest)
     return UInt32(ledgerSequence.index)
+  }
+
+  /// Retrieve the raw transaction status for the given transaction hash.
+  ///
+  /// - Parameter transactionHash: The hash of the transaction.
+  /// - Throws: An error if there was a problem communicating with the XRP Ledger.
+  /// - Returns: The status of the given transaction.
+  public func getRawTransactionStatus(for transactionHash: TransactionHash) throws -> Io_Xpring_TransactionStatus {
+    let transactionStatusRequest = Io_Xpring_GetTransactionStatusRequest.with { $0.transactionHash = transactionHash }
+    return try networkClient.getTransactionStatus(transactionStatusRequest)
   }
 }

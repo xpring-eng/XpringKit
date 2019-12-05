@@ -12,7 +12,7 @@ targets:
     resources: [XpringKit/Resources]
     scheme:
       testTargets:
-        - XpringKitTests_$platform
+        - XpringKitTests_${platform}
       gatherCoverageData: true
     postCompileScripts:
       - script: swiftlint autocorrect --config .swiftlint.yml
@@ -26,4 +26,4 @@ targets:
     platform: [iOS, macOS]
     sources: [Tests]
     dependencies:
-      - target: XpringKit_$platform
+      - target: XpringKit_${platform}
