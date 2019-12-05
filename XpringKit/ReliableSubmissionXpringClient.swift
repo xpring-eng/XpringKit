@@ -11,12 +11,6 @@ public class ReliableSubmissionXpringClient {
 }
 
 extension ReliableSubmissionXpringClient: XpringClientDecorator {
-
-  // TODO(network client doesn't need to be public
-  public var networkClient: NetworkClient {
-    return decoratedClient.networkClient
-  }
-
   public func getBalance(for address: Address) throws -> BigUInt {
     return try decoratedClient.getBalance(for: address)
   }

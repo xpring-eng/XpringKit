@@ -2,9 +2,6 @@ import BigInt
 
 /// A decorator for a XpringClient.
 public protocol XpringClientDecorator {
-  /// The network client which can make requests a remote node.
-  var networkClient: NetworkClient { get }
-
   /// Get the balance for the given address.
   ///
   /// - Parameter address: The X-Address to retrieve the balance for.
