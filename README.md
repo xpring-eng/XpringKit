@@ -155,7 +155,15 @@ print(balance) // Logs a balance in drops of XRP
 
 ### Checking Transaction Status
 
-A `XpringClient` can check the status of an operation on the XRP Ledger. 
+A `XpringClient` can check the status of an transaction on the XRP Ledger. 
+
+XpringKit returns the following transaction states:
+- `succeeded`: The transaction was successfully validated and applied to the XRP Ledger.
+- `failed:` The transaction was successfully validated but not applied to the XRP Ledger. Or the operation will never be validated.
+- `pending`: The transaction has not yet been validated, but may be validated in the future.
+- `unknown`: The transaction status could not be determined.
+
+**Note:** For more information, see [Reliable Transaction Submission](https://xrpl.org/reliable-transaction-submission.html) and [Transaction Results](https://xrpl.org/transaction-results.html).
 
 Transaction states can be:
 - `suceeded`: If the operation was successfully applied.
@@ -180,7 +188,7 @@ let transactionStatus = xpringClient.getTransactionStatus(for: transactionHash) 
 
 A `XpringClient` can send XRP to other accounts on the XRP Ledger.
 
-**Note:** that the payment operation will block until the operation reaches a definitive and irreversible success or failure state.
+**Note:** The payment operation will block the calling thread until the operation reaches a definitive and irreversible success or failure state.
 
 ```swift
 import XpringKit
