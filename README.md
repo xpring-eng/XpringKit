@@ -165,12 +165,6 @@ XpringKit returns the following transaction states:
 
 **Note:** For more information, see [Reliable Transaction Submission](https://xrpl.org/reliable-transaction-submission.html) and [Transaction Results](https://xrpl.org/transaction-results.html).
 
-Transaction states can be:
-- `suceeded`: If the operation was successfully applied.
-- `failed:` If the operation was validated and not applied, or if the operation will never validate.
-- `pending`: If the operation has not yet been validated, but still may be.
-- `unknown`: If the operation status could not be determined.
-
 These states are determined by the `TransactionStatus` enum.
 
 ```swift
