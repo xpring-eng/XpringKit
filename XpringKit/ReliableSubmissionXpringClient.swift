@@ -37,7 +37,7 @@ extension ReliableSubmissionXpringClient: XpringClientDecorator {
     // Get transaction status.
     var transactionStatus = try getRawTransactionStatus(for: transactionHash)
     let lastLedgerSequence = transactionStatus.lastLedgerSequence
-    if (lastLedgerSequence == 0) {
+    if lastLedgerSequence == 0 {
       throw XRPLedgerError.unknown("The transaction did not have a lastLedgerSequence field so transaction status cannot be reliably determined.")
     }
 
@@ -45,7 +45,7 @@ extension ReliableSubmissionXpringClient: XpringClientDecorator {
     var latestLedgerSequence = try getLatestValidatedLedgerSequence()
 
     // Poll until the transaction is validated, or until the lastLedgerSequence has been passed.
-    while (latestLedgerSequence <= lastLedgerSequence && !transactionStatus.validated) {
+    while latestLedgerSequence <= lastLedgerSequence && !transactionStatus.validated {
       Thread.sleep(forTimeInterval: ledgerCloseTime)
 
       latestLedgerSequence = try getLatestValidatedLedgerSequence()

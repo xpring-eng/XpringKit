@@ -50,8 +50,8 @@ public enum Utils {
   /// - SeeAlso: https://xrpaddress.info/
   ///
   /// - Parameter xAddress: The xAddress to decode.
-  /// - Returns: a tuple containing the decoded address and tag.
-  public static func decode(xAddress: Address) -> (classicAddress: String, tag: UInt32?)? {
+  /// - Returns: a tuple containing the decoded address,  tag and bool indicating if the address was on a test network.
+  public static func decode(xAddress: Address) -> (classicAddress: String, tag: UInt32?, isTest: Bool)? {
     return javaScriptUtils.decode(xAddress: xAddress)
   }
 
