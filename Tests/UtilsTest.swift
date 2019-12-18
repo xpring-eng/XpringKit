@@ -17,7 +17,7 @@ class UtilsTest: XCTestCase {
     XCTAssertFalse(Utils.isValid(address: "1EAG1MwmzkG6gRZcYqcRMfC17eMt8TDTit"))
 	}
 
-	func testIsvValidAddressInvalidChecksumClassicAddress() {
+	func testIsValidAddressInvalidChecksumClassicAddress() {
     XCTAssertFalse(Utils.isValid(address: "rU6K7V3Po4sBBBBBaU29sesqs2qTQJWDw1"))
 	}
 
@@ -109,16 +109,28 @@ class UtilsTest: XCTestCase {
 
   // MARK: - encode
 
-  func testEncodeXAddressWithAddressAndTag() {
+  func testEncodeMainNetXAddressWithAddressAndTag() {
     // GIVEN a valid classic address and a tag.
     let address =  "rU6K7V3Po4snVhBBaU29sesqs2qTQJWDw1"
     let tag: UInt32 = 12_345
 
-    // WHEN they are encoded to an x-address.
+    // WHEN they are encoded to an X-Address on MainNet.
     let xAddress = Utils.encode(classicAddress: address, tag: tag)
 
     // THEN the result is as expected.
     XCTAssertEqual(xAddress, "XVfC9CTCJh6GN2x8bnrw3LtdbqiVCUvtU3HnooQDgBnUpQT")
+  }
+
+  func testEncodeTestNetXAddressWithAddressAndTag() {
+    // GIVEN a valid classic address and a tag.
+    let address =  "rU6K7V3Po4snVhBBaU29sesqs2qTQJWDw1"
+    let tag: UInt32 = 12_345
+
+    // WHEN they are encoded to an X-Address on MainNet.
+    let xAddress = Utils.encode(classicAddress: address, tag: tag, isTest: true)
+
+    // THEN the result is as expected.
+    XCTAssertEqual(xAddress, "TVsBZmcewpEHgajPi1jApLeYnHPJw82v9JNYf7dkGmWphmh")
   }
 
   func testEncodeXAddressWithAddressOnly() {
