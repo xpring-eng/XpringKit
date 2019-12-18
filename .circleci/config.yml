@@ -25,7 +25,6 @@ jobs:
             brew install xcodegen swiftlint swift-protobuf grpc-swift
             brew upgrade
             npm i -g grpc-tools
-            xcode-select --install
             sudo gem install slather cocoapods
 
       - run:
