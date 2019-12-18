@@ -2,7 +2,7 @@ import XCTest
 import XpringKit
 
 class WalletTest: XCTestCase {
-	func testGenerateWalletFromSeed() {
+	func testGenerateMainNetWalletFromSeed() {
 		guard let wallet = Wallet(seed: "snYP7oArxKepd3GPDcrjMsJYiJeJB") else {
 			XCTFail("Could not generate wallet")
 			return
@@ -11,6 +11,16 @@ class WalletTest: XCTestCase {
 		XCTAssertNotNil(wallet)
 		XCTAssertEqual(wallet.address, "XVnJMYQFqA8EAijpKh5EdjEY5JqyxykMKKSbrUX8uchF6U8")
 	}
+
+  func testGenerateTestNetWalletFromSeed() {
+    guard let wallet = Wallet(seed: "snYP7oArxKepd3GPDcrjMsJYiJeJB", isTest: true) else {
+      XCTFail("Could not generate wallet")
+      return
+    }
+
+    XCTAssertNotNil(wallet)
+    XCTAssertEqual(wallet.address, "T7zFmeZo6uLHP4Vd21TpXjrTBk487ZQPGVQsJ1mKWGCD5rq")
+  }
 
 	func testGenerateWalletFromInvalidSeed() {
 		let wallet = Wallet(seed: "xrp")
@@ -34,7 +44,7 @@ class WalletTest: XCTestCase {
 		XCTAssertEqual(wallet.address, "XVMFQQBMhdouRqhPMuawgBMN1AVFTofPAdRsXG5RkPtUPNQ")
 	}
 
-	func testGenerateWalletFromMnemonicDerivationPath0() {
+	func testGenerateMainNetWalletFromMnemonicDerivationPath0() {
 		let mnemonic = "abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon about"
 		let derivationPath = "m/44'/144'/0'/0/0"
 		guard let wallet = Wallet(mnemonic: mnemonic, derivationPath: derivationPath) else {
@@ -46,6 +56,19 @@ class WalletTest: XCTestCase {
 		XCTAssertEqual(wallet.privateKey, "0090802A50AA84EFB6CDB225F17C27616EA94048C179142FECF03F4712A07EA7A4")
 		XCTAssertEqual(wallet.address, "XVMFQQBMhdouRqhPMuawgBMN1AVFTofPAdRsXG5RkPtUPNQ")
 	}
+
+  func testGenerateTestNetWalletFromMnemonicDerivationPath0() {
+    let mnemonic = "abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon about"
+    let derivationPath = "m/44'/144'/0'/0/0"
+    guard let wallet = Wallet(mnemonic: mnemonic, derivationPath: derivationPath, isTest: true) else {
+      XCTFail("Could not generate wallet")
+      return
+    }
+
+    XCTAssertEqual(wallet.publicKey, "031D68BC1A142E6766B2BDFB006CCFE135EF2E0E2E94ABB5CF5C9AB6104776FBAE")
+    XCTAssertEqual(wallet.privateKey, "0090802A50AA84EFB6CDB225F17C27616EA94048C179142FECF03F4712A07EA7A4")
+    XCTAssertEqual(wallet.address, "TVHLFWLKvbMv1LFzd6FA2Bf9MPpcy4mRto4VFAAxLuNpvdW")
+  }
 
 	func testGenerateWalletFromMnemonicDerivationPath1() {
 		let mnemonic = "abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon about"
