@@ -145,8 +145,8 @@ class UtilsTest: XCTestCase {
 
   // MARK: - decode
 
-  func testDecodeXAddressWithAddressAndTag() {
-    // GIVEN an x-address that encodes an address and a tag.
+  func testDecodeMainNetXAddressWithAddressAndTag() {
+    // GIVEN an X-Address on MainNet that encodes an address and a tag.
     let address = "XVfC9CTCJh6GN2x8bnrw3LtdbqiVCUvtU3HnooQDgBnUpQT"
 
     // WHEN it is decoded to an classic address
@@ -158,6 +158,23 @@ class UtilsTest: XCTestCase {
     // THEN the decoded address and tag as are expected.
     XCTAssertEqual(classicAddressTuple.classicAddress, "rU6K7V3Po4snVhBBaU29sesqs2qTQJWDw1")
     XCTAssertEqual(classicAddressTuple.tag, 12_345)
+    XCTAssertFalse(classicAddressTuple.isTest)
+  }
+
+  func testDecodeTestNetXAddressWithAddressAndTag() {
+    // GIVEN an X-Address on Testnet that encodes an address and a tag.
+    let address = "TVsBZmcewpEHgajPi1jApLeYnHPJw82v9JNYf7dkGmWphmh"
+
+    // WHEN it is decoded to an classic address
+    guard let classicAddressTuple = Utils.decode(xAddress: address) else {
+      XCTFail("Failed to decode a valid X-Address")
+      return
+    }
+
+    // THEN the decoded address and tag as are expected.
+    XCTAssertEqual(classicAddressTuple.classicAddress, "rU6K7V3Po4snVhBBaU29sesqs2qTQJWDw1")
+    XCTAssertEqual(classicAddressTuple.tag, 12_345)
+    XCTAssertTrue(classicAddressTuple.isTest)
   }
 
   func testDecodeXAddressWithAddressOnly() {

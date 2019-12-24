@@ -12,6 +12,7 @@ internal class JavaScriptUtils {
     public static let isValidClassicAddress = "isValidClassicAddress"
     public static let isValidXAddress = "isValidXAddress"
     public static let tag = "tag"
+    public static let test = "test"
     public static let transactionBlobToTransactionHash = "transactionBlobToTransactionHash"
     public static let utils = "Utils"
   }
@@ -95,18 +96,19 @@ internal class JavaScriptUtils {
   /// - SeeAlso: https://xrpaddress.info/
   ///
   /// - Parameter xAddress: The X-Address to decode.
-  /// - Returns: a tuple containing the decoded address and tag.
-  public func decode(xAddress: Address) -> (classicAddress: String, tag: UInt32?)? {
+  /// - Returns: a tuple containing the decoded address,  tag and bool indicating if the address was on a test network.
+  public func decode(xAddress: Address) -> (classicAddress: String, tag: UInt32?, isTest: Bool)? {
     let result = decodeXAddressFunction.call(withArguments: [ xAddress ])!
     guard !result.isUndefined else {
       return nil
     }
 
     let classicAddress = XRPJavaScriptLoader.load(ResourceNames.address, from: result).toString()!
+    let isTest = XRPJavaScriptLoader.load(ResourceNames.test, from: result).toBool()
     if let tag = XRPJavaScriptLoader.failableLoad(ResourceNames.tag, from: result) {
-      return (classicAddress, tag.toUInt32())
+      return (classicAddress, tag.toUInt32(), isTest)
     }
-    return (classicAddress, nil)
+    return (classicAddress, nil, isTest)
   }
 
   /// Convert the given transaction blob to a transaction hash.
