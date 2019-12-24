@@ -14,7 +14,10 @@ jobs:
       - run:
           name: "System Information"
           command: xcodebuild -version
-
+      - run:
+          name: Set Ruby Version
+          command:  echo "ruby-2.6.4" > ~/.ruby-version
+  
       - run:
           name: "Install Tooling"
           command: |
