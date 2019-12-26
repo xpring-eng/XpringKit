@@ -16,7 +16,7 @@ Pod::Spec.new do |spec|
 
   spec.swift_versions = [5.0, 4.2]
   spec.requires_arc = true
-  spec.ios.deployment_target = '12.0'
+  spec.ios.deployment_target = '13.2'
   spec.osx.deployment_target = '10.10'
 
   spec.prepare_command = "git submodule update --init --recursive && ./scripts/bundle_js.sh && ./scripts/regenerate_protos.sh"
