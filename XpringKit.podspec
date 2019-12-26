@@ -6,13 +6,13 @@ Pod::Spec.new do |spec|
   spec.description  = "
     XpringKit provides a Swift based SDK for interacting with Xpring Platform (XRP/ILP)
 
-    XpringKit is part of the Xpring SDK. To learn more, visit: http://github.com/xpring-eng/Xpring-SDK.
+    XpringKit is part of the Xpring SDK. To learn more, visit: http://github.com/dangell7/Xpring-SDK.
   "
 
   spec.homepage     = "http://xpring.io"
   spec.license      = "MIT"
   spec.author       = { "Xpring Engineering" => "xpring@ripple.com" }
-  spec.source       = { :git => "https://github.com/xpring-eng/XpringKit.git", :tag => "1.2.1" }
+  spec.source       = { :git => "https://github.com/dangell7/XpringKit.git", :tag => "1.2.1" }
 
   spec.swift_versions = [4.2]
   spec.requires_arc = true
@@ -27,14 +27,14 @@ Pod::Spec.new do |spec|
   spec.dependency 'BigInt'
   spec.dependency 'SwiftGRPC'
   spec.dependency 'SwiftProtobuf'
-  
+
   spec.frameworks = "Foundation"
 
   spec.test_spec "Tests" do |test_spec|
     test_spec.source_files = ["Tests/**/*.swift"]
 
     test_spec.dependency 'BigInt'
-    
+
     test_spec.frameworks = "Foundation"
   end
 end
