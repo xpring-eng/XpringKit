@@ -14,7 +14,7 @@ Pod::Spec.new do |spec|
   spec.author       = { "Xpring Engineering" => "xpring@ripple.com" }
   spec.source       = { :git => "https://github.com/dangell7/XpringKit.git", :tag => "1.2.1" }
 
-  spec.swift_versions = [4.2]
+  spec.swift_versions = [5.0, 4.2]
   spec.requires_arc = true
   spec.ios.deployment_target = '12.0'
   spec.osx.deployment_target = '10.10'

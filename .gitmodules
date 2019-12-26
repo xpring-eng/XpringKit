@@ -1,6 +1,6 @@
 [submodule "xpring-common-js"]
 	path = xpring-common-js
-	url = https://github.com/xpring-eng/xpring-common-js.git
+	url = https://github.com/dangell7/xpring-common-js.git
 	branch = master
 [submodule "xpring-common-protocol-buffers"]
 	path = xpring-common-protocol-buffers
