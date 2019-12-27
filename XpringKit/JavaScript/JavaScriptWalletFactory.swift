@@ -40,10 +40,11 @@ internal class JavaScriptWalletFactory {
 	///
 	/// - Note: This call uses Swift's Math.Random functionality to ensure randomly generated numbers are cryptographically secure.
 	///
+  /// - Parameter isTest: Whether the address is for use on a test network.
 	/// - Returns: Artifacts of the generation process in a WalletGenerationResult.
-	public func generateRandomWallet() -> JavaScriptWalletGenerationResult {
+	public func generateRandomWallet(isTest: Bool = false) -> JavaScriptWalletGenerationResult {
 		let randomBytesHex = RandomBytesUtil.randomBytes(numBytes: 16).toHex()
-		let result = generateRandomWalletFunction.call(withArguments: [ randomBytesHex ])!
+		let result = generateRandomWalletFunction.call(withArguments: [ randomBytesHex, isTest ])!
 		return result.toWalletGenerationResult()!
 	}
 
@@ -52,12 +53,16 @@ internal class JavaScriptWalletFactory {
 	/// - Parameters:
 	///		- mnemonic: A space delimited list of seed words for the `Wallet`.
 	///		- derivationPath: A derivation path for the `Wallet`. If nil, the default derivation path will be used.
+  ///   - isTest: Whether the address is for use on a test network.
 	/// - Returns: A new wallet if inputs were valid, otherwise nil.
-	public func wallet(mnemonic: String, derivationPath: String? = nil) -> JavaScriptWallet? {
-		var arguments = [mnemonic]
+	public func wallet(mnemonic: String, derivationPath: String? = nil, isTest: Bool = false) -> JavaScriptWallet? {
+    var arguments: [Any] = [mnemonic]
 		if let derivationPath = derivationPath {
 			arguments.append(derivationPath)
-		}
+    } else {
+      arguments.append(JSValue(undefinedIn: XRPJavaScriptLoader.XRPJavaScriptContext) as Any)
+    }
+    arguments.append(isTest)
 
 		let result = generateWalletFromMnemonicFunction.call(withArguments: arguments)!
 		return result.toWallet()
@@ -65,10 +70,12 @@ internal class JavaScriptWalletFactory {
 
 	/// Initialize a new `Wallet` with a base58check encoded seed.
 	///
-	/// - Parameter seed: The seed used to generate the `Wallet`.
+	/// - Parameters:
+  ///   - seed: The seed used to generate the `Wallet`.
+  ///   - isTest: Whether the address is for use on a test network.
 	/// - Returns: A new wallet if inputs were valid, otherwise nil.
-	public func wallet(seed: String) -> JavaScriptWallet? {
-		let result = generateWalletFromSeedFunction.call(withArguments: [ seed ])!
+	public func wallet(seed: String, isTest: Bool = false) -> JavaScriptWallet? {
+		let result = generateWalletFromSeedFunction.call(withArguments: [ seed, isTest ])!
 		return result.toWallet()
 	}
 }
