@@ -1,0 +1,49 @@
+PODS:
+  - BoringSSL-GRPC (0.0.3):
+    - BoringSSL-GRPC/Implementation (= 0.0.3)
+    - BoringSSL-GRPC/Interface (= 0.0.3)
+  - BoringSSL-GRPC/Implementation (0.0.3):
+    - BoringSSL-GRPC/Interface (= 0.0.3)
+  - BoringSSL-GRPC/Interface (0.0.3)
+  - gRPC-Core (1.21.0):
+    - gRPC-Core/Implementation (= 1.21.0)
+    - gRPC-Core/Interface (= 1.21.0)
+  - gRPC-Core/Implementation (1.21.0):
+    - BoringSSL-GRPC (= 0.0.3)
+    - gRPC-Core/Interface (= 1.21.0)
+    - nanopb (~> 0.3)
+  - gRPC-Core/Interface (1.21.0)
+  - nanopb (0.3.9011):
+    - nanopb/decode (= 0.3.9011)
+    - nanopb/encode (= 0.3.9011)
+  - nanopb/decode (0.3.9011)
+  - nanopb/encode (0.3.9011)
+  - SwiftGRPC (0.10.0):
+    - gRPC-Core (~> 1.21.0)
+    - SwiftProtobuf (~> 1.7.0)
+  - SwiftProtobuf (1.7.0)
+
+DEPENDENCIES:
+  - SwiftGRPC (from `/Users/denisangell/projects/xrp/grpc-swift/SwiftGRPC.podspec`)
+
+SPEC REPOS:
+  trunk:
+    - BoringSSL-GRPC
+    - gRPC-Core
+    - nanopb
+    - SwiftProtobuf
+
+EXTERNAL SOURCES:
+  SwiftGRPC:
+    :path: "/Users/denisangell/projects/xrp/grpc-swift/SwiftGRPC.podspec"
+
+SPEC CHECKSUMS:
+  BoringSSL-GRPC: db8764df3204ccea016e1c8dd15d9a9ad63ff318
+  gRPC-Core: c9aef9a261a1247e881b18059b84d597293c9947
+  nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
+  SwiftGRPC: 975fbea009da1864873aad1a849c24220793593d
+  SwiftProtobuf: 4fd9645e69b72cbae6ec8da5be0cdd20ca6565dd
+
+PODFILE CHECKSUM: 49788fac8d5ef6f0c0647efa03498ae7adf239f0
+
+COCOAPODS: 1.8.4
