@@ -80,12 +80,14 @@ internal class JavaScriptUtils {
   /// - Parameters:
   ///   -  classicAddress: A classic address to encode.
   ///   - tag: An optional tag to encode. Defaults to nil.
+  ///   - isTest Whether the address is for use on a test network, defaults to `false`.
   /// - Returns: A new X-address if inputs were valid, otherwise undefined.
-  public func encode(classicAddress: Address, tag: UInt32? = nil) -> Address? {
+  public func encode(classicAddress: Address, tag: UInt32? = nil, isTest: Bool = false) -> Address? {
     var arguments: [Any] = [ classicAddress ]
     if tag != nil {
       arguments.append(tag as Any)
     }
+    arguments.append(isTest)
 
     let result = encodeXAddressFunction.call(withArguments: arguments)!
     return result.isUndefined ? nil : result.toString()
