@@ -40,9 +40,10 @@ public enum Utils {
   /// - Parameters:
   ///   -  classicAddress: A classic address to encode.
   ///   - tag: An optional tag to encode. Defaults to nil.
+  ///   - isTest Whether the address is for use on a test network, defaults to `false`.
   /// - Returns: A new x-address if inputs were valid, otherwise undefined.
-  public static func encode(classicAddress: Address, tag: UInt32? = nil) -> Address? {
-    return javaScriptUtils.encode(classicAddress: classicAddress, tag: tag)
+  public static func encode(classicAddress: Address, tag: UInt32? = nil, isTest: Bool = false) -> Address? {
+    return javaScriptUtils.encode(classicAddress: classicAddress, tag: tag, isTest: isTest)
   }
 
   /// Decode a classic address from a given x-address.

@@ -24,9 +24,10 @@ public class Wallet {
 	///
 	/// - Note: This call uses Swift's Math.Random functionality to ensure randomly generated numbers are cryptographically secure.
 	///
+  /// - Parameter isTest: Whether the address is for use on a test network.
 	/// - Returns: Artifacts of the generation process in a WalletGenerationResult.
-	public static func generateRandomWallet() -> WalletGenerationResult {
-		let javaScriptWalletGenerationResult = Wallet.javaScriptWalletFactory.generateRandomWallet()
+  public static func generateRandomWallet(isTest: Bool = false) -> WalletGenerationResult {
+		let javaScriptWalletGenerationResult = Wallet.javaScriptWalletFactory.generateRandomWallet(isTest: isTest)
 		return WalletGenerationResult(javaScriptWalletGenerationResult: javaScriptWalletGenerationResult)
 	}
 
@@ -35,11 +36,13 @@ public class Wallet {
 	/// - Parameters:
 	///		- mnemonic: A space delimited list of seed words for the `Wallet`.
 	///		- derivationPath: A derivation path for the `Wallet`. If nil, the default derivation path will be used.
+  ///   - isTest: Whether the address is for use on a test network.
 	/// - Returns: A new wallet if inputs were valid, otherwise nil.
-	public convenience init?(mnemonic: String, derivationPath: String? = nil) {
+	public convenience init?(mnemonic: String, derivationPath: String? = nil, isTest: Bool = false) {
 		guard let javaScriptWallet = Wallet.javaScriptWalletFactory.wallet(
 			mnemonic: mnemonic,
-			derivationPath: derivationPath
+			derivationPath: derivationPath,
+      isTest: isTest
 		) else {
 			return nil
 		}
@@ -48,10 +51,12 @@ public class Wallet {
 
 	/// Initialize a new `Wallet` with a base58check encoded seed.
 	///
-	/// - Parameter seed: The seed used to generate the `Wallet`.
+	/// - Parameters:
+  ///   - seed: The seed used to generate the `Wallet`.
+  ///   - isTest: Whether the address is for use on a test network.
 	/// - Returns: A new wallet if inputs were valid, otherwise nil.
-	public convenience init?(seed: String) {
-		guard let javaScriptWallet = Wallet.javaScriptWalletFactory.wallet(seed: seed) else {
+	public convenience init?(seed: String, isTest: Bool = false) {
+    guard let javaScriptWallet = Wallet.javaScriptWalletFactory.wallet(seed: seed, isTest: isTest) else {
 			return nil
 		}
 		self.init(javaScriptWallet: javaScriptWallet)
