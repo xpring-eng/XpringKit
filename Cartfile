@@ -1,3 +1,3 @@
 github "apple/swift-protobuf" == 1.6.0
 github "attaswift/BigInt" == 5.0.0
-github "grpc/grpc-swift" == 0.9.1
+github "dangell7/grpc-swift" == 0.9.1

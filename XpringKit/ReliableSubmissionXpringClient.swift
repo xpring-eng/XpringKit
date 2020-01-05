@@ -27,11 +27,11 @@ extension ReliableSubmissionXpringClient: XpringClientDecorator {
     return try decoratedClient.getRawTransactionStatus(for: transactionHash)
   }
 
-  public func send(_ amount: BigUInt, to destinationAddress: Address, from sourceWallet: Wallet) throws -> TransactionHash {
+    public func send(_ amount: BigUInt, to destinationAddress: Address, from sourceWallet: Wallet, invoiceID: String) throws -> TransactionHash {
     let ledgerCloseTime: TimeInterval = 4
 
     // Submit a transaction hash and wait for a ledger to close.
-    let transactionHash = try decoratedClient.send(amount, to: destinationAddress, from: sourceWallet)
+        let transactionHash = try decoratedClient.send(amount, to: destinationAddress, from: sourceWallet, invoiceID: invoiceID)
     Thread.sleep(forTimeInterval: ledgerCloseTime)
 
     // Get transaction status.

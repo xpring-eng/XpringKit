@@ -155,7 +155,7 @@ print(balance) // Logs a balance in drops of XRP
 
 ### Checking Transaction Status
 
-A `XpringClient` can check the status of an transaction on the XRP Ledger. 
+A `XpringClient` can check the status of an transaction on the XRP Ledger.
 
 XpringKit returns the following transaction states:
 - `succeeded`: The transaction was successfully validated and applied to the XRP Ledger.
