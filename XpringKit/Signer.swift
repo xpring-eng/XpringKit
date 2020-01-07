@@ -9,7 +9,7 @@ public enum Signer {
 	///		- transaction: The `Transaction` to sign.
 	///		- wallet: The wallet which will sign the transaction.
 	/// - Returns: A `SignedTransaction` derived from the inputs.
-	public static func sign(_ transaction: Io_Xpring_Transaction, with wallet: Wallet) -> Io_Xpring_SignedTransaction? {
+	public static func sign(_ transaction: Rpc_V1_Transaction, with wallet: Wallet) -> Rpc_V1_Transaction? {
 		return javaScriptSigner.sign(transaction, with: wallet)
 	}
 }
