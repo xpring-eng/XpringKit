@@ -21,6 +21,27 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 
 /// The status of a transaction on the XRP Ledger.
 /// Next field: 4
+public struct Io_Xpring_TransactionData {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  /// The transaction status code.
+  public var transactionStatusCode: String = String()
+
+  /// Whether the transaction was validated.
+  public var validated: Bool = false
+
+  /// The lastLedgerSequence this transaction will be valid in.
+  public var lastLedgerSequence: UInt32 = 0
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+}
+
+/// The status of a transaction on the XRP Ledger.
+/// Next field: 4
 public struct Io_Xpring_TransactionStatus {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for

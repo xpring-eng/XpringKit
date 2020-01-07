@@ -28,249 +28,299 @@ import SwiftProtobuf
 internal protocol Io_Xpring_XRPLedgerAPIGetAccountInfoCall: ClientCallUnary {}
 
 fileprivate final class Io_Xpring_XRPLedgerAPIGetAccountInfoCallBase: ClientCallUnaryBase<Io_Xpring_GetAccountInfoRequest, Io_Xpring_AccountInfo>, Io_Xpring_XRPLedgerAPIGetAccountInfoCall {
-  override class var method: String { return "/io.xpring.XRPLedgerAPI/GetAccountInfo" }
+    override class var method: String { return "/io.xpring.XRPLedgerAPI/GetAccountInfo" }
 }
 
 internal protocol Io_Xpring_XRPLedgerAPIGetFeeCall: ClientCallUnary {}
 
 fileprivate final class Io_Xpring_XRPLedgerAPIGetFeeCallBase: ClientCallUnaryBase<Io_Xpring_GetFeeRequest, Io_Xpring_Fee>, Io_Xpring_XRPLedgerAPIGetFeeCall {
-  override class var method: String { return "/io.xpring.XRPLedgerAPI/GetFee" }
+    override class var method: String { return "/io.xpring.XRPLedgerAPI/GetFee" }
 }
 
 internal protocol Io_Xpring_XRPLedgerAPISubmitSignedTransactionCall: ClientCallUnary {}
 
 fileprivate final class Io_Xpring_XRPLedgerAPISubmitSignedTransactionCallBase: ClientCallUnaryBase<Io_Xpring_SubmitSignedTransactionRequest, Io_Xpring_SubmitSignedTransactionResponse>, Io_Xpring_XRPLedgerAPISubmitSignedTransactionCall {
-  override class var method: String { return "/io.xpring.XRPLedgerAPI/SubmitSignedTransaction" }
+    override class var method: String { return "/io.xpring.XRPLedgerAPI/SubmitSignedTransaction" }
 }
+
+//internal protocol Io_Xpring_XRPLedgerAPIGetTransactionDataCall: ClientCallUnary {}
+//
+//fileprivate final class Io_Xpring_XRPLedgerAPIGetTransactionDataCallBase: ClientCallUnaryBase<Io_Xpring_GetTransactionDataRequest, Io_Xpring_TransactionData>, Io_Xpring_XRPLedgerAPIGetTransactionDataCall {
+//    override class var method: String { return "/io.xpring.XRPLedgerAPI/GetTransactionData" }
+//}
 
 internal protocol Io_Xpring_XRPLedgerAPIGetTransactionStatusCall: ClientCallUnary {}
 
 fileprivate final class Io_Xpring_XRPLedgerAPIGetTransactionStatusCallBase: ClientCallUnaryBase<Io_Xpring_GetTransactionStatusRequest, Io_Xpring_TransactionStatus>, Io_Xpring_XRPLedgerAPIGetTransactionStatusCall {
-  override class var method: String { return "/io.xpring.XRPLedgerAPI/GetTransactionStatus" }
+    override class var method: String { return "/io.xpring.XRPLedgerAPI/GetTransactionStatus" }
 }
 
 internal protocol Io_Xpring_XRPLedgerAPIGetLatestValidatedLedgerSequenceCall: ClientCallUnary {}
 
 fileprivate final class Io_Xpring_XRPLedgerAPIGetLatestValidatedLedgerSequenceCallBase: ClientCallUnaryBase<Io_Xpring_GetLatestValidatedLedgerSequenceRequest, Io_Xpring_LedgerSequence>, Io_Xpring_XRPLedgerAPIGetLatestValidatedLedgerSequenceCall {
-  override class var method: String { return "/io.xpring.XRPLedgerAPI/GetLatestValidatedLedgerSequence" }
+    override class var method: String { return "/io.xpring.XRPLedgerAPI/GetLatestValidatedLedgerSequence" }
 }
 
 
 /// Instantiate Io_Xpring_XRPLedgerAPIServiceClient, then call methods of this protocol to make API calls.
 internal protocol Io_Xpring_XRPLedgerAPIService: ServiceClient {
-  /// Synchronous. Unary.
-  func getAccountInfo(_ request: Io_Xpring_GetAccountInfoRequest, metadata customMetadata: Metadata) throws -> Io_Xpring_AccountInfo
-  /// Asynchronous. Unary.
-  @discardableResult
-  func getAccountInfo(_ request: Io_Xpring_GetAccountInfoRequest, metadata customMetadata: Metadata, completion: @escaping (Io_Xpring_AccountInfo?, CallResult) -> Void) throws -> Io_Xpring_XRPLedgerAPIGetAccountInfoCall
-
-  /// Synchronous. Unary.
-  func getFee(_ request: Io_Xpring_GetFeeRequest, metadata customMetadata: Metadata) throws -> Io_Xpring_Fee
-  /// Asynchronous. Unary.
-  @discardableResult
-  func getFee(_ request: Io_Xpring_GetFeeRequest, metadata customMetadata: Metadata, completion: @escaping (Io_Xpring_Fee?, CallResult) -> Void) throws -> Io_Xpring_XRPLedgerAPIGetFeeCall
-
-  /// Synchronous. Unary.
-  func submitSignedTransaction(_ request: Io_Xpring_SubmitSignedTransactionRequest, metadata customMetadata: Metadata) throws -> Io_Xpring_SubmitSignedTransactionResponse
-  /// Asynchronous. Unary.
-  @discardableResult
-  func submitSignedTransaction(_ request: Io_Xpring_SubmitSignedTransactionRequest, metadata customMetadata: Metadata, completion: @escaping (Io_Xpring_SubmitSignedTransactionResponse?, CallResult) -> Void) throws -> Io_Xpring_XRPLedgerAPISubmitSignedTransactionCall
-
-  /// Synchronous. Unary.
-  func getTransactionStatus(_ request: Io_Xpring_GetTransactionStatusRequest, metadata customMetadata: Metadata) throws -> Io_Xpring_TransactionStatus
-  /// Asynchronous. Unary.
-  @discardableResult
-  func getTransactionStatus(_ request: Io_Xpring_GetTransactionStatusRequest, metadata customMetadata: Metadata, completion: @escaping (Io_Xpring_TransactionStatus?, CallResult) -> Void) throws -> Io_Xpring_XRPLedgerAPIGetTransactionStatusCall
-
-  /// Synchronous. Unary.
-  func getLatestValidatedLedgerSequence(_ request: Io_Xpring_GetLatestValidatedLedgerSequenceRequest, metadata customMetadata: Metadata) throws -> Io_Xpring_LedgerSequence
-  /// Asynchronous. Unary.
-  @discardableResult
-  func getLatestValidatedLedgerSequence(_ request: Io_Xpring_GetLatestValidatedLedgerSequenceRequest, metadata customMetadata: Metadata, completion: @escaping (Io_Xpring_LedgerSequence?, CallResult) -> Void) throws -> Io_Xpring_XRPLedgerAPIGetLatestValidatedLedgerSequenceCall
-
+    /// Synchronous. Unary.
+    func getAccountInfo(_ request: Io_Xpring_GetAccountInfoRequest, metadata customMetadata: Metadata) throws -> Io_Xpring_AccountInfo
+    /// Asynchronous. Unary.
+    @discardableResult
+    func getAccountInfo(_ request: Io_Xpring_GetAccountInfoRequest, metadata customMetadata: Metadata, completion: @escaping (Io_Xpring_AccountInfo?, CallResult) -> Void) throws -> Io_Xpring_XRPLedgerAPIGetAccountInfoCall
+    
+    /// Synchronous. Unary.
+    func getFee(_ request: Io_Xpring_GetFeeRequest, metadata customMetadata: Metadata) throws -> Io_Xpring_Fee
+    /// Asynchronous. Unary.
+    @discardableResult
+    func getFee(_ request: Io_Xpring_GetFeeRequest, metadata customMetadata: Metadata, completion: @escaping (Io_Xpring_Fee?, CallResult) -> Void) throws -> Io_Xpring_XRPLedgerAPIGetFeeCall
+    
+    /// Synchronous. Unary.
+    func submitSignedTransaction(_ request: Io_Xpring_SubmitSignedTransactionRequest, metadata customMetadata: Metadata) throws -> Io_Xpring_SubmitSignedTransactionResponse
+    /// Asynchronous. Unary.
+    @discardableResult
+    func submitSignedTransaction(_ request: Io_Xpring_SubmitSignedTransactionRequest, metadata customMetadata: Metadata, completion: @escaping (Io_Xpring_SubmitSignedTransactionResponse?, CallResult) -> Void) throws -> Io_Xpring_XRPLedgerAPISubmitSignedTransactionCall
+    
+//    /// Synchronous. Unary.
+//    func getTransactionData(_ request: Io_Xpring_GetTransactionDataRequest, metadata customMetadata: Metadata) throws -> Io_Xpring_TransactionData
+//    /// Asynchronous. Unary.
+//    @discardableResult
+//    func getTransactionData(_ request: Io_Xpring_GetTransactionDataRequest, metadata customMetadata: Metadata, completion: @escaping (Io_Xpring_TransactionData?, CallResult) -> Void) throws -> Io_Xpring_XRPLedgerAPIGetTransactionDataCall
+    
+    /// Synchronous. Unary.
+    func getTransactionStatus(_ request: Io_Xpring_GetTransactionStatusRequest, metadata customMetadata: Metadata) throws -> Io_Xpring_TransactionStatus
+    /// Asynchronous. Unary.
+    @discardableResult
+    func getTransactionStatus(_ request: Io_Xpring_GetTransactionStatusRequest, metadata customMetadata: Metadata, completion: @escaping (Io_Xpring_TransactionStatus?, CallResult) -> Void) throws -> Io_Xpring_XRPLedgerAPIGetTransactionStatusCall
+    
+    /// Synchronous. Unary.
+    func getLatestValidatedLedgerSequence(_ request: Io_Xpring_GetLatestValidatedLedgerSequenceRequest, metadata customMetadata: Metadata) throws -> Io_Xpring_LedgerSequence
+    /// Asynchronous. Unary.
+    @discardableResult
+    func getLatestValidatedLedgerSequence(_ request: Io_Xpring_GetLatestValidatedLedgerSequenceRequest, metadata customMetadata: Metadata, completion: @escaping (Io_Xpring_LedgerSequence?, CallResult) -> Void) throws -> Io_Xpring_XRPLedgerAPIGetLatestValidatedLedgerSequenceCall
+    
 }
 
 internal extension Io_Xpring_XRPLedgerAPIService {
-  /// Synchronous. Unary.
-  func getAccountInfo(_ request: Io_Xpring_GetAccountInfoRequest) throws -> Io_Xpring_AccountInfo {
-    return try self.getAccountInfo(request, metadata: self.metadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  func getAccountInfo(_ request: Io_Xpring_GetAccountInfoRequest, completion: @escaping (Io_Xpring_AccountInfo?, CallResult) -> Void) throws -> Io_Xpring_XRPLedgerAPIGetAccountInfoCall {
-    return try self.getAccountInfo(request, metadata: self.metadata, completion: completion)
-  }
-
-  /// Synchronous. Unary.
-  func getFee(_ request: Io_Xpring_GetFeeRequest) throws -> Io_Xpring_Fee {
-    return try self.getFee(request, metadata: self.metadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  func getFee(_ request: Io_Xpring_GetFeeRequest, completion: @escaping (Io_Xpring_Fee?, CallResult) -> Void) throws -> Io_Xpring_XRPLedgerAPIGetFeeCall {
-    return try self.getFee(request, metadata: self.metadata, completion: completion)
-  }
-
-  /// Synchronous. Unary.
-  func submitSignedTransaction(_ request: Io_Xpring_SubmitSignedTransactionRequest) throws -> Io_Xpring_SubmitSignedTransactionResponse {
-    return try self.submitSignedTransaction(request, metadata: self.metadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  func submitSignedTransaction(_ request: Io_Xpring_SubmitSignedTransactionRequest, completion: @escaping (Io_Xpring_SubmitSignedTransactionResponse?, CallResult) -> Void) throws -> Io_Xpring_XRPLedgerAPISubmitSignedTransactionCall {
-    return try self.submitSignedTransaction(request, metadata: self.metadata, completion: completion)
-  }
-
-  /// Synchronous. Unary.
-  func getTransactionStatus(_ request: Io_Xpring_GetTransactionStatusRequest) throws -> Io_Xpring_TransactionStatus {
-    return try self.getTransactionStatus(request, metadata: self.metadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  func getTransactionStatus(_ request: Io_Xpring_GetTransactionStatusRequest, completion: @escaping (Io_Xpring_TransactionStatus?, CallResult) -> Void) throws -> Io_Xpring_XRPLedgerAPIGetTransactionStatusCall {
-    return try self.getTransactionStatus(request, metadata: self.metadata, completion: completion)
-  }
-
-  /// Synchronous. Unary.
-  func getLatestValidatedLedgerSequence(_ request: Io_Xpring_GetLatestValidatedLedgerSequenceRequest) throws -> Io_Xpring_LedgerSequence {
-    return try self.getLatestValidatedLedgerSequence(request, metadata: self.metadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  func getLatestValidatedLedgerSequence(_ request: Io_Xpring_GetLatestValidatedLedgerSequenceRequest, completion: @escaping (Io_Xpring_LedgerSequence?, CallResult) -> Void) throws -> Io_Xpring_XRPLedgerAPIGetLatestValidatedLedgerSequenceCall {
-    return try self.getLatestValidatedLedgerSequence(request, metadata: self.metadata, completion: completion)
-  }
-
+    /// Synchronous. Unary.
+    func getAccountInfo(_ request: Io_Xpring_GetAccountInfoRequest) throws -> Io_Xpring_AccountInfo {
+        return try self.getAccountInfo(request, metadata: self.metadata)
+    }
+    /// Asynchronous. Unary.
+    @discardableResult
+    func getAccountInfo(_ request: Io_Xpring_GetAccountInfoRequest, completion: @escaping (Io_Xpring_AccountInfo?, CallResult) -> Void) throws -> Io_Xpring_XRPLedgerAPIGetAccountInfoCall {
+        return try self.getAccountInfo(request, metadata: self.metadata, completion: completion)
+    }
+    
+    /// Synchronous. Unary.
+    func getFee(_ request: Io_Xpring_GetFeeRequest) throws -> Io_Xpring_Fee {
+        return try self.getFee(request, metadata: self.metadata)
+    }
+    /// Asynchronous. Unary.
+    @discardableResult
+    func getFee(_ request: Io_Xpring_GetFeeRequest, completion: @escaping (Io_Xpring_Fee?, CallResult) -> Void) throws -> Io_Xpring_XRPLedgerAPIGetFeeCall {
+        return try self.getFee(request, metadata: self.metadata, completion: completion)
+    }
+    
+    /// Synchronous. Unary.
+    func submitSignedTransaction(_ request: Io_Xpring_SubmitSignedTransactionRequest) throws -> Io_Xpring_SubmitSignedTransactionResponse {
+        return try self.submitSignedTransaction(request, metadata: self.metadata)
+    }
+    /// Asynchronous. Unary.
+    @discardableResult
+    func submitSignedTransaction(_ request: Io_Xpring_SubmitSignedTransactionRequest, completion: @escaping (Io_Xpring_SubmitSignedTransactionResponse?, CallResult) -> Void) throws -> Io_Xpring_XRPLedgerAPISubmitSignedTransactionCall {
+        return try self.submitSignedTransaction(request, metadata: self.metadata, completion: completion)
+    }
+    
+//    /// Synchronous. Unary.
+//    func getTransactionData(_ request: Io_Xpring_GetTransactionDataRequest) throws -> Io_Xpring_TransactionData {
+//        return try self.getTransactionData(request, metadata: self.metadata)
+//    }
+//    /// Asynchronous. Unary.
+//    @discardableResult
+//    func getTransactionData(_ request: Io_Xpring_GetTransactionDataRequest, completion: @escaping (Io_Xpring_TransactionStatus?, CallResult) -> Void) throws -> Io_Xpring_XRPLedgerAPIGetTransactionDataCall {
+//        return try self.getTransactionData(request, metadata: self.metadata, completion: completion)
+//    }
+    
+    /// Synchronous. Unary.
+    func getTransactionStatus(_ request: Io_Xpring_GetTransactionStatusRequest) throws -> Io_Xpring_TransactionStatus {
+        return try self.getTransactionStatus(request, metadata: self.metadata)
+    }
+    /// Asynchronous. Unary.
+    @discardableResult
+    func getTransactionStatus(_ request: Io_Xpring_GetTransactionStatusRequest, completion: @escaping (Io_Xpring_TransactionStatus?, CallResult) -> Void) throws -> Io_Xpring_XRPLedgerAPIGetTransactionStatusCall {
+        return try self.getTransactionStatus(request, metadata: self.metadata, completion: completion)
+    }
+    
+    /// Synchronous. Unary.
+    func getLatestValidatedLedgerSequence(_ request: Io_Xpring_GetLatestValidatedLedgerSequenceRequest) throws -> Io_Xpring_LedgerSequence {
+        return try self.getLatestValidatedLedgerSequence(request, metadata: self.metadata)
+    }
+    /// Asynchronous. Unary.
+    @discardableResult
+    func getLatestValidatedLedgerSequence(_ request: Io_Xpring_GetLatestValidatedLedgerSequenceRequest, completion: @escaping (Io_Xpring_LedgerSequence?, CallResult) -> Void) throws -> Io_Xpring_XRPLedgerAPIGetLatestValidatedLedgerSequenceCall {
+        return try self.getLatestValidatedLedgerSequence(request, metadata: self.metadata, completion: completion)
+    }
+    
 }
 
 internal final class Io_Xpring_XRPLedgerAPIServiceClient: ServiceClientBase, Io_Xpring_XRPLedgerAPIService {
-  /// Synchronous. Unary.
-  internal func getAccountInfo(_ request: Io_Xpring_GetAccountInfoRequest, metadata customMetadata: Metadata) throws -> Io_Xpring_AccountInfo {
-    return try Io_Xpring_XRPLedgerAPIGetAccountInfoCallBase(channel)
-      .run(request: request, metadata: customMetadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  internal func getAccountInfo(_ request: Io_Xpring_GetAccountInfoRequest, metadata customMetadata: Metadata, completion: @escaping (Io_Xpring_AccountInfo?, CallResult) -> Void) throws -> Io_Xpring_XRPLedgerAPIGetAccountInfoCall {
-    return try Io_Xpring_XRPLedgerAPIGetAccountInfoCallBase(channel)
-      .start(request: request, metadata: customMetadata, completion: completion)
-  }
-
-  /// Synchronous. Unary.
-  internal func getFee(_ request: Io_Xpring_GetFeeRequest, metadata customMetadata: Metadata) throws -> Io_Xpring_Fee {
-    return try Io_Xpring_XRPLedgerAPIGetFeeCallBase(channel)
-      .run(request: request, metadata: customMetadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  internal func getFee(_ request: Io_Xpring_GetFeeRequest, metadata customMetadata: Metadata, completion: @escaping (Io_Xpring_Fee?, CallResult) -> Void) throws -> Io_Xpring_XRPLedgerAPIGetFeeCall {
-    return try Io_Xpring_XRPLedgerAPIGetFeeCallBase(channel)
-      .start(request: request, metadata: customMetadata, completion: completion)
-  }
-
-  /// Synchronous. Unary.
-  internal func submitSignedTransaction(_ request: Io_Xpring_SubmitSignedTransactionRequest, metadata customMetadata: Metadata) throws -> Io_Xpring_SubmitSignedTransactionResponse {
-    return try Io_Xpring_XRPLedgerAPISubmitSignedTransactionCallBase(channel)
-      .run(request: request, metadata: customMetadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  internal func submitSignedTransaction(_ request: Io_Xpring_SubmitSignedTransactionRequest, metadata customMetadata: Metadata, completion: @escaping (Io_Xpring_SubmitSignedTransactionResponse?, CallResult) -> Void) throws -> Io_Xpring_XRPLedgerAPISubmitSignedTransactionCall {
-    return try Io_Xpring_XRPLedgerAPISubmitSignedTransactionCallBase(channel)
-      .start(request: request, metadata: customMetadata, completion: completion)
-  }
-
-  /// Synchronous. Unary.
-  internal func getTransactionStatus(_ request: Io_Xpring_GetTransactionStatusRequest, metadata customMetadata: Metadata) throws -> Io_Xpring_TransactionStatus {
-    return try Io_Xpring_XRPLedgerAPIGetTransactionStatusCallBase(channel)
-      .run(request: request, metadata: customMetadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  internal func getTransactionStatus(_ request: Io_Xpring_GetTransactionStatusRequest, metadata customMetadata: Metadata, completion: @escaping (Io_Xpring_TransactionStatus?, CallResult) -> Void) throws -> Io_Xpring_XRPLedgerAPIGetTransactionStatusCall {
-    return try Io_Xpring_XRPLedgerAPIGetTransactionStatusCallBase(channel)
-      .start(request: request, metadata: customMetadata, completion: completion)
-  }
-
-  /// Synchronous. Unary.
-  internal func getLatestValidatedLedgerSequence(_ request: Io_Xpring_GetLatestValidatedLedgerSequenceRequest, metadata customMetadata: Metadata) throws -> Io_Xpring_LedgerSequence {
-    return try Io_Xpring_XRPLedgerAPIGetLatestValidatedLedgerSequenceCallBase(channel)
-      .run(request: request, metadata: customMetadata)
-  }
-  /// Asynchronous. Unary.
-  @discardableResult
-  internal func getLatestValidatedLedgerSequence(_ request: Io_Xpring_GetLatestValidatedLedgerSequenceRequest, metadata customMetadata: Metadata, completion: @escaping (Io_Xpring_LedgerSequence?, CallResult) -> Void) throws -> Io_Xpring_XRPLedgerAPIGetLatestValidatedLedgerSequenceCall {
-    return try Io_Xpring_XRPLedgerAPIGetLatestValidatedLedgerSequenceCallBase(channel)
-      .start(request: request, metadata: customMetadata, completion: completion)
-  }
-
+    /// Synchronous. Unary.
+    internal func getAccountInfo(_ request: Io_Xpring_GetAccountInfoRequest, metadata customMetadata: Metadata) throws -> Io_Xpring_AccountInfo {
+        return try Io_Xpring_XRPLedgerAPIGetAccountInfoCallBase(channel)
+            .run(request: request, metadata: customMetadata)
+    }
+    /// Asynchronous. Unary.
+    @discardableResult
+    internal func getAccountInfo(_ request: Io_Xpring_GetAccountInfoRequest, metadata customMetadata: Metadata, completion: @escaping (Io_Xpring_AccountInfo?, CallResult) -> Void) throws -> Io_Xpring_XRPLedgerAPIGetAccountInfoCall {
+        return try Io_Xpring_XRPLedgerAPIGetAccountInfoCallBase(channel)
+            .start(request: request, metadata: customMetadata, completion: completion)
+    }
+    
+    /// Synchronous. Unary.
+    internal func getFee(_ request: Io_Xpring_GetFeeRequest, metadata customMetadata: Metadata) throws -> Io_Xpring_Fee {
+        return try Io_Xpring_XRPLedgerAPIGetFeeCallBase(channel)
+            .run(request: request, metadata: customMetadata)
+    }
+    /// Asynchronous. Unary.
+    @discardableResult
+    internal func getFee(_ request: Io_Xpring_GetFeeRequest, metadata customMetadata: Metadata, completion: @escaping (Io_Xpring_Fee?, CallResult) -> Void) throws -> Io_Xpring_XRPLedgerAPIGetFeeCall {
+        return try Io_Xpring_XRPLedgerAPIGetFeeCallBase(channel)
+            .start(request: request, metadata: customMetadata, completion: completion)
+    }
+    
+    /// Synchronous. Unary.
+    internal func submitSignedTransaction(_ request: Io_Xpring_SubmitSignedTransactionRequest, metadata customMetadata: Metadata) throws -> Io_Xpring_SubmitSignedTransactionResponse {
+        return try Io_Xpring_XRPLedgerAPISubmitSignedTransactionCallBase(channel)
+            .run(request: request, metadata: customMetadata)
+    }
+    /// Asynchronous. Unary.
+    @discardableResult
+    internal func submitSignedTransaction(_ request: Io_Xpring_SubmitSignedTransactionRequest, metadata customMetadata: Metadata, completion: @escaping (Io_Xpring_SubmitSignedTransactionResponse?, CallResult) -> Void) throws -> Io_Xpring_XRPLedgerAPISubmitSignedTransactionCall {
+        return try Io_Xpring_XRPLedgerAPISubmitSignedTransactionCallBase(channel)
+            .start(request: request, metadata: customMetadata, completion: completion)
+    }
+    
+//    /// Synchronous. Unary.
+//    internal func getTransactionData(_ request: Io_Xpring_GetTransactionDataRequest, metadata customMetadata: Metadata) throws -> Io_Xpring_TransactionData {
+//        return try Io_Xpring_XRPLedgerAPIGetTransactionDataCallBase(channel)
+//            .run(request: request, metadata: customMetadata)
+//    }
+//    /// Asynchronous. Unary.
+//    @discardableResult
+//    internal func getTransactionData(_ request: Io_Xpring_GetTransactionDataRequest, metadata customMetadata: Metadata, completion: @escaping (Io_Xpring_TransactionData?, CallResult) -> Void) throws -> Io_Xpring_XRPLedgerAPIGetTransactionDataCall {
+//        return try Io_Xpring_XRPLedgerAPIGetTransactionDataCallBase(channel)
+//            .start(request: request, metadata: customMetadata, completion: completion)
+//    }
+    
+    /// Synchronous. Unary.
+    internal func getTransactionStatus(_ request: Io_Xpring_GetTransactionStatusRequest, metadata customMetadata: Metadata) throws -> Io_Xpring_TransactionStatus {
+        return try Io_Xpring_XRPLedgerAPIGetTransactionStatusCallBase(channel)
+            .run(request: request, metadata: customMetadata)
+    }
+    /// Asynchronous. Unary.
+    @discardableResult
+    internal func getTransactionStatus(_ request: Io_Xpring_GetTransactionStatusRequest, metadata customMetadata: Metadata, completion: @escaping (Io_Xpring_TransactionStatus?, CallResult) -> Void) throws -> Io_Xpring_XRPLedgerAPIGetTransactionStatusCall {
+        return try Io_Xpring_XRPLedgerAPIGetTransactionStatusCallBase(channel)
+            .start(request: request, metadata: customMetadata, completion: completion)
+    }
+    
+    /// Synchronous. Unary.
+    internal func getLatestValidatedLedgerSequence(_ request: Io_Xpring_GetLatestValidatedLedgerSequenceRequest, metadata customMetadata: Metadata) throws -> Io_Xpring_LedgerSequence {
+        return try Io_Xpring_XRPLedgerAPIGetLatestValidatedLedgerSequenceCallBase(channel)
+            .run(request: request, metadata: customMetadata)
+    }
+    /// Asynchronous. Unary.
+    @discardableResult
+    internal func getLatestValidatedLedgerSequence(_ request: Io_Xpring_GetLatestValidatedLedgerSequenceRequest, metadata customMetadata: Metadata, completion: @escaping (Io_Xpring_LedgerSequence?, CallResult) -> Void) throws -> Io_Xpring_XRPLedgerAPIGetLatestValidatedLedgerSequenceCall {
+        return try Io_Xpring_XRPLedgerAPIGetLatestValidatedLedgerSequenceCallBase(channel)
+            .start(request: request, metadata: customMetadata, completion: completion)
+    }
+    
 }
 
 /// To build a server, implement a class that conforms to this protocol.
 /// If one of the methods returning `ServerStatus?` returns nil,
 /// it is expected that you have already returned a status to the client by means of `session.close`.
 internal protocol Io_Xpring_XRPLedgerAPIProvider: ServiceProvider {
-  func getAccountInfo(request: Io_Xpring_GetAccountInfoRequest, session: Io_Xpring_XRPLedgerAPIGetAccountInfoSession) throws -> Io_Xpring_AccountInfo
-  func getFee(request: Io_Xpring_GetFeeRequest, session: Io_Xpring_XRPLedgerAPIGetFeeSession) throws -> Io_Xpring_Fee
-  func submitSignedTransaction(request: Io_Xpring_SubmitSignedTransactionRequest, session: Io_Xpring_XRPLedgerAPISubmitSignedTransactionSession) throws -> Io_Xpring_SubmitSignedTransactionResponse
-  func getTransactionStatus(request: Io_Xpring_GetTransactionStatusRequest, session: Io_Xpring_XRPLedgerAPIGetTransactionStatusSession) throws -> Io_Xpring_TransactionStatus
-  func getLatestValidatedLedgerSequence(request: Io_Xpring_GetLatestValidatedLedgerSequenceRequest, session: Io_Xpring_XRPLedgerAPIGetLatestValidatedLedgerSequenceSession) throws -> Io_Xpring_LedgerSequence
+    func getAccountInfo(request: Io_Xpring_GetAccountInfoRequest, session: Io_Xpring_XRPLedgerAPIGetAccountInfoSession) throws -> Io_Xpring_AccountInfo
+    func getFee(request: Io_Xpring_GetFeeRequest, session: Io_Xpring_XRPLedgerAPIGetFeeSession) throws -> Io_Xpring_Fee
+    func submitSignedTransaction(request: Io_Xpring_SubmitSignedTransactionRequest, session: Io_Xpring_XRPLedgerAPISubmitSignedTransactionSession) throws -> Io_Xpring_SubmitSignedTransactionResponse
+//    func getTransactionData(request: Io_Xpring_GetTransactionDataRequest, session: Io_Xpring_XRPLedgerAPIGetTransactionDataSession) throws -> Io_Xpring_TransactionData
+    func getTransactionStatus(request: Io_Xpring_GetTransactionStatusRequest, session: Io_Xpring_XRPLedgerAPIGetTransactionStatusSession) throws -> Io_Xpring_TransactionStatus
+    func getLatestValidatedLedgerSequence(request: Io_Xpring_GetLatestValidatedLedgerSequenceRequest, session: Io_Xpring_XRPLedgerAPIGetLatestValidatedLedgerSequenceSession) throws -> Io_Xpring_LedgerSequence
 }
 
 extension Io_Xpring_XRPLedgerAPIProvider {
-  internal var serviceName: String { return "io.xpring.XRPLedgerAPI" }
-
-  /// Determines and calls the appropriate request handler, depending on the request's method.
-  /// Throws `HandleMethodError.unknownMethod` for methods not handled by this service.
-  internal func handleMethod(_ method: String, handler: Handler) throws -> ServerStatus? {
-    switch method {
-    case "/io.xpring.XRPLedgerAPI/GetAccountInfo":
-      return try Io_Xpring_XRPLedgerAPIGetAccountInfoSessionBase(
-        handler: handler,
-        providerBlock: { try self.getAccountInfo(request: $0, session: $1 as! Io_Xpring_XRPLedgerAPIGetAccountInfoSessionBase) })
-          .run()
-    case "/io.xpring.XRPLedgerAPI/GetFee":
-      return try Io_Xpring_XRPLedgerAPIGetFeeSessionBase(
-        handler: handler,
-        providerBlock: { try self.getFee(request: $0, session: $1 as! Io_Xpring_XRPLedgerAPIGetFeeSessionBase) })
-          .run()
-    case "/io.xpring.XRPLedgerAPI/SubmitSignedTransaction":
-      return try Io_Xpring_XRPLedgerAPISubmitSignedTransactionSessionBase(
-        handler: handler,
-        providerBlock: { try self.submitSignedTransaction(request: $0, session: $1 as! Io_Xpring_XRPLedgerAPISubmitSignedTransactionSessionBase) })
-          .run()
-    case "/io.xpring.XRPLedgerAPI/GetTransactionStatus":
-      return try Io_Xpring_XRPLedgerAPIGetTransactionStatusSessionBase(
-        handler: handler,
-        providerBlock: { try self.getTransactionStatus(request: $0, session: $1 as! Io_Xpring_XRPLedgerAPIGetTransactionStatusSessionBase) })
-          .run()
-    case "/io.xpring.XRPLedgerAPI/GetLatestValidatedLedgerSequence":
-      return try Io_Xpring_XRPLedgerAPIGetLatestValidatedLedgerSequenceSessionBase(
-        handler: handler,
-        providerBlock: { try self.getLatestValidatedLedgerSequence(request: $0, session: $1 as! Io_Xpring_XRPLedgerAPIGetLatestValidatedLedgerSequenceSessionBase) })
-          .run()
-    default:
-      throw HandleMethodError.unknownMethod
+    internal var serviceName: String { return "io.xpring.XRPLedgerAPI" }
+    
+    /// Determines and calls the appropriate request handler, depending on the request's method.
+    /// Throws `HandleMethodError.unknownMethod` for methods not handled by this service.
+    internal func handleMethod(_ method: String, handler: Handler) throws -> ServerStatus? {
+        switch method {
+        case "/io.xpring.XRPLedgerAPI/GetAccountInfo":
+            return try Io_Xpring_XRPLedgerAPIGetAccountInfoSessionBase(
+                handler: handler,
+                providerBlock: { try self.getAccountInfo(request: $0, session: $1 as! Io_Xpring_XRPLedgerAPIGetAccountInfoSessionBase) })
+                .run()
+        case "/io.xpring.XRPLedgerAPI/GetFee":
+            return try Io_Xpring_XRPLedgerAPIGetFeeSessionBase(
+                handler: handler,
+                providerBlock: { try self.getFee(request: $0, session: $1 as! Io_Xpring_XRPLedgerAPIGetFeeSessionBase) })
+                .run()
+        case "/io.xpring.XRPLedgerAPI/SubmitSignedTransaction":
+            return try Io_Xpring_XRPLedgerAPISubmitSignedTransactionSessionBase(
+                handler: handler,
+                providerBlock: { try self.submitSignedTransaction(request: $0, session: $1 as! Io_Xpring_XRPLedgerAPISubmitSignedTransactionSessionBase) })
+                .run()
+//        case "/io.xpring.XRPLedgerAPI/GetTransactionData":
+//            return try Io_Xpring_XRPLedgerAPIGetTransactionDataSessionBase(
+//                handler: handler,
+//                providerBlock: { try self.getTransactionData(request: $0, session: $1 as! Io_Xpring_XRPLedgerAPIGetTransactionDataSessionBase) })
+//                .run()
+        case "/io.xpring.XRPLedgerAPI/GetTransactionStatus":
+            return try Io_Xpring_XRPLedgerAPIGetTransactionStatusSessionBase(
+                handler: handler,
+                providerBlock: { try self.getTransactionStatus(request: $0, session: $1 as! Io_Xpring_XRPLedgerAPIGetTransactionStatusSessionBase) })
+                .run()
+        case "/io.xpring.XRPLedgerAPI/GetLatestValidatedLedgerSequence":
+            return try Io_Xpring_XRPLedgerAPIGetLatestValidatedLedgerSequenceSessionBase(
+                handler: handler,
+                providerBlock: { try self.getLatestValidatedLedgerSequence(request: $0, session: $1 as! Io_Xpring_XRPLedgerAPIGetLatestValidatedLedgerSequenceSessionBase) })
+                .run()
+        default:
+            throw HandleMethodError.unknownMethod
+        }
     }
-  }
 }
 
+// Get Account Info
 internal protocol Io_Xpring_XRPLedgerAPIGetAccountInfoSession: ServerSessionUnary {}
 
 fileprivate final class Io_Xpring_XRPLedgerAPIGetAccountInfoSessionBase: ServerSessionUnaryBase<Io_Xpring_GetAccountInfoRequest, Io_Xpring_AccountInfo>, Io_Xpring_XRPLedgerAPIGetAccountInfoSession {}
 
+// Get Fee
 internal protocol Io_Xpring_XRPLedgerAPIGetFeeSession: ServerSessionUnary {}
 
 fileprivate final class Io_Xpring_XRPLedgerAPIGetFeeSessionBase: ServerSessionUnaryBase<Io_Xpring_GetFeeRequest, Io_Xpring_Fee>, Io_Xpring_XRPLedgerAPIGetFeeSession {}
 
+// Submit Signed Transaction
 internal protocol Io_Xpring_XRPLedgerAPISubmitSignedTransactionSession: ServerSessionUnary {}
 
 fileprivate final class Io_Xpring_XRPLedgerAPISubmitSignedTransactionSessionBase: ServerSessionUnaryBase<Io_Xpring_SubmitSignedTransactionRequest, Io_Xpring_SubmitSignedTransactionResponse>, Io_Xpring_XRPLedgerAPISubmitSignedTransactionSession {}
 
+//// Get Transaction Data
+//internal protocol Io_Xpring_XRPLedgerAPIGetTransactionDataSession: ServerSessionUnary {}
+//
+//fileprivate final class Io_Xpring_XRPLedgerAPIGetTransactionDataSessionBase: ServerSessionUnaryBase<Io_Xpring_GetTransactionDataRequest, Io_Xpring_TransactionData>, Io_Xpring_XRPLedgerAPIGetTransactionDataSession {}
+
+// Get Transaction Status
 internal protocol Io_Xpring_XRPLedgerAPIGetTransactionStatusSession: ServerSessionUnary {}
 
 fileprivate final class Io_Xpring_XRPLedgerAPIGetTransactionStatusSessionBase: ServerSessionUnaryBase<Io_Xpring_GetTransactionStatusRequest, Io_Xpring_TransactionStatus>, Io_Xpring_XRPLedgerAPIGetTransactionStatusSession {}
 
+// Get Latest Validated Ledger
 internal protocol Io_Xpring_XRPLedgerAPIGetLatestValidatedLedgerSequenceSession: ServerSessionUnary {}
 
 fileprivate final class Io_Xpring_XRPLedgerAPIGetLatestValidatedLedgerSequenceSessionBase: ServerSessionUnaryBase<Io_Xpring_GetLatestValidatedLedgerSequenceRequest, Io_Xpring_LedgerSequence>, Io_Xpring_XRPLedgerAPIGetLatestValidatedLedgerSequenceSession {}

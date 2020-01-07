@@ -61,6 +61,20 @@ extension DefaultXpringClient: XpringClientDecorator {
         return BigUInt(stringLiteral: accountInfo.balance.drops)
     }
 
+//    /// Retrieve the transaction data for a given transaction hash.
+//    ///
+//    /// - Parameter transactionHash: The hash of the transaction.
+//    /// - Throws: An error if there was a problem communicating with the XRP Ledger.
+//    /// - Returns: The data of the given transaction.
+//    public func getTransactionData(for transactionHash: TransactionHash) throws -> TransactionData {
+//        // TODO: Guard Something...
+////        guard Utils.isValidXAddress(address: destinationAddress) else {
+////            throw XRPLedgerError.invalidInputs("Please use the X-Address format. See: https://xrpaddress.info/.")
+////        }
+//        let transactionData = try getRawTransactionData(for: transactionHash)
+//        return transactionData
+//    }
+
     /// Retrieve the transaction status for a given transaction hash.
     ///
     /// - Parameter transactionHash: The hash of the transaction.
@@ -83,8 +97,8 @@ extension DefaultXpringClient: XpringClientDecorator {
     ///		- destinationAddress: The X-Address which will receive the XRP.
     ///		- sourceWallet: The wallet sending the XRP.
     /// - Throws: An error if there was a problem communicating with the XRP Ledger or the inputs were invalid.
-    /// - Returns: A transaction hash for the submitted transaction.
-    public func send(_ amount: BigUInt, to destinationAddress: Address, from sourceWallet: Wallet, invoiceID: String) throws -> TransactionHash {
+    /// - Returns: A signed transaction for submission on the XRP Ledger.
+    public func sign(_ amount: BigUInt, to destinationAddress: Address, from sourceWallet: Wallet) throws -> Io_Xpring_SignedTransaction {
         guard Utils.isValidXAddress(address: destinationAddress) else {
             throw XRPLedgerError.invalidInputs("Please use the X-Address format. See: https://xrpaddress.info/.")
         }
@@ -107,12 +121,24 @@ extension DefaultXpringClient: XpringClientDecorator {
             }
             $0.signingPublicKeyHex = sourceWallet.publicKey
             $0.lastLedgerSequence = lastValidatedLedgerSequence + ledgerSequenceMargin
-            $0.invoiceID = invoiceID
         }
 
         guard let signedTransaction = Signer.sign(transaction, with: sourceWallet) else {
             throw XRPLedgerError.signingError
         }
+
+        return signedTransaction
+    }
+
+    /// SSend XRP to a recipient on the XRP Ledger.
+    ///
+    /// - Parameters:
+    ///        - amount: An unsigned integer representing the amount of XRP to send.
+    ///        - destinationAddress: The X-Address which will receive the XRP.
+    ///        - sourceWallet: The wallet sending the XRP.
+    /// - Throws: An error if there was a problem communicating with the XRP Ledger or the inputs were invalid.
+    /// - Returns: A transaction hash for the submitted transaction.
+    public func send(_ signedTransaction: Io_Xpring_SignedTransaction) throws -> TransactionHash {
 
         let submitSignedTransactionRequest = Io_Xpring_SubmitSignedTransactionRequest.with {
             $0.signedTransaction = signedTransaction
@@ -120,8 +146,14 @@ extension DefaultXpringClient: XpringClientDecorator {
 
         let submitTransactionResponse = try networkClient.submitSignedTransaction(submitSignedTransactionRequest)
         guard let hash = Utils.toTransactionHash(transactionBlobHex: submitTransactionResponse.transactionBlob) else {
-            throw XRPLedgerError.unknown("Could not hash transaction blob: \(submitTransactionResponse.transactionBlob)")
+            throw XRPLedgerError.unknown(
+                "Could not hash transaction blob: \(submitTransactionResponse.transactionBlob)"
+            )
         }
+        
+        var newTransaction = signedTransaction.transaction
+//        newTransaction.hash = hash
+
         return hash
     }
 
@@ -134,6 +166,16 @@ extension DefaultXpringClient: XpringClientDecorator {
         let ledgerSequence = try networkClient.getLatestValidatedLedgerSequence(getLatestValidatedLedgerSequenceRequest)
         return UInt32(ledgerSequence.index)
     }
+
+//    /// Retrieve the raw transaction status for the given transaction hash.
+//    ///
+//    /// - Parameter transactionHash: The hash of the transaction.
+//    /// - Throws: An error if there was a problem communicating with the XRP Ledger.
+//    /// - Returns: The status of the given transaction.
+//    public func getRawTransactionData(for transactionHash: TransactionHash) throws -> Io_Xpring_TransactionData {
+//        let transactionDataRequest = Io_Xpring_GetTransactionDataRequest.with { $0.transactionHash = transactionHash }
+//        return try networkClient.getTransactionData(transactionDataRequest)
+//    }
 
     /// Retrieve the raw transaction status for the given transaction hash.
     ///

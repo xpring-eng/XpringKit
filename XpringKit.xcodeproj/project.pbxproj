@@ -99,6 +99,7 @@
 		A2E205ED7FFFBF517ADC696B /* transaction_status.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = B547FCA69236588FE4BACDE9 /* transaction_status.pb.swift */; };
 		A6F54469EDE978937427DC52 /* DefaultXpringClientTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8141A7936A12BB62F71D89 /* DefaultXpringClientTest.swift */; };
 		A7B6C114F36033B99B1A07D6 /* submit_signed_transaction_request.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E59B88FC8EA85680CB46773 /* submit_signed_transaction_request.pb.swift */; };
+		A85F223C23C3B56D009A6EF1 /* XRPTransactionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85F223B23C3B56D009A6EF1 /* XRPTransactionData.swift */; };
 		A99F31FD9ECE4CA23695FC93 /* get_transaction_status_request.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = C90607EA7652B0A5C9E360F6 /* get_transaction_status_request.pb.swift */; };
 		AAD60573E91B3A0CC1EA8FC7 /* submit_signed_transaction_response.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FFBB6C39F5953828C74D239 /* submit_signed_transaction_response.pb.swift */; };
 		AD92D934BB53C1859A37C4CD /* JavaScriptSigner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92DF0085EF32E1A8F9FC3FFF /* JavaScriptSigner.swift */; };
@@ -223,6 +224,7 @@
 		95CE66647327A90B43EB0E94 /* JSValue+Io_Xpring_SignedTransaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JSValue+Io_Xpring_SignedTransaction.swift"; sourceTree = "<group>"; };
 		A3E837E32019F19EDE7F76CC /* BigInt.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BigInt.framework; sourceTree = "<group>"; };
 		A56D70978C361F6E73333A5E /* ledger_sequence.pb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ledger_sequence.pb.swift; sourceTree = "<group>"; };
+		A85F223B23C3B56D009A6EF1 /* XRPTransactionData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XRPTransactionData.swift; sourceTree = "<group>"; };
 		ACC165482A69C013773E743E /* RippledServiceClient+NetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RippledServiceClient+NetworkClient.swift"; sourceTree = "<group>"; };
 		ADD0BDE0881A1C6DDE6D939A /* WalletGenerationResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletGenerationResult.swift; sourceTree = "<group>"; };
 		AEFA016E351D30D824FF119A /* ReliableSubmissionXpringClientTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReliableSubmissionXpringClientTest.swift; sourceTree = "<group>"; };
@@ -352,6 +354,7 @@
 				BC9FE3C197FEAD7C98B45EAC /* Utils.swift */,
 				CFA89B2B4CE85050623E1F1A /* Wallet.swift */,
 				ADD0BDE0881A1C6DDE6D939A /* WalletGenerationResult.swift */,
+				A85F223B23C3B56D009A6EF1 /* XRPTransactionData.swift */,
 				F39CB9BAD86A33B832774635 /* XpringClient.swift */,
 				C99FAC0ED11211324DFCD4BD /* XpringClientDecorator.swift */,
 				367711CBA6DD24C5C890B35F /* XRPLedgerError.swift */,
@@ -703,6 +706,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A85F223C23C3B56D009A6EF1 /* XRPTransactionData.swift in Sources */,
 				7B9ADCFF14AF87E6751F8E46 /* Address+Test.swift in Sources */,
 				E390C1796DDC19E93B9F58E4 /* DefaultXpringClientTest.swift in Sources */,
 				B525EDC4B7BBAB3CF674891F /* FakeNetworkClient.swift in Sources */,
@@ -855,7 +859,12 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks $(PROJECT_DIR)/Carthage/Build/iOS";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_VERSION = 5.0;
@@ -1046,7 +1055,12 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks $(PROJECT_DIR)/Carthage/Build/iOS";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
