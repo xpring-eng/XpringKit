@@ -1,4 +1,5 @@
 import BigInt
+import Foundation
 
 /// A decorator for a XpringClient.
 public protocol XpringClientDecorator {
@@ -31,7 +32,7 @@ public protocol XpringClientDecorator {
     ///    - sourceWallet: The wallet sending the XRP.
     /// - Throws: An error if there was a problem communicating with the XRP Ledger or the inputs were invalid.
     /// - Returns: A signed transaction for submission on the XRP Ledger.
-    func sign(_ amount: BigUInt, to destinationAddress: Address, from sourceWallet: Wallet) throws -> Io_Xpring_SignedTransaction
+    func sign(_ amount: BigUInt, to destinationAddress: Address, from sourceWallet: Wallet, invoiceID: Data?, memos: [Io_Xpring_Memo]?, flags: UInt32?, sourceTag: UInt32?, accountTransactionID: Data?) throws -> Io_Xpring_SignedTransaction
 
     /// Send XRP to a recipient on the XRP Ledger.
     ///

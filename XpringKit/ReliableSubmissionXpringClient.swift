@@ -35,19 +35,19 @@ extension ReliableSubmissionXpringClient: XpringClientDecorator {
         return try decoratedClient.getRawTransactionStatus(for: transactionHash)
     }
 
-    public func sign(_ amount: BigUInt, to destinationAddress: Address, from sourceWallet: Wallet) throws -> Io_Xpring_SignedTransaction {
+    public func sign(_ amount: BigUInt, to destinationAddress: Address, from sourceWallet: Wallet, invoiceID: Data?, memos: [Io_Xpring_Memo]?, flags: UInt32?, sourceTag: UInt32?, accountTransactionID: Data?) throws -> Io_Xpring_SignedTransaction {
         // Sign a transaction for submission on the ledger.
-        let signedTransactionData = try decoratedClient.sign(amount, to: destinationAddress, from: sourceWallet)
+        let signedTransactionData = try decoratedClient.sign(amount, to: destinationAddress, from: sourceWallet, invoiceID: invoiceID, memos: memos, flags: flags, sourceTag: sourceTag, accountTransactionID: accountTransactionID)
         return signedTransactionData
     }
 
-    public func send(_ amount: BigUInt, to destinationAddress: Address, from sourceWallet: Wallet) throws -> TransactionHash {
+    public func send(_ signedTransaction: Io_Xpring_SignedTransaction) throws -> TransactionHash {
         let ledgerCloseTime: TimeInterval = 4
-        
+
         // Submit a transaction hash and wait for a ledger to close.
-        let transactionHash = try decoratedClient.send(amount, to: destinationAddress, from: sourceWallet)
+        let transactionHash = try decoratedClient.send(signedTransaction)
         Thread.sleep(forTimeInterval: ledgerCloseTime)
-        
+
         // Get transaction status.
         var transactionStatus = try getRawTransactionStatus(for: transactionHash)
         let lastLedgerSequence = transactionStatus.lastLedgerSequence
@@ -56,14 +56,14 @@ extension ReliableSubmissionXpringClient: XpringClientDecorator {
                 "The transaction did not have a lastLedgerSequence field so transaction status cannot be reliably determined."
             )
         }
-        
+
         // Retrieve the latest ledger index.
         var latestLedgerSequence = try getLatestValidatedLedgerSequence()
-        
+
         // Poll until the transaction is validated, or until the lastLedgerSequence has been passed.
         while latestLedgerSequence <= lastLedgerSequence && !transactionStatus.validated {
             Thread.sleep(forTimeInterval: ledgerCloseTime)
-            
+
             latestLedgerSequence = try getLatestValidatedLedgerSequence()
             print("got latest: \(latestLedgerSequence)")
             transactionStatus = try getRawTransactionStatus(for: transactionHash)

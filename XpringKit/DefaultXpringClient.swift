@@ -1,4 +1,5 @@
 import BigInt
+import Foundation
 
 /// An interface into the Xpring Platform.
 public class DefaultXpringClient {
@@ -58,7 +59,7 @@ extension DefaultXpringClient: XpringClientDecorator {
         }
 
         let accountInfo = try getAccountInfo(for: address)
-        return BigUInt(stringLiteral: accountInfo.balance.drops)
+        return BigUInt(accountInfo.balance.drops)
     }
 
 //    /// Retrieve the transaction data for a given transaction hash.
@@ -98,7 +99,7 @@ extension DefaultXpringClient: XpringClientDecorator {
     ///		- sourceWallet: The wallet sending the XRP.
     /// - Throws: An error if there was a problem communicating with the XRP Ledger or the inputs were invalid.
     /// - Returns: A signed transaction for submission on the XRP Ledger.
-    public func sign(_ amount: BigUInt, to destinationAddress: Address, from sourceWallet: Wallet) throws -> Io_Xpring_SignedTransaction {
+    public func sign(_ amount: BigUInt, to destinationAddress: Address, from sourceWallet: Wallet, invoiceID: Data?, memos: [Io_Xpring_Memo]?, flags: UInt32?, sourceTag: UInt32?, accountTransactionID: Data?) throws -> Io_Xpring_SignedTransaction {
         guard Utils.isValidXAddress(address: destinationAddress) else {
             throw XRPLedgerError.invalidInputs("Please use the X-Address format. See: https://xrpaddress.info/.")
         }
@@ -107,19 +108,47 @@ extension DefaultXpringClient: XpringClientDecorator {
         let fee = try getFee()
         let lastValidatedLedgerSequence = try getLatestValidatedLedgerSequence()
 
-        let xrpAmount = Io_Xpring_XRPAmount.with {
-            $0.drops = String(amount)
+        let dropsAount = Io_Xpring_XRPDropsAmount.with {
+            $0.drops = UInt64(amount)
+        }
+
+        let xrpAmount = Io_Xpring_CurrencyAmount.with {
+            $0.xrpAmount = dropsAount
+        }
+
+        let _sender = Io_Xpring_AccountAddress.with {
+            $0.address = sourceWallet.address
+        }
+
+        let _destination = Io_Xpring_AccountAddress.with {
+            $0.address = destinationAddress
         }
 
         let transaction = Io_Xpring_Transaction.with {
-            $0.account = sourceWallet.address
+            $0.account = _sender
             $0.fee = fee.amount
-            $0.sequence = accountInfo.sequence
+            $0.sequence = UInt32(accountInfo.sequence)
             $0.payment = Io_Xpring_Payment.with {
-                $0.destination = destinationAddress
-                $0.xrpAmount = xrpAmount
+                if let _invoiceID = invoiceID {
+                    $0.invoiceID = _invoiceID
+                }
+                $0.destination = _destination
+                $0.amount = xrpAmount
             }
-            $0.signingPublicKeyHex = sourceWallet.publicKey
+            if let _memos = memos {
+                $0.memos = _memos
+            }
+            if let _flags = flags {
+                $0.flags = _flags
+            }
+            if let _sourceTag = sourceTag {
+                $0.sourceTag = _sourceTag
+            }
+            if let _accountTransactionID = accountTransactionID {
+                $0.accountTransactionID = _accountTransactionID
+            }
+            // Format For Hex
+//            $0.signingPublicKey = sourceWallet.publicKey
             $0.lastLedgerSequence = lastValidatedLedgerSequence + ledgerSequenceMargin
         }
 
@@ -150,7 +179,7 @@ extension DefaultXpringClient: XpringClientDecorator {
                 "Could not hash transaction blob: \(submitTransactionResponse.transactionBlob)"
             )
         }
-        
+
         var newTransaction = signedTransaction.transaction
 //        newTransaction.hash = hash
 

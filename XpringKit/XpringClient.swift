@@ -1,4 +1,5 @@
 import BigInt
+import Foundation
 
 /// An interface into the Xpring Platform.
 public class XpringClient {
@@ -47,8 +48,8 @@ public class XpringClient {
     ///    - sourceWallet: The wallet sending the XRP.
     /// - Throws: An error if there was a problem communicating with the XRP Ledger or the inputs were invalid.
     /// - Returns: A signed transaction for submission on the XRP Ledger.
-    public func sign(_ amount: BigUInt, to destinationAddress: Address, from sourceWallet: Wallet) throws -> Io_Xpring_SignedTransaction {
-        return try decoratedClient.sign(amount, to: destinationAddress, from: sourceWallet)
+    public func sign(_ amount: BigUInt, to destinationAddress: Address, from sourceWallet: Wallet, invoiceID: Data?, memos: [Io_Xpring_Memo]?, flags: UInt32?, sourceTag: UInt32?, accountTransactionID: Data?) throws -> Io_Xpring_SignedTransaction {
+        return try decoratedClient.sign(amount, to: destinationAddress, from: sourceWallet, invoiceID: invoiceID, memos: memos, flags: flags, sourceTag: sourceTag, accountTransactionID: accountTransactionID)
     }
 
     /// Send XRP to a recipient on the XRP Ledger.
@@ -61,6 +62,6 @@ public class XpringClient {
     /// - Throws: An error if there was a problem communicating with the XRP Ledger or the inputs were invalid.
     /// - Returns: A transaction hash for the submitted transaction.
     public func send(_ signedTransaction: Io_Xpring_SignedTransaction) throws -> TransactionHash {
-        return try decoratedClient.send(signedTransaction: signedTransaction)
+        return try decoratedClient.send(signedTransaction)
     }
 }

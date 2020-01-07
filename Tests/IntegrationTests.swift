@@ -38,7 +38,17 @@ final class IntegrationTests: XCTestCase {
 
   func testSendXRP() {
     do {
-      _ = try client.send(.drops, to: .recipientAddress, from: .testWallet)
+        let signedTransaction = try client.sign(
+            .drops,
+            to: .recipientAddress,
+            from: .testWallet,
+            invoiceID: nil,
+            memos: nil,
+            flags: nil,
+            sourceTag: nil,
+            accountTransactionID: nil
+        )
+      _ = try client.send(signedTransaction)
     } catch {
       XCTFail("Failed sending XRP with error: \(error)")
     }
