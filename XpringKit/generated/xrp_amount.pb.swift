@@ -19,15 +19,130 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
   typealias Version = _2
 }
 
-/// A representation of an amount of XRP.
-/// Next field: 2
-public struct Io_Xpring_XRPAmount {
+public struct Io_Xpring_CurrencyAmount {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
-  /// A numeric string representing the number of drops of XRP.
-  public var drops: String = String()
+  public var amount: OneOf_Amount? {
+    get {return _storage._amount}
+    set {_uniqueStorage()._amount = newValue}
+  }
+
+  public var xrpAmount: Io_Xpring_XRPDropsAmount {
+    get {
+      if case .xrpAmount(let v)? = _storage._amount {return v}
+      return Io_Xpring_XRPDropsAmount()
+    }
+    set {_uniqueStorage()._amount = .xrpAmount(newValue)}
+  }
+
+  public var issuedCurrencyAmount: Io_Xpring_IssuedCurrencyAmount {
+    get {
+      if case .issuedCurrencyAmount(let v)? = _storage._amount {return v}
+      return Io_Xpring_IssuedCurrencyAmount()
+    }
+    set {_uniqueStorage()._amount = .issuedCurrencyAmount(newValue)}
+  }
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public enum OneOf_Amount: Equatable {
+    case xrpAmount(Io_Xpring_XRPDropsAmount)
+    case issuedCurrencyAmount(Io_Xpring_IssuedCurrencyAmount)
+
+  #if !swift(>=4.1)
+    public static func ==(lhs: Io_Xpring_CurrencyAmount.OneOf_Amount, rhs: Io_Xpring_CurrencyAmount.OneOf_Amount) -> Bool {
+      switch (lhs, rhs) {
+      case (.xrpAmount(let l), .xrpAmount(let r)): return l == r
+      case (.issuedCurrencyAmount(let l), .issuedCurrencyAmount(let r)): return l == r
+      default: return false
+      }
+    }
+  #endif
+  }
+
+  public init() {}
+
+  fileprivate var _storage = _StorageClass.defaultInstance
+}
+
+/// A representation of an amount of XRP.
+public struct Io_Xpring_XRPDropsAmount {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  public var drops: UInt64 = 0
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+}
+
+/// A representation of an account address
+public struct Io_Xpring_AccountAddress {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  ///base58 encoding of an account
+  public var address: String = String()
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+}
+
+/// A representation of an amount of issued currency.
+public struct Io_Xpring_IssuedCurrencyAmount {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  /// The currency used to value the amount.
+  public var currency: Io_Xpring_Currency {
+    get {return _storage._currency ?? Io_Xpring_Currency()}
+    set {_uniqueStorage()._currency = newValue}
+  }
+  /// Returns true if `currency` has been explicitly set.
+  public var hasCurrency: Bool {return _storage._currency != nil}
+  /// Clears the value of `currency`. Subsequent reads from it will return its default value.
+  public mutating func clearCurrency() {_uniqueStorage()._currency = nil}
+
+  /// The value of the amount. 8 bytes
+  public var value: String {
+    get {return _storage._value}
+    set {_uniqueStorage()._value = newValue}
+  }
+
+  /// Unique account address of the entity issuing the currency.
+  public var issuer: Io_Xpring_AccountAddress {
+    get {return _storage._issuer ?? Io_Xpring_AccountAddress()}
+    set {_uniqueStorage()._issuer = newValue}
+  }
+  /// Returns true if `issuer` has been explicitly set.
+  public var hasIssuer: Bool {return _storage._issuer != nil}
+  /// Clears the value of `issuer`. Subsequent reads from it will return its default value.
+  public mutating func clearIssuer() {_uniqueStorage()._issuer = nil}
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+
+  fileprivate var _storage = _StorageClass.defaultInstance
+}
+
+public struct Io_Xpring_Currency {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  /// 3 character ASCII code
+  public var name: String = String()
+
+  /// 160 bit currency code. 20 bytes
+  public var code: Data = SwiftProtobuf.Internal.emptyData
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -38,8 +153,89 @@ public struct Io_Xpring_XRPAmount {
 
 fileprivate let _protobuf_package = "io.xpring"
 
-extension Io_Xpring_XRPAmount: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = _protobuf_package + ".XRPAmount"
+extension Io_Xpring_CurrencyAmount: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".CurrencyAmount"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .standard(proto: "xrp_amount"),
+    2: .standard(proto: "issued_currency_amount"),
+  ]
+
+  fileprivate class _StorageClass {
+    var _amount: Io_Xpring_CurrencyAmount.OneOf_Amount?
+
+    static let defaultInstance = _StorageClass()
+
+    private init() {}
+
+    init(copying source: _StorageClass) {
+      _amount = source._amount
+    }
+  }
+
+  fileprivate mutating func _uniqueStorage() -> _StorageClass {
+    if !isKnownUniquelyReferenced(&_storage) {
+      _storage = _StorageClass(copying: _storage)
+    }
+    return _storage
+  }
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1:
+          var v: Io_Xpring_XRPDropsAmount?
+          if let current = _storage._amount {
+            try decoder.handleConflictingOneOf()
+            if case .xrpAmount(let m) = current {v = m}
+          }
+          try decoder.decodeSingularMessageField(value: &v)
+          if let v = v {_storage._amount = .xrpAmount(v)}
+        case 2:
+          var v: Io_Xpring_IssuedCurrencyAmount?
+          if let current = _storage._amount {
+            try decoder.handleConflictingOneOf()
+            if case .issuedCurrencyAmount(let m) = current {v = m}
+          }
+          try decoder.decodeSingularMessageField(value: &v)
+          if let v = v {_storage._amount = .issuedCurrencyAmount(v)}
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      switch _storage._amount {
+      case .xrpAmount(let v)?:
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+      case .issuedCurrencyAmount(let v)?:
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+      case nil: break
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Io_Xpring_CurrencyAmount, rhs: Io_Xpring_CurrencyAmount) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
+        let _storage = _args.0
+        let rhs_storage = _args.1
+        if _storage._amount != rhs_storage._amount {return false}
+        return true
+      }
+      if !storagesAreEqual {return false}
+    }
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Io_Xpring_XRPDropsAmount: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".XRPDropsAmount"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "drops"),
   ]
@@ -47,21 +243,162 @@ extension Io_Xpring_XRPAmount: SwiftProtobuf.Message, SwiftProtobuf._MessageImpl
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
       switch fieldNumber {
-      case 1: try decoder.decodeSingularStringField(value: &self.drops)
+      case 1: try decoder.decodeSingularUInt64Field(value: &self.drops)
       default: break
       }
     }
   }
 
   public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if !self.drops.isEmpty {
-      try visitor.visitSingularStringField(value: self.drops, fieldNumber: 1)
+    if self.drops != 0 {
+      try visitor.visitSingularUInt64Field(value: self.drops, fieldNumber: 1)
     }
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Io_Xpring_XRPAmount, rhs: Io_Xpring_XRPAmount) -> Bool {
+  public static func ==(lhs: Io_Xpring_XRPDropsAmount, rhs: Io_Xpring_XRPDropsAmount) -> Bool {
     if lhs.drops != rhs.drops {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Io_Xpring_AccountAddress: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".AccountAddress"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "address"),
+  ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularStringField(value: &self.address)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.address.isEmpty {
+      try visitor.visitSingularStringField(value: self.address, fieldNumber: 1)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Io_Xpring_AccountAddress, rhs: Io_Xpring_AccountAddress) -> Bool {
+    if lhs.address != rhs.address {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Io_Xpring_IssuedCurrencyAmount: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".IssuedCurrencyAmount"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "currency"),
+    2: .same(proto: "value"),
+    3: .same(proto: "issuer"),
+  ]
+
+  fileprivate class _StorageClass {
+    var _currency: Io_Xpring_Currency? = nil
+    var _value: String = String()
+    var _issuer: Io_Xpring_AccountAddress? = nil
+
+    static let defaultInstance = _StorageClass()
+
+    private init() {}
+
+    init(copying source: _StorageClass) {
+      _currency = source._currency
+      _value = source._value
+      _issuer = source._issuer
+    }
+  }
+
+  fileprivate mutating func _uniqueStorage() -> _StorageClass {
+    if !isKnownUniquelyReferenced(&_storage) {
+      _storage = _StorageClass(copying: _storage)
+    }
+    return _storage
+  }
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularMessageField(value: &_storage._currency)
+        case 2: try decoder.decodeSingularStringField(value: &_storage._value)
+        case 3: try decoder.decodeSingularMessageField(value: &_storage._issuer)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if let v = _storage._currency {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+      }
+      if !_storage._value.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._value, fieldNumber: 2)
+      }
+      if let v = _storage._issuer {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Io_Xpring_IssuedCurrencyAmount, rhs: Io_Xpring_IssuedCurrencyAmount) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
+        let _storage = _args.0
+        let rhs_storage = _args.1
+        if _storage._currency != rhs_storage._currency {return false}
+        if _storage._value != rhs_storage._value {return false}
+        if _storage._issuer != rhs_storage._issuer {return false}
+        return true
+      }
+      if !storagesAreEqual {return false}
+    }
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Io_Xpring_Currency: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".Currency"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "name"),
+    2: .same(proto: "code"),
+  ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularStringField(value: &self.name)
+      case 2: try decoder.decodeSingularBytesField(value: &self.code)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.name.isEmpty {
+      try visitor.visitSingularStringField(value: self.name, fieldNumber: 1)
+    }
+    if !self.code.isEmpty {
+      try visitor.visitSingularBytesField(value: self.code, fieldNumber: 2)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Io_Xpring_Currency, rhs: Io_Xpring_Currency) -> Bool {
+    if lhs.name != rhs.name {return false}
+    if lhs.code != rhs.code {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }

@@ -27,8 +27,8 @@ public struct Io_Xpring_AccountInfo {
   // methods supported on all messages.
 
   /// The account's current XRP balance.
-  public var balance: Io_Xpring_XRPAmount {
-    get {return _storage._balance ?? Io_Xpring_XRPAmount()}
+  public var balance: Io_Xpring_XRPDropsAmount {
+    get {return _storage._balance ?? Io_Xpring_XRPDropsAmount()}
     set {_uniqueStorage()._balance = newValue}
   }
   /// Returns true if `balance` has been explicitly set.
@@ -82,7 +82,7 @@ extension Io_Xpring_AccountInfo: SwiftProtobuf.Message, SwiftProtobuf._MessageIm
   ]
 
   fileprivate class _StorageClass {
-    var _balance: Io_Xpring_XRPAmount? = nil
+    var _balance: Io_Xpring_XRPDropsAmount? = nil
     var _sequence: UInt64 = 0
     var _ownerCount: UInt64 = 0
     var _previousAffectingTransactionID: String = String()

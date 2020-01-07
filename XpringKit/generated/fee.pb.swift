@@ -27,8 +27,8 @@ public struct Io_Xpring_Fee {
   // methods supported on all messages.
 
   /// The amount of the fee.
-  public var amount: Io_Xpring_XRPAmount {
-    get {return _storage._amount ?? Io_Xpring_XRPAmount()}
+  public var amount: Io_Xpring_XRPDropsAmount {
+    get {return _storage._amount ?? Io_Xpring_XRPDropsAmount()}
     set {_uniqueStorage()._amount = newValue}
   }
   /// Returns true if `amount` has been explicitly set.
@@ -54,7 +54,7 @@ extension Io_Xpring_Fee: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementa
   ]
 
   fileprivate class _StorageClass {
-    var _amount: Io_Xpring_XRPAmount? = nil
+    var _amount: Io_Xpring_XRPDropsAmount? = nil
 
     static let defaultInstance = _StorageClass()
 

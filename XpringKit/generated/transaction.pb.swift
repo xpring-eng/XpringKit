@@ -20,21 +20,24 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// A class encompassing all transactions.
-/// Next field: 7.
 public struct Io_Xpring_Transaction {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
   /// The account originating the transaction.
-  public var account: String {
-    get {return _storage._account}
+  public var account: Io_Xpring_AccountAddress {
+    get {return _storage._account ?? Io_Xpring_AccountAddress()}
     set {_uniqueStorage()._account = newValue}
   }
+  /// Returns true if `account` has been explicitly set.
+  public var hasAccount: Bool {return _storage._account != nil}
+  /// Clears the value of `account`. Subsequent reads from it will return its default value.
+  public mutating func clearAccount() {_uniqueStorage()._account = nil}
 
   /// The fee attached to the transaction.
-  public var fee: Io_Xpring_XRPAmount {
-    get {return _storage._fee ?? Io_Xpring_XRPAmount()}
+  public var fee: Io_Xpring_XRPDropsAmount {
+    get {return _storage._fee ?? Io_Xpring_XRPDropsAmount()}
     set {_uniqueStorage()._fee = newValue}
   }
   /// Returns true if `fee` has been explicitly set.
@@ -43,7 +46,7 @@ public struct Io_Xpring_Transaction {
   public mutating func clearFee() {_uniqueStorage()._fee = nil}
 
   /// The sequence number for the transaction.
-  public var sequence: UInt64 {
+  public var sequence: UInt32 {
     get {return _storage._sequence}
     set {_uniqueStorage()._sequence = newValue}
   }
@@ -62,16 +65,46 @@ public struct Io_Xpring_Transaction {
     set {_uniqueStorage()._transactionData = .payment(newValue)}
   }
 
-  /// The public key of the account which signed the transaction in hexadecimal.
-  public var signingPublicKeyHex: String {
-    get {return _storage._signingPublicKeyHex}
-    set {_uniqueStorage()._signingPublicKeyHex = newValue}
+  /// Public key of the account which signed the transaction. Variable length
+  public var signingPublicKey: Data {
+    get {return _storage._signingPublicKey}
+    set {_uniqueStorage()._signingPublicKey = newValue}
   }
 
-  /// The highest ledger index this transaction can appear in.
+  /// Variable length
+  public var signature: Data {
+    get {return _storage._signature}
+    set {_uniqueStorage()._signature = newValue}
+  }
+
+  public var flags: UInt32 {
+    get {return _storage._flags}
+    set {_uniqueStorage()._flags = newValue}
+  }
+
   public var lastLedgerSequence: UInt32 {
     get {return _storage._lastLedgerSequence}
     set {_uniqueStorage()._lastLedgerSequence = newValue}
+  }
+
+  public var sourceTag: UInt32 {
+    get {return _storage._sourceTag}
+    set {_uniqueStorage()._sourceTag = newValue}
+  }
+
+  public var memos: [Io_Xpring_Memo] {
+    get {return _storage._memos}
+    set {_uniqueStorage()._memos = newValue}
+  }
+
+  public var signers: [Io_Xpring_Signer] {
+    get {return _storage._signers}
+    set {_uniqueStorage()._signers = newValue}
+  }
+
+  public var accountTransactionID: Data {
+    get {return _storage._accountTransactionID}
+    set {_uniqueStorage()._accountTransactionID = newValue}
   }
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
@@ -94,6 +127,175 @@ public struct Io_Xpring_Transaction {
   fileprivate var _storage = _StorageClass.defaultInstance
 }
 
+public struct Io_Xpring_Memo {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  /// Variable length
+  public var memoData: Data = SwiftProtobuf.Internal.emptyData
+
+  /// Variable length
+  public var memoFormat: Data = SwiftProtobuf.Internal.emptyData
+
+  /// Variable length
+  public var memoType: Data = SwiftProtobuf.Internal.emptyData
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+}
+
+public struct Io_Xpring_Signer {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  public var account: Io_Xpring_AccountAddress {
+    get {return _storage._account ?? Io_Xpring_AccountAddress()}
+    set {_uniqueStorage()._account = newValue}
+  }
+  /// Returns true if `account` has been explicitly set.
+  public var hasAccount: Bool {return _storage._account != nil}
+  /// Clears the value of `account`. Subsequent reads from it will return its default value.
+  public mutating func clearAccount() {_uniqueStorage()._account = nil}
+
+  /// Variable length
+  public var transactionSignature: Data {
+    get {return _storage._transactionSignature}
+    set {_uniqueStorage()._transactionSignature = newValue}
+  }
+
+  /// Variable length
+  public var signingPublicKey: Data {
+    get {return _storage._signingPublicKey}
+    set {_uniqueStorage()._signingPublicKey = newValue}
+  }
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+
+  fileprivate var _storage = _StorageClass.defaultInstance
+}
+
+public struct Io_Xpring_Payment {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  /// The amount of currency to pay, in either issued currency or XRP.
+  public var amount: Io_Xpring_CurrencyAmount {
+    get {return _storage._amount ?? Io_Xpring_CurrencyAmount()}
+    set {_uniqueStorage()._amount = newValue}
+  }
+  /// Returns true if `amount` has been explicitly set.
+  public var hasAmount: Bool {return _storage._amount != nil}
+  /// Clears the value of `amount`. Subsequent reads from it will return its default value.
+  public mutating func clearAmount() {_uniqueStorage()._amount = nil}
+
+  /// The destination of the payment.
+  public var destination: Io_Xpring_AccountAddress {
+    get {return _storage._destination ?? Io_Xpring_AccountAddress()}
+    set {_uniqueStorage()._destination = newValue}
+  }
+  /// Returns true if `destination` has been explicitly set.
+  public var hasDestination: Bool {return _storage._destination != nil}
+  /// Clears the value of `destination`. Subsequent reads from it will return its default value.
+  public mutating func clearDestination() {_uniqueStorage()._destination = nil}
+
+  public var destinationTag: UInt32 {
+    get {return _storage._destinationTag}
+    set {_uniqueStorage()._destinationTag = newValue}
+  }
+
+  /// 32 bytes
+  public var invoiceID: Data {
+    get {return _storage._invoiceID}
+    set {_uniqueStorage()._invoiceID = newValue}
+  }
+
+  public var paths: [Io_Xpring_Path] {
+    get {return _storage._paths}
+    set {_uniqueStorage()._paths = newValue}
+  }
+
+  public var sendMax: Io_Xpring_CurrencyAmount {
+    get {return _storage._sendMax ?? Io_Xpring_CurrencyAmount()}
+    set {_uniqueStorage()._sendMax = newValue}
+  }
+  /// Returns true if `sendMax` has been explicitly set.
+  public var hasSendMax: Bool {return _storage._sendMax != nil}
+  /// Clears the value of `sendMax`. Subsequent reads from it will return its default value.
+  public mutating func clearSendMax() {_uniqueStorage()._sendMax = nil}
+
+  public var deliverMin: Io_Xpring_CurrencyAmount {
+    get {return _storage._deliverMin ?? Io_Xpring_CurrencyAmount()}
+    set {_uniqueStorage()._deliverMin = newValue}
+  }
+  /// Returns true if `deliverMin` has been explicitly set.
+  public var hasDeliverMin: Bool {return _storage._deliverMin != nil}
+  /// Clears the value of `deliverMin`. Subsequent reads from it will return its default value.
+  public mutating func clearDeliverMin() {_uniqueStorage()._deliverMin = nil}
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+
+  fileprivate var _storage = _StorageClass.defaultInstance
+}
+
+public struct Io_Xpring_Path {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  public var elements: [Io_Xpring_PathElement] = []
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+}
+
+public struct Io_Xpring_PathElement {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  public var account: Io_Xpring_AccountAddress {
+    get {return _storage._account ?? Io_Xpring_AccountAddress()}
+    set {_uniqueStorage()._account = newValue}
+  }
+  /// Returns true if `account` has been explicitly set.
+  public var hasAccount: Bool {return _storage._account != nil}
+  /// Clears the value of `account`. Subsequent reads from it will return its default value.
+  public mutating func clearAccount() {_uniqueStorage()._account = nil}
+
+  public var currency: Io_Xpring_Currency {
+    get {return _storage._currency ?? Io_Xpring_Currency()}
+    set {_uniqueStorage()._currency = newValue}
+  }
+  /// Returns true if `currency` has been explicitly set.
+  public var hasCurrency: Bool {return _storage._currency != nil}
+  /// Clears the value of `currency`. Subsequent reads from it will return its default value.
+  public mutating func clearCurrency() {_uniqueStorage()._currency = nil}
+
+  public var issuer: Io_Xpring_AccountAddress {
+    get {return _storage._issuer ?? Io_Xpring_AccountAddress()}
+    set {_uniqueStorage()._issuer = newValue}
+  }
+  /// Returns true if `issuer` has been explicitly set.
+  public var hasIssuer: Bool {return _storage._issuer != nil}
+  /// Clears the value of `issuer`. Subsequent reads from it will return its default value.
+  public mutating func clearIssuer() {_uniqueStorage()._issuer = nil}
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+
+  fileprivate var _storage = _StorageClass.defaultInstance
+}
+
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
 fileprivate let _protobuf_package = "io.xpring"
@@ -105,17 +307,29 @@ extension Io_Xpring_Transaction: SwiftProtobuf.Message, SwiftProtobuf._MessageIm
     2: .same(proto: "fee"),
     3: .same(proto: "sequence"),
     4: .same(proto: "payment"),
-    5: .standard(proto: "signing_public_key_hex"),
-    6: .standard(proto: "last_ledger_sequence"),
+    5: .standard(proto: "signing_public_key"),
+    6: .same(proto: "signature"),
+    7: .same(proto: "flags"),
+    8: .standard(proto: "last_ledger_sequence"),
+    9: .standard(proto: "source_tag"),
+    10: .same(proto: "memos"),
+    11: .same(proto: "signers"),
+    12: .standard(proto: "account_transaction_id"),
   ]
 
   fileprivate class _StorageClass {
-    var _account: String = String()
-    var _fee: Io_Xpring_XRPAmount? = nil
-    var _sequence: UInt64 = 0
+    var _account: Io_Xpring_AccountAddress? = nil
+    var _fee: Io_Xpring_XRPDropsAmount? = nil
+    var _sequence: UInt32 = 0
     var _transactionData: Io_Xpring_Transaction.OneOf_TransactionData?
-    var _signingPublicKeyHex: String = String()
+    var _signingPublicKey: Data = SwiftProtobuf.Internal.emptyData
+    var _signature: Data = SwiftProtobuf.Internal.emptyData
+    var _flags: UInt32 = 0
     var _lastLedgerSequence: UInt32 = 0
+    var _sourceTag: UInt32 = 0
+    var _memos: [Io_Xpring_Memo] = []
+    var _signers: [Io_Xpring_Signer] = []
+    var _accountTransactionID: Data = SwiftProtobuf.Internal.emptyData
 
     static let defaultInstance = _StorageClass()
 
@@ -126,8 +340,14 @@ extension Io_Xpring_Transaction: SwiftProtobuf.Message, SwiftProtobuf._MessageIm
       _fee = source._fee
       _sequence = source._sequence
       _transactionData = source._transactionData
-      _signingPublicKeyHex = source._signingPublicKeyHex
+      _signingPublicKey = source._signingPublicKey
+      _signature = source._signature
+      _flags = source._flags
       _lastLedgerSequence = source._lastLedgerSequence
+      _sourceTag = source._sourceTag
+      _memos = source._memos
+      _signers = source._signers
+      _accountTransactionID = source._accountTransactionID
     }
   }
 
@@ -143,9 +363,9 @@ extension Io_Xpring_Transaction: SwiftProtobuf.Message, SwiftProtobuf._MessageIm
     try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
       while let fieldNumber = try decoder.nextFieldNumber() {
         switch fieldNumber {
-        case 1: try decoder.decodeSingularStringField(value: &_storage._account)
+        case 1: try decoder.decodeSingularMessageField(value: &_storage._account)
         case 2: try decoder.decodeSingularMessageField(value: &_storage._fee)
-        case 3: try decoder.decodeSingularUInt64Field(value: &_storage._sequence)
+        case 3: try decoder.decodeSingularUInt32Field(value: &_storage._sequence)
         case 4:
           var v: Io_Xpring_Payment?
           if let current = _storage._transactionData {
@@ -154,8 +374,14 @@ extension Io_Xpring_Transaction: SwiftProtobuf.Message, SwiftProtobuf._MessageIm
           }
           try decoder.decodeSingularMessageField(value: &v)
           if let v = v {_storage._transactionData = .payment(v)}
-        case 5: try decoder.decodeSingularStringField(value: &_storage._signingPublicKeyHex)
-        case 6: try decoder.decodeSingularUInt32Field(value: &_storage._lastLedgerSequence)
+        case 5: try decoder.decodeSingularBytesField(value: &_storage._signingPublicKey)
+        case 6: try decoder.decodeSingularBytesField(value: &_storage._signature)
+        case 7: try decoder.decodeSingularUInt32Field(value: &_storage._flags)
+        case 8: try decoder.decodeSingularUInt32Field(value: &_storage._lastLedgerSequence)
+        case 9: try decoder.decodeSingularUInt32Field(value: &_storage._sourceTag)
+        case 10: try decoder.decodeRepeatedMessageField(value: &_storage._memos)
+        case 11: try decoder.decodeRepeatedMessageField(value: &_storage._signers)
+        case 12: try decoder.decodeSingularBytesField(value: &_storage._accountTransactionID)
         default: break
         }
       }
@@ -164,23 +390,41 @@ extension Io_Xpring_Transaction: SwiftProtobuf.Message, SwiftProtobuf._MessageIm
 
   public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
     try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if !_storage._account.isEmpty {
-        try visitor.visitSingularStringField(value: _storage._account, fieldNumber: 1)
+      if let v = _storage._account {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
       }
       if let v = _storage._fee {
         try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
       }
       if _storage._sequence != 0 {
-        try visitor.visitSingularUInt64Field(value: _storage._sequence, fieldNumber: 3)
+        try visitor.visitSingularUInt32Field(value: _storage._sequence, fieldNumber: 3)
       }
       if case .payment(let v)? = _storage._transactionData {
         try visitor.visitSingularMessageField(value: v, fieldNumber: 4)
       }
-      if !_storage._signingPublicKeyHex.isEmpty {
-        try visitor.visitSingularStringField(value: _storage._signingPublicKeyHex, fieldNumber: 5)
+      if !_storage._signingPublicKey.isEmpty {
+        try visitor.visitSingularBytesField(value: _storage._signingPublicKey, fieldNumber: 5)
+      }
+      if !_storage._signature.isEmpty {
+        try visitor.visitSingularBytesField(value: _storage._signature, fieldNumber: 6)
+      }
+      if _storage._flags != 0 {
+        try visitor.visitSingularUInt32Field(value: _storage._flags, fieldNumber: 7)
       }
       if _storage._lastLedgerSequence != 0 {
-        try visitor.visitSingularUInt32Field(value: _storage._lastLedgerSequence, fieldNumber: 6)
+        try visitor.visitSingularUInt32Field(value: _storage._lastLedgerSequence, fieldNumber: 8)
+      }
+      if _storage._sourceTag != 0 {
+        try visitor.visitSingularUInt32Field(value: _storage._sourceTag, fieldNumber: 9)
+      }
+      if !_storage._memos.isEmpty {
+        try visitor.visitRepeatedMessageField(value: _storage._memos, fieldNumber: 10)
+      }
+      if !_storage._signers.isEmpty {
+        try visitor.visitRepeatedMessageField(value: _storage._signers, fieldNumber: 11)
+      }
+      if !_storage._accountTransactionID.isEmpty {
+        try visitor.visitSingularBytesField(value: _storage._accountTransactionID, fieldNumber: 12)
       }
     }
     try unknownFields.traverse(visitor: &visitor)
@@ -195,8 +439,347 @@ extension Io_Xpring_Transaction: SwiftProtobuf.Message, SwiftProtobuf._MessageIm
         if _storage._fee != rhs_storage._fee {return false}
         if _storage._sequence != rhs_storage._sequence {return false}
         if _storage._transactionData != rhs_storage._transactionData {return false}
-        if _storage._signingPublicKeyHex != rhs_storage._signingPublicKeyHex {return false}
+        if _storage._signingPublicKey != rhs_storage._signingPublicKey {return false}
+        if _storage._signature != rhs_storage._signature {return false}
+        if _storage._flags != rhs_storage._flags {return false}
         if _storage._lastLedgerSequence != rhs_storage._lastLedgerSequence {return false}
+        if _storage._sourceTag != rhs_storage._sourceTag {return false}
+        if _storage._memos != rhs_storage._memos {return false}
+        if _storage._signers != rhs_storage._signers {return false}
+        if _storage._accountTransactionID != rhs_storage._accountTransactionID {return false}
+        return true
+      }
+      if !storagesAreEqual {return false}
+    }
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Io_Xpring_Memo: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".Memo"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .standard(proto: "memo_data"),
+    2: .standard(proto: "memo_format"),
+    3: .standard(proto: "memo_type"),
+  ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularBytesField(value: &self.memoData)
+      case 2: try decoder.decodeSingularBytesField(value: &self.memoFormat)
+      case 3: try decoder.decodeSingularBytesField(value: &self.memoType)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.memoData.isEmpty {
+      try visitor.visitSingularBytesField(value: self.memoData, fieldNumber: 1)
+    }
+    if !self.memoFormat.isEmpty {
+      try visitor.visitSingularBytesField(value: self.memoFormat, fieldNumber: 2)
+    }
+    if !self.memoType.isEmpty {
+      try visitor.visitSingularBytesField(value: self.memoType, fieldNumber: 3)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Io_Xpring_Memo, rhs: Io_Xpring_Memo) -> Bool {
+    if lhs.memoData != rhs.memoData {return false}
+    if lhs.memoFormat != rhs.memoFormat {return false}
+    if lhs.memoType != rhs.memoType {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Io_Xpring_Signer: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".Signer"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "account"),
+    2: .standard(proto: "transaction_signature"),
+    3: .standard(proto: "signing_public_key"),
+  ]
+
+  fileprivate class _StorageClass {
+    var _account: Io_Xpring_AccountAddress? = nil
+    var _transactionSignature: Data = SwiftProtobuf.Internal.emptyData
+    var _signingPublicKey: Data = SwiftProtobuf.Internal.emptyData
+
+    static let defaultInstance = _StorageClass()
+
+    private init() {}
+
+    init(copying source: _StorageClass) {
+      _account = source._account
+      _transactionSignature = source._transactionSignature
+      _signingPublicKey = source._signingPublicKey
+    }
+  }
+
+  fileprivate mutating func _uniqueStorage() -> _StorageClass {
+    if !isKnownUniquelyReferenced(&_storage) {
+      _storage = _StorageClass(copying: _storage)
+    }
+    return _storage
+  }
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularMessageField(value: &_storage._account)
+        case 2: try decoder.decodeSingularBytesField(value: &_storage._transactionSignature)
+        case 3: try decoder.decodeSingularBytesField(value: &_storage._signingPublicKey)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if let v = _storage._account {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+      }
+      if !_storage._transactionSignature.isEmpty {
+        try visitor.visitSingularBytesField(value: _storage._transactionSignature, fieldNumber: 2)
+      }
+      if !_storage._signingPublicKey.isEmpty {
+        try visitor.visitSingularBytesField(value: _storage._signingPublicKey, fieldNumber: 3)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Io_Xpring_Signer, rhs: Io_Xpring_Signer) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
+        let _storage = _args.0
+        let rhs_storage = _args.1
+        if _storage._account != rhs_storage._account {return false}
+        if _storage._transactionSignature != rhs_storage._transactionSignature {return false}
+        if _storage._signingPublicKey != rhs_storage._signingPublicKey {return false}
+        return true
+      }
+      if !storagesAreEqual {return false}
+    }
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Io_Xpring_Payment: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".Payment"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "amount"),
+    2: .same(proto: "destination"),
+    3: .standard(proto: "destination_tag"),
+    4: .standard(proto: "invoice_id"),
+    5: .same(proto: "paths"),
+    6: .standard(proto: "send_max"),
+    7: .standard(proto: "deliver_min"),
+  ]
+
+  fileprivate class _StorageClass {
+    var _amount: Io_Xpring_CurrencyAmount? = nil
+    var _destination: Io_Xpring_AccountAddress? = nil
+    var _destinationTag: UInt32 = 0
+    var _invoiceID: Data = SwiftProtobuf.Internal.emptyData
+    var _paths: [Io_Xpring_Path] = []
+    var _sendMax: Io_Xpring_CurrencyAmount? = nil
+    var _deliverMin: Io_Xpring_CurrencyAmount? = nil
+
+    static let defaultInstance = _StorageClass()
+
+    private init() {}
+
+    init(copying source: _StorageClass) {
+      _amount = source._amount
+      _destination = source._destination
+      _destinationTag = source._destinationTag
+      _invoiceID = source._invoiceID
+      _paths = source._paths
+      _sendMax = source._sendMax
+      _deliverMin = source._deliverMin
+    }
+  }
+
+  fileprivate mutating func _uniqueStorage() -> _StorageClass {
+    if !isKnownUniquelyReferenced(&_storage) {
+      _storage = _StorageClass(copying: _storage)
+    }
+    return _storage
+  }
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularMessageField(value: &_storage._amount)
+        case 2: try decoder.decodeSingularMessageField(value: &_storage._destination)
+        case 3: try decoder.decodeSingularUInt32Field(value: &_storage._destinationTag)
+        case 4: try decoder.decodeSingularBytesField(value: &_storage._invoiceID)
+        case 5: try decoder.decodeRepeatedMessageField(value: &_storage._paths)
+        case 6: try decoder.decodeSingularMessageField(value: &_storage._sendMax)
+        case 7: try decoder.decodeSingularMessageField(value: &_storage._deliverMin)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if let v = _storage._amount {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+      }
+      if let v = _storage._destination {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+      }
+      if _storage._destinationTag != 0 {
+        try visitor.visitSingularUInt32Field(value: _storage._destinationTag, fieldNumber: 3)
+      }
+      if !_storage._invoiceID.isEmpty {
+        try visitor.visitSingularBytesField(value: _storage._invoiceID, fieldNumber: 4)
+      }
+      if !_storage._paths.isEmpty {
+        try visitor.visitRepeatedMessageField(value: _storage._paths, fieldNumber: 5)
+      }
+      if let v = _storage._sendMax {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 6)
+      }
+      if let v = _storage._deliverMin {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 7)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Io_Xpring_Payment, rhs: Io_Xpring_Payment) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
+        let _storage = _args.0
+        let rhs_storage = _args.1
+        if _storage._amount != rhs_storage._amount {return false}
+        if _storage._destination != rhs_storage._destination {return false}
+        if _storage._destinationTag != rhs_storage._destinationTag {return false}
+        if _storage._invoiceID != rhs_storage._invoiceID {return false}
+        if _storage._paths != rhs_storage._paths {return false}
+        if _storage._sendMax != rhs_storage._sendMax {return false}
+        if _storage._deliverMin != rhs_storage._deliverMin {return false}
+        return true
+      }
+      if !storagesAreEqual {return false}
+    }
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Io_Xpring_Path: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".Path"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "elements"),
+  ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeRepeatedMessageField(value: &self.elements)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.elements.isEmpty {
+      try visitor.visitRepeatedMessageField(value: self.elements, fieldNumber: 1)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Io_Xpring_Path, rhs: Io_Xpring_Path) -> Bool {
+    if lhs.elements != rhs.elements {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Io_Xpring_PathElement: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".PathElement"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "account"),
+    2: .same(proto: "currency"),
+    3: .same(proto: "issuer"),
+  ]
+
+  fileprivate class _StorageClass {
+    var _account: Io_Xpring_AccountAddress? = nil
+    var _currency: Io_Xpring_Currency? = nil
+    var _issuer: Io_Xpring_AccountAddress? = nil
+
+    static let defaultInstance = _StorageClass()
+
+    private init() {}
+
+    init(copying source: _StorageClass) {
+      _account = source._account
+      _currency = source._currency
+      _issuer = source._issuer
+    }
+  }
+
+  fileprivate mutating func _uniqueStorage() -> _StorageClass {
+    if !isKnownUniquelyReferenced(&_storage) {
+      _storage = _StorageClass(copying: _storage)
+    }
+    return _storage
+  }
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularMessageField(value: &_storage._account)
+        case 2: try decoder.decodeSingularMessageField(value: &_storage._currency)
+        case 3: try decoder.decodeSingularMessageField(value: &_storage._issuer)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if let v = _storage._account {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+      }
+      if let v = _storage._currency {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+      }
+      if let v = _storage._issuer {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Io_Xpring_PathElement, rhs: Io_Xpring_PathElement) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
+        let _storage = _args.0
+        let rhs_storage = _args.1
+        if _storage._account != rhs_storage._account {return false}
+        if _storage._currency != rhs_storage._currency {return false}
+        if _storage._issuer != rhs_storage._issuer {return false}
         return true
       }
       if !storagesAreEqual {return false}
