@@ -230,4 +230,3 @@ fileprivate final class Rpc_V1_XRPLedgerAPIServiceSubmitTransactionSessionBase: 
 internal protocol Rpc_V1_XRPLedgerAPIServiceGetTxSession: ServerSessionUnary {}
 
 fileprivate final class Rpc_V1_XRPLedgerAPIServiceGetTxSessionBase: ServerSessionUnaryBase<Rpc_V1_GetTxRequest, Rpc_V1_GetTxResponse>, Rpc_V1_XRPLedgerAPIServiceGetTxSession {}
-
