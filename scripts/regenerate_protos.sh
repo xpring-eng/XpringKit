@@ -24,15 +24,15 @@ protoc \
 # TODO(keefertaylor): Remove this when rippled fully supports gRPC.
 ##########################################################################
 
-echo "Regenerating Protocol Buffers from xpring-common-protocol-buffers"
-
-# Directory to write generated code to (.js and .d.ts files)
-mkdir -p ./XpringKit/generated/legacy
-protoc \
-    --proto_path=./xpring-common-protocol-buffers/proto \
-    --swift_opt=Visibility=Public \
-    --swift_out=./XpringKit/generated/legacy \
-    --swiftgrpc_out=./XpringKit/generated/legacy \
-    ./xpring-common-protocol-buffers/proto/*.proto
-
-echo "All done!"
+# echo "Regenerating Protocol Buffers from xpring-common-protocol-buffers"
+#
+# # Directory to write generated code to (.js and .d.ts files)
+# mkdir -p ./XpringKit/generated/legacy
+# protoc \
+#     --proto_path=./xpring-common-protocol-buffers/proto \
+#     --swift_opt=Visibility=Public \
+#     --swift_out=./XpringKit/generated/legacy \
+#     --swiftgrpc_out=./XpringKit/generated/legacy \
+#     ./xpring-common-protocol-buffers/proto/*.proto
+#
+# echo "All done!"
