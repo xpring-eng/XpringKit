@@ -14,7 +14,7 @@ Pod::Spec.new do |spec|
   spec.author       = { "Xpring Engineering" => "xpring@ripple.com" }
   spec.source       = { :git => "https://github.com/xpring-eng/XpringKit.git", :tag => "1.2.2" }
 
-  spec.swift_versions = [4.2]
+  spec.swift_versions = [5.0, 4.2]
   spec.requires_arc = true
   spec.ios.deployment_target = '12.0'
   spec.osx.deployment_target = '10.10'
@@ -25,14 +25,13 @@ Pod::Spec.new do |spec|
   spec.dependency 'BigInt'
   spec.dependency 'SwiftGRPC'
   spec.dependency 'SwiftProtobuf'
-  
+
   spec.frameworks = "Foundation"
 
   spec.test_spec "Tests" do |test_spec|
     test_spec.source_files = ["Tests/**/*.swift"]
 
     test_spec.dependency 'BigInt'
-    
     test_spec.frameworks = "Foundation"
   end
 end
