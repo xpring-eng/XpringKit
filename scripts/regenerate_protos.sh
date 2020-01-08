@@ -12,7 +12,7 @@ SWIFT_OUT_DIR="./generated"
 
 mkdir -p $SWIFT_OUT_DIR
 protoc \
-    --proto_path=./xpring-common-protocol-buffers/proto \
+    --proto_path=./rippled/src/ripple/proto/ \
     --swift_opt=Visibility=Public \
     --swift_out=$SWIFT_OUT_DIR \
     --swiftgrpc_out=$SWIFT_OUT_DIR \
