@@ -2,16 +2,36 @@
 
 set -e -o pipefail
 
-echo "Regenerating Common Protos..."
+##########################################################################
+# Generate Protocol Buffers from Rippled.
+##########################################################################
+
+echo "Regenerating Protocol Buffers from Rippled"
 
 LEGACY_PROTO_DIR=./XpringKit/generated/Legacy
 
 mkdir -p $LEGACY_PROTO_DIR
 protoc \
+    --proto_path=./rippled/src/ripple/proto \
+    --swift_opt=Visibility=Public \
+    --swift_out=./XpringKit/generated \
+    --swiftgrpc_out=./XpringKit/generated \
+    ./rippled/src/ripple/proto/rpc/v1/*.proto
+
+##########################################################################
+# Regenerate legacy protocol buffers.
+# TODO(keefertaylor): Remove this when rippled fully supports gRPC.
+##########################################################################
+
+echo "Regenerating Protocol Buffers from xpring-common-protocol-buffers"
+
+# Directory to write generated code to (.js and .d.ts files)
+mkdir -p ./XpringKit/generated/legacy
+protoc \
     --proto_path=./xpring-common-protocol-buffers/proto \
     --swift_opt=Visibility=Public \
-    --swift_out=$LEGACY_PROTO_DIR \
-    --swiftgrpc_out=$LEGACY_PROTO_DIR \
+    --swift_out=./XpringKit/generated/legacy \
+    --swiftgrpc_out=./XpringKit/generated/legacy \
     ./xpring-common-protocol-buffers/proto/*.proto
 
 echo "Prefixing Legacy Protocol Buffers"
