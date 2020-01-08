@@ -33,7 +33,7 @@ jobs:
 
       - run:
           name: "Generate Project - Carthage"
-          command: ./scripts/generate_project.sh
+          command: ./scripts/clean_project.sh && ./scripts/generate_project.sh
           no_output_timeout: 30m
 
       - save_cache:
