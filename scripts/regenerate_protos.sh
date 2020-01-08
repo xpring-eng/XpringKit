@@ -8,10 +8,10 @@ set -e -o pipefail
 
 echo "Regenerating Protocol Buffers from Rippled"
 
-PROTO_PATH="./rippled/src/ripple/proto/"
-OUT_DIR="./XpringKit/generated/"
+PROTO_PATH="./rippled/src/ripple/proto"
+OUT_DIR="./XpringKit/generated"
 
-mkdir -p ./XpringKit/generated
+mkdir -p $OUT_DIR
 protoc \
     --proto_path=$PROTO_PATH \
     --swift_opt=Visibility=Public \
@@ -27,16 +27,18 @@ protoc \
 echo "Regenerating Protocol Buffers from xpring-common-protocol-buffers"
 
 # Directory to write generated code to (.js and .d.ts files)
-mkdir -p ./XpringKit/generated/legacy
+LEGACY_PROTO_PATH="./xpring-common-protocol-buffers/proto"
+LEGACY_OUT_DIR="./XpringKit/generated/legacy"
+mkdir -p $LEGACY_OUT_DIR
 protoc \
-    --proto_path=./xpring-common-protocol-buffers/proto \
+    --proto_path=$LEGACY_PROTO_PATH \
     --swift_opt=Visibility=Public \
-    --swift_out=./XpringKit/generated/legacy \
-    --swiftgrpc_out=./XpringKit/generated/legacy \
+    --swift_out=$LEGACY_OUT_DIR \
+    --swiftgrpc_out=$LEGACY_OUT_DIR \
     ./xpring-common-protocol-buffers/proto/*.proto
 
 echo "Prefixing Legacy Protocol Buffers"
-cd $LEGACY_PROTO_DIR
+cd $LEGACY_OUT_DIR
 for file in *.pb.swift
 do
   mv "$file" "${file/.pb.swift/.legacy.pb.swift}"
