@@ -2,6 +2,22 @@
 
 set -e -o pipefail
 
+##########################################################################
+# Generate Protocol Buffers from Rippled.
+##########################################################################
+
+echo "Regenerating Protocol Buffers from Rippled"
+
+SWIFT_OUT_DIR="./generated"
+
+mkdir -p $SWIFT_OUT_DIR
+protoc \
+    --proto_path=./xpring-common-protocol-buffers/proto \
+    --swift_opt=Visibility=Public \
+    --swift_out=$SWIFT_OUT_DIR \
+    --swiftgrpc_out=$SWIFT_OUT_DIR \
+    ./rippled/src/ripple/proto/rpc/v1/*.proto
+
 echo "Regenerating Common Protos..."
 
 LEGACY_PROTO_DIR=./XpringKit/generated/Legacy
