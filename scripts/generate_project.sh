@@ -2,7 +2,8 @@
 
 set -e -o pipefail
 
-echo "Generating XpringKit Project"
+echo "Cleaning XpringKit Project"
+./scripts/clean_project.sh
 
 # Regenerate protocol buffers so the generated sources get picked up by xcodegen.
 echo "Regenerating Protocol Buffers"

@@ -8,14 +8,15 @@ set -e -o pipefail
 
 echo "Regenerating Protocol Buffers from Rippled"
 
-LEGACY_PROTO_DIR=./XpringKit/generated/Legacy
+PROTO_PATH="./rippled/src/ripple/proto/"
+OUT_DIR="./XpringKit/generated/"
 
-mkdir -p $LEGACY_PROTO_DIR
+mkdir -p ./XpringKit/generated
 protoc \
-    --proto_path=./rippled/src/ripple/proto \
+    --proto_path=$PROTO_PATH \
     --swift_opt=Visibility=Public \
-    --swift_out=./XpringKit/generated \
-    --swiftgrpc_out=./XpringKit/generated \
+    --swift_out=$OUT_DIR \
+    --swiftgrpc_out=$OUT_DIR \
     ./rippled/src/ripple/proto/rpc/v1/*.proto
 
 ##########################################################################
