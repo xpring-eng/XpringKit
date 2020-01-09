@@ -14,7 +14,7 @@ import SwiftProtobuf
 // incompatible with the version of SwiftProtobuf to which you are linking.
 // Please ensure that your are building against the same version of the API
 // that was used to generate this file.
-fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAPIVersionCheck {
+private struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAPIVersionCheck {
   struct _2: SwiftProtobuf.ProtobufAPIVersion_2 {}
   typealias Version = _2
 }
@@ -97,7 +97,7 @@ extension Rpc_V1_LedgerEntryType: CaseIterable {
     .offer,
     .payChannel,
     .rippleState,
-    .signerList,
+    .signerList
   ]
 }
 
@@ -109,48 +109,48 @@ public struct Rpc_V1_LedgerObject {
   // methods supported on all messages.
 
   public var object: OneOf_Object? {
-    get {return _storage._object}
-    set {_uniqueStorage()._object = newValue}
+    get { return _storage._object }
+    set { _uniqueStorage()._object = newValue }
   }
 
   public var accountRoot: Rpc_V1_AccountRoot {
     get {
-      if case .accountRoot(let v)? = _storage._object {return v}
+      if case .accountRoot(let v)? = _storage._object { return v }
       return Rpc_V1_AccountRoot()
     }
-    set {_uniqueStorage()._object = .accountRoot(newValue)}
+    set { _uniqueStorage()._object = .accountRoot(newValue) }
   }
 
   public var rippleState: Rpc_V1_RippleState {
     get {
-      if case .rippleState(let v)? = _storage._object {return v}
+      if case .rippleState(let v)? = _storage._object { return v }
       return Rpc_V1_RippleState()
     }
-    set {_uniqueStorage()._object = .rippleState(newValue)}
+    set { _uniqueStorage()._object = .rippleState(newValue) }
   }
 
   public var offer: Rpc_V1_Offer {
     get {
-      if case .offer(let v)? = _storage._object {return v}
+      if case .offer(let v)? = _storage._object { return v }
       return Rpc_V1_Offer()
     }
-    set {_uniqueStorage()._object = .offer(newValue)}
+    set { _uniqueStorage()._object = .offer(newValue) }
   }
 
   public var signerList: Rpc_V1_SignerList {
     get {
-      if case .signerList(let v)? = _storage._object {return v}
+      if case .signerList(let v)? = _storage._object { return v }
       return Rpc_V1_SignerList()
     }
-    set {_uniqueStorage()._object = .signerList(newValue)}
+    set { _uniqueStorage()._object = .signerList(newValue) }
   }
 
   public var directoryNode: Rpc_V1_DirectoryNode {
     get {
-      if case .directoryNode(let v)? = _storage._object {return v}
+      if case .directoryNode(let v)? = _storage._object { return v }
       return Rpc_V1_DirectoryNode()
     }
-    set {_uniqueStorage()._object = .directoryNode(newValue)}
+    set { _uniqueStorage()._object = .directoryNode(newValue) }
   }
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
@@ -187,64 +187,64 @@ public struct Rpc_V1_DirectoryNode {
   // methods supported on all messages.
 
   public var flags: UInt32 {
-    get {return _storage._flags}
-    set {_uniqueStorage()._flags = newValue}
+    get { return _storage._flags }
+    set { _uniqueStorage()._flags = newValue }
   }
 
   /// 32 bytes
   public var rootIndex: Data {
-    get {return _storage._rootIndex}
-    set {_uniqueStorage()._rootIndex = newValue}
+    get { return _storage._rootIndex }
+    set { _uniqueStorage()._rootIndex = newValue }
   }
 
   public var indexes: [Data] {
-    get {return _storage._indexes}
-    set {_uniqueStorage()._indexes = newValue}
+    get { return _storage._indexes }
+    set { _uniqueStorage()._indexes = newValue }
   }
 
   public var indexNext: UInt64 {
-    get {return _storage._indexNext}
-    set {_uniqueStorage()._indexNext = newValue}
+    get { return _storage._indexNext }
+    set { _uniqueStorage()._indexNext = newValue }
   }
 
   public var indexPrevious: UInt64 {
-    get {return _storage._indexPrevious}
-    set {_uniqueStorage()._indexPrevious = newValue}
+    get { return _storage._indexPrevious }
+    set { _uniqueStorage()._indexPrevious = newValue }
   }
 
   public var owner: String {
-    get {return _storage._owner}
-    set {_uniqueStorage()._owner = newValue}
+    get { return _storage._owner }
+    set { _uniqueStorage()._owner = newValue }
   }
 
   public var takerPaysCurrency: Rpc_V1_Currency {
-    get {return _storage._takerPaysCurrency ?? Rpc_V1_Currency()}
-    set {_uniqueStorage()._takerPaysCurrency = newValue}
+    get { return _storage._takerPaysCurrency ?? Rpc_V1_Currency() }
+    set { _uniqueStorage()._takerPaysCurrency = newValue }
   }
   /// Returns true if `takerPaysCurrency` has been explicitly set.
-  public var hasTakerPaysCurrency: Bool {return _storage._takerPaysCurrency != nil}
+  public var hasTakerPaysCurrency: Bool { return _storage._takerPaysCurrency != nil }
   /// Clears the value of `takerPaysCurrency`. Subsequent reads from it will return its default value.
-  public mutating func clearTakerPaysCurrency() {_uniqueStorage()._takerPaysCurrency = nil}
+  public mutating func clearTakerPaysCurrency() { _uniqueStorage()._takerPaysCurrency = nil }
 
   /// 20 bytes
   public var takerPaysIssuer: Data {
-    get {return _storage._takerPaysIssuer}
-    set {_uniqueStorage()._takerPaysIssuer = newValue}
+    get { return _storage._takerPaysIssuer }
+    set { _uniqueStorage()._takerPaysIssuer = newValue }
   }
 
   public var takerGetsCurrency: Rpc_V1_Currency {
-    get {return _storage._takerGetsCurrency ?? Rpc_V1_Currency()}
-    set {_uniqueStorage()._takerGetsCurrency = newValue}
+    get { return _storage._takerGetsCurrency ?? Rpc_V1_Currency() }
+    set { _uniqueStorage()._takerGetsCurrency = newValue }
   }
   /// Returns true if `takerGetsCurrency` has been explicitly set.
-  public var hasTakerGetsCurrency: Bool {return _storage._takerGetsCurrency != nil}
+  public var hasTakerGetsCurrency: Bool { return _storage._takerGetsCurrency != nil }
   /// Clears the value of `takerGetsCurrency`. Subsequent reads from it will return its default value.
-  public mutating func clearTakerGetsCurrency() {_uniqueStorage()._takerGetsCurrency = nil}
+  public mutating func clearTakerGetsCurrency() { _uniqueStorage()._takerGetsCurrency = nil }
 
   /// 20 bytes
   public var takerGetsIssuer: Data {
-    get {return _storage._takerGetsIssuer}
-    set {_uniqueStorage()._takerGetsIssuer = newValue}
+    get { return _storage._takerGetsIssuer }
+    set { _uniqueStorage()._takerGetsIssuer = newValue }
   }
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
@@ -285,18 +285,18 @@ public struct Rpc_V1_SignerEntry {
   // methods supported on all messages.
 
   public var account: Rpc_V1_AccountAddress {
-    get {return _storage._account ?? Rpc_V1_AccountAddress()}
-    set {_uniqueStorage()._account = newValue}
+    get { return _storage._account ?? Rpc_V1_AccountAddress() }
+    set { _uniqueStorage()._account = newValue }
   }
   /// Returns true if `account` has been explicitly set.
-  public var hasAccount: Bool {return _storage._account != nil}
+  public var hasAccount: Bool { return _storage._account != nil }
   /// Clears the value of `account`. Subsequent reads from it will return its default value.
-  public mutating func clearAccount() {_uniqueStorage()._account = nil}
+  public mutating func clearAccount() { _uniqueStorage()._account = nil }
 
   /// this is actually uint16, but protobuf can't express uint16
   public var signerWeight: UInt32 {
-    get {return _storage._signerWeight}
-    set {_uniqueStorage()._signerWeight = newValue}
+    get { return _storage._signerWeight }
+    set { _uniqueStorage()._signerWeight = newValue }
   }
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
@@ -312,87 +312,87 @@ public struct Rpc_V1_AccountRoot {
   // methods supported on all messages.
 
   public var account: Rpc_V1_AccountAddress {
-    get {return _storage._account ?? Rpc_V1_AccountAddress()}
-    set {_uniqueStorage()._account = newValue}
+    get { return _storage._account ?? Rpc_V1_AccountAddress() }
+    set { _uniqueStorage()._account = newValue }
   }
   /// Returns true if `account` has been explicitly set.
-  public var hasAccount: Bool {return _storage._account != nil}
+  public var hasAccount: Bool { return _storage._account != nil }
   /// Clears the value of `account`. Subsequent reads from it will return its default value.
-  public mutating func clearAccount() {_uniqueStorage()._account = nil}
+  public mutating func clearAccount() { _uniqueStorage()._account = nil }
 
   public var balance: Rpc_V1_XRPDropsAmount {
-    get {return _storage._balance ?? Rpc_V1_XRPDropsAmount()}
-    set {_uniqueStorage()._balance = newValue}
+    get { return _storage._balance ?? Rpc_V1_XRPDropsAmount() }
+    set { _uniqueStorage()._balance = newValue }
   }
   /// Returns true if `balance` has been explicitly set.
-  public var hasBalance: Bool {return _storage._balance != nil}
+  public var hasBalance: Bool { return _storage._balance != nil }
   /// Clears the value of `balance`. Subsequent reads from it will return its default value.
-  public mutating func clearBalance() {_uniqueStorage()._balance = nil}
+  public mutating func clearBalance() { _uniqueStorage()._balance = nil }
 
   public var sequence: UInt32 {
-    get {return _storage._sequence}
-    set {_uniqueStorage()._sequence = newValue}
+    get { return _storage._sequence }
+    set { _uniqueStorage()._sequence = newValue }
   }
 
   public var flags: UInt32 {
-    get {return _storage._flags}
-    set {_uniqueStorage()._flags = newValue}
+    get { return _storage._flags }
+    set { _uniqueStorage()._flags = newValue }
   }
 
   public var ownerCount: UInt32 {
-    get {return _storage._ownerCount}
-    set {_uniqueStorage()._ownerCount = newValue}
+    get { return _storage._ownerCount }
+    set { _uniqueStorage()._ownerCount = newValue }
   }
 
   /// 32 bytes
   public var previousTransactionID: Data {
-    get {return _storage._previousTransactionID}
-    set {_uniqueStorage()._previousTransactionID = newValue}
+    get { return _storage._previousTransactionID }
+    set { _uniqueStorage()._previousTransactionID = newValue }
   }
 
   public var previousTransactionLedgerSequence: UInt32 {
-    get {return _storage._previousTransactionLedgerSequence}
-    set {_uniqueStorage()._previousTransactionLedgerSequence = newValue}
+    get { return _storage._previousTransactionLedgerSequence }
+    set { _uniqueStorage()._previousTransactionLedgerSequence = newValue }
   }
 
   /// 32 bytes
   public var accountTransactionID: Data {
-    get {return _storage._accountTransactionID}
-    set {_uniqueStorage()._accountTransactionID = newValue}
+    get { return _storage._accountTransactionID }
+    set { _uniqueStorage()._accountTransactionID = newValue }
   }
 
   /// Variable length
   public var domain: Data {
-    get {return _storage._domain}
-    set {_uniqueStorage()._domain = newValue}
+    get { return _storage._domain }
+    set { _uniqueStorage()._domain = newValue }
   }
 
   /// 16 bytes
   public var emailHash: Data {
-    get {return _storage._emailHash}
-    set {_uniqueStorage()._emailHash = newValue}
+    get { return _storage._emailHash }
+    set { _uniqueStorage()._emailHash = newValue }
   }
 
   /// Variable length
   public var messageKey: Data {
-    get {return _storage._messageKey}
-    set {_uniqueStorage()._messageKey = newValue}
+    get { return _storage._messageKey }
+    set { _uniqueStorage()._messageKey = newValue }
   }
 
   /// base58 encoding
   public var regularKey: String {
-    get {return _storage._regularKey}
-    set {_uniqueStorage()._regularKey = newValue}
+    get { return _storage._regularKey }
+    set { _uniqueStorage()._regularKey = newValue }
   }
 
   public var tickSize: UInt32 {
-    get {return _storage._tickSize}
-    set {_uniqueStorage()._tickSize = newValue}
+    get { return _storage._tickSize }
+    set { _uniqueStorage()._tickSize = newValue }
   }
 
   public var transferRate: UInt32 {
-    get {return _storage._transferRate}
-    set {_uniqueStorage()._transferRate = newValue}
+    get { return _storage._transferRate }
+    set { _uniqueStorage()._transferRate = newValue }
   }
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
@@ -408,76 +408,76 @@ public struct Rpc_V1_RippleState {
   // methods supported on all messages.
 
   public var balance: Rpc_V1_CurrencyAmount {
-    get {return _storage._balance ?? Rpc_V1_CurrencyAmount()}
-    set {_uniqueStorage()._balance = newValue}
+    get { return _storage._balance ?? Rpc_V1_CurrencyAmount() }
+    set { _uniqueStorage()._balance = newValue }
   }
   /// Returns true if `balance` has been explicitly set.
-  public var hasBalance: Bool {return _storage._balance != nil}
+  public var hasBalance: Bool { return _storage._balance != nil }
   /// Clears the value of `balance`. Subsequent reads from it will return its default value.
-  public mutating func clearBalance() {_uniqueStorage()._balance = nil}
+  public mutating func clearBalance() { _uniqueStorage()._balance = nil }
 
   public var flags: UInt32 {
-    get {return _storage._flags}
-    set {_uniqueStorage()._flags = newValue}
+    get { return _storage._flags }
+    set { _uniqueStorage()._flags = newValue }
   }
 
   public var lowLimit: Rpc_V1_CurrencyAmount {
-    get {return _storage._lowLimit ?? Rpc_V1_CurrencyAmount()}
-    set {_uniqueStorage()._lowLimit = newValue}
+    get { return _storage._lowLimit ?? Rpc_V1_CurrencyAmount() }
+    set { _uniqueStorage()._lowLimit = newValue }
   }
   /// Returns true if `lowLimit` has been explicitly set.
-  public var hasLowLimit: Bool {return _storage._lowLimit != nil}
+  public var hasLowLimit: Bool { return _storage._lowLimit != nil }
   /// Clears the value of `lowLimit`. Subsequent reads from it will return its default value.
-  public mutating func clearLowLimit() {_uniqueStorage()._lowLimit = nil}
+  public mutating func clearLowLimit() { _uniqueStorage()._lowLimit = nil }
 
   public var highLimit: Rpc_V1_CurrencyAmount {
-    get {return _storage._highLimit ?? Rpc_V1_CurrencyAmount()}
-    set {_uniqueStorage()._highLimit = newValue}
+    get { return _storage._highLimit ?? Rpc_V1_CurrencyAmount() }
+    set { _uniqueStorage()._highLimit = newValue }
   }
   /// Returns true if `highLimit` has been explicitly set.
-  public var hasHighLimit: Bool {return _storage._highLimit != nil}
+  public var hasHighLimit: Bool { return _storage._highLimit != nil }
   /// Clears the value of `highLimit`. Subsequent reads from it will return its default value.
-  public mutating func clearHighLimit() {_uniqueStorage()._highLimit = nil}
+  public mutating func clearHighLimit() { _uniqueStorage()._highLimit = nil }
 
   public var lowNode: UInt64 {
-    get {return _storage._lowNode}
-    set {_uniqueStorage()._lowNode = newValue}
+    get { return _storage._lowNode }
+    set { _uniqueStorage()._lowNode = newValue }
   }
 
   public var highNode: UInt64 {
-    get {return _storage._highNode}
-    set {_uniqueStorage()._highNode = newValue}
+    get { return _storage._highNode }
+    set { _uniqueStorage()._highNode = newValue }
   }
 
   public var lowQualityIn: UInt32 {
-    get {return _storage._lowQualityIn}
-    set {_uniqueStorage()._lowQualityIn = newValue}
+    get { return _storage._lowQualityIn }
+    set { _uniqueStorage()._lowQualityIn = newValue }
   }
 
   public var lowQualityOut: UInt32 {
-    get {return _storage._lowQualityOut}
-    set {_uniqueStorage()._lowQualityOut = newValue}
+    get { return _storage._lowQualityOut }
+    set { _uniqueStorage()._lowQualityOut = newValue }
   }
 
   public var highQualityIn: UInt32 {
-    get {return _storage._highQualityIn}
-    set {_uniqueStorage()._highQualityIn = newValue}
+    get { return _storage._highQualityIn }
+    set { _uniqueStorage()._highQualityIn = newValue }
   }
 
   public var highQualityOut: UInt32 {
-    get {return _storage._highQualityOut}
-    set {_uniqueStorage()._highQualityOut = newValue}
+    get { return _storage._highQualityOut }
+    set { _uniqueStorage()._highQualityOut = newValue }
   }
 
   /// 32 bytes
   public var previousTransactionID: Data {
-    get {return _storage._previousTransactionID}
-    set {_uniqueStorage()._previousTransactionID = newValue}
+    get { return _storage._previousTransactionID }
+    set { _uniqueStorage()._previousTransactionID = newValue }
   }
 
   public var previousTransactionLedgerSequence: UInt32 {
-    get {return _storage._previousTransactionLedgerSequence}
-    set {_uniqueStorage()._previousTransactionLedgerSequence = newValue}
+    get { return _storage._previousTransactionLedgerSequence }
+    set { _uniqueStorage()._previousTransactionLedgerSequence = newValue }
   }
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
@@ -493,67 +493,67 @@ public struct Rpc_V1_Offer {
   // methods supported on all messages.
 
   public var account: String {
-    get {return _storage._account}
-    set {_uniqueStorage()._account = newValue}
+    get { return _storage._account }
+    set { _uniqueStorage()._account = newValue }
   }
 
   public var sequence: UInt32 {
-    get {return _storage._sequence}
-    set {_uniqueStorage()._sequence = newValue}
+    get { return _storage._sequence }
+    set { _uniqueStorage()._sequence = newValue }
   }
 
   public var flags: UInt32 {
-    get {return _storage._flags}
-    set {_uniqueStorage()._flags = newValue}
+    get { return _storage._flags }
+    set { _uniqueStorage()._flags = newValue }
   }
 
   public var takerPays: Rpc_V1_CurrencyAmount {
-    get {return _storage._takerPays ?? Rpc_V1_CurrencyAmount()}
-    set {_uniqueStorage()._takerPays = newValue}
+    get { return _storage._takerPays ?? Rpc_V1_CurrencyAmount() }
+    set { _uniqueStorage()._takerPays = newValue }
   }
   /// Returns true if `takerPays` has been explicitly set.
-  public var hasTakerPays: Bool {return _storage._takerPays != nil}
+  public var hasTakerPays: Bool { return _storage._takerPays != nil }
   /// Clears the value of `takerPays`. Subsequent reads from it will return its default value.
-  public mutating func clearTakerPays() {_uniqueStorage()._takerPays = nil}
+  public mutating func clearTakerPays() { _uniqueStorage()._takerPays = nil }
 
   public var takerGets: Rpc_V1_CurrencyAmount {
-    get {return _storage._takerGets ?? Rpc_V1_CurrencyAmount()}
-    set {_uniqueStorage()._takerGets = newValue}
+    get { return _storage._takerGets ?? Rpc_V1_CurrencyAmount() }
+    set { _uniqueStorage()._takerGets = newValue }
   }
   /// Returns true if `takerGets` has been explicitly set.
-  public var hasTakerGets: Bool {return _storage._takerGets != nil}
+  public var hasTakerGets: Bool { return _storage._takerGets != nil }
   /// Clears the value of `takerGets`. Subsequent reads from it will return its default value.
-  public mutating func clearTakerGets() {_uniqueStorage()._takerGets = nil}
+  public mutating func clearTakerGets() { _uniqueStorage()._takerGets = nil }
 
   public var bookDirectory: Data {
-    get {return _storage._bookDirectory}
-    set {_uniqueStorage()._bookDirectory = newValue}
+    get { return _storage._bookDirectory }
+    set { _uniqueStorage()._bookDirectory = newValue }
   }
 
   public var bookNode: UInt64 {
-    get {return _storage._bookNode}
-    set {_uniqueStorage()._bookNode = newValue}
+    get { return _storage._bookNode }
+    set { _uniqueStorage()._bookNode = newValue }
   }
 
   public var ownerNode: UInt64 {
-    get {return _storage._ownerNode}
-    set {_uniqueStorage()._ownerNode = newValue}
+    get { return _storage._ownerNode }
+    set { _uniqueStorage()._ownerNode = newValue }
   }
 
   public var expiration: UInt32 {
-    get {return _storage._expiration}
-    set {_uniqueStorage()._expiration = newValue}
+    get { return _storage._expiration }
+    set { _uniqueStorage()._expiration = newValue }
   }
 
   /// 32 bytes
   public var previousTransactionID: Data {
-    get {return _storage._previousTransactionID}
-    set {_uniqueStorage()._previousTransactionID = newValue}
+    get { return _storage._previousTransactionID }
+    set { _uniqueStorage()._previousTransactionID = newValue }
   }
 
   public var previousTransactionLedgerSequence: UInt32 {
-    get {return _storage._previousTransactionLedgerSequence}
-    set {_uniqueStorage()._previousTransactionLedgerSequence = newValue}
+    get { return _storage._previousTransactionLedgerSequence }
+    set { _uniqueStorage()._previousTransactionLedgerSequence = newValue }
   }
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
@@ -565,7 +565,7 @@ public struct Rpc_V1_Offer {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "rpc.v1"
+private let _protobuf_package = "rpc.v1"
 
 extension Rpc_V1_LedgerEntryType: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
@@ -581,7 +581,7 @@ extension Rpc_V1_LedgerEntryType: SwiftProtobuf._ProtoNameProviding {
     9: .same(proto: "LEDGER_ENTRY_TYPE_OFFER"),
     10: .same(proto: "LEDGER_ENTRY_TYPE_PAY_CHANNEL"),
     11: .same(proto: "LEDGER_ENTRY_TYPE_RIPPLE_STATE"),
-    12: .same(proto: "LEDGER_ENTRY_TYPE_SIGNER_LIST"),
+    12: .same(proto: "LEDGER_ENTRY_TYPE_SIGNER_LIST")
   ]
 }
 
@@ -592,7 +592,7 @@ extension Rpc_V1_LedgerObject: SwiftProtobuf.Message, SwiftProtobuf._MessageImpl
     2: .standard(proto: "ripple_state"),
     3: .same(proto: "offer"),
     4: .standard(proto: "signer_list"),
-    5: .standard(proto: "directory_node"),
+    5: .standard(proto: "directory_node")
   ]
 
   fileprivate class _StorageClass {
@@ -623,42 +623,42 @@ extension Rpc_V1_LedgerObject: SwiftProtobuf.Message, SwiftProtobuf._MessageImpl
           var v: Rpc_V1_AccountRoot?
           if let current = _storage._object {
             try decoder.handleConflictingOneOf()
-            if case .accountRoot(let m) = current {v = m}
+            if case .accountRoot(let m) = current { v = m }
           }
           try decoder.decodeSingularMessageField(value: &v)
-          if let v = v {_storage._object = .accountRoot(v)}
+          if let v = v { _storage._object = .accountRoot(v) }
         case 2:
           var v: Rpc_V1_RippleState?
           if let current = _storage._object {
             try decoder.handleConflictingOneOf()
-            if case .rippleState(let m) = current {v = m}
+            if case .rippleState(let m) = current { v = m }
           }
           try decoder.decodeSingularMessageField(value: &v)
-          if let v = v {_storage._object = .rippleState(v)}
+          if let v = v { _storage._object = .rippleState(v) }
         case 3:
           var v: Rpc_V1_Offer?
           if let current = _storage._object {
             try decoder.handleConflictingOneOf()
-            if case .offer(let m) = current {v = m}
+            if case .offer(let m) = current { v = m }
           }
           try decoder.decodeSingularMessageField(value: &v)
-          if let v = v {_storage._object = .offer(v)}
+          if let v = v { _storage._object = .offer(v) }
         case 4:
           var v: Rpc_V1_SignerList?
           if let current = _storage._object {
             try decoder.handleConflictingOneOf()
-            if case .signerList(let m) = current {v = m}
+            if case .signerList(let m) = current { v = m }
           }
           try decoder.decodeSingularMessageField(value: &v)
-          if let v = v {_storage._object = .signerList(v)}
+          if let v = v { _storage._object = .signerList(v) }
         case 5:
           var v: Rpc_V1_DirectoryNode?
           if let current = _storage._object {
             try decoder.handleConflictingOneOf()
-            if case .directoryNode(let m) = current {v = m}
+            if case .directoryNode(let m) = current { v = m }
           }
           try decoder.decodeSingularMessageField(value: &v)
-          if let v = v {_storage._object = .directoryNode(v)}
+          if let v = v { _storage._object = .directoryNode(v) }
         default: break
         }
       }
@@ -689,12 +689,12 @@ extension Rpc_V1_LedgerObject: SwiftProtobuf.Message, SwiftProtobuf._MessageImpl
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
         let rhs_storage = _args.1
-        if _storage._object != rhs_storage._object {return false}
+        if _storage._object != rhs_storage._object { return false }
         return true
       }
-      if !storagesAreEqual {return false}
+      if !storagesAreEqual { return false }
     }
-    if lhs.unknownFields != rhs.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields { return false }
     return true
   }
 }
@@ -711,7 +711,7 @@ extension Rpc_V1_DirectoryNode: SwiftProtobuf.Message, SwiftProtobuf._MessageImp
     7: .standard(proto: "taker_pays_currency"),
     8: .standard(proto: "taker_pays_issuer"),
     9: .standard(proto: "taker_gets_currency"),
-    10: .standard(proto: "taker_gets_issuer"),
+    10: .standard(proto: "taker_gets_issuer")
   ]
 
   fileprivate class _StorageClass {
@@ -721,9 +721,9 @@ extension Rpc_V1_DirectoryNode: SwiftProtobuf.Message, SwiftProtobuf._MessageImp
     var _indexNext: UInt64 = 0
     var _indexPrevious: UInt64 = 0
     var _owner: String = String()
-    var _takerPaysCurrency: Rpc_V1_Currency? = nil
+    var _takerPaysCurrency: Rpc_V1_Currency?
     var _takerPaysIssuer: Data = SwiftProtobuf.Internal.emptyData
-    var _takerGetsCurrency: Rpc_V1_Currency? = nil
+    var _takerGetsCurrency: Rpc_V1_Currency?
     var _takerGetsIssuer: Data = SwiftProtobuf.Internal.emptyData
 
     static let defaultInstance = _StorageClass()
@@ -813,21 +813,21 @@ extension Rpc_V1_DirectoryNode: SwiftProtobuf.Message, SwiftProtobuf._MessageImp
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
         let rhs_storage = _args.1
-        if _storage._flags != rhs_storage._flags {return false}
-        if _storage._rootIndex != rhs_storage._rootIndex {return false}
-        if _storage._indexes != rhs_storage._indexes {return false}
-        if _storage._indexNext != rhs_storage._indexNext {return false}
-        if _storage._indexPrevious != rhs_storage._indexPrevious {return false}
-        if _storage._owner != rhs_storage._owner {return false}
-        if _storage._takerPaysCurrency != rhs_storage._takerPaysCurrency {return false}
-        if _storage._takerPaysIssuer != rhs_storage._takerPaysIssuer {return false}
-        if _storage._takerGetsCurrency != rhs_storage._takerGetsCurrency {return false}
-        if _storage._takerGetsIssuer != rhs_storage._takerGetsIssuer {return false}
+        if _storage._flags != rhs_storage._flags { return false }
+        if _storage._rootIndex != rhs_storage._rootIndex { return false }
+        if _storage._indexes != rhs_storage._indexes { return false }
+        if _storage._indexNext != rhs_storage._indexNext { return false }
+        if _storage._indexPrevious != rhs_storage._indexPrevious { return false }
+        if _storage._owner != rhs_storage._owner { return false }
+        if _storage._takerPaysCurrency != rhs_storage._takerPaysCurrency { return false }
+        if _storage._takerPaysIssuer != rhs_storage._takerPaysIssuer { return false }
+        if _storage._takerGetsCurrency != rhs_storage._takerGetsCurrency { return false }
+        if _storage._takerGetsIssuer != rhs_storage._takerGetsIssuer { return false }
         return true
       }
-      if !storagesAreEqual {return false}
+      if !storagesAreEqual { return false }
     }
-    if lhs.unknownFields != rhs.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields { return false }
     return true
   }
 }
@@ -841,7 +841,7 @@ extension Rpc_V1_SignerList: SwiftProtobuf.Message, SwiftProtobuf._MessageImplem
     4: .standard(proto: "owner_node"),
     5: .standard(proto: "signer_entries"),
     6: .standard(proto: "signer_list_id"),
-    7: .standard(proto: "signer_quorum"),
+    7: .standard(proto: "signer_quorum")
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -885,14 +885,14 @@ extension Rpc_V1_SignerList: SwiftProtobuf.Message, SwiftProtobuf._MessageImplem
   }
 
   public static func ==(lhs: Rpc_V1_SignerList, rhs: Rpc_V1_SignerList) -> Bool {
-    if lhs.flags != rhs.flags {return false}
-    if lhs.previousTxnID != rhs.previousTxnID {return false}
-    if lhs.previousTransactionLedgerSequence != rhs.previousTransactionLedgerSequence {return false}
-    if lhs.ownerNode != rhs.ownerNode {return false}
-    if lhs.signerEntries != rhs.signerEntries {return false}
-    if lhs.signerListID != rhs.signerListID {return false}
-    if lhs.signerQuorum != rhs.signerQuorum {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
+    if lhs.flags != rhs.flags { return false }
+    if lhs.previousTxnID != rhs.previousTxnID { return false }
+    if lhs.previousTransactionLedgerSequence != rhs.previousTransactionLedgerSequence { return false }
+    if lhs.ownerNode != rhs.ownerNode { return false }
+    if lhs.signerEntries != rhs.signerEntries { return false }
+    if lhs.signerListID != rhs.signerListID { return false }
+    if lhs.signerQuorum != rhs.signerQuorum { return false }
+    if lhs.unknownFields != rhs.unknownFields { return false }
     return true
   }
 }
@@ -901,11 +901,11 @@ extension Rpc_V1_SignerEntry: SwiftProtobuf.Message, SwiftProtobuf._MessageImple
   public static let protoMessageName: String = _protobuf_package + ".SignerEntry"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "account"),
-    2: .standard(proto: "signer_weight"),
+    2: .standard(proto: "signer_weight")
   ]
 
   fileprivate class _StorageClass {
-    var _account: Rpc_V1_AccountAddress? = nil
+    var _account: Rpc_V1_AccountAddress?
     var _signerWeight: UInt32 = 0
 
     static let defaultInstance = _StorageClass()
@@ -955,13 +955,13 @@ extension Rpc_V1_SignerEntry: SwiftProtobuf.Message, SwiftProtobuf._MessageImple
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
         let rhs_storage = _args.1
-        if _storage._account != rhs_storage._account {return false}
-        if _storage._signerWeight != rhs_storage._signerWeight {return false}
+        if _storage._account != rhs_storage._account { return false }
+        if _storage._signerWeight != rhs_storage._signerWeight { return false }
         return true
       }
-      if !storagesAreEqual {return false}
+      if !storagesAreEqual { return false }
     }
-    if lhs.unknownFields != rhs.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields { return false }
     return true
   }
 }
@@ -982,12 +982,12 @@ extension Rpc_V1_AccountRoot: SwiftProtobuf.Message, SwiftProtobuf._MessageImple
     11: .standard(proto: "message_key"),
     12: .standard(proto: "regular_key"),
     13: .standard(proto: "tick_size"),
-    14: .standard(proto: "transfer_rate"),
+    14: .standard(proto: "transfer_rate")
   ]
 
   fileprivate class _StorageClass {
-    var _account: Rpc_V1_AccountAddress? = nil
-    var _balance: Rpc_V1_XRPDropsAmount? = nil
+    var _account: Rpc_V1_AccountAddress?
+    var _balance: Rpc_V1_XRPDropsAmount?
     var _sequence: UInt32 = 0
     var _flags: UInt32 = 0
     var _ownerCount: UInt32 = 0
@@ -1108,25 +1108,25 @@ extension Rpc_V1_AccountRoot: SwiftProtobuf.Message, SwiftProtobuf._MessageImple
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
         let rhs_storage = _args.1
-        if _storage._account != rhs_storage._account {return false}
-        if _storage._balance != rhs_storage._balance {return false}
-        if _storage._sequence != rhs_storage._sequence {return false}
-        if _storage._flags != rhs_storage._flags {return false}
-        if _storage._ownerCount != rhs_storage._ownerCount {return false}
-        if _storage._previousTransactionID != rhs_storage._previousTransactionID {return false}
-        if _storage._previousTransactionLedgerSequence != rhs_storage._previousTransactionLedgerSequence {return false}
-        if _storage._accountTransactionID != rhs_storage._accountTransactionID {return false}
-        if _storage._domain != rhs_storage._domain {return false}
-        if _storage._emailHash != rhs_storage._emailHash {return false}
-        if _storage._messageKey != rhs_storage._messageKey {return false}
-        if _storage._regularKey != rhs_storage._regularKey {return false}
-        if _storage._tickSize != rhs_storage._tickSize {return false}
-        if _storage._transferRate != rhs_storage._transferRate {return false}
+        if _storage._account != rhs_storage._account { return false }
+        if _storage._balance != rhs_storage._balance { return false }
+        if _storage._sequence != rhs_storage._sequence { return false }
+        if _storage._flags != rhs_storage._flags { return false }
+        if _storage._ownerCount != rhs_storage._ownerCount { return false }
+        if _storage._previousTransactionID != rhs_storage._previousTransactionID { return false }
+        if _storage._previousTransactionLedgerSequence != rhs_storage._previousTransactionLedgerSequence { return false }
+        if _storage._accountTransactionID != rhs_storage._accountTransactionID { return false }
+        if _storage._domain != rhs_storage._domain { return false }
+        if _storage._emailHash != rhs_storage._emailHash { return false }
+        if _storage._messageKey != rhs_storage._messageKey { return false }
+        if _storage._regularKey != rhs_storage._regularKey { return false }
+        if _storage._tickSize != rhs_storage._tickSize { return false }
+        if _storage._transferRate != rhs_storage._transferRate { return false }
         return true
       }
-      if !storagesAreEqual {return false}
+      if !storagesAreEqual { return false }
     }
-    if lhs.unknownFields != rhs.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields { return false }
     return true
   }
 }
@@ -1145,14 +1145,14 @@ extension Rpc_V1_RippleState: SwiftProtobuf.Message, SwiftProtobuf._MessageImple
     9: .standard(proto: "high_quality_in"),
     10: .standard(proto: "high_quality_out"),
     11: .standard(proto: "previous_transaction_id"),
-    12: .standard(proto: "previous_transaction_ledger_sequence"),
+    12: .standard(proto: "previous_transaction_ledger_sequence")
   ]
 
   fileprivate class _StorageClass {
-    var _balance: Rpc_V1_CurrencyAmount? = nil
+    var _balance: Rpc_V1_CurrencyAmount?
     var _flags: UInt32 = 0
-    var _lowLimit: Rpc_V1_CurrencyAmount? = nil
-    var _highLimit: Rpc_V1_CurrencyAmount? = nil
+    var _lowLimit: Rpc_V1_CurrencyAmount?
+    var _highLimit: Rpc_V1_CurrencyAmount?
     var _lowNode: UInt64 = 0
     var _highNode: UInt64 = 0
     var _lowQualityIn: UInt32 = 0
@@ -1259,23 +1259,23 @@ extension Rpc_V1_RippleState: SwiftProtobuf.Message, SwiftProtobuf._MessageImple
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
         let rhs_storage = _args.1
-        if _storage._balance != rhs_storage._balance {return false}
-        if _storage._flags != rhs_storage._flags {return false}
-        if _storage._lowLimit != rhs_storage._lowLimit {return false}
-        if _storage._highLimit != rhs_storage._highLimit {return false}
-        if _storage._lowNode != rhs_storage._lowNode {return false}
-        if _storage._highNode != rhs_storage._highNode {return false}
-        if _storage._lowQualityIn != rhs_storage._lowQualityIn {return false}
-        if _storage._lowQualityOut != rhs_storage._lowQualityOut {return false}
-        if _storage._highQualityIn != rhs_storage._highQualityIn {return false}
-        if _storage._highQualityOut != rhs_storage._highQualityOut {return false}
-        if _storage._previousTransactionID != rhs_storage._previousTransactionID {return false}
-        if _storage._previousTransactionLedgerSequence != rhs_storage._previousTransactionLedgerSequence {return false}
+        if _storage._balance != rhs_storage._balance { return false }
+        if _storage._flags != rhs_storage._flags { return false }
+        if _storage._lowLimit != rhs_storage._lowLimit { return false }
+        if _storage._highLimit != rhs_storage._highLimit { return false }
+        if _storage._lowNode != rhs_storage._lowNode { return false }
+        if _storage._highNode != rhs_storage._highNode { return false }
+        if _storage._lowQualityIn != rhs_storage._lowQualityIn { return false }
+        if _storage._lowQualityOut != rhs_storage._lowQualityOut { return false }
+        if _storage._highQualityIn != rhs_storage._highQualityIn { return false }
+        if _storage._highQualityOut != rhs_storage._highQualityOut { return false }
+        if _storage._previousTransactionID != rhs_storage._previousTransactionID { return false }
+        if _storage._previousTransactionLedgerSequence != rhs_storage._previousTransactionLedgerSequence { return false }
         return true
       }
-      if !storagesAreEqual {return false}
+      if !storagesAreEqual { return false }
     }
-    if lhs.unknownFields != rhs.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields { return false }
     return true
   }
 }
@@ -1293,15 +1293,15 @@ extension Rpc_V1_Offer: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementat
     8: .standard(proto: "owner_node"),
     9: .same(proto: "expiration"),
     10: .standard(proto: "previous_transaction_id"),
-    11: .standard(proto: "previous_transaction_ledger_sequence"),
+    11: .standard(proto: "previous_transaction_ledger_sequence")
   ]
 
   fileprivate class _StorageClass {
     var _account: String = String()
     var _sequence: UInt32 = 0
     var _flags: UInt32 = 0
-    var _takerPays: Rpc_V1_CurrencyAmount? = nil
-    var _takerGets: Rpc_V1_CurrencyAmount? = nil
+    var _takerPays: Rpc_V1_CurrencyAmount?
+    var _takerGets: Rpc_V1_CurrencyAmount?
     var _bookDirectory: Data = SwiftProtobuf.Internal.emptyData
     var _bookNode: UInt64 = 0
     var _ownerNode: UInt64 = 0
@@ -1401,22 +1401,22 @@ extension Rpc_V1_Offer: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementat
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
         let rhs_storage = _args.1
-        if _storage._account != rhs_storage._account {return false}
-        if _storage._sequence != rhs_storage._sequence {return false}
-        if _storage._flags != rhs_storage._flags {return false}
-        if _storage._takerPays != rhs_storage._takerPays {return false}
-        if _storage._takerGets != rhs_storage._takerGets {return false}
-        if _storage._bookDirectory != rhs_storage._bookDirectory {return false}
-        if _storage._bookNode != rhs_storage._bookNode {return false}
-        if _storage._ownerNode != rhs_storage._ownerNode {return false}
-        if _storage._expiration != rhs_storage._expiration {return false}
-        if _storage._previousTransactionID != rhs_storage._previousTransactionID {return false}
-        if _storage._previousTransactionLedgerSequence != rhs_storage._previousTransactionLedgerSequence {return false}
+        if _storage._account != rhs_storage._account { return false }
+        if _storage._sequence != rhs_storage._sequence { return false }
+        if _storage._flags != rhs_storage._flags { return false }
+        if _storage._takerPays != rhs_storage._takerPays { return false }
+        if _storage._takerGets != rhs_storage._takerGets { return false }
+        if _storage._bookDirectory != rhs_storage._bookDirectory { return false }
+        if _storage._bookNode != rhs_storage._bookNode { return false }
+        if _storage._ownerNode != rhs_storage._ownerNode { return false }
+        if _storage._expiration != rhs_storage._expiration { return false }
+        if _storage._previousTransactionID != rhs_storage._previousTransactionID { return false }
+        if _storage._previousTransactionLedgerSequence != rhs_storage._previousTransactionLedgerSequence { return false }
         return true
       }
-      if !storagesAreEqual {return false}
+      if !storagesAreEqual { return false }
     }
-    if lhs.unknownFields != rhs.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields { return false }
     return true
   }
 }

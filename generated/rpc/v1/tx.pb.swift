@@ -14,7 +14,7 @@ import SwiftProtobuf
 // incompatible with the version of SwiftProtobuf to which you are linking.
 // Please ensure that your are building against the same version of the API
 // that was used to generate this file.
-fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAPIVersionCheck {
+private struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAPIVersionCheck {
   struct _2: SwiftProtobuf.ProtobufAPIVersion_2 {}
   typealias Version = _2
 }
@@ -42,66 +42,66 @@ public struct Rpc_V1_GetTxResponse {
 
   /// The actual transaction
   public var serializedTransaction: OneOf_SerializedTransaction? {
-    get {return _storage._serializedTransaction}
-    set {_uniqueStorage()._serializedTransaction = newValue}
+    get { return _storage._serializedTransaction }
+    set { _uniqueStorage()._serializedTransaction = newValue }
   }
 
   public var transaction: Rpc_V1_Transaction {
     get {
-      if case .transaction(let v)? = _storage._serializedTransaction {return v}
+      if case .transaction(let v)? = _storage._serializedTransaction { return v }
       return Rpc_V1_Transaction()
     }
-    set {_uniqueStorage()._serializedTransaction = .transaction(newValue)}
+    set { _uniqueStorage()._serializedTransaction = .transaction(newValue) }
   }
 
   /// Variable length
   public var transactionBinary: Data {
     get {
-      if case .transactionBinary(let v)? = _storage._serializedTransaction {return v}
+      if case .transactionBinary(let v)? = _storage._serializedTransaction { return v }
       return SwiftProtobuf.Internal.emptyData
     }
-    set {_uniqueStorage()._serializedTransaction = .transactionBinary(newValue)}
+    set { _uniqueStorage()._serializedTransaction = .transactionBinary(newValue) }
   }
 
   /// Sequence number of ledger that contains this transaction
   public var ledgerIndex: UInt32 {
-    get {return _storage._ledgerIndex}
-    set {_uniqueStorage()._ledgerIndex = newValue}
+    get { return _storage._ledgerIndex }
+    set { _uniqueStorage()._ledgerIndex = newValue }
   }
 
   /// 32 bytes
   public var hash: Data {
-    get {return _storage._hash}
-    set {_uniqueStorage()._hash = newValue}
+    get { return _storage._hash }
+    set { _uniqueStorage()._hash = newValue }
   }
 
   /// whether the ledger has been validated
   public var validated: Bool {
-    get {return _storage._validated}
-    set {_uniqueStorage()._validated = newValue}
+    get { return _storage._validated }
+    set { _uniqueStorage()._validated = newValue }
   }
 
   /// metadata about the transaction
   public var serializedMeta: OneOf_SerializedMeta? {
-    get {return _storage._serializedMeta}
-    set {_uniqueStorage()._serializedMeta = newValue}
+    get { return _storage._serializedMeta }
+    set { _uniqueStorage()._serializedMeta = newValue }
   }
 
   public var meta: Rpc_V1_Meta {
     get {
-      if case .meta(let v)? = _storage._serializedMeta {return v}
+      if case .meta(let v)? = _storage._serializedMeta { return v }
       return Rpc_V1_Meta()
     }
-    set {_uniqueStorage()._serializedMeta = .meta(newValue)}
+    set { _uniqueStorage()._serializedMeta = .meta(newValue) }
   }
 
   /// Variable length
   public var metaBinary: Data {
     get {
-      if case .metaBinary(let v)? = _storage._serializedMeta {return v}
+      if case .metaBinary(let v)? = _storage._serializedMeta { return v }
       return SwiftProtobuf.Internal.emptyData
     }
-    set {_uniqueStorage()._serializedMeta = .metaBinary(newValue)}
+    set { _uniqueStorage()._serializedMeta = .metaBinary(newValue) }
   }
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
@@ -147,13 +147,13 @@ public struct Rpc_V1_GetTxResponse {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "rpc.v1"
+private let _protobuf_package = "rpc.v1"
 
 extension Rpc_V1_GetTxRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".GetTxRequest"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "hash"),
-    2: .same(proto: "binary"),
+    2: .same(proto: "binary")
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -177,9 +177,9 @@ extension Rpc_V1_GetTxRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImpl
   }
 
   public static func ==(lhs: Rpc_V1_GetTxRequest, rhs: Rpc_V1_GetTxRequest) -> Bool {
-    if lhs.hash != rhs.hash {return false}
-    if lhs.binary != rhs.binary {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
+    if lhs.hash != rhs.hash { return false }
+    if lhs.binary != rhs.binary { return false }
+    if lhs.unknownFields != rhs.unknownFields { return false }
     return true
   }
 }
@@ -193,7 +193,7 @@ extension Rpc_V1_GetTxResponse: SwiftProtobuf.Message, SwiftProtobuf._MessageImp
     4: .same(proto: "hash"),
     5: .same(proto: "validated"),
     6: .same(proto: "meta"),
-    7: .standard(proto: "meta_binary"),
+    7: .standard(proto: "meta_binary")
   ]
 
   fileprivate class _StorageClass {
@@ -232,15 +232,15 @@ extension Rpc_V1_GetTxResponse: SwiftProtobuf.Message, SwiftProtobuf._MessageImp
           var v: Rpc_V1_Transaction?
           if let current = _storage._serializedTransaction {
             try decoder.handleConflictingOneOf()
-            if case .transaction(let m) = current {v = m}
+            if case .transaction(let m) = current { v = m }
           }
           try decoder.decodeSingularMessageField(value: &v)
-          if let v = v {_storage._serializedTransaction = .transaction(v)}
+          if let v = v { _storage._serializedTransaction = .transaction(v) }
         case 2:
-          if _storage._serializedTransaction != nil {try decoder.handleConflictingOneOf()}
+          if _storage._serializedTransaction != nil { try decoder.handleConflictingOneOf() }
           var v: Data?
           try decoder.decodeSingularBytesField(value: &v)
-          if let v = v {_storage._serializedTransaction = .transactionBinary(v)}
+          if let v = v { _storage._serializedTransaction = .transactionBinary(v) }
         case 3: try decoder.decodeSingularUInt32Field(value: &_storage._ledgerIndex)
         case 4: try decoder.decodeSingularBytesField(value: &_storage._hash)
         case 5: try decoder.decodeSingularBoolField(value: &_storage._validated)
@@ -248,15 +248,15 @@ extension Rpc_V1_GetTxResponse: SwiftProtobuf.Message, SwiftProtobuf._MessageImp
           var v: Rpc_V1_Meta?
           if let current = _storage._serializedMeta {
             try decoder.handleConflictingOneOf()
-            if case .meta(let m) = current {v = m}
+            if case .meta(let m) = current { v = m }
           }
           try decoder.decodeSingularMessageField(value: &v)
-          if let v = v {_storage._serializedMeta = .meta(v)}
+          if let v = v { _storage._serializedMeta = .meta(v) }
         case 7:
-          if _storage._serializedMeta != nil {try decoder.handleConflictingOneOf()}
+          if _storage._serializedMeta != nil { try decoder.handleConflictingOneOf() }
           var v: Data?
           try decoder.decodeSingularBytesField(value: &v)
-          if let v = v {_storage._serializedMeta = .metaBinary(v)}
+          if let v = v { _storage._serializedMeta = .metaBinary(v) }
         default: break
         }
       }
@@ -297,16 +297,16 @@ extension Rpc_V1_GetTxResponse: SwiftProtobuf.Message, SwiftProtobuf._MessageImp
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
         let rhs_storage = _args.1
-        if _storage._serializedTransaction != rhs_storage._serializedTransaction {return false}
-        if _storage._ledgerIndex != rhs_storage._ledgerIndex {return false}
-        if _storage._hash != rhs_storage._hash {return false}
-        if _storage._validated != rhs_storage._validated {return false}
-        if _storage._serializedMeta != rhs_storage._serializedMeta {return false}
+        if _storage._serializedTransaction != rhs_storage._serializedTransaction { return false }
+        if _storage._ledgerIndex != rhs_storage._ledgerIndex { return false }
+        if _storage._hash != rhs_storage._hash { return false }
+        if _storage._validated != rhs_storage._validated { return false }
+        if _storage._serializedMeta != rhs_storage._serializedMeta { return false }
         return true
       }
-      if !storagesAreEqual {return false}
+      if !storagesAreEqual { return false }
     }
-    if lhs.unknownFields != rhs.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields { return false }
     return true
   }
 }

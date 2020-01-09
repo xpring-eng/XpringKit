@@ -49,7 +49,6 @@ fileprivate final class Rpc_V1_XRPLedgerAPIServiceGetTxCallBase: ClientCallUnary
   override class var method: String { return "/rpc.v1.XRPLedgerAPIService/GetTx" }
 }
 
-
 /// Instantiate Rpc_V1_XRPLedgerAPIServiceServiceClient, then call methods of this protocol to make API calls.
 internal protocol Rpc_V1_XRPLedgerAPIServiceService: ServiceClient {
   /// Synchronous. Unary.
@@ -230,4 +229,3 @@ fileprivate final class Rpc_V1_XRPLedgerAPIServiceSubmitTransactionSessionBase: 
 internal protocol Rpc_V1_XRPLedgerAPIServiceGetTxSession: ServerSessionUnary {}
 
 fileprivate final class Rpc_V1_XRPLedgerAPIServiceGetTxSessionBase: ServerSessionUnaryBase<Rpc_V1_GetTxRequest, Rpc_V1_GetTxResponse>, Rpc_V1_XRPLedgerAPIServiceGetTxSession {}
-

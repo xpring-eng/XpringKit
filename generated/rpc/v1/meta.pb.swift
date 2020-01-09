@@ -14,7 +14,7 @@ import SwiftProtobuf
 // incompatible with the version of SwiftProtobuf to which you are linking.
 // Please ensure that your are building against the same version of the API
 // that was used to generate this file.
-fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAPIVersionCheck {
+private struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAPIVersionCheck {
   struct _2: SwiftProtobuf.ProtobufAPIVersion_2 {}
   typealias Version = _2
 }
@@ -26,33 +26,33 @@ public struct Rpc_V1_Meta {
 
   /// index in ledger
   public var transactionIndex: UInt64 {
-    get {return _storage._transactionIndex}
-    set {_uniqueStorage()._transactionIndex = newValue}
+    get { return _storage._transactionIndex }
+    set { _uniqueStorage()._transactionIndex = newValue }
   }
 
   /// result code indicating whether the transaction succeeded or failed
   public var transactionResult: Rpc_V1_TransactionResult {
-    get {return _storage._transactionResult ?? Rpc_V1_TransactionResult()}
-    set {_uniqueStorage()._transactionResult = newValue}
+    get { return _storage._transactionResult ?? Rpc_V1_TransactionResult() }
+    set { _uniqueStorage()._transactionResult = newValue }
   }
   /// Returns true if `transactionResult` has been explicitly set.
-  public var hasTransactionResult: Bool {return _storage._transactionResult != nil}
+  public var hasTransactionResult: Bool { return _storage._transactionResult != nil }
   /// Clears the value of `transactionResult`. Subsequent reads from it will return its default value.
-  public mutating func clearTransactionResult() {_uniqueStorage()._transactionResult = nil}
+  public mutating func clearTransactionResult() { _uniqueStorage()._transactionResult = nil }
 
   public var affectedNodes: [Rpc_V1_AffectedNode] {
-    get {return _storage._affectedNodes}
-    set {_uniqueStorage()._affectedNodes = newValue}
+    get { return _storage._affectedNodes }
+    set { _uniqueStorage()._affectedNodes = newValue }
   }
 
   public var deliveredAmount: Rpc_V1_CurrencyAmount {
-    get {return _storage._deliveredAmount ?? Rpc_V1_CurrencyAmount()}
-    set {_uniqueStorage()._deliveredAmount = newValue}
+    get { return _storage._deliveredAmount ?? Rpc_V1_CurrencyAmount() }
+    set { _uniqueStorage()._deliveredAmount = newValue }
   }
   /// Returns true if `deliveredAmount` has been explicitly set.
-  public var hasDeliveredAmount: Bool {return _storage._deliveredAmount != nil}
+  public var hasDeliveredAmount: Bool { return _storage._deliveredAmount != nil }
   /// Clears the value of `deliveredAmount`. Subsequent reads from it will return its default value.
-  public mutating func clearDeliveredAmount() {_uniqueStorage()._deliveredAmount = nil}
+  public mutating func clearDeliveredAmount() { _uniqueStorage()._deliveredAmount = nil }
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -143,7 +143,7 @@ extension Rpc_V1_TransactionResult.ResultType: CaseIterable {
     .tel,
     .tem,
     .ter,
-    .tes,
+    .tes
   ]
 }
 
@@ -155,43 +155,43 @@ public struct Rpc_V1_AffectedNode {
   // methods supported on all messages.
 
   public var ledgerEntryType: Rpc_V1_LedgerEntryType {
-    get {return _storage._ledgerEntryType}
-    set {_uniqueStorage()._ledgerEntryType = newValue}
+    get { return _storage._ledgerEntryType }
+    set { _uniqueStorage()._ledgerEntryType = newValue }
   }
 
   /// 32 bytes
   public var ledgerIndex: Data {
-    get {return _storage._ledgerIndex}
-    set {_uniqueStorage()._ledgerIndex = newValue}
+    get { return _storage._ledgerIndex }
+    set { _uniqueStorage()._ledgerIndex = newValue }
   }
 
   public var node: OneOf_Node? {
-    get {return _storage._node}
-    set {_uniqueStorage()._node = newValue}
+    get { return _storage._node }
+    set { _uniqueStorage()._node = newValue }
   }
 
   public var createdNode: Rpc_V1_CreatedNode {
     get {
-      if case .createdNode(let v)? = _storage._node {return v}
+      if case .createdNode(let v)? = _storage._node { return v }
       return Rpc_V1_CreatedNode()
     }
-    set {_uniqueStorage()._node = .createdNode(newValue)}
+    set { _uniqueStorage()._node = .createdNode(newValue) }
   }
 
   public var deletedNode: Rpc_V1_DeletedNode {
     get {
-      if case .deletedNode(let v)? = _storage._node {return v}
+      if case .deletedNode(let v)? = _storage._node { return v }
       return Rpc_V1_DeletedNode()
     }
-    set {_uniqueStorage()._node = .deletedNode(newValue)}
+    set { _uniqueStorage()._node = .deletedNode(newValue) }
   }
 
   public var modifiedNode: Rpc_V1_ModifiedNode {
     get {
-      if case .modifiedNode(let v)? = _storage._node {return v}
+      if case .modifiedNode(let v)? = _storage._node { return v }
       return Rpc_V1_ModifiedNode()
     }
-    set {_uniqueStorage()._node = .modifiedNode(newValue)}
+    set { _uniqueStorage()._node = .modifiedNode(newValue) }
   }
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
@@ -224,13 +224,13 @@ public struct Rpc_V1_CreatedNode {
   // methods supported on all messages.
 
   public var newFields: Rpc_V1_LedgerObject {
-    get {return _storage._newFields ?? Rpc_V1_LedgerObject()}
-    set {_uniqueStorage()._newFields = newValue}
+    get { return _storage._newFields ?? Rpc_V1_LedgerObject() }
+    set { _uniqueStorage()._newFields = newValue }
   }
   /// Returns true if `newFields` has been explicitly set.
-  public var hasNewFields: Bool {return _storage._newFields != nil}
+  public var hasNewFields: Bool { return _storage._newFields != nil }
   /// Clears the value of `newFields`. Subsequent reads from it will return its default value.
-  public mutating func clearNewFields() {_uniqueStorage()._newFields = nil}
+  public mutating func clearNewFields() { _uniqueStorage()._newFields = nil }
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -245,13 +245,13 @@ public struct Rpc_V1_DeletedNode {
   // methods supported on all messages.
 
   public var finalFields: Rpc_V1_LedgerObject {
-    get {return _storage._finalFields ?? Rpc_V1_LedgerObject()}
-    set {_uniqueStorage()._finalFields = newValue}
+    get { return _storage._finalFields ?? Rpc_V1_LedgerObject() }
+    set { _uniqueStorage()._finalFields = newValue }
   }
   /// Returns true if `finalFields` has been explicitly set.
-  public var hasFinalFields: Bool {return _storage._finalFields != nil}
+  public var hasFinalFields: Bool { return _storage._finalFields != nil }
   /// Clears the value of `finalFields`. Subsequent reads from it will return its default value.
-  public mutating func clearFinalFields() {_uniqueStorage()._finalFields = nil}
+  public mutating func clearFinalFields() { _uniqueStorage()._finalFields = nil }
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -266,32 +266,32 @@ public struct Rpc_V1_ModifiedNode {
   // methods supported on all messages.
 
   public var finalFields: Rpc_V1_LedgerObject {
-    get {return _storage._finalFields ?? Rpc_V1_LedgerObject()}
-    set {_uniqueStorage()._finalFields = newValue}
+    get { return _storage._finalFields ?? Rpc_V1_LedgerObject() }
+    set { _uniqueStorage()._finalFields = newValue }
   }
   /// Returns true if `finalFields` has been explicitly set.
-  public var hasFinalFields: Bool {return _storage._finalFields != nil}
+  public var hasFinalFields: Bool { return _storage._finalFields != nil }
   /// Clears the value of `finalFields`. Subsequent reads from it will return its default value.
-  public mutating func clearFinalFields() {_uniqueStorage()._finalFields = nil}
+  public mutating func clearFinalFields() { _uniqueStorage()._finalFields = nil }
 
   public var previousFields: Rpc_V1_LedgerObject {
-    get {return _storage._previousFields ?? Rpc_V1_LedgerObject()}
-    set {_uniqueStorage()._previousFields = newValue}
+    get { return _storage._previousFields ?? Rpc_V1_LedgerObject() }
+    set { _uniqueStorage()._previousFields = newValue }
   }
   /// Returns true if `previousFields` has been explicitly set.
-  public var hasPreviousFields: Bool {return _storage._previousFields != nil}
+  public var hasPreviousFields: Bool { return _storage._previousFields != nil }
   /// Clears the value of `previousFields`. Subsequent reads from it will return its default value.
-  public mutating func clearPreviousFields() {_uniqueStorage()._previousFields = nil}
+  public mutating func clearPreviousFields() { _uniqueStorage()._previousFields = nil }
 
   /// 32 bytes
   public var previousTransactionID: Data {
-    get {return _storage._previousTransactionID}
-    set {_uniqueStorage()._previousTransactionID = newValue}
+    get { return _storage._previousTransactionID }
+    set { _uniqueStorage()._previousTransactionID = newValue }
   }
 
   public var previousTransactionLedgerSequence: UInt32 {
-    get {return _storage._previousTransactionLedgerSequence}
-    set {_uniqueStorage()._previousTransactionLedgerSequence = newValue}
+    get { return _storage._previousTransactionLedgerSequence }
+    set { _uniqueStorage()._previousTransactionLedgerSequence = newValue }
   }
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
@@ -303,7 +303,7 @@ public struct Rpc_V1_ModifiedNode {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "rpc.v1"
+private let _protobuf_package = "rpc.v1"
 
 extension Rpc_V1_Meta: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".Meta"
@@ -311,14 +311,14 @@ extension Rpc_V1_Meta: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementati
     1: .standard(proto: "transaction_index"),
     2: .standard(proto: "transaction_result"),
     3: .standard(proto: "affected_nodes"),
-    4: .standard(proto: "delivered_amount"),
+    4: .standard(proto: "delivered_amount")
   ]
 
   fileprivate class _StorageClass {
     var _transactionIndex: UInt64 = 0
-    var _transactionResult: Rpc_V1_TransactionResult? = nil
+    var _transactionResult: Rpc_V1_TransactionResult?
     var _affectedNodes: [Rpc_V1_AffectedNode] = []
-    var _deliveredAmount: Rpc_V1_CurrencyAmount? = nil
+    var _deliveredAmount: Rpc_V1_CurrencyAmount?
 
     static let defaultInstance = _StorageClass()
 
@@ -377,15 +377,15 @@ extension Rpc_V1_Meta: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementati
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
         let rhs_storage = _args.1
-        if _storage._transactionIndex != rhs_storage._transactionIndex {return false}
-        if _storage._transactionResult != rhs_storage._transactionResult {return false}
-        if _storage._affectedNodes != rhs_storage._affectedNodes {return false}
-        if _storage._deliveredAmount != rhs_storage._deliveredAmount {return false}
+        if _storage._transactionIndex != rhs_storage._transactionIndex { return false }
+        if _storage._transactionResult != rhs_storage._transactionResult { return false }
+        if _storage._affectedNodes != rhs_storage._affectedNodes { return false }
+        if _storage._deliveredAmount != rhs_storage._deliveredAmount { return false }
         return true
       }
-      if !storagesAreEqual {return false}
+      if !storagesAreEqual { return false }
     }
-    if lhs.unknownFields != rhs.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields { return false }
     return true
   }
 }
@@ -394,7 +394,7 @@ extension Rpc_V1_TransactionResult: SwiftProtobuf.Message, SwiftProtobuf._Messag
   public static let protoMessageName: String = _protobuf_package + ".TransactionResult"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .standard(proto: "result_type"),
-    2: .same(proto: "result"),
+    2: .same(proto: "result")
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -418,9 +418,9 @@ extension Rpc_V1_TransactionResult: SwiftProtobuf.Message, SwiftProtobuf._Messag
   }
 
   public static func ==(lhs: Rpc_V1_TransactionResult, rhs: Rpc_V1_TransactionResult) -> Bool {
-    if lhs.resultType != rhs.resultType {return false}
-    if lhs.result != rhs.result {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
+    if lhs.resultType != rhs.resultType { return false }
+    if lhs.result != rhs.result { return false }
+    if lhs.unknownFields != rhs.unknownFields { return false }
     return true
   }
 }
@@ -433,7 +433,7 @@ extension Rpc_V1_TransactionResult.ResultType: SwiftProtobuf._ProtoNameProviding
     3: .same(proto: "RESULT_TYPE_TEL"),
     4: .same(proto: "RESULT_TYPE_TEM"),
     5: .same(proto: "RESULT_TYPE_TER"),
-    6: .same(proto: "RESULT_TYPE_TES"),
+    6: .same(proto: "RESULT_TYPE_TES")
   ]
 }
 
@@ -444,7 +444,7 @@ extension Rpc_V1_AffectedNode: SwiftProtobuf.Message, SwiftProtobuf._MessageImpl
     2: .standard(proto: "ledger_index"),
     3: .standard(proto: "created_node"),
     4: .standard(proto: "deleted_node"),
-    5: .standard(proto: "modified_node"),
+    5: .standard(proto: "modified_node")
   ]
 
   fileprivate class _StorageClass {
@@ -481,26 +481,26 @@ extension Rpc_V1_AffectedNode: SwiftProtobuf.Message, SwiftProtobuf._MessageImpl
           var v: Rpc_V1_CreatedNode?
           if let current = _storage._node {
             try decoder.handleConflictingOneOf()
-            if case .createdNode(let m) = current {v = m}
+            if case .createdNode(let m) = current { v = m }
           }
           try decoder.decodeSingularMessageField(value: &v)
-          if let v = v {_storage._node = .createdNode(v)}
+          if let v = v { _storage._node = .createdNode(v) }
         case 4:
           var v: Rpc_V1_DeletedNode?
           if let current = _storage._node {
             try decoder.handleConflictingOneOf()
-            if case .deletedNode(let m) = current {v = m}
+            if case .deletedNode(let m) = current { v = m }
           }
           try decoder.decodeSingularMessageField(value: &v)
-          if let v = v {_storage._node = .deletedNode(v)}
+          if let v = v { _storage._node = .deletedNode(v) }
         case 5:
           var v: Rpc_V1_ModifiedNode?
           if let current = _storage._node {
             try decoder.handleConflictingOneOf()
-            if case .modifiedNode(let m) = current {v = m}
+            if case .modifiedNode(let m) = current { v = m }
           }
           try decoder.decodeSingularMessageField(value: &v)
-          if let v = v {_storage._node = .modifiedNode(v)}
+          if let v = v { _storage._node = .modifiedNode(v) }
         default: break
         }
       }
@@ -533,14 +533,14 @@ extension Rpc_V1_AffectedNode: SwiftProtobuf.Message, SwiftProtobuf._MessageImpl
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
         let rhs_storage = _args.1
-        if _storage._ledgerEntryType != rhs_storage._ledgerEntryType {return false}
-        if _storage._ledgerIndex != rhs_storage._ledgerIndex {return false}
-        if _storage._node != rhs_storage._node {return false}
+        if _storage._ledgerEntryType != rhs_storage._ledgerEntryType { return false }
+        if _storage._ledgerIndex != rhs_storage._ledgerIndex { return false }
+        if _storage._node != rhs_storage._node { return false }
         return true
       }
-      if !storagesAreEqual {return false}
+      if !storagesAreEqual { return false }
     }
-    if lhs.unknownFields != rhs.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields { return false }
     return true
   }
 }
@@ -548,11 +548,11 @@ extension Rpc_V1_AffectedNode: SwiftProtobuf.Message, SwiftProtobuf._MessageImpl
 extension Rpc_V1_CreatedNode: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".CreatedNode"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .standard(proto: "new_fields"),
+    1: .standard(proto: "new_fields")
   ]
 
   fileprivate class _StorageClass {
-    var _newFields: Rpc_V1_LedgerObject? = nil
+    var _newFields: Rpc_V1_LedgerObject?
 
     static let defaultInstance = _StorageClass()
 
@@ -596,12 +596,12 @@ extension Rpc_V1_CreatedNode: SwiftProtobuf.Message, SwiftProtobuf._MessageImple
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
         let rhs_storage = _args.1
-        if _storage._newFields != rhs_storage._newFields {return false}
+        if _storage._newFields != rhs_storage._newFields { return false }
         return true
       }
-      if !storagesAreEqual {return false}
+      if !storagesAreEqual { return false }
     }
-    if lhs.unknownFields != rhs.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields { return false }
     return true
   }
 }
@@ -609,11 +609,11 @@ extension Rpc_V1_CreatedNode: SwiftProtobuf.Message, SwiftProtobuf._MessageImple
 extension Rpc_V1_DeletedNode: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".DeletedNode"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .standard(proto: "final_fields"),
+    1: .standard(proto: "final_fields")
   ]
 
   fileprivate class _StorageClass {
-    var _finalFields: Rpc_V1_LedgerObject? = nil
+    var _finalFields: Rpc_V1_LedgerObject?
 
     static let defaultInstance = _StorageClass()
 
@@ -657,12 +657,12 @@ extension Rpc_V1_DeletedNode: SwiftProtobuf.Message, SwiftProtobuf._MessageImple
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
         let rhs_storage = _args.1
-        if _storage._finalFields != rhs_storage._finalFields {return false}
+        if _storage._finalFields != rhs_storage._finalFields { return false }
         return true
       }
-      if !storagesAreEqual {return false}
+      if !storagesAreEqual { return false }
     }
-    if lhs.unknownFields != rhs.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields { return false }
     return true
   }
 }
@@ -673,12 +673,12 @@ extension Rpc_V1_ModifiedNode: SwiftProtobuf.Message, SwiftProtobuf._MessageImpl
     1: .standard(proto: "final_fields"),
     2: .standard(proto: "previous_fields"),
     3: .standard(proto: "previous_transaction_id"),
-    4: .standard(proto: "previous_transaction_ledger_sequence"),
+    4: .standard(proto: "previous_transaction_ledger_sequence")
   ]
 
   fileprivate class _StorageClass {
-    var _finalFields: Rpc_V1_LedgerObject? = nil
-    var _previousFields: Rpc_V1_LedgerObject? = nil
+    var _finalFields: Rpc_V1_LedgerObject?
+    var _previousFields: Rpc_V1_LedgerObject?
     var _previousTransactionID: Data = SwiftProtobuf.Internal.emptyData
     var _previousTransactionLedgerSequence: UInt32 = 0
 
@@ -739,15 +739,15 @@ extension Rpc_V1_ModifiedNode: SwiftProtobuf.Message, SwiftProtobuf._MessageImpl
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
         let rhs_storage = _args.1
-        if _storage._finalFields != rhs_storage._finalFields {return false}
-        if _storage._previousFields != rhs_storage._previousFields {return false}
-        if _storage._previousTransactionID != rhs_storage._previousTransactionID {return false}
-        if _storage._previousTransactionLedgerSequence != rhs_storage._previousTransactionLedgerSequence {return false}
+        if _storage._finalFields != rhs_storage._finalFields { return false }
+        if _storage._previousFields != rhs_storage._previousFields { return false }
+        if _storage._previousTransactionID != rhs_storage._previousTransactionID { return false }
+        if _storage._previousTransactionLedgerSequence != rhs_storage._previousTransactionLedgerSequence { return false }
         return true
       }
-      if !storagesAreEqual {return false}
+      if !storagesAreEqual { return false }
     }
-    if lhs.unknownFields != rhs.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields { return false }
     return true
   }
 }

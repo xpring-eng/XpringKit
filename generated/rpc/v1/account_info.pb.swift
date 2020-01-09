@@ -14,7 +14,7 @@ import SwiftProtobuf
 // incompatible with the version of SwiftProtobuf to which you are linking.
 // Please ensure that your are building against the same version of the API
 // that was used to generate this file.
-fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAPIVersionCheck {
+private struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAPIVersionCheck {
   struct _2: SwiftProtobuf.ProtobufAPIVersion_2 {}
   typealias Version = _2
 }
@@ -27,36 +27,36 @@ public struct Rpc_V1_GetAccountInfoRequest {
 
   /// The address to get info about.
   public var account: Rpc_V1_AccountAddress {
-    get {return _storage._account ?? Rpc_V1_AccountAddress()}
-    set {_uniqueStorage()._account = newValue}
+    get { return _storage._account ?? Rpc_V1_AccountAddress() }
+    set { _uniqueStorage()._account = newValue }
   }
   /// Returns true if `account` has been explicitly set.
-  public var hasAccount: Bool {return _storage._account != nil}
+  public var hasAccount: Bool { return _storage._account != nil }
   /// Clears the value of `account`. Subsequent reads from it will return its default value.
-  public mutating func clearAccount() {_uniqueStorage()._account = nil}
+  public mutating func clearAccount() { _uniqueStorage()._account = nil }
 
   public var strict: Bool {
-    get {return _storage._strict}
-    set {_uniqueStorage()._strict = newValue}
+    get { return _storage._strict }
+    set { _uniqueStorage()._strict = newValue }
   }
 
   public var ledger: Rpc_V1_LedgerSpecifier {
-    get {return _storage._ledger ?? Rpc_V1_LedgerSpecifier()}
-    set {_uniqueStorage()._ledger = newValue}
+    get { return _storage._ledger ?? Rpc_V1_LedgerSpecifier() }
+    set { _uniqueStorage()._ledger = newValue }
   }
   /// Returns true if `ledger` has been explicitly set.
-  public var hasLedger: Bool {return _storage._ledger != nil}
+  public var hasLedger: Bool { return _storage._ledger != nil }
   /// Clears the value of `ledger`. Subsequent reads from it will return its default value.
-  public mutating func clearLedger() {_uniqueStorage()._ledger = nil}
+  public mutating func clearLedger() { _uniqueStorage()._ledger = nil }
 
   public var queue: Bool {
-    get {return _storage._queue}
-    set {_uniqueStorage()._queue = newValue}
+    get { return _storage._queue }
+    set { _uniqueStorage()._queue = newValue }
   }
 
   public var signerLists: Bool {
-    get {return _storage._signerLists}
-    set {_uniqueStorage()._signerLists = newValue}
+    get { return _storage._signerLists }
+    set { _uniqueStorage()._signerLists = newValue }
   }
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
@@ -71,31 +71,31 @@ public struct Rpc_V1_LedgerSpecifier {
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
-  public var ledger: Rpc_V1_LedgerSpecifier.OneOf_Ledger? = nil
+  public var ledger: Rpc_V1_LedgerSpecifier.OneOf_Ledger?
 
   public var shortcut: Rpc_V1_LedgerSpecifier.Shortcut {
     get {
-      if case .shortcut(let v)? = ledger {return v}
+      if case .shortcut(let v)? = ledger { return v }
       return .unspecified
     }
-    set {ledger = .shortcut(newValue)}
+    set { ledger = .shortcut(newValue) }
   }
 
   public var sequence: UInt32 {
     get {
-      if case .sequence(let v)? = ledger {return v}
+      if case .sequence(let v)? = ledger { return v }
       return 0
     }
-    set {ledger = .sequence(newValue)}
+    set { ledger = .sequence(newValue) }
   }
 
   /// 32 bytes
   public var hash: Data {
     get {
-      if case .hash(let v)? = ledger {return v}
+      if case .hash(let v)? = ledger { return v }
       return SwiftProtobuf.Internal.emptyData
     }
-    set {ledger = .hash(newValue)}
+    set { ledger = .hash(newValue) }
   }
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
@@ -163,7 +163,7 @@ extension Rpc_V1_LedgerSpecifier.Shortcut: CaseIterable {
     .unspecified,
     .validated,
     .closed,
-    .current,
+    .current
   ]
 }
 
@@ -176,40 +176,40 @@ public struct Rpc_V1_GetAccountInfoResponse {
   // methods supported on all messages.
 
   public var accountData: Rpc_V1_AccountRoot {
-    get {return _storage._accountData ?? Rpc_V1_AccountRoot()}
-    set {_uniqueStorage()._accountData = newValue}
+    get { return _storage._accountData ?? Rpc_V1_AccountRoot() }
+    set { _uniqueStorage()._accountData = newValue }
   }
   /// Returns true if `accountData` has been explicitly set.
-  public var hasAccountData: Bool {return _storage._accountData != nil}
+  public var hasAccountData: Bool { return _storage._accountData != nil }
   /// Clears the value of `accountData`. Subsequent reads from it will return its default value.
-  public mutating func clearAccountData() {_uniqueStorage()._accountData = nil}
+  public mutating func clearAccountData() { _uniqueStorage()._accountData = nil }
 
   public var signerList: Rpc_V1_SignerList {
-    get {return _storage._signerList ?? Rpc_V1_SignerList()}
-    set {_uniqueStorage()._signerList = newValue}
+    get { return _storage._signerList ?? Rpc_V1_SignerList() }
+    set { _uniqueStorage()._signerList = newValue }
   }
   /// Returns true if `signerList` has been explicitly set.
-  public var hasSignerList: Bool {return _storage._signerList != nil}
+  public var hasSignerList: Bool { return _storage._signerList != nil }
   /// Clears the value of `signerList`. Subsequent reads from it will return its default value.
-  public mutating func clearSignerList() {_uniqueStorage()._signerList = nil}
+  public mutating func clearSignerList() { _uniqueStorage()._signerList = nil }
 
   public var ledgerIndex: UInt32 {
-    get {return _storage._ledgerIndex}
-    set {_uniqueStorage()._ledgerIndex = newValue}
+    get { return _storage._ledgerIndex }
+    set { _uniqueStorage()._ledgerIndex = newValue }
   }
 
   public var queueData: Rpc_V1_QueueData {
-    get {return _storage._queueData ?? Rpc_V1_QueueData()}
-    set {_uniqueStorage()._queueData = newValue}
+    get { return _storage._queueData ?? Rpc_V1_QueueData() }
+    set { _uniqueStorage()._queueData = newValue }
   }
   /// Returns true if `queueData` has been explicitly set.
-  public var hasQueueData: Bool {return _storage._queueData != nil}
+  public var hasQueueData: Bool { return _storage._queueData != nil }
   /// Clears the value of `queueData`. Subsequent reads from it will return its default value.
-  public mutating func clearQueueData() {_uniqueStorage()._queueData = nil}
+  public mutating func clearQueueData() { _uniqueStorage()._queueData = nil }
 
   public var validated: Bool {
-    get {return _storage._validated}
-    set {_uniqueStorage()._validated = newValue}
+    get { return _storage._validated }
+    set { _uniqueStorage()._validated = newValue }
   }
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
@@ -226,37 +226,37 @@ public struct Rpc_V1_QueueData {
   // methods supported on all messages.
 
   public var txnCount: UInt32 {
-    get {return _storage._txnCount}
-    set {_uniqueStorage()._txnCount = newValue}
+    get { return _storage._txnCount }
+    set { _uniqueStorage()._txnCount = newValue }
   }
 
   public var authChangeQueued: Bool {
-    get {return _storage._authChangeQueued}
-    set {_uniqueStorage()._authChangeQueued = newValue}
+    get { return _storage._authChangeQueued }
+    set { _uniqueStorage()._authChangeQueued = newValue }
   }
 
   public var lowestSequence: UInt32 {
-    get {return _storage._lowestSequence}
-    set {_uniqueStorage()._lowestSequence = newValue}
+    get { return _storage._lowestSequence }
+    set { _uniqueStorage()._lowestSequence = newValue }
   }
 
   public var highestSequence: UInt32 {
-    get {return _storage._highestSequence}
-    set {_uniqueStorage()._highestSequence = newValue}
+    get { return _storage._highestSequence }
+    set { _uniqueStorage()._highestSequence = newValue }
   }
 
   public var maxSpendDropsTotal: Rpc_V1_XRPDropsAmount {
-    get {return _storage._maxSpendDropsTotal ?? Rpc_V1_XRPDropsAmount()}
-    set {_uniqueStorage()._maxSpendDropsTotal = newValue}
+    get { return _storage._maxSpendDropsTotal ?? Rpc_V1_XRPDropsAmount() }
+    set { _uniqueStorage()._maxSpendDropsTotal = newValue }
   }
   /// Returns true if `maxSpendDropsTotal` has been explicitly set.
-  public var hasMaxSpendDropsTotal: Bool {return _storage._maxSpendDropsTotal != nil}
+  public var hasMaxSpendDropsTotal: Bool { return _storage._maxSpendDropsTotal != nil }
   /// Clears the value of `maxSpendDropsTotal`. Subsequent reads from it will return its default value.
-  public mutating func clearMaxSpendDropsTotal() {_uniqueStorage()._maxSpendDropsTotal = nil}
+  public mutating func clearMaxSpendDropsTotal() { _uniqueStorage()._maxSpendDropsTotal = nil }
 
   public var transactions: [Rpc_V1_QueuedTransaction] {
-    get {return _storage._transactions}
-    set {_uniqueStorage()._transactions = newValue}
+    get { return _storage._transactions }
+    set { _uniqueStorage()._transactions = newValue }
   }
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
@@ -273,41 +273,41 @@ public struct Rpc_V1_QueuedTransaction {
   // methods supported on all messages.
 
   public var authChange: Bool {
-    get {return _storage._authChange}
-    set {_uniqueStorage()._authChange = newValue}
+    get { return _storage._authChange }
+    set { _uniqueStorage()._authChange = newValue }
   }
 
   public var fee: Rpc_V1_XRPDropsAmount {
-    get {return _storage._fee ?? Rpc_V1_XRPDropsAmount()}
-    set {_uniqueStorage()._fee = newValue}
+    get { return _storage._fee ?? Rpc_V1_XRPDropsAmount() }
+    set { _uniqueStorage()._fee = newValue }
   }
   /// Returns true if `fee` has been explicitly set.
-  public var hasFee: Bool {return _storage._fee != nil}
+  public var hasFee: Bool { return _storage._fee != nil }
   /// Clears the value of `fee`. Subsequent reads from it will return its default value.
-  public mutating func clearFee() {_uniqueStorage()._fee = nil}
+  public mutating func clearFee() { _uniqueStorage()._fee = nil }
 
   public var feeLevel: UInt64 {
-    get {return _storage._feeLevel}
-    set {_uniqueStorage()._feeLevel = newValue}
+    get { return _storage._feeLevel }
+    set { _uniqueStorage()._feeLevel = newValue }
   }
 
   public var maxSpendDrops: Rpc_V1_XRPDropsAmount {
-    get {return _storage._maxSpendDrops ?? Rpc_V1_XRPDropsAmount()}
-    set {_uniqueStorage()._maxSpendDrops = newValue}
+    get { return _storage._maxSpendDrops ?? Rpc_V1_XRPDropsAmount() }
+    set { _uniqueStorage()._maxSpendDrops = newValue }
   }
   /// Returns true if `maxSpendDrops` has been explicitly set.
-  public var hasMaxSpendDrops: Bool {return _storage._maxSpendDrops != nil}
+  public var hasMaxSpendDrops: Bool { return _storage._maxSpendDrops != nil }
   /// Clears the value of `maxSpendDrops`. Subsequent reads from it will return its default value.
-  public mutating func clearMaxSpendDrops() {_uniqueStorage()._maxSpendDrops = nil}
+  public mutating func clearMaxSpendDrops() { _uniqueStorage()._maxSpendDrops = nil }
 
   public var sequence: UInt32 {
-    get {return _storage._sequence}
-    set {_uniqueStorage()._sequence = newValue}
+    get { return _storage._sequence }
+    set { _uniqueStorage()._sequence = newValue }
   }
 
   public var lastLedgerSequence: UInt32 {
-    get {return _storage._lastLedgerSequence}
-    set {_uniqueStorage()._lastLedgerSequence = newValue}
+    get { return _storage._lastLedgerSequence }
+    set { _uniqueStorage()._lastLedgerSequence = newValue }
   }
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
@@ -319,7 +319,7 @@ public struct Rpc_V1_QueuedTransaction {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "rpc.v1"
+private let _protobuf_package = "rpc.v1"
 
 extension Rpc_V1_GetAccountInfoRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".GetAccountInfoRequest"
@@ -328,13 +328,13 @@ extension Rpc_V1_GetAccountInfoRequest: SwiftProtobuf.Message, SwiftProtobuf._Me
     2: .same(proto: "strict"),
     3: .same(proto: "ledger"),
     4: .same(proto: "queue"),
-    5: .standard(proto: "signer_lists"),
+    5: .standard(proto: "signer_lists")
   ]
 
   fileprivate class _StorageClass {
-    var _account: Rpc_V1_AccountAddress? = nil
+    var _account: Rpc_V1_AccountAddress?
     var _strict: Bool = false
-    var _ledger: Rpc_V1_LedgerSpecifier? = nil
+    var _ledger: Rpc_V1_LedgerSpecifier?
     var _queue: Bool = false
     var _signerLists: Bool = false
 
@@ -400,16 +400,16 @@ extension Rpc_V1_GetAccountInfoRequest: SwiftProtobuf.Message, SwiftProtobuf._Me
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
         let rhs_storage = _args.1
-        if _storage._account != rhs_storage._account {return false}
-        if _storage._strict != rhs_storage._strict {return false}
-        if _storage._ledger != rhs_storage._ledger {return false}
-        if _storage._queue != rhs_storage._queue {return false}
-        if _storage._signerLists != rhs_storage._signerLists {return false}
+        if _storage._account != rhs_storage._account { return false }
+        if _storage._strict != rhs_storage._strict { return false }
+        if _storage._ledger != rhs_storage._ledger { return false }
+        if _storage._queue != rhs_storage._queue { return false }
+        if _storage._signerLists != rhs_storage._signerLists { return false }
         return true
       }
-      if !storagesAreEqual {return false}
+      if !storagesAreEqual { return false }
     }
-    if lhs.unknownFields != rhs.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields { return false }
     return true
   }
 }
@@ -419,27 +419,27 @@ extension Rpc_V1_LedgerSpecifier: SwiftProtobuf.Message, SwiftProtobuf._MessageI
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "shortcut"),
     2: .same(proto: "sequence"),
-    3: .same(proto: "hash"),
+    3: .same(proto: "hash")
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
       switch fieldNumber {
       case 1:
-        if self.ledger != nil {try decoder.handleConflictingOneOf()}
+        if self.ledger != nil { try decoder.handleConflictingOneOf() }
         var v: Rpc_V1_LedgerSpecifier.Shortcut?
         try decoder.decodeSingularEnumField(value: &v)
-        if let v = v {self.ledger = .shortcut(v)}
+        if let v = v { self.ledger = .shortcut(v) }
       case 2:
-        if self.ledger != nil {try decoder.handleConflictingOneOf()}
+        if self.ledger != nil { try decoder.handleConflictingOneOf() }
         var v: UInt32?
         try decoder.decodeSingularUInt32Field(value: &v)
-        if let v = v {self.ledger = .sequence(v)}
+        if let v = v { self.ledger = .sequence(v) }
       case 3:
-        if self.ledger != nil {try decoder.handleConflictingOneOf()}
+        if self.ledger != nil { try decoder.handleConflictingOneOf() }
         var v: Data?
         try decoder.decodeSingularBytesField(value: &v)
-        if let v = v {self.ledger = .hash(v)}
+        if let v = v { self.ledger = .hash(v) }
       default: break
       }
     }
@@ -459,8 +459,8 @@ extension Rpc_V1_LedgerSpecifier: SwiftProtobuf.Message, SwiftProtobuf._MessageI
   }
 
   public static func ==(lhs: Rpc_V1_LedgerSpecifier, rhs: Rpc_V1_LedgerSpecifier) -> Bool {
-    if lhs.ledger != rhs.ledger {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
+    if lhs.ledger != rhs.ledger { return false }
+    if lhs.unknownFields != rhs.unknownFields { return false }
     return true
   }
 }
@@ -470,7 +470,7 @@ extension Rpc_V1_LedgerSpecifier.Shortcut: SwiftProtobuf._ProtoNameProviding {
     0: .same(proto: "SHORTCUT_UNSPECIFIED"),
     1: .same(proto: "SHORTCUT_VALIDATED"),
     2: .same(proto: "SHORTCUT_CLOSED"),
-    3: .same(proto: "SHORTCUT_CURRENT"),
+    3: .same(proto: "SHORTCUT_CURRENT")
   ]
 }
 
@@ -481,14 +481,14 @@ extension Rpc_V1_GetAccountInfoResponse: SwiftProtobuf.Message, SwiftProtobuf._M
     2: .standard(proto: "signer_list"),
     3: .standard(proto: "ledger_index"),
     4: .standard(proto: "queue_data"),
-    5: .same(proto: "validated"),
+    5: .same(proto: "validated")
   ]
 
   fileprivate class _StorageClass {
-    var _accountData: Rpc_V1_AccountRoot? = nil
-    var _signerList: Rpc_V1_SignerList? = nil
+    var _accountData: Rpc_V1_AccountRoot?
+    var _signerList: Rpc_V1_SignerList?
     var _ledgerIndex: UInt32 = 0
-    var _queueData: Rpc_V1_QueueData? = nil
+    var _queueData: Rpc_V1_QueueData?
     var _validated: Bool = false
 
     static let defaultInstance = _StorageClass()
@@ -553,16 +553,16 @@ extension Rpc_V1_GetAccountInfoResponse: SwiftProtobuf.Message, SwiftProtobuf._M
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
         let rhs_storage = _args.1
-        if _storage._accountData != rhs_storage._accountData {return false}
-        if _storage._signerList != rhs_storage._signerList {return false}
-        if _storage._ledgerIndex != rhs_storage._ledgerIndex {return false}
-        if _storage._queueData != rhs_storage._queueData {return false}
-        if _storage._validated != rhs_storage._validated {return false}
+        if _storage._accountData != rhs_storage._accountData { return false }
+        if _storage._signerList != rhs_storage._signerList { return false }
+        if _storage._ledgerIndex != rhs_storage._ledgerIndex { return false }
+        if _storage._queueData != rhs_storage._queueData { return false }
+        if _storage._validated != rhs_storage._validated { return false }
         return true
       }
-      if !storagesAreEqual {return false}
+      if !storagesAreEqual { return false }
     }
-    if lhs.unknownFields != rhs.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields { return false }
     return true
   }
 }
@@ -575,7 +575,7 @@ extension Rpc_V1_QueueData: SwiftProtobuf.Message, SwiftProtobuf._MessageImpleme
     3: .standard(proto: "lowest_sequence"),
     4: .standard(proto: "highest_sequence"),
     5: .standard(proto: "max_spend_drops_total"),
-    6: .same(proto: "transactions"),
+    6: .same(proto: "transactions")
   ]
 
   fileprivate class _StorageClass {
@@ -583,7 +583,7 @@ extension Rpc_V1_QueueData: SwiftProtobuf.Message, SwiftProtobuf._MessageImpleme
     var _authChangeQueued: Bool = false
     var _lowestSequence: UInt32 = 0
     var _highestSequence: UInt32 = 0
-    var _maxSpendDropsTotal: Rpc_V1_XRPDropsAmount? = nil
+    var _maxSpendDropsTotal: Rpc_V1_XRPDropsAmount?
     var _transactions: [Rpc_V1_QueuedTransaction] = []
 
     static let defaultInstance = _StorageClass()
@@ -653,17 +653,17 @@ extension Rpc_V1_QueueData: SwiftProtobuf.Message, SwiftProtobuf._MessageImpleme
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
         let rhs_storage = _args.1
-        if _storage._txnCount != rhs_storage._txnCount {return false}
-        if _storage._authChangeQueued != rhs_storage._authChangeQueued {return false}
-        if _storage._lowestSequence != rhs_storage._lowestSequence {return false}
-        if _storage._highestSequence != rhs_storage._highestSequence {return false}
-        if _storage._maxSpendDropsTotal != rhs_storage._maxSpendDropsTotal {return false}
-        if _storage._transactions != rhs_storage._transactions {return false}
+        if _storage._txnCount != rhs_storage._txnCount { return false }
+        if _storage._authChangeQueued != rhs_storage._authChangeQueued { return false }
+        if _storage._lowestSequence != rhs_storage._lowestSequence { return false }
+        if _storage._highestSequence != rhs_storage._highestSequence { return false }
+        if _storage._maxSpendDropsTotal != rhs_storage._maxSpendDropsTotal { return false }
+        if _storage._transactions != rhs_storage._transactions { return false }
         return true
       }
-      if !storagesAreEqual {return false}
+      if !storagesAreEqual { return false }
     }
-    if lhs.unknownFields != rhs.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields { return false }
     return true
   }
 }
@@ -676,14 +676,14 @@ extension Rpc_V1_QueuedTransaction: SwiftProtobuf.Message, SwiftProtobuf._Messag
     3: .standard(proto: "fee_level"),
     4: .standard(proto: "max_spend_drops"),
     5: .same(proto: "sequence"),
-    6: .standard(proto: "last_ledger_sequence"),
+    6: .standard(proto: "last_ledger_sequence")
   ]
 
   fileprivate class _StorageClass {
     var _authChange: Bool = false
-    var _fee: Rpc_V1_XRPDropsAmount? = nil
+    var _fee: Rpc_V1_XRPDropsAmount?
     var _feeLevel: UInt64 = 0
-    var _maxSpendDrops: Rpc_V1_XRPDropsAmount? = nil
+    var _maxSpendDrops: Rpc_V1_XRPDropsAmount?
     var _sequence: UInt32 = 0
     var _lastLedgerSequence: UInt32 = 0
 
@@ -754,17 +754,17 @@ extension Rpc_V1_QueuedTransaction: SwiftProtobuf.Message, SwiftProtobuf._Messag
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
         let rhs_storage = _args.1
-        if _storage._authChange != rhs_storage._authChange {return false}
-        if _storage._fee != rhs_storage._fee {return false}
-        if _storage._feeLevel != rhs_storage._feeLevel {return false}
-        if _storage._maxSpendDrops != rhs_storage._maxSpendDrops {return false}
-        if _storage._sequence != rhs_storage._sequence {return false}
-        if _storage._lastLedgerSequence != rhs_storage._lastLedgerSequence {return false}
+        if _storage._authChange != rhs_storage._authChange { return false }
+        if _storage._fee != rhs_storage._fee { return false }
+        if _storage._feeLevel != rhs_storage._feeLevel { return false }
+        if _storage._maxSpendDrops != rhs_storage._maxSpendDrops { return false }
+        if _storage._sequence != rhs_storage._sequence { return false }
+        if _storage._lastLedgerSequence != rhs_storage._lastLedgerSequence { return false }
         return true
       }
-      if !storagesAreEqual {return false}
+      if !storagesAreEqual { return false }
     }
-    if lhs.unknownFields != rhs.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields { return false }
     return true
   }
 }

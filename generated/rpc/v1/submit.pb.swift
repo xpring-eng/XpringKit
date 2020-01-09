@@ -14,7 +14,7 @@ import SwiftProtobuf
 // incompatible with the version of SwiftProtobuf to which you are linking.
 // Please ensure that your are building against the same version of the API
 // that was used to generate this file.
-fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAPIVersionCheck {
+private struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAPIVersionCheck {
   struct _2: SwiftProtobuf.ProtobufAPIVersion_2 {}
   typealias Version = _2
 }
@@ -43,30 +43,30 @@ public struct Rpc_V1_SubmitTransactionResponse {
 
   /// Code indicating the preliminary result of the transaction.
   public var engineResult: Rpc_V1_TransactionResult {
-    get {return _storage._engineResult ?? Rpc_V1_TransactionResult()}
-    set {_uniqueStorage()._engineResult = newValue}
+    get { return _storage._engineResult ?? Rpc_V1_TransactionResult() }
+    set { _uniqueStorage()._engineResult = newValue }
   }
   /// Returns true if `engineResult` has been explicitly set.
-  public var hasEngineResult: Bool {return _storage._engineResult != nil}
+  public var hasEngineResult: Bool { return _storage._engineResult != nil }
   /// Clears the value of `engineResult`. Subsequent reads from it will return its default value.
-  public mutating func clearEngineResult() {_uniqueStorage()._engineResult = nil}
+  public mutating func clearEngineResult() { _uniqueStorage()._engineResult = nil }
 
   /// Numeric code indicating the preliminary result of the transaction, directly correlated to engine_result.
   public var engineResultCode: Int64 {
-    get {return _storage._engineResultCode}
-    set {_uniqueStorage()._engineResultCode = newValue}
+    get { return _storage._engineResultCode }
+    set { _uniqueStorage()._engineResultCode = newValue }
   }
 
   /// Human-readable explanation of the transaction's preliminary result.
   public var engineResultMessage: String {
-    get {return _storage._engineResultMessage}
-    set {_uniqueStorage()._engineResultMessage = newValue}
+    get { return _storage._engineResultMessage }
+    set { _uniqueStorage()._engineResultMessage = newValue }
   }
 
   /// 32 bytes
   public var hash: Data {
-    get {return _storage._hash}
-    set {_uniqueStorage()._hash = newValue}
+    get { return _storage._hash }
+    set { _uniqueStorage()._hash = newValue }
   }
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
@@ -78,13 +78,13 @@ public struct Rpc_V1_SubmitTransactionResponse {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "rpc.v1"
+private let _protobuf_package = "rpc.v1"
 
 extension Rpc_V1_SubmitTransactionRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".SubmitTransactionRequest"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .standard(proto: "signed_transaction"),
-    2: .standard(proto: "fail_hard"),
+    2: .standard(proto: "fail_hard")
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -108,9 +108,9 @@ extension Rpc_V1_SubmitTransactionRequest: SwiftProtobuf.Message, SwiftProtobuf.
   }
 
   public static func ==(lhs: Rpc_V1_SubmitTransactionRequest, rhs: Rpc_V1_SubmitTransactionRequest) -> Bool {
-    if lhs.signedTransaction != rhs.signedTransaction {return false}
-    if lhs.failHard != rhs.failHard {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
+    if lhs.signedTransaction != rhs.signedTransaction { return false }
+    if lhs.failHard != rhs.failHard { return false }
+    if lhs.unknownFields != rhs.unknownFields { return false }
     return true
   }
 }
@@ -121,11 +121,11 @@ extension Rpc_V1_SubmitTransactionResponse: SwiftProtobuf.Message, SwiftProtobuf
     1: .standard(proto: "engine_result"),
     2: .standard(proto: "engine_result_code"),
     3: .standard(proto: "engine_result_message"),
-    4: .same(proto: "hash"),
+    4: .same(proto: "hash")
   ]
 
   fileprivate class _StorageClass {
-    var _engineResult: Rpc_V1_TransactionResult? = nil
+    var _engineResult: Rpc_V1_TransactionResult?
     var _engineResultCode: Int64 = 0
     var _engineResultMessage: String = String()
     var _hash: Data = SwiftProtobuf.Internal.emptyData
@@ -187,15 +187,15 @@ extension Rpc_V1_SubmitTransactionResponse: SwiftProtobuf.Message, SwiftProtobuf
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
         let rhs_storage = _args.1
-        if _storage._engineResult != rhs_storage._engineResult {return false}
-        if _storage._engineResultCode != rhs_storage._engineResultCode {return false}
-        if _storage._engineResultMessage != rhs_storage._engineResultMessage {return false}
-        if _storage._hash != rhs_storage._hash {return false}
+        if _storage._engineResult != rhs_storage._engineResult { return false }
+        if _storage._engineResultCode != rhs_storage._engineResultCode { return false }
+        if _storage._engineResultMessage != rhs_storage._engineResultMessage { return false }
+        if _storage._hash != rhs_storage._hash { return false }
         return true
       }
-      if !storagesAreEqual {return false}
+      if !storagesAreEqual { return false }
     }
-    if lhs.unknownFields != rhs.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields { return false }
     return true
   }
 }

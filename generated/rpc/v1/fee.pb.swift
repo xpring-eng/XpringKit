@@ -14,7 +14,7 @@ import SwiftProtobuf
 // incompatible with the version of SwiftProtobuf to which you are linking.
 // Please ensure that your are building against the same version of the API
 // that was used to generate this file.
-fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAPIVersionCheck {
+private struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAPIVersionCheck {
   struct _2: SwiftProtobuf.ProtobufAPIVersion_2 {}
   typealias Version = _2
 }
@@ -37,46 +37,46 @@ public struct Rpc_V1_GetFeeResponse {
   // methods supported on all messages.
 
   public var currentLedgerSize: UInt64 {
-    get {return _storage._currentLedgerSize}
-    set {_uniqueStorage()._currentLedgerSize = newValue}
+    get { return _storage._currentLedgerSize }
+    set { _uniqueStorage()._currentLedgerSize = newValue }
   }
 
   public var currentQueueSize: UInt64 {
-    get {return _storage._currentQueueSize}
-    set {_uniqueStorage()._currentQueueSize = newValue}
+    get { return _storage._currentQueueSize }
+    set { _uniqueStorage()._currentQueueSize = newValue }
   }
 
   public var drops: Rpc_V1_Fee {
-    get {return _storage._drops ?? Rpc_V1_Fee()}
-    set {_uniqueStorage()._drops = newValue}
+    get { return _storage._drops ?? Rpc_V1_Fee() }
+    set { _uniqueStorage()._drops = newValue }
   }
   /// Returns true if `drops` has been explicitly set.
-  public var hasDrops: Bool {return _storage._drops != nil}
+  public var hasDrops: Bool { return _storage._drops != nil }
   /// Clears the value of `drops`. Subsequent reads from it will return its default value.
-  public mutating func clearDrops() {_uniqueStorage()._drops = nil}
+  public mutating func clearDrops() { _uniqueStorage()._drops = nil }
 
   public var expectedLedgerSize: UInt64 {
-    get {return _storage._expectedLedgerSize}
-    set {_uniqueStorage()._expectedLedgerSize = newValue}
+    get { return _storage._expectedLedgerSize }
+    set { _uniqueStorage()._expectedLedgerSize = newValue }
   }
 
   public var ledgerCurrentIndex: UInt32 {
-    get {return _storage._ledgerCurrentIndex}
-    set {_uniqueStorage()._ledgerCurrentIndex = newValue}
+    get { return _storage._ledgerCurrentIndex }
+    set { _uniqueStorage()._ledgerCurrentIndex = newValue }
   }
 
   public var levels: Rpc_V1_FeeLevels {
-    get {return _storage._levels ?? Rpc_V1_FeeLevels()}
-    set {_uniqueStorage()._levels = newValue}
+    get { return _storage._levels ?? Rpc_V1_FeeLevels() }
+    set { _uniqueStorage()._levels = newValue }
   }
   /// Returns true if `levels` has been explicitly set.
-  public var hasLevels: Bool {return _storage._levels != nil}
+  public var hasLevels: Bool { return _storage._levels != nil }
   /// Clears the value of `levels`. Subsequent reads from it will return its default value.
-  public mutating func clearLevels() {_uniqueStorage()._levels = nil}
+  public mutating func clearLevels() { _uniqueStorage()._levels = nil }
 
   public var maxQueueSize: UInt64 {
-    get {return _storage._maxQueueSize}
-    set {_uniqueStorage()._maxQueueSize = newValue}
+    get { return _storage._maxQueueSize }
+    set { _uniqueStorage()._maxQueueSize = newValue }
   }
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
@@ -92,40 +92,40 @@ public struct Rpc_V1_Fee {
   // methods supported on all messages.
 
   public var baseFee: Rpc_V1_XRPDropsAmount {
-    get {return _storage._baseFee ?? Rpc_V1_XRPDropsAmount()}
-    set {_uniqueStorage()._baseFee = newValue}
+    get { return _storage._baseFee ?? Rpc_V1_XRPDropsAmount() }
+    set { _uniqueStorage()._baseFee = newValue }
   }
   /// Returns true if `baseFee` has been explicitly set.
-  public var hasBaseFee: Bool {return _storage._baseFee != nil}
+  public var hasBaseFee: Bool { return _storage._baseFee != nil }
   /// Clears the value of `baseFee`. Subsequent reads from it will return its default value.
-  public mutating func clearBaseFee() {_uniqueStorage()._baseFee = nil}
+  public mutating func clearBaseFee() { _uniqueStorage()._baseFee = nil }
 
   public var medianFee: Rpc_V1_XRPDropsAmount {
-    get {return _storage._medianFee ?? Rpc_V1_XRPDropsAmount()}
-    set {_uniqueStorage()._medianFee = newValue}
+    get { return _storage._medianFee ?? Rpc_V1_XRPDropsAmount() }
+    set { _uniqueStorage()._medianFee = newValue }
   }
   /// Returns true if `medianFee` has been explicitly set.
-  public var hasMedianFee: Bool {return _storage._medianFee != nil}
+  public var hasMedianFee: Bool { return _storage._medianFee != nil }
   /// Clears the value of `medianFee`. Subsequent reads from it will return its default value.
-  public mutating func clearMedianFee() {_uniqueStorage()._medianFee = nil}
+  public mutating func clearMedianFee() { _uniqueStorage()._medianFee = nil }
 
   public var minimumFee: Rpc_V1_XRPDropsAmount {
-    get {return _storage._minimumFee ?? Rpc_V1_XRPDropsAmount()}
-    set {_uniqueStorage()._minimumFee = newValue}
+    get { return _storage._minimumFee ?? Rpc_V1_XRPDropsAmount() }
+    set { _uniqueStorage()._minimumFee = newValue }
   }
   /// Returns true if `minimumFee` has been explicitly set.
-  public var hasMinimumFee: Bool {return _storage._minimumFee != nil}
+  public var hasMinimumFee: Bool { return _storage._minimumFee != nil }
   /// Clears the value of `minimumFee`. Subsequent reads from it will return its default value.
-  public mutating func clearMinimumFee() {_uniqueStorage()._minimumFee = nil}
+  public mutating func clearMinimumFee() { _uniqueStorage()._minimumFee = nil }
 
   public var openLedgerFee: Rpc_V1_XRPDropsAmount {
-    get {return _storage._openLedgerFee ?? Rpc_V1_XRPDropsAmount()}
-    set {_uniqueStorage()._openLedgerFee = newValue}
+    get { return _storage._openLedgerFee ?? Rpc_V1_XRPDropsAmount() }
+    set { _uniqueStorage()._openLedgerFee = newValue }
   }
   /// Returns true if `openLedgerFee` has been explicitly set.
-  public var hasOpenLedgerFee: Bool {return _storage._openLedgerFee != nil}
+  public var hasOpenLedgerFee: Bool { return _storage._openLedgerFee != nil }
   /// Clears the value of `openLedgerFee`. Subsequent reads from it will return its default value.
-  public mutating func clearOpenLedgerFee() {_uniqueStorage()._openLedgerFee = nil}
+  public mutating func clearOpenLedgerFee() { _uniqueStorage()._openLedgerFee = nil }
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -154,7 +154,7 @@ public struct Rpc_V1_FeeLevels {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "rpc.v1"
+private let _protobuf_package = "rpc.v1"
 
 extension Rpc_V1_GetFeeRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".GetFeeRequest"
@@ -170,7 +170,7 @@ extension Rpc_V1_GetFeeRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImp
   }
 
   public static func ==(lhs: Rpc_V1_GetFeeRequest, rhs: Rpc_V1_GetFeeRequest) -> Bool {
-    if lhs.unknownFields != rhs.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields { return false }
     return true
   }
 }
@@ -184,16 +184,16 @@ extension Rpc_V1_GetFeeResponse: SwiftProtobuf.Message, SwiftProtobuf._MessageIm
     4: .standard(proto: "expected_ledger_size"),
     5: .standard(proto: "ledger_current_index"),
     6: .same(proto: "levels"),
-    7: .standard(proto: "max_queue_size"),
+    7: .standard(proto: "max_queue_size")
   ]
 
   fileprivate class _StorageClass {
     var _currentLedgerSize: UInt64 = 0
     var _currentQueueSize: UInt64 = 0
-    var _drops: Rpc_V1_Fee? = nil
+    var _drops: Rpc_V1_Fee?
     var _expectedLedgerSize: UInt64 = 0
     var _ledgerCurrentIndex: UInt32 = 0
-    var _levels: Rpc_V1_FeeLevels? = nil
+    var _levels: Rpc_V1_FeeLevels?
     var _maxQueueSize: UInt64 = 0
 
     static let defaultInstance = _StorageClass()
@@ -268,18 +268,18 @@ extension Rpc_V1_GetFeeResponse: SwiftProtobuf.Message, SwiftProtobuf._MessageIm
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
         let rhs_storage = _args.1
-        if _storage._currentLedgerSize != rhs_storage._currentLedgerSize {return false}
-        if _storage._currentQueueSize != rhs_storage._currentQueueSize {return false}
-        if _storage._drops != rhs_storage._drops {return false}
-        if _storage._expectedLedgerSize != rhs_storage._expectedLedgerSize {return false}
-        if _storage._ledgerCurrentIndex != rhs_storage._ledgerCurrentIndex {return false}
-        if _storage._levels != rhs_storage._levels {return false}
-        if _storage._maxQueueSize != rhs_storage._maxQueueSize {return false}
+        if _storage._currentLedgerSize != rhs_storage._currentLedgerSize { return false }
+        if _storage._currentQueueSize != rhs_storage._currentQueueSize { return false }
+        if _storage._drops != rhs_storage._drops { return false }
+        if _storage._expectedLedgerSize != rhs_storage._expectedLedgerSize { return false }
+        if _storage._ledgerCurrentIndex != rhs_storage._ledgerCurrentIndex { return false }
+        if _storage._levels != rhs_storage._levels { return false }
+        if _storage._maxQueueSize != rhs_storage._maxQueueSize { return false }
         return true
       }
-      if !storagesAreEqual {return false}
+      if !storagesAreEqual { return false }
     }
-    if lhs.unknownFields != rhs.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields { return false }
     return true
   }
 }
@@ -290,14 +290,14 @@ extension Rpc_V1_Fee: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementatio
     1: .standard(proto: "base_fee"),
     2: .standard(proto: "median_fee"),
     3: .standard(proto: "minimum_fee"),
-    4: .standard(proto: "open_ledger_fee"),
+    4: .standard(proto: "open_ledger_fee")
   ]
 
   fileprivate class _StorageClass {
-    var _baseFee: Rpc_V1_XRPDropsAmount? = nil
-    var _medianFee: Rpc_V1_XRPDropsAmount? = nil
-    var _minimumFee: Rpc_V1_XRPDropsAmount? = nil
-    var _openLedgerFee: Rpc_V1_XRPDropsAmount? = nil
+    var _baseFee: Rpc_V1_XRPDropsAmount?
+    var _medianFee: Rpc_V1_XRPDropsAmount?
+    var _minimumFee: Rpc_V1_XRPDropsAmount?
+    var _openLedgerFee: Rpc_V1_XRPDropsAmount?
 
     static let defaultInstance = _StorageClass()
 
@@ -356,15 +356,15 @@ extension Rpc_V1_Fee: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementatio
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
         let rhs_storage = _args.1
-        if _storage._baseFee != rhs_storage._baseFee {return false}
-        if _storage._medianFee != rhs_storage._medianFee {return false}
-        if _storage._minimumFee != rhs_storage._minimumFee {return false}
-        if _storage._openLedgerFee != rhs_storage._openLedgerFee {return false}
+        if _storage._baseFee != rhs_storage._baseFee { return false }
+        if _storage._medianFee != rhs_storage._medianFee { return false }
+        if _storage._minimumFee != rhs_storage._minimumFee { return false }
+        if _storage._openLedgerFee != rhs_storage._openLedgerFee { return false }
         return true
       }
-      if !storagesAreEqual {return false}
+      if !storagesAreEqual { return false }
     }
-    if lhs.unknownFields != rhs.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields { return false }
     return true
   }
 }
@@ -375,7 +375,7 @@ extension Rpc_V1_FeeLevels: SwiftProtobuf.Message, SwiftProtobuf._MessageImpleme
     1: .standard(proto: "median_level"),
     2: .standard(proto: "minimum_level"),
     3: .standard(proto: "open_ledger_level"),
-    4: .standard(proto: "reference_level"),
+    4: .standard(proto: "reference_level")
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -407,11 +407,11 @@ extension Rpc_V1_FeeLevels: SwiftProtobuf.Message, SwiftProtobuf._MessageImpleme
   }
 
   public static func ==(lhs: Rpc_V1_FeeLevels, rhs: Rpc_V1_FeeLevels) -> Bool {
-    if lhs.medianLevel != rhs.medianLevel {return false}
-    if lhs.minimumLevel != rhs.minimumLevel {return false}
-    if lhs.openLedgerLevel != rhs.openLedgerLevel {return false}
-    if lhs.referenceLevel != rhs.referenceLevel {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
+    if lhs.medianLevel != rhs.medianLevel { return false }
+    if lhs.minimumLevel != rhs.minimumLevel { return false }
+    if lhs.openLedgerLevel != rhs.openLedgerLevel { return false }
+    if lhs.referenceLevel != rhs.referenceLevel { return false }
+    if lhs.unknownFields != rhs.unknownFields { return false }
     return true
   }
 }
