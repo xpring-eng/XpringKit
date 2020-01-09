@@ -20,7 +20,10 @@
 		12ADBDAD47E9B75D1515567D /* XpringClientDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C99FAC0ED11211324DFCD4BD /* XpringClientDecorator.swift */; };
 		137D944F804CDB2B569EAFB2 /* get_latest_validated_ledger_sequence_request.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BD6B42B95FE5F65D2DC241 /* get_latest_validated_ledger_sequence_request.pb.swift */; };
 		138FBD4E100E3D90656346EB /* RippledServiceClient+NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACC165482A69C013773E743E /* RippledServiceClient+NetworkClient.swift */; };
+<<<<<<< HEAD
 		1397E5B4E2910795516EDEC6 /* account_info.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA5D08FE8CAC77673E6C633A /* account_info.pb.swift */; };
+=======
+>>>>>>> tmp
 		16F55623F11A970EE7737984 /* ledger_objects.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 233F62B7B7D18B8EE9BA769E /* ledger_objects.pb.swift */; };
 		1762612E093C2CE2658EF529 /* XpringKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1EA17318980B00CB10EAF3D4 /* XpringKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		179ECB919EF25B89D2B36F34 /* ReliableSubmissionXpringClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175AAD5AEF79820FF7FCCE80 /* ReliableSubmissionXpringClient.swift */; };
@@ -29,6 +32,10 @@
 		205CE177E9CE35786EFD462D /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8561A4CDC03D07B17AAB8924 /* Address.swift */; };
 		205EA5A430DFABF45C2A221F /* SwiftGRPC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58A74192BD297BC4E78F9B95 /* SwiftGRPC.framework */; };
 		22861364F43338AA12657519 /* amount.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90209A297568A5E2CF1C941D /* amount.pb.swift */; };
+<<<<<<< HEAD
+=======
+		2515B29D51BF5EFBE2AF8F2A /* get_account_info_request.legacy.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9C5CA44937831B6D4D6C2A4 /* get_account_info_request.legacy.pb.swift */; };
+>>>>>>> tmp
 		28430C7E1BD753FC9BEE2746 /* XRPJavaScriptLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265F737D13784A1A6341E3E4 /* XRPJavaScriptLoader.swift */; };
 		2978A5F9E3F8AF7049C6459E /* ReliableSubmissionXpringClientTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEFA016E351D30D824FF119A /* ReliableSubmissionXpringClientTest.swift */; };
 		2AC840E88FB8A6ACF88F4351 /* ReliableSubmissionXpringClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175AAD5AEF79820FF7FCCE80 /* ReliableSubmissionXpringClient.swift */; };
@@ -47,15 +54,22 @@
 		3FBE3154E2BDB6677F6EB54E /* submit_signed_transaction_response.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68119DE684876C97AC61A592 /* submit_signed_transaction_response.pb.swift */; };
 		4060097AAC967721CFA653BB /* TransactionHash.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB2C2BF0895DEDD1C9AB5D2D /* TransactionHash.swift */; };
 		418FA404281A1EB7FC192194 /* JavaScriptUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E0C0E9FDF3E68693B2C4B9 /* JavaScriptUtils.swift */; };
+<<<<<<< HEAD
 		41989124AF194330ED7E079A /* get_transaction_status_request.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B469AA4604059171E788C58 /* get_transaction_status_request.pb.swift */; };
+=======
+>>>>>>> tmp
 		421CC410FA94346ACD0B325B /* transaction.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864FC649F051A051A54C63BC /* transaction.pb.swift */; };
 		4293A89F98DB969E60DBD30C /* tx.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9E4382C973A1DECF690D0C /* tx.pb.swift */; };
 		4358ECC24A624D8C4C3F9CF4 /* RandomBytesUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6652A59C1C60CE0A44DB808D /* RandomBytesUtil.swift */; };
 		45A52E4E3A6FEF96FB1E9588 /* xrp_ledger.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77801C2EC85C8579EA8159A7 /* xrp_ledger.grpc.swift */; };
 		48113CAF3E46ED0ED426D1D0 /* TransactionHash+Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76F383DDDD9638F0BDC8C016 /* TransactionHash+Test.swift */; };
 		4EE80C383A865D20B80F8B49 /* meta.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F3AB368BE770A3EB9FFCC46 /* meta.pb.swift */; };
+<<<<<<< HEAD
 		50FC96D848AA73113F553430 /* transaction_status.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3586263F9D588991E88BF47A /* transaction_status.pb.swift */; };
 		5134F4CA94047EF8D641A044 /* get_latest_validated_ledger_sequence_request.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BD6B42B95FE5F65D2DC241 /* get_latest_validated_ledger_sequence_request.pb.swift */; };
+=======
+		519DC8AE271069963A36A4B4 /* xrp_ledger.legacy.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4386C5D599B4959B89A81E5 /* xrp_ledger.legacy.pb.swift */; };
+>>>>>>> tmp
 		52FEEA10075B52FD7F425E46 /* XRPJavaScriptLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265F737D13784A1A6341E3E4 /* XRPJavaScriptLoader.swift */; };
 		53C4F427020D9A26507AEFE9 /* xrp_amount.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAA3B5245DEB0C3C5044364 /* xrp_amount.pb.swift */; };
 		559ED2AB9EF5FD27838AA624 /* FakeNetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ACE19B61522015207CC5FB4 /* FakeNetworkClient.swift */; };
@@ -80,6 +94,10 @@
 		7210FB6A92F5DB55ABBFFAEB /* JavaScriptUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E0C0E9FDF3E68693B2C4B9 /* JavaScriptUtils.swift */; };
 		73D4DE9B54A04002A98E4069 /* submit_signed_transaction_response.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68119DE684876C97AC61A592 /* submit_signed_transaction_response.pb.swift */; };
 		79415A03BDDA31881344FB83 /* XpringKitTestError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8113A7B1A4F26A434C63CDF8 /* XpringKitTestError.swift */; };
+<<<<<<< HEAD
+=======
+		795B3CB263354886D46FE4ED /* xrp_ledger.legacy.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4386C5D599B4959B89A81E5 /* xrp_ledger.legacy.pb.swift */; };
+>>>>>>> tmp
 		79B65E5F4E95586517CE2590 /* fee.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3322E0F8A6D0AA70E164050 /* fee.pb.swift */; };
 		79FD2BD66600BDE782DE7C0A /* TransactionHash.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB2C2BF0895DEDD1C9AB5D2D /* TransactionHash.swift */; };
 		7B4DACB74AC645F871515879 /* UtilsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D0F50AF49F103E1E0B3D50 /* UtilsTest.swift */; };
@@ -116,9 +134,16 @@
 		AD92D934BB53C1859A37C4CD /* JavaScriptSigner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92DF0085EF32E1A8F9FC3FFF /* JavaScriptSigner.swift */; };
 		AEA1DA055AC51BCCB1F31A11 /* JavaScriptWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C5EEE32B50B1DA49AD37B9 /* JavaScriptWallet.swift */; };
 		AFEE349AE3323638B28938D0 /* fee.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3322E0F8A6D0AA70E164050 /* fee.pb.swift */; };
+<<<<<<< HEAD
 		B525EDC4B7BBAB3CF674891F /* FakeNetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ACE19B61522015207CC5FB4 /* FakeNetworkClient.swift */; };
 		B756F376362F4F12A2808051 /* transaction.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864FC649F051A051A54C63BC /* transaction.pb.swift */; };
 		B799BC967570B8AABFB5769E /* transaction_status.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3586263F9D588991E88BF47A /* transaction_status.pb.swift */; };
+=======
+		B035CD11FE7B781272710EF4 /* xrp_amount.legacy.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F6A3D567C5302610923CA60 /* xrp_amount.legacy.pb.swift */; };
+		B1577504A1FF7925591143F3 /* xrp_amount.legacy.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F6A3D567C5302610923CA60 /* xrp_amount.legacy.pb.swift */; };
+		B525EDC4B7BBAB3CF674891F /* FakeNetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ACE19B61522015207CC5FB4 /* FakeNetworkClient.swift */; };
+		B756F376362F4F12A2808051 /* transaction.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864FC649F051A051A54C63BC /* transaction.pb.swift */; };
+>>>>>>> tmp
 		BB7F2FBF9503319AD3D9120F /* SwiftGRPC.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 58A74192BD297BC4E78F9B95 /* SwiftGRPC.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		BEF208F007A9147A3422B5BC /* JavaScriptWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C5EEE32B50B1DA49AD37B9 /* JavaScriptWallet.swift */; };
 		BFE994A94E819B4ACB5DD083 /* XpringKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A961F46C813F5BA0254F222 /* XpringKit.framework */; };
@@ -136,6 +161,10 @@
 		E390C1796DDC19E93B9F58E4 /* DefaultXpringClientTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8141A7936A12BB62F71D89 /* DefaultXpringClientTest.swift */; };
 		E48C20215EBBCB8C44B08A0B /* XRPLedgerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367711CBA6DD24C5C890B35F /* XRPLedgerError.swift */; };
 		E4DE5E80EB10CE7EC39BC7CA /* UtilsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D0F50AF49F103E1E0B3D50 /* UtilsTest.swift */; };
+<<<<<<< HEAD
+=======
+		E54D55F6B0A631D18D3332BC /* xrp_ledger.legacy.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA22AF185568EC2CBD41603E /* xrp_ledger.legacy.grpc.swift */; };
+>>>>>>> tmp
 		E5DA3037C19CE9188C1AB7EE /* submit.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBD866E575A2BB03D54CF1F /* submit.pb.swift */; };
 		E61AFD4EEDA5BEB92FB1D0BF /* Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD54D1CD3F440E73218FF8B /* Hex.swift */; };
 		E9490A92BBADB2B40C7B0CFB /* JSValue+JavaScriptWalletGenerationResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B4FBDD3CCA9E931913B59C /* JSValue+JavaScriptWalletGenerationResult.swift */; };
@@ -148,9 +177,13 @@
 		F1325A49C497A4C39141E751 /* WalletTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05F8765E9BE754C41FCEB39 /* WalletTest.swift */; };
 		F2FC131ECE631D33B7010580 /* JSValue+JavaScriptWalletGenerationResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B4FBDD3CCA9E931913B59C /* JSValue+JavaScriptWalletGenerationResult.swift */; };
 		F3CF8F0714D07FEA894C87B3 /* TransactionHash+Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76F383DDDD9638F0BDC8C016 /* TransactionHash+Test.swift */; };
+<<<<<<< HEAD
 		F46AEFAEE3E33E8E9D486D8E /* xrp_amount.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAA3B5245DEB0C3C5044364 /* xrp_amount.pb.swift */; };
 		F691E1CA2BED9CD6756B5286 /* currency.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = F15544CB6880A0E6B00E2DC6 /* currency.pb.swift */; };
 		F9823B522B55C77D622CBE9F /* xrp_ledger.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8B1B5BED80E1984C759580 /* xrp_ledger.grpc.swift */; };
+=======
+		F5AF1E6BE2328B56AD0912F3 /* payment.legacy.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD7149FEE36A8532739977C5 /* payment.legacy.pb.swift */; };
+>>>>>>> tmp
 		F98AA9DFE3643FAB9B862282 /* xrp_ledger.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB34141B60385543E01BD7C3 /* xrp_ledger.pb.swift */; };
 		FB5975520257746149AAEC06 /* FakeXpringClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC3C1F97079E9102F5DEC2A /* FakeXpringClient.swift */; };
 		FB60706C284D4869588ACD12 /* XRPLedgerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367711CBA6DD24C5C890B35F /* XRPLedgerError.swift */; };
@@ -220,7 +253,10 @@
 		20BD6B42B95FE5F65D2DC241 /* get_latest_validated_ledger_sequence_request.pb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = get_latest_validated_ledger_sequence_request.pb.swift; sourceTree = "<group>"; };
 		21A8DF813EA75BD18BE4F7E7 /* JSValue+JavaScriptWallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JSValue+JavaScriptWallet.swift"; sourceTree = "<group>"; };
 		233F62B7B7D18B8EE9BA769E /* ledger_objects.pb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ledger_objects.pb.swift; sourceTree = "<group>"; };
+<<<<<<< HEAD
 		24E8F5C4C383AD5330E7C518 /* get_fee_request.pb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = get_fee_request.pb.swift; sourceTree = "<group>"; };
+=======
+>>>>>>> tmp
 		265F737D13784A1A6341E3E4 /* XRPJavaScriptLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XRPJavaScriptLoader.swift; sourceTree = "<group>"; };
 		2A961F46C813F5BA0254F222 /* XpringKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = XpringKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B469AA4604059171E788C58 /* get_transaction_status_request.pb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = get_transaction_status_request.pb.swift; sourceTree = "<group>"; };
@@ -240,13 +276,19 @@
 		7ACE19B61522015207CC5FB4 /* FakeNetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeNetworkClient.swift; sourceTree = "<group>"; };
 		7B9235E33F4B53ED0FD35D50 /* SignerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignerTests.swift; sourceTree = "<group>"; };
 		7DBD866E575A2BB03D54CF1F /* submit.pb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = submit.pb.swift; sourceTree = "<group>"; };
+<<<<<<< HEAD
 		7F1E1F267717830CF73B8877 /* signed_transaction.pb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = signed_transaction.pb.swift; sourceTree = "<group>"; };
 		80EFBFC1627FE67D719BBF69 /* transaction.pb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = transaction.pb.swift; sourceTree = "<group>"; };
+=======
+>>>>>>> tmp
 		8113A7B1A4F26A434C63CDF8 /* XpringKitTestError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XpringKitTestError.swift; sourceTree = "<group>"; };
 		8561A4CDC03D07B17AAB8924 /* Address.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Address.swift; sourceTree = "<group>"; };
 		864FC649F051A051A54C63BC /* transaction.pb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = transaction.pb.swift; sourceTree = "<group>"; };
 		875501A3CB68BA56309F3BDF /* JavaScriptWalletGenerationResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JavaScriptWalletGenerationResult.swift; sourceTree = "<group>"; };
+<<<<<<< HEAD
 		887421E3D5447EE632EDD75F /* fee.pb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = fee.pb.swift; sourceTree = "<group>"; };
+=======
+>>>>>>> tmp
 		8F3AB368BE770A3EB9FFCC46 /* meta.pb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = meta.pb.swift; sourceTree = "<group>"; };
 		90209A297568A5E2CF1C941D /* amount.pb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = amount.pb.swift; sourceTree = "<group>"; };
 		92DF0085EF32E1A8F9FC3FFF /* JavaScriptSigner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JavaScriptSigner.swift; sourceTree = "<group>"; };
@@ -265,6 +307,10 @@
 		C1D0F50AF49F103E1E0B3D50 /* UtilsTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilsTest.swift; sourceTree = "<group>"; };
 		C987E39201D5B0AA9E73428E /* Signer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Signer.swift; sourceTree = "<group>"; };
 		C99FAC0ED11211324DFCD4BD /* XpringClientDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XpringClientDecorator.swift; sourceTree = "<group>"; };
+<<<<<<< HEAD
+=======
+		CA80DCAD6A34B7C64853ED8C /* fee.legacy.pb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = fee.legacy.pb.swift; sourceTree = "<group>"; };
+>>>>>>> tmp
 		CB34141B60385543E01BD7C3 /* xrp_ledger.pb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = xrp_ledger.pb.swift; sourceTree = "<group>"; };
 		CBB02CC192CD7AE7E3218E98 /* TransactionStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionStatus.swift; sourceTree = "<group>"; };
 		CC429E0E63319A1BE3AE8240 /* JavaScriptSerializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JavaScriptSerializer.swift; sourceTree = "<group>"; };
@@ -275,6 +321,10 @@
 		DBC3C1F97079E9102F5DEC2A /* FakeXpringClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeXpringClient.swift; sourceTree = "<group>"; };
 		DCF6B999FCE0C29CC7A59D45 /* XpringKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = XpringKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3322E0F8A6D0AA70E164050 /* fee.pb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = fee.pb.swift; sourceTree = "<group>"; };
+<<<<<<< HEAD
+=======
+		E3CFA7AC834E90F09184EA40 /* transaction.legacy.pb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = transaction.legacy.pb.swift; sourceTree = "<group>"; };
+>>>>>>> tmp
 		EA714A0B484B0B0CB6D39B77 /* BigInt.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BigInt.framework; sourceTree = "<group>"; };
 		EA8B1B5BED80E1984C759580 /* xrp_ledger.grpc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = xrp_ledger.grpc.swift; sourceTree = "<group>"; };
 		EE83B9D92E9AB2959A1C76A5 /* bundled.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = bundled.js; sourceTree = "<group>"; };
@@ -403,7 +453,11 @@
 		38B3196B9E4FD35835BEE810 /* generated */ = {
 			isa = PBXGroup;
 			children = (
+<<<<<<< HEAD
 				FCFF6DBE893C5CDED2046F7B /* legacy */,
+=======
+				A1122FB7B98F7D7FAE81C682 /* Legacy */,
+>>>>>>> tmp
 				1D0FE476EB8F25CF9BCA4DF2 /* rpc */,
 			);
 			path = generated;
@@ -427,6 +481,26 @@
 			sourceTree = "<group>";
 		};
 		5ECDCBF3C9375FC9F899F33B /* v1 */ = {
+<<<<<<< HEAD
+=======
+			isa = PBXGroup;
+			children = (
+				110195CCC63124E5127145C2 /* account_info.pb.swift */,
+				90209A297568A5E2CF1C941D /* amount.pb.swift */,
+				E3322E0F8A6D0AA70E164050 /* fee.pb.swift */,
+				233F62B7B7D18B8EE9BA769E /* ledger_objects.pb.swift */,
+				8F3AB368BE770A3EB9FFCC46 /* meta.pb.swift */,
+				7DBD866E575A2BB03D54CF1F /* submit.pb.swift */,
+				864FC649F051A051A54C63BC /* transaction.pb.swift */,
+				BB9E4382C973A1DECF690D0C /* tx.pb.swift */,
+				77801C2EC85C8579EA8159A7 /* xrp_ledger.grpc.swift */,
+				CB34141B60385543E01BD7C3 /* xrp_ledger.pb.swift */,
+			);
+			path = v1;
+			sourceTree = "<group>";
+		};
+		8058BBA834F5576882B0C08C /* Resources */ = {
+>>>>>>> tmp
 			isa = PBXGroup;
 			children = (
 				110195CCC63124E5127145C2 /* account_info.pb.swift */,
@@ -724,6 +798,7 @@
 				FB60706C284D4869588ACD12 /* XRPLedgerError.swift in Sources */,
 				8D12BD51DEC1CDE10E7BEE66 /* XpringClient.swift in Sources */,
 				A2E0606267E284E43C0038A4 /* XpringClientDecorator.swift in Sources */,
+<<<<<<< HEAD
 				D5E3CC82DB6DC36AE914AEE8 /* account_info.pb.swift in Sources */,
 				984BCFC47002459B17CE4F60 /* account_info.pb.swift in Sources */,
 				E9723C7259D06AE08F55F3F5 /* amount.pb.swift in Sources */,
@@ -751,6 +826,35 @@
 				88CDC57277C225364579C72D /* xrp_ledger.grpc.swift in Sources */,
 				45A52E4E3A6FEF96FB1E9588 /* xrp_ledger.grpc.swift in Sources */,
 				0AE20889AEB4F9E79A0FAABF /* xrp_ledger.pb.swift in Sources */,
+=======
+				E24BF711CDD580A7C9757F9A /* account_info.legacy.pb.swift in Sources */,
+				984BCFC47002459B17CE4F60 /* account_info.pb.swift in Sources */,
+				E9723C7259D06AE08F55F3F5 /* amount.pb.swift in Sources */,
+				C98FF2F03772F82A959C0DB1 /* currency.legacy.pb.swift in Sources */,
+				8C9A3E18C2DFB448FF3BC2DC /* fee.legacy.pb.swift in Sources */,
+				AFEE349AE3323638B28938D0 /* fee.pb.swift in Sources */,
+				DD90CADB4D43A1F02318D774 /* fiat_amount.legacy.pb.swift in Sources */,
+				2515B29D51BF5EFBE2AF8F2A /* get_account_info_request.legacy.pb.swift in Sources */,
+				33DC66EC1A0EF286D0C8C099 /* get_fee_request.legacy.pb.swift in Sources */,
+				A09E00F6D02A7467F8F496E6 /* get_latest_validated_ledger_sequence_request.legacy.pb.swift in Sources */,
+				53F6E7339DD67EA3A6F65953 /* get_transaction_status_request.legacy.pb.swift in Sources */,
+				3BFC5C226FD9D729E1E7E29B /* ledger_objects.pb.swift in Sources */,
+				6A7BA44E08E21670FF0AB84C /* ledger_sequence.legacy.pb.swift in Sources */,
+				5BF218E7BFDE994F62A2E815 /* meta.pb.swift in Sources */,
+				F5AF1E6BE2328B56AD0912F3 /* payment.legacy.pb.swift in Sources */,
+				3FFAEF53DBD5E5C2FD3CCAA3 /* signed_transaction.legacy.pb.swift in Sources */,
+				96C9845E036B3C3DB8AAD919 /* submit.pb.swift in Sources */,
+				1A9E915DCB050311BAFC56B1 /* submit_signed_transaction_request.legacy.pb.swift in Sources */,
+				588081EE271A37F189B7530C /* submit_signed_transaction_response.legacy.pb.swift in Sources */,
+				DB45A08F8767F545846E8C8D /* transaction.legacy.pb.swift in Sources */,
+				421CC410FA94346ACD0B325B /* transaction.pb.swift in Sources */,
+				05229CA94613427E8D294518 /* transaction_status.legacy.pb.swift in Sources */,
+				4293A89F98DB969E60DBD30C /* tx.pb.swift in Sources */,
+				B1577504A1FF7925591143F3 /* xrp_amount.legacy.pb.swift in Sources */,
+				45A52E4E3A6FEF96FB1E9588 /* xrp_ledger.grpc.swift in Sources */,
+				E54D55F6B0A631D18D3332BC /* xrp_ledger.legacy.grpc.swift in Sources */,
+				795B3CB263354886D46FE4ED /* xrp_ledger.legacy.pb.swift in Sources */,
+>>>>>>> tmp
 				F98AA9DFE3643FAB9B862282 /* xrp_ledger.pb.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -822,6 +926,7 @@
 				E48C20215EBBCB8C44B08A0B /* XRPLedgerError.swift in Sources */,
 				3F30AAD98A595AEB8402D5A1 /* XpringClient.swift in Sources */,
 				12ADBDAD47E9B75D1515567D /* XpringClientDecorator.swift in Sources */,
+<<<<<<< HEAD
 				1397E5B4E2910795516EDEC6 /* account_info.pb.swift in Sources */,
 				957447DCF42EEA31CF5A8529 /* account_info.pb.swift in Sources */,
 				22861364F43338AA12657519 /* amount.pb.swift in Sources */,
@@ -849,6 +954,35 @@
 				F9823B522B55C77D622CBE9F /* xrp_ledger.grpc.swift in Sources */,
 				98BC1405EB828ACDF85BC149 /* xrp_ledger.grpc.swift in Sources */,
 				EE958E0E142ED43F2DCCF95F /* xrp_ledger.pb.swift in Sources */,
+=======
+				9C3D36DEFF2C175F0C7B81B9 /* account_info.legacy.pb.swift in Sources */,
+				957447DCF42EEA31CF5A8529 /* account_info.pb.swift in Sources */,
+				22861364F43338AA12657519 /* amount.pb.swift in Sources */,
+				0D92E47B9DAF9D604D8470B0 /* currency.legacy.pb.swift in Sources */,
+				CCEEE286D4FB9E1014BFF316 /* fee.legacy.pb.swift in Sources */,
+				79B65E5F4E95586517CE2590 /* fee.pb.swift in Sources */,
+				E185565297643D614B955206 /* fiat_amount.legacy.pb.swift in Sources */,
+				5F304B8D60D4DF9B67877135 /* get_account_info_request.legacy.pb.swift in Sources */,
+				70B59C3215BC7AB1750987CE /* get_fee_request.legacy.pb.swift in Sources */,
+				BF905AA0088A475CF83F4757 /* get_latest_validated_ledger_sequence_request.legacy.pb.swift in Sources */,
+				6653C323B87A0C403B5606DB /* get_transaction_status_request.legacy.pb.swift in Sources */,
+				16F55623F11A970EE7737984 /* ledger_objects.pb.swift in Sources */,
+				E34D6EDC67872A40048CC1C5 /* ledger_sequence.legacy.pb.swift in Sources */,
+				4EE80C383A865D20B80F8B49 /* meta.pb.swift in Sources */,
+				FC72E5CBA4635904E636D3E9 /* payment.legacy.pb.swift in Sources */,
+				9B79447614BE2E909D988BBC /* signed_transaction.legacy.pb.swift in Sources */,
+				E5DA3037C19CE9188C1AB7EE /* submit.pb.swift in Sources */,
+				2F12E3AD0806FE502AA10EB4 /* submit_signed_transaction_request.legacy.pb.swift in Sources */,
+				2937D1C3D21F8885935457BE /* submit_signed_transaction_response.legacy.pb.swift in Sources */,
+				A0F1F02130A238424F4D2D0C /* transaction.legacy.pb.swift in Sources */,
+				B756F376362F4F12A2808051 /* transaction.pb.swift in Sources */,
+				79346DEC7AE431ACDBFAAA76 /* transaction_status.legacy.pb.swift in Sources */,
+				A55BEFB70A7A84AFCB759B66 /* tx.pb.swift in Sources */,
+				B035CD11FE7B781272710EF4 /* xrp_amount.legacy.pb.swift in Sources */,
+				98BC1405EB828ACDF85BC149 /* xrp_ledger.grpc.swift in Sources */,
+				0655C7EA964E676D13468DF3 /* xrp_ledger.legacy.grpc.swift in Sources */,
+				519DC8AE271069963A36A4B4 /* xrp_ledger.legacy.pb.swift in Sources */,
+>>>>>>> tmp
 				A3C7A158811AFE6E700F8A49 /* xrp_ledger.pb.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
