@@ -8,7 +8,7 @@ set -e -o pipefail
 
 echo "Regenerating Protocol Buffers from Rippled"
 
-SWIFT_OUT_DIR="./generated"
+SWIFT_OUT_DIR=./XpringKit/generated
 
 mkdir -p $SWIFT_OUT_DIR
 protoc \
