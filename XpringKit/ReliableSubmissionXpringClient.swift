@@ -15,7 +15,7 @@ extension ReliableSubmissionXpringClient: XpringClientDecorator {
     return try decoratedClient.getBalance(for: address)
   }
 
-  public func getTx(for transactionHash: TransactionHash) throws -> Rpc_V1_Transaction {
+  public func getTx(for transactionHash: TransactionHash) throws -> Rpc_V1_GetTxResponse {
     return try decoratedClient.getTx(for: transactionHash)
   }
 
@@ -34,7 +34,7 @@ extension ReliableSubmissionXpringClient: XpringClientDecorator {
 //    var tx = try getRawTx(for: tx)
     return tx
   }
-    
+
     public func submitRawTransaction(_ amount: BigUInt, to destinationAddress: Address, from sourceWallet: Wallet, invoiceID: Data?, memos: [Rpc_V1_Memo]?, flags: UInt32?, sourceTag: UInt32?, accountTransactionID: Data?) throws -> Rpc_V1_SubmitTransactionResponse {
       return try decoratedClient.submitRawTransaction(amount, to: destinationAddress, from: sourceWallet, invoiceID: invoiceID, memos: memos, flags: flags, sourceTag: sourceTag, accountTransactionID: accountTransactionID)
     }
