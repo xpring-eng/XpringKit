@@ -73,7 +73,7 @@ extension Io_Xpring_TransactionStatus {
   }
 }
 
-final class DefaultXpringClientTest: XCTestCase {
+final class LegacyDefaultXpringClientTest: XCTestCase {
   // MARK: - Balance
 
   func testGetBalanceWithSuccess() {
