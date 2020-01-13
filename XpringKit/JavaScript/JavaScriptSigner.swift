@@ -2,11 +2,11 @@ import Foundation
 import JavaScriptCore
 
 /// Provides Signer functionality backed by JavaScript.
-internal class JavaScriptSigner {
+internal class LegacyJavaScriptSigner {
 	/// String constants which refer to named JavaScript resources.
 	private enum ResourceNames {
 		public static let signer = "Signer"
-		public static let signTransaction = "signTransaction"
+		public static let signTransaction = "signLegacyTransaction"
 	}
 
 	/// A JavaScriptSerializer which can convert native objects to JavaScript.
