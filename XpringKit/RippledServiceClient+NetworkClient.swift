@@ -1,3 +1,3 @@
 /// Conforms XRPLedgerServiceClient to NetworkClient protocol.
-extension Io_Xpring_XRPLedgerAPIServiceClient: NetworkClient {
+extension Io_Xpring_XRPLedgerAPIServiceClient: LegacyNetworkClient {
 }

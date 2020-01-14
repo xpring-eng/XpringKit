@@ -41,7 +41,7 @@ public class FakeNetworkClient {
 }
 
 /// Conform to NetworkClient protocol, returning faked results.
-extension FakeNetworkClient: NetworkClient {
+extension FakeNetworkClient: LegacyNetworkClient {
 	public func getAccountInfo(_ request: Io_Xpring_GetAccountInfoRequest) throws -> Io_Xpring_AccountInfo {
 		switch accountInfoResult {
 		case .success(let accountInfo):
