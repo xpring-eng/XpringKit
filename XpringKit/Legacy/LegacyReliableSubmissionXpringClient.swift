@@ -3,9 +3,9 @@ import Foundation
 
 /// A XpringClient which blocks on `send` calls until the transaction has reached a deterministic state.
 public class LegacyReliableSubmissionXpringClient {
-  private let decoratedClient: XpringClientDecorator
+  private let decoratedClient: LegacyXpringClientDecorator
 
-  public init(decoratedClient: XpringClientDecorator) {
+  public init(decoratedClient: LegacyXpringClientDecorator) {
     self.decoratedClient = decoratedClient
   }
 }
