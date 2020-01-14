@@ -1,5 +1,5 @@
 /// A client which can make requests to the Xpring Network.
-public protocol NetworkClient {
+public protocol LegacyNetworkClient {
 	/// Get an `AccountInfo` object.
 	///
 	/// - Parameter request: Request parameters for an `AccountInfo`.

@@ -6,7 +6,7 @@ public class DefaultXpringClient {
   private let ledgerSequenceMargin: UInt32 = 10
 
   /// A network client that will make and receive requests.
-	private let networkClient: NetworkClient
+	private let networkClient: LegacyNetworkClient
 
   /// Initialize a new XRPClient.
   ///
@@ -19,7 +19,7 @@ public class DefaultXpringClient {
 	/// Initialize a new XRPClient.
 	///
 	/// - Parameter networkClient: A network client which will make requests.
-	internal init(networkClient: NetworkClient) {
+	internal init(networkClient: LegacyNetworkClient) {
 		self.networkClient = networkClient
 	}
 
