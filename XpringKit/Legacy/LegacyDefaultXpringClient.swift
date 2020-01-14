@@ -46,7 +46,7 @@ public class LegacyDefaultXpringClient {
   }
 }
 
-extension LegacyDefaultXpringClient: XpringClientDecorator {
+extension LegacyDefaultXpringClient: LegacyXpringClientDecorator {
 	/// Get the balance for the given address.
 	///
 	/// - Parameter address: The X-Address to retrieve the balance for.
