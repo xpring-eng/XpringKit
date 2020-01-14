@@ -19,7 +19,7 @@ class SignerTests: XCTestCase {
 			$0.signingPublicKeyHex = wallet.publicKey
 		}
 
-		guard let signedTransaction = Signer.sign(transaction, with: wallet) else {
+		guard let signedTransaction = LegacySigner.sign(transaction, with: wallet) else {
 			XCTFail("Error signing transaction")
 			return
 		}
