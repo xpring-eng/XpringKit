@@ -1,7 +1,7 @@
 import BigInt
 
 /// An interface into the Xpring Platform.
-public class DefaultXpringClient {
+public class LegacyDefaultXpringClient {
   /// A margin to pad the current ledger sequence with when submitting transactions.
   private let ledgerSequenceMargin: UInt32 = 10
 
@@ -46,7 +46,7 @@ public class DefaultXpringClient {
   }
 }
 
-extension DefaultXpringClient: XpringClientDecorator {
+extension LegacyDefaultXpringClient: XpringClientDecorator {
 	/// Get the balance for the given address.
 	///
 	/// - Parameter address: The X-Address to retrieve the balance for.
