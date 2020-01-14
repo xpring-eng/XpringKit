@@ -56,9 +56,9 @@ extension Io_Xpring_LedgerSequence {
   }
 }
 
-extension FakeNetworkClient {
+extension LegacyFakeNetworkClient {
   /// A network client that always succeeds.
-  static let successfulFakeNetworkClient = FakeNetworkClient(
+  static let successfulFakeNetworkClient = LegacyFakeNetworkClient(
     accountInfoResult: .success(.accountInfo),
     feeResult: .success(.fee),
     submitSignedTransactionResult: .success(.submitTransactionResponse),
@@ -79,7 +79,7 @@ final class LegacyDefaultXpringClientTest: XCTestCase {
 
   func testGetBalanceWithSuccess() {
     // GIVEN a Xpring client which will successfully return a balance from a mocked network call.
-    let xpringClient = LegacyDefaultXpringClient(networkClient: FakeNetworkClient.successfulFakeNetworkClient)
+    let xpringClient = LegacyDefaultXpringClient(networkClient: LegacyFakeNetworkClient.successfulFakeNetworkClient)
 
     // WHEN the balance is requested.
     guard let balance = try? xpringClient.getBalance(for: .destinationAddress) else {
@@ -97,7 +97,7 @@ final class LegacyDefaultXpringClientTest: XCTestCase {
       XCTFail("Failed to decode X-Address.")
       return
     }
-    let xpringClient = LegacyDefaultXpringClient(networkClient: FakeNetworkClient.successfulFakeNetworkClient)
+    let xpringClient = LegacyDefaultXpringClient(networkClient: LegacyFakeNetworkClient.successfulFakeNetworkClient)
 
     // WHEN the balance is requested THEN an error is thrown.
     XCTAssertThrowsError(try xpringClient.getBalance(for: classicAddressComponents.classicAddress))
@@ -105,7 +105,7 @@ final class LegacyDefaultXpringClientTest: XCTestCase {
 
   func testGetBalanceWithFailure() {
     // GIVEN a Xpring client which will throw an error when a balance is requested.
-    let networkClient = FakeNetworkClient(
+    let networkClient = LegacyFakeNetworkClient(
       accountInfoResult: .failure(XpringKitTestError.mockFailure),
       feeResult: .success(.fee),
       submitSignedTransactionResult: .success(.submitTransactionResponse),
@@ -122,7 +122,7 @@ final class LegacyDefaultXpringClientTest: XCTestCase {
 
   func testSendWithSuccess() {
     // GIVEN a Xpring client which will successfully return a balance from a mocked network call.
-    let xpringClient = LegacyDefaultXpringClient(networkClient: FakeNetworkClient.successfulFakeNetworkClient)
+    let xpringClient = LegacyDefaultXpringClient(networkClient: LegacyFakeNetworkClient.successfulFakeNetworkClient)
 
     // WHEN XRP is sent.
     guard
@@ -145,7 +145,7 @@ final class LegacyDefaultXpringClientTest: XCTestCase {
       XCTFail("Failed to decode X-Address.")
       return
     }
-    let xpringClient = LegacyDefaultXpringClient(networkClient: FakeNetworkClient.successfulFakeNetworkClient)
+    let xpringClient = LegacyDefaultXpringClient(networkClient: LegacyFakeNetworkClient.successfulFakeNetworkClient)
 
     // WHEN XRP is sent to a classic address THEN an error is thrown.
     XCTAssertThrowsError(try xpringClient.send(
@@ -157,7 +157,7 @@ final class LegacyDefaultXpringClientTest: XCTestCase {
 
   func testSendWithInvalidAddress() {
     // GIVEN a Xpring client and an invalid destination address.
-    let xpringClient = LegacyDefaultXpringClient(networkClient: FakeNetworkClient.successfulFakeNetworkClient)
+    let xpringClient = LegacyDefaultXpringClient(networkClient: LegacyFakeNetworkClient.successfulFakeNetworkClient)
     let destinationAddress = "xrp"
 
     // WHEN XRP is sent to an invalid address THEN an error is thrown.
@@ -170,7 +170,7 @@ final class LegacyDefaultXpringClientTest: XCTestCase {
 
   func testSendWithAccountInfoFailure() {
     // GIVEN a Xpring client which will fail to return account info.
-    let networkClient = FakeNetworkClient(
+    let networkClient = LegacyFakeNetworkClient(
       accountInfoResult: .failure(XpringKitTestError.mockFailure),
       feeResult: .success(.fee),
       submitSignedTransactionResult: .success(.submitTransactionResponse),
@@ -189,7 +189,7 @@ final class LegacyDefaultXpringClientTest: XCTestCase {
 
   func testSendWithFeeFailure() {
     // GIVEN a Xpring client which will fail to return a fee.
-    let networkClient = FakeNetworkClient(
+    let networkClient = LegacyFakeNetworkClient(
       accountInfoResult: .success(.accountInfo),
       feeResult: .failure(XpringKitTestError.mockFailure),
       submitSignedTransactionResult: .success(.submitTransactionResponse),
@@ -208,7 +208,7 @@ final class LegacyDefaultXpringClientTest: XCTestCase {
 
   func testSendWithLatestLedgerSequenceFailure() {
     // GIVEN a Xpring client which will fail to return the latest validated ledger sequence.
-    let networkClient = FakeNetworkClient(
+    let networkClient = LegacyFakeNetworkClient(
       accountInfoResult: .success(.accountInfo),
       feeResult: .success(.fee),
       submitSignedTransactionResult: .success(.submitTransactionResponse),
@@ -223,7 +223,7 @@ final class LegacyDefaultXpringClientTest: XCTestCase {
 
   func testSendWithSubmitFailure() {
     // GIVEN a Xpring client which will fail to submit a transaction.
-    let networkClient = FakeNetworkClient(
+    let networkClient = LegacyFakeNetworkClient(
       accountInfoResult: .success(.accountInfo),
       feeResult: .success(.fee),
       submitSignedTransactionResult: .failure(XpringKitTestError.mockFailure),
@@ -246,7 +246,7 @@ final class LegacyDefaultXpringClientTest: XCTestCase {
       $0.validated = false
       $0.transactionStatusCode = .transactionStatusCodeFailure
     }
-    let networkClient = FakeNetworkClient(
+    let networkClient = LegacyFakeNetworkClient(
       accountInfoResult: .success(.accountInfo),
       feeResult: .success(.fee),
       submitSignedTransactionResult: .success(.submitTransactionResponse),
@@ -268,7 +268,7 @@ final class LegacyDefaultXpringClientTest: XCTestCase {
       $0.validated = false
       $0.transactionStatusCode = .transactionStatusCodeSuccess
     }
-    let networkClient = FakeNetworkClient(
+    let networkClient = LegacyFakeNetworkClient(
       accountInfoResult: .success(.accountInfo),
       feeResult: .success(.fee),
       submitSignedTransactionResult: .success(.submitTransactionResponse),
@@ -290,7 +290,7 @@ final class LegacyDefaultXpringClientTest: XCTestCase {
       $0.validated = true
       $0.transactionStatusCode = .transactionStatusCodeFailure
     }
-    let networkClient = FakeNetworkClient(
+    let networkClient = LegacyFakeNetworkClient(
       accountInfoResult: .success(.accountInfo),
       feeResult: .success(.fee),
       submitSignedTransactionResult: .success(.submitTransactionResponse),
@@ -312,7 +312,7 @@ final class LegacyDefaultXpringClientTest: XCTestCase {
       $0.validated = true
       $0.transactionStatusCode = .transactionStatusCodeSuccess
     }
-    let networkClient = FakeNetworkClient(
+    let networkClient = LegacyFakeNetworkClient(
       accountInfoResult: .success(.accountInfo),
       feeResult: .success(.fee),
       submitSignedTransactionResult: .success(.submitTransactionResponse),
@@ -330,7 +330,7 @@ final class LegacyDefaultXpringClientTest: XCTestCase {
 
   func testGetTransactionStatusWithServerFailure() {
     // GIVEN a XpringClient which fails to return a transaction status.
-    let networkClient = FakeNetworkClient(
+    let networkClient = LegacyFakeNetworkClient(
       accountInfoResult: .success(.accountInfo),
       feeResult: .success(.fee),
       submitSignedTransactionResult: .success(.submitTransactionResponse),
