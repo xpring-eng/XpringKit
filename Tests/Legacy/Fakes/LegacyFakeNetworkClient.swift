@@ -1,7 +1,7 @@
 import XpringKit
 
 /// A fake network client which faekse calls.
-public class FakeNetworkClient {
+public class LegacyFakeNetworkClient {
 	/// Result of a call to getAccountInfo
 	private let accountInfoResult: Result<Io_Xpring_AccountInfo, Error>
 
@@ -41,7 +41,7 @@ public class FakeNetworkClient {
 }
 
 /// Conform to NetworkClient protocol, returning faked results.
-extension FakeNetworkClient: LegacyNetworkClient {
+extension LegacyFakeNetworkClient: LegacyNetworkClient {
 	public func getAccountInfo(_ request: Io_Xpring_GetAccountInfoRequest) throws -> Io_Xpring_AccountInfo {
 		switch accountInfoResult {
 		case .success(let accountInfo):
