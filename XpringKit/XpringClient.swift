@@ -8,7 +8,7 @@ public class XpringClient {
   ///
   /// - Parameter grpcURL: A remote URL for a rippled gRPC service.
   public init(grpcURL: String) {
-    let defaultClient = DefaultXpringClient(grpcURL: grpcURL)
+    let defaultClient = LegacyDefaultXpringClient(grpcURL: grpcURL)
     decoratedClient = ReliableSubmissionXpringClient(decoratedClient: defaultClient)
   }
 
