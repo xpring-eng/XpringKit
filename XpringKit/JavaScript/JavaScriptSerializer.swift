@@ -31,6 +31,20 @@ internal class JavaScriptSerializer {
 		return walletClass.construct(withArguments: [ wallet.publicKey, wallet.privateKey])
 	}
 
+    /// Serialize a transaction to a JavaScript object.
+    ///
+    /// - Parameter transaction: The transaction to serialize.
+    /// - Returns: A JSValue representing the transaction.
+    public func serialize(transaction: Rpc_V1_Transaction) -> JSValue? {
+        guard
+            let transactionData = try? transaction.serializedData()
+        else {
+            return nil
+        }
+        let transactionBytes = [UInt8](transactionData)
+        return deserializeTransactionFunction.call(withArguments: [transactionBytes])!
+    }
+
 	/// Serialize a transaction to a JavaScript object.
 	///
 	/// - Parameter transaction: The transaction to serialize.
