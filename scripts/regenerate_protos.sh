@@ -28,7 +28,7 @@ echo "Regenerating Protocol Buffers from xpring-common-protocol-buffers"
 
 # Directory to write generated code to (.js and .d.ts files)
 LEGACY_PROTO_PATH="./xpring-common-protocol-buffers/proto"
-LEGACY_OUT_DIR="./XpringKit/generated/legacy"
+LEGACY_OUT_DIR="./XpringKit/generated/Legacy"
 mkdir -p $LEGACY_OUT_DIR
 protoc \
     --proto_path=$LEGACY_PROTO_PATH \
