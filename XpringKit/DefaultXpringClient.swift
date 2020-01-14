@@ -109,7 +109,7 @@ extension DefaultXpringClient: XpringClientDecorator {
       $0.lastLedgerSequence = lastValidatedLedgerSequence + ledgerSequenceMargin
     }
 
-    guard let signedTransaction = Signer.sign(transaction, with: sourceWallet) else {
+    guard let signedTransaction = LegacySigner.sign(transaction, with: sourceWallet) else {
       throw XRPLedgerError.signingError
     }
 
