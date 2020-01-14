@@ -2,6 +2,7 @@ import BigInt
 import XCTest
 @testable import XpringKit
 
+// TODO(keefer): Refactor these objects to the Helpers/TestObjects file.
 extension Wallet {
   static let wallet = Wallet(seed: "snYP7oArxKepd3GPDcrjMsJYiJeJB")!
 }
@@ -73,7 +74,7 @@ extension Io_Xpring_TransactionStatus {
   }
 }
 
-final class DefaultXpringClientTest: XCTestCase {
+final class LegacyDefaultXpringClientTest: XCTestCase {
   // MARK: - Balance
 
   func testGetBalanceWithSuccess() {
