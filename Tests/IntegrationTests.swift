@@ -9,7 +9,7 @@ extension Wallet {
 
 extension String {
     /// The URL of the remote gRPC service.
-    public static let remoteURL = "127.0.0.1:50051"
+    public static let remoteURL = "142.93.73.197:88"
 
     /// An address on the chain to receive funds.
     public static let recipientAddress = "X7cBcY4bdTTzk3LHmrKAK6GyrirkXfLHGFxzke5zTmYMfw4"
