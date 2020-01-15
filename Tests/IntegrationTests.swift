@@ -9,7 +9,7 @@ extension Wallet {
 
 extension String {
     /// The URL of the remote gRPC service.
-    public static let remoteURL = "127.0.0.1:500051"
+    public static let remoteURL = "127.0.0.1:50051"
 
     /// An address on the chain to receive funds.
     public static let recipientAddress = "X7cBcY4bdTTzk3LHmrKAK6GyrirkXfLHGFxzke5zTmYMfw4"
@@ -37,6 +37,7 @@ extension UInt32 {
 //extension Rpc_V1_Memo {
 //    static let memos: [Rpc_V1_Memo]? = []
 //}
+
 /// Integration tests run against a live remote client.
 final class IntegrationTests: XCTestCase {
     private let client = XpringClient(grpcURL: .remoteURL)

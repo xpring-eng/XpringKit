@@ -141,28 +141,26 @@ extension DefaultXpringClient: XpringClientDecorator {
             $0.fee = fee.drops.baseFee
             $0.sequence = UInt32(lastValidatedLedgerSequence)
             $0.payment = Rpc_V1_Payment.with {
-                if let _invoiceID = invoiceID {
-                    $0.invoiceID = _invoiceID
-                }
+//                if let _invoiceID = invoiceID {
+//                    $0.invoiceID = _invoiceID
+//                }
                 $0.destination = _destination
                 $0.amount = xrpAmount
             }
-            if let _memos = memos {
-                $0.memos = _memos
-            }
-            if let _flags = flags {
-                $0.flags = _flags
-            }
-            if let _sourceTag = sourceTag {
-                $0.sourceTag = _sourceTag
-            }
-            if let _accountTransactionID = accountTransactionID {
-                $0.accountTransactionID = _accountTransactionID
-            }
+//            if let _memos = memos {
+//                $0.memos = _memos
+//            }
+//            if let _flags = flags {
+//                $0.flags = _flags
+//            }
+//            if let _sourceTag = sourceTag {
+//                $0.sourceTag = _sourceTag
+//            }
+//            if let _accountTransactionID = accountTransactionID {
+//                $0.accountTransactionID = _accountTransactionID
+//            }
             // Format For Hex
-            if let signingPublicKey = sourceWallet.publicKey.data(using: .utf8) {
-                $0.signingPublicKey = signingPublicKey
-            }
+            $0.signingPublicKey = Data(sourceWallet.publicKey.utf8)
             $0.lastLedgerSequence = lastValidatedLedgerSequence + ledgerSequenceMargin
         }
 

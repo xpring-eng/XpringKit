@@ -37,6 +37,7 @@ internal class JavaScriptSigner {
         guard let javaScriptTransaction = javaScriptSerializer.serialize(transaction: transaction) else {
             return nil
         }
+
         let javaScriptWallet = javaScriptSerializer.serialize(wallet: wallet)
 
         let javaScriptSignedTransaction = signTransactionFunction.call(withArguments: [javaScriptTransaction, javaScriptWallet])!

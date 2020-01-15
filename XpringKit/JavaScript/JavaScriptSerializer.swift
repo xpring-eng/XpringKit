@@ -42,6 +42,7 @@ internal class JavaScriptSerializer {
             return nil
         }
         let transactionBytes = [UInt8](transactionData)
+        print(deserializeTransactionFunction.call(withArguments: [transactionBytes])!)
         return deserializeTransactionFunction.call(withArguments: [transactionBytes])!
     }
 
@@ -56,6 +57,7 @@ internal class JavaScriptSerializer {
 			return nil
 		}
 		let transactionBytes = [UInt8](transactionData)
+        print(deserializeTransactionFunction.call(withArguments: [transactionBytes])!)
 		return deserializeTransactionFunction.call(withArguments: [transactionBytes])!
 	}
 }
