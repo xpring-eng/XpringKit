@@ -31,7 +31,7 @@ internal enum XRPJavaScriptLoader {
 	/// - Note: This accessor will crash if JavaScript resources are malformed or missing.
 	// TODO(keefertaylor): Migrate to using a singleton context to avoid the heavy lifting of instantiating many `JSContext` objects.
 	public static var XRPJavaScriptContext: JSContext {
-		let bundle = Bundle(for: XpringClient.self)
+		let bundle = Bundle(for: LegacyXpringClient.self)
 
 		guard let context = JSContext() else {
 			fatalError(LoaderErrors.missingBundledJS)

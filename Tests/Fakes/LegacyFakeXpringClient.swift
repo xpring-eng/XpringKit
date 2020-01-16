@@ -3,7 +3,7 @@ import XpringKit
 
 /// A  fake XpringClient which returns the given iVars as results from XpringClientDecorator calls.
 /// - Note: Since this class is passed by reference and the iVars are mutable, outputs of this class can be changed after it is injected.
-public class FakeXpringClient {
+public class LegacyFakeXpringClient {
   public let networkClient: LegacyNetworkClient = LegacyFakeNetworkClient.successfulFakeNetworkClient
 
   public var getBalanceValue: BigUInt
@@ -27,7 +27,7 @@ public class FakeXpringClient {
   }
 }
 
-extension FakeXpringClient: XpringClientDecorator {
+extension LegacyFakeXpringClient: LegacyXpringClientDecorator {
   public func getBalance(for address: Address) throws -> BigUInt {
     return getBalanceValue
   }

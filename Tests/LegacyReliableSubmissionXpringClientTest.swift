@@ -2,7 +2,7 @@ import BigInt
 import XCTest
 @testable import XpringKit
 
-final class ReliableSubmissionClientTest: XCTestCase {
+final class LegacyReliableSubmissionClientTest: XCTestCase {
   let defaultBalanceValue = BigUInt(0)
   let defaultTransactionStatusValue: TransactionStatus = .succeeded
   let defaultSendValue = "DEADBEEF"
@@ -13,11 +13,11 @@ final class ReliableSubmissionClientTest: XCTestCase {
     $0.lastLedgerSequence = 100
   }
 
-  var fakeXpringClient: FakeXpringClient!
-  var reliableSubmissionClient: ReliableSubmissionXpringClient!
+  var fakeXpringClient: LegacyFakeXpringClient!
+  var reliableSubmissionClient: LegacyReliableSubmissionXpringClient!
 
   override func setUp() {
-    fakeXpringClient = FakeXpringClient(
+    fakeXpringClient = LegacyFakeXpringClient(
       getBalanceValue: defaultBalanceValue,
       transactionStatusValue: defaultTransactionStatusValue,
       sendValue: defaultSendValue,
@@ -25,7 +25,7 @@ final class ReliableSubmissionClientTest: XCTestCase {
       rawTransactionStatusValue: defaultRawTransactionStatusValue
     )
 
-    reliableSubmissionClient = ReliableSubmissionXpringClient(decoratedClient: fakeXpringClient)
+    reliableSubmissionClient = LegacyReliableSubmissionXpringClient(decoratedClient: fakeXpringClient)
   }
 
   func testGetBalance() {

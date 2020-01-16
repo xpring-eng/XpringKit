@@ -1,7 +1,7 @@
 import BigInt
 
 /// A decorator for a XpringClient.
-public protocol XpringClientDecorator {
+public protocol LegacyXpringClientDecorator {
   /// Get the balance for the given address.
   ///
   /// - Parameter address: The X-Address to retrieve the balance for.

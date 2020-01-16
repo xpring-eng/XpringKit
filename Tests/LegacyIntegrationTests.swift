@@ -25,8 +25,8 @@ extension TransactionHash {
 }
 
 /// Integration tests run against a live remote client.
-final class IntegrationTests: XCTestCase {
-  private let client = XpringClient(grpcURL: .remoteURL)
+final class LegacyIntegrationTests: XCTestCase {
+  private let client = LegacyXpringClient(grpcURL: .remoteURL)
 
   func testGetBalance() {
     do {

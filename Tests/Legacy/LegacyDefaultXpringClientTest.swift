@@ -46,7 +46,7 @@ extension Io_Xpring_Fee {
 
 extension Io_Xpring_SubmitSignedTransactionResponse {
   static let submitTransactionResponse = Io_Xpring_SubmitSignedTransactionResponse.with {
-    $0.transactionBlob = .transactionBlobHex
+    $0.transactionBlob = .legacyTransactionBlobHex
   }
 }
 
@@ -82,7 +82,7 @@ final class LegacyDefaultXpringClientTest: XCTestCase {
     let xpringClient = LegacyDefaultXpringClient(networkClient: LegacyFakeNetworkClient.successfulFakeNetworkClient)
 
     // WHEN the balance is requested.
-    guard let balance = try? xpringClient.getBalance(for: .destinationAddress) else {
+    guard let balance = try? xpringClient.getBalance(for: .legacyDestinationAddress) else {
       XCTFail("Exception should not be thrown when trying to get a balance")
       return
     }
@@ -93,7 +93,7 @@ final class LegacyDefaultXpringClientTest: XCTestCase {
 
   func testGetBalanceWithClassicAddress() {
     // GIVEN a classic address.
-    guard let classicAddressComponents = Utils.decode(xAddress: .destinationAddress) else {
+    guard let classicAddressComponents = Utils.decode(xAddress: .legacyDestinationAddress) else {
       XCTFail("Failed to decode X-Address.")
       return
     }
@@ -136,12 +136,12 @@ final class LegacyDefaultXpringClientTest: XCTestCase {
     }
 
     // THEN the engine result code is as expected.
-    XCTAssertEqual(transactionHash, Utils.toTransactionHash(transactionBlobHex: .transactionBlobHex))
+    XCTAssertEqual(transactionHash, Utils.toTransactionHash(transactionBlobHex: .legacyTransactionBlobHex))
   }
 
   func testSendWithClassicAddress() {
     // GIVEN a classic address.
-    guard let classicAddressComponents = Utils.decode(xAddress: .destinationAddress) else {
+    guard let classicAddressComponents = Utils.decode(xAddress: .legacyDestinationAddress) else {
       XCTFail("Failed to decode X-Address.")
       return
     }
@@ -218,7 +218,7 @@ final class LegacyDefaultXpringClientTest: XCTestCase {
     let xpringClient = LegacyDefaultXpringClient(networkClient: networkClient)
 
     // WHEN a send is attempted then an error is thrown.
-    XCTAssertThrowsError(try xpringClient.send(.sendAmount, to: .destinationAddress, from: .wallet))
+    XCTAssertThrowsError(try xpringClient.send(.legacySendAmount, to: .legacyDestinationAddress, from: .legacyWallet))
   }
 
   func testSendWithSubmitFailure() {
