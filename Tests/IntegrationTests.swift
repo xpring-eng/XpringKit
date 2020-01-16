@@ -70,7 +70,7 @@ final class IntegrationTests: XCTestCase {
     func testGetTx() {
         do {
             let transaction = try client.getTx(for: .successfulTransactionHash)
-//            XCTAssertEqual(transaction.meta.transactionResult.result, "tesSUCCESS")
+            XCTAssertEqual(transaction.meta.transactionResult.result, "tesSUCCESS")
         } catch {
             XCTFail("Failed retrieving transaction hash with error: \(error)")
         }

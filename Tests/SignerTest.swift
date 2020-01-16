@@ -34,8 +34,8 @@ class SignerTests: XCTestCase {
                 $0.amount = xrpAmount
                 $0.destination = destination
             }
-            $0.signingPublicKey = Data(wallet.publicKey.utf8)
-            $0.lastLedgerSequence = 45
+            print(Utils.toByteArray(hex: wallet.publicKey))
+            $0.signingPublicKey = Data(Utils.toByteArray(hex: wallet.publicKey))
         }
 
         guard let signedTransaction = Signer.sign(transaction, with: wallet) else {

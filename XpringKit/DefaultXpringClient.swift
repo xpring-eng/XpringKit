@@ -91,8 +91,10 @@ extension DefaultXpringClient: XpringClientDecorator {
     /// - Throws: An error if there was a problem communicating with the XRP Ledger.
     /// - Returns: The data of the given transaction.
     public func getRawTx(for transactionHash: TransactionHash) throws -> Rpc_V1_GetTxResponse {
+        print(transactionHash)
+        print(Utils.toByteArray(hex: transactionHash))
         let transactionRequest = Rpc_V1_GetTxRequest.with {
-            $0.hash = Utils.toTransactionHash(transactionBlobHex: transactionHash)!.data(using: .utf8)!
+            $0.hash = Data(Utils.toByteArray(hex: transactionHash))
         }
         return try networkClient.getTx(transactionRequest)
     }
