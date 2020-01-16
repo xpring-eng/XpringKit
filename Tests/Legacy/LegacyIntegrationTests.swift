@@ -30,7 +30,7 @@ final class LegacyIntegrationTests: XCTestCase {
 
   func testGetBalance() {
     do {
-      _ = try client.getBalance(for: Wallet.testWallet.address)
+      _ = try client.getBalance(for: Wallet.legacyTestWallet.address)
     } catch {
       XCTFail("Failed retrieving balance with error: \(error)")
     }
@@ -38,7 +38,7 @@ final class LegacyIntegrationTests: XCTestCase {
 
   func testSendXRP() {
     do {
-      _ = try client.send(.drops, to: .legacyRecipientAddress, from: .testWallet)
+      _ = try client.send(.legacyDrops, to: .legacyRecipientAddress, from: .legacyTestWallet)
     } catch {
       XCTFail("Failed sending XRP with error: \(error)")
     }
