@@ -41,10 +41,7 @@ internal class JavaScriptSigner {
         let javaScriptWallet = javaScriptSerializer.serialize(wallet: wallet)
 
         let javaScriptSignedTransaction = signTransactionFunction.call(withArguments: [javaScriptTransaction, javaScriptWallet])!
-
-        print(javaScriptSignedTransaction)
-
-        return transaction
-//        return javaScriptSignedTransaction.toSignedTransaction()
+        
+        return javaScriptSignedTransaction.toTransaction()
     }
 }
