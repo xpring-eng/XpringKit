@@ -2,15 +2,15 @@ import BigInt
 import Foundation
 
 /// A XpringClient which blocks on `send` calls until the transaction has reached a deterministic state.
-public class ReliableSubmissionXpringClient {
-  private let decoratedClient: XpringClientDecorator
+public class LegacyReliableSubmissionXpringClient {
+  private let decoratedClient: LegacyXpringClientDecorator
 
-  public init(decoratedClient: XpringClientDecorator) {
+  public init(decoratedClient: LegacyXpringClientDecorator) {
     self.decoratedClient = decoratedClient
   }
 }
 
-extension ReliableSubmissionXpringClient: XpringClientDecorator {
+extension LegacyReliableSubmissionXpringClient: LegacyXpringClientDecorator {
   public func getBalance(for address: Address) throws -> BigUInt {
     return try decoratedClient.getBalance(for: address)
   }

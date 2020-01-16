@@ -4,34 +4,34 @@ import XCTest
 
 // TODO(keefer): Refactor these objects to the Helpers/TestObjects file.
 extension Wallet {
-  static let wallet = Wallet(seed: "snYP7oArxKepd3GPDcrjMsJYiJeJB")!
+  static let legacyWallet = Wallet(seed: "snYP7oArxKepd3GPDcrjMsJYiJeJB")!
 }
 
 extension Address {
-  static let destinationAddress = "XVfC9CTCJh6GN2x8bnrw3LtdbqiVCUFyQVMzRrMGUZpokKH"
+  static let legacyDestinationAddress = "XVfC9CTCJh6GN2x8bnrw3LtdbqiVCUFyQVMzRrMGUZpokKH"
 }
 
 extension BigUInt {
-  static let sendAmount = BigUInt(stringLiteral: "20")
-  static let balance = BigUInt(stringLiteral: "1000")
+  static let legacySendAmount = BigUInt(stringLiteral: "20")
+  static let legacyBalance = BigUInt(stringLiteral: "1000")
 }
 
 extension UInt64 {
-  static let sequence: UInt64 = 2
+  static let legacySequence: UInt64 = 2
 }
 
 extension Io_Xpring_AccountInfo {
   static let accountInfo = Io_Xpring_AccountInfo.with {
     $0.balance = Io_Xpring_XRPAmount.with {
-      $0.drops = String(.balance)
+      $0.drops = String(.legacyBalance)
     }
-    $0.sequence = .sequence
+    $0.sequence = .legacySequence
   }
 }
 
 extension String {
   static let feeDrops = "15"
-  static let transactionBlobHex = "DEADBEEF"
+  static let legacyTransactionBlobHex = "DEADBEEF"
   static let transactionStatusCodeSuccess = "tesSUCCESS"
   static let transactionStatusCodeFailure = "tecFAILURE"
 }
@@ -46,7 +46,7 @@ extension Io_Xpring_Fee {
 
 extension Io_Xpring_SubmitSignedTransactionResponse {
   static let submitTransactionResponse = Io_Xpring_SubmitSignedTransactionResponse.with {
-    $0.transactionBlob = .transactionBlobHex
+    $0.transactionBlob = .legacyTransactionBlobHex
   }
 }
 
@@ -82,18 +82,18 @@ final class LegacyDefaultXpringClientTest: XCTestCase {
     let xpringClient = LegacyDefaultXpringClient(networkClient: LegacyFakeNetworkClient.successfulFakeNetworkClient)
 
     // WHEN the balance is requested.
-    guard let balance = try? xpringClient.getBalance(for: .destinationAddress) else {
+    guard let balance = try? xpringClient.getBalance(for: .legacyDestinationAddress) else {
       XCTFail("Exception should not be thrown when trying to get a balance")
       return
     }
 
     // THEN the balance is correct.
-    XCTAssertEqual(balance, .balance)
+    XCTAssertEqual(balance, .legacyBalance)
   }
 
   func testGetBalanceWithClassicAddress() {
     // GIVEN a classic address.
-    guard let classicAddressComponents = Utils.decode(xAddress: .destinationAddress) else {
+    guard let classicAddressComponents = Utils.decode(xAddress: .legacyDestinationAddress) else {
       XCTFail("Failed to decode X-Address.")
       return
     }
@@ -127,21 +127,21 @@ final class LegacyDefaultXpringClientTest: XCTestCase {
     // WHEN XRP is sent.
     guard
       let transactionHash = try? xpringClient.send(
-        .sendAmount,
-        to: .destinationAddress,
-        from: .wallet)
+        .legacySendAmount,
+        to: .legacyDestinationAddress,
+        from: .legacyWallet)
       else {
         XCTFail("Exception should not be thrown when trying to send XRP")
         return
     }
 
     // THEN the engine result code is as expected.
-    XCTAssertEqual(transactionHash, Utils.toTransactionHash(transactionBlobHex: .transactionBlobHex))
+    XCTAssertEqual(transactionHash, Utils.toTransactionHash(transactionBlobHex: .legacyTransactionBlobHex))
   }
 
   func testSendWithClassicAddress() {
     // GIVEN a classic address.
-    guard let classicAddressComponents = Utils.decode(xAddress: .destinationAddress) else {
+    guard let classicAddressComponents = Utils.decode(xAddress: .legacyDestinationAddress) else {
       XCTFail("Failed to decode X-Address.")
       return
     }
@@ -149,9 +149,9 @@ final class LegacyDefaultXpringClientTest: XCTestCase {
 
     // WHEN XRP is sent to a classic address THEN an error is thrown.
     XCTAssertThrowsError(try xpringClient.send(
-      .sendAmount,
+      .legacySendAmount,
       to: classicAddressComponents.classicAddress,
-      from: .wallet
+      from: .legacyWallet
       ))
   }
 
@@ -162,9 +162,9 @@ final class LegacyDefaultXpringClientTest: XCTestCase {
 
     // WHEN XRP is sent to an invalid address THEN an error is thrown.
     XCTAssertThrowsError(try xpringClient.send(
-      .sendAmount,
+      .legacySendAmount,
       to: destinationAddress,
-      from: .wallet
+      from: .legacyWallet
       ))
   }
 
@@ -181,9 +181,9 @@ final class LegacyDefaultXpringClientTest: XCTestCase {
 
     // WHEN a send is attempted then an error is thrown.
     XCTAssertThrowsError(try xpringClient.send(
-      .sendAmount,
-      to: .destinationAddress,
-      from: .wallet
+      .legacySendAmount,
+      to: .legacyDestinationAddress,
+      from: .legacyWallet
       ))
   }
 
@@ -200,9 +200,9 @@ final class LegacyDefaultXpringClientTest: XCTestCase {
 
     // WHEN a send is attempted then an error is thrown.
     XCTAssertThrowsError(try xpringClient.send(
-      .sendAmount,
-      to: .destinationAddress,
-      from: .wallet
+      .legacySendAmount,
+      to: .legacyDestinationAddress,
+      from: .legacyWallet
       ))
   }
 
@@ -218,7 +218,7 @@ final class LegacyDefaultXpringClientTest: XCTestCase {
     let xpringClient = LegacyDefaultXpringClient(networkClient: networkClient)
 
     // WHEN a send is attempted then an error is thrown.
-    XCTAssertThrowsError(try xpringClient.send(.sendAmount, to: .destinationAddress, from: .wallet))
+    XCTAssertThrowsError(try xpringClient.send(.legacySendAmount, to: .legacyDestinationAddress, from: .legacyWallet))
   }
 
   func testSendWithSubmitFailure() {
@@ -234,9 +234,9 @@ final class LegacyDefaultXpringClientTest: XCTestCase {
 
     // WHEN a send is attempted then an error is thrown.
     XCTAssertThrowsError(try xpringClient.send(
-      .sendAmount,
-      to: .destinationAddress,
-      from: .wallet
+      .legacySendAmount,
+      to: .legacyDestinationAddress,
+      from: .legacyWallet
       ))
   }
 
