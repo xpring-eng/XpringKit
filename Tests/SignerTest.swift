@@ -3,19 +3,19 @@ import XpringKit
 
 class SignerTests: XCTestCase {
     func testSign() {
-
+        
         // From
         let wallet = Wallet(seed: "snYP7oArxKepd3GPDcrjMsJYiJeJB")!
         let sender = Rpc_V1_AccountAddress.with {
             $0.address = wallet.address
         }
-
+        
         // To
         let destinationAddress = "XVPcpSm47b1CZkf5AkKM9a84dQHe3m4sBhsrA4XtnBECTAc"
         let destination = Rpc_V1_AccountAddress.with {
             $0.address = destinationAddress
         }
-
+        
         // Amount & Fee
         let xrpAmount = Rpc_V1_CurrencyAmount.with {
             $0.xrpAmount = Rpc_V1_XRPDropsAmount.with {
@@ -25,7 +25,7 @@ class SignerTests: XCTestCase {
         let dropsFeeAount = Rpc_V1_XRPDropsAmount.with {
             $0.drops = 12
         }
-
+        
         let transaction = Rpc_V1_Transaction.with {
             $0.sequence = 40
             $0.account = sender
@@ -34,15 +34,14 @@ class SignerTests: XCTestCase {
                 $0.amount = xrpAmount
                 $0.destination = destination
             }
-            print(Utils.toByteArray(hex: wallet.publicKey))
             $0.signingPublicKey = Data(Utils.toByteArray(hex: wallet.publicKey))
         }
-
+        
         guard let signedTransaction = Signer.sign(transaction, with: wallet) else {
             XCTFail("Error signing transaction")
             return
         }
-
+        
         XCTAssertEqual(signedTransaction, transaction)
         XCTAssertEqual(
             signedTransaction.signature,
