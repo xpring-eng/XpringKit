@@ -64,91 +64,69 @@ public enum Utils {
         return javaScriptUtils.toTransactionHash(transactionBlobHex: transactionBlobHex)
     }
 
+    /// Convert the given string to a bytes array UInt8.
+    ///
+    /// - Parameter hex: A string.
+    /// - Returns: A byte array in [UInt8].
     public static func toByteArray(hex: String ) -> [UInt8] {
-
         // remove "-" from Hexadecimal
         let hexString = hex.removeWord( "-" )
-
         let size = hexString.count / 2
         var result: [UInt8] = [UInt8]( repeating: 0, count: size ) // array with length = size
-
-        // for ( int i = 0; i < hexString.length; i += 2 )
         for i in stride( from: 0, to: hexString.count, by: 2 ) {
-
             let subHexStr = hexString.subString( i, length: 2 )
-
-            result[ i / 2 ] = UInt8( subHexStr, radix: 16 )! // ! - because could be null
+            guard let _uint8 = UInt8( subHexStr, radix: 16 ) else {
+                return []
+            }
+            result[ i / 2 ] = _uint8
         }
-
         return result
     }
 }
 extension String {
 
     func subString( _ from: Int, length: Int ) -> String {
-
         let size = self.count
-
         let to = length + from
         if from < 0 || to > size {
-
             return ""
         }
-
         var result = ""
-
         for ( idx, char ) in self.enumerated() {
-
             if idx >= from && idx < to {
-
                 result.append( char )
             }
         }
-
         return result
     }
 
     func removeWord( _ word: String ) -> String {
-
         var result = ""
-
         let textCharArr = Array( self )
         let wordCharArr = Array( word )
-
         var possibleMatch = ""
-
         var i = 0, j = 0
         while i < textCharArr.count {
-
             if textCharArr[ i ] == wordCharArr[ j ] {
-
                 if j == wordCharArr.count - 1 {
-
                     possibleMatch = ""
                     j = 0
                 } else {
-
                     possibleMatch.append( textCharArr[ i ] )
                     j += 1
                 }
             } else {
-
                 result.append( possibleMatch )
                 possibleMatch = ""
-
                 if j == 0 {
-
                     result.append( textCharArr[ i ] )
                 } else {
-
                     j = 0
                     i -= 1
                 }
             }
-
             i += 1
         }
-
         return result
     }
 }
