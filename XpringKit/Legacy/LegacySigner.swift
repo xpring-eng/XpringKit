@@ -1,7 +1,7 @@
 /// Performs signing operations for the XRP Ledger.
-public enum Signer {
+public enum LegacySigner {
 	/// The underlying JavaScript backed signer which will sign objects.
-	private static let javaScriptSigner = JavaScriptSigner()
+	private static let javaScriptSigner = LegacyJavaScriptSigner()
 
 	/// Sign a transaction.
 	///

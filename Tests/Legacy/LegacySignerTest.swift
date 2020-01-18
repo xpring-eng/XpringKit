@@ -1,7 +1,7 @@
 import XCTest
 import XpringKit
 
-class SignerTests: XCTestCase {
+class LegacySignerTests: XCTestCase {
 	func testSign() {
 		let wallet = Wallet(seed: "snYP7oArxKepd3GPDcrjMsJYiJeJB")!
 		let transaction = Io_Xpring_Transaction.with {
@@ -19,7 +19,7 @@ class SignerTests: XCTestCase {
 			$0.signingPublicKeyHex = wallet.publicKey
 		}
 
-		guard let signedTransaction = Signer.sign(transaction, with: wallet) else {
+		guard let signedTransaction = LegacySigner.sign(transaction, with: wallet) else {
 			XCTFail("Error signing transaction")
 			return
 		}

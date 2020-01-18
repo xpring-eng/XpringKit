@@ -1,12 +1,12 @@
 import BigInt
 
 /// An interface into the Xpring Platform.
-public class DefaultXpringClient {
+public class LegacyDefaultXpringClient {
   /// A margin to pad the current ledger sequence with when submitting transactions.
   private let ledgerSequenceMargin: UInt32 = 10
 
   /// A network client that will make and receive requests.
-	private let networkClient: NetworkClient
+	private let networkClient: LegacyNetworkClient
 
   /// Initialize a new XRPClient.
   ///
@@ -19,7 +19,7 @@ public class DefaultXpringClient {
 	/// Initialize a new XRPClient.
 	///
 	/// - Parameter networkClient: A network client which will make requests.
-	internal init(networkClient: NetworkClient) {
+	internal init(networkClient: LegacyNetworkClient) {
 		self.networkClient = networkClient
 	}
 
@@ -46,7 +46,7 @@ public class DefaultXpringClient {
   }
 }
 
-extension DefaultXpringClient: XpringClientDecorator {
+extension LegacyDefaultXpringClient: XpringClientDecorator {
 	/// Get the balance for the given address.
 	///
 	/// - Parameter address: The X-Address to retrieve the balance for.
@@ -109,7 +109,7 @@ extension DefaultXpringClient: XpringClientDecorator {
       $0.lastLedgerSequence = lastValidatedLedgerSequence + ledgerSequenceMargin
     }
 
-    guard let signedTransaction = Signer.sign(transaction, with: sourceWallet) else {
+    guard let signedTransaction = LegacySigner.sign(transaction, with: sourceWallet) else {
       throw XRPLedgerError.signingError
     }
 

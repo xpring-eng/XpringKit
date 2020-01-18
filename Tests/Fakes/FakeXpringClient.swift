@@ -4,7 +4,7 @@ import XpringKit
 /// A  fake XpringClient which returns the given iVars as results from XpringClientDecorator calls.
 /// - Note: Since this class is passed by reference and the iVars are mutable, outputs of this class can be changed after it is injected.
 public class FakeXpringClient {
-  public let networkClient: NetworkClient = FakeNetworkClient.successfulFakeNetworkClient
+  public let networkClient: LegacyNetworkClient = LegacyFakeNetworkClient.successfulFakeNetworkClient
 
   public var getBalanceValue: BigUInt
   public var transactionStatusValue: TransactionStatus
