@@ -128,7 +128,7 @@ extension DefaultXpringClient: XpringClientDecorator {
             }
 
             // Format For Hex
-            $0.signingPublicKey = sourceWallet.publicKey.data(using: .ascii)!
+            $0.signingPublicKey = Data(Utils.toByteArray(hex: sourceWallet.publicKey))
             $0.lastLedgerSequence = lastValidatedLedgerSequence + ledgerSequenceMargin
         }
 

@@ -40,14 +40,6 @@ internal class JavaScriptSigner {
         let javaScriptWallet = javaScriptSerializer.serialize(wallet: wallet)
 
         let signedTransactionData = signTransactionFunction.call(withArguments: [javaScriptTransaction, javaScriptWallet])!
-
-        let signedTransaction = Rpc_V1_Transaction.with {
-            $0.account = transaction.account
-            $0.fee = transaction.fee
-            $0.payment = transaction.payment
-            $0.sequence = transaction.sequence
-            $0.signature = Data(Utils.toByteArray(hex: signedTransactionData.toString()))
-        }
-        return signedTransaction
+        return signedTransactionData.toSignedTransaction()
     }
 }
