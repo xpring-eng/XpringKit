@@ -74,7 +74,7 @@ extension DefaultXpringClient: XpringClientDecorator {
         let transaction = try getRawTx(for: transactionHash)
 
         // Return pending if the transaction is not validated.
-        guard !transaction.validated else {
+        guard transaction.validated else {
             return .pending
         }
 

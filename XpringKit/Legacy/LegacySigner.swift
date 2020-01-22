@@ -2,7 +2,7 @@
 public enum LegacySigner {
     /// The underlying JavaScript backed signer which will sign objects.
     private static let javaScriptSigner = LegacyJavaScriptSigner()
-    
+
     /// Sign a transaction.
     ///
     /// - Parameters:

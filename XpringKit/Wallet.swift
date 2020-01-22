@@ -2,22 +2,22 @@
 public class Wallet {
     /// A JavaScript based wallet factory which will generate wallets.
     private static let javaScriptWalletFactory = JavaScriptWalletFactory()
-    
+
     /// An underlying JavaScript based wallet which will perform cryptographic functions.
     private let javaScriptWallet: JavaScriptWallet
-    
+
     /// Returns the default derivation path used during `Wallet` creation.
     public static var defaultDerivationPath: String { return javaScriptWalletFactory.defaultDerivationPath }
-    
+
     /// Returns the address of this `Wallet` on the XRP Ledger.
     public var address: Address { return javaScriptWallet.address }
-    
+
     /// Returns a hex encoded public key corresponding to this `Wallet`.
     public var publicKey: Hex { return javaScriptWallet.publicKey }
-    
+
     /// Returns a hex encoded private key corresponding to this `Wallet`.
     public var privateKey: Hex { return javaScriptWallet.privateKey }
-    
+
     /// Generate a new wallet.
     ///
     /// Inputs to the generation process (mnemonic, derivation path) are returned along with a newly generated wallet.
@@ -30,7 +30,7 @@ public class Wallet {
         let javaScriptWalletGenerationResult = Wallet.javaScriptWalletFactory.generateRandomWallet(isTest: isTest)
         return WalletGenerationResult(javaScriptWalletGenerationResult: javaScriptWalletGenerationResult)
     }
-    
+
     /// Initialize a new `Wallet` with a mnemonic and a derivation path.
     ///
     /// - Parameters:
@@ -48,7 +48,7 @@ public class Wallet {
         }
         self.init(javaScriptWallet: javaScriptWallet)
     }
-    
+
     /// Initialize a new `Wallet` with a base58check encoded seed.
     ///
     /// - Parameters:
@@ -61,12 +61,12 @@ public class Wallet {
         }
         self.init(javaScriptWallet: javaScriptWallet)
     }
-    
+
     /// Initialize a new `Wallet` backed by the given JavaScript based wallet.
     internal init(javaScriptWallet: JavaScriptWallet) {
         self.javaScriptWallet = javaScriptWallet
     }
-    
+
     /// Sign the given input.
     ///
     /// - Parameter input: Input to sign.
@@ -74,7 +74,7 @@ public class Wallet {
     public func sign(input: Hex) -> Hex? {
         return self.javaScriptWallet.sign(input: input)
     }
-    
+
     /// Verify that a given signature is valid for the given message.
     ///
     /// - Parameters:

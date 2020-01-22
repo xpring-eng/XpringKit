@@ -10,30 +10,30 @@ internal class JavaScriptWalletFactory {
         public static let generateWalletFromSeed = "generateWalletFromSeed"
         public static let getDefaultDerivationPath = "getDefaultDerivationPath"
     }
-    
+
     /// Native javaScript functions used to create `JavaScriptWallet` objects.
     private let generateRandomWalletFunction: JSValue
     private let generateWalletFromMnemonicFunction: JSValue
     private let generateWalletFromSeedFunction: JSValue
     private let getDefaultDerivationPathFunction: JSValue
-    
+
     /// Returns the default derivation path used during `Wallet` creation.
     public var defaultDerivationPath: String {
         let result = getDefaultDerivationPathFunction.call(withArguments: [])!
         return result.toString()
     }
-    
+
     /// Initialize a new `JavaScriptWalletFactory`.
     public init() {
         let context = XRPJavaScriptLoader.XRPJavaScriptContext
-        
+
         let wallet = XRPJavaScriptLoader.load(ResourceNames.wallet, from: context)
         generateRandomWalletFunction = XRPJavaScriptLoader.load(ResourceNames.generateRandomWallet, from: wallet)
         generateWalletFromMnemonicFunction = XRPJavaScriptLoader.load(ResourceNames.generateWalletFromMnemonic, from: wallet)
         generateWalletFromSeedFunction = XRPJavaScriptLoader.load(ResourceNames.generateWalletFromSeed, from: wallet)
         getDefaultDerivationPathFunction = XRPJavaScriptLoader.load(ResourceNames.getDefaultDerivationPath, from: wallet)
     }
-    
+
     /// Generate a new wallet.
     ///
     /// Inputs to the generation process (mnemonic, derivation path) are returned along with a newly generated wallet.
@@ -47,7 +47,7 @@ internal class JavaScriptWalletFactory {
         let result = generateRandomWalletFunction.call(withArguments: [ randomBytesHex, isTest ])!
         return result.toWalletGenerationResult()!
     }
-    
+
     /// Initialize a new `Wallet` with a mnemonic and a derivation path.
     ///
     /// - Parameters:
@@ -63,11 +63,11 @@ internal class JavaScriptWalletFactory {
             arguments.append(JSValue(undefinedIn: XRPJavaScriptLoader.XRPJavaScriptContext) as Any)
         }
         arguments.append(isTest)
-        
+
         let result = generateWalletFromMnemonicFunction.call(withArguments: arguments)!
         return result.toWallet()
     }
-    
+
     /// Initialize a new `Wallet` with a base58check encoded seed.
     ///
     /// - Parameters:
