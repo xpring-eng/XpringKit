@@ -22,7 +22,8 @@ extension BigUInt {
 }
 
 extension TransactionHash {
-    public static let successfulTransactionHash = "9A88C8548E03958FD97AF44AE5A8668896D195A70CF3FF3CB8E57096AA717135"
+    public static let successfulTransactionHash = "8744AC464E08B4539E508D83E668C9E1D50E3A2FC415D71813C9F9EE0301B77D"
+
 }
 
 /// Integration tests run against a live remote client.
