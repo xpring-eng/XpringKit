@@ -18,12 +18,12 @@ class LegacySignerTests: XCTestCase {
             }
             $0.signingPublicKeyHex = wallet.publicKey
         }
-        
+
         guard let signedTransaction = LegacySigner.sign(transaction, with: wallet) else {
             XCTFail("Error signing transaction")
             return
         }
-        
+
         XCTAssertEqual(signedTransaction.transaction, transaction)
         XCTAssertEqual(
             signedTransaction.transactionSignatureHex,
