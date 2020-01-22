@@ -31,7 +31,7 @@ public class DefaultXpringClient {
     /// - Returns: An `AccountInfo` containing data about the given address.
     private func getAccountInfo(for address: Address) throws -> Rpc_V1_AccountRoot {
         let account = Rpc_V1_AccountAddress.with {
-            $0.address = address
+            $0.address = Utils.decode(xAddress: address)!.classicAddress
         }
         let getAccountInfoRequest = Rpc_V1_GetAccountInfoRequest.with {
             $0.account = account
@@ -74,7 +74,7 @@ extension DefaultXpringClient: XpringClientDecorator {
         let transaction = try getRawTx(for: transactionHash)
 
         // Return pending if the transaction is not validated.
-        guard transaction.validated else {
+        guard !transaction.validated else {
             return .pending
         }
 
