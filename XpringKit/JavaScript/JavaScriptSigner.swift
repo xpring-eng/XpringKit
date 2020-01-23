@@ -2,11 +2,11 @@ import Foundation
 import JavaScriptCore
 
 /// Provides Signer functionality backed by JavaScript.
-internal class LegacyJavaScriptSigner {
+internal class JavaScriptSigner {
     /// String constants which refer to named JavaScript resources.
     private enum ResourceNames {
         public static let signer = "Signer"
-        public static let signTransaction = "signLegacyTransaction"
+        public static let signTransaction = "signTransaction"
     }
 
     /// A JavaScriptSerializer which can convert native objects to JavaScript.
@@ -30,16 +30,17 @@ internal class LegacyJavaScriptSigner {
     /// Sign a transaction.
     ///
     /// - Parameters:
-    ///		- transaction: The `Transaction` to sign.
-    ///		- wallet: The wallet which will sign the transaction.
+    ///    - transaction: The `Transaction` to sign.
+    ///    - wallet: The wallet which will sign the transaction.
     /// - Returns: A `SignedTransaction` derived from the inputs.
-    public func sign(_ transaction: Io_Xpring_Transaction, with wallet: Wallet) -> Io_Xpring_SignedTransaction? {
-        guard let javaScriptTransaction = javaScriptSerializer.serialize(legacyTransaction: transaction) else {
+    public func sign(_ transaction: Rpc_V1_Transaction, with wallet: Wallet) -> [UInt8]? {
+        guard let javaScriptTransaction = javaScriptSerializer.serialize(transaction: transaction) else {
             return nil
         }
         let javaScriptWallet = javaScriptSerializer.serialize(wallet: wallet)
 
-        let javaScriptSignedTransaction = signTransactionFunction.call(withArguments: [javaScriptTransaction, javaScriptWallet])!
-        return javaScriptSignedTransaction.toSignedTransaction()
+        let javaScriptSignedBytes = signTransactionFunction.call(withArguments: [javaScriptTransaction, javaScriptWallet])!
+        let signedBytes = javaScriptSignedBytes.toArray()
+        return signedBytes as? [UInt8]
     }
 }

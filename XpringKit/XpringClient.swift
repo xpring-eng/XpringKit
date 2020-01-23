@@ -3,7 +3,7 @@ import BigInt
 /// An interface into the Xpring Platform.
 public class XpringClient {
     private let decoratedClient: XpringClientDecorator
-    
+
     /// Initialize a new XpringClient.
     ///
     /// - Parameter grpcURL: A remote URL for a rippled gRPC service.
@@ -11,7 +11,7 @@ public class XpringClient {
         let defaultClient = LegacyDefaultXpringClient(grpcURL: grpcURL)
         decoratedClient = ReliableSubmissionXpringClient(decoratedClient: defaultClient)
     }
-    
+
     /// Get the balance for the given address.
     ///
     /// - Parameter address: The X-Address to retrieve the balance for.
@@ -20,7 +20,7 @@ public class XpringClient {
     public func getBalance(for address: Address) throws -> BigUInt {
         return try decoratedClient.getBalance(for: address)
     }
-    
+
     /// Retrieve the transaction status for a given transaction hash.
     ///
     /// - Parameter transactionHash: The hash of the transaction.
@@ -29,7 +29,7 @@ public class XpringClient {
     public func getTransactionStatus(for transactionHash: TransactionHash) throws -> TransactionStatus {
         return try decoratedClient.getTransactionStatus(for: transactionHash)
     }
-    
+
     /// Send XRP to a recipient on the XRP Ledger.
     ///
     /// - Parameters:
