@@ -4,8 +4,8 @@ import JavaScriptCore
 internal enum XRPJavaScriptLoader {
     /// Error messages that can occur while loading resources.
     private enum LoaderErrors {
-        /// Missing `bundled.js`
-        public static let missingBundledJS = "Could not load JavaScript resources for the XRP Ledger. Check that `bundled.js` exists and is well formed."
+        /// Missing `index.js`
+        public static let missingBundledJS = "Could not load JavaScript resources for the XRP Ledger. Check that `index.js` exists and is well formed."
         
         /// Missing `EntryPoint.default` as a global variable.
         public static let missingEntrypoint = "Could not find global EntryPoint in Context. Check that `EntryPoint.default` is defined as a global variable."
@@ -20,7 +20,7 @@ internal enum XRPJavaScriptLoader {
     /// Constant values used to load resources.
     private enum Resources {
         /// The resource name of the bundled JavaScript.
-        public static let javaScriptResourceName = "bundled"
+        public static let javaScriptResourceName = "index"
         
         /// The file extension of the bundled JavaScript.
         public static let javaScriptFileExtension = "js"
