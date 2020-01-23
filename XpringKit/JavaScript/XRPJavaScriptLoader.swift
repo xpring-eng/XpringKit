@@ -61,7 +61,7 @@ internal enum XRPJavaScriptLoader {
     // TODO(keefer): Drop context parameter when context becomes a singleton.
     public static func load(_ resourceName: String, from context: JSContext) -> JSValue {
         guard
-            let entrypoint = context.objectForKeyedSubscript("xpring-common-js"),
+            let entrypoint = context.objectForKeyedSubscript("XpringCommonJS"),
             !entrypoint.isUndefined
             else {
                 fatalError(LoaderErrors.missingEntrypoint)
