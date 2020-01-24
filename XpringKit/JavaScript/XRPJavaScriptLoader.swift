@@ -5,10 +5,10 @@ internal enum XRPJavaScriptLoader {
     /// Error messages that can occur while loading resources.
     private enum LoaderErrors {
         /// Missing `index.js`
-        public static let missingBundledJS = "Could not load JavaScript resources for the XRP Ledger. Check that `index.js` exists and is well formed."
+        public static let missingIndexJS = "Could not load JavaScript resources for the XRP Ledger. Check that `index.js` exists and is well formed."
         
-        /// Missing `EntryPoint.default` as a global variable.
-        public static let missingEntrypoint = "Could not find global EntryPoint in Context. Check that `EntryPoint.default` is defined as a global variable."
+        /// Missing `XpringCommonJS.default` as a global variable.
+        public static let missingXpringCommonJS = "Could not find global XpringCommonJS in Context. Check that `XpringCommonJS.default` is defined as a global variable."
         
         /// Missing the requested resource.
         public static let missingResource = "Could not find the requested resource: %s"
@@ -19,10 +19,10 @@ internal enum XRPJavaScriptLoader {
     
     /// Constant values used to load resources.
     private enum Resources {
-        /// The resource name of the bundled JavaScript.
+        /// The resource name of the webpacked XpringCommonJS JavaScript.
         public static let javaScriptResourceName = "index"
         
-        /// The file extension of the bundled JavaScript.
+        /// The file extension of the webpacked XpringCommonJS JavaScript.
         public static let javaScriptFileExtension = "js"
     }
     
@@ -34,23 +34,23 @@ internal enum XRPJavaScriptLoader {
         let bundle = Bundle(for: XpringClient.self)
         
         guard let context = JSContext() else {
-            fatalError(LoaderErrors.missingBundledJS)
+            fatalError(LoaderErrors.missingIndexJS)
         }
         
         guard
             let fileURL = bundle.url(forResource: Resources.javaScriptResourceName, withExtension: Resources.javaScriptFileExtension),
             let javaScript = try? String(contentsOf: fileURL)
             else {
-                fatalError(LoaderErrors.missingBundledJS)
+                fatalError(LoaderErrors.missingIndexJS)
         }
         
         context.evaluateScript(javaScript)
         return context
     }
     
-    /// Load a class, parameter or function from the default entry point on the given JSContext.
+    /// Load the default exports of the global variable XpringCommonJS on the given JSContext.
     ///
-    /// This method loads value from `EntryPoint.<value>`.
+    /// This method loads value from `XpringCommonJS.<resourceName>`.
     ///
     /// - Note: This function will crash if the requested resource does not exist.
     ///
@@ -61,13 +61,13 @@ internal enum XRPJavaScriptLoader {
     // TODO(keefer): Drop context parameter when context becomes a singleton.
     public static func load(_ resourceName: String, from context: JSContext) -> JSValue {
         guard
-            let entrypoint = context.objectForKeyedSubscript("XpringCommonJS"),
-            !entrypoint.isUndefined
+            let XpringCommonJS = context.objectForKeyedSubscript("XpringCommonJS"),
+            !XpringCommonJS.isUndefined
             else {
-                fatalError(LoaderErrors.missingEntrypoint)
+                fatalError(LoaderErrors.missingResource)
         }
         
-        return load(resourceName, from: entrypoint)
+        return load(resourceName, from: XpringCommonJS)
     }
     
     /// Load a class, parameter or function as a keyed subscript from the given value.
