@@ -6,6 +6,6 @@ echo "Cleaning XpringKit Project"
 
 rm -rf *.xcodeproj
 rm -rf XpringKit/generated
-rm -f XpringKit/Resources/bundled.js
+rm -rf XpringKit/Resources
 
 echo "All Done"

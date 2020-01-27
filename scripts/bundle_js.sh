@@ -20,4 +20,4 @@ echo "Done Bundling JS"
 cd $WORKING_DIR
 echo "Copying Artifacts"
 mkdir -p ./XpringKit/Resources
-cp xpring-common-js/dist/bundled.js ./XpringKit/Resources/
+cp xpring-common-js/dist/index.js ./XpringKit/Resources/

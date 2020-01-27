@@ -32,6 +32,13 @@ jobs:
             git submodule update --init --recursive
 
       - run:
+          name: "Install protoc plugin"
+          command: |
+            curl -L https://github.com/grpc/grpc-web/releases/download/1.0.7/protoc-gen-grpc-web-1.0.7-darwin-x86_64 --output protoc-gen-grpc-web
+            sudo mv protoc-gen-grpc-web /usr/local/bin/
+            chmod +x /usr/local/bin/protoc-gen-grpc-web
+
+      - run:
           name: "Generate Project - Carthage"
           command: ./scripts/clean_project.sh && ./scripts/generate_project.sh
           no_output_timeout: 30m
