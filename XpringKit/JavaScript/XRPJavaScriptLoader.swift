@@ -6,10 +6,10 @@ internal enum XRPJavaScriptLoader {
     private enum LoaderErrors {
         /// Missing `index.js`
         public static let missingIndexJS = "Could not load JavaScript resources for the XRP Ledger. Check that `index.js` exists and is well formed."
-        
+
         /// Missing `XpringCommonJS.default` as a global variable.
         public static let missingXpringCommonJS = "Could not find global XpringCommonJS in Context. Check that `XpringCommonJS.default` is defined as a global variable."
-        
+
         /// Missing the requested resource.
         public static let missingResource = "Could not find the requested resource: %s"
 
@@ -21,7 +21,7 @@ internal enum XRPJavaScriptLoader {
     private enum Resources {
         /// The resource name of the webpacked XpringCommonJS JavaScript.
         public static let javaScriptResourceName = "index"
-        
+
         /// The file extension of the webpacked XpringCommonJS JavaScript.
         public static let javaScriptFileExtension = "js"
     }
@@ -47,7 +47,7 @@ internal enum XRPJavaScriptLoader {
         context.evaluateScript(javaScript)
         return context
     }
-    
+
     /// Load the default exports of the global variable XpringCommonJS on the given JSContext.
     ///
     /// This method loads value from `XpringCommonJS.<resourceName>`.
@@ -66,7 +66,7 @@ internal enum XRPJavaScriptLoader {
             else {
                 fatalError(LoaderErrors.missingResource)
         }
-        
+
         return load(resourceName, from: XpringCommonJS)
     }
 
