@@ -102,6 +102,4 @@ internal enum XRPJavaScriptLoader {
     }
     return resource
   }
-  return resource
-}
 }
