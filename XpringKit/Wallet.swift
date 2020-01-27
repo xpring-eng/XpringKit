@@ -83,31 +83,5 @@ public class Wallet {
   ///	- Returns: A boolean indicating the validity of the signature.
   public func verify(message: String, signature: String) -> Bool {
     return self.javaScriptWallet.verify(message: message, signature: signature)
-    
   }
-  self.init(javaScriptWallet: javaScriptWallet)
-}
-
-/// Initialize a new `Wallet` backed by the given JavaScript based wallet.
-internal init(javaScriptWallet: JavaScriptWallet) {
-  self.javaScriptWallet = javaScriptWallet
-}
-
-/// Sign the given input.
-///
-/// - Parameter input: Input to sign.
-/// - Returns: A hexadecimal encoded signature.
-public func sign(input: Hex) -> Hex? {
-  return self.javaScriptWallet.sign(input: input)
-}
-
-/// Verify that a given signature is valid for the given message.
-///
-/// - Parameters:
-///		- message: A message in hex format.
-///		- signature A signature in hex format.
-///	- Returns: A boolean indicating the validity of the signature.
-public func verify(message: String, signature: String) -> Bool {
-  return self.javaScriptWallet.verify(message: message, signature: signature)
-}
 }

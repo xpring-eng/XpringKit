@@ -55,7 +55,4 @@ extension ReliableSubmissionXpringClient: XpringClientDecorator {
     
     return transactionHash
   }
-  
-  return transactionHash
-}
 }
