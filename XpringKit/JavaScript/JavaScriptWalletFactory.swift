@@ -78,5 +78,4 @@ internal class JavaScriptWalletFactory {
     let result = generateWalletFromSeedFunction.call(withArguments: [ seed, isTest ])!
     return result.toWallet()
   }
-  
 }

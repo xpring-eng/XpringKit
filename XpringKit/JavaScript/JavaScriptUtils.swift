@@ -124,6 +124,4 @@ internal class JavaScriptUtils {
     }
     return result.toString()
   }
-  return result.toString()
-}
 }

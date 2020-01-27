@@ -342,34 +342,4 @@ final class LegacyDefaultXpringClientTest: XCTestCase {
     // WHEN the transaction status is retrieved THEN an error is thrown.
     XCTAssertThrowsError(try xpringClient.getTransactionStatus(for: .testTransactionHash))
   }
-  let networkClient = LegacyFakeNetworkClient(
-    accountInfoResult: .success(.accountInfo),
-    feeResult: .success(.fee),
-    submitSignedTransactionResult: .success(.submitTransactionResponse),
-    latestValidatedLedgerSequenceResult: .success(.ledgerSequence),
-    transactionStatusResult: .success(transactionStatusResponse)
-  )
-  let xpringClient = LegacyDefaultXpringClient(networkClient: networkClient)
-  
-  // WHEN the transaction status is retrieved.
-  let transactionStatus = try? xpringClient.getTransactionStatus(for: .testTransactionHash)
-  
-  // THEN the transaction status is succeeded.
-  XCTAssertEqual(transactionStatus, .succeeded)
-}
-
-func testGetTransactionStatusWithServerFailure() {
-  // GIVEN a XpringClient which fails to return a transaction status.
-  let networkClient = LegacyFakeNetworkClient(
-    accountInfoResult: .success(.accountInfo),
-    feeResult: .success(.fee),
-    submitSignedTransactionResult: .success(.submitTransactionResponse),
-    latestValidatedLedgerSequenceResult: .success(.ledgerSequence),
-    transactionStatusResult: .failure(XpringKitTestError.mockFailure)
-  )
-  let xpringClient = LegacyDefaultXpringClient(networkClient: networkClient)
-  
-  // WHEN the transaction status is retrieved THEN an error is thrown.
-  XCTAssertThrowsError(try xpringClient.getTransactionStatus(for: .testTransactionHash))
-}
 }

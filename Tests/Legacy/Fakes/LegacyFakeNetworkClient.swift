@@ -38,7 +38,6 @@ public class LegacyFakeNetworkClient {
     self.latestValidatedLedgerSequenceResult = latestValidatedLedgerSequenceResult
     self.transactionStatusResult = transactionStatusResult
   }
-  
 }
 
 /// Conform to NetworkClient protocol, returning faked results.
@@ -50,41 +49,42 @@ extension LegacyFakeNetworkClient: LegacyNetworkClient {
     case .failure(let error):
       throw error
     }
-    
-    public func getFee(_ request: Io_Xpring_GetFeeRequest) throws -> Io_Xpring_Fee {
-      switch feeResult {
-      case .success(let fee):
-        return fee
-      case .failure(let error):
-        throw error
-      }
-    }
-    
-    public func submitSignedTransaction(_ request: Io_Xpring_SubmitSignedTransactionRequest) throws -> Io_Xpring_SubmitSignedTransactionResponse {
-      switch submitSignedTransactionResult {
-      case .success(let result):
-        return result
-      case .failure(let error):
-        throw error
-      }
-    }
-    
-    public func getLatestValidatedLedgerSequence(_ request: Io_Xpring_GetLatestValidatedLedgerSequenceRequest) throws -> Io_Xpring_LedgerSequence {
-      switch latestValidatedLedgerSequenceResult {
-      case .success(let result):
-        return result
-      case .failure(let error):
-        throw error
-      }
-    }
-    
-    public func getTransactionStatus(_ request: Io_Xpring_GetTransactionStatusRequest) throws -> Io_Xpring_TransactionStatus {
-      switch transactionStatusResult {
-      case .success(let result):
-        return result
-      case .failure(let error):
-        throw error
-      }
+  }
+  
+  public func getFee(_ request: Io_Xpring_GetFeeRequest) throws -> Io_Xpring_Fee {
+    switch feeResult {
+    case .success(let fee):
+      return fee
+    case .failure(let error):
+      throw error
     }
   }
+  
+  public func submitSignedTransaction(_ request: Io_Xpring_SubmitSignedTransactionRequest) throws -> Io_Xpring_SubmitSignedTransactionResponse {
+    switch submitSignedTransactionResult {
+    case .success(let result):
+      return result
+    case .failure(let error):
+      throw error
+    }
+  }
+  
+  public func getLatestValidatedLedgerSequence(_ request: Io_Xpring_GetLatestValidatedLedgerSequenceRequest) throws -> Io_Xpring_LedgerSequence {
+    switch latestValidatedLedgerSequenceResult {
+    case .success(let result):
+      return result
+    case .failure(let error):
+      throw error
+    }
+  }
+  
+  public func getTransactionStatus(_ request: Io_Xpring_GetTransactionStatusRequest) throws -> Io_Xpring_TransactionStatus {
+    switch transactionStatusResult {
+    case .success(let result):
+      return result
+    case .failure(let error):
+      throw error
+    }
+  }
+}
 }

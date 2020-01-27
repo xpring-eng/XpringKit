@@ -17,11 +17,4 @@ internal extension JSValue {
       wallet: wallet
     )
   }
-  
-  return JavaScriptWalletGenerationResult(
-  mnemonic: mnemonic,
-  derivationPath: derivationPath,
-  wallet: wallet
-  )
-}
 }
