@@ -16,10 +16,10 @@ internal class JavaScriptUtils {
     public static let transactionBlobToTransactionHash = "transactionBlobToTransactionHash"
     public static let utils = "Utils"
   }
-  
+
   /// The JavaScript class.
   private let utils: JSValue
-  
+
   /// Native JavaScript functions wrapped by this class.
   // TODO(keefertaylor): This class should use the same pattern as JSWallet, where `invokeMethod` is called on a class object and direct function references are not kept. 
   private let encodeXAddressFunction: JSValue
@@ -27,11 +27,11 @@ internal class JavaScriptUtils {
   private let isValidAddressFunction: JSValue
   private let isValidClassicAddressFunction: JSValue
   private let isValidXAddressFunction: JSValue
-  
+
   /// Initialize a JavaScriptUtils object.
   public init() {
     let context = XRPJavaScriptLoader.XRPJavaScriptContext
-    
+
     utils = XRPJavaScriptLoader.load(ResourceNames.utils, from: context)
     encodeXAddressFunction = XRPJavaScriptLoader.load(ResourceNames.encodeXAddress, from: utils)
     decodeXAddressFunction = XRPJavaScriptLoader.load(ResourceNames.decodeXAddress, from: utils)
@@ -39,7 +39,7 @@ internal class JavaScriptUtils {
     isValidClassicAddressFunction = XRPJavaScriptLoader.load(ResourceNames.isValidClassicAddress, from: utils)
     isValidXAddressFunction = XRPJavaScriptLoader.load(ResourceNames.isValidXAddress, from: utils)
   }
-  
+
   /// Check if the given address is a valid XRP address.
   ///
   /// - Note: This function only checks that the address is a valid address, the activation status of the address on the ledger is not checked by this function.
@@ -50,7 +50,7 @@ internal class JavaScriptUtils {
     let result = isValidAddressFunction.call(withArguments: [ address ])!
     return result.toBool()
   }
-  
+
   /// Validate if the given string is a valid X-address on the XRP Ledger.
   ///
   /// - SeeAlso: https://xrpaddress.info/
@@ -61,7 +61,7 @@ internal class JavaScriptUtils {
     let result = isValidXAddressFunction.call(withArguments: [ address ])!
     return result.toBool()
   }
-  
+
   /// Validate if the given string is a valid  classic address on the XRP Ledger.
   ///
   /// - SeeAlso: https://xrpaddress.info/
@@ -72,7 +72,7 @@ internal class JavaScriptUtils {
     let result = isValidClassicAddressFunction.call(withArguments: [ address ])!
     return result.toBool()
   }
-  
+
   /// Encode the given classic address and tag into an X-Qddress.
   ///
   /// - SeeAlso: https://xrpaddress.info/
@@ -88,11 +88,11 @@ internal class JavaScriptUtils {
       arguments.append(tag as Any)
     }
     arguments.append(isTest)
-    
+
     let result = encodeXAddressFunction.call(withArguments: arguments)!
     return result.isUndefined ? nil : result.toString()
   }
-  
+
   /// Decode a classic address from a given X-address.
   ///
   /// - SeeAlso: https://xrpaddress.info/
@@ -104,7 +104,7 @@ internal class JavaScriptUtils {
     guard !result.isUndefined else {
       return nil
     }
-    
+
     let classicAddress = XRPJavaScriptLoader.load(ResourceNames.address, from: result).toString()!
     let isTest = XRPJavaScriptLoader.load(ResourceNames.test, from: result).toBool()
     if let tag = XRPJavaScriptLoader.failableLoad(ResourceNames.tag, from: result) {
@@ -112,7 +112,7 @@ internal class JavaScriptUtils {
     }
     return (classicAddress, nil, isTest)
   }
-  
+
   /// Convert the given transaction blob to a transaction hash.
   ///
   /// - Parameter transactionBlobHex: A hexadecimal encoded transaction blob.

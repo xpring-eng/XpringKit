@@ -8,25 +8,25 @@ internal class LegacyJavaScriptSigner {
     public static let signer = "Signer"
     public static let signTransaction = "signLegacyTransaction"
   }
-  
+
   /// A JavaScriptSerializer which can convert native objects to JavaScript.
   private let javaScriptSerializer: JavaScriptSerializer
-  
+
   /// Native JavaScript functions wrapped by this class.
   private let signTransactionFunction: JSValue
-  
+
   /// Initialize a new Signer.
   ///
   /// - Note: Initialization will fail if the expected bundle is missing or malformed.
   public init() {
     let context = XRPJavaScriptLoader.XRPJavaScriptContext
-    
+
     let signer = XRPJavaScriptLoader.load(ResourceNames.signer, from: context)
     signTransactionFunction = XRPJavaScriptLoader.load(ResourceNames.signTransaction, from: signer)
-    
+
     javaScriptSerializer = JavaScriptSerializer(context: context)
   }
-  
+
   /// Sign a transaction.
   ///
   /// - Parameters:
@@ -38,7 +38,7 @@ internal class LegacyJavaScriptSigner {
       return nil
     }
     let javaScriptWallet = javaScriptSerializer.serialize(wallet: wallet)
-    
+
     let javaScriptSignedTransaction = signTransactionFunction.call(withArguments: [javaScriptTransaction, javaScriptWallet])!
     return javaScriptSignedTransaction.toSignedTransaction()
   }

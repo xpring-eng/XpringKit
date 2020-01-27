@@ -11,28 +11,28 @@ internal class JavaScriptWallet {
     public static let sign = "sign"
     public static let verify = "verify"
   }
-  
+
   /// An underlying reference to a JavaScript wallet.
   private let javaScriptWallet: JSValue
-  
+
   /// Returns the address of this `JavaScriptWallet` on the XRP Ledger.
   public var address: Address {
     let value = javaScriptWallet.invokeMethod(ResourceNames.getAddress, withArguments: [])!
     return value.toString()
   }
-  
+
   /// Returns a hex encoded public key corresponding to this `JavaScriptWallet`.
   public var publicKey: String {
     let value = javaScriptWallet.invokeMethod(ResourceNames.getPublicKey, withArguments: [])!
     return value.toString()
   }
-  
+
   /// Returns a hex encoded private key corresponding to this `JavaScriptWallet`.
   public var privateKey: String {
     let value = javaScriptWallet.invokeMethod(ResourceNames.getPrivateKey, withArguments: [])!
     return value.toString()
   }
-  
+
   /// Initialize a new JavaScriptWallet.
   ///
   /// - Parameter javaScriptWallet: A reference to a JavaScript wallet.
@@ -42,7 +42,7 @@ internal class JavaScriptWallet {
     }
     self.javaScriptWallet = javaScriptWallet
   }
-  
+
   /// Sign the given input.
   ///
   /// - Parameter input: Input to sign.
@@ -54,7 +54,7 @@ internal class JavaScriptWallet {
     }
     return result.toString()
   }
-  
+
   /// Verify that a given signature is valid for the given message.
   ///
   /// - Parameters:

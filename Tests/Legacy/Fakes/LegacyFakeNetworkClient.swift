@@ -4,19 +4,19 @@ import XpringKit
 public class LegacyFakeNetworkClient {
   /// Result of a call to getAccountInfo
   private let accountInfoResult: Result<Io_Xpring_AccountInfo, Error>
-  
+
   /// Result of a call to getFee
   private let feeResult: Result<Io_Xpring_Fee, Error>
-  
+
   /// Result of a call to submitSignedTransaction.
   private let submitSignedTransactionResult: Result<Io_Xpring_SubmitSignedTransactionResponse, Error>
-  
+
   /// Result of a call to getLatestValidatedLedgerSequence.
   private let latestValidatedLedgerSequenceResult: Result<Io_Xpring_LedgerSequence, Error>
-  
+
   /// Result of a call to getTransactionStatus.
   private let transactionStatusResult: Result<Io_Xpring_TransactionStatus, Error>
-  
+
   /// Initialize a new fake NetworkClient.
   ///
   /// - Parameters:
@@ -50,7 +50,7 @@ extension LegacyFakeNetworkClient: LegacyNetworkClient {
       throw error
     }
   }
-  
+
   public func getFee(_ request: Io_Xpring_GetFeeRequest) throws -> Io_Xpring_Fee {
     switch feeResult {
     case .success(let fee):
@@ -59,7 +59,7 @@ extension LegacyFakeNetworkClient: LegacyNetworkClient {
       throw error
     }
   }
-  
+
   public func submitSignedTransaction(_ request: Io_Xpring_SubmitSignedTransactionRequest) throws -> Io_Xpring_SubmitSignedTransactionResponse {
     switch submitSignedTransactionResult {
     case .success(let result):
@@ -68,7 +68,7 @@ extension LegacyFakeNetworkClient: LegacyNetworkClient {
       throw error
     }
   }
-  
+
   public func getLatestValidatedLedgerSequence(_ request: Io_Xpring_GetLatestValidatedLedgerSequenceRequest) throws -> Io_Xpring_LedgerSequence {
     switch latestValidatedLedgerSequenceResult {
     case .success(let result):
@@ -77,7 +77,7 @@ extension LegacyFakeNetworkClient: LegacyNetworkClient {
       throw error
     }
   }
-  
+
   public func getTransactionStatus(_ request: Io_Xpring_GetTransactionStatusRequest) throws -> Io_Xpring_TransactionStatus {
     switch transactionStatusResult {
     case .success(let result):
@@ -86,5 +86,4 @@ extension LegacyFakeNetworkClient: LegacyNetworkClient {
       throw error
     }
   }
-}
 }
