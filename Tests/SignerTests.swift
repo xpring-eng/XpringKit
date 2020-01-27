@@ -4,8 +4,6 @@ import XCTest
 class SignerTests: XCTestCase {
     func testSign() {
       // GIVEN an transaction and a wallet and expected signing artifacts.
-      let fakeSignature = "DEADBEEF"
-//      let wallet = FakeWallet(fakeSignature: fakeSignature)
       let wallet = Wallet(seed: "snYP7oArxKepd3GPDcrjMsJYiJeJB")!
 
       let value: UInt64 = 1_000
@@ -38,60 +36,17 @@ class SignerTests: XCTestCase {
         }
       }
 
-      let expectedTransactionHex = "30450221009EBB075B5140895F818DB8B7B934D515B497A0B65D19192BCCEE83C47BD289BA02201699BB09DDC5305F71CDB9459AFBE50237F2A83F20EBF7A161401D2878C18140"
+      let expectedSignedSerializedTransaction: [UInt8] = [
+        18, 0, 0, 36, 0, 0, 0, 1, 32, 27, 0, 0, 0, 0, 97, 64, 0, 0, 0, 0, 0, 3, 232, 104, 64, 0, 0, 0, 0, 0, 0, 10,
+        115, 0, 116, 71, 48, 69, 2, 33, 0, 245, 52, 189, 33, 190, 200, 90, 121, 248, 227, 64, 199, 240, 205, 221, 62,
+        60, 86, 192, 156, 67, 148, 18, 99, 33, 169, 238, 71, 131, 186, 192, 140, 2, 32, 99, 219, 236, 23, 154, 161,
+        240, 28, 220, 207, 75, 63, 206, 164, 46, 49, 253, 222, 30, 182, 153, 139, 90, 36, 237, 56, 50, 27, 237, 102,
+        29, 106, 129, 20, 91, 129, 44, 157, 87, 115, 30, 39, 162, 218, 139, 24, 48, 25, 95, 136, 239, 50, 163, 182,
+        131, 20, 181, 247, 98, 121, 138, 83, 213, 67, 160, 20, 202, 248, 178, 151, 207, 248, 242, 249, 55, 232
+      ]
 
-      let signedBytes = Signer.sign(transaction, with: wallet)
+      let signedSerializedTransaction = Signer.sign(transaction, with: wallet)
 
-      print(signedBytes)
-
-//
-//
-//      // Encode transaction with the expected signature.
-//      const expectedSignedTransactionJSON = Serializer.transactionToJSON(
-//        transaction,
-//        fakeSignature,
-//      )
-//      const expectedSignedTransactionHex = rippleCodec.encode(
-//        expectedSignedTransactionJSON,
-//      )
-//      const expectedSignedTransaction = Utils.toBytes(
-//        expectedSignedTransactionHex,
-//      )
-//
-//      // WHEN the transaction is signed with the wallet.
-//      const signedTransaction = Signer.signTransaction(transaction, wallet)
-//
-//      // THEN the signing artifacts are as expected.
-//      assert.exists(signedTransaction)
-//      assert.deepEqual(signedTransaction, expectedSignedTransaction)
-//
-//
-//
-//
-//        let transaction = Io_Xpring_Transaction.with {
-//            $0.sequence = 40
-//            $0.account = wallet.address
-//            $0.fee = Io_Xpring_XRPAmount.with {
-//                $0.drops = "12"
-//            }
-//            $0.payment = Io_Xpring_Payment.with {
-//                $0.xrpAmount = Io_Xpring_XRPAmount.with {
-//                    $0.drops = "1"
-//                }
-//                $0.destination = "rsegqrgSP8XmhCYwL9enkZ9BNDNawfPZnn"
-//            }
-//            $0.signingPublicKeyHex = wallet.publicKey
-//        }
-//
-//        guard let signedTransaction = LegacySigner.sign(transaction, with: wallet) else {
-//            XCTFail("Error signing transaction")
-//            return
-//        }
-//
-//        XCTAssertEqual(signedTransaction.transaction, transaction)
-//        XCTAssertEqual(
-//            signedTransaction.transactionSignatureHex,
-//            "30450221009EBB075B5140895F818DB8B7B934D515B497A0B65D19192BCCEE83C47BD289BA02201699BB09DDC5305F71CDB9459AFBE50237F2A83F20EBF7A161401D2878C18140"
-//        )
+      XCTAssertEqual(signedSerializedTransaction, expectedSignedSerializedTransaction)
     }
 }
