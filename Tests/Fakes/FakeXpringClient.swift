@@ -5,13 +5,13 @@ import XpringKit
 /// - Note: Since this class is passed by reference and the iVars are mutable, outputs of this class can be changed after it is injected.
 public class FakeXpringClient {
   public let networkClient: LegacyNetworkClient = LegacyFakeNetworkClient.successfulFakeNetworkClient
-  
+
   public var getBalanceValue: BigUInt
   public var transactionStatusValue: TransactionStatus
   public var sendValue: TransactionHash
   public var latestValidatedLedgerValue: UInt32
   public var rawTransactionStatusValue: Io_Xpring_TransactionStatus
-  
+
   public init(
     getBalanceValue: BigUInt,
     transactionStatusValue: TransactionStatus,
@@ -31,19 +31,19 @@ extension FakeXpringClient: XpringClientDecorator {
   public func getBalance(for address: Address) throws -> BigUInt {
     return getBalanceValue
   }
-  
+
   public func getTransactionStatus(for transactionHash: TransactionHash) throws -> TransactionStatus {
     return transactionStatusValue
   }
-  
+
   public func send(_ amount: BigUInt, to destinationAddress: Address, from sourceWallet: Wallet) throws -> TransactionHash {
     return sendValue
   }
-  
+
   public func getLatestValidatedLedgerSequence() throws -> UInt32 {
     return latestValidatedLedgerValue
   }
-  
+
   public func getRawTransactionStatus(for transactionHash: TransactionHash) throws -> Io_Xpring_TransactionStatus {
     return rawTransactionStatusValue
   }
