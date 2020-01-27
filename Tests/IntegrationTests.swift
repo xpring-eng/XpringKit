@@ -10,7 +10,7 @@ extension Wallet {
 extension String {
   /// The URL of the remote gRPC service.
   public static let remoteURL = "grpc.xpring.tech:80"
-  
+
   /// An address on the chain to receive funds.
   public static let recipientAddress = "X7cBcY4bdTTzk3LHmrKAK6GyrirkXfLHGFxzke5zTmYMfw4"
 }
@@ -27,7 +27,7 @@ extension TransactionHash {
 /// Integration tests run against a live remote client.
 final class IntegrationTests: XCTestCase {
   private let client = XpringClient(grpcURL: .remoteURL)
-  
+
   func testGetBalance() {
     do {
       _ = try client.getBalance(for: Wallet.testWallet.address)
@@ -35,7 +35,7 @@ final class IntegrationTests: XCTestCase {
       XCTFail("Failed retrieving balance with error: \(error)")
     }
   }
-  
+
   func testSendXRP() {
     do {
       _ = try client.send(.drops, to: .recipientAddress, from: .testWallet)
@@ -43,7 +43,7 @@ final class IntegrationTests: XCTestCase {
       XCTFail("Failed sending XRP with error: \(error)")
     }
   }
-  
+
   func testGetTransactionStatus() {
     do {
       let transactionStatus = try client.getTransactionStatus(for: .successfulTransactionHash)

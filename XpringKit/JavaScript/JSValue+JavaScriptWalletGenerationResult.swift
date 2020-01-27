@@ -10,7 +10,7 @@ internal extension JSValue {
       else {
         return nil
     }
-    
+
     return JavaScriptWalletGenerationResult(
       mnemonic: mnemonic,
       derivationPath: derivationPath,
