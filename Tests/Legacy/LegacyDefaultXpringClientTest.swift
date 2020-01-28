@@ -240,6 +240,8 @@ final class LegacyDefaultXpringClientTest: XCTestCase {
       ))
   }
 
+  // MARK: - Transaction Status
+
   func testGetTransactionStatusWithUnvalidatedTransactionAndFailureCode() {
     // GIVEN a XpringClient which returns an unvalidated transaction and a failed transaction status code.
     let transactionStatusResponse = Io_Xpring_TransactionStatus.with {

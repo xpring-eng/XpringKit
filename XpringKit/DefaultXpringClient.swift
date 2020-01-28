@@ -1,4 +1,5 @@
 import BigInt
+import Foundation
 
 /// An interface into the Xpring Platform.
 public class DefaultXpringClient {
@@ -76,7 +77,13 @@ extension DefaultXpringClient: XpringClientDecorator {
   /// - Throws: An error if there was a problem communicating with the XRP Ledger.
   /// - Returns: The status of the given transaction.
   public func getTransactionStatus(for transactionHash: TransactionHash) throws -> TransactionStatus {
-    throw XRPLedgerError.unimplemented
+    let transactionStatus = try getRawTransactionStatus(for: transactionHash)
+
+    // Return pending if the transaction is not validated.
+    guard transactionStatus.validated else {
+      return .pending
+    }
+    return transactionStatus.transactionStatusCode.starts(with: "tes") ? .succeeded : .failed
   }
 
   /// Send XRP to a recipient on the XRP Ledger.
@@ -105,7 +112,16 @@ extension DefaultXpringClient: XpringClientDecorator {
   /// - Parameter transactionHash: The hash of the transaction.
   /// - Throws: An error if there was a problem communicating with the XRP Ledger.
   /// - Returns: The status of the given transaction.
-  public func getRawTransactionStatus(for transactionHash: TransactionHash) throws -> Io_Xpring_TransactionStatus {
-    throw XRPLedgerError.unimplemented
+  public func getRawTransactionStatus(for transactionHash: TransactionHash) throws -> RawTransactionStatus {
+    let transactionHashBytes = try transactionHash.toBytes()
+    let transactionHashData = Data(transactionHashBytes)
+
+    let request = Rpc_V1_GetTxRequest.with {
+      $0.hash = transactionHashData
+    }
+
+    let getTxResponse = try self.networkClient.getTx(request)
+
+    return RawTransactionStatus(getTxResponse: getTxResponse)
   }
 }

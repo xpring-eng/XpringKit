@@ -23,7 +23,7 @@ extension ReliableSubmissionXpringClient: XpringClientDecorator {
     return try decoratedClient.getLatestValidatedLedgerSequence()
   }
 
-  public func getRawTransactionStatus(for transactionHash: TransactionHash) throws -> Io_Xpring_TransactionStatus {
+  public func getRawTransactionStatus(for transactionHash: TransactionHash) throws -> RawTransactionStatus {
     return try decoratedClient.getRawTransactionStatus(for: transactionHash)
   }
 
