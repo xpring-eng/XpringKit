@@ -1,5 +1,3 @@
-import BigInt
-
 /// An interface into the Xpring Platform.
 public class LegacyDefaultXpringClient {
   /// A margin to pad the current ledger sequence with when submitting transactions.
@@ -52,13 +50,17 @@ extension LegacyDefaultXpringClient: XpringClientDecorator {
   /// - Parameter address: The X-Address to retrieve the balance for.
   /// - Throws: An error if there was a problem communicating with the XRP Ledger or the inputs were invalid.
   /// - Returns: An unsigned integer containing the balance of the address in drops.
-  public func getBalance(for address: Address) throws -> BigUInt {
+  public func getBalance(for address: Address) throws -> UInt64 {
     guard Utils.isValidXAddress(address: address) else {
       throw XRPLedgerError.invalidInputs("Please use the X-Address format. See: https://xrpaddress.info/.")
     }
 
     let accountInfo = try getAccountInfo(for: address)
-    return BigUInt(stringLiteral: accountInfo.balance.drops)
+    guard let drops = UInt64(accountInfo.balance.drops) else {
+      throw XRPLedgerError.malformedResponse("Couldn't parse drops to a balance")
+    }
+
+    return drops
   }
 
   /// Retrieve the transaction status for a given transaction hash.
@@ -84,7 +86,7 @@ extension LegacyDefaultXpringClient: XpringClientDecorator {
   ///		- sourceWallet: The wallet sending the XRP.
   /// - Throws: An error if there was a problem communicating with the XRP Ledger or the inputs were invalid.
   /// - Returns: A transaction hash for the submitted transaction.
-  public func send(_ amount: BigUInt, to destinationAddress: Address, from sourceWallet: Wallet) throws -> TransactionHash {
+  public func send(_ amount: UInt64, to destinationAddress: Address, from sourceWallet: Wallet) throws -> TransactionHash {
     guard Utils.isValidXAddress(address: destinationAddress) else {
       throw XRPLedgerError.invalidInputs("Please use the X-Address format. See: https://xrpaddress.info/.")
     }

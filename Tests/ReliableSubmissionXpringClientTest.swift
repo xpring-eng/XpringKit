@@ -1,9 +1,8 @@
-import BigInt
 import XCTest
 @testable import XpringKit
 
 final class ReliableSubmissionClientTest: XCTestCase {
-  let defaultBalanceValue = BigUInt(0)
+  let defaultBalanceValue: UInt64 = 0
   let defaultTransactionStatusValue: TransactionStatus = .succeeded
   let defaultSendValue = "DEADBEEF"
   let defaultLastestValidatedLedgerValue: UInt32 = 10
@@ -61,7 +60,7 @@ final class ReliableSubmissionClientTest: XCTestCase {
     // WHEN a reliable send is submitted
     let expectation = XCTestExpectation(description: "Send returned")
     do {
-      _ = try reliableSubmissionClient.send(BigUInt(10), to: .testAddress, from: .testWallet)
+      _ = try reliableSubmissionClient.send(UInt64(10), to: .testAddress, from: .testWallet)
       expectation.fulfill()
     } catch {
       XCTFail("Caught unexpected error while calling `send`: \(error)")
@@ -84,7 +83,7 @@ final class ReliableSubmissionClientTest: XCTestCase {
     // WHEN a reliable send is submitted
     let expectation = XCTestExpectation(description: "Send returned")
     do {
-      _ = try reliableSubmissionClient.send(BigUInt(10), to: .testAddress, from: .testWallet)
+      _ = try reliableSubmissionClient.send(UInt64(10), to: .testAddress, from: .testWallet)
       expectation.fulfill()
     } catch {
       XCTFail("Caught unexpected error while calling `send`: \(error)")
@@ -102,7 +101,7 @@ final class ReliableSubmissionClientTest: XCTestCase {
     }
 
     // WHEN a reliable send is submitted THEN an error is thrown.
-    XCTAssertThrowsError(try reliableSubmissionClient.send(BigUInt(10), to: .testAddress, from: .testWallet))
+    XCTAssertThrowsError(try reliableSubmissionClient.send(UInt64(10), to: .testAddress, from: .testWallet))
   }
 
   // MARK: - Helpers
