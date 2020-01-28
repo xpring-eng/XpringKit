@@ -9,14 +9,14 @@ public class FakeXpringClient {
   public var transactionStatusValue: TransactionStatus
   public var sendValue: TransactionHash
   public var latestValidatedLedgerValue: UInt32
-  public var rawTransactionStatusValue: Io_Xpring_TransactionStatus
+  public var rawTransactionStatusValue: RawTransactionStatus
 
   public init(
     getBalanceValue: UInt64,
     transactionStatusValue: TransactionStatus,
     sendValue: TransactionHash,
     latestValidatedLedgerValue: UInt32,
-    rawTransactionStatusValue: Io_Xpring_TransactionStatus
+    rawTransactionStatusValue: RawTransactionStatus
   ) {
     self.getBalanceValue = getBalanceValue
     self.transactionStatusValue = transactionStatusValue
@@ -43,7 +43,7 @@ extension FakeXpringClient: XpringClientDecorator {
     return latestValidatedLedgerValue
   }
 
-  public func getRawTransactionStatus(for transactionHash: TransactionHash) throws -> Io_Xpring_TransactionStatus {
+  public func getRawTransactionStatus(for transactionHash: TransactionHash) throws -> RawTransactionStatus {
     return rawTransactionStatusValue
   }
 }
