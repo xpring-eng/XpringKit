@@ -11,11 +11,13 @@ extension Hex {
       throw XRPLedgerError.invalidInputs("String contained non-hexadecimal characters")
     }
 
-    var startIndex = self.startIndex
-    return stride(from: 0, to: count, by: 2).compactMap { _ in
-      let endIndex = index(startIndex, offsetBy: 2, limitedBy: self.endIndex) ?? self.endIndex
-      defer { startIndex = endIndex }
+    // Process the string two characters at a time.
+    return stride(from: 0, to: count, by: 2).compactMap { index in
+      // Create `String.Index` values for the next pair of characters.
+      let startIndex = self.index(self.startIndex, offsetBy: index)
+      let endIndex = self.index(startIndex, offsetBy: 2)
 
+      // Convert the next pair of hexadecimal character to a UInt8.
       return UInt8(self[startIndex..<endIndex], radix: 16)
     }
   }
