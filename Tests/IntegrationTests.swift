@@ -1,4 +1,3 @@
-import BigInt
 import XCTest
 import XpringKit
 
@@ -15,9 +14,9 @@ extension String {
   public static let recipientAddress = "X7cBcY4bdTTzk3LHmrKAK6GyrirkXfLHGFxzke5zTmYMfw4"
 }
 
-extension BigUInt {
+extension UInt64 {
   /// Drops of XRP to send.
-  public static let drops = BigUInt(1)
+  public static let drops: UInt64 = 1
 }
 
 extension TransactionHash {
