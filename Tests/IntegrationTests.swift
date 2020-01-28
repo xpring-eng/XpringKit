@@ -42,6 +42,14 @@ final class IntegrationTests: XCTestCase {
     }
   }
 
+  func testSendXRP() {
+    do {
+      _ = try client.send(.drops, to: .recipientAddress, from: .testWallet)
+    } catch {
+      XCTFail("Failed sending XRP with error: \(error)")
+    }
+  }
+
   func testGetTransactionStatus() {
     do {
       let transactionStatus = try client.getTransactionStatus(for: .successfulTransactionHash)

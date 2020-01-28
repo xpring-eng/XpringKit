@@ -46,6 +46,124 @@ final class DefaultXpringClientTest: XCTestCase {
     XCTAssertThrowsError(try xpringClient.getBalance(for: .testAddress))
   }
 
+  // MARK: - Send
+
+  func testSendWithSuccess() {
+    // GIVEN a Xpring client which will successfully return a balance from a mocked network call.
+    let xpringClient = DefaultXpringClient(networkClient: FakeNetworkClient.successfulFakeNetworkClient)
+
+    // WHEN XRP is sent.
+    guard
+      let transactionHash = try? xpringClient.send(
+        .sendAmount,
+        to: .destinationAddress,
+        from: .wallet)
+      else {
+        XCTFail("Exception should not be thrown when trying to send XRP")
+        return
+    }
+
+    // THEN the engine result code is as expected.
+    XCTAssertEqual(transactionHash, Utils.toTransactionHash(transactionBlobHex: .transactionBlobHex))
+  }
+
+  func testSendWithClassicAddress() {
+    // GIVEN a classic address.
+    guard let classicAddressComponents = Utils.decode(xAddress: .destinationAddress) else {
+      XCTFail("Failed to decode X-Address.")
+      return
+    }
+    let xpringClient = DefaultXpringClient(networkClient: FakeNetworkClient.successfulFakeNetworkClient)
+
+    // WHEN XRP is sent to a classic address THEN an error is thrown.
+    XCTAssertThrowsError(try xpringClient.send(
+      .sendAmount,
+      to: classicAddressComponents.classicAddress,
+      from: .wallet
+      ))
+  }
+
+  func testSendWithInvalidAddress() {
+    // GIVEN a Xpring client and an invalid destination address.
+    let xpringClient = DefaultXpringClient(networkClient: FakeNetworkClient.successfulFakeNetworkClient)
+    let destinationAddress = "xrp"
+
+    // WHEN XRP is sent to an invalid address THEN an error is thrown.
+    XCTAssertThrowsError(try xpringClient.send(
+      .sendAmount,
+      to: destinationAddress,
+      from: .wallet
+      ))
+  }
+
+  func testSendWithAccountInfoFailure() {
+    // GIVEN a Xpring client which will fail to return account info.
+    let networkClient = FakeNetworkClient(
+      accountInfoResult: .failure(XpringKitTestError.mockFailure),
+      feeResult: .success(.testGetFeeResponse),
+      submitTransactionResult: .success(.testSubmitTransactionResponse),
+      transactionStatusResult: .success(.testGetTxResponse)
+    )
+    let xpringClient = DefaultXpringClient(networkClient: networkClient)
+
+    // WHEN a send is attempted then an error is thrown.
+    XCTAssertThrowsError(try xpringClient.send(
+      .sendAmount,
+      to: .destinationAddress,
+      from: .wallet
+      ))
+  }
+
+  func testSendWithFeeFailure() {
+    // GIVEN a Xpring client which will fail to return a fee.
+    let networkClient = FakeNetworkClient(
+      accountInfoResult: .success(.testGetAccountInfoResponse),
+      feeResult: .failure(XpringKitTestError.mockFailure),
+      submitTransactionResult: .success(.testSubmitTransactionResponse),
+      transactionStatusResult: .success(.testGetTxResponse)
+    )
+    let xpringClient = DefaultXpringClient(networkClient: networkClient)
+
+    // WHEN a send is attempted then an error is thrown.
+    XCTAssertThrowsError(try xpringClient.send(
+      .sendAmount,
+      to: .destinationAddress,
+      from: .wallet
+      ))
+  }
+
+  func testSendWithLatestLedgerSequenceFailure() {
+    // GIVEN a Xpring client which will fail to return the latest validated ledger sequence.
+    let networkClient = FakeNetworkClient(
+      accountInfoResult: .success(.testGetAccountInfoResponse),
+      feeResult: .success(.testGetFeeResponse),
+      submitTransactionResult: .success(.testSubmitTransactionResponse),
+      transactionStatusResult: .success(.testGetTxResponse)
+    )
+    let xpringClient = DefaultXpringClient(networkClient: networkClient)
+
+    // WHEN a send is attempted then an error is thrown.
+    XCTAssertThrowsError(try xpringClient.send(.sendAmount, to: .destinationAddress, from: .wallet))
+  }
+
+  func testSendWithSubmitFailure() {
+    // GIVEN a Xpring client which will fail to submit a transaction.
+    let networkClient = FakeNetworkClient(
+      accountInfoResult: .success(.testGetAccountInfoResponse),
+      feeResult: .success(.testGetFeeResponse),
+      submitTransactionResult: .failure(XpringKitTestError.mockFailure),
+      transactionStatusResult: .success(.testGetTxResponse)
+    )
+    let xpringClient = DefaultXpringClient(networkClient: networkClient)
+
+    // WHEN a send is attempted then an error is thrown.
+    XCTAssertThrowsError(try xpringClient.send(
+      .sendAmount,
+      to: .destinationAddress,
+      from: .wallet
+      ))
+  }
+
   // MARK: - Transaction Status
 
   func testGetTransactionStatusWithUnvalidatedTransactionAndFailureCode() {

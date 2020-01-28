@@ -4,12 +4,14 @@ internal class JavaScriptSerializer {
   /// String constants which refer to named JavaScript resources.
   private enum ResourceNames {
     public static let deserializeBinary = "deserializeBinary"
+    public static let legacyTransaction = "LegacyTransaction"
     public static let transaction = "Transaction"
     public static let wallet = "Wallet"
   }
 
   /// References to JavaScript functions.
   private let deserializeTransactionFunction: JSValue
+  private let deserializeLegacyTransactionFunction: JSValue
 
   /// References to JavaScript classes.
   private let walletClass: JSValue
@@ -21,6 +23,9 @@ internal class JavaScriptSerializer {
 
     let transactionClass = XRPJavaScriptLoader.load(ResourceNames.transaction, from: context)
     deserializeTransactionFunction = XRPJavaScriptLoader.load(ResourceNames.deserializeBinary, from: transactionClass)
+
+    let legacyTransactionClass = XRPJavaScriptLoader.load(ResourceNames.legacyTransaction, from: context)
+    deserializeLegacyTransactionFunction = XRPJavaScriptLoader.load(ResourceNames.deserializeBinary, from: legacyTransactionClass)
   }
 
   /// Serialize a `Wallet` to a JavaScript object.
@@ -31,11 +36,11 @@ internal class JavaScriptSerializer {
     return walletClass.construct(withArguments: [ wallet.publicKey, wallet.privateKey])
   }
 
-  /// Serialize a transaction to a JavaScript object.
+  /// Serialize a legacy transaction to a JavaScript object.
   ///
   /// - Parameter transaction: The transaction to serialize.
   /// - Returns: A JSValue representing the transaction.
-  public func serialize(transaction: Io_Xpring_Transaction) -> JSValue? {
+  public func serialize(transaction: Rpc_V1_Transaction) -> JSValue? {
     guard
       let transactionData = try? transaction.serializedData()
       else {
@@ -43,5 +48,19 @@ internal class JavaScriptSerializer {
     }
     let transactionBytes = [UInt8](transactionData)
     return deserializeTransactionFunction.call(withArguments: [transactionBytes])!
+  }
+
+  /// Serialize a legacy transaction to a JavaScript object.
+  ///
+  /// - Parameter legacyTransaction: The transaction to serialize.
+  /// - Returns: A JSValue representing the transaction.
+  public func serialize(legacyTransaction: Io_Xpring_Transaction) -> JSValue? {
+    guard
+      let transactionData = try? legacyTransaction.serializedData()
+      else {
+        return nil
+    }
+    let transactionBytes = [UInt8](transactionData)
+    return deserializeLegacyTransactionFunction.call(withArguments: [transactionBytes])!
   }
 }
