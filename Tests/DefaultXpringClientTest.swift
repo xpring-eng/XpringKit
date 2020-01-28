@@ -136,7 +136,7 @@ final class DefaultXpringClientTest: XCTestCase {
     // GIVEN a Xpring client which will fail to return the latest validated ledger sequence.
     let networkClient = FakeNetworkClient(
       accountInfoResult: .success(.testGetAccountInfoResponse),
-      feeResult: .success(.testGetFeeResponse),
+      feeResult: .failure(XpringKitTestError.mockFailure),
       submitTransactionResult: .success(.testSubmitTransactionResponse),
       transactionStatusResult: .success(.testGetTxResponse)
     )
