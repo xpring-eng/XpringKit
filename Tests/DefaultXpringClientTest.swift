@@ -1,4 +1,3 @@
-import BigInt
 import XCTest
 @testable import XpringKit
 
