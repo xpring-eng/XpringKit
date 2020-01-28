@@ -1,5 +1,3 @@
-import BigInt
-
 /// An interface into the Xpring Platform.
 public class DefaultXpringClient {
   /// A network client that will make and receive requests.
@@ -74,7 +72,7 @@ extension DefaultXpringClient: XpringClientDecorator {
   ///    - sourceWallet: The wallet sending the XRP.
   /// - Throws: An error if there was a problem communicating with the XRP Ledger or the inputs were invalid.
   /// - Returns: A transaction hash for the submitted transaction.
-  public func send(_ amount: BigUInt, to destinationAddress: Address, from sourceWallet: Wallet) throws -> TransactionHash {
+  public func send(_ amount: UInt64, to destinationAddress: Address, from sourceWallet: Wallet) throws -> TransactionHash {
     throw XRPLedgerError.unimplemented
   }
 
@@ -91,7 +89,7 @@ extension DefaultXpringClient: XpringClientDecorator {
   /// - Parameter transactionHash: The hash of the transaction.
   /// - Throws: An error if there was a problem communicating with the XRP Ledger.
   /// - Returns: The status of the given transaction.
-  public func getRawTransactionStatus(for transactionHash: TransactionHash) throws -> Io_Xpring_TransactionStatus {
+  public func getRawTransactionStatus(for transactionHash: TransactionHash) throws -> RawTransactionStatus {
     throw XRPLedgerError.unimplemented
   }
 }
