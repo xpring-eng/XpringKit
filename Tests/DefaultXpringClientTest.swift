@@ -64,7 +64,7 @@ final class DefaultXpringClientTest: XCTestCase {
     }
 
     // THEN the engine result code is as expected.
-    XCTAssertEqual(transactionHash, Utils.toTransactionHash(transactionBlobHex: .transactionBlobHex))
+    XCTAssertEqual(transactionHash, TransactionHash.testTransactionHash)
   }
 
   func testSendWithClassicAddress() {
