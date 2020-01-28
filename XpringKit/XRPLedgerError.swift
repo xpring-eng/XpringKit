@@ -9,6 +9,9 @@ public enum XRPLedgerError: Error {
   /// An invalid address was given. A more descriptive string is provided as an associated value.
   case invalidInputs(String)
 
+  /// The requested functionality is not yet implemented.
+  case unimplemented
+
   /// The response from the ledger was malformed.
   case malformedResponse(String)
 
