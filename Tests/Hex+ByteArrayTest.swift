@@ -4,7 +4,7 @@ import XpringKit
 final class HexByteArrayTest: XCTestCase {
   // Hex and expected bytes.
   private final let hex =  "00" + "01" + "0A" + "BB"
-  private final let expectedBytes: [UInt8] = [0, 1, 10, 22]
+  private final let expectedBytes: [UInt8] = [0, 1, 10, 187]
 
   func testToByteArrayUpperCaseHex() {
     // GIVEN an upper case hex string.
