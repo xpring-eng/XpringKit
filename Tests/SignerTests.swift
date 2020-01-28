@@ -36,6 +36,10 @@ class SignerTests: XCTestCase {
         }
       }
 
+      // WHEN the transaction is signed.
+      let signedSerializedTransaction = Signer.sign(transaction, with: wallet)
+
+      // THEN the serialized transaction is as expected.  
       let expectedSignedSerializedTransaction: [UInt8] = [
         18, 0, 0, 36, 0, 0, 0, 1, 32, 27, 0, 0, 0, 0, 97, 64, 0, 0, 0, 0, 0, 3, 232, 104, 64, 0, 0, 0, 0, 0, 0, 10,
         115, 0, 116, 71, 48, 69, 2, 33, 0, 245, 52, 189, 33, 190, 200, 90, 121, 248, 227, 64, 199, 240, 205, 221, 62,
@@ -44,9 +48,6 @@ class SignerTests: XCTestCase {
         29, 106, 129, 20, 91, 129, 44, 157, 87, 115, 30, 39, 162, 218, 139, 24, 48, 25, 95, 136, 239, 50, 163, 182,
         131, 20, 181, 247, 98, 121, 138, 83, 213, 67, 160, 20, 202, 248, 178, 151, 207, 248, 242, 249, 55, 232
       ]
-
-      let signedSerializedTransaction = Signer.sign(transaction, with: wallet)
-
       XCTAssertEqual(signedSerializedTransaction, expectedSignedSerializedTransaction)
     }
 }

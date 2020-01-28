@@ -36,7 +36,7 @@ internal class JavaScriptSerializer {
     return walletClass.construct(withArguments: [ wallet.publicKey, wallet.privateKey])
   }
 
-  /// Serialize a legacy transaction to a JavaScript object.
+  /// Serialize a transaction to a JavaScript object.
   ///
   /// - Parameter transaction: The transaction to serialize.
   /// - Returns: A JSValue representing the transaction.
