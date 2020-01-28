@@ -6,14 +6,6 @@ final class HexByteArrayTest: XCTestCase {
   private final let hex =  "00" + "01" + "0A" + "BB"
   private final let expectedBytes: [UInt8] = [0, 1, 10, 187]
 
-  func testBackForth() {
-    let s = "DEADBEEF"
-    let b = try! s.toBytes()
-    print(b)
-
-    XCTAssertEqual(s, b.toHex())
-  }
-
   func testToByteArrayUpperCaseHex() {
     // GIVEN an upper case hex string.
     let upperCasedHex = hex.uppercased()
