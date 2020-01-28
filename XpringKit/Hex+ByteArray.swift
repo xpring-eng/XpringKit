@@ -1,6 +1,6 @@
 /// Allows transformation of a hexadecimal strings to a set of bytes.
 extension Hex {
-  public func toBytes() throws -> [UInt8]? {
+  public func toBytes() throws -> [UInt8] {
     guard self.count % 2 == 0 else {
       throw XRPLedgerError.invalidInputs("Invalid hex string length.")
     }
