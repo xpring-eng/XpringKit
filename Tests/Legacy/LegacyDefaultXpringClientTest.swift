@@ -12,7 +12,6 @@ extension Address {
 
 extension UInt64 {
   static let sendAmount: UInt64 = 20
-  static let balance: UInt64 = 1_000
 }
 
 extension UInt64 {
