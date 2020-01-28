@@ -34,7 +34,7 @@ internal class LegacyJavaScriptSigner {
   ///		- wallet: The wallet which will sign the transaction.
   /// - Returns: A `SignedTransaction` derived from the inputs.
   public func sign(_ transaction: Io_Xpring_Transaction, with wallet: Wallet) -> Io_Xpring_SignedTransaction? {
-    guard let javaScriptTransaction = javaScriptSerializer.serialize(transaction: transaction) else {
+    guard let javaScriptTransaction = javaScriptSerializer.serialize(legacyTransaction: transaction) else {
       return nil
     }
     let javaScriptWallet = javaScriptSerializer.serialize(wallet: wallet)
