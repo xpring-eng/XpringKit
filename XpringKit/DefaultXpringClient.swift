@@ -50,7 +50,9 @@ extension DefaultXpringClient: XpringClientDecorator {
   /// - Returns: The status of the given transaction.
   public func getRawTransactionStatus(for transactionHash: TransactionHash) throws -> RawTransactionStatus {
     let request = Rpc_V1_GetTxRequest.with {
-      $0.hash = 
+      $0.hash = try transactionHash.toBytes()
     }
+
+    let getTxResponse = self.
   }
 }
