@@ -35,5 +35,5 @@ public protocol XpringClientDecorator {
   /// - Parameter transactionHash: The hash of the transaction.
   /// - Throws: An error if there was a problem communicating with the XRP Ledger.
   /// - Returns: The status of the given transaction.
-  func getRawTransactionStatus(for transactionHash: TransactionHash) throws -> Io_Xpring_TransactionStatus
+  func getRawTransactionStatus(for transactionHash: TransactionHash) throws -> RawTransactionStatus
 }
