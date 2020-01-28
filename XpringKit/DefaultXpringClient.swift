@@ -1,5 +1,3 @@
-import BigInt
-
 /// An interface into the Xpring Platform.
 public class DefaultXpringClient {
 }
@@ -10,7 +8,7 @@ extension DefaultXpringClient: XpringClientDecorator {
   /// - Parameter address: The X-Address to retrieve the balance for.
   /// - Throws: An error if there was a problem communicating with the XRP Ledger or the inputs were invalid.
   /// - Returns: An unsigned integer containing the balance of the address in drops.
-  public func getBalance(for address: Address) throws -> BigUInt {
+  public func getBalance(for address: Address) throws -> UInt64 {
     throw XRPLedgerError.unimplemented
   }
 
@@ -31,7 +29,7 @@ extension DefaultXpringClient: XpringClientDecorator {
   ///    - sourceWallet: The wallet sending the XRP.
   /// - Throws: An error if there was a problem communicating with the XRP Ledger or the inputs were invalid.
   /// - Returns: A transaction hash for the submitted transaction.
-  public func send(_ amount: BigUInt, to destinationAddress: Address, from sourceWallet: Wallet) throws -> TransactionHash {
+  public func send(_ amount: UInt64, to destinationAddress: Address, from sourceWallet: Wallet) throws -> TransactionHash {
     throw XRPLedgerError.unimplemented
   }
 
