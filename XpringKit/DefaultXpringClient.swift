@@ -1,5 +1,22 @@
 /// An interface into the Xpring Platform.
 public class DefaultXpringClient {
+  /// A network client that will make and receive requests.
+  private let networkClient: NetworkClient
+
+  /// Initialize a new XpringClient.
+  ///
+  /// - Parameter grpcURL: A url for a remote gRPC service which will handle network requests.
+  public convenience init(grpcURL: String) {
+    let networkClient = Rpc_V1_XRPLedgerAPIServiceServiceClient(address: grpcURL, secure: false)
+    self.init(networkClient: networkClient)
+  }
+
+  /// Initialize a new XpringClient.
+  ///
+  /// - Parameter networkClient: A network client which will make requests.
+  internal init(networkClient: NetworkClient) {
+    self.networkClient = networkClient
+  }
 }
 
 extension DefaultXpringClient: XpringClientDecorator {
@@ -9,7 +26,21 @@ extension DefaultXpringClient: XpringClientDecorator {
   /// - Throws: An error if there was a problem communicating with the XRP Ledger or the inputs were invalid.
   /// - Returns: An unsigned integer containing the balance of the address in drops.
   public func getBalance(for address: Address) throws -> UInt64 {
-    throw XRPLedgerError.unimplemented
+    guard
+      let classicAddressComponents = Utils.decode(xAddress: address)
+    else {
+      throw XRPLedgerError.invalidInputs("Please use the X-Address format. See: https://xrpaddress.info/.")
+    }
+
+    let accountInfoRequest = Rpc_V1_GetAccountInfoRequest.with {
+      $0.account = Rpc_V1_AccountAddress.with {
+        $0.address = classicAddressComponents.classicAddress
+      }
+    }
+
+    let accountInfoResponse = try networkClient.getAccountInfo(accountInfoRequest)
+
+    return accountInfoResponse.accountData.balance.drops
   }
 
   /// Retrieve the transaction status for a given transaction hash.
