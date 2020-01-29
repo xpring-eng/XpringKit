@@ -1,5 +1,5 @@
 import XpringKit
 
 extension Address {
-  public static let testAddress = "r465pZJwxqF5m1zXkob7KakodLovtcoBJ8"
+  public static let testAddress = "XVfC9CTCJh6GN2x8bnrw3LtdbqiVCUFyQVMzRrMGUZpokKH"
 }
