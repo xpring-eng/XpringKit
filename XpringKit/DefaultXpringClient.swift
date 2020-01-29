@@ -59,13 +59,20 @@ extension DefaultXpringClient: XpringClientDecorator {
   /// - Parameter address: The X-Address to retrieve the balance for.
   /// - Throws: An error if there was a problem communicating with the XRP Ledger or the inputs were invalid.
   /// - Returns: An unsigned integer containing the balance of the address in drops.
-  public func getBalance(for address: Address) throws -> BigUInt {
+  public func getBalance(for address: Address) throws -> UInt64 {
     guard
       let classicAddressComponents = Utils.decode(xAddress: address)
     else {
       throw XRPLedgerError.invalidInputs("Please use the X-Address format. See: https://xrpaddress.info/.")
     }
-    let accountInfoResponse = try getAccountInfo(for: classicAddressComponents.classicAddress)
+
+    let accountInfoRequest = Rpc_V1_GetAccountInfoRequest.with {
+      $0.account = Rpc_V1_AccountAddress.with {
+        $0.address = classicAddressComponents.classicAddress
+      }
+    }
+
+    let accountInfoResponse = try networkClient.getAccountInfo(accountInfoRequest)
 
     return accountInfoResponse.accountData.balance.drops
   }
