@@ -28,7 +28,18 @@ final class DefaultXpringClientTest: XCTestCase {
     let xpringClient = DefaultXpringClient(networkClient: FakeNetworkClient.successfulFakeNetworkClient)
 
     // WHEN the balance is requested THEN an error is thrown.
-    XCTAssertThrowsError(try xpringClient.getBalance(for: classicAddressComponents.classicAddress))
+    XCTAssertThrowsError(
+      try xpringClient.getBalance(for: classicAddressComponents.classicAddress),
+      "Exception not thrown"
+    ) { error in
+      guard
+        case .invalidInputs = error as? XRPLedgerError
+      else {
+        XCTFail("Error thrown was not invalid inputs error")
+        return
+      }
+
+    }
   }
 
   func testGetBalanceWithFailure() {
@@ -42,6 +53,13 @@ final class DefaultXpringClientTest: XCTestCase {
     let xpringClient = DefaultXpringClient(networkClient: networkClient)
 
     // WHEN the balance is requested THEN the error is thrown.
-    XCTAssertThrowsError(try xpringClient.getBalance(for: .testAddress))
+    XCTAssertThrowsError(try xpringClient.getBalance(for: .testAddress), "Exception not thrown") { error in
+      guard
+        let _ = error as? XpringKitTestError
+      else {
+        XCTFail("Error thrown was not mocked error")
+        return
+      }
+    }
   }
 }
