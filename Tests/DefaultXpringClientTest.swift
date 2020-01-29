@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-import BigInt
-=======
->>>>>>> origin / master
 import XCTest
 @testable import XpringKit
 
@@ -9,7 +5,6 @@ final class DefaultXpringClientTest: XCTestCase {
 
   // MARK: - Balance
 
-<<<<<<< HEAD
   func testGetBalanceWithSuccess() {
     // GIVEN a Xpring client which will successfully return a balance from a mocked network call.
     let xpringClient = DefaultXpringClient(networkClient: FakeNetworkClient.successfulFakeNetworkClient)
@@ -268,13 +263,4 @@ final class DefaultXpringClientTest: XCTestCase {
       }
     }
   }
-=======
-  func testGetBalance() {
-    // GIVEN a XpringClient.
-    let xpringClient = DefaultXpringClient()
-
-    // WHEN the balance is retrieved THEN an error is thrown.
-    XCTAssertThrowsError(try xpringClient.getBalance(for: .testAddress))
-  }
->>>>>>> origin / master
 }
