@@ -68,7 +68,14 @@ extension DefaultXpringClient: XpringClientDecorator {
     else {
       throw XRPLedgerError.invalidInputs("Please use the X-Address format. See: https://xrpaddress.info/.")
     }
-    let accountInfoResponse = try getAccountInfo(for: classicAddressComponents.classicAddress)
+
+    let accountInfoRequest = Rpc_V1_GetAccountInfoRequest.with {
+      $0.account = Rpc_V1_AccountAddress.with {
+        $0.address = classicAddressComponents.classicAddress
+      }
+    }
+
+    let accountInfoResponse = try networkClient.getAccountInfo(accountInfoRequest)
 
     return accountInfoResponse.accountData.balance.drops
   }
