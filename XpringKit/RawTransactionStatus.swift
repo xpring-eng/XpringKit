@@ -15,6 +15,13 @@ public struct RawTransactionStatus {
     self.lastLedgerSequence = transactionStatus.lastLedgerSequence
     self.transactionStatusCode = transactionStatus.transactionStatusCode
   }
+
+  /// Initialize a new `RawTransactionStatus` from an `Rpc_V1_GetTxResponse`.
+  public init(getTxResponse: Rpc_V1_GetTxResponse) {
+    self.validated = getTxResponse.validated
+    self.lastLedgerSequence = getTxResponse.transaction.lastLedgerSequence
+    self.transactionStatusCode = getTxResponse.meta.transactionResult.result
+  }
 }
 
 extension RawTransactionStatus: Equatable {
