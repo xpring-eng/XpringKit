@@ -19,6 +19,18 @@ public class DefaultXpringClient {
   internal init(networkClient: NetworkClient) {
     self.networkClient = networkClient
   }
+
+  /// Retrieve the current fee to submit a transaction to the XRP Ledger.
+  ///
+  /// - Throws: An error if there was a problem communicating with the XRP Ledger.
+  /// - Returns: A `Fee` for submitting a transaction to the ledger.
+  private func getFee() throws -> Rpc_V1_XRPDropsAmount {
+    let getFeeRequest = Rpc_V1_GetFeeRequest()
+
+    let getFeeResponse = try networkClient.getFee(getFeeRequest)
+
+    return getFeeResponse.drops.minimumFee
+  }
 }
 
 extension DefaultXpringClient: XpringClientDecorator {
