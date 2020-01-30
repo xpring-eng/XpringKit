@@ -51,7 +51,7 @@ public class DefaultXpringClient {
     }
     return try networkClient.getAccountInfo(accountInfoRequest)
   }
-
+}
 
 extension DefaultXpringClient: XpringClientDecorator {
   /// Get the balance for the given address.
