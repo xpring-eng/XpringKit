@@ -23,7 +23,7 @@ extension UInt64 {
 }
 
 extension TransactionHash {
-  public static let successfulTransactionHash = "DFDC135AE3C8F68A1DC3959CBCFCABEA3EB91BDF7F8D22468A4F4FE9350FE8DA"
+  public static let successfulTransactionHash = "4E732C5748DE722C7598CEB76350FCD6269ACBE5D641A5BCF0721150EF6E2C9F"
 }
 
 /// Integration tests run against a live remote client.
