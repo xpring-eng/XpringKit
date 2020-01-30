@@ -4,7 +4,6 @@ import Foundation
 extension Hex {
   public func toBytes() throws -> [UInt8] {
     guard self.count % 2 == 0 else {
-
       throw XRPLedgerError.invalidInputs("Invalid length for hexadecimal string.")
     }
 
