@@ -1,3 +1,5 @@
+import Foundation
+
 /// An interface into the Xpring Platform.
 public class DefaultXpringClient {
   /// A network client that will make and receive requests.
@@ -90,6 +92,15 @@ extension DefaultXpringClient: XpringClientDecorator {
   /// - Throws: An error if there was a problem communicating with the XRP Ledger.
   /// - Returns: The status of the given transaction.
   public func getRawTransactionStatus(for transactionHash: TransactionHash) throws -> RawTransactionStatus {
-    throw XRPLedgerError.unimplemented
+    let transactionHashBytes = try transactionHash.toBytes()
+    let transactionHashData = Data(transactionHashBytes)
+
+    let request = Rpc_V1_GetTxRequest.with {
+      $0.hash = transactionHashData
+    }
+
+    let getTxResponse = try self.networkClient.getTx(request)
+
+    return RawTransactionStatus(getTxResponse: getTxResponse)
   }
 }
