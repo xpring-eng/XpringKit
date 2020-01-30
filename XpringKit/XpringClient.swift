@@ -4,9 +4,13 @@ public class XpringClient {
 
   /// Initialize a new XpringClient.
   ///
-  /// - Parameter grpcURL: A remote URL for a rippled gRPC service.
-  public init(grpcURL: String) {
-    let defaultClient = LegacyDefaultXpringClient(grpcURL: grpcURL)
+  /// - Parameters:
+  ///   - grpcURL: A remote URL for a rippled gRPC service.
+  ///   - useNewProtocolBuffers:  If `true`, then the new protocol buffer implementation from rippled will be used. Defaults to false.
+  public init(grpcURL: String, useNewProtocolBuffers: Bool = false) {
+    let defaultClient: XpringClientDecorator = useNewProtocolBuffers ?
+      DefaultXpringClient(grpcURL: grpcURL) :
+      LegacyDefaultXpringClient(grpcURL: grpcURL)
     decoratedClient = ReliableSubmissionXpringClient(decoratedClient: defaultClient)
   }
 
