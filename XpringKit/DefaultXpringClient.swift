@@ -23,13 +23,33 @@ public class DefaultXpringClient {
   /// Retrieve the current fee to submit a transaction to the XRP Ledger.
   ///
   /// - Throws: An error if there was a problem communicating with the XRP Ledger.
-  /// - Returns: A `Fee` for submitting a transaction to the ledger.
+  /// - Returns: A `Rpc_V1_XRPDropsAmount` for submitting a transaction to the ledger.
   private func getFee() throws -> Rpc_V1_XRPDropsAmount {
-    let getFeeRequest = Rpc_V1_GetFeeRequest()
-
-    let getFeeResponse = try networkClient.getFee(getFeeRequest)
-
+    let getFeeResponse = try getRawFee()
     return getFeeResponse.drops.minimumFee
+  }
+
+  /// Retrieve a raw `GetFeeResponse` from the XRP Ledger.
+  ///
+  /// - Throws: An error if there was a problem communicating with the XRP Ledger.
+  /// - Returns: A `Rpc_V1_XRPDropsAmount` for submitting a transaction to the ledger.
+  private func getRawFee() throws -> Rpc_V1_GetFeeResponse {
+    let getFeeRequest = Rpc_V1_GetFeeRequest()
+    return try networkClient.getFee(getFeeRequest)
+  }
+
+  /// Retrieve Account Info from the XRP Ledger.
+  ///
+  /// - Parameter classicAddress: The classic address to retrieve info for.
+  /// - Throws: An error if there was a problem communicating with the XRP Ledger.
+  /// - Returns: A `Rpc_V1_AccountInfo` for submitting a transaction to the ledger.
+  private func getAccountInfo(for classicAddress: Address) throws -> Rpc_V1_GetAccountInfoResponse {
+    let accountInfoRequest = Rpc_V1_GetAccountInfoRequest.with {
+      $0.account = Rpc_V1_AccountAddress.with {
+        $0.address = classicAddress
+      }
+    }
+    return try networkClient.getAccountInfo(accountInfoRequest)
   }
 }
 
@@ -45,14 +65,8 @@ extension DefaultXpringClient: XpringClientDecorator {
     else {
       throw XRPLedgerError.invalidInputs("Please use the X-Address format. See: https://xrpaddress.info/.")
     }
-
-    let accountInfoRequest = Rpc_V1_GetAccountInfoRequest.with {
-      $0.account = Rpc_V1_AccountAddress.with {
-        $0.address = classicAddressComponents.classicAddress
-      }
-    }
-
-    let accountInfoResponse = try networkClient.getAccountInfo(accountInfoRequest)
+    
+    let accountInfoResponse = try self.getAccountInfo(for: classicAddressComponents.classicAddress)
 
     return accountInfoResponse.accountData.balance.drops
   }
