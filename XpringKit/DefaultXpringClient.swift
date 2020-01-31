@@ -63,7 +63,13 @@ extension DefaultXpringClient: XpringClientDecorator {
   /// - Throws: An error if there was a problem communicating with the XRP Ledger.
   /// - Returns: The status of the given transaction.
   public func getTransactionStatus(for transactionHash: TransactionHash) throws -> TransactionStatus {
-    throw XRPLedgerError.unimplemented
+    let transactionStatus = try getRawTransactionStatus(for: transactionHash)
+
+    // Return pending if the transaction is not validated.
+    guard transactionStatus.validated else {
+      return .pending
+    }
+    return transactionStatus.transactionStatusCode.starts(with: "tes") ? .succeeded : .failed
   }
 
   /// Send XRP to a recipient on the XRP Ledger.
