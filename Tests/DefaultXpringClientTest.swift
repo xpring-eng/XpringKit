@@ -2,6 +2,11 @@ import XCTest
 @testable import XpringKit
 
 final class DefaultXpringClientTest: XCTestCase {
+  // Codes which are failures returned from the ledger.
+  // TODO(keefertaylor): Propagate these to the LegacyDefaultXpringClientTest and to other Xpring SDK Libraries.
+  private static let transactionStatusFailureCodes = [
+    "tefFAILURE", "tecCLAIM", "telBAD_PUBLIC_KEY", "temBAD_FEE", "terRETRY"
+  ]
 
   // MARK: - Balance
 
@@ -59,6 +64,113 @@ final class DefaultXpringClientTest: XCTestCase {
       else {
         XCTFail("Error thrown was not mocked error")
         return
+      }
+    }
+  }
+
+  // MARK: - Transaction Status
+
+  func testGetTransactionStatusWithUnvalidatedTransactionAndFailureCode() {
+    // Iterate over different types of transaction status codes which represent failures.
+    for transactionStatusCodeFailure in DefaultXpringClientTest.transactionStatusFailureCodes {
+      // GIVEN a XpringClient which returns an unvalidated transaction and a failed transaction status code.
+      let transactionStatusResponse = makeGetTxResonse(validated: false, resultCode: transactionStatusCodeFailure)
+      let networkClient = FakeNetworkClient(
+        accountInfoResult: .success(.testGetAccountInfoResponse),
+        feeResult: .success(.testGetFeeResponse),
+        submitTransactionResult: .success(.testSubmitTransactionResponse),
+        transactionStatusResult: .success(transactionStatusResponse)
+      )
+      let xpringClient = DefaultXpringClient(networkClient: networkClient)
+
+      // WHEN the transaction status is retrieved.
+      let transactionStatus = try? xpringClient.getTransactionStatus(for: .testTransactionHash)
+
+      // THEN the transaction status is pending.
+      XCTAssertEqual(transactionStatus, .pending)
+    }
+  }
+
+  func testGetTransactionStatusWithUnvalidatedTransactionAndSuccessCode() {
+    // GIVEN a XpringClient which returns an unvalidated transaction and a succeeded transaction status code.
+    let transactionStatusResponse = makeGetTxResonse(validated: false, resultCode: .transactionStatusCodeSuccess)
+    let networkClient = FakeNetworkClient(
+      accountInfoResult: .success(.testGetAccountInfoResponse),
+      feeResult: .success(.testGetFeeResponse),
+      submitTransactionResult: .success(.testSubmitTransactionResponse),
+      transactionStatusResult: .success(transactionStatusResponse)
+    )
+    let xpringClient = DefaultXpringClient(networkClient: networkClient)
+
+    // WHEN the transaction status is retrieved.
+    let transactionStatus = try? xpringClient.getTransactionStatus(for: .testTransactionHash)
+
+    // THEN the transaction status is pending.
+    XCTAssertEqual(transactionStatus, .pending)
+  }
+
+  func testGetTransactionStatusWithValidatedTransactionAndFailureCode() {
+    // Iterate over different types of transaction status codes which represent failures.
+    for transactionStatusCodeFailure in DefaultXpringClientTest.transactionStatusFailureCodes {
+      // GIVEN a XpringClient which returns an unvalidated transaction and a failed transaction status code.
+      let transactionStatusResponse = makeGetTxResonse(validated: true, resultCode: transactionStatusCodeFailure)
+      let networkClient = FakeNetworkClient(
+        accountInfoResult: .success(.testGetAccountInfoResponse),
+        feeResult: .success(.testGetFeeResponse),
+        submitTransactionResult: .success(.testSubmitTransactionResponse),
+        transactionStatusResult: .success(transactionStatusResponse)
+      )
+      let xpringClient = DefaultXpringClient(networkClient: networkClient)
+
+      // WHEN the transaction status is retrieved.
+      let transactionStatus = try? xpringClient.getTransactionStatus(for: .testTransactionHash)
+
+      // THEN the transaction status is failed.
+      XCTAssertEqual(transactionStatus, .failed)
+    }
+  }
+
+  func testGetTransactionStatusWithValidatedTransactionAndSuccessCode() {
+    // GIVEN a XpringClient which returns a validated transaction and a succeeded transaction status code.
+    let transactionStatusResponse = makeGetTxResonse(validated: true, resultCode: .transactionStatusCodeSuccess)
+    let networkClient = FakeNetworkClient(
+      accountInfoResult: .success(.testGetAccountInfoResponse),
+      feeResult: .success(.testGetFeeResponse),
+      submitTransactionResult: .success(.testSubmitTransactionResponse),
+      transactionStatusResult: .success(transactionStatusResponse)
+    )
+    let xpringClient = DefaultXpringClient(networkClient: networkClient)
+
+    // WHEN the transaction status is retrieved.
+    let transactionStatus = try? xpringClient.getTransactionStatus(for: .testTransactionHash)
+
+    // THEN the transaction status is succeeded.
+    XCTAssertEqual(transactionStatus, .succeeded)
+  }
+
+  func testGetTransactionStatusWithServerFailure() {
+    // GIVEN a XpringClient which fails to return a transaction status.
+    let networkClient = FakeNetworkClient(
+      accountInfoResult: .success(.testGetAccountInfoResponse),
+      feeResult: .success(.testGetFeeResponse),
+      submitTransactionResult: .success(.testSubmitTransactionResponse),
+      transactionStatusResult: .failure(XpringKitTestError.mockFailure)
+    )
+    let xpringClient = DefaultXpringClient(networkClient: networkClient)
+
+    // WHEN the transaction status is retrieved THEN an error is thrown.
+    XCTAssertThrowsError(try xpringClient.getTransactionStatus(for: .testTransactionHash))
+  }
+
+  // MARK: - Helpers
+
+  private func makeGetTxResonse(validated: Bool, resultCode: String) -> Rpc_V1_GetTxResponse {
+    return Rpc_V1_GetTxResponse.with {
+      $0.validated = validated
+      $0.meta = Rpc_V1_Meta.with {
+        $0.transactionResult = Rpc_V1_TransactionResult.with {
+          $0.result = resultCode
+        }
       }
     }
   }
