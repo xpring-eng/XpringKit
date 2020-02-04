@@ -103,6 +103,7 @@ extension DefaultXpringClient: XpringClientDecorator {
   /// - Throws: An error if there was a problem communicating with the XRP Ledger.
   /// - Returns: The index of the latest validated ledger.
   public func getLatestValidatedLedgerSequence() throws -> UInt32 {
+    // The fee API response contains the last ledger sequence and a limited subset of RPCs were implemented in gRPC.
     let getFeeResponse = try getRawFee()
     return getFeeResponse.ledgerCurrentIndex
   }
