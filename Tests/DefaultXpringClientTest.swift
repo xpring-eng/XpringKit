@@ -154,20 +154,6 @@ final class DefaultXpringClientTest: XCTestCase {
       ))
   }
 
-  func testSendWithLatestLedgerSequenceFailure() {
-    // GIVEN a Xpring client which will fail to return the latest validated ledger sequence.
-    let networkClient = FakeNetworkClient(
-      accountInfoResult: .success(.testGetAccountInfoResponse),
-      feeResult: .failure(XpringKitTestError.mockFailure),
-      submitTransactionResult: .success(.testSubmitTransactionResponse),
-      transactionStatusResult: .success(.testGetTxResponse)
-    )
-    let xpringClient = DefaultXpringClient(networkClient: networkClient)
-
-    // WHEN a send is attempted then an error is thrown.
-    XCTAssertThrowsError(try xpringClient.send(.sendAmount, to: .destinationAddress, from: .wallet))
-  }
-
   func testSendWithSubmitFailure() {
     // GIVEN a Xpring client which will fail to submit a transaction.
     let networkClient = FakeNetworkClient(
