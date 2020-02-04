@@ -3,7 +3,7 @@ import Foundation
 /// An interface into the Xpring Platform.
 public class DefaultXpringClient {
   /// A margin to pad the current ledger sequence with when submitting transactions.
-  private let ledgerSequenceMargin: UInt32 = 10
+  private let maxLedgerVersionOffset: UInt32 = 10
 
   /// A network client that will make and receive requests.
   private let networkClient: NetworkClient
@@ -134,7 +134,7 @@ extension DefaultXpringClient: XpringClientDecorator {
       $0.sequence = accountInfo.accountData.sequence
       $0.payment = payment
 
-      $0.lastLedgerSequence = lastValidatedLedgerSequence + ledgerSequenceMargin
+      $0.lastLedgerSequence = lastValidatedLedgerSequence + maxLedgerVersionOffset
       $0.signingPublicKey = Data(signingPublicKeyBytes)
     }
 
