@@ -40,37 +40,18 @@ final class IntegrationTests: XCTestCase {
       XCTFail("Failed retrieving balance with error: \(error)")
     }
   }
-
-  func testGetTransactionStatus() {
+  
+  func testSendXRP() {
     do {
-      let transactionStatus = try client.getTransactionStatus(for: .successfulTransactionHash)
-      XCTAssertEqual(transactionStatus, .succeeded)
-    } catch {
-      XCTFail("Failed retrieving transaction hash with error: \(error)")
-    }
-  }
-
-  // MARK: - Legacy Protocol Buffers
-
-  func testGetBalance_legacy() {
-    do {
-      _ = try legacyClient.getBalance(for: Wallet.testWallet.address)
-    } catch {
-      XCTFail("Failed retrieving balance with error: \(error)")
-    }
-  }
-
-  func testSendXRP_legacy() {
-    do {
-      _ = try legacyClient.send(.drops, to: .recipientAddress, from: .testWallet)
+      _ = try client.send(.drops, to: .recipientAddress, from: .testWallet)
     } catch {
       XCTFail("Failed sending XRP with error: \(error)")
     }
   }
 
-  func testGetTransactionStatus_legacy() {
+  func testGetTransactionStatus() {
     do {
-      let transactionStatus = try legacyClient.getTransactionStatus(for: .successfulTransactionHash)
+      let transactionStatus = try client.getTransactionStatus(for: .successfulTransactionHash)
       XCTAssertEqual(transactionStatus, .succeeded)
     } catch {
       XCTFail("Failed retrieving transaction hash with error: \(error)")
