@@ -2,6 +2,11 @@ import XCTest
 @testable import XpringKit
 
 final class DefaultXpringClientTest: XCTestCase {
+  // Codes which are failures returned from the ledger.
+  // TODO(keefertaylor): Propagate these to the LegacyDefaultXpringClientTest and to other Xpring SDK Libraries.
+  private static let transactionStatusFailureCodes = [
+    "tefFAILURE", "tecCLAIM", "telBAD_PUBLIC_KEY", "temBAD_FEE", "terRETRY"
+  ]
 
   // MARK: - Balance
 
