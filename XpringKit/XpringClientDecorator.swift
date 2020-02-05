@@ -1,5 +1,3 @@
-import BigInt
-
 /// A decorator for a XpringClient.
 public protocol XpringClientDecorator {
   /// Get the balance for the given address.
@@ -7,7 +5,7 @@ public protocol XpringClientDecorator {
   /// - Parameter address: The X-Address to retrieve the balance for.
   /// - Throws: An error if there was a problem communicating with the XRP Ledger or the inputs were invalid.
   /// - Returns: An unsigned integer containing the balance of the address in drops.
-  func getBalance(for address: Address) throws -> BigUInt
+  func getBalance(for address: Address) throws -> UInt64
 
   /// Retrieve the transaction status for a given transaction hash.
   ///
@@ -24,7 +22,7 @@ public protocol XpringClientDecorator {
   ///    - sourceWallet: The wallet sending the XRP.
   /// - Throws: An error if there was a problem communicating with the XRP Ledger or the inputs were invalid.
   /// - Returns: A transaction hash for the submitted transaction.
-  func send(_ amount: BigUInt, to destinationAddress: Address, from sourceWallet: Wallet) throws -> TransactionHash
+  func send(_ amount: UInt64, to destinationAddress: Address, from sourceWallet: Wallet) throws -> TransactionHash
 
   /// Retrieve the latest validated ledger sequence on the XRP Ledger.
   ///
@@ -37,5 +35,5 @@ public protocol XpringClientDecorator {
   /// - Parameter transactionHash: The hash of the transaction.
   /// - Throws: An error if there was a problem communicating with the XRP Ledger.
   /// - Returns: The status of the given transaction.
-  func getRawTransactionStatus(for transactionHash: TransactionHash) throws -> Io_Xpring_TransactionStatus
+  func getRawTransactionStatus(for transactionHash: TransactionHash) throws -> RawTransactionStatus
 }

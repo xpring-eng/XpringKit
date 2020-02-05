@@ -1,14 +1,16 @@
-import BigInt
-
 /// An interface into the Xpring Platform.
 public class XpringClient {
   private let decoratedClient: XpringClientDecorator
 
   /// Initialize a new XpringClient.
   ///
-  /// - Parameter grpcURL: A remote URL for a rippled gRPC service.
-  public init(grpcURL: String) {
-    let defaultClient = LegacyDefaultXpringClient(grpcURL: grpcURL)
+  /// - Parameters:
+  ///   - grpcURL: A remote URL for a rippled gRPC service.
+  ///   - useNewProtocolBuffers:  If `true`, then the new protocol buffer implementation from rippled will be used. Defaults to false.
+  public init(grpcURL: String, useNewProtocolBuffers: Bool = false) {
+    let defaultClient: XpringClientDecorator = useNewProtocolBuffers ?
+      DefaultXpringClient(grpcURL: grpcURL) :
+      LegacyDefaultXpringClient(grpcURL: grpcURL)
     decoratedClient = ReliableSubmissionXpringClient(decoratedClient: defaultClient)
   }
 
@@ -17,7 +19,7 @@ public class XpringClient {
   /// - Parameter address: The X-Address to retrieve the balance for.
   /// - Throws: An error if there was a problem communicating with the XRP Ledger or the inputs were invalid.
   /// - Returns: An unsigned integer containing the balance of the address in drops.
-  public func getBalance(for address: Address) throws -> BigUInt {
+  public func getBalance(for address: Address) throws -> UInt64 {
     return try decoratedClient.getBalance(for: address)
   }
 
@@ -38,7 +40,7 @@ public class XpringClient {
   ///    - sourceWallet: The wallet sending the XRP.
   /// - Throws: An error if there was a problem communicating with the XRP Ledger or the inputs were invalid.
   /// - Returns: A transaction hash for the submitted transaction.
-  public func send(_ amount: BigUInt, to destinationAddress: Address, from sourceWallet: Wallet) throws -> TransactionHash {
+  public func send(_ amount: UInt64, to destinationAddress: Address, from sourceWallet: Wallet) throws -> TransactionHash {
     return try decoratedClient.send(amount, to: destinationAddress, from: sourceWallet)
   }
 }

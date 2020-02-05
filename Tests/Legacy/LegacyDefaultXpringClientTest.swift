@@ -1,4 +1,3 @@
-import BigInt
 import XCTest
 @testable import XpringKit
 
@@ -11,9 +10,8 @@ extension Address {
   static let destinationAddress = "XVfC9CTCJh6GN2x8bnrw3LtdbqiVCUFyQVMzRrMGUZpokKH"
 }
 
-extension BigUInt {
-  static let sendAmount = BigUInt(stringLiteral: "20")
-  static let balance = BigUInt(stringLiteral: "1000")
+extension UInt64 {
+  static let sendAmount: UInt64 = 20
 }
 
 extension UInt64 {
@@ -23,7 +21,7 @@ extension UInt64 {
 extension Io_Xpring_AccountInfo {
   static let accountInfo = Io_Xpring_AccountInfo.with {
     $0.balance = Io_Xpring_XRPAmount.with {
-      $0.drops = String(.balance)
+      $0.drops = String(UInt64.balance)
     }
     $0.sequence = .sequence
   }
@@ -239,6 +237,8 @@ final class LegacyDefaultXpringClientTest: XCTestCase {
       from: .wallet
       ))
   }
+
+  // MARK: - Transaction Status
 
   func testGetTransactionStatusWithUnvalidatedTransactionAndFailureCode() {
     // GIVEN a XpringClient which returns an unvalidated transaction and a failed transaction status code.

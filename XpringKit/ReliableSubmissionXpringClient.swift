@@ -1,4 +1,3 @@
-import BigInt
 import Foundation
 
 /// A XpringClient which blocks on `send` calls until the transaction has reached a deterministic state.
@@ -11,7 +10,7 @@ public class ReliableSubmissionXpringClient {
 }
 
 extension ReliableSubmissionXpringClient: XpringClientDecorator {
-  public func getBalance(for address: Address) throws -> BigUInt {
+  public func getBalance(for address: Address) throws -> UInt64 {
     return try decoratedClient.getBalance(for: address)
   }
 
@@ -23,11 +22,11 @@ extension ReliableSubmissionXpringClient: XpringClientDecorator {
     return try decoratedClient.getLatestValidatedLedgerSequence()
   }
 
-  public func getRawTransactionStatus(for transactionHash: TransactionHash) throws -> Io_Xpring_TransactionStatus {
+  public func getRawTransactionStatus(for transactionHash: TransactionHash) throws -> RawTransactionStatus {
     return try decoratedClient.getRawTransactionStatus(for: transactionHash)
   }
 
-  public func send(_ amount: BigUInt, to destinationAddress: Address, from sourceWallet: Wallet) throws -> TransactionHash {
+  public func send(_ amount: UInt64, to destinationAddress: Address, from sourceWallet: Wallet) throws -> TransactionHash {
     let ledgerCloseTime: TimeInterval = 4
 
     // Submit a transaction hash and wait for a ledger to close.

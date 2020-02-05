@@ -1,4 +1,3 @@
-import BigInt
 import XpringKit
 
 /// A  fake XpringClient which returns the given iVars as results from XpringClientDecorator calls.
@@ -6,18 +5,18 @@ import XpringKit
 public class FakeXpringClient {
   public let networkClient: LegacyNetworkClient = LegacyFakeNetworkClient.successfulFakeNetworkClient
 
-  public var getBalanceValue: BigUInt
+  public var getBalanceValue: UInt64
   public var transactionStatusValue: TransactionStatus
   public var sendValue: TransactionHash
   public var latestValidatedLedgerValue: UInt32
-  public var rawTransactionStatusValue: Io_Xpring_TransactionStatus
+  public var rawTransactionStatusValue: RawTransactionStatus
 
   public init(
-    getBalanceValue: BigUInt,
+    getBalanceValue: UInt64,
     transactionStatusValue: TransactionStatus,
     sendValue: TransactionHash,
     latestValidatedLedgerValue: UInt32,
-    rawTransactionStatusValue: Io_Xpring_TransactionStatus
+    rawTransactionStatusValue: RawTransactionStatus
   ) {
     self.getBalanceValue = getBalanceValue
     self.transactionStatusValue = transactionStatusValue
@@ -28,7 +27,7 @@ public class FakeXpringClient {
 }
 
 extension FakeXpringClient: XpringClientDecorator {
-  public func getBalance(for address: Address) throws -> BigUInt {
+  public func getBalance(for address: Address) throws -> UInt64 {
     return getBalanceValue
   }
 
@@ -36,7 +35,7 @@ extension FakeXpringClient: XpringClientDecorator {
     return transactionStatusValue
   }
 
-  public func send(_ amount: BigUInt, to destinationAddress: Address, from sourceWallet: Wallet) throws -> TransactionHash {
+  public func send(_ amount: UInt64, to destinationAddress: Address, from sourceWallet: Wallet) throws -> TransactionHash {
     return sendValue
   }
 
@@ -44,7 +43,7 @@ extension FakeXpringClient: XpringClientDecorator {
     return latestValidatedLedgerValue
   }
 
-  public func getRawTransactionStatus(for transactionHash: TransactionHash) throws -> Io_Xpring_TransactionStatus {
+  public func getRawTransactionStatus(for transactionHash: TransactionHash) throws -> RawTransactionStatus {
     return rawTransactionStatusValue
   }
 }
