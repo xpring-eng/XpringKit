@@ -194,6 +194,7 @@ let xpringClient = XpringClient(grpcURL: remoteURL)
 
 // Wallet which will send XRP
 let generationResult = Wallet.generateRandomWallet()!
+let senderWallet = generationResult.wallet
 
 // Destination address.
 let address = "X7u4MQVhU2YxS4P9fWzQjnNuDRUkP3GM6kiVjTjcQgUU3Jr"
