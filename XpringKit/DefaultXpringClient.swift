@@ -2,6 +2,9 @@ import Foundation
 
 /// An interface into the Xpring Platform.
 public class DefaultXpringClient {
+  /// A margin to pad the current ledger sequence with when submitting transactions.
+  private let maxLedgerVersionOffset: UInt32 = 10
+
   /// A network client that will make and receive requests.
   private let networkClient: NetworkClient
 
@@ -95,7 +98,57 @@ extension DefaultXpringClient: XpringClientDecorator {
   /// - Throws: An error if there was a problem communicating with the XRP Ledger or the inputs were invalid.
   /// - Returns: A transaction hash for the submitted transaction.
   public func send(_ amount: UInt64, to destinationAddress: Address, from sourceWallet: Wallet) throws -> TransactionHash {
-    throw XRPLedgerError.unimplemented
+    guard
+      let destinationClassicAddressComponents = Utils.decode(xAddress: destinationAddress),
+      let sourceClassicAddressComponents = Utils.decode(xAddress: sourceWallet.address)
+    else {
+      throw XRPLedgerError.invalidInputs("Please use the X-Address format. See: https://xrpaddress.info/.")
+    }
+
+    let accountInfo = try getAccountInfo(for: sourceClassicAddressComponents.classicAddress)
+    let fee = try getFee()
+    let lastValidatedLedgerSequence = try getLatestValidatedLedgerSequence()
+
+    var payment = Rpc_V1_Payment.with {
+      $0.destination = Rpc_V1_AccountAddress.with {
+        $0.address = destinationClassicAddressComponents.classicAddress
+      }
+      $0.amount = Rpc_V1_CurrencyAmount.with {
+        $0.xrpAmount = Rpc_V1_XRPDropsAmount.with {
+          $0.drops = amount
+        }
+      }
+    }
+    if let destinationTag = destinationClassicAddressComponents.tag {
+      payment.destinationTag = destinationTag
+    }
+
+    let signingPublicKeyBytes = try sourceWallet.publicKey.toBytes()
+
+    let transaction = Rpc_V1_Transaction.with {
+      $0.account = Rpc_V1_AccountAddress.with {
+        $0.address = sourceClassicAddressComponents.classicAddress
+      }
+
+      $0.fee = fee
+      $0.sequence = accountInfo.accountData.sequence
+      $0.payment = payment
+
+      $0.lastLedgerSequence = lastValidatedLedgerSequence + maxLedgerVersionOffset
+      $0.signingPublicKey = Data(signingPublicKeyBytes)
+    }
+
+    guard let signedTransaction = Signer.sign(transaction, with: sourceWallet) else {
+      throw XRPLedgerError.signingError
+    }
+
+    let submitTransactionRequest = Rpc_V1_SubmitTransactionRequest.with {
+      $0.signedTransaction = Data(signedTransaction)
+    }
+
+    let submitTransactionResponse = try networkClient.submitTransaction(submitTransactionRequest)
+
+    return [UInt8](submitTransactionResponse.hash).toHex()
   }
 
   /// Retrieve the latest validated ledger sequence on the XRP Ledger.

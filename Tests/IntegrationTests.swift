@@ -40,6 +40,14 @@ final class IntegrationTests: XCTestCase {
       XCTFail("Failed retrieving balance with error: \(error)")
     }
   }
+  
+  func testSendXRP() {
+    do {
+      _ = try client.send(.drops, to: .recipientAddress, from: .testWallet)
+    } catch {
+      XCTFail("Failed sending XRP with error: \(error)")
+    }
+  }
 
   func testGetTransactionStatus() {
     do {
