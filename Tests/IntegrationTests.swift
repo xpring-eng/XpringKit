@@ -1,11 +1,6 @@
 import XCTest
 import XpringKit
 
-extension Wallet {
-  /// A test wallet which contains funds.
-  public static let testWallet = Wallet(seed: "snYP7oArxKepd3GPDcrjMsJYiJeJB")!
-}
-
 extension String {
   /// The URL of the remote legacy gRPC service.
   public static let legacyRemoteURL = "grpc.xpring.tech:80"
@@ -15,11 +10,6 @@ extension String {
 
   /// An address on the chain to receive funds.
   public static let recipientAddress = "X7cBcY4bdTTzk3LHmrKAK6GyrirkXfLHGFxzke5zTmYMfw4"
-}
-
-extension UInt64 {
-  /// Drops of XRP to send.
-  public static let drops: UInt64 = 1
 }
 
 extension TransactionHash {
@@ -40,10 +30,10 @@ final class IntegrationTests: XCTestCase {
       XCTFail("Failed retrieving balance with error: \(error)")
     }
   }
-  
+
   func testSendXRP() {
     do {
-      _ = try client.send(.drops, to: .recipientAddress, from: .testWallet)
+      _ = try client.send(.testSendAmount, to: .recipientAddress, from: .testWallet)
     } catch {
       XCTFail("Failed sending XRP with error: \(error)")
     }
@@ -70,7 +60,7 @@ final class IntegrationTests: XCTestCase {
 
   func testSendXRP_legacy() {
     do {
-      _ = try legacyClient.send(.drops, to: .recipientAddress, from: .testWallet)
+      _ = try legacyClient.send(.testSendAmount, to: .recipientAddress, from: .testWallet)
     } catch {
       XCTFail("Failed sending XRP with error: \(error)")
     }
