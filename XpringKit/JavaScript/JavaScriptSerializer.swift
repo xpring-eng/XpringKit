@@ -20,11 +20,10 @@ internal class JavaScriptSerializer {
   private let legacyTransactionClass: JSValue
 
   /// Initialize a new JavaScriptSerializer.
-  // TODO(keefertaylor): Context needs to get injected so that objects don't move between contexts. Remove this injection when Context exists as a shared Singleton.
-  public init(context: JSContext) {
-    walletClass = XRPJavaScriptLoader.load(ResourceNames.Classes.wallet, from: context)
-    transactionClass = XRPJavaScriptLoader.load(ResourceNames.Classes.transaction, from: context)
-    legacyTransactionClass = XRPJavaScriptLoader.load(ResourceNames.Classes.legacyTransaction, from: context)
+  public init() {
+    walletClass = XRPJavaScriptLoader.load(ResourceNames.Classes.wallet)
+    transactionClass = XRPJavaScriptLoader.load(ResourceNames.Classes.transaction)
+    legacyTransactionClass = XRPJavaScriptLoader.load(ResourceNames.Classes.legacyTransaction)
   }
 
   /// Serialize a `Wallet` to a JavaScript object.
@@ -60,6 +59,9 @@ internal class JavaScriptSerializer {
         return nil
     }
     let transactionBytes = [UInt8](transactionData)
-    return legacyTransactionClass.invokeMethod(ResourceNames.Methods.deserializeBinary, withArguments: [transactionBytes])!
+    return legacyTransactionClass.invokeMethod(
+      ResourceNames.Methods.deserializeBinary,
+      withArguments: [transactionBytes]
+    )!
   }
 }
