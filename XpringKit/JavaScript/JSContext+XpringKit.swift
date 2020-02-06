@@ -45,4 +45,3 @@ extension JSContext {
     return context
   }()
 }
-

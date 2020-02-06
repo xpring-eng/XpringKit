@@ -18,7 +18,6 @@ internal enum XRPJavaScriptLoader {
     public static let unknownLoadingError = "Unknown error occurred while loading JavaScript resources for the XRP Ledger. "
   }
 
-
   /// Load the default exports of the global variable XpringCommonJS on the XpringKit JSContext.
   ///
   /// This method loads value from `XpringCommonJS.<resourceName>`.

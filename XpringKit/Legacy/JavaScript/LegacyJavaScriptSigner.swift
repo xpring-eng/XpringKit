@@ -24,10 +24,8 @@ internal class LegacyJavaScriptSigner {
   ///
   /// - Note: Initialization will fail if the expected bundle is missing or malformed.
   public init() {
-    let context = XRPJavaScriptLoader.XRPJavaScriptContext
-    signerClass = XRPJavaScriptLoader.load(ResourceNames.Classes.signer, from: context)
-
-    javaScriptSerializer = JavaScriptSerializer(context: context)
+    signerClass = XRPJavaScriptLoader.load(ResourceNames.Classes.signer)
+    javaScriptSerializer = JavaScriptSerializer()
   }
 
   /// Sign a transaction.
