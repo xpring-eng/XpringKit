@@ -3,10 +3,15 @@ import JavaScriptCore
 internal class JavaScriptSerializer {
   /// String constants which refer to named JavaScript resources.
   private enum ResourceNames {
-    public static let deserializeBinary = "deserializeBinary"
-    public static let legacyTransaction = "LegacyTransaction"
-    public static let transaction = "Transaction"
-    public static let wallet = "Wallet"
+    public enum Classes  {
+      public static let wallet = "Wallet"
+      public static let legacyTransaction = "LegacyTransaction"
+      public static let transaction = "Transaction"
+    }
+
+    public enum Methods {
+      public static let deserializeBinary = "deserializeBinary"
+    }
   }
 
   /// References to JavaScript classes.
@@ -17,9 +22,9 @@ internal class JavaScriptSerializer {
   /// Initialize a new JavaScriptSerializer.
   // TODO(keefertaylor): Context needs to get injected so that objects don't move between contexts. Remove this injection when Context exists as a shared Singleton.
   public init(context: JSContext) {
-    walletClass = XRPJavaScriptLoader.load(ResourceNames.wallet, from: context)
-    transactionClass = XRPJavaScriptLoader.load(ResourceNames.transaction, from: context)
-    legacyTransactionClass = XRPJavaScriptLoader.load(ResourceNames.legacyTransaction, from: context)
+    walletClass = XRPJavaScriptLoader.load(ResourceNames.Classes.wallet, from: context)
+    transactionClass = XRPJavaScriptLoader.load(ResourceNames.Classes.transaction, from: context)
+    legacyTransactionClass = XRPJavaScriptLoader.load(ResourceNames.Classes.legacyTransaction, from: context)
   }
 
   /// Serialize a `Wallet` to a JavaScript object.
@@ -41,7 +46,7 @@ internal class JavaScriptSerializer {
         return nil
     }
     let transactionBytes = [UInt8](transactionData)
-    return transactionClass.invokeMethod(ResourceNames.deserializeBinary, withArguments: [transactionBytes])!
+    return transactionClass.invokeMethod(ResourceNames.Methods.deserializeBinary, withArguments: [transactionBytes])!
   }
 
   /// Serialize a legacy transaction to a JavaScript object.
@@ -55,6 +60,6 @@ internal class JavaScriptSerializer {
         return nil
     }
     let transactionBytes = [UInt8](transactionData)
-    return legacyTransactionClass.invokeMethod(ResourceNames.deserializeBinary, withArguments: [transactionBytes])!
+    return legacyTransactionClass.invokeMethod(ResourceNames.Methods.deserializeBinary, withArguments: [transactionBytes])!
   }
 }

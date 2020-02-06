@@ -5,8 +5,13 @@ import JavaScriptCore
 internal class LegacyJavaScriptSigner {
   /// String constants which refer to named JavaScript resources.
   private enum ResourceNames {
-    public static let signer = "Signer"
-    public static let signTransaction = "signLegacyTransaction"
+    public enum Classes {
+      public static let signer = "Signer"
+    }
+
+    public enum Methods {
+      public static let signTransaction = "signLegacyTransaction"
+    }
   }
 
   /// A JavaScriptSerializer which can convert native objects to JavaScript.
@@ -20,7 +25,7 @@ internal class LegacyJavaScriptSigner {
   /// - Note: Initialization will fail if the expected bundle is missing or malformed.
   public init() {
     let context = XRPJavaScriptLoader.XRPJavaScriptContext
-    signerClass = XRPJavaScriptLoader.load(ResourceNames.signer, from: context)
+    signerClass = XRPJavaScriptLoader.load(ResourceNames.Classes.signer, from: context)
 
     javaScriptSerializer = JavaScriptSerializer(context: context)
   }
@@ -38,7 +43,7 @@ internal class LegacyJavaScriptSigner {
     let javaScriptWallet = javaScriptSerializer.serialize(wallet: wallet)
 
     let javaScriptSignedTransaction = signerClass.invokeMethod(
-      ResourceNames.signTransaction,
+      ResourceNames.Methods.signTransaction,
       withArguments: [javaScriptTransaction, javaScriptWallet]
     )!
     return javaScriptSignedTransaction.toSignedTransaction()
