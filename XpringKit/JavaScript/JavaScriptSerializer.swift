@@ -3,7 +3,7 @@ import JavaScriptCore
 internal class JavaScriptSerializer {
   /// String constants which refer to named JavaScript resources.
   private enum ResourceNames {
-    public enum Classes  {
+    public enum Classes {
       public static let wallet = "Wallet"
       public static let legacyTransaction = "LegacyTransaction"
       public static let transaction = "Transaction"
