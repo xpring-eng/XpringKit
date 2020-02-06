@@ -73,6 +73,11 @@ extension Io_Xpring_TransactionStatus {
 }
 
 final class LegacyDefaultXpringClientTest: XCTestCase {
+  // Codes which are failures returned from the ledger.
+  private static let transactionStatusFailureCodes = [
+    "tefFAILURE", "tecCLAIM", "telBAD_PUBLIC_KEY", "temBAD_FEE", "terRETRY"
+  ]
+
   // MARK: - Balance
 
   func testGetBalanceWithSuccess() {
@@ -241,25 +246,28 @@ final class LegacyDefaultXpringClientTest: XCTestCase {
   // MARK: - Transaction Status
 
   func testGetTransactionStatusWithUnvalidatedTransactionAndFailureCode() {
-    // GIVEN a XpringClient which returns an unvalidated transaction and a failed transaction status code.
-    let transactionStatusResponse = Io_Xpring_TransactionStatus.with {
-      $0.validated = false
-      $0.transactionStatusCode = .transactionStatusCodeFailure
+    // Iterate over different types of transaction status codes which represent failures.
+    for transactionStatusCodeFailure in LegacyDefaultXpringClientTest.transactionStatusFailureCodes {
+      // GIVEN a XpringClient which returns an unvalidated transaction and a failed transaction status code.
+      let transactionStatusResponse = Io_Xpring_TransactionStatus.with {
+        $0.validated = false
+        $0.transactionStatusCode = .transactionStatusCodeFailure
+      }
+      let networkClient = LegacyFakeNetworkClient(
+        accountInfoResult: .success(.accountInfo),
+        feeResult: .success(.fee),
+        submitSignedTransactionResult: .success(.submitTransactionResponse),
+        latestValidatedLedgerSequenceResult: .success(.ledgerSequence),
+        transactionStatusResult: .success(transactionStatusResponse)
+      )
+      let xpringClient = LegacyDefaultXpringClient(networkClient: networkClient)
+
+      // WHEN the transaction status is retrieved.
+      let transactionStatus = try? xpringClient.getTransactionStatus(for: .testTransactionHash)
+
+      // THEN the transaction status is pending.
+      XCTAssertEqual(transactionStatus, .pending)
     }
-    let networkClient = LegacyFakeNetworkClient(
-      accountInfoResult: .success(.accountInfo),
-      feeResult: .success(.fee),
-      submitSignedTransactionResult: .success(.submitTransactionResponse),
-      latestValidatedLedgerSequenceResult: .success(.ledgerSequence),
-      transactionStatusResult: .success(transactionStatusResponse)
-    )
-    let xpringClient = LegacyDefaultXpringClient(networkClient: networkClient)
-
-    // WHEN the transaction status is retrieved.
-    let transactionStatus = try? xpringClient.getTransactionStatus(for: .testTransactionHash)
-
-    // THEN the transaction status is pending.
-    XCTAssertEqual(transactionStatus, .pending)
   }
 
   func testGetTransactionStatusWithUnvalidatedTransactionAndSuccessCode() {
@@ -285,25 +293,28 @@ final class LegacyDefaultXpringClientTest: XCTestCase {
   }
 
   func testGetTransactionStatusWithValidatedTransactionAndFailureCode() {
-    // GIVEN a XpringClient which returns a validated transaction and a failed transaction status code.
-    let transactionStatusResponse = Io_Xpring_TransactionStatus.with {
-      $0.validated = true
-      $0.transactionStatusCode = .transactionStatusCodeFailure
+    // Iterate over different types of transaction status codes which represent failures.
+    for transactionStatusCodeFailure in LegacyDefaultXpringClientTest.transactionStatusFailureCodes {
+      // GIVEN a XpringClient which returns a validated transaction and a failed transaction status code.
+      let transactionStatusResponse = Io_Xpring_TransactionStatus.with {
+        $0.validated = true
+        $0.transactionStatusCode = .transactionStatusCodeFailure
+      }
+      let networkClient = LegacyFakeNetworkClient(
+        accountInfoResult: .success(.accountInfo),
+        feeResult: .success(.fee),
+        submitSignedTransactionResult: .success(.submitTransactionResponse),
+        latestValidatedLedgerSequenceResult: .success(.ledgerSequence),
+        transactionStatusResult: .success(transactionStatusResponse)
+      )
+      let xpringClient = LegacyDefaultXpringClient(networkClient: networkClient)
+
+      // WHEN the transaction status is retrieved.
+      let transactionStatus = try? xpringClient.getTransactionStatus(for: .testTransactionHash)
+
+      // THEN the transaction status is failed.
+      XCTAssertEqual(transactionStatus, .failed)
     }
-    let networkClient = LegacyFakeNetworkClient(
-      accountInfoResult: .success(.accountInfo),
-      feeResult: .success(.fee),
-      submitSignedTransactionResult: .success(.submitTransactionResponse),
-      latestValidatedLedgerSequenceResult: .success(.ledgerSequence),
-      transactionStatusResult: .success(transactionStatusResponse)
-    )
-    let xpringClient = LegacyDefaultXpringClient(networkClient: networkClient)
-
-    // WHEN the transaction status is retrieved.
-    let transactionStatus = try? xpringClient.getTransactionStatus(for: .testTransactionHash)
-
-    // THEN the transaction status is failed.
-    XCTAssertEqual(transactionStatus, .failed)
   }
 
   func testGetTransactionStatusWithValidatedTransactionAndSuccessCode() {
