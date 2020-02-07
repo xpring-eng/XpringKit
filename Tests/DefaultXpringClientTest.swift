@@ -14,18 +14,18 @@ final class DefaultXpringClientTest: XCTestCase {
     let xpringClient = DefaultXpringClient(networkClient: FakeNetworkClient.successfulFakeNetworkClient)
 
     // WHEN the balance is requested.
-    guard let balance = try? xpringClient.getBalance(for: .destinationAddress) else {
+    guard let balance = try? xpringClient.getBalance(for: .testAddress) else {
       XCTFail("Exception should not be thrown when trying to get a balance")
       return
     }
 
     // THEN the balance is correct.
-    XCTAssertEqual(balance, .balance)
+    XCTAssertEqual(balance, .testBalance)
   }
 
   func testGetBalanceWithClassicAddress() {
     // GIVEN a classic address.
-    guard let classicAddressComponents = Utils.decode(xAddress: .destinationAddress) else {
+    guard let classicAddressComponents = Utils.decode(xAddress: .testAddress) else {
       XCTFail("Failed to decode X-Address.")
       return
     }
@@ -76,9 +76,9 @@ final class DefaultXpringClientTest: XCTestCase {
     // WHEN XRP is sent.
     guard
       let transactionHash = try? xpringClient.send(
-        .sendAmount,
-        to: .destinationAddress,
-        from: .wallet)
+        .testSendAmount,
+        to: .testAddress,
+        from: .testWallet)
       else {
         XCTFail("Exception should not be thrown when trying to send XRP")
         return
@@ -90,7 +90,7 @@ final class DefaultXpringClientTest: XCTestCase {
 
   func testSendWithClassicAddress() {
     // GIVEN a classic address.
-    guard let classicAddressComponents = Utils.decode(xAddress: .destinationAddress) else {
+    guard let classicAddressComponents = Utils.decode(xAddress: .testAddress) else {
       XCTFail("Failed to decode X - Address.")
       return
     }
@@ -98,9 +98,9 @@ final class DefaultXpringClientTest: XCTestCase {
 
     // WHEN XRP is sent to a classic address THEN an error is thrown.
     XCTAssertThrowsError(try xpringClient.send(
-      .sendAmount,
+      .testSendAmount,
       to: classicAddressComponents.classicAddress,
-      from: .wallet
+      from: .testWallet
       ))
   }
 
@@ -111,9 +111,9 @@ final class DefaultXpringClientTest: XCTestCase {
 
     // WHEN XRP is sent to an invalid address THEN an error is thrown.
     XCTAssertThrowsError(try xpringClient.send(
-      .sendAmount,
+      .testSendAmount,
       to: destinationAddress,
-      from: .wallet
+      from: .testWallet
       ))
   }
 
@@ -129,9 +129,9 @@ final class DefaultXpringClientTest: XCTestCase {
 
     // WHEN a send is attempted then an error is thrown.
     XCTAssertThrowsError(try xpringClient.send(
-      .sendAmount,
-      to: .destinationAddress,
-      from: .wallet
+      .testSendAmount,
+      to: .testAddress,
+      from: .testWallet
       ))
   }
 
@@ -147,9 +147,9 @@ final class DefaultXpringClientTest: XCTestCase {
 
     // WHEN a send is attempted then an error is thrown.
     XCTAssertThrowsError(try xpringClient.send(
-      .sendAmount,
-      to: .destinationAddress,
-      from: .wallet
+      .testSendAmount,
+      to: .testAddress,
+      from: .testWallet
       ))
   }
 
@@ -165,9 +165,9 @@ final class DefaultXpringClientTest: XCTestCase {
 
     // WHEN a send is attempted then an error is thrown.
     XCTAssertThrowsError(try xpringClient.send(
-      .sendAmount,
-      to: .destinationAddress,
-      from: .wallet
+      .testSendAmount,
+      to: .testAddress,
+      from: .testWallet
       ))
   }
 
@@ -196,7 +196,7 @@ final class DefaultXpringClientTest: XCTestCase {
 
   func testGetTransactionStatusWithUnvalidatedTransactionAndSuccessCode() {
     // GIVEN a XpringClient which returns an unvalidated transaction and a succeeded transaction status code.
-    let transactionStatusResponse = makeGetTxResonse(validated: false, resultCode: .transactionStatusCodeSuccess)
+    let transactionStatusResponse = makeGetTxResonse(validated: false, resultCode: .testTransactionStatusCodeSuccess)
     let networkClient = FakeNetworkClient(
       accountInfoResult: .success(.testGetAccountInfoResponse),
       feeResult: .success(.testGetFeeResponse),
@@ -235,7 +235,7 @@ final class DefaultXpringClientTest: XCTestCase {
 
   func testGetTransactionStatusWithValidatedTransactionAndSuccessCode() {
     // GIVEN a XpringClient which returns a validated transaction and a succeeded transaction status code.
-    let transactionStatusResponse = makeGetTxResonse(validated: true, resultCode: .transactionStatusCodeSuccess)
+    let transactionStatusResponse = makeGetTxResonse(validated: true, resultCode: .testTransactionStatusCodeSuccess)
     let networkClient = FakeNetworkClient(
       accountInfoResult: .success(.testGetAccountInfoResponse),
       feeResult: .success(.testGetFeeResponse),
