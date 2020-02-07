@@ -173,10 +173,12 @@ import XpringKit
 let remoteURL = "grpc.xpring.tech:80"
 let xpringClient = new XpringClient(grpcURL: remoteURL)
 
-let transactionHash = "2CBBD2523478848DA256F8EBFCBD490DD6048A4A5094BF8E3034F57EA6AA0522"
+let transactionHash = "9FC7D277C1C8ED9CE133CC17AEA9978E71FC644CE6F5F0C8E26F1C635D97AF4A"
 
 let transactionStatus = xpringClient.getTransactionStatus(for: transactionHash) // TransactionStatus.succeeded
 ```
+
+**Note:** The example transactionHash may lead to a "Transaction not found." error because the TestNet is regularly reset, or the accessed node may only maintain one month of history.  Recent transaction hashes can be found in the [XRP Ledger Explorer ](https://livenet.xrpl.org/).
 
 #### Sending XRP
 
@@ -192,15 +194,19 @@ let xpringClient = XpringClient(grpcURL: remoteURL)
 
 // Wallet which will send XRP
 let generationResult = Wallet.generateRandomWallet()!
+let senderWallet = generationResult.wallet
 
 // Destination address.
 let address = "X7u4MQVhU2YxS4P9fWzQjnNuDRUkP3GM6kiVjTjcQgUU3Jr"
 
 // Amount of XRP to send, in drops.
-let amount = BigInt(stringLiteral: "10")
+let amount: UInt64 = 10
 
 let transactionHash = try! xpringClient.send(amount, to: destinationAddress, from: senderWallet)
 ```
+
+**Note:** The above example will yield an "Account not found." error because
+the randomly generated wallet contains no XRP.
 
 ### Utilities
 #### Address validation
