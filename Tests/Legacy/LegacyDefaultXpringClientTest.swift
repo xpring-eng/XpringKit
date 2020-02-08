@@ -183,10 +183,10 @@ final class LegacyDefaultXpringClientTest: XCTestCase {
         $0.transactionStatusCode = .transactionStatusCodeFailure
       }
       let networkClient = LegacyFakeNetworkClient(
-        accountInfoResult: .success(.accountInfo),
-        feeResult: .success(.fee),
-        submitSignedTransactionResult: .success(.submitTransactionResponse),
-        latestValidatedLedgerSequenceResult: .success(.ledgerSequence),
+        accountInfoResult: .success(.testAccountInfo),
+        feeResult: .success(.testFee),
+        submitSignedTransactionResult: .success(.testSubmitTransactionResponse),
+        latestValidatedLedgerSequenceResult: .success(.testLedgerSequence),
         transactionStatusResult: .success(transactionStatusResponse)
       )
       let xpringClient = LegacyDefaultXpringClient(networkClient: networkClient)
@@ -230,10 +230,10 @@ final class LegacyDefaultXpringClientTest: XCTestCase {
         $0.transactionStatusCode = .transactionStatusCodeFailure
       }
       let networkClient = LegacyFakeNetworkClient(
-        accountInfoResult: .success(.accountInfo),
-        feeResult: .success(.fee),
-        submitSignedTransactionResult: .success(.submitTransactionResponse),
-        latestValidatedLedgerSequenceResult: .success(.ledgerSequence),
+        accountInfoResult: .success(.testAccountInfo),
+        feeResult: .success(.testFee),
+        submitSignedTransactionResult: .success(.testSubmitTransactionResponse),
+        latestValidatedLedgerSequenceResult: .success(.testLedgerSequence),
         transactionStatusResult: .success(transactionStatusResponse)
       )
       let xpringClient = LegacyDefaultXpringClient(networkClient: networkClient)
