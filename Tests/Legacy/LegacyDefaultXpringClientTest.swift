@@ -180,7 +180,7 @@ final class LegacyDefaultXpringClientTest: XCTestCase {
       // GIVEN a XpringClient which returns an unvalidated transaction and a failed transaction status code.
       let transactionStatusResponse = Io_Xpring_TransactionStatus.with {
         $0.validated = false
-        $0.transactionStatusCode = .transactionStatusCodeFailure
+        $0.transactionStatusCode = transactionStatusCodeFailure
       }
       let networkClient = LegacyFakeNetworkClient(
         accountInfoResult: .success(.testAccountInfo),
@@ -227,7 +227,7 @@ final class LegacyDefaultXpringClientTest: XCTestCase {
       // GIVEN a XpringClient which returns a validated transaction and a failed transaction status code.
       let transactionStatusResponse = Io_Xpring_TransactionStatus.with {
         $0.validated = true
-        $0.transactionStatusCode = .transactionStatusCodeFailure
+        $0.transactionStatusCode = transactionStatusCodeFailure
       }
       let networkClient = LegacyFakeNetworkClient(
         accountInfoResult: .success(.testAccountInfo),
