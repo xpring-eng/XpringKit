@@ -34,11 +34,17 @@ echo "Prefixing Legacy Protocol Buffers"
 cd $LEGACY_PROTO_DIR
 for file in *.pb.swift
 do
-  mv "$file" "${file/.pb.swift/.legacy.pb.swift}"
+  if [[ $file != *".legacy."* ]];
+  then
+    mv "$file" "${file/.pb.swift/.legacy.pb.swift}"
+  fi
 done
 for file in *.grpc.swift
 do
-  mv "$file" "${file/.grpc.swift/.legacy.grpc.swift}"
+  if [[ $file != *".legacy."* ]];
+  then
+    mv "$file" "${file/.grpc.swift/.legacy.grpc.swift}"
+  fi
 done
 
 echo "All done!"
