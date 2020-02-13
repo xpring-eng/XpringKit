@@ -3,6 +3,22 @@
 set -e -o pipefail
 
 ##########################################################################
+# Generate Protocol Buffers from Hermes for ILP.
+##########################################################################
+
+echo "Regenerating Protocol Buffers from Hermes ILP"
+
+ILP_SWIFT_OUT_DIR=./XpringKit/generated/ilp
+
+mkdir -p $ILP_SWIFT_OUT_DIR
+protoc \
+    --proto_path=./hermes-ilp/protocol-buffers/proto/ \
+    --swift_opt=Visibility=Public \
+    --swift_out=$ILP_SWIFT_OUT_DIR \
+    --swiftgrpc_out=$ILP_SWIFT_OUT_DIR \
+    ./hermes-ilp/protocol-buffers/proto/*.proto
+
+##########################################################################
 # Generate Protocol Buffers from Rippled.
 ##########################################################################
 
