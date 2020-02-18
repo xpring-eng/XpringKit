@@ -9,23 +9,17 @@ internal class JavaScriptSerializer {
     public static let wallet = "Wallet"
   }
 
-  /// References to JavaScript functions.
-  private let deserializeTransactionFunction: JSValue
-  private let deserializeLegacyTransactionFunction: JSValue
-
   /// References to JavaScript classes.
   private let walletClass: JSValue
+  private let transactionClass: JSValue
+  private let legacyTransactionClass: JSValue
 
   /// Initialize a new JavaScriptSerializer.
   // TODO(keefertaylor): Context needs to get injected so that objects don't move between contexts. Remove this injection when Context exists as a shared Singleton.
   public init(context: JSContext) {
     walletClass = XRPJavaScriptLoader.load(ResourceNames.wallet, from: context)
-
-    let transactionClass = XRPJavaScriptLoader.load(ResourceNames.transaction, from: context)
-    deserializeTransactionFunction = XRPJavaScriptLoader.load(ResourceNames.deserializeBinary, from: transactionClass)
-
-    let legacyTransactionClass = XRPJavaScriptLoader.load(ResourceNames.legacyTransaction, from: context)
-    deserializeLegacyTransactionFunction = XRPJavaScriptLoader.load(ResourceNames.deserializeBinary, from: legacyTransactionClass)
+    transactionClass = XRPJavaScriptLoader.load(ResourceNames.transaction, from: context)
+    legacyTransactionClass = XRPJavaScriptLoader.load(ResourceNames.legacyTransaction, from: context)
   }
 
   /// Serialize a `Wallet` to a JavaScript object.
@@ -47,7 +41,7 @@ internal class JavaScriptSerializer {
         return nil
     }
     let transactionBytes = [UInt8](transactionData)
-    return deserializeTransactionFunction.call(withArguments: [transactionBytes])!
+    return transactionClass.invokeMethod(ResourceNames.deserializeBinary, withArguments: [transactionBytes])!
   }
 
   /// Serialize a legacy transaction to a JavaScript object.
@@ -61,6 +55,6 @@ internal class JavaScriptSerializer {
         return nil
     }
     let transactionBytes = [UInt8](transactionData)
-    return deserializeLegacyTransactionFunction.call(withArguments: [transactionBytes])!
+    return legacyTransactionClass.invokeMethod(ResourceNames.deserializeBinary, withArguments: [transactionBytes])!
   }
 }

@@ -13,16 +13,14 @@ internal class LegacyJavaScriptSigner {
   private let javaScriptSerializer: JavaScriptSerializer
 
   /// Native JavaScript functions wrapped by this class.
-  private let signTransactionFunction: JSValue
+  private let signerClass: JSValue
 
   /// Initialize a new Signer.
   ///
   /// - Note: Initialization will fail if the expected bundle is missing or malformed.
   public init() {
     let context = XRPJavaScriptLoader.XRPJavaScriptContext
-
-    let signer = XRPJavaScriptLoader.load(ResourceNames.signer, from: context)
-    signTransactionFunction = XRPJavaScriptLoader.load(ResourceNames.signTransaction, from: signer)
+    signerClass = XRPJavaScriptLoader.load(ResourceNames.signer, from: context)
 
     javaScriptSerializer = JavaScriptSerializer(context: context)
   }
@@ -39,7 +37,10 @@ internal class LegacyJavaScriptSigner {
     }
     let javaScriptWallet = javaScriptSerializer.serialize(wallet: wallet)
 
-    let javaScriptSignedTransaction = signTransactionFunction.call(withArguments: [javaScriptTransaction, javaScriptWallet])!
+    let javaScriptSignedTransaction = signerClass.invokeMethod(
+      ResourceNames.signTransaction,
+      withArguments: [javaScriptTransaction, javaScriptWallet]
+    )!
     return javaScriptSignedTransaction.toSignedTransaction()
   }
 }
