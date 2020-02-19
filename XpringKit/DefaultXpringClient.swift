@@ -82,6 +82,8 @@ extension DefaultXpringClient: XpringClientDecorator {
   public func getTransactionStatus(for transactionHash: TransactionHash) throws -> TransactionStatus {
     let transactionStatus = try getRawTransactionStatus(for: transactionHash)
 
+
+
     // Return pending if the transaction is not validated.
     guard transactionStatus.validated else {
       return .pending
