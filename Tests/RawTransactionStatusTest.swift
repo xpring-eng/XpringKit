@@ -9,7 +9,7 @@ class RawTransactionStatusTest: XCTestCase {
     // GIVEN a legacy transaction status protocol buffer.
     let transactionStatus = Io_Xpring_TransactionStatus.testTransactionStatus
 
-    // WHEN the raw transaction status is wrapped into a RawTransactionStatus object.
+    // WHEN the transaction status is wrapped into a RawTransactionStatus object.
     let rawTransactionStatus = RawTransactionStatus(transactionStatus: transactionStatus)
 
     // THEN the raw transaction status reports it is bucketable.
@@ -26,7 +26,7 @@ class RawTransactionStatusTest: XCTestCase {
       }
     }
 
-    // WHEN the raw transaction status is wrapped into a RawTransactionStatus object.
+    // WHEN the response is wrapped into a RawTransactionStatus object.
     let rawTransactionStatus = RawTransactionStatus(getTxResponse: getTxResponse)
 
     // THEN the raw transaction status reports it is not bucketable.
@@ -42,7 +42,7 @@ class RawTransactionStatusTest: XCTestCase {
       }
     }
 
-    // WHEN the raw transaction status is wrapped into a RawTransactionStatus object.
+    // WHEN the response is wrapped into a RawTransactionStatus object.
     let rawTransactionStatus = RawTransactionStatus(getTxResponse: getTxResponse)
 
     // THEN the raw transaction status reports it is not bucketable.
@@ -57,7 +57,7 @@ class RawTransactionStatusTest: XCTestCase {
       }
     }
 
-    // WHEN the raw transaction status is wrapped into a RawTransactionStatus object.
+    // WHEN the response is wrapped into a RawTransactionStatus object.
     let rawTransactionStatus = RawTransactionStatus(getTxResponse: getTxResponse)
 
     // THEN the raw transaction status reports it is bucketable.
