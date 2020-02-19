@@ -11,15 +11,12 @@ internal class JavaScriptWalletFactory {
     public static let getDefaultDerivationPath = "getDefaultDerivationPath"
   }
 
-  /// Native javaScript functions used to create `JavaScriptWallet` objects.
-  private let generateRandomWalletFunction: JSValue
-  private let generateWalletFromMnemonicFunction: JSValue
-  private let generateWalletFromSeedFunction: JSValue
-  private let getDefaultDerivationPathFunction: JSValue
+  /// An underlying reference to a JavaScript wallet.
+  private let walletClass: JSValue
 
   /// Returns the default derivation path used during `Wallet` creation.
   public var defaultDerivationPath: String {
-    let result = getDefaultDerivationPathFunction.call(withArguments: [])!
+    let result = walletClass.invokeMethod(ResourceNames.getDefaultDerivationPath, withArguments: [])!
     return result.toString()
   }
 
@@ -27,11 +24,7 @@ internal class JavaScriptWalletFactory {
   public init() {
     let context = XRPJavaScriptLoader.XRPJavaScriptContext
 
-    let wallet = XRPJavaScriptLoader.load(ResourceNames.wallet, from: context)
-    generateRandomWalletFunction = XRPJavaScriptLoader.load(ResourceNames.generateRandomWallet, from: wallet)
-    generateWalletFromMnemonicFunction = XRPJavaScriptLoader.load(ResourceNames.generateWalletFromMnemonic, from: wallet)
-    generateWalletFromSeedFunction = XRPJavaScriptLoader.load(ResourceNames.generateWalletFromSeed, from: wallet)
-    getDefaultDerivationPathFunction = XRPJavaScriptLoader.load(ResourceNames.getDefaultDerivationPath, from: wallet)
+    walletClass = XRPJavaScriptLoader.load(ResourceNames.wallet, from: context)
   }
 
   /// Generate a new wallet.
@@ -44,7 +37,10 @@ internal class JavaScriptWalletFactory {
   /// - Returns: Artifacts of the generation process in a WalletGenerationResult.
   public func generateRandomWallet(isTest: Bool = false) -> JavaScriptWalletGenerationResult {
     let randomBytesHex = RandomBytesUtil.randomBytes(numBytes: 16).toHex()
-    let result = generateRandomWalletFunction.call(withArguments: [ randomBytesHex, isTest ])!
+    let result = walletClass.invokeMethod(
+      ResourceNames.generateRandomWallet,
+      withArguments: [ randomBytesHex, isTest ]
+    )!
     return result.toWalletGenerationResult()!
   }
 
@@ -64,7 +60,7 @@ internal class JavaScriptWalletFactory {
     }
     arguments.append(isTest)
 
-    let result = generateWalletFromMnemonicFunction.call(withArguments: arguments)!
+    let result = walletClass.invokeMethod(ResourceNames.generateWalletFromMnemonic, withArguments: arguments)!
     return result.toWallet()
   }
 
@@ -75,7 +71,7 @@ internal class JavaScriptWalletFactory {
   ///   - isTest: Whether the address is for use on a test network.
   /// - Returns: A new wallet if inputs were valid, otherwise nil.
   public func wallet(seed: String, isTest: Bool = false) -> JavaScriptWallet? {
-    let result = generateWalletFromSeedFunction.call(withArguments: [ seed, isTest ])!
+    let result = walletClass.invokeMethod(ResourceNames.generateWalletFromSeed, withArguments: [ seed, isTest ])!
     return result.toWallet()
   }
 }
