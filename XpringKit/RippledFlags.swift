@@ -3,13 +3,13 @@
 /// These are only flags which are utilized in Xpring SDK. For a complete list of flags, see:
 /// https://xrpl.org/transaction-common-fields.html#flags-field.
 public struct RippledFlags: OptionSet {
-  public let rawValue: Int
+  public let rawValue: Uint32
 
   /// Flag values.
-  public static let tfPartialPayment = 131_072
+  public static let tfPartialPayment = RippledFlags(rawValue: 131_072)
 
   /// Initialize a new RippledFlag
-  public init(rawValue: Int) {
+  public init(rawValue: UInt32) {
     self.rawValue = rawValue
   }
 }
