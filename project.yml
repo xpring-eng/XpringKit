@@ -14,9 +14,6 @@ targets:
       testTargets:
         - XpringKitTests_${platform}
       gatherCoverageData: true
-    postCompileScripts:
-      - script: swiftlint autocorrect --config .swiftlint.yml
-        name: SwiftLint
     dependencies:
       - carthage: SwiftProtobuf
       - carthage: SwiftGRPC

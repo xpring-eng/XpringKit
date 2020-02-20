@@ -39,6 +39,10 @@ jobs:
             chmod +x /usr/local/bin/protoc-gen-grpc-web
 
       - run:
+          name: "Lint Project"
+          command: swiftlint lint --config .swiftlint.yml
+
+      - run:
           name: "Generate Project - Carthage"
           command: ./scripts/clean_project.sh && ./scripts/generate_project.sh
           no_output_timeout: 30m
