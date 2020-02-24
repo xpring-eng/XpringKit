@@ -30,9 +30,7 @@ internal class JavaScriptUtils {
 
   /// Initialize a JavaScriptUtils object.
   public init() {
-    let context = XRPJavaScriptLoader.XRPJavaScriptContext
-
-    utilsClass = XRPJavaScriptLoader.load(ResourceNames.Classes.utils, from: context)
+    utilsClass = XRPJavaScriptLoader.load(ResourceNames.Classes.utils)
   }
 
   /// Check if the given address is a valid XRP address.

@@ -27,9 +27,7 @@ internal class JavaScriptWalletFactory {
 
   /// Initialize a new `JavaScriptWalletFactory`.
   public init() {
-    let context = XRPJavaScriptLoader.XRPJavaScriptContext
-
-    walletClass = XRPJavaScriptLoader.load(ResourceNames.Classes.wallet, from: context)
+    walletClass = XRPJavaScriptLoader.load(ResourceNames.Classes.wallet)
   }
 
   /// Generate a new wallet.
@@ -61,7 +59,7 @@ internal class JavaScriptWalletFactory {
     if let derivationPath = derivationPath {
       arguments.append(derivationPath)
     } else {
-      arguments.append(JSValue(undefinedIn: XRPJavaScriptLoader.XRPJavaScriptContext) as Any)
+      arguments.append(JSValue(undefinedIn: .xpringKit) as Any)
     }
     arguments.append(isTest)
 
