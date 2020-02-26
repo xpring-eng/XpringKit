@@ -5,39 +5,32 @@ import JavaScriptCore
 internal class JavaScriptUtils {
   /// String constants which refer to named JavaScript resources.
   private enum ResourceNames {
-    public static let address = "address"
-    public static let decodeXAddress = "decodeXAddress"
-    public static let encodeXAddress = "encodeXAddress"
-    public static let isValidAddress = "isValidAddress"
-    public static let isValidClassicAddress = "isValidClassicAddress"
-    public static let isValidXAddress = "isValidXAddress"
-    public static let tag = "tag"
-    public static let test = "test"
-    public static let transactionBlobToTransactionHash = "transactionBlobToTransactionHash"
-    public static let utils = "Utils"
+    public enum Classes {
+      public static let utils = "Utils"
+    }
+
+    public enum Methods {
+      public static let decodeXAddress = "decodeXAddress"
+      public static let encodeXAddress = "encodeXAddress"
+      public static let isValidAddress = "isValidAddress"
+      public static let isValidClassicAddress = "isValidClassicAddress"
+      public static let isValidXAddress = "isValidXAddress"
+      public static let transactionBlobToTransactionHash = "transactionBlobToTransactionHash"
+    }
+
+    public enum Properties {
+      public static let address = "address"
+      public static let tag = "tag"
+      public static let test = "test"
+    }
   }
 
   /// The JavaScript class.
-  private let utils: JSValue
-
-  /// Native JavaScript functions wrapped by this class.
-  // TODO(keefertaylor): This class should use the same pattern as JSWallet, where `invokeMethod` is called on a class object and direct function references are not kept. 
-  private let encodeXAddressFunction: JSValue
-  private let decodeXAddressFunction: JSValue
-  private let isValidAddressFunction: JSValue
-  private let isValidClassicAddressFunction: JSValue
-  private let isValidXAddressFunction: JSValue
+  private let utilsClass: JSValue
 
   /// Initialize a JavaScriptUtils object.
   public init() {
-    let context = XRPJavaScriptLoader.XRPJavaScriptContext
-
-    utils = XRPJavaScriptLoader.load(ResourceNames.utils, from: context)
-    encodeXAddressFunction = XRPJavaScriptLoader.load(ResourceNames.encodeXAddress, from: utils)
-    decodeXAddressFunction = XRPJavaScriptLoader.load(ResourceNames.decodeXAddress, from: utils)
-    isValidAddressFunction = XRPJavaScriptLoader.load(ResourceNames.isValidAddress, from: utils)
-    isValidClassicAddressFunction = XRPJavaScriptLoader.load(ResourceNames.isValidClassicAddress, from: utils)
-    isValidXAddressFunction = XRPJavaScriptLoader.load(ResourceNames.isValidXAddress, from: utils)
+    utilsClass = XRPJavaScriptLoader.load(ResourceNames.Classes.utils)
   }
 
   /// Check if the given address is a valid XRP address.
@@ -47,7 +40,7 @@ internal class JavaScriptUtils {
   /// - Parameter address: The address to validate.
   ///	- Returns: true if the address is valid, otherwise false.
   public func isValid(address: Address) -> Bool {
-    let result = isValidAddressFunction.call(withArguments: [ address ])!
+    let result = utilsClass.invokeMethod(ResourceNames.Methods.isValidAddress, withArguments: [ address ])!
     return result.toBool()
   }
 
@@ -58,7 +51,7 @@ internal class JavaScriptUtils {
   /// - Parameter address: An address to check.
   /// - Returns true if the address is a valid X-address, otherwise false.
   public func isValidXAddress(address: Address) -> Bool {
-    let result = isValidXAddressFunction.call(withArguments: [ address ])!
+    let result = utilsClass.invokeMethod(ResourceNames.Methods.isValidXAddress, withArguments: [ address ])!
     return result.toBool()
   }
 
@@ -69,7 +62,7 @@ internal class JavaScriptUtils {
   /// - Parameter address: An address to check.
   /// - Returns true if the address is a valid classic address, otherwise false.
   public func isValidClassicAddress(address: Address) -> Bool {
-    let result = isValidClassicAddressFunction.call(withArguments: [ address ])!
+    let result = utilsClass.invokeMethod(ResourceNames.Methods.isValidClassicAddress, withArguments: [ address ])!
     return result.toBool()
   }
 
@@ -89,7 +82,7 @@ internal class JavaScriptUtils {
     }
     arguments.append(isTest)
 
-    let result = encodeXAddressFunction.call(withArguments: arguments)!
+    let result = utilsClass.invokeMethod(ResourceNames.Methods.encodeXAddress, withArguments: arguments)!
     return result.isUndefined ? nil : result.toString()
   }
 
@@ -100,14 +93,14 @@ internal class JavaScriptUtils {
   /// - Parameter xAddress: The X-Address to decode.
   /// - Returns: a tuple containing the decoded address,  tag and bool indicating if the address was on a test network.
   public func decode(xAddress: Address) -> (classicAddress: String, tag: UInt32?, isTest: Bool)? {
-    let result = decodeXAddressFunction.call(withArguments: [ xAddress ])!
+    let result = utilsClass.invokeMethod(ResourceNames.Methods.decodeXAddress, withArguments: [ xAddress ])!
     guard !result.isUndefined else {
       return nil
     }
 
-    let classicAddress = XRPJavaScriptLoader.load(ResourceNames.address, from: result).toString()!
-    let isTest = XRPJavaScriptLoader.load(ResourceNames.test, from: result).toBool()
-    if let tag = XRPJavaScriptLoader.failableLoad(ResourceNames.tag, from: result) {
+    let classicAddress = XRPJavaScriptLoader.load(ResourceNames.Properties.address, from: result).toString()!
+    let isTest = XRPJavaScriptLoader.load(ResourceNames.Properties.test, from: result).toBool()
+    if let tag = XRPJavaScriptLoader.failableLoad(ResourceNames.Properties.tag, from: result) {
       return (classicAddress, tag.toUInt32(), isTest)
     }
     return (classicAddress, nil, isTest)
@@ -118,7 +111,10 @@ internal class JavaScriptUtils {
   /// - Parameter transactionBlobHex: A hexadecimal encoded transaction blob.
   /// - Returns: A hex encoded hash if the input was valid, otherwise undefined.
   public func toTransactionHash(transactionBlobHex: Hex) -> Hex? {
-    let result = utils.invokeMethod(ResourceNames.transactionBlobToTransactionHash, withArguments: [transactionBlobHex])!
+    let result = utilsClass.invokeMethod(
+      ResourceNames.Methods.transactionBlobToTransactionHash,
+      withArguments: [transactionBlobHex]
+    )!
     guard !result.isUndefined else {
       return nil
     }
