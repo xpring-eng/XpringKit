@@ -264,6 +264,44 @@ final class DefaultXpringClientTest: XCTestCase {
     // WHEN the transaction status is retrieved THEN an error is thrown.
     XCTAssertThrowsError(try xpringClient.getTransactionStatus(for: .testTransactionHash))
   }
+  
+  // MARK: - Account Existence
+
+  func testAccountExistsWithSuccess() {
+    // GIVEN a Xpring client which will successfully return a balance from a mocked network call.
+    let xpringClient = DefaultXpringClient(networkClient: FakeNetworkClient.successfulFakeNetworkClient)
+
+    // WHEN the existence of the account is checked.
+    guard let exists = try? xpringClient.accountExists(for: .testAddress) else {
+      XCTFail("Exception should not be thrown when checking existence of valid account")
+      return
+    }
+
+    // THEN the balance is correct.
+    XCTAssertEqual(exists, true)
+  }
+
+  func testAccountExistsWithClassicAddress() {
+    // GIVEN a classic address.
+    guard let classicAddressComponents = Utils.decode(xAddress: .testAddress) else {
+      XCTFail("Failed to decode X-Address.")
+      return
+    }
+    let xpringClient = DefaultXpringClient(networkClient: FakeNetworkClient.successfulFakeNetworkClient)
+
+    // WHEN the account's existence is checked THEN an error is thrown.
+    XCTAssertThrowsError(
+      try xpringClient.accountExists(for: classicAddressComponents.classicAddress),
+      "Exception not thrown"
+    ) { error in
+      guard
+        case .invalidInputs = error as? XRPLedgerError
+      else {
+        XCTFail("Error thrown was not invalid inputs error")
+        return
+      }
+    }
+  }
 
   // MARK: - Helpers
 
