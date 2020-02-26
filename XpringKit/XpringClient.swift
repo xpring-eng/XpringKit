@@ -50,6 +50,6 @@ public class XpringClient {
   /// - Throws: An error if there was a problem communicating with the XRP Ledger.
   /// - Returns: A boolean if the account is on the blockchain.
   public func accountExists(for address: Address) throws -> Bool {
-    return try decoratedClient.accountExists(for: <#T##Address#>)
+    return try decoratedClient.accountExists(for: address)
   }
 }

@@ -192,15 +192,15 @@ extension DefaultXpringClient: XpringClientDecorator {
       throw XRPLedgerError.invalidInputs("Please use the X-Address format. See: https://xrpaddress.info/.")
     }
     do {
-        try self.getBalance(for: <#T##Address#>)
-        return true
+      try self.getBalance(for: address)
+      return true
     } catch RPCError.callError(let callResult) {
-        if callResult.statusCode == StatusCode.notFound {
-            return false
-        }
-        throw RPCError.callError(callResult) // an RPCError with unexpected statusCode, re-throw
+      if callResult.statusCode == StatusCode.notFound {
+        return false
+      }
+      throw RPCError.callError(callResult) // otherwise, an RPCError with unexpected statusCode, re-throw
     } catch {
-        throw error // any other type of Error, re-throw
+      throw error // any other type of Error, re-throw
     }
   }
 }

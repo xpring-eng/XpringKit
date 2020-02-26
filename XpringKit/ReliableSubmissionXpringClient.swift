@@ -56,7 +56,7 @@ extension ReliableSubmissionXpringClient: XpringClientDecorator {
   }
     
   public func accountExists(for address: Address) throws -> Bool {
-    return try decoratedClient.accountExists(for: <#T##Address#>)
+    return try decoratedClient.accountExists(for: address)
   }
 
 }
