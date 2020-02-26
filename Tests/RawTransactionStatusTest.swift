@@ -5,20 +5,20 @@ class RawTransactionStatusTest: XCTestCase {
 
   // MARK: - Legacy Protocol Buffers
 
-  func testLegacyProtoIsBucketable () {
+  func testLegacyProtoIsFullPayment () {
     // GIVEN a legacy transaction status protocol buffer.
     let transactionStatus = Io_Xpring_TransactionStatus.testTransactionStatus
 
     // WHEN the transaction status is wrapped into a RawTransactionStatus object.
     let rawTransactionStatus = RawTransactionStatus(transactionStatus: transactionStatus)
 
-    // THEN the raw transaction status reports it is bucketable.
-    XCTAssertTrue(rawTransactionStatus.isBucketable)
+    // THEN the raw transaction status reports it is a full payment.
+    XCTAssertTrue(rawTransactionStatus.isFullPayment)
   }
 
   // MARK: - rippled Protocol Buffers
 
-  func testNonPaymentIsNotBucketable() {
+  func testNonPaymentIsFullPayment() {
     // GIVEN a getTxResponse which is not a payment.
     let getTxResponse = Rpc_V1_GetTxResponse.with {
       $0.transaction = Rpc_V1_Transaction.with {
@@ -29,11 +29,11 @@ class RawTransactionStatusTest: XCTestCase {
     // WHEN the response is wrapped into a RawTransactionStatus object.
     let rawTransactionStatus = RawTransactionStatus(getTxResponse: getTxResponse)
 
-    // THEN the raw transaction status reports it is not bucketable.
-    XCTAssertFalse(rawTransactionStatus.isBucketable)
+    // THEN the raw transaction status reports it is not a full payment.
+    XCTAssertFalse(rawTransactionStatus.isFullPayment)
   }
 
-  func testPartialPaymentIsNotBucketable() {
+  func testPartialPaymentIsFullPayment() {
     // GIVEN a getTxResponse which is a payment with the partial payment flags set.
     let getTxResponse = Rpc_V1_GetTxResponse.with {
       $0.transaction = Rpc_V1_Transaction.with {
@@ -45,11 +45,11 @@ class RawTransactionStatusTest: XCTestCase {
     // WHEN the response is wrapped into a RawTransactionStatus object.
     let rawTransactionStatus = RawTransactionStatus(getTxResponse: getTxResponse)
 
-    // THEN the raw transaction status reports it is not bucketable.
-    XCTAssertFalse(rawTransactionStatus.isBucketable)
+    // THEN the raw transaction status reports it is not a full payment.
+    XCTAssertFalse(rawTransactionStatus.isFullPayment)
   }
 
-  func testPaymentIsBucketable() {
+  func testPaymentIsFullPayment() {
     // GIVEN a getTxResponse which is a payment.
     let getTxResponse = Rpc_V1_GetTxResponse.with {
       $0.transaction = Rpc_V1_Transaction.with {
@@ -60,7 +60,7 @@ class RawTransactionStatusTest: XCTestCase {
     // WHEN the response is wrapped into a RawTransactionStatus object.
     let rawTransactionStatus = RawTransactionStatus(getTxResponse: getTxResponse)
 
-    // THEN the raw transaction status reports it is bucketable.
-    XCTAssertTrue(rawTransactionStatus.isBucketable)
+    // THEN the raw transaction status reports it is a full payment.
+    XCTAssertTrue(rawTransactionStatus.isFullPayment)
   }
 }

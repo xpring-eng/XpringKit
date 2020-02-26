@@ -10,14 +10,14 @@ public struct RawTransactionStatus {
   public let lastLedgerSequence: UInt32
 
   /// Whether Xpring SDK can bucket this transaction status into a TransactionStatus enum.
-  public let isBucketable: Bool
+  public let isFullPayment: Bool
 
   /// Initialize a new `RawTransactionStatus` from an `Io_Xpring_TransactionStatus`.
   public init(transactionStatus: Io_Xpring_TransactionStatus) {
     self.validated = transactionStatus.validated
     self.lastLedgerSequence = transactionStatus.lastLedgerSequence
     self.transactionStatusCode = transactionStatus.transactionStatusCode
-    self.isBucketable = true
+    self.isFullPayment = true
   }
 
   /// Initialize a new `RawTransactionStatus` from an `Rpc_V1_GetTxResponse`.
@@ -30,7 +30,7 @@ public struct RawTransactionStatus {
 
     let isPayment = RawTransactionStatus.isPayment(transaction: getTxResponse.transaction)
     let isPartialPayment = flags.contains(.tfPartialPayment)
-    self.isBucketable = isPayment && !isPartialPayment
+    self.isFullPayment = isPayment && !isPartialPayment
   }
 
   /// Check if a transaction is a Payment transaction.
