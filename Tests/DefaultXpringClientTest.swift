@@ -269,7 +269,7 @@ final class DefaultXpringClientTest: XCTestCase {
   // MARK: - Account Existence
 
   func testAccountExistsWithSuccess() {
-    // GIVEN a Xpring client which will successfully return a balance from a mocked network call.
+    // GIVEN a XpringClient which will successfully return a balance from a mocked network call.
     let xpringClient = DefaultXpringClient(networkClient: FakeNetworkClient.successfulFakeNetworkClient)
 
     // WHEN the existence of the account is checked.
@@ -305,7 +305,7 @@ final class DefaultXpringClientTest: XCTestCase {
   }
 
   func testAccountExistsWithNotFoundFailure() {
-    // GIVEN a Xpring client which will throw an RPCError w/ StatusCode notFound when a balance is requested.
+    // GIVEN a XpringClient which will throw an RPCError w/ StatusCode notFound when a balance is requested.
     let networkClient = FakeNetworkClient(
       accountInfoResult: .failure(RPCError.callError(CallResult(success: false, statusCode: StatusCode.notFound, statusMessage: "Mocked RPCError w/ notFound StatusCode", resultData: nil, initialMetadata: nil, trailingMetadata: nil))),
       feeResult: .success(.testGetFeeResponse),
@@ -325,7 +325,7 @@ final class DefaultXpringClientTest: XCTestCase {
   }
 
   func testAccountExistsWithUnknownFailure() {
-    // GIVEN a Xpring client which will throw an RPCError w/ StatusCode unknown when a balance is requested.
+    // GIVEN a XpringClient which will throw an RPCError w/ StatusCode unknown when a balance is requested.
     let networkClient = FakeNetworkClient(
       accountInfoResult: .failure(RPCError.callError(CallResult(success: false, statusCode: StatusCode.unknown, statusMessage: "Mocked RPCError w/ unknown StatusCode", resultData: nil, initialMetadata: nil, trailingMetadata: nil))),
       feeResult: .success(.testGetFeeResponse),

@@ -1,3 +1,4 @@
+import SwiftGRPC
 import XCTest
 @testable import XpringKit
 
@@ -281,5 +282,109 @@ final class LegacyDefaultXpringClientTest: XCTestCase {
 
     // WHEN the transaction status is retrieved THEN an error is thrown.
     XCTAssertThrowsError(try xpringClient.getTransactionStatus(for: .testTransactionHash))
+  }
+
+  // MARK: - Account Existence
+
+  func testAccountExistsWithSuccess() {
+    // GIVEN a XpringClient which will successfully return a balance from a mocked network call.
+    let xpringClient = LegacyDefaultXpringClient(networkClient: LegacyFakeNetworkClient.successfulFakeNetworkClient)
+
+    // WHEN the existence of the account is checked.
+    guard let exists = try? xpringClient.accountExists(for: .testAddress) else {
+      XCTFail("Exception should not be thrown when checking existence of valid account")
+      return
+    }
+
+    // THEN the balance is correct.
+    XCTAssertEqual(exists, true)
+  }
+
+  func testAccountExistsWithClassicAddress() {
+    // GIVEN a classic address.
+    guard let classicAddressComponents = Utils.decode(xAddress: .testAddress) else {
+      XCTFail("Failed to decode X-Address.")
+      return
+    }
+    let xpringClient = LegacyDefaultXpringClient(networkClient: LegacyFakeNetworkClient.successfulFakeNetworkClient)
+
+    // WHEN the account's existence is checked THEN an error is thrown.
+    XCTAssertThrowsError(
+      try xpringClient.accountExists(for: classicAddressComponents.classicAddress),
+      "Exception not thrown"
+    ) { error in
+      guard
+        case .invalidInputs = error as? XRPLedgerError
+      else {
+        XCTFail("Error thrown was not invalid inputs error")
+        return
+      }
+    }
+  }
+
+  func testAccountExistsWithNotFoundFailure() {
+    // GIVEN a Xpring client which will throw an RPCError w/ StatusCode notFound when a balance is requested.
+    let networkClient = LegacyFakeNetworkClient(
+      accountInfoResult: .failure(RPCError.callError(CallResult(success: false, statusCode: StatusCode.notFound, statusMessage: "Mocked RPCError w/ notFound StatusCode", resultData: nil, initialMetadata: nil, trailingMetadata: nil))),
+      feeResult: .success(.testFee),
+      submitSignedTransactionResult: .success(.testSubmitTransactionResponse),
+      latestValidatedLedgerSequenceResult: .success(.testLedgerSequence),
+      transactionStatusResult: .success(.testTransactionStatus)
+    )
+    let xpringClient = LegacyDefaultXpringClient(networkClient: networkClient)
+
+    // WHEN the existence of the account is checked
+    guard let exists = try? xpringClient.accountExists(for: .testAddress) else {
+      XCTFail("Exception should not be thrown when checking existence of non-existant account")
+      return
+    }
+
+    // THEN false is returned.
+    XCTAssertEqual(exists, false)
+  }
+
+  func testAccountExistsWithUnknownFailure() {
+    // GIVEN a Xpring client which will throw an RPCError w/ StatusCode unkonwn when a balance is requested.
+    let networkClient = LegacyFakeNetworkClient(
+      accountInfoResult: .failure(RPCError.callError(CallResult(success: false, statusCode: StatusCode.unknown, statusMessage: "Mocked RPCError w/ unknown StatusCode", resultData: nil, initialMetadata: nil, trailingMetadata: nil))),
+      feeResult: .success(.testFee),
+      submitSignedTransactionResult: .success(.testSubmitTransactionResponse),
+      latestValidatedLedgerSequenceResult: .success(.testLedgerSequence),
+      transactionStatusResult: .success(.testTransactionStatus)
+    )
+    let xpringClient = LegacyDefaultXpringClient(networkClient: networkClient)
+
+    // WHEN the existence of the account is checked
+    guard let exists = try? xpringClient.accountExists(for: .testAddress) else {
+      XCTFail("Exception should not be thrown when checking existence of non-existant account")
+      return
+    }
+
+    // THEN false is returned. (Legacy protos/gRPC use unknown error code in not-found situation.)
+    XCTAssertEqual(exists, false)
+  }
+
+  func testAccountExistsWithCancelledFailure() {
+    // GIVEN a Xpring client which will throw an RPCError w/ StatusCode cancelled when a balance is requested.
+    let networkClient = FakeNetworkClient(
+      accountInfoResult: .failure(RPCError.callError(CallResult(success: false, statusCode: StatusCode.cancelled, statusMessage: "Mocked RPCError w/ cancelled StatusCode", resultData: nil, initialMetadata: nil, trailingMetadata: nil))),
+      feeResult: .success(.testGetFeeResponse),
+      submitTransactionResult: .success(.testSubmitTransactionResponse),
+      transactionStatusResult: .success(.testGetTxResponse)
+    )
+    let xpringClient = DefaultXpringClient(networkClient: networkClient)
+
+    // WHEN the account's existence is checked THEN the error is re-thrown.
+    XCTAssertThrowsError(
+      try xpringClient.accountExists(for: .testAddress),
+      "Exception not thrown"
+    ) { error in
+      guard
+        case .callError = error as? RPCError
+      else {
+        XCTFail("Error thrown was not RPCError.callError")
+        return
+      }
+    }
   }
 }
