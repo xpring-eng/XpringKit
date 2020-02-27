@@ -265,6 +265,49 @@ final class DefaultXpringClientTest: XCTestCase {
     XCTAssertThrowsError(try xpringClient.getTransactionStatus(for: .testTransactionHash))
   }
 
+  func testTransactionStatusWithUnsupportedTransactionType() {
+    // GIVEN a XpringClient which will return a non-payment type transaction.
+    let getTxResponse = Rpc_V1_GetTxResponse.with {
+      $0.transaction = Rpc_V1_Transaction()
+    }
+    let networkClient = FakeNetworkClient(
+      accountInfoResult: .success(.testGetAccountInfoResponse),
+      feeResult: .success(.testGetFeeResponse),
+      submitTransactionResult: .success(.testSubmitTransactionResponse),
+      transactionStatusResult: .success(getTxResponse)
+    )
+    let xpringClient = DefaultXpringClient(networkClient: networkClient)
+
+    // WHEN the transaction status is retrieved.
+    let transactionStatus = try? xpringClient.getTransactionStatus(for: .testTransactionHash)
+
+    // THEN the status is UNKNOWN.
+    XCTAssertEqual(transactionStatus, .unknown)
+  }
+
+  func testTransactionStatusWithPartialPayment() {
+    // GIVEN a XpringClient which will return a partial payment type transaction.
+    let getTxResponse = Rpc_V1_GetTxResponse.with {
+      $0.transaction = Rpc_V1_Transaction.with {
+        $0.payment = Rpc_V1_Payment()
+        $0.flags = RippledFlags.tfPartialPayment.rawValue
+      }
+    }
+    let networkClient = FakeNetworkClient(
+      accountInfoResult: .success(.testGetAccountInfoResponse),
+      feeResult: .success(.testGetFeeResponse),
+      submitTransactionResult: .success(.testSubmitTransactionResponse),
+      transactionStatusResult: .success(getTxResponse)
+    )
+    let xpringClient = DefaultXpringClient(networkClient: networkClient)
+
+    // WHEN the transaction status is retrieved.
+    let transactionStatus = try? xpringClient.getTransactionStatus(for: .testTransactionHash)
+
+    // THEN the status is UNKNOWN.
+    XCTAssertEqual(transactionStatus, .unknown)
+  }
+
   // MARK: - Helpers
 
   private func makeGetTxResonse(validated: Bool, resultCode: String) -> Rpc_V1_GetTxResponse {
@@ -274,6 +317,9 @@ final class DefaultXpringClientTest: XCTestCase {
         $0.transactionResult = Rpc_V1_TransactionResult.with {
           $0.result = resultCode
         }
+      }
+      $0.transaction = Rpc_V1_Transaction.with {
+        $0.payment = Rpc_V1_Payment()
       }
     }
   }
