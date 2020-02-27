@@ -148,7 +148,7 @@ extension LegacyDefaultXpringClient: XpringClientDecorator {
     let transactionStatus = try networkClient.getTransactionStatus(transactionStatusRequest)
     return RawTransactionStatus(transactionStatus: transactionStatus)
   }
-  
+
   /// Check if an address exists on the XRP Ledger
   ///
   /// - Parameter address: The address to check the existence of.
