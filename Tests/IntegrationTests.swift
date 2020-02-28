@@ -47,7 +47,7 @@ final class IntegrationTests: XCTestCase {
       XCTFail("Failed retrieving transaction hash with error: \(error)")
     }
   }
-  
+
   func testAccountExists() {
       do {
         _ = try client.accountExists(for: Wallet.testWallet.address)
@@ -82,7 +82,7 @@ final class IntegrationTests: XCTestCase {
       XCTFail("Failed retrieving transaction hash with error: \(error)")
     }
   }
-  
+
   func testAccountExists_legacy() {
       do {
         _ = try legacyClient.accountExists(for: Wallet.testWallet.address)
