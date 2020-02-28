@@ -12,7 +12,7 @@ public class DefaultXpringClient {
   ///
   /// - Parameter grpcURL: A url for a remote gRPC service which will handle network requests.
   public convenience init(grpcURL: String) {
-    let networkClient = Rpc_V1_XRPLedgerAPIServiceServiceClient(address: grpcURL, secure: false)
+    let networkClient = Org_Xrpl_Rpc_V1_XRPLedgerAPIServiceServiceClient(address: grpcURL, secure: false)
     self.init(networkClient: networkClient)
   }
 
@@ -26,18 +26,18 @@ public class DefaultXpringClient {
   /// Retrieve the current fee to submit a transaction to the XRP Ledger.
   ///
   /// - Throws: An error if there was a problem communicating with the XRP Ledger.
-  /// - Returns: A `Rpc_V1_XRPDropsAmount` for submitting a transaction to the ledger.
-  private func getFee() throws -> Rpc_V1_XRPDropsAmount {
+  /// - Returns: A `Org_Xrpl_Rpc_V1_XRPDropsAmount` for submitting a transaction to the ledger.
+  private func getFee() throws -> Org_Xrpl_Rpc_V1_XRPDropsAmount {
     let getFeeResponse = try getRawFee()
-    return getFeeResponse.drops.minimumFee
+    return getFeeResponse.fee.minimumFee
   }
 
   /// Retrieve a raw `GetFeeResponse` from the XRP Ledger.
   ///
   /// - Throws: An error if there was a problem communicating with the XRP Ledger.
-  /// - Returns: A `Rpc_V1_XRPDropsAmount` for submitting a transaction to the ledger.
-  private func getRawFee() throws -> Rpc_V1_GetFeeResponse {
-    let getFeeRequest = Rpc_V1_GetFeeRequest()
+  /// - Returns: A `Org_Xrpl_Rpc_V1_XRPDropsAmount` for submitting a transaction to the ledger.
+  private func getRawFee() throws -> Org_Xrpl_Rpc_V1_GetFeeResponse {
+    let getFeeRequest = Org_Xrpl_Rpc_V1_GetFeeRequest()
     return try networkClient.getFee(getFeeRequest)
   }
 
@@ -45,10 +45,10 @@ public class DefaultXpringClient {
   ///
   /// - Parameter classicAddress: The classic address to retrieve info for.
   /// - Throws: An error if there was a problem communicating with the XRP Ledger.
-  /// - Returns: A `Rpc_V1_AccountInfo` for submitting a transaction to the ledger.
-  private func getAccountInfo(for classicAddress: Address) throws -> Rpc_V1_GetAccountInfoResponse {
-    let accountInfoRequest = Rpc_V1_GetAccountInfoRequest.with {
-      $0.account = Rpc_V1_AccountAddress.with {
+  /// - Returns: A `Org_Xrpl_Rpc_V1_AccountInfo` for submitting a transaction to the ledger.
+  private func getAccountInfo(for classicAddress: Address) throws -> Org_Xrpl_Rpc_V1_GetAccountInfoResponse {
+    let accountInfoRequest = Org_Xrpl_Rpc_V1_GetAccountInfoRequest.with {
+      $0.account = Org_Xrpl_Rpc_V1_AccountAddress.with {
         $0.address = classicAddress
       }
     }
@@ -71,7 +71,7 @@ extension DefaultXpringClient: XpringClientDecorator {
 
     let accountInfoResponse = try self.getAccountInfo(for: classicAddressComponents.classicAddress)
 
-    return accountInfoResponse.accountData.balance.drops
+    return accountInfoResponse.accountData.balance.value.xrpAmount.drops
   }
 
   /// Retrieve the transaction status for a given transaction hash.
@@ -109,40 +109,53 @@ extension DefaultXpringClient: XpringClientDecorator {
     let fee = try getFee()
     let lastValidatedLedgerSequence = try getLatestValidatedLedgerSequence()
 
-    var payment = Rpc_V1_Payment.with {
-      $0.destination = Rpc_V1_AccountAddress.with {
-        $0.address = destinationClassicAddressComponents.classicAddress
+    var payment = Org_Xrpl_Rpc_V1_Payment.with {
+      $0.destination = Org_Xrpl_Rpc_V1_Destination.with {
+        $0.value = Org_Xrpl_Rpc_V1_AccountAddress.with {
+          $0.address = destinationClassicAddressComponents.classicAddress
+        }
       }
-      $0.amount = Rpc_V1_CurrencyAmount.with {
-        $0.xrpAmount = Rpc_V1_XRPDropsAmount.with {
-          $0.drops = amount
+
+      $0.amount = Org_Xrpl_Rpc_V1_Amount.with {
+        $0.value = Org_Xrpl_Rpc_V1_CurrencyAmount.with {
+          $0.xrpAmount = Org_Xrpl_Rpc_V1_XRPDropsAmount.with {
+            $0.drops = amount
+          }
         }
       }
     }
     if let destinationTag = destinationClassicAddressComponents.tag {
-      payment.destinationTag = destinationTag
+      payment.destinationTag = Org_Xrpl_Rpc_V1_DestinationTag.with {
+        $0.value = destinationTag
+      }
     }
 
     let signingPublicKeyBytes = try sourceWallet.publicKey.toBytes()
 
-    let transaction = Rpc_V1_Transaction.with {
-      $0.account = Rpc_V1_AccountAddress.with {
-        $0.address = sourceClassicAddressComponents.classicAddress
+    let transaction = Org_Xrpl_Rpc_V1_Transaction.with {
+      $0.account = Org_Xrpl_Rpc_V1_Account.with {
+        $0.value = Org_Xrpl_Rpc_V1_AccountAddress.with {
+          $0.address = sourceClassicAddressComponents.classicAddress
+        }
       }
 
       $0.fee = fee
       $0.sequence = accountInfo.accountData.sequence
       $0.payment = payment
 
-      $0.lastLedgerSequence = lastValidatedLedgerSequence + maxLedgerVersionOffset
-      $0.signingPublicKey = Data(signingPublicKeyBytes)
+      $0.lastLedgerSequence = Org_Xrpl_Rpc_V1_LastLedgerSequence.with {
+        $0.value = lastValidatedLedgerSequence + maxLedgerVersionOffset
+      }
+      $0.signingPublicKey = Org_Xrpl_Rpc_V1_SigningPublicKey.with {
+        $0.value = Data(signingPublicKeyBytes)
+      }
     }
 
     guard let signedTransaction = Signer.sign(transaction, with: sourceWallet) else {
       throw XRPLedgerError.signingError
     }
 
-    let submitTransactionRequest = Rpc_V1_SubmitTransactionRequest.with {
+    let submitTransactionRequest = Org_Xrpl_Rpc_V1_SubmitTransactionRequest.with {
       $0.signedTransaction = Data(signedTransaction)
     }
 
@@ -170,12 +183,12 @@ extension DefaultXpringClient: XpringClientDecorator {
     let transactionHashBytes = try transactionHash.toBytes()
     let transactionHashData = Data(transactionHashBytes)
 
-    let request = Rpc_V1_GetTxRequest.with {
+    let request = Org_Xrpl_Rpc_V1_GetTransactionRequest.with {
       $0.hash = transactionHashData
     }
 
-    let getTxResponse = try self.networkClient.getTx(request)
+    let getTransactionResponse = try self.networkClient.getTransaction(request)
 
-    return RawTransactionStatus(getTxResponse: getTxResponse)
+    return RawTransactionStatus(getTransactionResponse: getTransactionResponse)
   }
 }
