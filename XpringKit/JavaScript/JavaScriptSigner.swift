@@ -34,7 +34,7 @@ internal class JavaScriptSigner {
   ///    - transaction: The `Transaction` to sign.
   ///    - wallet: The wallet which will sign the transaction.
   /// - Returns: A `SignedTransaction` derived from the inputs.
-  public func sign(_ transaction: Rpc_V1_Transaction, with wallet: Wallet) -> [UInt8]? {
+  public func sign(_ transaction: Org_Xrpl_Rpc_V1_Transaction, with wallet: Wallet) -> [UInt8]? {
     guard let javaScriptTransaction = javaScriptSerializer.serialize(transaction: transaction) else {
       return nil
     }
