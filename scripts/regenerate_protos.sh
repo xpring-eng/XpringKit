@@ -32,7 +32,7 @@ protoc \
     --swift_opt=Visibility=Public \
     --swift_out=$SWIFT_OUT_DIR \
     --swiftgrpc_out=$SWIFT_OUT_DIR \
-    ./rippled/src/ripple/proto/rpc/v1/*.proto
+    ./rippled/src/ripple/proto/org/xrpl/rpc/v1/*.proto
 
 echo "Regenerating Common Protos..."
 
