@@ -38,7 +38,7 @@ internal class JavaScriptSerializer {
   ///
   /// - Parameter transaction: The transaction to serialize.
   /// - Returns: A JSValue representing the transaction.
-  public func serialize(transaction: Rpc_V1_Transaction) -> JSValue? {
+  public func serialize(transaction: Org_Xrpl_Rpc_V1_Transaction) -> JSValue? {
     guard
       let transactionData = try? transaction.serializedData()
       else {

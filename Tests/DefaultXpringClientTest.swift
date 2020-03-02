@@ -53,7 +53,7 @@ final class DefaultXpringClientTest: XCTestCase {
       accountInfoResult: .failure(XpringKitTestError.mockFailure),
       feeResult: .success(.testGetFeeResponse),
       submitTransactionResult: .success(.testSubmitTransactionResponse),
-      transactionStatusResult: .success(.testGetTxResponse)
+      transactionStatusResult: .success(.testGetTransactionResponse)
     )
     let xpringClient = DefaultXpringClient(networkClient: networkClient)
 
@@ -124,7 +124,7 @@ final class DefaultXpringClientTest: XCTestCase {
       accountInfoResult: .failure(XpringKitTestError.mockFailure),
       feeResult: .success(.testGetFeeResponse),
       submitTransactionResult: .success(.testSubmitTransactionResponse),
-      transactionStatusResult: .success(.testGetTxResponse)
+      transactionStatusResult: .success(.testGetTransactionResponse)
     )
     let xpringClient = DefaultXpringClient(networkClient: networkClient)
 
@@ -142,7 +142,7 @@ final class DefaultXpringClientTest: XCTestCase {
       accountInfoResult: .success(.testGetAccountInfoResponse),
       feeResult: .failure(XpringKitTestError.mockFailure),
       submitTransactionResult: .success(.testSubmitTransactionResponse),
-      transactionStatusResult: .success(.testGetTxResponse)
+      transactionStatusResult: .success(.testGetTransactionResponse)
     )
     let xpringClient = DefaultXpringClient(networkClient: networkClient)
 
@@ -160,7 +160,7 @@ final class DefaultXpringClientTest: XCTestCase {
       accountInfoResult: .success(.testGetAccountInfoResponse),
       feeResult: .success(.testGetFeeResponse),
       submitTransactionResult: .failure(XpringKitTestError.mockFailure),
-      transactionStatusResult: .success(.testGetTxResponse)
+      transactionStatusResult: .success(.testGetTransactionResponse)
     )
     let xpringClient = DefaultXpringClient(networkClient: networkClient)
 
@@ -178,7 +178,10 @@ final class DefaultXpringClientTest: XCTestCase {
     // Iterate over different types of transaction status codes which represent failures.
     for transactionStatusCodeFailure in DefaultXpringClientTest.transactionStatusFailureCodes {
       // GIVEN a XpringClient which returns an unvalidated transaction and a failed transaction status code.
-      let transactionStatusResponse = makeGetTxResonse(validated: false, resultCode: transactionStatusCodeFailure)
+      let transactionStatusResponse = makeGetTransactionResponse(
+        validated: false,
+        resultCode: transactionStatusCodeFailure
+      )
       let networkClient = FakeNetworkClient(
         accountInfoResult: .success(.testGetAccountInfoResponse),
         feeResult: .success(.testGetFeeResponse),
@@ -197,7 +200,10 @@ final class DefaultXpringClientTest: XCTestCase {
 
   func testGetTransactionStatusWithUnvalidatedTransactionAndSuccessCode() {
     // GIVEN a XpringClient which returns an unvalidated transaction and a succeeded transaction status code.
-    let transactionStatusResponse = makeGetTxResonse(validated: false, resultCode: .testTransactionStatusCodeSuccess)
+    let transactionStatusResponse = makeGetTransactionResponse(
+      validated: false,
+      resultCode: .testTransactionStatusCodeSuccess
+    )
     let networkClient = FakeNetworkClient(
       accountInfoResult: .success(.testGetAccountInfoResponse),
       feeResult: .success(.testGetFeeResponse),
@@ -217,7 +223,10 @@ final class DefaultXpringClientTest: XCTestCase {
     // Iterate over different types of transaction status codes which represent failures.
     for transactionStatusCodeFailure in DefaultXpringClientTest.transactionStatusFailureCodes {
       // GIVEN a XpringClient which returns an unvalidated transaction and a failed transaction status code.
-      let transactionStatusResponse = makeGetTxResonse(validated: true, resultCode: transactionStatusCodeFailure)
+      let transactionStatusResponse = makeGetTransactionResponse(
+        validated: true,
+        resultCode: transactionStatusCodeFailure
+      )
       let networkClient = FakeNetworkClient(
         accountInfoResult: .success(.testGetAccountInfoResponse),
         feeResult: .success(.testGetFeeResponse),
@@ -236,7 +245,10 @@ final class DefaultXpringClientTest: XCTestCase {
 
   func testGetTransactionStatusWithValidatedTransactionAndSuccessCode() {
     // GIVEN a XpringClient which returns a validated transaction and a succeeded transaction status code.
-    let transactionStatusResponse = makeGetTxResonse(validated: true, resultCode: .testTransactionStatusCodeSuccess)
+    let transactionStatusResponse = makeGetTransactionResponse(
+      validated: true,
+      resultCode: .testTransactionStatusCodeSuccess
+    )
     let networkClient = FakeNetworkClient(
       accountInfoResult: .success(.testGetAccountInfoResponse),
       feeResult: .success(.testGetFeeResponse),
@@ -350,11 +362,14 @@ final class DefaultXpringClientTest: XCTestCase {
 
   // MARK: - Helpers
 
-  private func makeGetTxResonse(validated: Bool, resultCode: String) -> Rpc_V1_GetTxResponse {
-    return Rpc_V1_GetTxResponse.with {
+  private func makeGetTransactionResponse(
+    validated: Bool,
+    resultCode: String
+  ) -> Org_Xrpl_Rpc_V1_GetTransactionResponse {
+    return Org_Xrpl_Rpc_V1_GetTransactionResponse.with {
       $0.validated = validated
-      $0.meta = Rpc_V1_Meta.with {
-        $0.transactionResult = Rpc_V1_TransactionResult.with {
+      $0.meta = Org_Xrpl_Rpc_V1_Meta.with {
+        $0.transactionResult = Org_Xrpl_Rpc_V1_TransactionResult.with {
           $0.result = resultCode
         }
       }

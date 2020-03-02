@@ -48,7 +48,6 @@ extension ReliableSubmissionXpringClient: XpringClientDecorator {
       Thread.sleep(forTimeInterval: ledgerCloseTime)
 
       latestLedgerSequence = try getLatestValidatedLedgerSequence()
-      print("got latest: \(latestLedgerSequence)")
       transactionStatus = try getRawTransactionStatus(for: transactionHash)
     }
 

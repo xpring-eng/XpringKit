@@ -16,11 +16,11 @@ public struct RawTransactionStatus {
     self.transactionStatusCode = transactionStatus.transactionStatusCode
   }
 
-  /// Initialize a new `RawTransactionStatus` from an `Rpc_V1_GetTxResponse`.
-  public init(getTxResponse: Rpc_V1_GetTxResponse) {
-    self.validated = getTxResponse.validated
-    self.lastLedgerSequence = getTxResponse.transaction.lastLedgerSequence
-    self.transactionStatusCode = getTxResponse.meta.transactionResult.result
+  /// Initialize a new `RawTransactionStatus` from an `Org_Xrpl_Rpc_V1_GetTransactionResponse`.
+  public init(getTransactionResponse: Org_Xrpl_Rpc_V1_GetTransactionResponse) {
+    self.validated = getTransactionResponse.validated
+    self.lastLedgerSequence = getTransactionResponse.transaction.lastLedgerSequence.value
+    self.transactionStatusCode = getTransactionResponse.meta.transactionResult.result
   }
 }
 
