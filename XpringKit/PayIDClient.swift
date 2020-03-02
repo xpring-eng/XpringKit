@@ -3,7 +3,7 @@ import Foundation
 /// A client for Xpring's PayID service.
 ///
 /// Inputs to this class are always in X-Addresses
-/// - See:  TODO(keefertaylor): Link proper website here.
+/// - SeeAlso: https://xrpaddress.info/
 ///
 /// - Warning: This class is experimental and should not be used in production applications.
 public class PayIDClient {
