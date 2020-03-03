@@ -289,14 +289,15 @@ final class DefaultXpringClientTest: XCTestCase {
 
   func testTransactionStatusWithUnsupportedTransactionType() {
     // GIVEN a XpringClient which will return a non-payment type transaction.
-    let getTxResponse = Org_Xrpl_Rpc_V1_GetTransactionResponse.with {
+    let getTransactionResponse = Org_Xrpl_Rpc_V1_GetTransactionResponse.with {
       $0.transaction = Org_Xrpl_Rpc_V1_Transaction()
     }
     let networkClient = FakeNetworkClient(
       accountInfoResult: .success(.testGetAccountInfoResponse),
       feeResult: .success(.testGetFeeResponse),
       submitTransactionResult: .success(.testSubmitTransactionResponse),
-      transactionStatusResult: .success(getTxResponse)
+      transactionStatusResult: .success(getTransactionResponse),
+      transactionHistoryResult: .success(.testTransactionHistoryResponse)
     )
     let xpringClient = DefaultXpringClient(networkClient: networkClient)
 
@@ -309,7 +310,7 @@ final class DefaultXpringClientTest: XCTestCase {
 
   func testTransactionStatusWithPartialPayment() {
     // GIVEN a XpringClient which will return a partial payment type transaction.
-    let getTxResponse = Org_Xrpl_Rpc_V1_GetTransactionResponse.with {
+    let getTransactionResponse = Org_Xrpl_Rpc_V1_GetTransactionResponse.with {
       $0.transaction = Org_Xrpl_Rpc_V1_Transaction.with {
         $0.payment = Org_Xrpl_Rpc_V1_Payment()
         $0.flags = Org_Xrpl_Rpc_V1_Flags.with {
@@ -321,7 +322,8 @@ final class DefaultXpringClientTest: XCTestCase {
       accountInfoResult: .success(.testGetAccountInfoResponse),
       feeResult: .success(.testGetFeeResponse),
       submitTransactionResult: .success(.testSubmitTransactionResponse),
-      transactionStatusResult: .success(getTxResponse)
+      transactionStatusResult: .success(getTransactionResponse),
+      transactionHistoryResult: .success(.testTransactionHistoryResponse)
     )
     let xpringClient = DefaultXpringClient(networkClient: networkClient)
 
