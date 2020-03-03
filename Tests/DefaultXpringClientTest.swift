@@ -53,7 +53,8 @@ final class DefaultXpringClientTest: XCTestCase {
       accountInfoResult: .failure(XpringKitTestError.mockFailure),
       feeResult: .success(.testGetFeeResponse),
       submitTransactionResult: .success(.testSubmitTransactionResponse),
-      transactionStatusResult: .success(.testGetTransactionResponse)
+      transactionStatusResult: .success(.testGetTransactionResponse),
+      transactionHistoryResult: .success(.testTransactionHistoryResponse)
     )
     let xpringClient = DefaultXpringClient(networkClient: networkClient)
 
@@ -124,7 +125,8 @@ final class DefaultXpringClientTest: XCTestCase {
       accountInfoResult: .failure(XpringKitTestError.mockFailure),
       feeResult: .success(.testGetFeeResponse),
       submitTransactionResult: .success(.testSubmitTransactionResponse),
-      transactionStatusResult: .success(.testGetTransactionResponse)
+      transactionStatusResult: .success(.testGetTransactionResponse),
+      transactionHistoryResult: .success(.testTransactionHistoryResponse)
     )
     let xpringClient = DefaultXpringClient(networkClient: networkClient)
 
@@ -142,7 +144,8 @@ final class DefaultXpringClientTest: XCTestCase {
       accountInfoResult: .success(.testGetAccountInfoResponse),
       feeResult: .failure(XpringKitTestError.mockFailure),
       submitTransactionResult: .success(.testSubmitTransactionResponse),
-      transactionStatusResult: .success(.testGetTransactionResponse)
+      transactionStatusResult: .success(.testGetTransactionResponse),
+      transactionHistoryResult: .success(.testTransactionHistoryResponse)
     )
     let xpringClient = DefaultXpringClient(networkClient: networkClient)
 
@@ -160,7 +163,8 @@ final class DefaultXpringClientTest: XCTestCase {
       accountInfoResult: .success(.testGetAccountInfoResponse),
       feeResult: .success(.testGetFeeResponse),
       submitTransactionResult: .failure(XpringKitTestError.mockFailure),
-      transactionStatusResult: .success(.testGetTransactionResponse)
+      transactionStatusResult: .success(.testGetTransactionResponse),
+      transactionHistoryResult: .success(.testTransactionHistoryResponse)
     )
     let xpringClient = DefaultXpringClient(networkClient: networkClient)
 
@@ -186,7 +190,8 @@ final class DefaultXpringClientTest: XCTestCase {
         accountInfoResult: .success(.testGetAccountInfoResponse),
         feeResult: .success(.testGetFeeResponse),
         submitTransactionResult: .success(.testSubmitTransactionResponse),
-        transactionStatusResult: .success(transactionStatusResponse)
+        transactionStatusResult: .success(transactionStatusResponse),
+        transactionHistoryResult: .success(.testTransactionHistoryResponse)
       )
       let xpringClient = DefaultXpringClient(networkClient: networkClient)
 
@@ -208,7 +213,8 @@ final class DefaultXpringClientTest: XCTestCase {
       accountInfoResult: .success(.testGetAccountInfoResponse),
       feeResult: .success(.testGetFeeResponse),
       submitTransactionResult: .success(.testSubmitTransactionResponse),
-      transactionStatusResult: .success(transactionStatusResponse)
+      transactionStatusResult: .success(transactionStatusResponse),
+      transactionHistoryResult: .success(.testTransactionHistoryResponse)
     )
     let xpringClient = DefaultXpringClient(networkClient: networkClient)
 
@@ -231,7 +237,8 @@ final class DefaultXpringClientTest: XCTestCase {
         accountInfoResult: .success(.testGetAccountInfoResponse),
         feeResult: .success(.testGetFeeResponse),
         submitTransactionResult: .success(.testSubmitTransactionResponse),
-        transactionStatusResult: .success(transactionStatusResponse)
+        transactionStatusResult: .success(transactionStatusResponse),
+        transactionHistoryResult: .success(.testTransactionHistoryResponse)
       )
       let xpringClient = DefaultXpringClient(networkClient: networkClient)
 
@@ -253,7 +260,8 @@ final class DefaultXpringClientTest: XCTestCase {
       accountInfoResult: .success(.testGetAccountInfoResponse),
       feeResult: .success(.testGetFeeResponse),
       submitTransactionResult: .success(.testSubmitTransactionResponse),
-      transactionStatusResult: .success(transactionStatusResponse)
+      transactionStatusResult: .success(transactionStatusResponse),
+      transactionHistoryResult: .success(.testTransactionHistoryResponse)
     )
     let xpringClient = DefaultXpringClient(networkClient: networkClient)
 
@@ -270,7 +278,8 @@ final class DefaultXpringClientTest: XCTestCase {
       accountInfoResult: .success(.testGetAccountInfoResponse),
       feeResult: .success(.testGetFeeResponse),
       submitTransactionResult: .success(.testSubmitTransactionResponse),
-      transactionStatusResult: .failure(XpringKitTestError.mockFailure)
+      transactionStatusResult: .failure(XpringKitTestError.mockFailure),
+      transactionHistoryResult: .success(.testTransactionHistoryResponse)
     )
     let xpringClient = DefaultXpringClient(networkClient: networkClient)
 
@@ -280,14 +289,15 @@ final class DefaultXpringClientTest: XCTestCase {
 
   func testTransactionStatusWithUnsupportedTransactionType() {
     // GIVEN a XpringClient which will return a non-payment type transaction.
-    let getTxResponse = Org_Xrpl_Rpc_V1_GetTransactionResponse.with {
+    let getTransactionResponse = Org_Xrpl_Rpc_V1_GetTransactionResponse.with {
       $0.transaction = Org_Xrpl_Rpc_V1_Transaction()
     }
     let networkClient = FakeNetworkClient(
       accountInfoResult: .success(.testGetAccountInfoResponse),
       feeResult: .success(.testGetFeeResponse),
       submitTransactionResult: .success(.testSubmitTransactionResponse),
-      transactionStatusResult: .success(getTxResponse)
+      transactionStatusResult: .success(getTransactionResponse),
+      transactionHistoryResult: .success(.testTransactionHistoryResponse)
     )
     let xpringClient = DefaultXpringClient(networkClient: networkClient)
 
@@ -300,7 +310,7 @@ final class DefaultXpringClientTest: XCTestCase {
 
   func testTransactionStatusWithPartialPayment() {
     // GIVEN a XpringClient which will return a partial payment type transaction.
-    let getTxResponse = Org_Xrpl_Rpc_V1_GetTransactionResponse.with {
+    let getTransactionResponse = Org_Xrpl_Rpc_V1_GetTransactionResponse.with {
       $0.transaction = Org_Xrpl_Rpc_V1_Transaction.with {
         $0.payment = Org_Xrpl_Rpc_V1_Payment()
         $0.flags = Org_Xrpl_Rpc_V1_Flags.with {
@@ -312,7 +322,8 @@ final class DefaultXpringClientTest: XCTestCase {
       accountInfoResult: .success(.testGetAccountInfoResponse),
       feeResult: .success(.testGetFeeResponse),
       submitTransactionResult: .success(.testSubmitTransactionResponse),
-      transactionStatusResult: .success(getTxResponse)
+      transactionStatusResult: .success(getTransactionResponse),
+      transactionHistoryResult: .success(.testTransactionHistoryResponse)
     )
     let xpringClient = DefaultXpringClient(networkClient: networkClient)
 
@@ -367,7 +378,8 @@ final class DefaultXpringClientTest: XCTestCase {
       accountInfoResult: .failure(RPCError.callError(CallResult(success: false, statusCode: StatusCode.notFound, statusMessage: "Mocked RPCError w/ notFound StatusCode", resultData: nil, initialMetadata: nil, trailingMetadata: nil))),
       feeResult: .success(.testGetFeeResponse),
       submitTransactionResult: .success(.testSubmitTransactionResponse),
-      transactionStatusResult: .success(.testGetTransactionResponse)
+      transactionStatusResult: .success(.testGetTransactionResponse),
+      transactionHistoryResult: .success(.testTransactionHistoryResponse)
     )
     let xpringClient = DefaultXpringClient(networkClient: networkClient)
 
@@ -387,7 +399,8 @@ final class DefaultXpringClientTest: XCTestCase {
       accountInfoResult: .failure(RPCError.callError(CallResult(success: false, statusCode: StatusCode.unknown, statusMessage: "Mocked RPCError w/ unknown StatusCode", resultData: nil, initialMetadata: nil, trailingMetadata: nil))),
       feeResult: .success(.testGetFeeResponse),
       submitTransactionResult: .success(.testSubmitTransactionResponse),
-      transactionStatusResult: .success(.testGetTransactionResponse)
+      transactionStatusResult: .success(.testGetTransactionResponse),
+      transactionHistoryResult: .success(.testTransactionHistoryResponse)
     )
     let xpringClient = DefaultXpringClient(networkClient: networkClient)
 

@@ -27,4 +27,13 @@ public protocol NetworkClient {
   /// - Throws: An error if there was a problem communicating with the XRP Ledger.
   /// - Returns: A `TransactionStatus`  for the transactioon.
   func getTransaction(_ request: Org_Xrpl_Rpc_V1_GetTransactionRequest) throws -> Org_Xrpl_Rpc_V1_GetTransactionResponse
+
+  /// Retrieve account transaction history for an address on the XRP Ledger.
+  ///
+  /// - Parameter request: Request parameters for retrieving transaction history.
+  /// - Throws: An error if there was a problem communicating with the XRP Ledger.
+  /// - Returns: A response contiaining transaction history and metadata.
+  func getAccountTransactionHistory(
+    _ request: Org_Xrpl_Rpc_V1_GetAccountTransactionHistoryRequest
+  ) throws -> Org_Xrpl_Rpc_V1_GetAccountTransactionHistoryResponse
 }
