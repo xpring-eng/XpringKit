@@ -41,7 +41,7 @@ public class PayIDClient {
   /// - Note: The returned value will always be in an X-Address format.
   ///
   /// - Parameter payID The payID to resolve for an address.
-  /// - Returns: A resutl of the operation.
+  /// - Returns: A result of the operation.
   public func address(for payID: String) -> Result<String, PayIDClientError> {
     // TODO(keefertaylor): Implement reads from backend service.
     return .failure(.unimplemented)
