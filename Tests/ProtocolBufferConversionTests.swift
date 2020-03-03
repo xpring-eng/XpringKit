@@ -104,4 +104,13 @@ final class ProtocolBufferConversionTests: XCTestCase {
     // THEN there are multiple paths in the output.
     XCTAssertEqual(path.pathElements.count, 3)
   }
+
+  // MARK: - Org_Xrpl_Rpc_V1_IssuedCurrencyAmount
+
+  func testConvertIssuedCurrency() {
+    // GIVEN an issued currency protocol buffer
+    let issuedCurrencyProto = Org_Xrpl_Rpc_V1_IssuedCurrencyAmount.with {
+
+    }
+  }
 }
