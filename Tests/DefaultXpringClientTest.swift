@@ -291,7 +291,7 @@ final class DefaultXpringClientTest: XCTestCase {
     }
 
     // THEN the balance is correct.
-    XCTAssertEqual(exists, true)
+    XCTAssertTrue(exists)
   }
 
   func testAccountExistsWithClassicAddress() {
@@ -333,7 +333,7 @@ final class DefaultXpringClientTest: XCTestCase {
     }
 
     // THEN false is returned.
-    XCTAssertEqual(exists, false)
+    XCTAssertFalse(exists)
   }
 
   func testAccountExistsWithUnknownFailure() {
