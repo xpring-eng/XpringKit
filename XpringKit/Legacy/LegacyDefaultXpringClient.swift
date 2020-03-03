@@ -152,7 +152,7 @@ extension LegacyDefaultXpringClient: XpringClientDecorator {
   /// - Parameter address: The address to retrieve transaction history for.
   /// - Throws: An error if there was a problem communicating with the XRP Ledger.
   /// - Returns: An array of transactions for the account.
-  public func getTransactionHistory(for address: Address) throws -> [Transaction] {
+  public func getTransactionHistory(for address: Address) throws -> [XRPTransaction] {
     throw XRPLedgerError.unimplemented
   }
 }

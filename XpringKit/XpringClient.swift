@@ -43,4 +43,8 @@ public class XpringClient {
   public func send(_ amount: UInt64, to destinationAddress: Address, from sourceWallet: Wallet) throws -> TransactionHash {
     return try decoratedClient.send(amount, to: destinationAddress, from: sourceWallet)
   }
+
+  public func getTransactionHistory(for address: String) throws -> [XRPTransaction] {
+    return try decoratedClient.getTransactionHistory(for: address)
+  }
 }

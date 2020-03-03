@@ -42,5 +42,5 @@ public protocol XpringClientDecorator {
   /// - Parameter address: The address to retrieve transaction history for.
   /// - Throws: An error if there was a problem communicating with the XRP Ledger.
   /// - Returns: An array of transactions for the account.
-  func getTransactionHistory(for address: Address) throws -> [Transaction]
+  func getTransactionHistory(for address: Address) throws -> [XRPTransaction]
 }

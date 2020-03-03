@@ -74,4 +74,13 @@ final class IntegrationTests: XCTestCase {
       XCTFail("Failed retrieving transaction hash with error: \(error)")
     }
   }
+
+  func testGetTransactionHistory() {
+    do {
+      let transactionHistory = try client.getTransactionHistory(for: Utils.encode(classicAddress: "rDJFnv5sEfp42LMFiX3mVQKczpFTdxYDzM")!)
+      XCTAssert(transactionHistory.count > 0)
+    } catch {
+      XCTFail("Failed retrieving transaction hash with error: \(error)")
+    }
+  }
 }

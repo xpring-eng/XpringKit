@@ -299,7 +299,7 @@ final class DefaultXpringClientTest: XCTestCase {
     }
 
     // THEN the balance is correct.
-    XCTAssertEqual(transactions, .testTransactions)
+    XCTAssertEqual(transactions, [XRPTransaction].testTransactions)
   }
 
   func testGetTransactionHistoryWithClassicAddress() {
