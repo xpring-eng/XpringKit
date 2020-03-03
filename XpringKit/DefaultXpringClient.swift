@@ -198,9 +198,15 @@ extension DefaultXpringClient: XpringClientDecorator {
   /// - Throws: An error if there was a problem communicating with the XRP Ledger.
   /// - Returns: An array of transactions for the account.
   public func getTransactionHistory(for address: Address) throws -> [Transaction] {
+    guard
+      let classicAddressComponents = Utils.decode(xAddress: address),
+    else {
+      throw XRPLedgerError.invalidInputs("Please use the X-Address format. See: https://xrpaddress.info/.")
+    }
+
     let request = Org_Xrpl_Rpc_V1_GetAccountTransactionHistoryRequest.with {
       $0.account = Org_Xrpl_Rpc_V1_AccountAddress.with {
-        $0.address = address
+        $0.address = classicAddressComponents.classicAddress
       }
     }
 

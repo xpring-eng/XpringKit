@@ -312,7 +312,7 @@ final class DefaultXpringClientTest: XCTestCase {
 
     // WHEN the transaction history is requested THEN an error is thrown.
     XCTAssertThrowsError(
-      try xpringClient.getBalance(for: classicAddressComponents.classicAddress),
+      try xpringClient.getTransactionHistory(for: classicAddressComponents.classicAddress),
       "Exception not thrown"
     ) { error in
       guard
