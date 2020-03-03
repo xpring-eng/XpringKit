@@ -43,4 +43,13 @@ public class XpringClient {
   public func send(_ amount: UInt64, to destinationAddress: Address, from sourceWallet: Wallet) throws -> TransactionHash {
     return try decoratedClient.send(amount, to: destinationAddress, from: sourceWallet)
   }
+
+  /// Check if an address exists on the XRP Ledger
+  ///
+  /// - Parameter address: The address to check the existence of.
+  /// - Throws: An error if there was a problem communicating with the XRP Ledger.
+  /// - Returns: A boolean if the account is on the blockchain.
+  public func accountExists(for address: Address) throws -> Bool {
+    return try decoratedClient.accountExists(for: address)
+  }
 }
