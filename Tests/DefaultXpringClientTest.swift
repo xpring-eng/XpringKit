@@ -39,9 +39,9 @@ final class DefaultXpringClientTest: XCTestCase {
     ) { error in
       guard
         case .invalidInputs = error as? XRPLedgerError
-      else {
-        XCTFail("Error thrown was not invalid inputs error")
-        return
+        else {
+          XCTFail("Error thrown was not invalid inputs error")
+          return
       }
 
     }
@@ -61,9 +61,9 @@ final class DefaultXpringClientTest: XCTestCase {
     XCTAssertThrowsError(try xpringClient.getBalance(for: .testAddress), "Exception not thrown") { error in
       guard
         let _ = error as? XpringKitTestError
-      else {
-        XCTFail("Error thrown was not mocked error")
-        return
+        else {
+          XCTFail("Error thrown was not mocked error")
+          return
       }
     }
   }
@@ -280,8 +280,8 @@ final class DefaultXpringClientTest: XCTestCase {
 
   func testTransactionStatusWithUnsupportedTransactionType() {
     // GIVEN a XpringClient which will return a non-payment type transaction.
-    let getTxResponse = Rpc_V1_GetTxResponse.with {
-      $0.transaction = Rpc_V1_Transaction()
+    let getTxResponse = Org_Xrpl_Rpc_V1_GetTransactionResponse.with {
+      $0.transaction = Org_Xrpl_Rpc_V1_Transaction()
     }
     let networkClient = FakeNetworkClient(
       accountInfoResult: .success(.testGetAccountInfoResponse),
@@ -300,10 +300,12 @@ final class DefaultXpringClientTest: XCTestCase {
 
   func testTransactionStatusWithPartialPayment() {
     // GIVEN a XpringClient which will return a partial payment type transaction.
-    let getTxResponse = Rpc_V1_GetTxResponse.with {
-      $0.transaction = Rpc_V1_Transaction.with {
-        $0.payment = Rpc_V1_Payment()
-        $0.flags = RippledFlags.tfPartialPayment.rawValue
+    let getTxResponse = Org_Xrpl_Rpc_V1_GetTransactionResponse.with {
+      $0.transaction = Org_Xrpl_Rpc_V1_Transaction.with {
+        $0.payment = Org_Xrpl_Rpc_V1_Payment()
+        $0.flags = Org_Xrpl_Rpc_V1_Flags.with {
+          $0.value = RippledFlags.tfPartialPayment.rawValue
+        }
       }
     }
     let networkClient = FakeNetworkClient(
@@ -319,8 +321,9 @@ final class DefaultXpringClientTest: XCTestCase {
 
     // THEN the status is UNKNOWN.
     XCTAssertEqual(transactionStatus, .unknown)
+  }
 
-    // MARK: - Account Existence
+  // MARK: - Account Existence
 
   func testAccountExistsWithSuccess() {
     // GIVEN a XpringClient which will successfully return a balance from a mocked network call.
@@ -351,9 +354,9 @@ final class DefaultXpringClientTest: XCTestCase {
     ) { error in
       guard
         case .invalidInputs = error as? XRPLedgerError
-      else {
-        XCTFail("Error thrown was not invalid inputs error")
-        return
+        else {
+          XCTFail("Error thrown was not invalid inputs error")
+          return
       }
     }
   }
@@ -395,9 +398,9 @@ final class DefaultXpringClientTest: XCTestCase {
     ) { error in
       guard
         case .callError = error as? RPCError
-      else {
-        XCTFail("Error thrown was not RPCError.callError")
-        return
+        else {
+          XCTFail("Error thrown was not RPCError.callError")
+          return
       }
     }
   }
@@ -415,8 +418,8 @@ final class DefaultXpringClientTest: XCTestCase {
           $0.result = resultCode
         }
       }
-      $0.transaction = Rpc_V1_Transaction.with {
-        $0.payment = Rpc_V1_Payment()
+      $0.transaction = Org_Xrpl_Rpc_V1_Transaction.with {
+        $0.payment = Org_Xrpl_Rpc_V1_Payment()
       }
     }
   }
