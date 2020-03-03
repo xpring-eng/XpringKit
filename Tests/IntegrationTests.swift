@@ -48,6 +48,14 @@ final class IntegrationTests: XCTestCase {
     }
   }
 
+  func testAccountExists() {
+      do {
+        _ = try client.accountExists(for: Wallet.testWallet.address)
+      } catch {
+        XCTFail("Failed checking account existence with error: \(error)")
+      }
+  }
+
   // MARK: - Legacy Protocol Buffers
 
   func testGetBalance_legacy() {
@@ -73,5 +81,13 @@ final class IntegrationTests: XCTestCase {
     } catch {
       XCTFail("Failed retrieving transaction hash with error: \(error)")
     }
+  }
+
+  func testAccountExists_legacy() {
+      do {
+        _ = try legacyClient.accountExists(for: Wallet.testWallet.address)
+      } catch {
+        XCTFail("Failed checking account existence with error: \(error)")
+      }
   }
 }
