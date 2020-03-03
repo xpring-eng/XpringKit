@@ -146,4 +146,13 @@ extension LegacyDefaultXpringClient: XpringClientDecorator {
     let transactionStatus = try networkClient.getTransactionStatus(transactionStatusRequest)
     return RawTransactionStatus(transactionStatus: transactionStatus)
   }
+
+  /// Retrieve the transaction history for an address.
+  ///
+  /// - Parameter address: The address to retrieve transaction history for.
+  /// - Throws: An error if there was a problem communicating with the XRP Ledger.
+  /// - Returns: An array of transactions for the account.
+  func getTransactionHistory(for address: Address) throws -> [Transaction] {
+    throw XRPLedgerError.unimplemented
+  }
 }

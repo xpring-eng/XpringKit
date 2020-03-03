@@ -53,4 +53,8 @@ extension ReliableSubmissionXpringClient: XpringClientDecorator {
 
     return transactionHash
   }
+
+  public func getTransactionHistory(for address: Address) throws -> [Transaction] {
+    return try decoratedClient.getTransactionHistory(for: address)
+  }
 }
