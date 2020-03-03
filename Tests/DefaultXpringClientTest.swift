@@ -328,7 +328,7 @@ final class DefaultXpringClientTest: XCTestCase {
 
     // WHEN the existence of the account is checked
     guard let exists = try? xpringClient.accountExists(for: .testAddress) else {
-      XCTFail("Exception should not be thrown when checking existence of non-existant account")
+      XCTFail("Exception should not be thrown when checking existence of non-existent account")
       return
     }
 
