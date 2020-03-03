@@ -28,7 +28,7 @@ extension Org_Xrpl_Rpc_V1_IssuedCurrencyAmount {
     $0.issuer = Org_Xrpl_Rpc_V1_AccountAddress.with {
       $0.address = "r123"
     }
-    $0.value = "xrp"
+    $0.value = "15"
   }
 }
 
@@ -192,5 +192,80 @@ final class ProtocolBufferConversionTests: XCTestCase {
 
     // THEN the result is nil
     XCTAssertNil(currencyAmount)
+  }
+
+  // MARK: - Org_Xrpl_Rpc_V1_Payment
+
+  func testConvertPaymentWithAllFieldsSet() {
+    // GIVEN a pyament protocol buffer with all fields set.
+    let paymentProto = Org_Xrpl_Rpc_V1_Payment.with {
+      $0.amount = Org_Xrpl_Rpc_V1_Amount.with {
+        $0.value = Org_Xrpl_Rpc_V1_CurrencyAmount.with {
+          $0.issuedCurrencyAmount = .testIssuedCurrency
+        }
+      }
+      $0.destination = Org_Xrpl_Rpc_V1_Destination.with {
+        $0.value = Org_Xrpl_Rpc_V1_AccountAddress.with {
+          $0.address = "r123"
+        }
+      }
+      $0.destinationTag = Org_Xrpl_Rpc_V1_DestinationTag.with {
+        $0.value = 2
+      }
+      $0.deliverMin = Org_Xrpl_Rpc_V1_DeliverMin.with {
+        $0.value = Org_Xrpl_Rpc_V1_CurrencyAmount.with {
+          $0.xrpAmount = Org_Xrpl_Rpc_V1_XRPDropsAmount.with {
+            $0.drops = 10
+          }
+        }
+      }
+      $0.invoiceID = Org_Xrpl_Rpc_V1_InvoiceID.with {
+        $0.value = Data([1, 2, 3])
+      }
+      $0.paths = [
+        Org_Xrpl_Rpc_V1_Payment.Path.with {
+          $0.elements = [
+            Org_Xrpl_Rpc_V1_Payment.PathElement.with {
+              $0.account = Org_Xrpl_Rpc_V1_AccountAddress.with {
+                $0.address = "r456"
+              }
+            }
+          ]
+        },
+        Org_Xrpl_Rpc_V1_Payment.Path.with {
+          $0.elements = [
+            Org_Xrpl_Rpc_V1_Payment.PathElement.with {
+              $0.account = Org_Xrpl_Rpc_V1_AccountAddress.with {
+                $0.address = "r789"
+              }
+            },
+            Org_Xrpl_Rpc_V1_Payment.PathElement.with {
+              $0.account = Org_Xrpl_Rpc_V1_AccountAddress.with {
+                $0.address = "rabc"
+              }
+            }
+          ]
+        }
+      ]
+      $0.deliverMin = Org_Xrpl_Rpc_V1_DeliverMin.with {
+        $0.value = Org_Xrpl_Rpc_V1_CurrencyAmount.with {
+          $0.xrpAmount = Org_Xrpl_Rpc_V1_XRPDropsAmount.with {
+            $0.drops = 20
+          }
+        }
+      }
+    }
+
+    // WHEN the protocol buffer is converted to a native Swift type.
+    let payment = XRPPayment(payment: paymentProto)
+
+    // THEN the result is as expected.
+    XCTAssertEqual(payment?.amount, XRPCurrencyAmount(currencyAmount: paymentProto.amount.value))
+    XCTAssertEqual(payment?.destination, paymentProto.destination.value.address)
+    XCTAssertEqual(payment?.destinationTag, paymentProto.destinationTag.value)
+    XCTAssertEqual(payment?.deliverMin, XRPCurrencyAmount(currencyAmount: paymentProto.deliverMin.value))
+    XCTAssertEqual(payment?.invoiceID, paymentProto.invoiceID.value)
+    XCTAssertEqual(payment?.paths, paymentProto.paths.map { XRPPath(path: $0) })
+    XCTAssertEqual(payment?.deliverMin, XRPCurrencyAmount(currencyAmount: paymentProto.deliverMin.value))
   }
 }
