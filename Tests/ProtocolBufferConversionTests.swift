@@ -22,6 +22,16 @@ extension Org_Xrpl_Rpc_V1_Payment.PathElement {
   }
 }
 
+extension Org_Xrpl_Rpc_V1_IssuedCurrencyAmount {
+  static let testIssuedCurrency = Org_Xrpl_Rpc_V1_IssuedCurrencyAmount.with {
+    $0.currency = .testCurrency
+    $0.issuer = Org_Xrpl_Rpc_V1_AccountAddress.with {
+      $0.address = "r123"
+    }
+    $0.value = "xrp"
+  }
+}
+
 /// Tests conversion of protocol buffer to native Swift structs.
 final class ProtocolBufferConversionTests: XCTestCase {
 
@@ -129,18 +139,58 @@ final class ProtocolBufferConversionTests: XCTestCase {
 
   func testConvertIssuedCurrencyWithBadValue() {
     // GIVEN an issued currency protocol buffer with a non numeric value
-    let issuedCurrencyProto = Org_Xrpl_Rpc_V1_IssuedCurrencyAmount.with {
-      $0.currency = .testCurrency
-      $0.issuer = Org_Xrpl_Rpc_V1_AccountAddress.with {
-        $0.address = "r123"
-      }
-      $0.value = "xrp"
-    }
+    let issuedCurrencyProto = Org_Xrpl_Rpc_V1_IssuedCurrencyAmount.testIssuedCurrency
 
     // WHEN the protocol buffer is converted to a native Swift type.
     let issuedCurrency = XRPIssuedCurrency(issuedCurrency: issuedCurrencyProto)
 
     // THEN the result is nil
     XCTAssertNil(issuedCurrency)
+  }
+
+  // MARK: - Org_Xrpl_Rpc_V1_CurrencyAmount
+
+  func testConvertCurrencyAmountWithDrops() {
+    // GIVEN an currency amount protocol buffer with an XRP amount.
+    let drops: UInt64 = 10
+    let currencyAmountProto = Org_Xrpl_Rpc_V1_CurrencyAmount.with {
+      $0.xrpAmount = Org_Xrpl_Rpc_V1_XRPDropsAmount.with {
+        $0.drops = drops
+      }
+    }
+
+    // WHEN the protocol buffer is converted to a native Swift type.
+    let currencyAmount = XRPCurrencyAmount(currencyAmount: currencyAmountProto)
+
+    // THEN the result has drops set and no issued amount.
+    XCTAssertNil(currencyAmount?.issuedCurrency)
+    XCTAssertEqual(currencyAmount?.drops, drops)
+  }
+
+  func testConvertCurrencyAmountWithIssuedCurrency() {
+    // GIVEN an currency amount protocol buffer with an issued currency amount.
+    let currencyAmountProto = Org_Xrpl_Rpc_V1_CurrencyAmount.with {
+      $0.issuedCurrencyAmount = .testIssuedCurrency
+    }
+
+    // WHEN the protocol buffer is converted to a native Swift type.
+    let currencyAmount = XRPCurrencyAmount(currencyAmount: currencyAmountProto)
+
+    // THEN the result has an issued currency set and no amount.
+    XCTAssertEqual(currencyAmount?.issuedCurrency, XRPIssuedCurrency(issuedCurrency: .testIssuedCurrency))
+    XCTAssertNil(currencyAmount?.drops)
+  }
+
+  func testConvertCurrencyAmountWithBadInputs() {
+    // GIVEN an currency amount protocol buffer with no amounts
+    let currencyAmountProto = Org_Xrpl_Rpc_V1_CurrencyAmount.with {
+      $0.issuedCurrencyAmount = .testIssuedCurrency
+    }
+
+    // WHEN the protocol buffer is converted to a native Swift type.
+    let currencyAmount = XRPCurrencyAmount(currencyAmount: currencyAmountProto)
+
+    // THEN the result is nil
+    XCTAssertNil(currencyAmount)
   }
 }
