@@ -3,29 +3,27 @@ import JavaScriptCore
 internal class JavaScriptSerializer {
   /// String constants which refer to named JavaScript resources.
   private enum ResourceNames {
-    public static let deserializeBinary = "deserializeBinary"
-    public static let legacyTransaction = "LegacyTransaction"
-    public static let transaction = "Transaction"
-    public static let wallet = "Wallet"
-  }
+    public enum Classes {
+      public static let wallet = "Wallet"
+      public static let legacyTransaction = "LegacyTransaction"
+      public static let transaction = "Transaction"
+    }
 
-  /// References to JavaScript functions.
-  private let deserializeTransactionFunction: JSValue
-  private let deserializeLegacyTransactionFunction: JSValue
+    public enum Methods {
+      public static let deserializeBinary = "deserializeBinary"
+    }
+  }
 
   /// References to JavaScript classes.
   private let walletClass: JSValue
+  private let transactionClass: JSValue
+  private let legacyTransactionClass: JSValue
 
   /// Initialize a new JavaScriptSerializer.
-  // TODO(keefertaylor): Context needs to get injected so that objects don't move between contexts. Remove this injection when Context exists as a shared Singleton.
-  public init(context: JSContext) {
-    walletClass = XRPJavaScriptLoader.load(ResourceNames.wallet, from: context)
-
-    let transactionClass = XRPJavaScriptLoader.load(ResourceNames.transaction, from: context)
-    deserializeTransactionFunction = XRPJavaScriptLoader.load(ResourceNames.deserializeBinary, from: transactionClass)
-
-    let legacyTransactionClass = XRPJavaScriptLoader.load(ResourceNames.legacyTransaction, from: context)
-    deserializeLegacyTransactionFunction = XRPJavaScriptLoader.load(ResourceNames.deserializeBinary, from: legacyTransactionClass)
+  public init() {
+    walletClass = XRPJavaScriptLoader.load(ResourceNames.Classes.wallet)
+    transactionClass = XRPJavaScriptLoader.load(ResourceNames.Classes.transaction)
+    legacyTransactionClass = XRPJavaScriptLoader.load(ResourceNames.Classes.legacyTransaction)
   }
 
   /// Serialize a `Wallet` to a JavaScript object.
@@ -40,14 +38,14 @@ internal class JavaScriptSerializer {
   ///
   /// - Parameter transaction: The transaction to serialize.
   /// - Returns: A JSValue representing the transaction.
-  public func serialize(transaction: Rpc_V1_Transaction) -> JSValue? {
+  public func serialize(transaction: Org_Xrpl_Rpc_V1_Transaction) -> JSValue? {
     guard
       let transactionData = try? transaction.serializedData()
       else {
         return nil
     }
     let transactionBytes = [UInt8](transactionData)
-    return deserializeTransactionFunction.call(withArguments: [transactionBytes])!
+    return transactionClass.invokeMethod(ResourceNames.Methods.deserializeBinary, withArguments: [transactionBytes])!
   }
 
   /// Serialize a legacy transaction to a JavaScript object.
@@ -61,6 +59,9 @@ internal class JavaScriptSerializer {
         return nil
     }
     let transactionBytes = [UInt8](transactionData)
-    return deserializeLegacyTransactionFunction.call(withArguments: [transactionBytes])!
+    return legacyTransactionClass.invokeMethod(
+      ResourceNames.Methods.deserializeBinary,
+      withArguments: [transactionBytes]
+    )!
   }
 }

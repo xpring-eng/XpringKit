@@ -6,6 +6,6 @@ extension FakeNetworkClient {
     accountInfoResult: .success(.testGetAccountInfoResponse),
     feeResult: .success(.testGetFeeResponse),
     submitTransactionResult: .success(.testSubmitTransactionResponse),
-    transactionStatusResult: .success(.testGetTxResponse)
+    transactionStatusResult: .success(.testGetTransactionResponse)
   )
 }

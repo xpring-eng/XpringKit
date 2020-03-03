@@ -3,16 +3,16 @@ import XpringKit
 /// A fake network client which fakes calls.
 public class FakeNetworkClient {
   /// Result of a call to getAccountInfo
-  private let accountInfoResult: Result<Rpc_V1_GetAccountInfoResponse, Error>
+  private let accountInfoResult: Result<Org_Xrpl_Rpc_V1_GetAccountInfoResponse, Error>
 
   /// Result of a call to getFee
-  private let feeResult: Result<Rpc_V1_GetFeeResponse, Error>
+  private let feeResult: Result<Org_Xrpl_Rpc_V1_GetFeeResponse, Error>
 
   /// Result of a call to submitSignedTransaction.
-  private let submitTransactionResult: Result<Rpc_V1_SubmitTransactionResponse, Error>
+  private let submitTransactionResult: Result<Org_Xrpl_Rpc_V1_SubmitTransactionResponse, Error>
 
   /// Result of a call to getTransactionStatus.
-  private let transactionStatusResult: Result<Rpc_V1_GetTxResponse, Error>
+  private let transactionStatusResult: Result<Org_Xrpl_Rpc_V1_GetTransactionResponse, Error>
 
   /// Initialize a new fake NetworkClient.
   ///
@@ -22,10 +22,10 @@ public class FakeNetworkClient {
   ///   - submitSignedTransactionResult: A result which will be used to determine the behavior of submitSignedTransaction().
   ///   - transactionStatusResult: A result which will be used to determine behavior of getTransactionStatus().
   public init(
-    accountInfoResult: Result<Rpc_V1_GetAccountInfoResponse, Error>,
-    feeResult: Result<Rpc_V1_GetFeeResponse, Error>,
-    submitTransactionResult: Result<Rpc_V1_SubmitTransactionResponse, Error>,
-    transactionStatusResult: Result<Rpc_V1_GetTxResponse, Error>
+    accountInfoResult: Result<Org_Xrpl_Rpc_V1_GetAccountInfoResponse, Error>,
+    feeResult: Result<Org_Xrpl_Rpc_V1_GetFeeResponse, Error>,
+    submitTransactionResult: Result<Org_Xrpl_Rpc_V1_SubmitTransactionResponse, Error>,
+    transactionStatusResult: Result<Org_Xrpl_Rpc_V1_GetTransactionResponse, Error>
   ) {
     self.accountInfoResult = accountInfoResult
     self.feeResult = feeResult
@@ -36,7 +36,7 @@ public class FakeNetworkClient {
 
 /// Conform to NetworkClient protocol, returning faked results.
 extension FakeNetworkClient: NetworkClient {
-  public func getAccountInfo(_ request: Rpc_V1_GetAccountInfoRequest) throws -> Rpc_V1_GetAccountInfoResponse {
+  public func getAccountInfo(_ request: Org_Xrpl_Rpc_V1_GetAccountInfoRequest) throws -> Org_Xrpl_Rpc_V1_GetAccountInfoResponse {
     switch accountInfoResult {
     case .success(let accountInfo):
       return accountInfo
@@ -45,7 +45,7 @@ extension FakeNetworkClient: NetworkClient {
     }
   }
 
-  public func getFee(_ request: Rpc_V1_GetFeeRequest) throws -> Rpc_V1_GetFeeResponse {
+  public func getFee(_ request: Org_Xrpl_Rpc_V1_GetFeeRequest) throws -> Org_Xrpl_Rpc_V1_GetFeeResponse {
     switch feeResult {
     case .success(let fee):
       return fee
@@ -54,7 +54,7 @@ extension FakeNetworkClient: NetworkClient {
     }
   }
 
-  public func submitTransaction(_ request: Rpc_V1_SubmitTransactionRequest) throws -> Rpc_V1_SubmitTransactionResponse {
+  public func submitTransaction(_ request: Org_Xrpl_Rpc_V1_SubmitTransactionRequest) throws -> Org_Xrpl_Rpc_V1_SubmitTransactionResponse {
     switch submitTransactionResult {
     case .success(let result):
       return result
@@ -63,7 +63,9 @@ extension FakeNetworkClient: NetworkClient {
     }
   }
 
-  public func getTx(_ request: Rpc_V1_GetTxRequest) throws -> Rpc_V1_GetTxResponse {
+  public func getTransaction(
+    _ request: Org_Xrpl_Rpc_V1_GetTransactionRequest
+  ) throws -> Org_Xrpl_Rpc_V1_GetTransactionResponse {
     switch transactionStatusResult {
     case .success(let result):
       return result

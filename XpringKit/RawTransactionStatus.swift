@@ -20,21 +20,21 @@ public struct RawTransactionStatus {
     self.isFullPayment = true
   }
 
-  /// Initialize a new `RawTransactionStatus` from an `Rpc_V1_GetTxResponse`.
-  public init(getTxResponse: Rpc_V1_GetTxResponse) {
-    self.validated = getTxResponse.validated
-    self.lastLedgerSequence = getTxResponse.transaction.lastLedgerSequence
-    self.transactionStatusCode = getTxResponse.meta.transactionResult.result
+  /// Initialize a new `RawTransactionStatus` from an `Org_Xrpl_Rpc_V1_GetTransactionResponse`.
+  public init(getTransactionResponse: Org_Xrpl_Rpc_V1_GetTransactionResponse) {
+    self.validated = getTransactionResponse.validated
+    self.lastLedgerSequence = getTransactionResponse.transaction.lastLedgerSequence.value
+    self.transactionStatusCode = getTransactionResponse.meta.transactionResult.result
 
-    let flags = RippledFlags(rawValue: getTxResponse.transaction.flags)
+    let flags = RippledFlags(rawValue: getTransactionResponse.transaction.flags.value)
 
-    let isPayment = RawTransactionStatus.isPayment(transaction: getTxResponse.transaction)
+    let isPayment = RawTransactionStatus.isPayment(transaction: getTransactionResponse.transaction)
     let isPartialPayment = flags.contains(.tfPartialPayment)
     self.isFullPayment = isPayment && !isPartialPayment
   }
 
   /// Check if a transaction is a Payment transaction.
-  private static func isPayment(transaction: Rpc_V1_Transaction) -> Bool {
+  private static func isPayment(transaction: Org_Xrpl_Rpc_V1_Transaction) -> Bool {
     if
       let transactionData = transaction.transactionData,
       case .payment = transactionData
