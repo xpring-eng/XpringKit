@@ -199,7 +199,7 @@ extension DefaultXpringClient: XpringClientDecorator {
   /// - Returns: An array of transactions for the account.
   public func getTransactionHistory(for address: Address) throws -> [Transaction] {
     guard
-      let classicAddressComponents = Utils.decode(xAddress: address),
+      let classicAddressComponents = Utils.decode(xAddress: address)
     else {
       throw XRPLedgerError.invalidInputs("Please use the X-Address format. See: https://xrpaddress.info/.")
     }
