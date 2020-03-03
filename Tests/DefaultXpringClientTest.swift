@@ -52,7 +52,8 @@ final class DefaultXpringClientTest: XCTestCase {
       accountInfoResult: .failure(XpringKitTestError.mockFailure),
       feeResult: .success(.testGetFeeResponse),
       submitTransactionResult: .success(.testSubmitTransactionResponse),
-      transactionStatusResult: .success(.testGetTransactionResponse)
+      transactionStatusResult: .success(.testGetTransactionResponse),
+      transactionHistoryResult: .success(.testTransactionHistoryResponse)
     )
     let xpringClient = DefaultXpringClient(networkClient: networkClient)
 
@@ -123,7 +124,8 @@ final class DefaultXpringClientTest: XCTestCase {
       accountInfoResult: .failure(XpringKitTestError.mockFailure),
       feeResult: .success(.testGetFeeResponse),
       submitTransactionResult: .success(.testSubmitTransactionResponse),
-      transactionStatusResult: .success(.testGetTransactionResponse)
+      transactionStatusResult: .success(.testGetTransactionResponse),
+      transactionHistoryResult: .success(.testTransactionHistoryResponse)
     )
     let xpringClient = DefaultXpringClient(networkClient: networkClient)
 
@@ -141,7 +143,8 @@ final class DefaultXpringClientTest: XCTestCase {
       accountInfoResult: .success(.testGetAccountInfoResponse),
       feeResult: .failure(XpringKitTestError.mockFailure),
       submitTransactionResult: .success(.testSubmitTransactionResponse),
-      transactionStatusResult: .success(.testGetTransactionResponse)
+      transactionStatusResult: .success(.testGetTransactionResponse),
+      transactionHistoryResult: .success(.testTransactionHistoryResponse)
     )
     let xpringClient = DefaultXpringClient(networkClient: networkClient)
 
@@ -159,7 +162,8 @@ final class DefaultXpringClientTest: XCTestCase {
       accountInfoResult: .success(.testGetAccountInfoResponse),
       feeResult: .success(.testGetFeeResponse),
       submitTransactionResult: .failure(XpringKitTestError.mockFailure),
-      transactionStatusResult: .success(.testGetTransactionResponse)
+      transactionStatusResult: .success(.testGetTransactionResponse),
+      transactionHistoryResult: .success(.testTransactionHistoryResponse)
     )
     let xpringClient = DefaultXpringClient(networkClient: networkClient)
 
@@ -185,7 +189,8 @@ final class DefaultXpringClientTest: XCTestCase {
         accountInfoResult: .success(.testGetAccountInfoResponse),
         feeResult: .success(.testGetFeeResponse),
         submitTransactionResult: .success(.testSubmitTransactionResponse),
-        transactionStatusResult: .success(transactionStatusResponse)
+        transactionStatusResult: .success(transactionStatusResponse),
+        transactionHistoryResult: .success(.testTransactionHistoryResponse)
       )
       let xpringClient = DefaultXpringClient(networkClient: networkClient)
 
@@ -207,7 +212,8 @@ final class DefaultXpringClientTest: XCTestCase {
       accountInfoResult: .success(.testGetAccountInfoResponse),
       feeResult: .success(.testGetFeeResponse),
       submitTransactionResult: .success(.testSubmitTransactionResponse),
-      transactionStatusResult: .success(transactionStatusResponse)
+      transactionStatusResult: .success(transactionStatusResponse),
+      transactionHistoryResult: .success(.testTransactionHistoryResponse)
     )
     let xpringClient = DefaultXpringClient(networkClient: networkClient)
 
@@ -230,7 +236,8 @@ final class DefaultXpringClientTest: XCTestCase {
         accountInfoResult: .success(.testGetAccountInfoResponse),
         feeResult: .success(.testGetFeeResponse),
         submitTransactionResult: .success(.testSubmitTransactionResponse),
-        transactionStatusResult: .success(transactionStatusResponse)
+        transactionStatusResult: .success(transactionStatusResponse),
+        transactionHistoryResult: .success(.testTransactionHistoryResponse)
       )
       let xpringClient = DefaultXpringClient(networkClient: networkClient)
 
@@ -252,7 +259,8 @@ final class DefaultXpringClientTest: XCTestCase {
       accountInfoResult: .success(.testGetAccountInfoResponse),
       feeResult: .success(.testGetFeeResponse),
       submitTransactionResult: .success(.testSubmitTransactionResponse),
-      transactionStatusResult: .success(transactionStatusResponse)
+      transactionStatusResult: .success(transactionStatusResponse),
+      transactionHistoryResult: .success(.testTransactionHistoryResponse)
     )
     let xpringClient = DefaultXpringClient(networkClient: networkClient)
 
@@ -269,7 +277,8 @@ final class DefaultXpringClientTest: XCTestCase {
       accountInfoResult: .success(.testGetAccountInfoResponse),
       feeResult: .success(.testGetFeeResponse),
       submitTransactionResult: .success(.testSubmitTransactionResponse),
-      transactionStatusResult: .failure(XpringKitTestError.mockFailure)
+      transactionStatusResult: .failure(XpringKitTestError.mockFailure),
+      transactionHistoryResult: .success(.testTransactionHistoryResponse)
     )
     let xpringClient = DefaultXpringClient(networkClient: networkClient)
 
