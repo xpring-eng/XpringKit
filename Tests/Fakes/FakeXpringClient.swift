@@ -11,6 +11,7 @@ public class FakeXpringClient {
   public var latestValidatedLedgerValue: UInt32
   public var rawTransactionStatusValue: RawTransactionStatus
   public var transactionHistoryValue: [Transaction]
+  public var accountExistsValue: Bool
 
   public init(
     getBalanceValue: UInt64,
@@ -18,7 +19,8 @@ public class FakeXpringClient {
     sendValue: TransactionHash,
     latestValidatedLedgerValue: UInt32,
     rawTransactionStatusValue: RawTransactionStatus,
-    transactionHistoryValue: [Transaction]
+    transactionHistoryValue: [Transaction],
+    accountExistsValue: Bool
   ) {
     self.getBalanceValue = getBalanceValue
     self.transactionStatusValue = transactionStatusValue
@@ -26,6 +28,7 @@ public class FakeXpringClient {
     self.latestValidatedLedgerValue = latestValidatedLedgerValue
     self.rawTransactionStatusValue = rawTransactionStatusValue
     self.transactionHistoryValue = transactionHistoryValue
+    self.accountExistsValue = accountExistsValue
   }
 }
 
@@ -52,5 +55,9 @@ extension FakeXpringClient: XpringClientDecorator {
 
   public func getTransactionHistory(for address: Address) throws -> [Transaction] {
     return transactionHistoryValue
+  }
+
+  public func accountExists(for address: Address) throws -> Bool {
+    return accountExistsValue
   }
 }
