@@ -12,25 +12,33 @@ class SignerTests: XCTestCase {
       let sequence: UInt32 = 1
       let account = "X7vjQVCddnQ7GCESYnYR3EdpzbcoAMbPw7s2xv8YQs94tv4"
 
-      let transaction = Rpc_V1_Transaction.with {
-        $0.account = Rpc_V1_AccountAddress.with {
-          $0.address = account
+      let transaction = Org_Xrpl_Rpc_V1_Transaction.with {
+        $0.account = Org_Xrpl_Rpc_V1_Account.with {
+          $0.value = Org_Xrpl_Rpc_V1_AccountAddress.with {
+            $0.address = account
+          }
         }
 
-        $0.fee = Rpc_V1_XRPDropsAmount.with {
+        $0.fee = Org_Xrpl_Rpc_V1_XRPDropsAmount.with {
           $0.drops = fee
         }
 
-        $0.sequence = sequence
+        $0.sequence = Org_Xrpl_Rpc_V1_Sequence.with {
+          $0.value = sequence
+        }
 
-        $0.payment = Rpc_V1_Payment.with {
-          $0.destination = Rpc_V1_AccountAddress.with {
-            $0.address = destination
+        $0.payment = Org_Xrpl_Rpc_V1_Payment.with {
+          $0.destination = Org_Xrpl_Rpc_V1_Destination.with {
+            $0.value = Org_Xrpl_Rpc_V1_AccountAddress.with {
+              $0.address = destination
+            }
           }
 
-          $0.amount = Rpc_V1_CurrencyAmount.with {
-            $0.xrpAmount = Rpc_V1_XRPDropsAmount.with {
-              $0.drops = value
+          $0.amount = Org_Xrpl_Rpc_V1_Amount.with {
+            $0.value = Org_Xrpl_Rpc_V1_CurrencyAmount.with {
+              $0.xrpAmount = Org_Xrpl_Rpc_V1_XRPDropsAmount.with {
+                $0.drops = value
+              }
             }
           }
         }

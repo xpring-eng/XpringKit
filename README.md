@@ -13,11 +13,6 @@ XpringKit provides the following features:
 - Sending XRP payments
 
 ## Installation
-
-XpringKit utilizes two components to access the Xpring platform:
-1) The XpringKit client side library (This library)
-2) A server side component that handles requests from this library and proxies them to an XRP node
-
 ### Client Side Library
 
 #### Carthage
@@ -35,15 +30,19 @@ XpringKit is available via [CocoaPods](https://cocoapods.org/). Simply add the f
 pod 'XpringKit'
 ```
 
-### Server Side Component
-The server side component sends client-side requests to an XRP Node.
+### rippled Node
 
-To get developers started right away, Xpring currently provides the server side component as a hosted service, which proxies requests from client side libraries to a a hosted XRP Node. Developers can reach the endpoint at:
-```
-grpc.xpring.tech:80
-```
+Xpring SDK needs to communicate with a rippled node which has gRPC enabled. Consult the [rippled documentation](https://github.com/ripple/rippled#build-from-source) for details on how to build your own node.
 
-Xpring is working on building a zero-config way for XRP node users to deploy and use the adapter as an open-source component of [rippled](https://github.com/ripple/rippled). Watch this space!
+To get developers started right away, Xpring currently hosts nodes. These nodes are provided on a best effort basis, and may be subject to downtime. 
+
+```
+# TestNet
+alpha.test.xrp.xpring.io:50051
+
+# MainNet
+alpha.xrp.xpring.io:50051
+```
 
 ## Usage
 
@@ -144,8 +143,8 @@ A `XpringClient` can check the balance of an account on the XRP Ledger.
 ```swift
 import XpringKit
 
-let remoteURL = "grpc.xpring.tech:80"
-let xpringClient = new XpringClient(grpcURL: remoteURL)
+let remoteURL = "alpha.test.xrp.xpring.io:50051"; // TestNet URL, use alpha.xrp.xpring.io:50051 for MainNet
+let xpringClient = XpringClient(grpcURL: remoteURL, useNewProtocolBuffers: true)
 
 let address = "XVMFQQBMhdouRqhPMuawgBMN1AVFTofPAdRsXG5RkPtUPNQ"
 
@@ -170,8 +169,8 @@ These states are determined by the `TransactionStatus` enum.
 ```swift
 import XpringKit
 
-let remoteURL = "grpc.xpring.tech:80"
-let xpringClient = new XpringClient(grpcURL: remoteURL)
+let remoteURL = "alpha.test.xrp.xpring.io:50051"; // TestNet URL, use alpha.xrp.xpring.io:50051 for MainNet
+let xpringClient = XpringClient(grpcURL: remoteURL, useNewProtocolBuffers: true)
 
 let transactionHash = "9FC7D277C1C8ED9CE133CC17AEA9978E71FC644CE6F5F0C8E26F1C635D97AF4A"
 
@@ -189,8 +188,8 @@ A `XpringClient` can send XRP to other accounts on the XRP Ledger.
 ```swift
 import XpringKit
 
-let remoteURL = "grpc.xpring.tech:80"
-let xpringClient = XpringClient(grpcURL: remoteURL)
+let remoteURL = "alpha.test.xrp.xpring.io:50051"; // TestNet URL, use alpha.xrp.xpring.io:50051 for MainNet
+let xpringClient = XpringClient(grpcURL: remoteURL, useNewProtocolBuffers: true)
 
 // Wallet which will send XRP
 let generationResult = Wallet.generateRandomWallet()!
