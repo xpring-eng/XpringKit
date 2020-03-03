@@ -26,7 +26,7 @@ public class PayIDClient {
     self.init(remoteURL: remoteURL, authorizationToken: nil)
   }
 
-  /// Initialize a new unauthorized PayIDClient.
+  /// Initialize a new PayIDClient.
   ///
   /// - Parameters:
   ///   - remoteURL The remote URL of the service this class will communicate with.
