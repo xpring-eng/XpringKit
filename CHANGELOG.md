@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+- `getTransactionStatus` will now return `TransactionStatus.unknown` if the transaction hash provided references a transaction that is a partial payment or a non payment transaction. This behavior is only enabled when using the rippled protocol buffer implementation. 
+
 ## 1.4.0 - Feb 28, 2020
 
 This version uses new protocol buffers from rippled which have breaking changes in them. Specifically, the breaking changes include:
