@@ -11,4 +11,3 @@ internal extension XRPIssuedCurrency {
     self.issuer = issuedCurrency.issuer.address
   }
 }
-
