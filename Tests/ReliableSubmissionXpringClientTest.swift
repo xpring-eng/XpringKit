@@ -13,6 +13,7 @@ final class ReliableSubmissionClientTest: XCTestCase {
       $0.lastLedgerSequence = 100
     }
   )
+  let defaultAccountExistsValue = true
 
   var fakeXpringClient: FakeXpringClient!
   var reliableSubmissionClient: ReliableSubmissionXpringClient!
@@ -23,7 +24,8 @@ final class ReliableSubmissionClientTest: XCTestCase {
       transactionStatusValue: defaultTransactionStatusValue,
       sendValue: defaultSendValue,
       latestValidatedLedgerValue: defaultLastestValidatedLedgerValue,
-      rawTransactionStatusValue: defaultRawTransactionStatusValue
+      rawTransactionStatusValue: defaultRawTransactionStatusValue,
+      accountExistsValue: defaultAccountExistsValue
     )
 
     reliableSubmissionClient = ReliableSubmissionXpringClient(decoratedClient: fakeXpringClient)

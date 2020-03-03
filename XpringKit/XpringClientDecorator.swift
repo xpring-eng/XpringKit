@@ -36,4 +36,12 @@ public protocol XpringClientDecorator {
   /// - Throws: An error if there was a problem communicating with the XRP Ledger.
   /// - Returns: The status of the given transaction.
   func getRawTransactionStatus(for transactionHash: TransactionHash) throws -> RawTransactionStatus
+
+  /// Check if an address exists on the XRP Ledger
+  ///
+  /// - Parameter address: The address to check the existence of.
+  /// - Throws: An error if there was a problem communicating with the XRP Ledger.
+  /// - Returns: A boolean if the account is on the blockchain.
+  func accountExists(for address: Address) throws -> Bool
+
 }
