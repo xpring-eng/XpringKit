@@ -204,7 +204,7 @@ extension DefaultXpringClient: XpringClientDecorator {
     else {
       throw XRPLedgerError.invalidInputs("Please use the X-Address format. See: https://xrpaddress.info/.")
     }
-    
+
     do {
       try _ = self.getBalance(for: address)
       return true
