@@ -322,7 +322,7 @@ final class DefaultXpringClientTest: XCTestCase {
       accountInfoResult: .failure(RPCError.callError(CallResult(success: false, statusCode: StatusCode.notFound, statusMessage: "Mocked RPCError w/ notFound StatusCode", resultData: nil, initialMetadata: nil, trailingMetadata: nil))),
       feeResult: .success(.testGetFeeResponse),
       submitTransactionResult: .success(.testSubmitTransactionResponse),
-      transactionStatusResult: .success(.testGetTxResponse)
+      transactionStatusResult: .success(.testGetTransactionResponse)
     )
     let xpringClient = DefaultXpringClient(networkClient: networkClient)
 
@@ -342,7 +342,7 @@ final class DefaultXpringClientTest: XCTestCase {
       accountInfoResult: .failure(RPCError.callError(CallResult(success: false, statusCode: StatusCode.unknown, statusMessage: "Mocked RPCError w/ unknown StatusCode", resultData: nil, initialMetadata: nil, trailingMetadata: nil))),
       feeResult: .success(.testGetFeeResponse),
       submitTransactionResult: .success(.testSubmitTransactionResponse),
-      transactionStatusResult: .success(.testGetTxResponse)
+      transactionStatusResult: .success(.testGetTransactionResponse)
     )
     let xpringClient = DefaultXpringClient(networkClient: networkClient)
 

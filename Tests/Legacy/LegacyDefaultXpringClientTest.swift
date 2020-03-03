@@ -370,7 +370,7 @@ final class LegacyDefaultXpringClientTest: XCTestCase {
       accountInfoResult: .failure(RPCError.callError(CallResult(success: false, statusCode: StatusCode.cancelled, statusMessage: "Mocked RPCError w/ cancelled StatusCode", resultData: nil, initialMetadata: nil, trailingMetadata: nil))),
       feeResult: .success(.testGetFeeResponse),
       submitTransactionResult: .success(.testSubmitTransactionResponse),
-      transactionStatusResult: .success(.testGetTxResponse)
+      transactionStatusResult: .success(.testGetTransactionResponse)
     )
     let xpringClient = DefaultXpringClient(networkClient: networkClient)
 
