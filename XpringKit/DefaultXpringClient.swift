@@ -83,6 +83,11 @@ extension DefaultXpringClient: XpringClientDecorator {
   public func getTransactionStatus(for transactionHash: TransactionHash) throws -> TransactionStatus {
     let transactionStatus = try getRawTransactionStatus(for: transactionHash)
 
+    // Only full payment transactions can be bucketed.
+    guard transactionStatus.isFullPayment else {
+      return .unknown
+    }
+
     // Return pending if the transaction is not validated.
     guard transactionStatus.validated else {
       return .pending
