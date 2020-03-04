@@ -1,4 +1,5 @@
 import Foundation
+import SwiftGRPC
 
 /// An interface into the Xpring Platform.
 public class DefaultXpringClient {
@@ -81,6 +82,11 @@ extension DefaultXpringClient: XpringClientDecorator {
   /// - Returns: The status of the given transaction.
   public func getTransactionStatus(for transactionHash: TransactionHash) throws -> TransactionStatus {
     let transactionStatus = try getRawTransactionStatus(for: transactionHash)
+
+    // Only full payment transactions can be bucketed.
+    guard transactionStatus.isFullPayment else {
+      return .unknown
+    }
 
     // Return pending if the transaction is not validated.
     guard transactionStatus.validated else {
@@ -190,5 +196,30 @@ extension DefaultXpringClient: XpringClientDecorator {
     let getTransactionResponse = try self.networkClient.getTransaction(request)
 
     return RawTransactionStatus(getTransactionResponse: getTransactionResponse)
+  }
+
+  /// Check if an address exists on the XRP Ledger
+  ///
+  /// - Parameter address: The address to check the existence of.
+  /// - Throws: An error if there was a problem communicating with the XRP Ledger.
+  /// - Returns: A boolean if the account is on the blockchain.
+  public func accountExists(for address: Address) throws -> Bool {
+    guard
+      let _ = Utils.decode(xAddress: address)
+    else {
+      throw XRPLedgerError.invalidInputs("Please use the X-Address format. See: https://xrpaddress.info/.")
+    }
+
+    do {
+      try _ = self.getBalance(for: address)
+      return true
+    } catch RPCError.callError(let callResult) {
+      if callResult.statusCode == StatusCode.notFound {
+        return false
+      }
+      throw RPCError.callError(callResult) // otherwise, an RPCError with unexpected statusCode, re-throw
+    } catch {
+      throw error // any other type of Error, re-throw
+    }
   }
 }
