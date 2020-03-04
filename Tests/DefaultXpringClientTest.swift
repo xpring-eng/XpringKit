@@ -420,7 +420,7 @@ final class DefaultXpringClientTest: XCTestCase {
 
   // MARK: - TransactionHistory
   func testTransactionHistoryWithSuccess() {
-    // GIVEN a Xpring client which will successfully return transactionHistory mocked network call.
+    // GIVEN a Xpring client which will successfully return a transactionHistory mocked network call.
     let xpringClient = DefaultXpringClient(networkClient: FakeNetworkClient.successfulFakeNetworkClient)
 
     // WHEN the transactionHistory is requested.
