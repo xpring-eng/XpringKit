@@ -13,6 +13,7 @@ final class ReliableSubmissionClientTest: XCTestCase {
       $0.lastLedgerSequence = 100
     }
   )
+  let defaultTransactionHistoryValue = [ Transaction() ]
   let defaultAccountExistsValue = true
 
   var fakeXpringClient: FakeXpringClient!
@@ -25,6 +26,7 @@ final class ReliableSubmissionClientTest: XCTestCase {
       sendValue: defaultSendValue,
       latestValidatedLedgerValue: defaultLastestValidatedLedgerValue,
       rawTransactionStatusValue: defaultRawTransactionStatusValue,
+      transactionHistoryValue: defaultTransactionHistoryValue,
       accountExistsValue: defaultAccountExistsValue
     )
 
@@ -49,6 +51,14 @@ final class ReliableSubmissionClientTest: XCTestCase {
   func testGetRawTransactionStatus() {
     // GIVEN a `ReliableSubmissionClient` decorating a FakeXpringClient WHEN a raw transaction status is retrieved THEN the result is returned unaltered.
     XCTAssertEqual(try? reliableSubmissionClient.getRawTransactionStatus(for: .testTransactionHash), defaultRawTransactionStatusValue)
+  }
+
+  func testGetTransactionHistory() {
+    // GIVEN a `ReliableSubmissionClient` decorating a FakeXpringClient WHEN transaction history is retrieved THEN the result is returned unaltered.
+    XCTAssertEqual(
+      try? reliableSubmissionClient.getTransactionHistory(for: .testAddress),
+      defaultTransactionHistoryValue
+    )
   }
 
   func testSendWithExpiredLedgerSequenceAndUnvalidatedTransaction() throws {
