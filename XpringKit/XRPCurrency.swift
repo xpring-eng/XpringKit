@@ -1,6 +1,6 @@
 import Foundation
 
-/// A currency on the XRP Ledger
+/// An issued currency on the XRP Ledger
 /// - SeeAlso: 
 public struct XRPCurrency: Equatable {
   public let name: String
