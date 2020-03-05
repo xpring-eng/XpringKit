@@ -138,6 +138,18 @@
 		81C5E3886C4126C4CF497F8B /* ByteArray+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DD77F8CDC039E5870305B91 /* ByteArray+Hex.swift */; };
 		8287E94AB8CE8C75B1B3C1B2 /* TransactionArray+Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B23D7C5E469B8734CBD03F2 /* TransactionArray+Test.swift */; };
 		82D31D4D767CDE8DA1D4C71A /* common.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58A457DEFD87D5FF4A7B6282 /* common.pb.swift */; };
+		844BCF7D241158480037D7BE /* DefaultIlpClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844BCF7A241158480037D7BE /* DefaultIlpClient.swift */; };
+		844BCF7E241158480037D7BE /* DefaultIlpClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844BCF7A241158480037D7BE /* DefaultIlpClient.swift */; };
+		844BCF7F241158480037D7BE /* DefaultIlpClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844BCF7A241158480037D7BE /* DefaultIlpClient.swift */; };
+		844BCF80241158480037D7BE /* DefaultIlpClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844BCF7A241158480037D7BE /* DefaultIlpClient.swift */; };
+		844BCF81241158480037D7BE /* IlpClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844BCF7B241158480037D7BE /* IlpClient.swift */; };
+		844BCF82241158480037D7BE /* IlpClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844BCF7B241158480037D7BE /* IlpClient.swift */; };
+		844BCF83241158480037D7BE /* IlpClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844BCF7B241158480037D7BE /* IlpClient.swift */; };
+		844BCF84241158480037D7BE /* IlpClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844BCF7B241158480037D7BE /* IlpClient.swift */; };
+		844BCF85241158480037D7BE /* IlpClientDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844BCF7C241158480037D7BE /* IlpClientDecorator.swift */; };
+		844BCF86241158480037D7BE /* IlpClientDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844BCF7C241158480037D7BE /* IlpClientDecorator.swift */; };
+		844BCF87241158480037D7BE /* IlpClientDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844BCF7C241158480037D7BE /* IlpClientDecorator.swift */; };
+		844BCF88241158480037D7BE /* IlpClientDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844BCF7C241158480037D7BE /* IlpClientDecorator.swift */; };
 		862D5FCA714E1ABB87AF54CF /* amount.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 779FFD5A983DED90B4D0D534 /* amount.pb.swift */; };
 		863DEEBC8E94EDDD09DE80D9 /* Io_Xpring_Fee+Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED8A03E4EEC4791525CA44F /* Io_Xpring_Fee+Test.swift */; };
 		86B2A810A7784BDA97A5A4DC /* send_payment_request.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56B46264F4BC24B7608F5E9A /* send_payment_request.pb.swift */; };
@@ -359,6 +371,9 @@
 		7B9235E33F4B53ED0FD35D50 /* SignerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignerTests.swift; sourceTree = "<group>"; };
 		7CA322AED644086EF04AFD52 /* Io_Xpring_TransactionStatus+Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Io_Xpring_TransactionStatus+Test.swift"; sourceTree = "<group>"; };
 		8113A7B1A4F26A434C63CDF8 /* XpringKitTestError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XpringKitTestError.swift; sourceTree = "<group>"; };
+		844BCF7A241158480037D7BE /* DefaultIlpClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultIlpClient.swift; sourceTree = "<group>"; };
+		844BCF7B241158480037D7BE /* IlpClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IlpClient.swift; sourceTree = "<group>"; };
+		844BCF7C241158480037D7BE /* IlpClientDecorator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IlpClientDecorator.swift; sourceTree = "<group>"; };
 		8561A4CDC03D07B17AAB8924 /* Address.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Address.swift; sourceTree = "<group>"; };
 		875501A3CB68BA56309F3BDF /* JavaScriptWalletGenerationResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JavaScriptWalletGenerationResult.swift; sourceTree = "<group>"; };
 		87B1D134D50D3D92485C0A63 /* ilp_over_http_service.pb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ilp_over_http_service.pb.swift; sourceTree = "<group>"; };
@@ -524,6 +539,7 @@
 		287FB39E169194BD52DF18EC /* XpringKit */ = {
 			isa = PBXGroup;
 			children = (
+				844BCF79241158480037D7BE /* ILP */,
 				8561A4CDC03D07B17AAB8924 /* Address.swift */,
 				0DD77F8CDC039E5870305B91 /* ByteArray+Hex.swift */,
 				1DD3840185E5F1F74EC56D27 /* DefaultXpringClient.swift */,
@@ -628,6 +644,16 @@
 				8D7CE69F01BAB5B027753EB1 /* index.js */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		844BCF79241158480037D7BE /* ILP */ = {
+			isa = PBXGroup;
+			children = (
+				844BCF7A241158480037D7BE /* DefaultIlpClient.swift */,
+				844BCF7B241158480037D7BE /* IlpClient.swift */,
+				844BCF7C241158480037D7BE /* IlpClientDecorator.swift */,
+			);
+			path = ILP;
 			sourceTree = "<group>";
 		};
 		90BA56327A1CB4DCD03B8EBB /* rpc */ = {
@@ -857,8 +883,6 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 1020;
-				TargetAttributes = {
-				};
 			};
 			buildConfigurationList = C0A52FC1F46AB2CDA8428A29 /* Build configuration list for PBXProject "XpringKit" */;
 			compatibilityVersion = "Xcode 10.0";
@@ -943,6 +967,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				844BCF83241158480037D7BE /* IlpClient.swift in Sources */,
 				205CE177E9CE35786EFD462D /* Address.swift in Sources */,
 				81C5E3886C4126C4CF497F8B /* ByteArray+Hex.swift in Sources */,
 				010B3FEA5137EF8A500D236F /* DefaultXpringClient.swift in Sources */,
@@ -974,6 +999,7 @@
 				4060097AAC967721CFA653BB /* TransactionHash.swift in Sources */,
 				952227251108B99C69F0EEBE /* TransactionStatus.swift in Sources */,
 				9C4F498B7586CE1B089E587A /* Utils.swift in Sources */,
+				844BCF87241158480037D7BE /* IlpClientDecorator.swift in Sources */,
 				2E74A8B58BC16DD3EBD77AE3 /* Wallet.swift in Sources */,
 				DB26AC6D896AF31860B1CCE8 /* WalletGenerationResult.swift in Sources */,
 				28430C7E1BD753FC9BEE2746 /* XRPJavaScriptLoader.swift in Sources */,
@@ -1013,6 +1039,7 @@
 				6A7BA44E08E21670FF0AB84C /* ledger_sequence.legacy.pb.swift in Sources */,
 				AD0C9E75F6D4A2F5BA16C161 /* meta.pb.swift in Sources */,
 				F5AF1E6BE2328B56AD0912F3 /* payment.legacy.pb.swift in Sources */,
+				844BCF7F241158480037D7BE /* DefaultIlpClient.swift in Sources */,
 				8945810DE27DF575C5578692 /* send_payment_request.pb.swift in Sources */,
 				60458AFF3A05D04518AF512C /* send_payment_response.pb.swift in Sources */,
 				3FFAEF53DBD5E5C2FD3CCAA3 /* signed_transaction.legacy.pb.swift in Sources */,
@@ -1048,6 +1075,7 @@
 				7E618A081F8A5090CFAA70EE /* Io_Xpring_TransactionStatus+Test.swift in Sources */,
 				BF897B8B254A8CDD77F8D291 /* LegacyDefaultXpringClientTest.swift in Sources */,
 				B453FC2D052EE1384450D631 /* LegacyFakeNetworkClient+Test.swift in Sources */,
+				844BCF7E241158480037D7BE /* DefaultIlpClient.swift in Sources */,
 				184FE8E7E581A3AAD65B1D0D /* LegacyFakeNetworkClient.swift in Sources */,
 				47D06DA37778837B0E6A9AA1 /* LegacySignerTest.swift in Sources */,
 				5A89E6357D16B50EA9F04548 /* Org_Xrpl_Rpc_V1_GetAccountTransactionHistoryResponse+Test.swift in Sources */,
@@ -1061,7 +1089,9 @@
 				6C88CDB36D684C77818121E8 /* String+Test.swift in Sources */,
 				997BE1BE8B0757FDCC18E145 /* TransactionArray+Test.swift in Sources */,
 				F3CF8F0714D07FEA894C87B3 /* TransactionHash+Test.swift in Sources */,
+				844BCF82241158480037D7BE /* IlpClient.swift in Sources */,
 				922500B0A30F7989C1033922 /* UInt64+Test.swift in Sources */,
+				844BCF86241158480037D7BE /* IlpClientDecorator.swift in Sources */,
 				7B4DACB74AC645F871515879 /* UtilsTest.swift in Sources */,
 				21BE117BA8C40CE2934C9D21 /* Wallet+Test.swift in Sources */,
 				712A85D43E83845BBC6C1FA6 /* WalletTest.swift in Sources */,
@@ -1087,6 +1117,7 @@
 				20F95394AC4AEB303775EDF5 /* Io_Xpring_TransactionStatus+Test.swift in Sources */,
 				6D2F8569A6B7067F8E8C8C23 /* LegacyDefaultXpringClientTest.swift in Sources */,
 				805034C91E638A1A3185908A /* LegacyFakeNetworkClient+Test.swift in Sources */,
+				844BCF7D241158480037D7BE /* DefaultIlpClient.swift in Sources */,
 				A85B294480C396FE29D485FB /* LegacyFakeNetworkClient.swift in Sources */,
 				FA8ACD4B038DA24069A151B9 /* LegacySignerTest.swift in Sources */,
 				E89297B29010AACAC6D05131 /* Org_Xrpl_Rpc_V1_GetAccountTransactionHistoryResponse+Test.swift in Sources */,
@@ -1100,7 +1131,9 @@
 				2DACDED9956C193F4E57806A /* String+Test.swift in Sources */,
 				8287E94AB8CE8C75B1B3C1B2 /* TransactionArray+Test.swift in Sources */,
 				48113CAF3E46ED0ED426D1D0 /* TransactionHash+Test.swift in Sources */,
+				844BCF81241158480037D7BE /* IlpClient.swift in Sources */,
 				E7ABC8D8F5D1C896C16B37EF /* UInt64+Test.swift in Sources */,
+				844BCF85241158480037D7BE /* IlpClientDecorator.swift in Sources */,
 				E4DE5E80EB10CE7EC39BC7CA /* UtilsTest.swift in Sources */,
 				C14DA5929841BC8DDF1158E7 /* Wallet+Test.swift in Sources */,
 				F1325A49C497A4C39141E751 /* WalletTest.swift in Sources */,
@@ -1112,6 +1145,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				844BCF84241158480037D7BE /* IlpClient.swift in Sources */,
 				EBD43CC9507B11932FE0FAFA /* Address.swift in Sources */,
 				0911ACB7075E91476780E084 /* ByteArray+Hex.swift in Sources */,
 				3D4A18347D759318BED66099 /* DefaultXpringClient.swift in Sources */,
@@ -1143,6 +1177,7 @@
 				79FD2BD66600BDE782DE7C0A /* TransactionHash.swift in Sources */,
 				7F29A55A5EE4CB4A41C73E2B /* TransactionStatus.swift in Sources */,
 				C96B86F7E67405016867D3EC /* Utils.swift in Sources */,
+				844BCF88241158480037D7BE /* IlpClientDecorator.swift in Sources */,
 				3D64D171483F28464E621B42 /* Wallet.swift in Sources */,
 				2DFB7C1BCA54ED07FCEE083A /* WalletGenerationResult.swift in Sources */,
 				52FEEA10075B52FD7F425E46 /* XRPJavaScriptLoader.swift in Sources */,
@@ -1182,6 +1217,7 @@
 				E34D6EDC67872A40048CC1C5 /* ledger_sequence.legacy.pb.swift in Sources */,
 				90CFBB6D040734C7937C74FD /* meta.pb.swift in Sources */,
 				FC72E5CBA4635904E636D3E9 /* payment.legacy.pb.swift in Sources */,
+				844BCF80241158480037D7BE /* DefaultIlpClient.swift in Sources */,
 				86B2A810A7784BDA97A5A4DC /* send_payment_request.pb.swift in Sources */,
 				73A88C53338897780B4F4D15 /* send_payment_response.pb.swift in Sources */,
 				9B79447614BE2E909D988BBC /* signed_transaction.legacy.pb.swift in Sources */,
@@ -1285,7 +1321,12 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks $(PROJECT_DIR)/Carthage/Build/iOS";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_VERSION = 5.0;
@@ -1476,7 +1517,12 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks $(PROJECT_DIR)/Carthage/Build/iOS";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";

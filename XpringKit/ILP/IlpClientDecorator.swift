@@ -8,7 +8,8 @@ public protocol IlpClientDecorator {
     ///     -  bearerToken Authentication bearer token.
     /// - Returns: A Org_Interledger_Stream_Proto_GetBalanceResponse with balance information of the specified account
     /// - Throws: An error If the given inputs were invalid, the account doesn't exist, or authentication failed.
-    func getBalance(for accountId: String, bearerToken: String) throws -> Org_Interledger_Stream_Proto_GetBalanceResponse
+    func getBalance(for accountId: String,
+                    bearerToken: String) throws -> Org_Interledger_Stream_Proto_GetBalanceResponse
 
     /// Send a payment from the given accountId to the destinationPaymentPointer payment pointer
     /// - Parameters:
@@ -21,7 +22,7 @@ public protocol IlpClientDecorator {
     ///          {@link SendPaymentResponse#getSuccessfulPayment()}
     /// - Throws: An error If the given inputs were invalid.
     func sendPayment(amount: UInt64,
-                            paymentPointer: String,
-                            senderAccountId: String,
-                            bearerToken: String) throws -> Org_Interledger_Stream_Proto_SendPaymentResponse
+                     paymentPointer: String,
+                     senderAccountId: String,
+                     bearerToken: String) throws -> Org_Interledger_Stream_Proto_SendPaymentResponse
 }
