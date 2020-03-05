@@ -2,14 +2,14 @@ import Foundation
 import SwiftGRPC
 
 /// An interface into the Xpring Platform.
-public class DefaultXpringClient {
+public class DefaultXRPClient {
   /// A margin to pad the current ledger sequence with when submitting transactions.
   private let maxLedgerVersionOffset: UInt32 = 10
 
   /// A network client that will make and receive requests.
   private let networkClient: NetworkClient
 
-  /// Initialize a new XpringClient.
+  /// Initialize a new XRPClient.
   ///
   /// - Parameter grpcURL: A url for a remote gRPC service which will handle network requests.
   public convenience init(grpcURL: String) {
@@ -17,7 +17,7 @@ public class DefaultXpringClient {
     self.init(networkClient: networkClient)
   }
 
-  /// Initialize a new XpringClient.
+  /// Initialize a new XRPClient.
   ///
   /// - Parameter networkClient: A network client which will make requests.
   internal init(networkClient: NetworkClient) {
@@ -57,7 +57,7 @@ public class DefaultXpringClient {
   }
 }
 
-extension DefaultXpringClient: XpringClientDecorator {
+extension DefaultXRPClient: XRPClientDecorator {
   /// Get the balance for the given address.
   ///
   /// - Parameter address: The X-Address to retrieve the balance for.
