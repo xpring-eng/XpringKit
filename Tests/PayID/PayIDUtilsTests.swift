@@ -11,7 +11,7 @@ class PayIDUtilsTest: XCTestCase {
 
     // THEN the host and path are set correctly.
     XCTAssertEqual(paymentPointer?.host, "example.com")
-    XCTAssertEqual(paymentPointer?.host, "/foo")
+    XCTAssertEqual(paymentPointer?.path, "/foo")
   }
 
   func testParsePaymentPointerWithWellKnownPath() {
@@ -40,7 +40,7 @@ class PayIDUtilsTest: XCTestCase {
 
   func testParsePaymentPointerIncorrectPrefix() {
     // GIVEN a payment pointer without a '$' prefix
-    let rawPaymentPointer = 'example.com/'
+    let rawPaymentPointer = "example.com/"
 
     // WHEN it is parsed to a PaymentPointer object THEN the result is undefined
     XCTAssertNil(PayIDUtils.parse(paymentPointer: rawPaymentPointer))
@@ -48,7 +48,7 @@ class PayIDUtilsTest: XCTestCase {
 
   func testParsePaymentPointerEmptyHost() {
     // GIVEN a payment pointer without a host.
-    let rawPaymentPointer = '$'
+    let rawPaymentPointer = "$"
 
     // WHEN it is parsed to a PaymentPointer object THEN the result is undefined
     XCTAssertNil(PayIDUtils.parse(paymentPointer: rawPaymentPointer))
@@ -56,7 +56,7 @@ class PayIDUtilsTest: XCTestCase {
 
   func testParsePaymentPointerNonAscii() {
     // GIVEN a payment pointer with non-ascii characters.
-    let rawPaymentPointer = '$ZA̡͊͠͝LGΌ IS̯͈͕̹̘̱ͮ TO͇̹̺ͅƝ̴ȳ̳ TH̘Ë͖́̉ ͠P̯͍̭O̚N̐Y̡'
+    let rawPaymentPointer = "$ZA̡͊͠͝LGΌ IS̯͈͕̹̘̱ͮ TO͇̹̺ͅƝ̴ȳ̳ TH̘Ë͖́̉ ͠P̯͍̭O̚N̐Y̡"
 
     // WHEN it is parsed to a PaymentPointer object THEN the result is undefined
     XCTAssertNil(PayIDUtils.parse(paymentPointer: rawPaymentPointer))
