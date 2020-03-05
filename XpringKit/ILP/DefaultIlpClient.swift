@@ -38,8 +38,7 @@ public class DefaultIlpClient: IlpClientDecorator {
     /// - Returns: A Org_Interledger_Stream_Proto_GetBalanceResponse with balance information of the specified account
     /// - Throws: An error If the given inputs were invalid, the account doesn't exist, or authentication failed.
     public func getBalance(for accountId: String, bearerToken: String) throws -> Org_Interledger_Stream_Proto_GetBalanceResponse {
-        // This will be replaced by an actual implementation
-        return Org_Interledger_Stream_Proto_GetBalanceResponse()
+        throw XpringIlpError.unimplemented
     }
 
     /// Send a payment from the given accountId to the destinationPaymentPointer payment pointer
@@ -56,7 +55,6 @@ public class DefaultIlpClient: IlpClientDecorator {
                             paymentPointer: String,
                             senderAccountId: String,
                             bearerToken: String) throws -> Org_Interledger_Stream_Proto_SendPaymentResponse {
-        // This will be replaced by an actual implementation
-        return Org_Interledger_Stream_Proto_SendPaymentResponse()
+        throw XpringIlpError.unimplemented
     }
 }
