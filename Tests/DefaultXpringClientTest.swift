@@ -2,7 +2,7 @@ import SwiftGRPC
 import XCTest
 @testable import XpringKit
 
-final class DefaultXpringClientTest: XCTestCase {
+final class DefaultXRPClientTest: XCTestCase {
   // Codes which are failures returned from the ledger.
   private static let transactionStatusFailureCodes = [
     "tefFAILURE", "tecCLAIM", "telBAD_PUBLIC_KEY", "temBAD_FEE", "terRETRY"
@@ -12,10 +12,10 @@ final class DefaultXpringClientTest: XCTestCase {
 
   func testGetBalanceWithSuccess() {
     // GIVEN a Xpring client which will successfully return a balance from a mocked network call.
-    let xpringClient = DefaultXpringClient(networkClient: FakeNetworkClient.successfulFakeNetworkClient)
+    let xrpClient = DefaultXRPClient(networkClient: FakeNetworkClient.successfulFakeNetworkClient)
 
     // WHEN the balance is requested.
-    guard let balance = try? xpringClient.getBalance(for: .testAddress) else {
+    guard let balance = try? xrpClient.getBalance(for: .testAddress) else {
       XCTFail("Exception should not be thrown when trying to get a balance")
       return
     }
@@ -30,11 +30,11 @@ final class DefaultXpringClientTest: XCTestCase {
       XCTFail("Failed to decode X-Address.")
       return
     }
-    let xpringClient = DefaultXpringClient(networkClient: FakeNetworkClient.successfulFakeNetworkClient)
+    let xrpClient = DefaultXRPClient(networkClient: FakeNetworkClient.successfulFakeNetworkClient)
 
     // WHEN the balance is requested THEN an error is thrown.
     XCTAssertThrowsError(
-      try xpringClient.getBalance(for: classicAddressComponents.classicAddress),
+      try xrpClient.getBalance(for: classicAddressComponents.classicAddress),
       "Exception not thrown"
     ) { error in
       guard
@@ -56,10 +56,10 @@ final class DefaultXpringClientTest: XCTestCase {
       transactionStatusResult: .success(.testGetTransactionResponse),
       transactionHistoryResult: .success(.testTransactionHistoryResponse)
     )
-    let xpringClient = DefaultXpringClient(networkClient: networkClient)
+    let xrpClient = DefaultXRPClient(networkClient: networkClient)
 
     // WHEN the balance is requested THEN the error is thrown.
-    XCTAssertThrowsError(try xpringClient.getBalance(for: .testAddress), "Exception not thrown") { error in
+    XCTAssertThrowsError(try xrpClient.getBalance(for: .testAddress), "Exception not thrown") { error in
       guard
         let _ = error as? XpringKitTestError
         else {
@@ -73,11 +73,11 @@ final class DefaultXpringClientTest: XCTestCase {
 
   func testSendWithSuccess() {
     // GIVEN a Xpring client which will successfully return a balance from a mocked network call.
-    let xpringClient = DefaultXpringClient(networkClient: FakeNetworkClient.successfulFakeNetworkClient)
+    let xrpClient = DefaultXRPClient(networkClient: FakeNetworkClient.successfulFakeNetworkClient)
 
     // WHEN XRP is sent.
     guard
-      let transactionHash = try? xpringClient.send(
+      let transactionHash = try? xrpClient.send(
         .testSendAmount,
         to: .testAddress,
         from: .testWallet)
@@ -96,10 +96,10 @@ final class DefaultXpringClientTest: XCTestCase {
       XCTFail("Failed to decode X - Address.")
       return
     }
-    let xpringClient = DefaultXpringClient(networkClient: FakeNetworkClient.successfulFakeNetworkClient)
+    let xrpClient = DefaultXRPClient(networkClient: FakeNetworkClient.successfulFakeNetworkClient)
 
     // WHEN XRP is sent to a classic address THEN an error is thrown.
-    XCTAssertThrowsError(try xpringClient.send(
+    XCTAssertThrowsError(try xrpClient.send(
       .testSendAmount,
       to: classicAddressComponents.classicAddress,
       from: .testWallet
@@ -108,11 +108,11 @@ final class DefaultXpringClientTest: XCTestCase {
 
   func testSendWithInvalidAddress() {
     // GIVEN a Xpring client and an invalid destination address.
-    let xpringClient = DefaultXpringClient(networkClient: FakeNetworkClient.successfulFakeNetworkClient)
+    let xrpClient = DefaultXRPClient(networkClient: FakeNetworkClient.successfulFakeNetworkClient)
     let destinationAddress = "xrp"
 
     // WHEN XRP is sent to an invalid address THEN an error is thrown.
-    XCTAssertThrowsError(try xpringClient.send(
+    XCTAssertThrowsError(try xrpClient.send(
       .testSendAmount,
       to: destinationAddress,
       from: .testWallet
@@ -128,10 +128,10 @@ final class DefaultXpringClientTest: XCTestCase {
       transactionStatusResult: .success(.testGetTransactionResponse),
       transactionHistoryResult: .success(.testTransactionHistoryResponse)
     )
-    let xpringClient = DefaultXpringClient(networkClient: networkClient)
+    let xrpClient = DefaultXRPClient(networkClient: networkClient)
 
     // WHEN a send is attempted then an error is thrown.
-    XCTAssertThrowsError(try xpringClient.send(
+    XCTAssertThrowsError(try xrpClient.send(
       .testSendAmount,
       to: .testAddress,
       from: .testWallet
@@ -147,10 +147,10 @@ final class DefaultXpringClientTest: XCTestCase {
       transactionStatusResult: .success(.testGetTransactionResponse),
       transactionHistoryResult: .success(.testTransactionHistoryResponse)
     )
-    let xpringClient = DefaultXpringClient(networkClient: networkClient)
+    let xrpClient = DefaultXRPClient(networkClient: networkClient)
 
     // WHEN a send is attempted then an error is thrown.
-    XCTAssertThrowsError(try xpringClient.send(
+    XCTAssertThrowsError(try xrpClient.send(
       .testSendAmount,
       to: .testAddress,
       from: .testWallet
@@ -166,10 +166,10 @@ final class DefaultXpringClientTest: XCTestCase {
       transactionStatusResult: .success(.testGetTransactionResponse),
       transactionHistoryResult: .success(.testTransactionHistoryResponse)
     )
-    let xpringClient = DefaultXpringClient(networkClient: networkClient)
+    let xrpClient = DefaultXRPClient(networkClient: networkClient)
 
     // WHEN a send is attempted then an error is thrown.
-    XCTAssertThrowsError(try xpringClient.send(
+    XCTAssertThrowsError(try xrpClient.send(
       .testSendAmount,
       to: .testAddress,
       from: .testWallet
@@ -180,8 +180,8 @@ final class DefaultXpringClientTest: XCTestCase {
 
   func testGetTransactionStatusWithUnvalidatedTransactionAndFailureCode() {
     // Iterate over different types of transaction status codes which represent failures.
-    for transactionStatusCodeFailure in DefaultXpringClientTest.transactionStatusFailureCodes {
-      // GIVEN a XpringClient which returns an unvalidated transaction and a failed transaction status code.
+    for transactionStatusCodeFailure in DefaultXRPClientTest.transactionStatusFailureCodes {
+      // GIVEN an XRPClient which returns an unvalidated transaction and a failed transaction status code.
       let transactionStatusResponse = makeGetTransactionResponse(
         validated: false,
         resultCode: transactionStatusCodeFailure
@@ -193,10 +193,10 @@ final class DefaultXpringClientTest: XCTestCase {
         transactionStatusResult: .success(transactionStatusResponse),
         transactionHistoryResult: .success(.testTransactionHistoryResponse)
       )
-      let xpringClient = DefaultXpringClient(networkClient: networkClient)
+      let xrpClient = DefaultXRPClient(networkClient: networkClient)
 
       // WHEN the transaction status is retrieved.
-      let transactionStatus = try? xpringClient.getTransactionStatus(for: .testTransactionHash)
+      let transactionStatus = try? xrpClient.getTransactionStatus(for: .testTransactionHash)
 
       // THEN the transaction status is pending.
       XCTAssertEqual(transactionStatus, .pending)
@@ -204,7 +204,7 @@ final class DefaultXpringClientTest: XCTestCase {
   }
 
   func testGetTransactionStatusWithUnvalidatedTransactionAndSuccessCode() {
-    // GIVEN a XpringClient which returns an unvalidated transaction and a succeeded transaction status code.
+    // GIVEN an XRPClient which returns an unvalidated transaction and a succeeded transaction status code.
     let transactionStatusResponse = makeGetTransactionResponse(
       validated: false,
       resultCode: .testTransactionStatusCodeSuccess
@@ -216,10 +216,10 @@ final class DefaultXpringClientTest: XCTestCase {
       transactionStatusResult: .success(transactionStatusResponse),
       transactionHistoryResult: .success(.testTransactionHistoryResponse)
     )
-    let xpringClient = DefaultXpringClient(networkClient: networkClient)
+    let xrpClient = DefaultXRPClient(networkClient: networkClient)
 
     // WHEN the transaction status is retrieved.
-    let transactionStatus = try? xpringClient.getTransactionStatus(for: .testTransactionHash)
+    let transactionStatus = try? xrpClient.getTransactionStatus(for: .testTransactionHash)
 
     // THEN the transaction status is pending.
     XCTAssertEqual(transactionStatus, .pending)
@@ -227,8 +227,8 @@ final class DefaultXpringClientTest: XCTestCase {
 
   func testGetTransactionStatusWithValidatedTransactionAndFailureCode() {
     // Iterate over different types of transaction status codes which represent failures.
-    for transactionStatusCodeFailure in DefaultXpringClientTest.transactionStatusFailureCodes {
-      // GIVEN a XpringClient which returns an unvalidated transaction and a failed transaction status code.
+    for transactionStatusCodeFailure in DefaultXRPClientTest.transactionStatusFailureCodes {
+      // GIVEN an XRPClient which returns an unvalidated transaction and a failed transaction status code.
       let transactionStatusResponse = makeGetTransactionResponse(
         validated: true,
         resultCode: transactionStatusCodeFailure
@@ -240,10 +240,10 @@ final class DefaultXpringClientTest: XCTestCase {
         transactionStatusResult: .success(transactionStatusResponse),
         transactionHistoryResult: .success(.testTransactionHistoryResponse)
       )
-      let xpringClient = DefaultXpringClient(networkClient: networkClient)
+      let xrpClient = DefaultXRPClient(networkClient: networkClient)
 
       // WHEN the transaction status is retrieved.
-      let transactionStatus = try? xpringClient.getTransactionStatus(for: .testTransactionHash)
+      let transactionStatus = try? xrpClient.getTransactionStatus(for: .testTransactionHash)
 
       // THEN the transaction status is failed.
       XCTAssertEqual(transactionStatus, .failed)
@@ -251,7 +251,7 @@ final class DefaultXpringClientTest: XCTestCase {
   }
 
   func testGetTransactionStatusWithValidatedTransactionAndSuccessCode() {
-    // GIVEN a XpringClient which returns a validated transaction and a succeeded transaction status code.
+    // GIVEN an XRPClient which returns a validated transaction and a succeeded transaction status code.
     let transactionStatusResponse = makeGetTransactionResponse(
       validated: true,
       resultCode: .testTransactionStatusCodeSuccess
@@ -263,17 +263,17 @@ final class DefaultXpringClientTest: XCTestCase {
       transactionStatusResult: .success(transactionStatusResponse),
       transactionHistoryResult: .success(.testTransactionHistoryResponse)
     )
-    let xpringClient = DefaultXpringClient(networkClient: networkClient)
+    let xrpClient = DefaultXRPClient(networkClient: networkClient)
 
     // WHEN the transaction status is retrieved.
-    let transactionStatus = try? xpringClient.getTransactionStatus(for: .testTransactionHash)
+    let transactionStatus = try? xrpClient.getTransactionStatus(for: .testTransactionHash)
 
     // THEN the transaction status is succeeded.
     XCTAssertEqual(transactionStatus, .succeeded)
   }
 
   func testGetTransactionStatusWithServerFailure() {
-    // GIVEN a XpringClient which fails to return a transaction status.
+    // GIVEN an XRPClient which fails to return a transaction status.
     let networkClient = FakeNetworkClient(
       accountInfoResult: .success(.testGetAccountInfoResponse),
       feeResult: .success(.testGetFeeResponse),
@@ -281,14 +281,14 @@ final class DefaultXpringClientTest: XCTestCase {
       transactionStatusResult: .failure(XpringKitTestError.mockFailure),
       transactionHistoryResult: .success(.testTransactionHistoryResponse)
     )
-    let xpringClient = DefaultXpringClient(networkClient: networkClient)
+    let xrpClient = DefaultXRPClient(networkClient: networkClient)
 
     // WHEN the transaction status is retrieved THEN an error is thrown.
-    XCTAssertThrowsError(try xpringClient.getTransactionStatus(for: .testTransactionHash))
+    XCTAssertThrowsError(try xrpClient.getTransactionStatus(for: .testTransactionHash))
   }
 
   func testTransactionStatusWithUnsupportedTransactionType() {
-    // GIVEN a XpringClient which will return a non-payment type transaction.
+    // GIVEN an XRPClient which will return a non-payment type transaction.
     let getTransactionResponse = Org_Xrpl_Rpc_V1_GetTransactionResponse.with {
       $0.transaction = Org_Xrpl_Rpc_V1_Transaction()
     }
@@ -299,17 +299,17 @@ final class DefaultXpringClientTest: XCTestCase {
       transactionStatusResult: .success(getTransactionResponse),
       transactionHistoryResult: .success(.testTransactionHistoryResponse)
     )
-    let xpringClient = DefaultXpringClient(networkClient: networkClient)
+    let xrpClient = DefaultXRPClient(networkClient: networkClient)
 
     // WHEN the transaction status is retrieved.
-    let transactionStatus = try? xpringClient.getTransactionStatus(for: .testTransactionHash)
+    let transactionStatus = try? xrpClient.getTransactionStatus(for: .testTransactionHash)
 
     // THEN the status is UNKNOWN.
     XCTAssertEqual(transactionStatus, .unknown)
   }
 
   func testTransactionStatusWithPartialPayment() {
-    // GIVEN a XpringClient which will return a partial payment type transaction.
+    // GIVEN an XRPClient which will return a partial payment type transaction.
     let getTransactionResponse = Org_Xrpl_Rpc_V1_GetTransactionResponse.with {
       $0.transaction = Org_Xrpl_Rpc_V1_Transaction.with {
         $0.payment = Org_Xrpl_Rpc_V1_Payment()
@@ -325,10 +325,10 @@ final class DefaultXpringClientTest: XCTestCase {
       transactionStatusResult: .success(getTransactionResponse),
       transactionHistoryResult: .success(.testTransactionHistoryResponse)
     )
-    let xpringClient = DefaultXpringClient(networkClient: networkClient)
+    let xrpClient = DefaultXRPClient(networkClient: networkClient)
 
     // WHEN the transaction status is retrieved.
-    let transactionStatus = try? xpringClient.getTransactionStatus(for: .testTransactionHash)
+    let transactionStatus = try? xrpClient.getTransactionStatus(for: .testTransactionHash)
 
     // THEN the status is UNKNOWN.
     XCTAssertEqual(transactionStatus, .unknown)
@@ -337,11 +337,11 @@ final class DefaultXpringClientTest: XCTestCase {
   // MARK: - Account Existence
 
   func testAccountExistsWithSuccess() {
-    // GIVEN a XpringClient which will successfully return a balance from a mocked network call.
-    let xpringClient = DefaultXpringClient(networkClient: FakeNetworkClient.successfulFakeNetworkClient)
+    // GIVEN an XRPClient which will successfully return a balance from a mocked network call.
+    let xrpClient = DefaultXRPClient(networkClient: FakeNetworkClient.successfulFakeNetworkClient)
 
     // WHEN the existence of the account is checked.
-    guard let exists = try? xpringClient.accountExists(for: .testAddress) else {
+    guard let exists = try? xrpClient.accountExists(for: .testAddress) else {
       XCTFail("Exception should not be thrown when checking existence of valid account")
       return
     }
@@ -356,11 +356,11 @@ final class DefaultXpringClientTest: XCTestCase {
       XCTFail("Failed to decode X-Address.")
       return
     }
-    let xpringClient = DefaultXpringClient(networkClient: FakeNetworkClient.successfulFakeNetworkClient)
+    let xrpClient = DefaultXRPClient(networkClient: FakeNetworkClient.successfulFakeNetworkClient)
 
     // WHEN the account's existence is checked THEN an error is thrown.
     XCTAssertThrowsError(
-      try xpringClient.accountExists(for: classicAddressComponents.classicAddress),
+      try xrpClient.accountExists(for: classicAddressComponents.classicAddress),
       "Exception not thrown"
     ) { error in
       guard
@@ -373,7 +373,7 @@ final class DefaultXpringClientTest: XCTestCase {
   }
 
   func testAccountExistsWithNotFoundFailure() {
-    // GIVEN a XpringClient which will throw an RPCError w/ StatusCode notFound when a balance is requested.
+    // GIVEN an XRPClient which will throw an RPCError w/ StatusCode notFound when a balance is requested.
     let networkClient = FakeNetworkClient(
       accountInfoResult: .failure(RPCError.callError(CallResult(success: false, statusCode: StatusCode.notFound, statusMessage: "Mocked RPCError w/ notFound StatusCode", resultData: nil, initialMetadata: nil, trailingMetadata: nil))),
       feeResult: .success(.testGetFeeResponse),
@@ -381,10 +381,10 @@ final class DefaultXpringClientTest: XCTestCase {
       transactionStatusResult: .success(.testGetTransactionResponse),
       transactionHistoryResult: .success(.testTransactionHistoryResponse)
     )
-    let xpringClient = DefaultXpringClient(networkClient: networkClient)
+    let xrpClient = DefaultXRPClient(networkClient: networkClient)
 
     // WHEN the existence of the account is checked
-    guard let exists = try? xpringClient.accountExists(for: .testAddress) else {
+    guard let exists = try? xrpClient.accountExists(for: .testAddress) else {
       XCTFail("Exception should not be thrown when checking existence of non-existent account")
       return
     }
@@ -394,7 +394,7 @@ final class DefaultXpringClientTest: XCTestCase {
   }
 
   func testAccountExistsWithUnknownFailure() {
-    // GIVEN a XpringClient which will throw an RPCError w/ StatusCode unknown when a balance is requested.
+    // GIVEN an XRPClient which will throw an RPCError w/ StatusCode unknown when a balance is requested.
     let networkClient = FakeNetworkClient(
       accountInfoResult: .failure(RPCError.callError(CallResult(success: false, statusCode: StatusCode.unknown, statusMessage: "Mocked RPCError w/ unknown StatusCode", resultData: nil, initialMetadata: nil, trailingMetadata: nil))),
       feeResult: .success(.testGetFeeResponse),
@@ -402,11 +402,11 @@ final class DefaultXpringClientTest: XCTestCase {
       transactionStatusResult: .success(.testGetTransactionResponse),
       transactionHistoryResult: .success(.testTransactionHistoryResponse)
     )
-    let xpringClient = DefaultXpringClient(networkClient: networkClient)
+    let xrpClient = DefaultXRPClient(networkClient: networkClient)
 
     // WHEN the account's existence is checked THEN the error is re-thrown.
     XCTAssertThrowsError(
-      try xpringClient.accountExists(for: .testAddress),
+      try xrpClient.accountExists(for: .testAddress),
       "Exception not thrown"
     ) { error in
       guard
@@ -421,10 +421,10 @@ final class DefaultXpringClientTest: XCTestCase {
   // MARK: - TransactionHistory
   func testTransactionHistoryWithSuccess() {
     // GIVEN a Xpring client which will successfully return a transactionHistory mocked network call.
-    let xpringClient = DefaultXpringClient(networkClient: FakeNetworkClient.successfulFakeNetworkClient)
+    let xrpClient = DefaultXRPClient(networkClient: FakeNetworkClient.successfulFakeNetworkClient)
 
     // WHEN the transactionHistory is requested.
-    guard let transactions = try? xpringClient.getTransactionHistory(for: .testAddress) else {
+    guard let transactions = try? xrpClient.getTransactionHistory(for: .testAddress) else {
       XCTFail("Exception should not be thrown when trying to get a balance")
       return
     }
@@ -439,11 +439,11 @@ final class DefaultXpringClientTest: XCTestCase {
       XCTFail("Failed to decode X-Address.")
       return
     }
-    let xpringClient = DefaultXpringClient(networkClient: FakeNetworkClient.successfulFakeNetworkClient)
+    let xrpClient = DefaultXRPClient(networkClient: FakeNetworkClient.successfulFakeNetworkClient)
 
     // WHEN the transaction history is requested THEN an error is thrown.
     XCTAssertThrowsError(
-      try xpringClient.getTransactionHistory(for: classicAddressComponents.classicAddress),
+      try xrpClient.getTransactionHistory(for: classicAddressComponents.classicAddress),
       "Exception not thrown"
     ) { error in
       guard
@@ -465,10 +465,10 @@ final class DefaultXpringClientTest: XCTestCase {
       transactionStatusResult: .success(.testGetTransactionResponse),
       transactionHistoryResult: .failure(XpringKitTestError.mockFailure)
     )
-    let xpringClient = DefaultXpringClient(networkClient: networkClient)
+    let xrpClient = DefaultXRPClient(networkClient: networkClient)
 
     // WHEN the transaction history is requested THEN an error is thrown.
-    XCTAssertThrowsError(try xpringClient.getTransactionHistory(for: .testAddress), "Exception not thrown") { error in
+    XCTAssertThrowsError(try xrpClient.getTransactionHistory(for: .testAddress), "Exception not thrown") { error in
       guard
         let _ = error as? XpringKitTestError
       else {

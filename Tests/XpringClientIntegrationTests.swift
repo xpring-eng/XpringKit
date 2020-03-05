@@ -1,6 +1,7 @@
 import XCTest
 import XpringKit
 
+/*
 extension String {
   /// The URL of the remote legacy gRPC service.
   public static let legacyRemoteURL = "grpc.xpring.tech:80"
@@ -15,9 +16,10 @@ extension String {
 extension TransactionHash {
   public static let successfulTransactionHash = "24E31668208A3165E6C702CDA66425808EAD670EABCBFA6C4403FFA93500D486"
 }
+ */
 
 /// Integration tests run against a live remote client.
-final class IntegrationTests: XCTestCase {
+final class XpringClientIntegrationTests: XCTestCase {
   private let legacyClient = XpringClient(grpcURL: .legacyRemoteURL, useNewProtocolBuffers: false)
   private let client = XpringClient(grpcURL: .remoteURL, useNewProtocolBuffers: true)
 
