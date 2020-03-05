@@ -2,10 +2,10 @@ import Foundation
 import SwiftGRPC
 
 /// Default client decorator for use in IlpClient
-public class DefaultIlpClient: IlpClientDecorator {
+public class DefaultIlpClient {
 
-    private let balanceNetworkClient: Org_Interledger_Stream_Proto_BalanceServiceServiceClient
-    private let paymentNetworkClient: Org_Interledger_Stream_Proto_IlpOverHttpServiceServiceClient
+    private let balanceNetworkClient: IlpNetworkBalanceClient
+    private let paymentNetworkClient: IlpNetworkPaymentClient
 
     /// Initialize a new DefaultXpringClient
     ///
@@ -24,12 +24,14 @@ public class DefaultIlpClient: IlpClientDecorator {
     /// - Parameters:
     ///     - balanceNetworkClient: gRPC generated client for balance operations
     ///     - paymentNetworkClient: gRPC generated client for payment operations
-    internal init(balanceNetworkClient: Org_Interledger_Stream_Proto_BalanceServiceServiceClient,
-                  paymentNetworkClient: Org_Interledger_Stream_Proto_IlpOverHttpServiceServiceClient) {
+    internal init(balanceNetworkClient: IlpNetworkBalanceClient,
+                  paymentNetworkClient: IlpNetworkPaymentClient) {
         self.balanceNetworkClient = balanceNetworkClient
         self.paymentNetworkClient = paymentNetworkClient
     }
+}
 
+extension DefaultIlpClient: IlpClientDecorator {
     /// Get the balance of the specified account on the connector.
     ///
     /// - Parameters:
