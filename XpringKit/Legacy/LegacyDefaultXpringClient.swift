@@ -1,3 +1,5 @@
+import SwiftGRPC
+
 /// An interface into the Xpring Platform.
 public class LegacyDefaultXpringClient {
   /// A margin to pad the current ledger sequence with when submitting transactions.
@@ -145,5 +147,41 @@ extension LegacyDefaultXpringClient: XpringClientDecorator {
     let transactionStatusRequest = Io_Xpring_GetTransactionStatusRequest.with { $0.transactionHash = transactionHash }
     let transactionStatus = try networkClient.getTransactionStatus(transactionStatusRequest)
     return RawTransactionStatus(transactionStatus: transactionStatus)
+  }
+
+  /// Retrieve the transaction history for an address.
+  ///
+  /// - Parameter address: The address to retrieve transaction history for.
+  /// - Throws: An error if there was a problem communicating with the XRP Ledger.
+  /// - Returns: An array of transactions for the account.
+  public func getTransactionHistory(for address: Address) throws -> [Transaction] {
+    throw XRPLedgerError.unimplemented
+  }
+
+  /// Check if an address exists on the XRP Ledger
+  ///
+  /// - Parameter address: The address to check the existence of.
+  /// - Throws: An error if there was a problem communicating with the XRP Ledger.
+  /// - Returns: A boolean if the account is on the blockchain.
+  public func accountExists(for address: Address) throws -> Bool {
+    guard
+      let _ = Utils.decode(xAddress: address)
+    else {
+      throw XRPLedgerError.invalidInputs("Please use the X-Address format. See: https://xrpaddress.info/.")
+    }
+    do {
+      try _ = self.getBalance(for: address)
+      return true
+    } catch RPCError.callError(let callResult) {
+      if callResult.statusCode == StatusCode.notFound {
+        return false
+      }
+      if callResult.statusCode == StatusCode.unknown { // legacy protobuf/gRPC use this status code even if account not found
+        return false
+      }
+        throw RPCError.callError(callResult) // an RPCError with unexpected statusCode, re-throw
+    } catch {
+        throw error // any other type of Error, re-throw
+    }
   }
 }
