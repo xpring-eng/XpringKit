@@ -55,12 +55,14 @@ final class DefaultIlpClientTest: XCTestCase {
 
         // WHEN a payment is sent
         guard let payment: Org_Interledger_Stream_Proto_SendPaymentResponse =
-            try? ilpClient.sendPayment(100,
-                                       to: "$example.com/bar",
-                                       from: "foo",
-                                       withAuthorization: "password") else {
-            XCTFail("Exception should not be thrown when trying to send a payment")
-            return
+            try? ilpClient.sendPayment(
+                100,
+                to: "$example.com/bar",
+                from: "foo",
+                withAuthorization: "password"
+            ) else {
+                XCTFail("Exception should not be thrown when trying to send a payment")
+                return
         }
 
         // THEN the payment response is correct
