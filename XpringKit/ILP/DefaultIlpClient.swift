@@ -39,8 +39,8 @@ extension DefaultIlpClient: IlpClientDecorator {
     ///     -  bearerToken Authentication bearer token.
     /// - Returns: A Org_Interledger_Stream_Proto_GetBalanceResponse with balance information of the specified account
     /// - Throws: An error If the given inputs were invalid, the account doesn't exist, or authentication failed.
-    public func getBalance(for accountID: String,
-                           withAuthorization bearerToken: String
+    public func getBalance(for accountID: AccountID,
+                           withAuthorization bearerToken: BearerToken
     ) throws -> Org_Interledger_Stream_Proto_GetBalanceResponse {
         let balanceRequest = Org_Interledger_Stream_Proto_GetBalanceRequest.with {
             $0.accountID = accountID
@@ -62,9 +62,9 @@ extension DefaultIlpClient: IlpClientDecorator {
     /// - Returns: A Org_Interledger_Stream_Proto_SendPaymentResponse with details about the payment
     /// - Throws: An error If the given inputs were invalid.
     public func sendPayment(_ amount: UInt64,
-                            to paymentPointer: String,
-                            from senderAccountId: String,
-                            withAuthorization bearerToken: String
+                            to paymentPointer: PaymentPointer,
+                            from senderAccountId: AccountID,
+                            withAuthorization bearerToken: BearerToken
     ) throws -> Org_Interledger_Stream_Proto_SendPaymentResponse {
         let paymentRequest = Org_Interledger_Stream_Proto_SendPaymentRequest.with {
             $0.amount = amount

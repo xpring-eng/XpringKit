@@ -14,18 +14,21 @@ final class DefaultIlpClientTest: XCTestCase {
 
         // WHEN the balance is requested
         guard let balance: Org_Interledger_Stream_Proto_GetBalanceResponse =
-            try? ilpClient.getBalance(for: "foo", withAuthorization: "password") else {
-            XCTFail("Exception should not be thrown when trying to get a balance")
-            return
+            try? ilpClient.getBalance(
+                for: .testAccountID,
+                withAuthorization: .testBearerToken
+            ) else {
+              XCTFail("Exception should not be thrown when trying to get a balance")
+              return
         }
 
         // THEN the balance is correct
-        XCTAssertEqual(balance.accountID, "foo")
-        XCTAssertEqual(balance.assetCode, "XRP")
-        XCTAssertEqual(balance.assetScale, 9)
-        XCTAssertEqual(balance.clearingBalance, 100)
-        XCTAssertEqual(balance.prepaidAmount, 0)
-        XCTAssertEqual(balance.netBalance, 100)
+        XCTAssertEqual(balance.accountID, .testAccountID)
+        XCTAssertEqual(balance.assetCode, .testAssetCode)
+        XCTAssertEqual(balance.assetScale, .testAssetScale)
+        XCTAssertEqual(balance.clearingBalance, .testIlpBalance)
+        XCTAssertEqual(balance.prepaidAmount, .testIlpBalance)
+        XCTAssertEqual(balance.netBalance, .testIlpBalance)
     }
 
     func testGetBalanceWithFailure() {
@@ -35,7 +38,10 @@ final class DefaultIlpClientTest: XCTestCase {
         let ilpClient = DefaultIlpClient(balanceNetworkClient: balanceNetworkClient, paymentNetworkClient: paymentNetworkClient)
 
         // WHEN the balance is requested THEN an error is thrown
-        XCTAssertThrowsError(try ilpClient.getBalance(for: "foo", withAuthorization: "password"), "Exception not thrown") { error in
+        XCTAssertThrowsError(try ilpClient.getBalance(
+            for: .testAccountID,
+            withAuthorization: .testBearerToken
+        ), "Exception not thrown") { error in
             guard
               let _ = error as? XpringKitTestError
                 else {
@@ -56,19 +62,19 @@ final class DefaultIlpClientTest: XCTestCase {
         // WHEN a payment is sent
         guard let payment: Org_Interledger_Stream_Proto_SendPaymentResponse =
             try? ilpClient.sendPayment(
-                100,
-                to: "$example.com/bar",
-                from: "foo",
-                withAuthorization: "password"
+                .testIlpSendAmount,
+                to: .testIlpPaymentPointer,
+                from: .testAccountID,
+                withAuthorization: .testBearerToken
             ) else {
                 XCTFail("Exception should not be thrown when trying to send a payment")
                 return
         }
 
         // THEN the payment response is correct
-        XCTAssertEqual(payment.originalAmount, 100)
-        XCTAssertEqual(payment.amountDelivered, 100)
-        XCTAssertEqual(payment.amountSent, 100)
+        XCTAssertEqual(payment.originalAmount, .testIlpSendAmount)
+        XCTAssertEqual(payment.amountDelivered, .testIlpSendAmount)
+        XCTAssertEqual(payment.amountSent, .testIlpSendAmount)
         XCTAssertEqual(payment.successfulPayment, true)
     }
 
@@ -80,10 +86,10 @@ final class DefaultIlpClientTest: XCTestCase {
 
         // WHEN a payment is sent THEN an error is thrown
         XCTAssertThrowsError(try ilpClient.sendPayment(
-            100,
-            to: "$example.com/bar",
-            from: "foo",
-            withAuthorization: "password"
+            .testIlpSendAmount,
+            to: .testIlpPaymentPointer,
+            from: .testAccountID,
+            withAuthorization: .testBearerToken
         ), "Exception not thrown") { error in
             guard
               let _ = error as? XpringKitTestError
