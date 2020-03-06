@@ -6,39 +6,45 @@ public class IlpClient {
     /// Initialize a new client with a configured URL
     ///
     /// - Parameters:
-    ///     - grpcUrl : The gRPC URL exposed by Hermes
-    public init(grpcUrl: String) {
-        decoratedClient = DefaultIlpClient(grpcUrl: grpcUrl)
+    ///     - grpcURL : The gRPC URL exposed by Hermes
+    public init(grpcURL: String) {
+        decoratedClient = DefaultIlpClient(grpcURL: grpcURL)
     }
 
     /// Get the balance of the specified account on the connector.
     ///
     /// - Parameters:
-    ///     -  accountId The account ID to get the balance for.
+    ///     -  accountID The account ID to get the balance for.
     ///     -  bearerToken Authentication bearer token.
     /// - Returns: A Org_Interledger_Stream_Proto_GetBalanceResponse with balance information of the specified account
     /// - Throws: An error If the given inputs were invalid, the account doesn't exist, or authentication failed.
-    public func getBalance(for accountId: String, bearerToken: String) throws -> Org_Interledger_Stream_Proto_GetBalanceResponse {
-        return try decoratedClient.getBalance(for: accountId, bearerToken: bearerToken)
+    public func getBalance(for accountID: String,
+                           withAuthorization bearerToken: String
+    ) throws -> Org_Interledger_Stream_Proto_GetBalanceResponse {
+        return try decoratedClient.getBalance(for: accountID, withAuthorization: bearerToken)
     }
 
-    /// Send a payment from the given accountId to the destinationPaymentPointer payment pointer
+    /// Send a payment from the given accountID to the destinationPaymentPointer payment pointer
+    ///
+    /// - Note: This method will not necessarily throw an exception if the payment failed.
+    ///         Payment status can be checked in SendPaymentResponse#getSuccessfulPayment()
     /// - Parameters:
     ///     -  amount : Amount to send
     ///     -  paymentPointer : payment pointer of the receiver
-    ///     -  senderAccountId : accountId of the sender
+    ///     -  senderAccountId : accountID of the sender
     ///     -  bearerToken : auth token of the sender
-    /// - Returns: A Org_Interledger_Stream_Proto_SendPaymentResponse with details about the payment. Note that this method will not
-    ///          necessarily throw an exception if the payment failed. Payment status can be checked in
-    ///          {@link SendPaymentResponse#getSuccessfulPayment()}
+    /// - Returns: A Org_Interledger_Stream_Proto_SendPaymentResponse with details about the payment.
     /// - Throws: An error If the given inputs were invalid.
-    public func sendPayment(amount: UInt64,
-                            paymentPointer: String,
-                            senderAccountId: String,
-                            bearerToken: String) throws -> Org_Interledger_Stream_Proto_SendPaymentResponse {
-        return try decoratedClient.sendPayment(amount: amount,
-                                           paymentPointer: paymentPointer,
-                                           senderAccountId: senderAccountId,
-                                           bearerToken: bearerToken)
+    public func sendPayment(_ amount: UInt64,
+                            to paymentPointer: String,
+                            from senderAccountId: String,
+                            withAuthorization bearerToken: String
+    ) throws -> Org_Interledger_Stream_Proto_SendPaymentResponse {
+        return try decoratedClient.sendPayment(
+            amount,
+            to: paymentPointer,
+            from: senderAccountId,
+            withAuthorization: bearerToken
+        )
     }
 }

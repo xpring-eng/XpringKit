@@ -12,5 +12,6 @@ public protocol IlpNetworkPaymentClient {
     /// - Throws: An error if there was a problem communicating with the ILP network
     /// - Returns: A `SendPaymentResponse` with details about the requested payment
     func sendMoney(_ request: Org_Interledger_Stream_Proto_SendPaymentRequest,
-                   metadata customMetadata: Metadata) throws -> Org_Interledger_Stream_Proto_SendPaymentResponse
+                   metadata customMetadata: Metadata
+    ) throws -> Org_Interledger_Stream_Proto_SendPaymentResponse
 }
