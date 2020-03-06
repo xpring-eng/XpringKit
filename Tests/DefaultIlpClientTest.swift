@@ -28,6 +28,23 @@ final class DefaultIlpClientTest: XCTestCase {
         XCTAssertEqual(balance.netBalance, 100)
     }
 
+    func testGetBalanceWithFailure() {
+        // GIVEN an IlpClient with a network client which will always throw an error.
+        let balanceNetworkClient = FakeIlpBalanceNetworkClient(getBalanceResult: .failure(XpringKitTestError.mockFailure))
+        let paymentNetworkClient = FakeIlpPaymentNetworkClient(sendPaymentResult: .failure(XpringKitTestError.mockFailure))
+        let ilpClient = DefaultIlpClient(balanceNetworkClient: balanceNetworkClient, paymentNetworkClient: paymentNetworkClient)
+
+        // WHEN the balance is requested THEN an error is thrown
+        XCTAssertThrowsError(try ilpClient.getBalance(for: "foo", withAuthorization: "password"), "Exception not thrown") { error in
+            guard
+              let _ = error as? XpringKitTestError
+                else {
+                  XCTFail("Error thrown was not mocked error")
+                  return
+            }
+        }
+    }
+
     // MARK: - Payment
     func testSendPaymentWithSuccess() {
         // GIVEN an IlpClient which will successfully return a payment response from a mocked network call.
@@ -51,5 +68,27 @@ final class DefaultIlpClientTest: XCTestCase {
         XCTAssertEqual(payment.amountDelivered, 100)
         XCTAssertEqual(payment.amountSent, 100)
         XCTAssertEqual(payment.successfulPayment, true)
+    }
+
+    func testSendPaymentWithFailure() {
+        // GIVEN an IlpClient with a network client which will always throw an error.
+        let balanceNetworkClient = FakeIlpBalanceNetworkClient(getBalanceResult: .failure(XpringKitTestError.mockFailure))
+        let paymentNetworkClient = FakeIlpPaymentNetworkClient(sendPaymentResult: .failure(XpringKitTestError.mockFailure))
+        let ilpClient = DefaultIlpClient(balanceNetworkClient: balanceNetworkClient, paymentNetworkClient: paymentNetworkClient)
+
+        // WHEN a payment is sent THEN an error is thrown
+        XCTAssertThrowsError(try ilpClient.sendPayment(
+            100,
+            to: "$example.com/bar",
+            from: "foo",
+            withAuthorization: "password"
+        ), "Exception not thrown") { error in
+            guard
+              let _ = error as? XpringKitTestError
+                else {
+                  XCTFail("Error thrown was not mocked error")
+                  return
+            }
+        }
     }
 }
