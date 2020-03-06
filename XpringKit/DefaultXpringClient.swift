@@ -66,8 +66,8 @@ extension DefaultXpringClient: XpringClientDecorator {
   public func getBalance(for address: Address) throws -> UInt64 {
     guard
       let classicAddressComponents = Utils.decode(xAddress: address)
-    else {
-      throw XRPLedgerError.invalidInputs("Please use the X-Address format. See: https://xrpaddress.info/.")
+      else {
+        throw XRPLedgerError.invalidInputs("Please use the X-Address format. See: https://xrpaddress.info/.")
     }
 
     let accountInfoResponse = try self.getAccountInfo(for: classicAddressComponents.classicAddress)
@@ -107,8 +107,8 @@ extension DefaultXpringClient: XpringClientDecorator {
     guard
       let destinationClassicAddressComponents = Utils.decode(xAddress: destinationAddress),
       let sourceClassicAddressComponents = Utils.decode(xAddress: sourceWallet.address)
-    else {
-      throw XRPLedgerError.invalidInputs("Please use the X-Address format. See: https://xrpaddress.info/.")
+      else {
+        throw XRPLedgerError.invalidInputs("Please use the X-Address format. See: https://xrpaddress.info/.")
     }
 
     let accountInfo = try getAccountInfo(for: sourceClassicAddressComponents.classicAddress)
@@ -206,8 +206,8 @@ extension DefaultXpringClient: XpringClientDecorator {
   public func accountExists(for address: Address) throws -> Bool {
     guard
       let _ = Utils.decode(xAddress: address)
-    else {
-      throw XRPLedgerError.invalidInputs("Please use the X-Address format. See: https://xrpaddress.info/.")
+      else {
+        throw XRPLedgerError.invalidInputs("Please use the X-Address format. See: https://xrpaddress.info/.")
     }
 
     do {
@@ -221,5 +221,31 @@ extension DefaultXpringClient: XpringClientDecorator {
     } catch {
       throw error // any other type of Error, re-throw
     }
+  }
+
+  /// Retrieve the transaction history for an address.
+  ///
+  /// - Parameter address: The address to retrieve transaction history for.
+  /// - Throws: An error if there was a problem communicating with the XRP Ledger.
+  /// - Returns: An array of transactions for the account.
+  public func getTransactionHistory(for address: Address) throws -> [Transaction] {
+    guard
+      let classicAddressComponents = Utils.decode(xAddress: address)
+      else {
+        throw XRPLedgerError.invalidInputs("Please use the X-Address format. See: https://xrpaddress.info/.")
+    }
+
+    let request = Org_Xrpl_Rpc_V1_GetAccountTransactionHistoryRequest.with {
+      $0.account = Org_Xrpl_Rpc_V1_AccountAddress.with {
+        $0.address = classicAddressComponents.classicAddress
+      }
+    }
+
+    let transactionHistory = try self.networkClient.getAccountTransactionHistory(request)
+
+    let rawTransactions = transactionHistory.transactions
+
+    // TODO(keefertaylor): Map fields from protocol buffers to Transaction objects here.
+    return rawTransactions.map { _ in Transaction() }
   }
 }
