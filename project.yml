@@ -2,6 +2,10 @@
 name: XpringKit
 options:
   bundleIdPrefix: io.xpring
+  deploymentTarget: [
+    'macOS': 10.13,
+    'iOS': 11.0
+  ]
 settings:
   LD_RUNPATH_SEARCH_PATHS: "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks $(PROJECT_DIR)/Carthage/Build/iOS"
 targets:
