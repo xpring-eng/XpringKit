@@ -29,7 +29,12 @@ final class ProtocolBufferConversionTests: XCTestCase {
 
   func testConvertCurrency() {
     // GIVEN a Currency protocol buffer with a code and a name.
-    let currencyProto = Org_Xrpl_Rpc_V1_Currency.testCurrency
+    let currencyCode = Data([1, 2, 3])
+    let currencyName = "abc"
+    let currencyProto = Org_Xrpl_Rpc_V1_Currency.with {
+      $0.code = currencyCode
+      $0.name = currencyName
+    }
 
     // WHEN the protocol buffer is converted to a native Swift type.
     let currency = XRPCurrency(currency: currencyProto)
