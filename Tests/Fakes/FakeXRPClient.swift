@@ -1,8 +1,8 @@
 import XpringKit
 
-/// A  fake XpringClient which returns the given iVars as results from XpringClientDecorator calls.
+/// A  fake XRPClient which returns the given iVars as results from XRPClientDecorator calls.
 /// - Note: Since this class is passed by reference and the iVars are mutable, outputs of this class can be changed after it is injected.
-public class FakeXpringClient {
+public class FakeXRPClient {
   public let networkClient: LegacyNetworkClient = LegacyFakeNetworkClient.successfulFakeNetworkClient
 
   public var getBalanceValue: UInt64
@@ -32,7 +32,7 @@ public class FakeXpringClient {
   }
 }
 
-extension FakeXpringClient: XpringClientDecorator {
+extension FakeXRPClient: XRPClientDecorator {
   public func getBalance(for address: Address) throws -> UInt64 {
     return getBalanceValue
   }
