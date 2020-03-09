@@ -17,9 +17,9 @@ extension TransactionHash {
 }
 
 /// Integration tests run against a live remote client.
-final class IntegrationTests: XCTestCase {
-  private let legacyClient = XpringClient(grpcURL: .legacyRemoteURL, useNewProtocolBuffers: false)
-  private let client = XpringClient(grpcURL: .remoteURL, useNewProtocolBuffers: true)
+final class XRPClientIntegrationTests: XCTestCase {
+  private let legacyClient = XRPClient(grpcURL: .legacyRemoteURL, useNewProtocolBuffers: false)
+  private let client = XRPClient(grpcURL: .remoteURL, useNewProtocolBuffers: true)
 
   // MARK: - rippled Protocol Buffers
 
