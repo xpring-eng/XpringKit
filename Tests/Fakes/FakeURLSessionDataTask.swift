@@ -1,14 +1,25 @@
 import Foundation
 
-/// Fakes a URLSessionDataTask for testing.
-class FakeURLSessionDataTask: URLSessionDataTask {
-    private let closure: () -> Void
+/// A fake data task that will immediately call completion.
+public class FakeURLSessionDataTask: URLSessionDataTask {
+  private let urlResponse: URLResponse?
+  private let data: Data?
+  private let fakedError: Error?
+  private let completionHandler: (Data?, URLResponse?, Error?) -> Void
 
-    init(closure: @escaping () -> Void) {
-        self.closure = closure
-    }
+  public init(
+    urlResponse: URLResponse?,
+    data: Data?,
+    error: Error?,
+    completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void
+  ) {
+    self.urlResponse = urlResponse
+    self.data = data
+    self.fakedError = error
+    self.completionHandler = completionHandler
+  }
 
-    override func resume() {
-        closure()
-    }
+  public override func resume() {
+    completionHandler(data, urlResponse, fakedError)
+  }
 }
