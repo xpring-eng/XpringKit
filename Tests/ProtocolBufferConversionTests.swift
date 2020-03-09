@@ -37,8 +37,9 @@ extension Org_Xrpl_Rpc_V1_IssuedCurrencyAmount {
     $0.issuer = Org_Xrpl_Rpc_V1_AccountAddress.with {
       $0.address = "r123"
     }
-    $0.value = "abc"
+    $0.value = "xrp" // Invalid because non-numeric
   }
+
 }
 
 /// Tests conversion of protocol buffer to native Swift structs.
@@ -148,7 +149,7 @@ final class ProtocolBufferConversionTests: XCTestCase {
 
   func testConvertIssuedCurrencyWithBadValue() {
     // GIVEN an issued currency protocol buffer with a non numeric value
-    let issuedCurrencyProto = Org_Xrpl_Rpc_V1_IssuedCurrencyAmount.testIssuedCurrency
+    let issuedCurrencyProto = Org_Xrpl_Rpc_V1_IssuedCurrencyAmount.testInvalidIssuedCurrency
 
     // WHEN the protocol buffer is converted to a native Swift type.
     let issuedCurrency = XRPIssuedCurrency(issuedCurrency: issuedCurrencyProto)
@@ -193,7 +194,7 @@ final class ProtocolBufferConversionTests: XCTestCase {
   func testConvertCurrencyAmountWithBadInputs() {
     // GIVEN an currency amount protocol buffer with no amounts
     let currencyAmountProto = Org_Xrpl_Rpc_V1_CurrencyAmount.with {
-      $0.issuedCurrencyAmount = .testIssuedCurrency
+      $0.issuedCurrencyAmount = .testInvalidIssuedCurrency
     }
 
     // WHEN the protocol buffer is converted to a native Swift type.
