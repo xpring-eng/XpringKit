@@ -37,8 +37,9 @@ extension Org_Xrpl_Rpc_V1_IssuedCurrencyAmount {
     $0.issuer = Org_Xrpl_Rpc_V1_AccountAddress.with {
       $0.address = "r123"
     }
-    $0.value = "abc"
+    $0.value = "xrp" // Invalid because non-numeric
   }
+
 }
 
 /// Tests conversion of protocol buffer to native Swift structs.
@@ -148,7 +149,7 @@ final class ProtocolBufferConversionTests: XCTestCase {
 
   func testConvertIssuedCurrencyWithBadValue() {
     // GIVEN an issued currency protocol buffer with a non numeric value
-    let issuedCurrencyProto = Org_Xrpl_Rpc_V1_IssuedCurrencyAmount.testIssuedCurrency
+    let issuedCurrencyProto = Org_Xrpl_Rpc_V1_IssuedCurrencyAmount.testInvalidIssuedCurrency
 
     // WHEN the protocol buffer is converted to a native Swift type.
     let issuedCurrency = XRPIssuedCurrency(issuedCurrency: issuedCurrencyProto)
@@ -193,7 +194,7 @@ final class ProtocolBufferConversionTests: XCTestCase {
   func testConvertCurrencyAmountWithBadInputs() {
     // GIVEN an currency amount protocol buffer with no amounts
     let currencyAmountProto = Org_Xrpl_Rpc_V1_CurrencyAmount.with {
-      $0.issuedCurrencyAmount = .testIssuedCurrency
+      $0.issuedCurrencyAmount = .testInvalidIssuedCurrency
     }
 
     // WHEN the protocol buffer is converted to a native Swift type.
@@ -350,7 +351,7 @@ final class ProtocolBufferConversionTests: XCTestCase {
   }
 
   func testConvertPaymentWithInvalidSendMaxField() {
-    // GIVEN a pyament protocol buffer with an invalid sendMax field
+    // GIVEN a payment protocol buffer with an invalid sendMax field
     let paymentProto = Org_Xrpl_Rpc_V1_Payment.with {
       $0.amount = Org_Xrpl_Rpc_V1_Amount.with {
         $0.value = Org_Xrpl_Rpc_V1_CurrencyAmount.with {
@@ -371,5 +372,46 @@ final class ProtocolBufferConversionTests: XCTestCase {
 
     // WHEN the protocol buffer is converted to a native Swift type THEN the result is nil
     XCTAssertNil(XRPPayment(payment: paymentProto))
+  }
+
+  // MARK: - Org_Xrpl_Rpc_V1_Memo
+
+  func testConvertMemoWithAllFieldsSet() {
+    // GIVEN a memo with all fields set.
+    let memoData = Data([1, 2, 3])
+    let memoFormat = Data([4, 5, 6])
+    let memoType = Data([7, 8, 9])
+    let memoProto = Org_Xrpl_Rpc_V1_Memo.with {
+      $0.memoData = Org_Xrpl_Rpc_V1_MemoData.with {
+        $0.value = memoData
+      }
+      $0.memoFormat = Org_Xrpl_Rpc_V1_MemoFormat.with {
+        $0.value = memoFormat
+      }
+      $0.memoType = Org_Xrpl_Rpc_V1_MemoType.with {
+        $0.value = memoType
+      }
+    }
+
+    // WHEN the protocol buffer is converted to a native Swift type
+    let memo = XRPMemo(memo: memoProto)
+
+    // THEN all fields are present and set correctly.
+    XCTAssertEqual(memo.data, memoData)
+    XCTAssertEqual(memo.format, memoFormat)
+    XCTAssertEqual(memo.type, memoType)
+  }
+
+  func testConvertMemoWithNoFieldsSet() {
+    // GIVEN a memo with no fields set.
+    let memoProto = Org_Xrpl_Rpc_V1_Memo()
+
+    // WHEN the protocol buffer is converted to a native Swift type
+    let memo = XRPMemo(memo: memoProto)
+
+    // THEN all fields are empty.
+    XCTAssertNil(memo.data)
+    XCTAssertNil(memo.format)
+    XCTAssertNil(memo.type)
   }
 }
