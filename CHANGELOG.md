@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## 1.5.0 - March 9, 2020
+
+This version introduces a public API to retrieve balances and send payments over ILP. 
+Additionally, the deployment target for XpringKit is now explicitly set to macOS 10.13 and higher.
+
 ### Changed
 - `getTransactionStatus` will now return `TransactionStatus.unknown` if the transaction hash provided references a transaction that is a partial payment or a non payment transaction. This behavior is only enabled when using the rippled protocol buffer implementation. 
 
