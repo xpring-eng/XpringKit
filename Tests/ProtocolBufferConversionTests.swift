@@ -279,7 +279,7 @@ final class ProtocolBufferConversionTests: XCTestCase {
   }
 
   func testConvertPaymentWithOnlyMandatoryFieldsSet() {
-    // GIVEN a pyament protocol buffer with only mandatory fields set.
+    // GIVEN a payment protocol buffer with only mandatory fields set.
     let paymentProto = Org_Xrpl_Rpc_V1_Payment.with {
       $0.amount = Org_Xrpl_Rpc_V1_Amount.with {
         $0.value = Org_Xrpl_Rpc_V1_CurrencyAmount.with {
