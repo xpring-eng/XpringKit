@@ -365,9 +365,9 @@ final class DefaultXpringClientTest: XCTestCase {
     ) { error in
       guard
         case .invalidInputs = error as? XRPLedgerError
-        else {
-          XCTFail("Error thrown was not invalid inputs error")
-          return
+      else {
+        XCTFail("Error thrown was not invalid inputs error")
+        return
       }
     }
   }
@@ -411,9 +411,69 @@ final class DefaultXpringClientTest: XCTestCase {
     ) { error in
       guard
         case .callError = error as? RPCError
-        else {
-          XCTFail("Error thrown was not RPCError.callError")
-          return
+      else {
+        XCTFail("Error thrown was not RPCError.callError")
+        return
+      }
+    }
+  }
+
+  // MARK: - TransactionHistory
+  func testTransactionHistoryWithSuccess() {
+    // GIVEN a Xpring client which will successfully return a transactionHistory mocked network call.
+    let xpringClient = DefaultXpringClient(networkClient: FakeNetworkClient.successfulFakeNetworkClient)
+
+    // WHEN the transactionHistory is requested.
+    guard let transactions = try? xpringClient.getTransactionHistory(for: .testAddress) else {
+      XCTFail("Exception should not be thrown when trying to get a balance")
+      return
+    }
+
+    // THEN the balance is correct.
+    XCTAssertEqual(transactions, .testTransactions)
+  }
+
+  func testGetTransactionHistoryWithClassicAddress() {
+    // GIVEN a classic address.
+    guard let classicAddressComponents = Utils.decode(xAddress: .testAddress) else {
+      XCTFail("Failed to decode X-Address.")
+      return
+    }
+    let xpringClient = DefaultXpringClient(networkClient: FakeNetworkClient.successfulFakeNetworkClient)
+
+    // WHEN the transaction history is requested THEN an error is thrown.
+    XCTAssertThrowsError(
+      try xpringClient.getTransactionHistory(for: classicAddressComponents.classicAddress),
+      "Exception not thrown"
+    ) { error in
+      guard
+        case .invalidInputs = error as? XRPLedgerError
+      else {
+        XCTFail("Error thrown was not invalid inputs error")
+        return
+      }
+
+    }
+  }
+
+  func testGetTransactionHistoryWithFailure() {
+    // GIVEN a Xpring client which will throw an error when a balance is requested.
+    let networkClient = FakeNetworkClient(
+      accountInfoResult: .success(.testGetAccountInfoResponse),
+      feeResult: .success(.testGetFeeResponse),
+      submitTransactionResult: .success(.testSubmitTransactionResponse),
+      transactionStatusResult: .success(.testGetTransactionResponse),
+      transactionHistoryResult: .failure(XpringKitTestError.mockFailure)
+    )
+    let xpringClient = DefaultXpringClient(networkClient: networkClient)
+
+    // WHEN the transaction history is requested THEN an error is thrown.
+    XCTAssertThrowsError(try xpringClient.getTransactionHistory(for: .testAddress), "Exception not thrown") { error in
+      guard
+        let _ = error as? XpringKitTestError
+      else {
+        XCTFail("Error thrown was not mocked error")
+        return
       }
     }
   }
