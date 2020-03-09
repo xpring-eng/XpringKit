@@ -26,7 +26,7 @@ final class PayIDIntegrationTests: XCTestCase {
       expectation.fulfill()
     }
 
-    self.wait(for: [ expectation ], timeout: 60)
+    self.wait(for: [ expectation ], timeout: 10)
   }
 
   // TODO(keefertaylor): Add a test for a PayID mapping which doesn't exist. https://doug.purdy.im returns 403 errors

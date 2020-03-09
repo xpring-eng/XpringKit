@@ -9,7 +9,13 @@ private struct XRPJSONResult: Codable {
 /// Implements interaction with a PayID service.
 /// - Warning: This class is experimental and should not be used in production applications.
 public class PayIDClient {
-  public init() {}
+  /// The URLSession to use for network requests
+  private let urlSession: URLSession
+
+  /// - Parameter urlSession: The URLSession to use for networking. Defaults to the shared session.
+  public init(urlSession: URLSession = .shared) {
+    self.urlSession = urlSession
+  }
 
   /// Resolve the given PayID to an XRP Address.
   ///
@@ -32,7 +38,7 @@ public class PayIDClient {
     var request = URLRequest(url: url)
     request.addValue("application/xrp+json", forHTTPHeaderField: "Accept")
 
-    URLSession.shared.dataTask(with: request) { data, response, error in
+    self.urlSession.dataTask(with: request) { data, response, error in
       guard let urlResponse = response as? HTTPURLResponse else {
         completion(.failure(.unknown(error: "Could not formulate PayID URL from pointer \(payID)")))
         return
