@@ -350,7 +350,7 @@ final class ProtocolBufferConversionTests: XCTestCase {
   }
 
   func testConvertPaymentWithInvalidSendMaxField() {
-    // GIVEN a pyament protocol buffer with an invalid sendMax field
+    // GIVEN a payment protocol buffer with an invalid sendMax field
     let paymentProto = Org_Xrpl_Rpc_V1_Payment.with {
       $0.amount = Org_Xrpl_Rpc_V1_Amount.with {
         $0.value = Org_Xrpl_Rpc_V1_CurrencyAmount.with {
