@@ -3,12 +3,12 @@ import Foundation
 /// A transaction on the XRP Ledger.
 ///
 /// - SeeAlso: https://xrpl.org/transaction-formats.html
-// TODO: X-Address
+// TODO(keefertaylor): Modify this object to use X-Address format.
 public struct XRPTransaction: Equatable {
   /// Common fields
   public let account: Address
   public let accountTransactionID: Data?
-  public let feeDrops: UInt64
+  public let fee: UInt64
   public let flags: RippledFlags?
   public let lastLedgerSequence: UInt32?
   public let memos: [XRPMemo]?
@@ -22,4 +22,3 @@ public struct XRPTransaction: Equatable {
   /// Transaction specific fields, only one of the following will be set.
   public let paymentFields: XRPPayment?
 }
-
