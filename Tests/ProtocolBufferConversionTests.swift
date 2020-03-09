@@ -1,3 +1,4 @@
+import BigInt
 import XCTest
 @testable import XpringKit
 
@@ -108,5 +109,43 @@ final class ProtocolBufferConversionTests: XCTestCase {
 
     // THEN there are multiple paths in the output.
     XCTAssertEqual(path.pathElements.count, 3)
+  }
+
+  // MARK: - Org_Xrpl_Rpc_V1_IssuedCurrencyAmount
+
+  func testConvertIssuedCurrency() {
+    // GIVEN an issued currency protocol buffer
+    let issuedCurrencyProto = Org_Xrpl_Rpc_V1_IssuedCurrencyAmount.with {
+      $0.currency = .testCurrency
+      $0.issuer = Org_Xrpl_Rpc_V1_AccountAddress.with {
+        $0.address = "r123"
+      }
+      $0.value = "12345"
+    }
+
+    // WHEN the protocol buffer is converted to a native Swift type.
+    let issuedCurrency = XRPIssuedCurrency(issuedCurrency: issuedCurrencyProto)
+
+    // THEN the issued currency converted as expected.
+    XCTAssertEqual(issuedCurrency?.currency, XRPCurrency(currency: issuedCurrencyProto.currency))
+    XCTAssertEqual(issuedCurrency?.issuer, issuedCurrencyProto.issuer.address)
+    XCTAssertEqual(issuedCurrency?.value, BigInt(issuedCurrencyProto.value))
+  }
+
+  func testConvertIssuedCurrencyWithBadValue() {
+    // GIVEN an issued currency protocol buffer with a non numeric value
+    let issuedCurrencyProto = Org_Xrpl_Rpc_V1_IssuedCurrencyAmount.with {
+      $0.currency = .testCurrency
+      $0.issuer = Org_Xrpl_Rpc_V1_AccountAddress.with {
+        $0.address = "r123"
+      }
+      $0.value = "xrp"
+    }
+
+    // WHEN the protocol buffer is converted to a native Swift type.
+    let issuedCurrency = XRPIssuedCurrency(issuedCurrency: issuedCurrencyProto)
+
+    // THEN the result is nil
+    XCTAssertNil(issuedCurrency)
   }
 }
