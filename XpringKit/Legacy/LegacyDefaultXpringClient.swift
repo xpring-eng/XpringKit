@@ -1,7 +1,7 @@
 import SwiftGRPC
 
 /// An interface into the Xpring Platform.
-public class LegacyDefaultXpringClient {
+public class LegacyDefaultXRPClient {
   /// A margin to pad the current ledger sequence with when submitting transactions.
   private let ledgerSequenceMargin: UInt32 = 10
 
@@ -46,7 +46,7 @@ public class LegacyDefaultXpringClient {
   }
 }
 
-extension LegacyDefaultXpringClient: XpringClientDecorator {
+extension LegacyDefaultXRPClient: XRPClientDecorator {
   /// Get the balance for the given address.
   ///
   /// - Parameter address: The X-Address to retrieve the balance for.
