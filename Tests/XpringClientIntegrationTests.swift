@@ -1,23 +1,6 @@
 import XCTest
 import XpringKit
 
-/*
-extension String {
-  /// The URL of the remote legacy gRPC service.
-  public static let legacyRemoteURL = "grpc.xpring.tech:80"
-
-  /// The URL of a remote rippled node with gRPC enabled.
-  public static let remoteURL = "3.14.64.116:50051"
-
-  /// An address on the chain to receive funds.
-  public static let recipientAddress = "X7cBcY4bdTTzk3LHmrKAK6GyrirkXfLHGFxzke5zTmYMfw4"
-}
-
-extension TransactionHash {
-  public static let successfulTransactionHash = "24E31668208A3165E6C702CDA66425808EAD670EABCBFA6C4403FFA93500D486"
-}
- */
-
 /// Integration tests run against a live remote client.
 final class XpringClientIntegrationTests: XCTestCase {
   private let legacyClient = XpringClient(grpcURL: .legacyRemoteURL, useNewProtocolBuffers: false)
