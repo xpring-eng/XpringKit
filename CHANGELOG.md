@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## 1.5.0 - March 9, 2020
+
+This version introduces a public API to retrieve balances and send payments over ILP. 
+Additionally, the deployment target for XpringKit is now explicitly set to macOS 10.13 and higher.
+
 ### Changed
 - `XpringClient` has been renamed to `XRPClient`, along with all associated classes, and should be used going forward.
 	Top-level class `XpringClient` still exists alongside `XRPClient` and will be deprecated in the future.
