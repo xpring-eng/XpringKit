@@ -13,9 +13,9 @@ public class DefaultIlpClient {
     ///     - grpcURL: The gRPC URL exposed by Hermes
     public convenience init(grpcURL: String) {
         let balanceNetworkClient =
-            Org_Interledger_Stream_Proto_BalanceServiceServiceClient(address: grpcURL, secure: false)
+            Org_Interledger_Stream_Proto_BalanceServiceServiceClient(address: grpcURL)
         let paymentNetworkClient =
-            Org_Interledger_Stream_Proto_IlpOverHttpServiceServiceClient(address: grpcURL, secure: false)
+            Org_Interledger_Stream_Proto_IlpOverHttpServiceServiceClient(address: grpcURL)
         self.init(balanceNetworkClient: balanceNetworkClient, paymentNetworkClient: paymentNetworkClient)
     }
 
@@ -39,10 +39,15 @@ extension DefaultIlpClient: IlpClientDecorator {
     ///     -  bearerToken Authentication bearer token.
     /// - Returns: A Org_Interledger_Stream_Proto_GetBalanceResponse with balance information of the specified account
     /// - Throws: An error If the given inputs were invalid, the account doesn't exist, or authentication failed.
-    public func getBalance(for accountID: String,
-                           withAuthorization bearerToken: String
+    public func getBalance(for accountID: AccountID,
+                           withAuthorization bearerToken: BearerToken
     ) throws -> Org_Interledger_Stream_Proto_GetBalanceResponse {
-        throw XpringIlpError.unimplemented
+        let balanceRequest = Org_Interledger_Stream_Proto_GetBalanceRequest.with {
+            $0.accountID = accountID
+        }
+        let metaData = Metadata()
+        try metaData.add(key: "authorization", value: bearerToken)
+        return try self.balanceNetworkClient.getBalance(balanceRequest, metadata: metaData)
     }
 
     /// Send a payment from the given accountID to the destinationPaymentPointer payment pointer
@@ -57,10 +62,18 @@ extension DefaultIlpClient: IlpClientDecorator {
     /// - Returns: A Org_Interledger_Stream_Proto_SendPaymentResponse with details about the payment
     /// - Throws: An error If the given inputs were invalid.
     public func sendPayment(_ amount: UInt64,
-                            to paymentPointer: String,
-                            from senderAccountId: String,
-                            withAuthorization bearerToken: String
+                            to paymentPointer: PaymentPointer,
+                            from senderAccountId: AccountID,
+                            withAuthorization bearerToken: BearerToken
     ) throws -> Org_Interledger_Stream_Proto_SendPaymentResponse {
-        throw XpringIlpError.unimplemented
+        let paymentRequest = Org_Interledger_Stream_Proto_SendPaymentRequest.with {
+            $0.amount = amount
+            $0.destinationPaymentPointer = paymentPointer
+            $0.accountID = senderAccountId
+        }
+
+        let metaData = Metadata()
+        try metaData.add(key: "authorization", value: bearerToken)
+        return try self.paymentNetworkClient.sendMoney(paymentRequest, metadata: metaData)
     }
 }

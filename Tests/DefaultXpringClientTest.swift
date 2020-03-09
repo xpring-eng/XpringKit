@@ -365,9 +365,9 @@ final class DefaultXRPClientTest: XCTestCase {
     ) { error in
       guard
         case .invalidInputs = error as? XRPLedgerError
-        else {
-          XCTFail("Error thrown was not invalid inputs error")
-          return
+      else {
+        XCTFail("Error thrown was not invalid inputs error")
+        return
       }
     }
   }
@@ -411,9 +411,9 @@ final class DefaultXRPClientTest: XCTestCase {
     ) { error in
       guard
         case .callError = error as? RPCError
-        else {
-          XCTFail("Error thrown was not RPCError.callError")
-          return
+      else {
+        XCTFail("Error thrown was not RPCError.callError")
+        return
       }
     }
   }

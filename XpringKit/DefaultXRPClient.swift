@@ -206,8 +206,8 @@ extension DefaultXRPClient: XRPClientDecorator {
   public func accountExists(for address: Address) throws -> Bool {
     guard
       let _ = Utils.decode(xAddress: address)
-      else {
-        throw XRPLedgerError.invalidInputs("Please use the X-Address format. See: https://xrpaddress.info/.")
+    else {
+      throw XRPLedgerError.invalidInputs("Please use the X-Address format. See: https://xrpaddress.info/.")
     }
 
     do {
