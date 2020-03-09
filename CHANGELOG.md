@@ -13,6 +13,8 @@ This version introduces a public API to retrieve balances and send payments over
 Additionally, the deployment target for XpringKit is now explicitly set to macOS 10.13 and higher.
 
 ### Changed
+- `XpringClient` has been renamed to `XRPClient`, along with all associated classes, and should be used going forward.
+	Top-level class `XpringClient` still exists alongside `XRPClient` and will be deprecated in the future.
 - `getTransactionStatus` will now return `TransactionStatus.unknown` if the transaction hash provided references a transaction that is a partial payment or a non payment transaction. This behavior is only enabled when using the rippled protocol buffer implementation. 
 
 ## 1.4.0 - Feb 28, 2020

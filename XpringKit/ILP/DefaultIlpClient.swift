@@ -62,13 +62,13 @@ extension DefaultIlpClient: IlpClientDecorator {
     /// - Returns: A Org_Interledger_Stream_Proto_SendPaymentResponse with details about the payment
     /// - Throws: An error If the given inputs were invalid.
     public func sendPayment(_ amount: UInt64,
-                            to paymentPointer: PaymentPointer,
+                            to destinationPaymentPointer: PaymentPointer,
                             from senderAccountId: AccountID,
                             withAuthorization bearerToken: BearerToken
     ) throws -> Org_Interledger_Stream_Proto_SendPaymentResponse {
         let paymentRequest = Org_Interledger_Stream_Proto_SendPaymentRequest.with {
             $0.amount = amount
-            $0.destinationPaymentPointer = paymentPointer
+            $0.destinationPaymentPointer = destinationPaymentPointer
             $0.accountID = senderAccountId
         }
 
