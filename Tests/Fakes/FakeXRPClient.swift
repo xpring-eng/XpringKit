@@ -10,7 +10,7 @@ public class FakeXRPClient {
   public var sendValue: TransactionHash
   public var latestValidatedLedgerValue: UInt32
   public var rawTransactionStatusValue: RawTransactionStatus
-  public var transactionHistoryValue: [Transaction]
+  public var transactionHistoryValue: [XRPTransaction]
   public var accountExistsValue: Bool
 
   public init(
@@ -19,7 +19,7 @@ public class FakeXRPClient {
     sendValue: TransactionHash,
     latestValidatedLedgerValue: UInt32,
     rawTransactionStatusValue: RawTransactionStatus,
-    transactionHistoryValue: [Transaction],
+    transactionHistoryValue: [XRPTransaction],
     accountExistsValue: Bool
   ) {
     self.getBalanceValue = getBalanceValue
@@ -53,7 +53,7 @@ extension FakeXRPClient: XRPClientDecorator {
     return rawTransactionStatusValue
   }
 
-  public func getTransactionHistory(for address: Address) throws -> [Transaction] {
+  public func getTransactionHistory(for address: Address) throws -> [XRPTransaction] {
     return transactionHistoryValue
   }
 

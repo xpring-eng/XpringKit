@@ -13,7 +13,7 @@ final class ReliableSubmissionClientTest: XCTestCase {
       $0.lastLedgerSequence = 100
     }
   )
-  let defaultTransactionHistoryValue = [ XRPTransaction() ]
+  let defaultTransactionHistoryValue: [XRPTransaction] = [ .testTransaction, .testTransaction, .testTransaction ]
   let defaultAccountExistsValue = true
 
   var fakeXRPClient: FakeXRPClient!

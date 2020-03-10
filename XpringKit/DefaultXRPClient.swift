@@ -243,9 +243,7 @@ extension DefaultXRPClient: XRPClientDecorator {
 
     let transactionHistory = try self.networkClient.getAccountTransactionHistory(request)
 
-    let rawTransactions = transactionHistory.transactions
-
     // TODO(keefertaylor): Map fields from protocol buffers to Transaction objects here.
-    return rawTransactions.map { _ in Transaction() }
+    return []
   }
 }
