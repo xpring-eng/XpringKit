@@ -7,7 +7,7 @@ public class DefaultIlpClient {
     private let balanceNetworkClient: IlpNetworkBalanceClient
     private let paymentNetworkClient: IlpNetworkPaymentClient
 
-    /// Initialize a new DefaultXpringClient
+    /// Initialize a new DefaultILPClient
     ///
     /// - Parameters:
     ///     - grpcURL: The gRPC URL exposed by Hermes
@@ -19,7 +19,7 @@ public class DefaultIlpClient {
         self.init(balanceNetworkClient: balanceNetworkClient, paymentNetworkClient: paymentNetworkClient)
     }
 
-    /// Initialize a new DefaultXpringClient
+    /// Initialize a new DefaultILPClient
     ///
     /// - Parameters:
     ///     - balanceNetworkClient: gRPC generated client for balance operations

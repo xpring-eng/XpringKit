@@ -2,7 +2,7 @@
 public class XRPClient {
   private let decoratedClient: XRPClientDecorator
 
-  /// Initialize a new XpringClient.
+  /// Initialize a new XRPClient.
   ///
   /// - Parameters:
   ///   - grpcURL: A remote URL for a rippled gRPC service.
