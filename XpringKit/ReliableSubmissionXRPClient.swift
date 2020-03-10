@@ -58,7 +58,7 @@ extension ReliableSubmissionXRPClient: XRPClientDecorator {
     return try decoratedClient.accountExists(for: address)
   }
 
-  public func getTransactionHistory(for address: Address) throws -> [Transaction] {
+  public func getTransactionHistory(for address: Address) throws -> [XRPTransaction] {
     return try decoratedClient.getTransactionHistory(for: address)
   }
 }
