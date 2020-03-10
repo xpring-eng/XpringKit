@@ -13,7 +13,7 @@ final class ReliableSubmissionClientTest: XCTestCase {
       $0.lastLedgerSequence = 100
     }
   )
-  let defaultTransactionHistoryValue = [ Transaction() ]
+  let defaultPaymentHistoryValue = [ XRPTransaction() ]
   let defaultAccountExistsValue = true
 
   var fakeXRPClient: FakeXRPClient!
@@ -26,7 +26,7 @@ final class ReliableSubmissionClientTest: XCTestCase {
       sendValue: defaultSendValue,
       latestValidatedLedgerValue: defaultLastestValidatedLedgerValue,
       rawTransactionStatusValue: defaultRawTransactionStatusValue,
-      transactionHistoryValue: defaultTransactionHistoryValue,
+      paymentHistoryValue: defaultPaymentHistoryValue,
       accountExistsValue: defaultAccountExistsValue
     )
 
@@ -53,10 +53,10 @@ final class ReliableSubmissionClientTest: XCTestCase {
     XCTAssertEqual(try? reliableSubmissionClient.getRawTransactionStatus(for: .testTransactionHash), defaultRawTransactionStatusValue)
   }
 
-  func testGetTransactionHistory() {
+  func testPaymentHistory() {
     // GIVEN a `ReliableSubmissionClient` decorating a FakeXRPClient WHEN transaction history is retrieved THEN the result is returned unaltered.
     XCTAssertEqual(
-      try? reliableSubmissionClient.getTransactionHistory(for: .testAddress),
+      try? reliableSubmissionClient.paymentHistory(for: .testAddress),
       defaultTransactionHistoryValue
     )
   }

@@ -1,5 +1,5 @@
 import XpringKit
 
-extension Array where Element == Transaction {
-  static let testTransactions = [ Transaction() ]
+extension Array where Element == XRPTransaction {
+  static let testTransactions = [ XRPTransaction() ]
 }

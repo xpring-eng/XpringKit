@@ -223,12 +223,15 @@ extension DefaultXRPClient: XRPClientDecorator {
     }
   }
 
-  /// Retrieve the transaction history for an address.
+  /// Return the history of payments for the given account.
   ///
-  /// - Parameter address: The address to retrieve transaction history for.
+  /// - Note: This method only works for payment type transactions, see: https://xrpl.org/payment.html
+  /// - Note: This method only returns the history that is contained on the remote node, which may not contain a full history of the network.
+  ///
+  /// - Parameter address: The address to check the existence of.
   /// - Throws: An error if there was a problem communicating with the XRP Ledger.
-  /// - Returns: An array of transactions for the account.
-  public func getTransactionHistory(for address: Address) throws -> [Transaction] {
+  /// - Returns: An array of transactions associated with the account.
+  public func paymentHistory(for address: Address) throws -> [XRPTransaction] {
     guard
       let classicAddressComponents = Utils.decode(xAddress: address)
       else {
@@ -243,9 +246,24 @@ extension DefaultXRPClient: XRPClientDecorator {
 
     let transactionHistory = try self.networkClient.getAccountTransactionHistory(request)
 
-    let rawTransactions = transactionHistory.transactions
+    let transactionResponses = transactionHistory.transactions
 
-    // TODO(keefertaylor): Map fields from protocol buffers to Transaction objects here.
-    return rawTransactions.map { _ in Transaction() }
+    // Filter transactions to payments only and convert them to XRPTransactions.
+    // If a payment transaction fails conversion, throw an error.
+    return try transactionResponses.compactMap { transactionResponse in
+      let transaction = transactionResponse.transaction
+
+      switch transaction.transactionData {
+      case .payment:
+        // If a payment can't be converted throw an error to prevent returning incomplete data.
+        guard let xrpTransaction = XRPTransaction(transaction: transaction) else {
+          throw XRPLedgerError.unknown("Could not convert payment transaction: \(transaction). Please file a bug at https://github.com/xpring-eng/xpringkit")
+        }
+        return xrpTransaction
+      default:
+        // Other transaction types are not support.
+        return nil
+      }
+    }
   }
 }
