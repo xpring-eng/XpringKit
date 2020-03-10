@@ -443,4 +443,241 @@ final class ProtocolBufferConversionTests: XCTestCase {
     XCTAssertNil(memo.format)
     XCTAssertNil(memo.type)
   }
+
+  // MARK: - Org_Xrpl_Rpc_V1_Transaction
+
+  func testConvertPaymentTransactionAllCommonFieldsSet() {
+    // GIVEN a Transaction protocol buffer with all common fields set.
+    let account = "r123"
+    let fee: UInt64 = 1
+    let sequence: UInt32 = 2
+    let signingPublicKey = Data([1, 2, 3])
+    let transactionSignature = Data([4, 5, 6])
+    let accountTransactionID = Data([7, 8, 9])
+    let flags = RippledFlags(rawValue: 4)
+    let lastLedgerSequence: UInt32 = 5
+    let memoData = Data([1, 2, 3])
+    let memoFormat = Data([4, 5, 6])
+    let memoType = Data([7, 8, 9])
+    let memoProto = Org_Xrpl_Rpc_V1_Memo.with {
+      $0.memoData = Org_Xrpl_Rpc_V1_MemoData.with {
+        $0.value = memoData
+      }
+      $0.memoFormat = Org_Xrpl_Rpc_V1_MemoFormat.with {
+        $0.value = memoFormat
+      }
+      $0.memoType = Org_Xrpl_Rpc_V1_MemoType.with {
+        $0.value = memoType
+      }
+    }
+    let signerProto = Org_Xrpl_Rpc_V1_Signer.with {
+      $0.account = Org_Xrpl_Rpc_V1_Account.with {
+        $0.value = Org_Xrpl_Rpc_V1_AccountAddress.with {
+          $0.address = account
+        }
+      }
+      $0.signingPublicKey = Org_Xrpl_Rpc_V1_SigningPublicKey.with {
+        $0.value = signingPublicKey
+      }
+      $0.transactionSignature = Org_Xrpl_Rpc_V1_TransactionSignature.with {
+        $0.value = transactionSignature
+      }
+    }
+    let sourceTag: UInt32 = 6
+
+    let transactionProto = Org_Xrpl_Rpc_V1_Transaction.with {
+      $0.account = Org_Xrpl_Rpc_V1_Account.with {
+        $0.value = Org_Xrpl_Rpc_V1_AccountAddress.with {
+          $0.address = account
+        }
+      }
+      $0.fee = Org_Xrpl_Rpc_V1_XRPDropsAmount.with {
+        $0.drops = fee
+      }
+      $0.sequence = Org_Xrpl_Rpc_V1_Sequence.with {
+        $0.value = sequence
+      }
+      $0.signingPublicKey = Org_Xrpl_Rpc_V1_SigningPublicKey.with {
+        $0.value = signingPublicKey
+      }
+      $0.transactionSignature = Org_Xrpl_Rpc_V1_TransactionSignature.with {
+        $0.value = transactionSignature
+      }
+      $0.accountTransactionID = Org_Xrpl_Rpc_V1_AccountTransactionID.with {
+        $0.value = accountTransactionID
+      }
+      $0.flags = Org_Xrpl_Rpc_V1_Flags.with {
+        $0.value = flags.rawValue
+      }
+      $0.lastLedgerSequence = Org_Xrpl_Rpc_V1_LastLedgerSequence.with {
+        $0.value = lastLedgerSequence
+      }
+      $0.memos = [memoProto]
+      $0.signers = [signerProto]
+      $0.sourceTag = Org_Xrpl_Rpc_V1_SourceTag.with {
+        $0.value = sourceTag
+      }
+
+      $0.payment = Org_Xrpl_Rpc_V1_Payment.with {
+        $0.amount = Org_Xrpl_Rpc_V1_Amount.with {
+          $0.value = Org_Xrpl_Rpc_V1_CurrencyAmount.with {
+            $0.issuedCurrencyAmount = .testIssuedCurrency
+          }
+        }
+        $0.destination = Org_Xrpl_Rpc_V1_Destination.with {
+          $0.value = Org_Xrpl_Rpc_V1_AccountAddress.with {
+            $0.address = "r123"
+          }
+        }
+      }
+    }
+
+    // WHEN the protocol buffer is converted to a native Swift type.
+    let transaction = XRPTransaction(transaction: transactionProto)
+
+    // THEN all fields are present and converted correctly.
+    XCTAssertEqual(transaction?.account, account)
+    XCTAssertEqual(transaction?.fee, fee)
+    XCTAssertEqual(transaction?.sequence, sequence)
+    XCTAssertEqual(transaction?.signingPublicKey, signingPublicKey)
+    XCTAssertEqual(transaction?.transactionSignature, transactionSignature)
+    XCTAssertEqual(transaction?.accountTransactionID, accountTransactionID)
+    XCTAssertEqual(transaction?.flags, flags)
+    XCTAssertEqual(transaction?.lastLedgerSequence, lastLedgerSequence)
+    XCTAssertEqual(transaction?.memos, [ XRPMemo(memo: memoProto) ])
+    XCTAssertEqual(transaction?.signers, [ XRPSigner(signer: signerProto) ])
+    XCTAssertEqual(transaction?.sourceTag, sourceTag)
+  }
+
+  func testConvertPaymentTransactionOnlyMandatoryCommonFieldsSet() {
+    // GIVEN a Transaction protocol buffer with only mandatory common fields set.
+    let account = "r123"
+    let fee: UInt64 = 1
+    let sequence: UInt32 = 2
+    let signingPublicKey = Data([1, 2, 3])
+    let transactionSignature = Data([4, 5, 6])
+
+    let transactionProto = Org_Xrpl_Rpc_V1_Transaction.with {
+      $0.account = Org_Xrpl_Rpc_V1_Account.with {
+        $0.value = Org_Xrpl_Rpc_V1_AccountAddress.with {
+          $0.address = account
+        }
+      }
+      $0.fee = Org_Xrpl_Rpc_V1_XRPDropsAmount.with {
+        $0.drops = fee
+      }
+      $0.sequence = Org_Xrpl_Rpc_V1_Sequence.with {
+        $0.value = sequence
+      }
+      $0.signingPublicKey = Org_Xrpl_Rpc_V1_SigningPublicKey.with {
+        $0.value = signingPublicKey
+      }
+      $0.transactionSignature = Org_Xrpl_Rpc_V1_TransactionSignature.with {
+        $0.value = transactionSignature
+      }
+
+      $0.payment = Org_Xrpl_Rpc_V1_Payment.with {
+        $0.amount = Org_Xrpl_Rpc_V1_Amount.with {
+          $0.value = Org_Xrpl_Rpc_V1_CurrencyAmount.with {
+            $0.issuedCurrencyAmount = .testIssuedCurrency
+          }
+        }
+        $0.destination = Org_Xrpl_Rpc_V1_Destination.with {
+          $0.value = Org_Xrpl_Rpc_V1_AccountAddress.with {
+            $0.address = "r123"
+          }
+        }
+      }
+    }
+
+    // WHEN the protocol buffer is converted to a native Swift type.
+    let transaction = XRPTransaction(transaction: transactionProto)
+
+    // THEN all fields are present and converted correctly.
+    XCTAssertEqual(transaction?.account, account)
+    XCTAssertEqual(transaction?.fee, fee)
+    XCTAssertEqual(transaction?.sequence, sequence)
+    XCTAssertEqual(transaction?.signingPublicKey, signingPublicKey)
+    XCTAssertEqual(transaction?.transactionSignature, transactionSignature)
+    XCTAssertNil(transaction?.accountTransactionID)
+    XCTAssertNil(transaction?.flags)
+    XCTAssertNil(transaction?.lastLedgerSequence)
+    XCTAssertNil(transaction?.memos)
+    XCTAssertNil(transaction?.signers)
+    XCTAssertNil(transaction?.sourceTag)
+  }
+
+  func testConvertPaymentTransactionWithBadPaymentFields() {
+    // GIVEN a Transaction protocol buffer with payment fields which are incorrect
+    let account = "r123"
+    let fee: UInt64 = 1
+    let sequence: UInt32 = 2
+    let signingPublicKey = Data([1, 2, 3])
+    let transactionSignature = Data([4, 5, 6])
+
+    let transactionProto = Org_Xrpl_Rpc_V1_Transaction.with {
+      $0.account = Org_Xrpl_Rpc_V1_Account.with {
+        $0.value = Org_Xrpl_Rpc_V1_AccountAddress.with {
+          $0.address = account
+        }
+      }
+      $0.fee = Org_Xrpl_Rpc_V1_XRPDropsAmount.with {
+        $0.drops = fee
+      }
+      $0.sequence = Org_Xrpl_Rpc_V1_Sequence.with {
+        $0.value = sequence
+      }
+      $0.signingPublicKey = Org_Xrpl_Rpc_V1_SigningPublicKey.with {
+        $0.value = signingPublicKey
+      }
+      $0.transactionSignature = Org_Xrpl_Rpc_V1_TransactionSignature.with {
+        $0.value = transactionSignature
+      }
+
+      $0.payment = Org_Xrpl_Rpc_V1_Payment() // Empty fields, will not convert
+    }
+
+    // WHEN the protocol buffer is converted to a native Swift type.
+    let transaction = XRPTransaction(transaction: transactionProto)
+
+    // THEN the result is nil
+    XCTAssertNil(transaction)
+  }
+
+  func testConvertUnsupportedTransactionType() {
+    // GIVEN a Transaction protocol buffer with an unsupported transaction type.
+    let account = "r123"
+    let fee: UInt64 = 1
+    let sequence: UInt32 = 2
+    let signingPublicKey = Data([1, 2, 3])
+    let transactionSignature = Data([4, 5, 6])
+
+    let transactionProto = Org_Xrpl_Rpc_V1_Transaction.with {
+      $0.account = Org_Xrpl_Rpc_V1_Account.with {
+        $0.value = Org_Xrpl_Rpc_V1_AccountAddress.with {
+          $0.address = account
+        }
+      }
+      $0.fee = Org_Xrpl_Rpc_V1_XRPDropsAmount.with {
+        $0.drops = fee
+      }
+      $0.sequence = Org_Xrpl_Rpc_V1_Sequence.with {
+        $0.value = sequence
+      }
+      $0.signingPublicKey = Org_Xrpl_Rpc_V1_SigningPublicKey.with {
+        $0.value = signingPublicKey
+      }
+      $0.transactionSignature = Org_Xrpl_Rpc_V1_TransactionSignature.with {
+        $0.value = transactionSignature
+      }
+
+      $0.checkCash = Org_Xrpl_Rpc_V1_CheckCash() // Unsupported
+    }
+
+    // WHEN the protocol buffer is converted to a native Swift type.
+    let transaction = XRPTransaction(transaction: transactionProto)
+
+    // THEN the result is nil
+    XCTAssertNil(transaction)
+  }
 }
