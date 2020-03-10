@@ -244,6 +244,6 @@ extension DefaultXRPClient: XRPClientDecorator {
     let transactionHistory = try self.networkClient.getAccountTransactionHistory(request)
 
     // TODO(keefertaylor): Map fields from protocol buffers to Transaction objects here.
-    return []
+    return transactionHistory.flatMap { nil }
   }
 }
