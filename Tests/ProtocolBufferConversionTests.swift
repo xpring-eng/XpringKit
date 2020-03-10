@@ -222,15 +222,16 @@ final class ProtocolBufferConversionTests: XCTestCase {
       $0.transactionSignature = Org_Xrpl_Rpc_V1_TransactionSignature.with {
         $0.value = transactionSignature
       }
-      
-      // WHEN the protocol buffer is converted to a native Swift type.
-      let signer = XRPSigner(signer: signerProto)
-
-      // THEN all fields are present and converted correct.
-      XCTAssertEqual(signer.account, account)
-      XCTAssertEqual(signer.signingPublicKey, signingPublicKey)
-      XCTAssertEqual(signer.transactionSignature, transactionSignature)
     }
+
+    // WHEN the protocol buffer is converted to a native Swift type.
+    let signer = XRPSigner(signer: signerProto)
+
+    // THEN all fields are present and converted correct.
+    XCTAssertEqual(signer.account, account)
+    XCTAssertEqual(signer.signingPublicKey, signingPublicKey)
+    XCTAssertEqual(signer.transactionSignature, transactionSignature)
+  }
 
   // MARK: - Org_Xrpl_Rpc_V1_Payment
 
@@ -290,10 +291,10 @@ final class ProtocolBufferConversionTests: XCTestCase {
           $0.xrpAmount = Org_Xrpl_Rpc_V1_XRPDropsAmount.with {
             $0.drops = 20
           }
-        }    
+        }
       }
     }
-    
+
     // WHEN the protocol buffer is converted to a native Swift type.
     let payment = XRPPayment(payment: paymentProto)
 
