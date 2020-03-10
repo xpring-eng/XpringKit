@@ -158,6 +158,7 @@
 		647EFEB9AEAF38D5CA4F3170 /* IlpClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212C92E14DA12887A571FAB4 /* IlpClient.swift */; };
 		66021074CD54A5CC00DC6E3C /* Org_Interledger_Stream_Proto_IlpOverHttpServiceServiceClient+IlpNetworkPaymentClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C3E96834D8E286E10FF5B71 /* Org_Interledger_Stream_Proto_IlpOverHttpServiceServiceClient+IlpNetworkPaymentClient.swift */; };
 		6653C323B87A0C403B5606DB /* get_transaction_status_request.legacy.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 949D6FA55B17F1CF9C79628F /* get_transaction_status_request.legacy.pb.swift */; };
+		6769E14FDE6703B679C71D20 /* DefaultXRPClientTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA158D7B2CE015FD85B49545 /* DefaultXRPClientTest.swift */; };
 		67839529F78EEAD34E9C3219 /* transaction.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458D19126E809E9EE9F0522E /* transaction.pb.swift */; };
 		678B0F37EF859AEC82636E52 /* XRPSigner.swift in Sources */ = {isa = PBXBuildFile; fileRef = BADEF77AA5C0021AD393BF87 /* XRPSigner.swift */; };
 		6933342C51E08FAFA80E5244 /* Signer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C987E39201D5B0AA9E73428E /* Signer.swift */; };
@@ -302,6 +303,7 @@
 		D58C2A36E92F8BE220AE2D5B /* common.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58A457DEFD87D5FF4A7B6282 /* common.pb.swift */; };
 		D63E7B41C6C7C720CB0FE589 /* LegacyDefaultXpringClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3408A16393988DCD3648B8 /* LegacyDefaultXpringClient.swift */; };
 		D657F62289513455004921A9 /* create_account_response.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F53959EA38E3A5DED7017BF /* create_account_response.pb.swift */; };
+		D83A4953FAAE8645AEE51A75 /* DefaultXRPClientTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA158D7B2CE015FD85B49545 /* DefaultXRPClientTest.swift */; };
 		D97EF32A5C1E38669590DF51 /* xrp_ledger.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B065F20F6A6596A26A23B5A /* xrp_ledger.pb.swift */; };
 		DB26AC6D896AF31860B1CCE8 /* WalletGenerationResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADD0BDE0881A1C6DDE6D939A /* WalletGenerationResult.swift */; };
 		DB45A08F8767F545846E8C8D /* transaction.legacy.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3CFA7AC834E90F09184EA40 /* transaction.legacy.pb.swift */; };
@@ -540,6 +542,7 @@
 		C96BB00E8F8A1000EF3B59F1 /* IlpNetworkPaymentClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IlpNetworkPaymentClient.swift; sourceTree = "<group>"; };
 		C987E39201D5B0AA9E73428E /* Signer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Signer.swift; sourceTree = "<group>"; };
 		CA13CCED57677FEBC27B475D /* XRPTransaction+Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XRPTransaction+Test.swift"; sourceTree = "<group>"; };
+		CA158D7B2CE015FD85B49545 /* DefaultXRPClientTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultXRPClientTest.swift; sourceTree = "<group>"; };
 		CA32FFE800379858635FA6AA /* DefaultIlpClientTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultIlpClientTest.swift; sourceTree = "<group>"; };
 		CA56A942C3C3BC82B5291917 /* DefaultIlpClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultIlpClient.swift; sourceTree = "<group>"; };
 		CA80DCAD6A34B7C64853ED8C /* fee.legacy.pb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = fee.legacy.pb.swift; sourceTree = "<group>"; };
@@ -918,6 +921,7 @@
 			isa = PBXGroup;
 			children = (
 				CA32FFE800379858635FA6AA /* DefaultIlpClientTest.swift */,
+				CA158D7B2CE015FD85B49545 /* DefaultXRPClientTest.swift */,
 				D300276FE254845F4B571FFE /* Hex+ByteArrayTest.swift */,
 				4A3D163B09CEBBAA00F1C39B /* IlpIntegrationTests.swift */,
 				436EF316D97D78B4CA5A7DD0 /* ProtocolBufferConversionTests.swift */,
@@ -1304,6 +1308,7 @@
 				3EB4532DCEC601AEF0E1F511 /* BearerToken+Test.swift in Sources */,
 				26E489E7A27EDB433E16B895 /* Data+Test.swift in Sources */,
 				FF18DBC0AE89D5006391BD80 /* DefaultIlpClientTest.swift in Sources */,
+				6769E14FDE6703B679C71D20 /* DefaultXRPClientTest.swift in Sources */,
 				897EA2C4E392FFEB2472CB4B /* FakeIlpBalanceNetworkClient+Test.swift in Sources */,
 				ED34AFD6EF2C92BBD3DA6E34 /* FakeIlpBalanceNetworkClient.swift in Sources */,
 				6FC72342159BD52E6B1F6335 /* FakeIlpPaymentNetworkClient+Test.swift in Sources */,
@@ -1361,6 +1366,7 @@
 				05FCC66443B1FF8324283AC9 /* BearerToken+Test.swift in Sources */,
 				E663928F98A181B892F5EC73 /* Data+Test.swift in Sources */,
 				98D797AF3A336A5D3E60F6CA /* DefaultIlpClientTest.swift in Sources */,
+				D83A4953FAAE8645AEE51A75 /* DefaultXRPClientTest.swift in Sources */,
 				695E8A111BA6231E19B000D0 /* FakeIlpBalanceNetworkClient+Test.swift in Sources */,
 				59460E25FF4672CD92F4E6A3 /* FakeIlpBalanceNetworkClient.swift in Sources */,
 				10DB7A6148E30B7A06B30F33 /* FakeIlpPaymentNetworkClient+Test.swift in Sources */,
