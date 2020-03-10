@@ -28,17 +28,17 @@ extension Org_Xrpl_Rpc_V1_IssuedCurrencyAmount {
     $0.issuer = Org_Xrpl_Rpc_V1_AccountAddress.with {
       $0.address = "r123"
     }
-    $0.value = "100"
+    $0.value = "15"
   }
 
+  // Invalid currency, value is non - numeric
   static let testInvalidIssuedCurrency = Org_Xrpl_Rpc_V1_IssuedCurrencyAmount.with {
     $0.currency = .testCurrency
     $0.issuer = Org_Xrpl_Rpc_V1_AccountAddress.with {
       $0.address = "r123"
     }
-    $0.value = "xrp" // Invalid because non-numeric
+    $0.value = "xrp" // Invalid because non - numeric
   }
-
 }
 
 /// Tests conversion of protocol buffer to native Swift structs.
@@ -48,12 +48,7 @@ final class ProtocolBufferConversionTests: XCTestCase {
 
   func testConvertCurrency() {
     // GIVEN a Currency protocol buffer with a code and a name.
-    let currencyCode = Data([1, 2, 3])
-    let currencyName = "abc"
-    let currencyProto = Org_Xrpl_Rpc_V1_Currency.with {
-      $0.code = currencyCode
-      $0.name = currencyName
-    }
+    let currencyProto = Org_Xrpl_Rpc_V1_Currency.testCurrency
 
     // WHEN the protocol buffer is converted to a native Swift type.
     let currency = XRPCurrency(currency: currencyProto)
@@ -236,5 +231,175 @@ final class ProtocolBufferConversionTests: XCTestCase {
     XCTAssertEqual(signer.account, account)
     XCTAssertEqual(signer.signingPublicKey, signingPublicKey)
     XCTAssertEqual(signer.transactionSignature, transactionSignature)
+  }
+
+  // MARK: - Org_Xrpl_Rpc_V1_Payment
+
+  func testConvertPaymentWithAllFieldsSet() {
+    // GIVEN a pyament protocol buffer with all fields set.
+    let paymentProto = Org_Xrpl_Rpc_V1_Payment.with {
+      $0.amount = Org_Xrpl_Rpc_V1_Amount.with {
+        $0.value = Org_Xrpl_Rpc_V1_CurrencyAmount.with {
+          $0.issuedCurrencyAmount = .testIssuedCurrency
+        }
+      }
+      $0.destination = Org_Xrpl_Rpc_V1_Destination.with {
+        $0.value = Org_Xrpl_Rpc_V1_AccountAddress.with {
+          $0.address = "r123"
+        }
+      }
+      $0.destinationTag = Org_Xrpl_Rpc_V1_DestinationTag.with {
+        $0.value = 2
+      }
+      $0.deliverMin = Org_Xrpl_Rpc_V1_DeliverMin.with {
+        $0.value = Org_Xrpl_Rpc_V1_CurrencyAmount.with {
+          $0.xrpAmount = Org_Xrpl_Rpc_V1_XRPDropsAmount.with {
+            $0.drops = 10
+          }
+        }
+      }
+      $0.invoiceID = Org_Xrpl_Rpc_V1_InvoiceID.with {
+        $0.value = Data([1, 2, 3])
+      }
+      $0.paths = [
+        Org_Xrpl_Rpc_V1_Payment.Path.with {
+          $0.elements = [
+            Org_Xrpl_Rpc_V1_Payment.PathElement.with {
+              $0.account = Org_Xrpl_Rpc_V1_AccountAddress.with {
+                $0.address = "r456"
+              }
+            }
+          ]
+        },
+        Org_Xrpl_Rpc_V1_Payment.Path.with {
+          $0.elements = [
+            Org_Xrpl_Rpc_V1_Payment.PathElement.with {
+              $0.account = Org_Xrpl_Rpc_V1_AccountAddress.with {
+                $0.address = "r789"
+              }
+            },
+            Org_Xrpl_Rpc_V1_Payment.PathElement.with {
+              $0.account = Org_Xrpl_Rpc_V1_AccountAddress.with {
+                $0.address = "rabc"
+              }
+            }
+          ]
+        }
+      ]
+      $0.sendMax = Org_Xrpl_Rpc_V1_SendMax.with {
+        $0.value = Org_Xrpl_Rpc_V1_CurrencyAmount.with {
+          $0.xrpAmount = Org_Xrpl_Rpc_V1_XRPDropsAmount.with {
+            $0.drops = 20
+          }
+        }
+      }
+    }
+
+    // WHEN the protocol buffer is converted to a native Swift type.
+    let payment = XRPPayment(payment: paymentProto)
+
+    // THEN the result is as expected.
+    XCTAssertEqual(payment?.amount, XRPCurrencyAmount(currencyAmount: paymentProto.amount.value))
+    XCTAssertEqual(payment?.destination, paymentProto.destination.value.address)
+    XCTAssertEqual(payment?.destinationTag, paymentProto.destinationTag.value)
+    XCTAssertEqual(payment?.deliverMin, XRPCurrencyAmount(currencyAmount: paymentProto.deliverMin.value))
+    XCTAssertEqual(payment?.invoiceID, paymentProto.invoiceID.value)
+    XCTAssertEqual(payment?.paths, paymentProto.paths.map { XRPPath(path: $0) })
+    XCTAssertEqual(payment?.sendMax, XRPCurrencyAmount(currencyAmount: paymentProto.sendMax.value))
+  }
+
+  func testConvertPaymentWithOnlyMandatoryFieldsSet() {
+    // GIVEN a payment protocol buffer with only mandatory fields set.
+    let paymentProto = Org_Xrpl_Rpc_V1_Payment.with {
+      $0.amount = Org_Xrpl_Rpc_V1_Amount.with {
+        $0.value = Org_Xrpl_Rpc_V1_CurrencyAmount.with {
+          $0.issuedCurrencyAmount = .testIssuedCurrency
+        }
+      }
+      $0.destination = Org_Xrpl_Rpc_V1_Destination.with {
+        $0.value = Org_Xrpl_Rpc_V1_AccountAddress.with {
+          $0.address = "r123"
+        }
+      }
+    }
+
+    // WHEN the protocol buffer is converted to a native Swift type.
+    let payment = XRPPayment(payment: paymentProto)
+
+    // THEN the result is as expected.
+    XCTAssertEqual(payment?.amount, XRPCurrencyAmount(currencyAmount: paymentProto.amount.value))
+    XCTAssertEqual(payment?.destination, paymentProto.destination.value.address)
+    XCTAssertNil(payment?.destinationTag)
+    XCTAssertNil(payment?.deliverMin)
+    XCTAssertNil(payment?.invoiceID)
+    XCTAssertNil(payment?.paths)
+    XCTAssertNil(payment?.sendMax)
+  }
+
+  func testConvertPaymentWithInvalidAmountField() {
+    // GIVEN a pyament protocol buffer with an invalid amount field
+    let paymentProto = Org_Xrpl_Rpc_V1_Payment.with {
+      $0.amount = Org_Xrpl_Rpc_V1_Amount.with {
+        $0.value = Org_Xrpl_Rpc_V1_CurrencyAmount.with {
+          $0.issuedCurrencyAmount = .testInvalidIssuedCurrency
+        }
+      }
+      $0.destination = Org_Xrpl_Rpc_V1_Destination.with {
+        $0.value = Org_Xrpl_Rpc_V1_AccountAddress.with {
+          $0.address = "r123"
+        }
+      }
+    }
+
+    // WHEN the protocol buffer is converted to a native Swift type THEN the result is nil
+    XCTAssertNil(XRPPayment(payment: paymentProto))
+  }
+
+  func testConvertPaymentWithInvalidDeliverMinField() {
+    // GIVEN a payment protocol buffer with an invalid deliverMin field
+    let paymentProto = Org_Xrpl_Rpc_V1_Payment.with {
+      $0.amount = Org_Xrpl_Rpc_V1_Amount.with {
+        $0.value = Org_Xrpl_Rpc_V1_CurrencyAmount.with {
+          $0.issuedCurrencyAmount = .testIssuedCurrency
+        }
+      }
+      $0.destination = Org_Xrpl_Rpc_V1_Destination.with {
+        $0.value = Org_Xrpl_Rpc_V1_AccountAddress.with {
+          $0.address = "r123"
+        }
+      }
+      $0.deliverMin = Org_Xrpl_Rpc_V1_DeliverMin.with {
+        $0.value = Org_Xrpl_Rpc_V1_CurrencyAmount.with {
+          $0.issuedCurrencyAmount = .testInvalidIssuedCurrency
+        }
+      }
+    }
+
+    // WHEN the protocol buffer is converted to a native Swift type THEN the result is nil
+    XCTAssertNil(XRPPayment(payment: paymentProto))
+  }
+
+  func testConvertPaymentWithInvalidSendMaxField() {
+    // GIVEN a payment protocol buffer with an invalid sendMax field
+    let paymentProto = Org_Xrpl_Rpc_V1_Payment.with {
+      $0.amount = Org_Xrpl_Rpc_V1_Amount.with {
+        $0.value = Org_Xrpl_Rpc_V1_CurrencyAmount.with {
+          $0.issuedCurrencyAmount = .testIssuedCurrency
+        }
+      }
+      $0.destination = Org_Xrpl_Rpc_V1_Destination.with {
+        $0.value = Org_Xrpl_Rpc_V1_AccountAddress.with {
+          $0.address = "r123"
+        }
+      }
+      $0.sendMax = Org_Xrpl_Rpc_V1_SendMax.with {
+        $0.value = Org_Xrpl_Rpc_V1_CurrencyAmount.with {
+          $0.issuedCurrencyAmount = .testInvalidIssuedCurrency
+        }
+      }
+    }
+
+    // WHEN the protocol buffer is converted to a native Swift type THEN the result is nil
+    XCTAssertNil(XRPPayment(payment: paymentProto))
   }
 }
