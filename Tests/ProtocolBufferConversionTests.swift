@@ -203,6 +203,35 @@ final class ProtocolBufferConversionTests: XCTestCase {
     XCTAssertNil(currencyAmount)
   }
 
+  // MARK: - Org_Xrpl_Rpc_V1_Signer
+
+  func testConvertSignerAllFieldsSet() {
+    // GIVEN a Signer protocol buffer with all fields set.
+    let account = "r123"
+    let signingPublicKey = Data([1, 2, 3])
+    let transactionSignature = Data([4, 5, 6])
+    let signerProto = Org_Xrpl_Rpc_V1_Signer.with {
+      $0.account = Org_Xrpl_Rpc_V1_Account.with {
+        $0.value = Org_Xrpl_Rpc_V1_AccountAddress.with {
+          $0.address = account
+        }
+      }
+      $0.signingPublicKey = Org_Xrpl_Rpc_V1_SigningPublicKey.with {
+        $0.value = signingPublicKey
+      }
+      $0.transactionSignature = Org_Xrpl_Rpc_V1_TransactionSignature.with {
+        $0.value = transactionSignature
+      }
+      
+      // WHEN the protocol buffer is converted to a native Swift type.
+      let signer = XRPSigner(signer: signerProto)
+
+      // THEN all fields are present and converted correct.
+      XCTAssertEqual(signer.account, account)
+      XCTAssertEqual(signer.signingPublicKey, signingPublicKey)
+      XCTAssertEqual(signer.transactionSignature, transactionSignature)
+    }
+
   // MARK: - Org_Xrpl_Rpc_V1_Payment
 
   func testConvertPaymentWithAllFieldsSet() {
@@ -261,10 +290,10 @@ final class ProtocolBufferConversionTests: XCTestCase {
           $0.xrpAmount = Org_Xrpl_Rpc_V1_XRPDropsAmount.with {
             $0.drops = 20
           }
-        }
+        }    
       }
     }
-
+    
     // WHEN the protocol buffer is converted to a native Swift type.
     let payment = XRPPayment(payment: paymentProto)
 
