@@ -246,7 +246,24 @@ extension DefaultXRPClient: XRPClientDecorator {
 
     let transactionHistory = try self.networkClient.getAccountTransactionHistory(request)
 
-    // TODO(keefertaylor): Map fields from protocol buffers to Transaction objects here.
-    return []
+    let transactionResponses = transactionHistory.transactions
+
+    // Filter transactions to payments only and convert them to XRPTransactions.
+    // If a payment transaction fails conversion, throw an error.
+    return try transactionResponses.compactMap { transactionResponse in
+      let transaction = transactionResponse.transaction
+
+      switch transaction.transactionData {
+      case .payment:
+        // If a payment can't be converted throw an error to prevent returning incomplete data.
+        guard let xrpTransaction = XRPTransaction(transaction: transaction) else {
+          throw XRPLedgerError.unknown("Could not convert payment transaction: \(transaction). Please file a bug at https://github.com/xpring-eng/xpringkit")
+        }
+        return xrpTransaction
+      default:
+        // Other transaction types are not support.
+        return nil
+      }
+    }
   }
 }
