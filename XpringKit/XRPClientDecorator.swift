@@ -1,5 +1,5 @@
-/// A decorator for a XpringClient.
-public protocol XpringClientDecorator {
+/// A decorator for a XRPClient.
+public protocol XRPClientDecorator {
   /// Get the balance for the given address.
   ///
   /// - Parameter address: The X-Address to retrieve the balance for.

@@ -31,15 +31,14 @@ extension Org_Xrpl_Rpc_V1_IssuedCurrencyAmount {
     $0.value = "15"
   }
 
-  // Invalid currency, value is non-numeric
+  // Invalid currency, value is non - numeric
   static let testInvalidIssuedCurrency = Org_Xrpl_Rpc_V1_IssuedCurrencyAmount.with {
     $0.currency = .testCurrency
     $0.issuer = Org_Xrpl_Rpc_V1_AccountAddress.with {
       $0.address = "r123"
     }
-    $0.value = "xrp" // Invalid because non-numeric
+    $0.value = "xrp" // Invalid because non - numeric
   }
-
 }
 
 /// Tests conversion of protocol buffer to native Swift structs.
@@ -204,6 +203,36 @@ final class ProtocolBufferConversionTests: XCTestCase {
     XCTAssertNil(currencyAmount)
   }
 
+  // MARK: - Org_Xrpl_Rpc_V1_Signer
+
+  func testConvertSignerAllFieldsSet() {
+    // GIVEN a Signer protocol buffer with all fields set.
+    let account = "r123"
+    let signingPublicKey = Data([1, 2, 3])
+    let transactionSignature = Data([4, 5, 6])
+    let signerProto = Org_Xrpl_Rpc_V1_Signer.with {
+      $0.account = Org_Xrpl_Rpc_V1_Account.with {
+        $0.value = Org_Xrpl_Rpc_V1_AccountAddress.with {
+          $0.address = account
+        }
+      }
+      $0.signingPublicKey = Org_Xrpl_Rpc_V1_SigningPublicKey.with {
+        $0.value = signingPublicKey
+      }
+      $0.transactionSignature = Org_Xrpl_Rpc_V1_TransactionSignature.with {
+        $0.value = transactionSignature
+      }
+    }
+
+    // WHEN the protocol buffer is converted to a native Swift type.
+    let signer = XRPSigner(signer: signerProto)
+
+    // THEN all fields are present and converted correct.
+    XCTAssertEqual(signer.account, account)
+    XCTAssertEqual(signer.signingPublicKey, signingPublicKey)
+    XCTAssertEqual(signer.transactionSignature, transactionSignature)
+  }
+
   // MARK: - Org_Xrpl_Rpc_V1_Payment
 
   func testConvertPaymentWithAllFieldsSet() {
@@ -280,7 +309,7 @@ final class ProtocolBufferConversionTests: XCTestCase {
   }
 
   func testConvertPaymentWithOnlyMandatoryFieldsSet() {
-    // GIVEN a pyament protocol buffer with only mandatory fields set.
+    // GIVEN a payment protocol buffer with only mandatory fields set.
     let paymentProto = Org_Xrpl_Rpc_V1_Payment.with {
       $0.amount = Org_Xrpl_Rpc_V1_Amount.with {
         $0.value = Org_Xrpl_Rpc_V1_CurrencyAmount.with {
@@ -327,7 +356,7 @@ final class ProtocolBufferConversionTests: XCTestCase {
   }
 
   func testConvertPaymentWithInvalidDeliverMinField() {
-    // GIVEN a pyament protocol buffer with an invalid deliverMin field
+    // GIVEN a payment protocol buffer with an invalid deliverMin field
     let paymentProto = Org_Xrpl_Rpc_V1_Payment.with {
       $0.amount = Org_Xrpl_Rpc_V1_Amount.with {
         $0.value = Org_Xrpl_Rpc_V1_CurrencyAmount.with {

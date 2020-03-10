@@ -16,11 +16,11 @@ final class ReliableSubmissionClientTest: XCTestCase {
   let defaultTransactionHistoryValue = [ Transaction() ]
   let defaultAccountExistsValue = true
 
-  var fakeXpringClient: FakeXpringClient!
-  var reliableSubmissionClient: ReliableSubmissionXpringClient!
+  var fakeXRPClient: FakeXRPClient!
+  var reliableSubmissionClient: ReliableSubmissionXRPClient!
 
   override func setUp() {
-    fakeXpringClient = FakeXpringClient(
+    fakeXRPClient = FakeXRPClient(
       getBalanceValue: defaultBalanceValue,
       transactionStatusValue: defaultTransactionStatusValue,
       sendValue: defaultSendValue,
@@ -30,31 +30,31 @@ final class ReliableSubmissionClientTest: XCTestCase {
       accountExistsValue: defaultAccountExistsValue
     )
 
-    reliableSubmissionClient = ReliableSubmissionXpringClient(decoratedClient: fakeXpringClient)
+    reliableSubmissionClient = ReliableSubmissionXRPClient(decoratedClient: fakeXRPClient)
   }
 
   func testGetBalance() {
-    // GIVEN a `ReliableSubmissionClient` decorating a FakeXpringClient WHEN a balance is retrieved THEN the result is returned unaltered.
+    // GIVEN a `ReliableSubmissionClient` decorating a FakeXRPClient WHEN a balance is retrieved THEN the result is returned unaltered.
     XCTAssertEqual(try? reliableSubmissionClient.getBalance(for: .testAddress), defaultBalanceValue)
   }
 
   func testGetTransactionStatus() {
-    // GIVEN a `ReliableSubmissionClient` decorating a FakeXpringClient WHEN a transaction status is retrieved THEN the result is returned unaltered.
+    // GIVEN a `ReliableSubmissionClient` decorating a FakeXRPClient WHEN a transaction status is retrieved THEN the result is returned unaltered.
     XCTAssertEqual(try? reliableSubmissionClient.getTransactionStatus(for: .testTransactionHash), defaultTransactionStatusValue)
   }
 
   func testGetLatestValidatedLedgerSequence() {
-    // GIVEN a `ReliableSubmissionClient` decorating a FakeXpringClient WHEN the latest ledger sequence is retrieved THEN the result is returned unaltered.
+    // GIVEN a `ReliableSubmissionClient` decorating a FakeXRPClient WHEN the latest ledger sequence is retrieved THEN the result is returned unaltered.
     XCTAssertEqual(try? reliableSubmissionClient.getLatestValidatedLedgerSequence(), defaultLastestValidatedLedgerValue)
   }
 
   func testGetRawTransactionStatus() {
-    // GIVEN a `ReliableSubmissionClient` decorating a FakeXpringClient WHEN a raw transaction status is retrieved THEN the result is returned unaltered.
+    // GIVEN a `ReliableSubmissionClient` decorating a FakeXRPClient WHEN a raw transaction status is retrieved THEN the result is returned unaltered.
     XCTAssertEqual(try? reliableSubmissionClient.getRawTransactionStatus(for: .testTransactionHash), defaultRawTransactionStatusValue)
   }
 
   func testGetTransactionHistory() {
-    // GIVEN a `ReliableSubmissionClient` decorating a FakeXpringClient WHEN transaction history is retrieved THEN the result is returned unaltered.
+    // GIVEN a `ReliableSubmissionClient` decorating a FakeXRPClient WHEN transaction history is retrieved THEN the result is returned unaltered.
     XCTAssertEqual(
       try? reliableSubmissionClient.getTransactionHistory(for: .testAddress),
       defaultTransactionHistoryValue
@@ -64,14 +64,14 @@ final class ReliableSubmissionClientTest: XCTestCase {
   func testSendWithExpiredLedgerSequenceAndUnvalidatedTransaction() throws {
     // GIVEN A ledger sequence number that will increment in 60s.
     let lastLedgerSequence: UInt32 = 20
-    fakeXpringClient.rawTransactionStatusValue = RawTransactionStatus(
+    fakeXRPClient.rawTransactionStatusValue = RawTransactionStatus(
       transactionStatus: Io_Xpring_TransactionStatus.with {
         $0.validated = false
         $0.lastLedgerSequence = lastLedgerSequence
         $0.transactionStatusCode = "tesSuccess"
       }
     )
-    runAfterOneSecond({ self.fakeXpringClient.latestValidatedLedgerValue = lastLedgerSequence + 1 })
+    runAfterOneSecond({ self.fakeXRPClient.latestValidatedLedgerValue = lastLedgerSequence + 1 })
 
     // WHEN a reliable send is submitted
     let expectation = XCTestExpectation(description: "Send returned")
@@ -89,7 +89,7 @@ final class ReliableSubmissionClientTest: XCTestCase {
   func testSendWithUnexpiredLedgerSequenceAndValidatedTransaction() throws {
     // GIVEN A ledger sequence number that will increment in 60s.
     let lastLedgerSequence: UInt32 = 20
-    fakeXpringClient.rawTransactionStatusValue = RawTransactionStatus(
+    fakeXRPClient.rawTransactionStatusValue = RawTransactionStatus(
       transactionStatus: Io_Xpring_TransactionStatus.with {
         $0.validated = false
         $0.lastLedgerSequence = lastLedgerSequence
@@ -97,7 +97,7 @@ final class ReliableSubmissionClientTest: XCTestCase {
       }
     )
     runAfterOneSecond {
-      self.fakeXpringClient.rawTransactionStatusValue = RawTransactionStatus(
+      self.fakeXRPClient.rawTransactionStatusValue = RawTransactionStatus(
         transactionStatus: Io_Xpring_TransactionStatus.with {
           $0.validated = true
           $0.lastLedgerSequence = lastLedgerSequence
@@ -120,8 +120,8 @@ final class ReliableSubmissionClientTest: XCTestCase {
   }
 
   func testSendWithNoLastLedgerSequence() throws {
-    // GIVEN a `ReliableSubmissionXpringClient` decorating a `FakeXpringClient` which will return a transaction that did not have a last ledger sequence attached.
-    fakeXpringClient.rawTransactionStatusValue = RawTransactionStatus(
+    // GIVEN a `ReliableSubmissionXRPClient` decorating a `FakeXRPClient` which will return a transaction that did not have a last ledger sequence attached.
+    fakeXRPClient.rawTransactionStatusValue = RawTransactionStatus(
       transactionStatus: Io_Xpring_TransactionStatus.with {
         $0.validated = false
         $0.transactionStatusCode = "tesSuccess"
