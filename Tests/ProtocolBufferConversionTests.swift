@@ -402,4 +402,45 @@ final class ProtocolBufferConversionTests: XCTestCase {
     // WHEN the protocol buffer is converted to a native Swift type THEN the result is nil
     XCTAssertNil(XRPPayment(payment: paymentProto))
   }
+
+  // MARK: - Org_Xrpl_Rpc_V1_Memo
+
+  func testConvertMemoWithAllFieldsSet() {
+    // GIVEN a memo with all fields set.
+    let memoData = Data([1, 2, 3])
+    let memoFormat = Data([4, 5, 6])
+    let memoType = Data([7, 8, 9])
+    let memoProto = Org_Xrpl_Rpc_V1_Memo.with {
+      $0.memoData = Org_Xrpl_Rpc_V1_MemoData.with {
+        $0.value = memoData
+      }
+      $0.memoFormat = Org_Xrpl_Rpc_V1_MemoFormat.with {
+        $0.value = memoFormat
+      }
+      $0.memoType = Org_Xrpl_Rpc_V1_MemoType.with {
+        $0.value = memoType
+      }
+    }
+
+    // WHEN the protocol buffer is converted to a native Swift type
+    let memo = XRPMemo(memo: memoProto)
+
+    // THEN all fields are present and set correctly.
+    XCTAssertEqual(memo.data, memoData)
+    XCTAssertEqual(memo.format, memoFormat)
+    XCTAssertEqual(memo.type, memoType)
+  }
+
+  func testConvertMemoWithNoFieldsSet() {
+    // GIVEN a memo with no fields set.
+    let memoProto = Org_Xrpl_Rpc_V1_Memo()
+
+    // WHEN the protocol buffer is converted to a native Swift type
+    let memo = XRPMemo(memo: memoProto)
+
+    // THEN all fields are empty.
+    XCTAssertNil(memo.data)
+    XCTAssertNil(memo.format)
+    XCTAssertNil(memo.type)
+  }
 }
