@@ -34,7 +34,7 @@ pod 'XpringKit'
 
 Xpring SDK needs to communicate with a rippled node which has gRPC enabled. Consult the [rippled documentation](https://github.com/ripple/rippled#build-from-source) for details on how to build your own node.
 
-To get developers started right away, Xpring currently hosts nodes. These nodes are provided on a best effort basis, and may be subject to downtime. 
+To get developers started right away, Xpring currently hosts nodes. These nodes are provided on a best effort basis, and may be subject to downtime.
 
 ```
 # TestNet
@@ -154,7 +154,7 @@ print(balance) // Logs a balance in drops of XRP
 
 ### Checking Transaction Status
 
-A `XRPClient` can check the status of an transaction on the XRP Ledger. 
+A `XRPClient` can check the status of an transaction on the XRP Ledger.
 
 XpringKit returns the following transaction states:
 - `succeeded`: The transaction was successfully validated and applied to the XRP Ledger.
@@ -178,6 +178,21 @@ let transactionStatus = xrpClient.getTransactionStatus(for: transactionHash) // 
 ```
 
 **Note:** The example transactionHash may lead to a "Transaction not found." error because the TestNet is regularly reset, or the accessed node may only maintain one month of history.  Recent transaction hashes can be found in the [XRP Ledger Explorer ](https://livenet.xrpl.org/).
+
+#### Payment history
+
+An `XRPClient` can return payments to and from an account.
+
+```
+import xpringkit
+
+let remoteURL = "alpha.test.xrp.xpring.io:50051"; // TestNet URL, use alpha.xrp.xpring.io:50051 for MainNet
+let xrpClient = XRPClient(grpcURL: remoteURL, useNewProtocolBuffers: true)
+
+let address = "XVMFQQBMhdouRqhPMuawgBMN1AVFTofPAdRsXG5RkPtUPNQ"
+
+let transactions = try! xrpClient.paymentHistory(for: address)
+```
 
 #### Sending XRP
 

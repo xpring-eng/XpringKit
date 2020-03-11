@@ -53,7 +53,7 @@ final class ReliableSubmissionClientTest: XCTestCase {
     XCTAssertEqual(try? reliableSubmissionClient.getRawTransactionStatus(for: .testTransactionHash), defaultRawTransactionStatusValue)
   }
 
-  func testGetTransactionHistory() {
+  func testPaymentHistory() {
     // GIVEN a `ReliableSubmissionClient` decorating a FakeXRPClient WHEN transaction history is retrieved THEN the result is returned unaltered.
     XCTAssertEqual(
       try? reliableSubmissionClient.paymentHistory(for: .testAddress),
