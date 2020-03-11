@@ -39,11 +39,16 @@ class IlpIntegrationTests: XCTestCase {
         // AND an ILP account with accountId = sdk_account1
         // AND an ILP account with accoundId = sdk_account2
         do {
+            let paymentRequest = PaymentRequest(
+                .testIlpSendAmount,
+                to: .testIlpPaymentPointer,
+                from: .testAccountID
+            )
             // WHEN a payment is sent from sdk_account1 to sdk_account2
-            let payment = try ilpClient.sendPayment(.testIlpSendAmount,
-                                                    to: .testIlpPaymentPointer,
-                                                    from: .testAccountID,
-                                                    withAuthorization: .testBearerToken)
+            let payment = try ilpClient.sendPayment(
+                paymentRequest,
+                withAuthorization: .testBearerToken
+            )
 
             // THEN the originalAmount is equal to the amount requested
             // AND the amountSent is equal to the amount requested

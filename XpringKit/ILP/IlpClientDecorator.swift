@@ -14,18 +14,14 @@ public protocol IlpClientDecorator {
 
     /// Send a payment from the given accountID to the destinationPaymentPointer payment pointer
     ///
-    /// - Note: Note that this method will not necessarily throw an exception if the payment failed.
-    ///         Payment status can be checked in SendPaymentResponse#getSuccessfulPayment()
+    /// - Note: This method will not necessarily throw an exception if the payment failed.
+    ///         Payment status can be checked in PaymentResult.successfulPayment
     /// - Parameters:
-    ///     -  amount : Amount to send
-    ///     -  paymentPointer : payment pointer of the receiver
-    ///     -  senderAccountId : accountID of the sender
+    ///     -  paymentRequest: A PaymentRequest with options for a payment
     ///     -  bearerToken : auth token of the sender
-    /// - Returns: A Org_Interledger_Stream_Proto_SendPaymentResponse with details about the payment.
+    /// - Returns: A PaymentResult with details about the payment.
     /// - Throws: An error If the given inputs were invalid.
-    func sendPayment(_ amount: UInt64,
-                     to destinationPaymentPointer: PaymentPointer,
-                     from senderAccountId: AccountID,
+    func sendPayment(_ paymentRequest: PaymentRequest,
                      withAuthorization bearerToken: BearerToken
-    ) throws -> Org_Interledger_Stream_Proto_SendPaymentResponse
+    ) throws -> PaymentResult
 }

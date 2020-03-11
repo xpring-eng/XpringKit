@@ -60,11 +60,15 @@ final class DefaultIlpClientTest: XCTestCase {
         )
 
         // WHEN a payment is sent
-        guard let payment: Org_Interledger_Stream_Proto_SendPaymentResponse =
+        let paymentRequest = PaymentRequest(
+            .testIlpSendAmount,
+            to: .testIlpPaymentPointer,
+            from: .testAccountID
+        )
+
+        guard let payment: PaymentResult =
             try? ilpClient.sendPayment(
-                .testIlpSendAmount,
-                to: .testIlpPaymentPointer,
-                from: .testAccountID,
+                paymentRequest,
                 withAuthorization: .testBearerToken
             ) else {
                 XCTFail("Exception should not be thrown when trying to send a payment")
@@ -84,11 +88,14 @@ final class DefaultIlpClientTest: XCTestCase {
         let paymentNetworkClient = FakeIlpPaymentNetworkClient(sendPaymentResult: .failure(XpringKitTestError.mockFailure))
         let ilpClient = DefaultIlpClient(balanceNetworkClient: balanceNetworkClient, paymentNetworkClient: paymentNetworkClient)
 
-        // WHEN a payment is sent THEN an error is thrown
-        XCTAssertThrowsError(try ilpClient.sendPayment(
+        let paymentRequest = PaymentRequest(
             .testIlpSendAmount,
             to: .testIlpPaymentPointer,
-            from: .testAccountID,
+            from: .testAccountID
+        )
+        // WHEN a payment is sent THEN an error is thrown
+        XCTAssertThrowsError(try ilpClient.sendPayment(
+            paymentRequest,
             withAuthorization: .testBearerToken
         ), "Exception not thrown") { error in
             guard

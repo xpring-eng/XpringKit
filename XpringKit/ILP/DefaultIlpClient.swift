@@ -54,27 +54,19 @@ extension DefaultIlpClient: IlpClientDecorator {
     /// Send a payment from the given accountID to the destinationPaymentPointer payment pointer
     ///
     /// - Note: This method will not necessarily throw an exception if the payment failed.
-    ///         Payment status can be checked in SendPaymentResponse#getSuccessfulPayment()
+    ///         Payment status can be checked in PaymentResult.successfulPayment
     /// - Parameters:
-    ///     -  amount : Amount to send
-    ///     -  paymentPointer : payment pointer of the receiver
-    ///     -  senderAccountId : accountID of the sender
+    ///     -  paymentRequest: A PaymentRequest with options for a payment
     ///     -  bearerToken : auth token of the sender
-    /// - Returns: A Org_Interledger_Stream_Proto_SendPaymentResponse with details about the payment
+    /// - Returns: A PaymentResult with details about the payment.
     /// - Throws: An error If the given inputs were invalid.
-    public func sendPayment(_ amount: UInt64,
-                            to destinationPaymentPointer: PaymentPointer,
-                            from senderAccountId: AccountID,
+    public func sendPayment(_ paymentRequest: PaymentRequest,
                             withAuthorization bearerToken: BearerToken
-    ) throws -> Org_Interledger_Stream_Proto_SendPaymentResponse {
-        let paymentRequest = Org_Interledger_Stream_Proto_SendPaymentRequest.with {
-            $0.amount = amount
-            $0.destinationPaymentPointer = destinationPaymentPointer
-            $0.accountID = senderAccountId
-        }
-
+    ) throws -> PaymentResult {
+        let paymentRequest = paymentRequest.toProto()
         let metaData = Metadata()
         try metaData.add(key: "authorization", value: bearerToken)
-        return try self.paymentNetworkClient.sendMoney(paymentRequest, metadata: metaData)
+        let paymentResponse = try self.paymentNetworkClient.sendMoney(paymentRequest, metadata: metaData)
+        return PaymentResult.from(paymentResponse)
     }
 }

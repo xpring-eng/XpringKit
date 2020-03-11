@@ -25,7 +25,7 @@ public struct PaymentRequest {
         self.destinationPaymentPointer = destinationPaymentPointer
         self.senderAccountID = senderAccountID
     }
-    
+
     /// Constructs a SendPaymentRequest from this PaymentRequest (non-proto)
     ///
     /// - Returns: A SendPaymentRequest populated with the analogous fields in a PaymentRequest
