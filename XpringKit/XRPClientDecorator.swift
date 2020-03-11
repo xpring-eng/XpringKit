@@ -44,7 +44,7 @@ public protocol XRPClientDecorator {
   ///
   /// - Parameter address: The address to check the existence of.
   /// - Throws: An error if there was a problem communicating with the XRP Ledger.
-  /// - Returns: An array of transactions associated with the account.
+  /// - Returns: An array of payments associated with the account.
   func paymentHistory(for address: Address) throws -> [XRPTransaction]
 
   /// Check if an address exists on the XRP Ledger
