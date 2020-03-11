@@ -414,7 +414,8 @@ final class DefaultXRPClientTest: XCTestCase {
     }
   }
 
-  // MARK: - TransactionHistory
+  // MARK: - Payment History
+
 // TODO(keefertaylor): Re-enable when XRPClient can return transactions
 //  func testTransactionHistoryWithSuccess() {
 //    // GIVEN an XRPClient client which will successfully return a transactionHistory mocked network call.
@@ -434,7 +435,7 @@ final class DefaultXRPClientTest: XCTestCase {
 //    XCTAssertEqual(transactions, expectedTransactions)
 //  }
 
-  func testGetTransactionHistoryWithClassicAddress() {
+  func testGetPaymentHistoryWithClassicAddress() {
     // GIVEN a classic address.
     guard let classicAddressComponents = Utils.decode(xAddress: .testAddress) else {
       XCTFail("Failed to decode X-Address.")
@@ -442,9 +443,9 @@ final class DefaultXRPClientTest: XCTestCase {
     }
     let xrpClient = DefaultXRPClient(networkClient: FakeNetworkClient.successfulFakeNetworkClient)
 
-    // WHEN the transaction history is requested THEN an error is thrown.
+    // WHEN the payment history is requested THEN an error is thrown.
     XCTAssertThrowsError(
-      try xrpClient.getTransactionHistory(for: classicAddressComponents.classicAddress),
+      try xrpClient.paymentHistory(for: classicAddressComponents.classicAddress),
       "Exception not thrown"
     ) { error in
       guard
@@ -457,7 +458,7 @@ final class DefaultXRPClientTest: XCTestCase {
     }
   }
 
-  func testGetTransactionHistoryWithFailure() {
+  func testGetPaymentHistoryWithFailure() {
     // GIVEN an XRPClient client which will throw an error when a balance is requested.
     let networkClient = FakeNetworkClient(
       accountInfoResult: .success(.testGetAccountInfoResponse),
@@ -468,8 +469,8 @@ final class DefaultXRPClientTest: XCTestCase {
     )
     let xrpClient = DefaultXRPClient(networkClient: networkClient)
 
-    // WHEN the transaction history is requested THEN an error is thrown.
-    XCTAssertThrowsError(try xrpClient.getTransactionHistory(for: .testAddress), "Exception not thrown") { error in
+    // WHEN the payment history is requested THEN an error is thrown.
+    XCTAssertThrowsError(try xrpClient.paymentHistory(for: .testAddress), "Exception not thrown") { error in
       guard
         let _ = error as? XpringKitTestError
       else {
