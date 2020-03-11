@@ -202,6 +202,12 @@
 		8287E94AB8CE8C75B1B3C1B2 /* TransactionArray+Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B23D7C5E469B8734CBD03F2 /* TransactionArray+Test.swift */; };
 		82D31D4D767CDE8DA1D4C71A /* common.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58A457DEFD87D5FF4A7B6282 /* common.pb.swift */; };
 		8320AE699E90503F59E46C79 /* Org_Interledger_Stream_Proto_SendPaymentResponse+Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = E45B6F2147AB3FBF2869048F /* Org_Interledger_Stream_Proto_SendPaymentResponse+Test.swift */; };
+		843DF6F624194B2C0002710F /* AccountBalance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843DF6F524194B2C0002710F /* AccountBalance.swift */; };
+		843DF6F724194B2C0002710F /* AccountBalance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843DF6F524194B2C0002710F /* AccountBalance.swift */; };
+		843DF6F924194F820002710F /* PaymentRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843DF6F824194F820002710F /* PaymentRequest.swift */; };
+		843DF6FA24194F820002710F /* PaymentRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843DF6F824194F820002710F /* PaymentRequest.swift */; };
+		843DF6FC241952500002710F /* PaymentResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843DF6FB241952500002710F /* PaymentResult.swift */; };
+		843DF6FD241952500002710F /* PaymentResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843DF6FB241952500002710F /* PaymentResult.swift */; };
 		862D5FCA714E1ABB87AF54CF /* amount.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 779FFD5A983DED90B4D0D534 /* amount.pb.swift */; };
 		863DEEBC8E94EDDD09DE80D9 /* Io_Xpring_Fee+Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED8A03E4EEC4791525CA44F /* Io_Xpring_Fee+Test.swift */; };
 		86B2A810A7784BDA97A5A4DC /* send_payment_request.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56B46264F4BC24B7608F5E9A /* send_payment_request.pb.swift */; };
@@ -494,6 +500,9 @@
 		7EB336C65560B88294E5E38C /* Org_Xrpl_Rpc_V1_Payment.PathElement+XRPPathElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Org_Xrpl_Rpc_V1_Payment.PathElement+XRPPathElement.swift"; sourceTree = "<group>"; };
 		8113A7B1A4F26A434C63CDF8 /* XpringKitTestError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XpringKitTestError.swift; sourceTree = "<group>"; };
 		8177F7A2319DBD1509D6D5DF /* PaymentPointer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentPointer.swift; sourceTree = "<group>"; };
+		843DF6F524194B2C0002710F /* AccountBalance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountBalance.swift; sourceTree = "<group>"; };
+		843DF6F824194F820002710F /* PaymentRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentRequest.swift; sourceTree = "<group>"; };
+		843DF6FB241952500002710F /* PaymentResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentResult.swift; sourceTree = "<group>"; };
 		8561A4CDC03D07B17AAB8924 /* Address.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Address.swift; sourceTree = "<group>"; };
 		875501A3CB68BA56309F3BDF /* JavaScriptWalletGenerationResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JavaScriptWalletGenerationResult.swift; sourceTree = "<group>"; };
 		87675498A19D191B1C64AF43 /* PayIDUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayIDUtils.swift; sourceTree = "<group>"; };
@@ -829,9 +838,20 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		843DF6F424194B080002710F /* model */ = {
+			isa = PBXGroup;
+			children = (
+				843DF6F524194B2C0002710F /* AccountBalance.swift */,
+				843DF6F824194F820002710F /* PaymentRequest.swift */,
+				843DF6FB241952500002710F /* PaymentResult.swift */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
 		8F3DE3793EF5F8F4C091F096 /* ILP */ = {
 			isa = PBXGroup;
 			children = (
+				843DF6F424194B080002710F /* model */,
 				A1BB07A638CE67FC301F0529 /* AccountID.swift */,
 				638E420BC5B8916C1176F5A8 /* BearerToken.swift */,
 				CA56A942C3C3BC82B5291917 /* DefaultIlpClient.swift */,
@@ -1097,8 +1117,6 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 1020;
-				TargetAttributes = {
-				};
 			};
 			buildConfigurationList = C0A52FC1F46AB2CDA8428A29 /* Build configuration list for PBXProject "XpringKit" */;
 			compatibilityVersion = "Xcode 10.0";
@@ -1193,6 +1211,7 @@
 				647EFEB9AEAF38D5CA4F3170 /* IlpClient.swift in Sources */,
 				3E049690E598F17EFD247C6C /* IlpClientDecorator.swift in Sources */,
 				698A28EE00473E0C1C4444B0 /* IlpNetworkBalanceClient.swift in Sources */,
+				843DF6F924194F820002710F /* PaymentRequest.swift in Sources */,
 				BBB896729D458BDE35C2C66B /* IlpNetworkPaymentClient.swift in Sources */,
 				C3CC76FEB906B8C1C3D366F2 /* Io_Xpring_XRPLedgerAPIServiceClient+LegacyNetworkClient.swift in Sources */,
 				4F0AB9DB3C30595B4C63D44C /* JSContext+XpringKit.swift in Sources */,
@@ -1206,6 +1225,7 @@
 				BEF208F007A9147A3422B5BC /* JavaScriptWallet.swift in Sources */,
 				8848947D5A23B459EBBD1C2E /* JavaScriptWalletFactory.swift in Sources */,
 				C1119E71DBAA8D0A9CC9E275 /* JavaScriptWalletGenerationResult.swift in Sources */,
+				843DF6F624194B2C0002710F /* AccountBalance.swift in Sources */,
 				D63E7B41C6C7C720CB0FE589 /* LegacyDefaultXpringClient.swift in Sources */,
 				FBFC6A80BB530F2EAD404513 /* LegacyJavaScriptSigner.swift in Sources */,
 				9428BC07A9964D37FBD49DA7 /* LegacyNetworkClient.swift in Sources */,
@@ -1238,6 +1258,7 @@
 				354893EE394ED90C871C72C5 /* XRPClient.swift in Sources */,
 				C7D8A343479BE7031E4BCF1A /* XRPClientDecorator.swift in Sources */,
 				1266DEF1EA6F19B8EF9710E9 /* XRPCurrency.swift in Sources */,
+				843DF6FC241952500002710F /* PaymentResult.swift in Sources */,
 				2C54D24A6F37D17B5E3BD4C4 /* XRPCurrencyAmount.swift in Sources */,
 				75E18326164A32CC06316FE2 /* XRPIssuedCurrency.swift in Sources */,
 				28430C7E1BD753FC9BEE2746 /* XRPJavaScriptLoader.swift in Sources */,
@@ -1430,6 +1451,7 @@
 				E649E4D27D0A0438F8F5D9AF /* IlpClient.swift in Sources */,
 				F2F99F745A88C8AF29BEDF98 /* IlpClientDecorator.swift in Sources */,
 				0C4F760C62B4AC86D9E407EE /* IlpNetworkBalanceClient.swift in Sources */,
+				843DF6FA24194F820002710F /* PaymentRequest.swift in Sources */,
 				F7AA008D2B34848950766B21 /* IlpNetworkPaymentClient.swift in Sources */,
 				95E8FE50FEEB211CC05D4162 /* Io_Xpring_XRPLedgerAPIServiceClient+LegacyNetworkClient.swift in Sources */,
 				75716AFBE3E81C8358C9D457 /* JSContext+XpringKit.swift in Sources */,
@@ -1443,6 +1465,7 @@
 				AEA1DA055AC51BCCB1F31A11 /* JavaScriptWallet.swift in Sources */,
 				004CE447B535A5DDAAC7881D /* JavaScriptWalletFactory.swift in Sources */,
 				5DD0CF7ED7032C6DD176EC72 /* JavaScriptWalletGenerationResult.swift in Sources */,
+				843DF6F724194B2C0002710F /* AccountBalance.swift in Sources */,
 				A073987ACFAEE9A49EDE321E /* LegacyDefaultXpringClient.swift in Sources */,
 				DE1F34DDB17330323B0E0E29 /* LegacyJavaScriptSigner.swift in Sources */,
 				3CC5E10BF91A96C10F1AD993 /* LegacyNetworkClient.swift in Sources */,
@@ -1475,6 +1498,7 @@
 				B704EEF6475370C91A511538 /* XRPClient.swift in Sources */,
 				A92DB65222B8B050136E8D7F /* XRPClientDecorator.swift in Sources */,
 				60F4E2C3CD5F8E73A6D3EF53 /* XRPCurrency.swift in Sources */,
+				843DF6FD241952500002710F /* PaymentResult.swift in Sources */,
 				A616BF3A705195EF13794504 /* XRPCurrencyAmount.swift in Sources */,
 				37B1F6C6380B024C0EE3E6DD /* XRPIssuedCurrency.swift in Sources */,
 				52FEEA10075B52FD7F425E46 /* XRPJavaScriptLoader.swift in Sources */,
@@ -1623,7 +1647,12 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks $(PROJECT_DIR)/Carthage/Build/iOS";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -1816,7 +1845,12 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks $(PROJECT_DIR)/Carthage/Build/iOS";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
