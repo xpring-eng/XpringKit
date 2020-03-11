@@ -230,7 +230,7 @@ extension DefaultXRPClient: XRPClientDecorator {
   /// - Parameter address: The address to retrieve transaction history for.
   /// - Throws: An error if there was a problem communicating with the XRP Ledger.
   /// - Returns: An array of transactions for the account.
-  public func getTransactionHistory(for address: Address) throws -> [Transaction] {
+  public func getTransactionHistory(for address: Address) throws -> [XRPTransaction] {
     guard
       let classicAddressComponents = Utils.decode(xAddress: address)
       else {
@@ -245,9 +245,7 @@ extension DefaultXRPClient: XRPClientDecorator {
 
     let transactionHistory = try self.networkClient.getAccountTransactionHistory(request)
 
-    let rawTransactions = transactionHistory.transactions
-
     // TODO(keefertaylor): Map fields from protocol buffers to Transaction objects here.
-    return rawTransactions.map { _ in Transaction() }
+    return transactionHistory.transactions.compactMap { _ in nil }
   }
 }
