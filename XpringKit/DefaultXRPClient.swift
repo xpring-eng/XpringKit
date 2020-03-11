@@ -75,12 +75,14 @@ extension DefaultXRPClient: XRPClientDecorator {
     return accountInfoResponse.accountData.balance.value.xrpAmount.drops
   }
 
-  /// Retrieve the transaction status for a given transaction hash.
+  /// Retrieve the transaction status for a Payment given transaction hash.
   ///
-  /// - Parameter transactionHash: The hash of the transaction.
-  /// - Throws: An error if there was a problem communicating with the XRP Ledger.
+  /// - Note: This method will only work for Payment type transactions which do not have the tf_partial_payment attribute set.
+  /// - SeeAlso: https://xrpl.org/payment.html#payment-flags
+  ///
+  /// - Parameter transactionHash The hash of the transaction.
   /// - Returns: The status of the given transaction.
-  public func getTransactionStatus(for transactionHash: TransactionHash) throws -> TransactionStatus {
+  public func paymentStatus(for transactionHash: TransactionHash) throws -> TransactionStatus {
     let transactionStatus = try getRawTransactionStatus(for: transactionHash)
 
     // Only full payment transactions can be bucketed.

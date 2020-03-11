@@ -70,7 +70,7 @@ extension LegacyDefaultXRPClient: XRPClientDecorator {
   /// - Parameter transactionHash: The hash of the transaction.
   /// - Throws: An error if there was a problem communicating with the XRP Ledger.
   /// - Returns: The status of the given transaction.
-  public func getTransactionStatus(for transactionHash: TransactionHash) throws -> TransactionStatus {
+  public func paymentStatus(for transactionHash: TransactionHash) throws -> TransactionStatus {
     let transactionStatus = try getRawTransactionStatus(for: transactionHash)
 
     // Return pending if the transaction is not validated.

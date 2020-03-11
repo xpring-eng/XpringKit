@@ -14,8 +14,8 @@ extension ReliableSubmissionXRPClient: XRPClientDecorator {
     return try decoratedClient.getBalance(for: address)
   }
 
-  public func getTransactionStatus(for transactionHash: TransactionHash) throws -> TransactionStatus {
-    return try decoratedClient.getTransactionStatus(for: transactionHash)
+  public func paymentStatus(for transactionHash: TransactionHash) throws -> TransactionStatus {
+    return try decoratedClient.paymentStatus(for: transactionHash)
   }
 
   public func getLatestValidatedLedgerSequence() throws -> UInt32 {

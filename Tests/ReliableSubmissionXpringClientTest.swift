@@ -22,7 +22,7 @@ final class ReliableSubmissionClientTest: XCTestCase {
   override func setUp() {
     fakeXRPClient = FakeXRPClient(
       getBalanceValue: defaultBalanceValue,
-      transactionStatusValue: defaultTransactionStatusValue,
+      paymentStatusValue: defaultTransactionStatusValue,
       sendValue: defaultSendValue,
       latestValidatedLedgerValue: defaultLastestValidatedLedgerValue,
       rawTransactionStatusValue: defaultRawTransactionStatusValue,
@@ -38,9 +38,9 @@ final class ReliableSubmissionClientTest: XCTestCase {
     XCTAssertEqual(try? reliableSubmissionClient.getBalance(for: .testAddress), defaultBalanceValue)
   }
 
-  func testGetTransactionStatus() {
+  func testPaymentStatus() {
     // GIVEN a `ReliableSubmissionClient` decorating a FakeXRPClient WHEN a transaction status is retrieved THEN the result is returned unaltered.
-    XCTAssertEqual(try? reliableSubmissionClient.getTransactionStatus(for: .testTransactionHash), defaultTransactionStatusValue)
+    XCTAssertEqual(try? reliableSubmissionClient.paymentStatus(for: .testTransactionHash), defaultTransactionStatusValue)
   }
 
   func testGetLatestValidatedLedgerSequence() {
