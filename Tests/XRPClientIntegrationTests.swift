@@ -6,7 +6,7 @@ extension String {
   public static let legacyRemoteURL = "grpc.xpring.tech:80"
 
   /// The URL of a remote rippled node with gRPC enabled.
-  public static let remoteURL = "3.14.64.116:50051"
+  public static let remoteURL = "test.xrp.xpring.io:50051"
 
   /// An address on the chain to receive funds.
   public static let recipientAddress = "X7cBcY4bdTTzk3LHmrKAK6GyrirkXfLHGFxzke5zTmYMfw4"
