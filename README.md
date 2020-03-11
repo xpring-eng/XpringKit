@@ -34,7 +34,7 @@ pod 'XpringKit'
 
 Xpring SDK needs to communicate with a rippled node which has gRPC enabled. Consult the [rippled documentation](https://github.com/ripple/rippled#build-from-source) for details on how to build your own node.
 
-To get developers started right away, Xpring currently hosts nodes. These nodes are provided on a best effort basis, and may be subject to downtime.
+To get developers started right away, Xpring currently provides nodes:
 
 ```
 # TestNet
