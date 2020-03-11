@@ -492,4 +492,3 @@ final class DefaultXRPClientTest: XCTestCase {
     }
   }
 }
-

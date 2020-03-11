@@ -34,7 +34,7 @@ pod 'XpringKit'
 
 Xpring SDK needs to communicate with a rippled node which has gRPC enabled. Consult the [rippled documentation](https://github.com/ripple/rippled#build-from-source) for details on how to build your own node.
 
-To get developers started right away, Xpring currently hosts nodes. These nodes are provided on a best effort basis, and may be subject to downtime. 
+To get developers started right away, Xpring currently hosts nodes. These nodes are provided on a best effort basis, and may be subject to downtime.
 
 ```
 # TestNet
@@ -132,7 +132,7 @@ wallet.verify(message, signature); // true
 ```swift
 import XpringKit
 
-let remoteURL = "grpc.xpring.tech:80"
+let remoteURL = "alpha.test.xrp.xpring.io:50051"; // TestNet URL, use alpha.xrp.xpring.io:50051 for MainNet
 let xrpClient = XRPClient(grpcURL: remoteURL)
 ```
 
@@ -144,7 +144,7 @@ A `XRPClient` can check the balance of an account on the XRP Ledger.
 import XpringKit
 
 let remoteURL = "alpha.test.xrp.xpring.io:50051"; // TestNet URL, use alpha.xrp.xpring.io:50051 for MainNet
-let xrpClient = XRPClient(grpcURL: remoteURL, useNewProtocolBuffers: true)
+let xrpClient = XRPClient(grpcURL: remoteURL)
 
 let address = "XVMFQQBMhdouRqhPMuawgBMN1AVFTofPAdRsXG5RkPtUPNQ"
 
@@ -154,7 +154,7 @@ print(balance) // Logs a balance in drops of XRP
 
 ### Checking Transaction Status
 
-A `XRPClient` can check the status of an transaction on the XRP Ledger. 
+A `XRPClient` can check the status of an transaction on the XRP Ledger.
 
 XpringKit returns the following transaction states:
 - `succeeded`: The transaction was successfully validated and applied to the XRP Ledger.
@@ -170,7 +170,7 @@ These states are determined by the `TransactionStatus` enum.
 import XpringKit
 
 let remoteURL = "alpha.test.xrp.xpring.io:50051"; // TestNet URL, use alpha.xrp.xpring.io:50051 for MainNet
-let xrpClient = XRPClient(grpcURL: remoteURL, useNewProtocolBuffers: true)
+let xrpClient = XRPClient(grpcURL: remoteURL)
 
 let transactionHash = "9FC7D277C1C8ED9CE133CC17AEA9978E71FC644CE6F5F0C8E26F1C635D97AF4A"
 
@@ -189,7 +189,7 @@ A `XRPClient` can send XRP to other accounts on the XRP Ledger.
 import XpringKit
 
 let remoteURL = "alpha.test.xrp.xpring.io:50051"; // TestNet URL, use alpha.xrp.xpring.io:50051 for MainNet
-let xrpClient = XRPClient(grpcURL: remoteURL, useNewProtocolBuffers: true)
+let xrpClient = XRPClient(grpcURL: remoteURL)
 
 // Wallet which will send XRP
 let generationResult = Wallet.generateRandomWallet()!
