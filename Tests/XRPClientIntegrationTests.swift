@@ -13,7 +13,7 @@ extension String {
 }
 
 extension TransactionHash {
-  public static let successfulTransactionHash = "24E31668208A3165E6C702CDA66425808EAD670EABCBFA6C4403FFA93500D486"
+  public static let successfulTransactionHash = "6D9B6CDA7F6752548800C4FC14A037B8DAC2EF47E61028793768766EAB7FC81B"
 }
 
 /// Integration tests run against a live remote client.
