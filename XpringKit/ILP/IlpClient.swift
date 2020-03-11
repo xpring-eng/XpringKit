@@ -16,11 +16,11 @@ public class IlpClient {
     /// - Parameters:
     ///     -  accountID The account ID to get the balance for.
     ///     -  bearerToken Authentication bearer token.
-    /// - Returns: A Org_Interledger_Stream_Proto_GetBalanceResponse with balance information of the specified account
+    /// - Returns: An AccountBalance with balance information of the specified account
     /// - Throws: An error If the given inputs were invalid, the account doesn't exist, or authentication failed.
     public func getBalance(for accountID: AccountID,
                            withAuthorization bearerToken: BearerToken
-    ) throws -> Org_Interledger_Stream_Proto_GetBalanceResponse {
+    ) throws -> AccountBalance {
         return try decoratedClient.getBalance(for: accountID, withAuthorization: bearerToken)
     }
 

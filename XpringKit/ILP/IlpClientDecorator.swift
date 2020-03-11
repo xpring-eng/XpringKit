@@ -6,11 +6,11 @@ public protocol IlpClientDecorator {
     /// - Parameters:
     ///     -  accountID The account ID to get the balance for.
     ///     -  bearerToken Authentication bearer token.
-    /// - Returns: A Org_Interledger_Stream_Proto_GetBalanceResponse with balance information of the specified account
+    /// - Returns: An AccountBalance with balance information of the specified account
     /// - Throws: An error If the given inputs were invalid, the account doesn't exist, or authentication failed.
     func getBalance(for accountID: AccountID,
                     withAuthorization bearerToken: BearerToken
-    ) throws -> Org_Interledger_Stream_Proto_GetBalanceResponse
+    ) throws -> AccountBalance
 
     /// Send a payment from the given accountID to the destinationPaymentPointer payment pointer
     ///

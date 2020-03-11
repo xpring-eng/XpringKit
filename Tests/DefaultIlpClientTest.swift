@@ -13,7 +13,7 @@ final class DefaultIlpClientTest: XCTestCase {
         )
 
         // WHEN the balance is requested
-        guard let balance: Org_Interledger_Stream_Proto_GetBalanceResponse =
+        guard let balance: AccountBalance =
             try? ilpClient.getBalance(
                 for: .testAccountID,
                 withAuthorization: .testBearerToken
@@ -28,7 +28,7 @@ final class DefaultIlpClientTest: XCTestCase {
         XCTAssertEqual(balance.assetScale, .testAssetScale)
         XCTAssertEqual(balance.clearingBalance, .testIlpBalance)
         XCTAssertEqual(balance.prepaidAmount, .testIlpBalance)
-        XCTAssertEqual(balance.netBalance, .testIlpBalance)
+        XCTAssertEqual(balance.netBalance, .testIlpBalance + .testIlpBalance)
     }
 
     func testGetBalanceWithFailure() {
