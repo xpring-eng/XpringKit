@@ -37,12 +37,15 @@ public protocol XRPClientDecorator {
   /// - Returns: The status of the given transaction.
   func getRawTransactionStatus(for transactionHash: TransactionHash) throws -> RawTransactionStatus
 
-  /// Retrieve the transaction history for an address.
+  /// Return the history of payments for the given account.
   ///
-  /// - Parameter address: The address to retrieve transaction history for.
+  /// - Note: This method only works for payment type transactions, see: https://xrpl.org/payment.html
+  /// - Note: This method only returns the history that is contained on the remote node, which may not contain a full history of the network.
+  ///
+  /// - Parameter address: The address to check the existence of.
   /// - Throws: An error if there was a problem communicating with the XRP Ledger.
-  /// - Returns: An array of transactions for the account.
-  func getTransactionHistory(for address: Address) throws -> [XRPTransaction]
+  /// - Returns: An array of payments associated with the account.
+  func paymentHistory(for address: Address) throws -> [XRPTransaction]
 
   /// Check if an address exists on the XRP Ledger
   ///
