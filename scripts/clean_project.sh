@@ -7,5 +7,6 @@ echo "Cleaning XpringKit Project"
 rm -rf *.xcodeproj
 rm -rf XpringKit/generated
 rm -rf XpringKit/Resources
+rm -rf XpringKit/PayID/Generated/
 
 echo "All Done"
