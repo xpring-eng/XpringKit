@@ -1,7 +1,7 @@
 /// Response object for requests to get an account's balance
 public struct AccountBalance {
 
-    /// The accountId for this account balance.
+    /// The accountID for this account balance.
     public let accountID: AccountID
 
     /// Currency code or other asset identifier that this account's balances will be denominated in
@@ -37,37 +37,4 @@ public struct AccountBalance {
     ///
     /// A Int64 representing the net clearingBalance of this account.
     public let netBalance: Int64
-
-    /// Private constructor to initialize an AccountBalance.
-    /// Explicitly declare a constructor to derive netBalance
-    private init(
-        accountID: AccountID,
-        assetCode: String,
-        assetScale: Int32,
-        clearingBalance: Int64,
-        prepaidAmount: Int64
-    ) {
-        self.accountID = accountID
-        self.assetCode = assetCode
-        self.assetScale = assetScale
-        self.clearingBalance = clearingBalance
-        self.prepaidAmount = prepaidAmount
-        self.netBalance = clearingBalance + prepaidAmount
-    }
-
-    /// Constructs an AccountBalance from a Org_Interledger_Stream_Proto_GetBalanceResponse
-    ///
-    /// - Parameters:
-    ///     - getBalanceResponse: a GetBalanceResponse (protobuf object) whose field values will be used
-    ///                           to construct an AccountBalance
-    /// - Returns:an AccountBalance with its fields set via the analogous protobuf fields.
-    public static func from(_ getBalanceResponse: Org_Interledger_Stream_Proto_GetBalanceResponse) -> AccountBalance {
-        return AccountBalance(
-            accountID: getBalanceResponse.accountID,
-            assetCode: getBalanceResponse.assetCode,
-            assetScale: getBalanceResponse.assetScale,
-            clearingBalance: getBalanceResponse.clearingBalance,
-            prepaidAmount: getBalanceResponse.prepaidAmount
-        )
-    }
 }
