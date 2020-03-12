@@ -17,12 +17,12 @@ jobs:
       - run:
           name: Set Ruby Version
           command:  echo "ruby-2.6.4" > ~/.ruby-version
-  
+
       - run:
           name: "Install Tooling"
           command: |
             brew update
-            brew install xcodegen swiftlint swift-protobuf grpc-swift
+            brew install grpc-swift swagger-codegen swift-protobuf swiftlint xcodegen    
             npm i -g grpc-tools
             sudo gem install slather cocoapods
 
