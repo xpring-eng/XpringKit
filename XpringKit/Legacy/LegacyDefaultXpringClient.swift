@@ -1,7 +1,7 @@
 import SwiftGRPC
 
 /// An interface into the Xpring Platform.
-public class LegacyDefaultXpringClient {
+public class LegacyDefaultXRPClient {
   /// A margin to pad the current ledger sequence with when submitting transactions.
   private let ledgerSequenceMargin: UInt32 = 10
 
@@ -46,7 +46,7 @@ public class LegacyDefaultXpringClient {
   }
 }
 
-extension LegacyDefaultXpringClient: XpringClientDecorator {
+extension LegacyDefaultXRPClient: XRPClientDecorator {
   /// Get the balance for the given address.
   ///
   /// - Parameter address: The X-Address to retrieve the balance for.
@@ -149,12 +149,15 @@ extension LegacyDefaultXpringClient: XpringClientDecorator {
     return RawTransactionStatus(transactionStatus: transactionStatus)
   }
 
-  /// Retrieve the transaction history for an address.
+  /// Return the history of payments for the given account.
   ///
-  /// - Parameter address: The address to retrieve transaction history for.
+  /// - Note: This method only works for payment type transactions, see: https://xrpl.org/payment.html
+  /// - Note: This method only returns the history that is contained on the remote node, which may not contain a full history of the network.
+  ///
+  /// - Parameter address: The address to check the existence of.
   /// - Throws: An error if there was a problem communicating with the XRP Ledger.
-  /// - Returns: An array of transactions for the account.
-  public func getTransactionHistory(for address: Address) throws -> [Transaction] {
+  /// - Returns: An array of payments associated with the account.
+  public func paymentHistory(for address: Address) throws -> [XRPTransaction] {
     throw XRPLedgerError.unimplemented
   }
 

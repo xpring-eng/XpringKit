@@ -25,7 +25,7 @@ extension JSContext {
   ///
   /// - Note: This accessor will crash if JavaScript resources are malformed or missing.
   public static let xpringKit: JSContext = {
-    let bundle = Bundle(for: XpringClient.self)
+    let bundle = Bundle(for: XRPClient.self)
 
     guard let context = JSContext() else {
       fatalError(LoaderErrors.missingIndexJS)

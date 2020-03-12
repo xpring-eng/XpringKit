@@ -1,15 +1,15 @@
 import Foundation
 
-/// A XpringClient which blocks on `send` calls until the transaction has reached a deterministic state.
-public class ReliableSubmissionXpringClient {
-  private let decoratedClient: XpringClientDecorator
+/// A XRPClient which blocks on `send` calls until the transaction has reached a deterministic state.
+public class ReliableSubmissionXRPClient {
+  private let decoratedClient: XRPClientDecorator
 
-  public init(decoratedClient: XpringClientDecorator) {
+  public init(decoratedClient: XRPClientDecorator) {
     self.decoratedClient = decoratedClient
   }
 }
 
-extension ReliableSubmissionXpringClient: XpringClientDecorator {
+extension ReliableSubmissionXRPClient: XRPClientDecorator {
   public func getBalance(for address: Address) throws -> UInt64 {
     return try decoratedClient.getBalance(for: address)
   }
@@ -58,7 +58,7 @@ extension ReliableSubmissionXpringClient: XpringClientDecorator {
     return try decoratedClient.accountExists(for: address)
   }
 
-  public func getTransactionHistory(for address: Address) throws -> [Transaction] {
-    return try decoratedClient.getTransactionHistory(for: address)
+  public func paymentHistory(for address: Address) throws -> [XRPTransaction] {
+    return try decoratedClient.paymentHistory(for: address)
   }
 }

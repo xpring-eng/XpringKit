@@ -1,8 +1,8 @@
 import XpringKit
 
-/// A  fake XpringClient which returns the given iVars as results from XpringClientDecorator calls.
+/// A  fake XRPClient which returns the given iVars as results from XRPClientDecorator calls.
 /// - Note: Since this class is passed by reference and the iVars are mutable, outputs of this class can be changed after it is injected.
-public class FakeXpringClient {
+public class FakeXRPClient {
   public let networkClient: LegacyNetworkClient = LegacyFakeNetworkClient.successfulFakeNetworkClient
 
   public var getBalanceValue: UInt64
@@ -10,7 +10,7 @@ public class FakeXpringClient {
   public var sendValue: TransactionHash
   public var latestValidatedLedgerValue: UInt32
   public var rawTransactionStatusValue: RawTransactionStatus
-  public var transactionHistoryValue: [Transaction]
+  public var paymentHistoryValue: [XRPTransaction]
   public var accountExistsValue: Bool
 
   public init(
@@ -19,7 +19,7 @@ public class FakeXpringClient {
     sendValue: TransactionHash,
     latestValidatedLedgerValue: UInt32,
     rawTransactionStatusValue: RawTransactionStatus,
-    transactionHistoryValue: [Transaction],
+    paymentHistoryValue: [XRPTransaction],
     accountExistsValue: Bool
   ) {
     self.getBalanceValue = getBalanceValue
@@ -27,12 +27,12 @@ public class FakeXpringClient {
     self.sendValue = sendValue
     self.latestValidatedLedgerValue = latestValidatedLedgerValue
     self.rawTransactionStatusValue = rawTransactionStatusValue
-    self.transactionHistoryValue = transactionHistoryValue
+    self.paymentHistoryValue = paymentHistoryValue
     self.accountExistsValue = accountExistsValue
   }
 }
 
-extension FakeXpringClient: XpringClientDecorator {
+extension FakeXRPClient: XRPClientDecorator {
   public func getBalance(for address: Address) throws -> UInt64 {
     return getBalanceValue
   }
@@ -53,8 +53,8 @@ extension FakeXpringClient: XpringClientDecorator {
     return rawTransactionStatusValue
   }
 
-  public func getTransactionHistory(for address: Address) throws -> [Transaction] {
-    return transactionHistoryValue
+  public func paymentHistory(for address: Address) throws -> [XRPTransaction] {
+    return paymentHistoryValue
   }
 
   public func accountExists(for address: Address) throws -> Bool {

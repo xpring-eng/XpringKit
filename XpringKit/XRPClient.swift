@@ -1,17 +1,17 @@
 /// An interface into the Xpring Platform.
-public class XpringClient {
-  private let decoratedClient: XpringClientDecorator
+public class XRPClient {
+  private let decoratedClient: XRPClientDecorator
 
-  /// Initialize a new XpringClient.
+  /// Initialize a new XRPClient.
   ///
   /// - Parameters:
   ///   - grpcURL: A remote URL for a rippled gRPC service.
   ///   - useNewProtocolBuffers:  If `true`, then the new protocol buffer implementation from rippled will be used. Defaults to false.
   public init(grpcURL: String, useNewProtocolBuffers: Bool = false) {
-    let defaultClient: XpringClientDecorator = useNewProtocolBuffers ?
-      DefaultXpringClient(grpcURL: grpcURL) :
-      LegacyDefaultXpringClient(grpcURL: grpcURL)
-    decoratedClient = ReliableSubmissionXpringClient(decoratedClient: defaultClient)
+    let defaultClient: XRPClientDecorator = useNewProtocolBuffers ?
+      DefaultXRPClient(grpcURL: grpcURL) :
+      LegacyDefaultXRPClient(grpcURL: grpcURL)
+    decoratedClient = ReliableSubmissionXRPClient(decoratedClient: defaultClient)
   }
 
   /// Get the balance for the given address.

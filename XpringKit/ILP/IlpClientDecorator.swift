@@ -24,7 +24,7 @@ public protocol IlpClientDecorator {
     /// - Returns: A Org_Interledger_Stream_Proto_SendPaymentResponse with details about the payment.
     /// - Throws: An error If the given inputs were invalid.
     func sendPayment(_ amount: UInt64,
-                     to paymentPointer: PaymentPointer,
+                     to destinationPaymentPointer: PaymentPointer,
                      from senderAccountId: AccountID,
                      withAuthorization bearerToken: BearerToken
     ) throws -> Org_Interledger_Stream_Proto_SendPaymentResponse

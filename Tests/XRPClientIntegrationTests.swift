@@ -6,20 +6,20 @@ extension String {
   public static let legacyRemoteURL = "grpc.xpring.tech:80"
 
   /// The URL of a remote rippled node with gRPC enabled.
-  public static let remoteURL = "3.14.64.116:50051"
+  public static let remoteURL = "test.xrp.xpring.io:50051"
 
   /// An address on the chain to receive funds.
   public static let recipientAddress = "X7cBcY4bdTTzk3LHmrKAK6GyrirkXfLHGFxzke5zTmYMfw4"
 }
 
 extension TransactionHash {
-  public static let successfulTransactionHash = "24E31668208A3165E6C702CDA66425808EAD670EABCBFA6C4403FFA93500D486"
+  public static let successfulTransactionHash = "6D9B6CDA7F6752548800C4FC14A037B8DAC2EF47E61028793768766EAB7FC81B"
 }
 
 /// Integration tests run against a live remote client.
-final class IntegrationTests: XCTestCase {
-  private let legacyClient = XpringClient(grpcURL: .legacyRemoteURL, useNewProtocolBuffers: false)
-  private let client = XpringClient(grpcURL: .remoteURL, useNewProtocolBuffers: true)
+final class XRPClientIntegrationTests: XCTestCase {
+  private let legacyClient = XRPClient(grpcURL: .legacyRemoteURL, useNewProtocolBuffers: false)
+  private let client = XRPClient(grpcURL: .remoteURL, useNewProtocolBuffers: true)
 
   // MARK: - rippled Protocol Buffers
 
