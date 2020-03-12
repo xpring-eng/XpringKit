@@ -1,5 +1,5 @@
 /// An interface into the Xpring Platform.
-public class XRPClient {
+public class XRPClient: XRPClientProtocol {
   private let decoratedClient: XRPClientDecorator
 
   /// Initialize a new XRPClient.
