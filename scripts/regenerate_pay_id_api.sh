@@ -3,7 +3,7 @@
 set -e -o pipefail
 
 # Folder to place the generated classes in.
-DESTINATION_FOLDER=./XpringKit/PayID/Generated
+DESTINATION_FOLDER=./XpringKit/PayID/Generated/Swagger
 
 # Open API Specfication to use for generation.
 PAY_ID_OPEN_API_SPEC=./pay-id-api-spec/payid.spec
@@ -16,6 +16,13 @@ LANG=swift5
 
 # Folder containing generated sources.
 GENERATED_SOURCES_FOLDER=$TMP_SWAGGER_DIR/SwaggerClient
+
+##########################################################################
+# Remove any stale files which are already generated.
+##########################################################################
+echo "Removing stale files"
+rm -rf $DESTINATION_FOLDER
+echo "Done removing stale files"
 
 ##########################################################################
 # Regenerate Swagger API
