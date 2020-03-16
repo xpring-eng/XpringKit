@@ -15,20 +15,4 @@ public struct PaymentResult {
     /// Indicates if the payment was completed successfully.
     /// true if payment was successful
     public let successfulPayment: Bool
-
-    /// Constructs a PaymentResult from a protobuf SendPaymentResponse
-    ///
-    /// - Parameters:
-    ///     - protoResponse: a SendPaymentResponse to be converted
-    /// - Returns: a PaymentResult with fields populated using the analogous fields in the proto object
-    public static func from(
-        _ sendPaymentResponse: Org_Interledger_Stream_Proto_SendPaymentResponse
-    ) -> PaymentResult {
-        return PaymentResult(
-            originalAmount: sendPaymentResponse.originalAmount,
-            amountDelivered: sendPaymentResponse.amountDelivered,
-            amountSent: sendPaymentResponse.amountSent,
-            successfulPayment: sendPaymentResponse.successfulPayment
-        )
-    }
 }

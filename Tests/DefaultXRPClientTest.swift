@@ -414,26 +414,24 @@ final class DefaultXRPClientTest: XCTestCase {
     }
   }
 
-  // MARK: - Payment History
+  // MARK: - PaymentHistory
 
-// TODO(keefertaylor): Re-enable when XRPClient can return transactions
-//  func testTransactionHistoryWithSuccess() {
-//    // GIVEN an XRPClient client which will successfully return a transactionHistory mocked network call.
-//    let xrpClient = DefaultXRPClient(networkClient: FakeNetworkClient.successfulFakeNetworkClient)
-//    let expectedTransactions =
-//      Org_Xrpl_Rpc_V1_GetAccountTransactionHistoryResponse.testTransactionHistoryResponse.transactions.map { transactionResponse in
-//        return XRPTransaction(transaction: transactionResponse.transaction)
-//      }
-//
-//    // WHEN the transactionHistory is requested.
-//    guard let transactions = try? xrpClient.getTransactionHistory(for: .testAddress) else {
-//      XCTFail("Exception should not be thrown when trying to get a balance")
-//      return
-//    }
-//
-//    // THEN the balance is correct.
-//    XCTAssertEqual(transactions, expectedTransactions)
-//  }
+  func testPaymentHistoryWithSuccess() {
+    // GIVEN an XRPClient client which will successfully return a transactionHistory mocked network call.
+    let xrpClient = DefaultXRPClient(networkClient: FakeNetworkClient.successfulFakeNetworkClient)
+    let expectedTransactions = Org_Xrpl_Rpc_V1_GetAccountTransactionHistoryResponse.testTransactionHistoryResponse.transactions.map { transactionResponse in
+      return XRPTransaction(transaction: transactionResponse.transaction)
+    }
+
+    // WHEN the transactionHistory is requested.
+    guard let transactions = try? xrpClient.paymentHistory(for: .testAddress) else {
+      XCTFail("Exception should not be thrown when trying to get a balance")
+      return
+    }
+
+    // THEN the returned transactions are conversions of the inputs.
+    XCTAssertEqual(transactions, expectedTransactions)
+  }
 
   func testGetPaymentHistoryWithClassicAddress() {
     // GIVEN a classic address.
@@ -476,6 +474,85 @@ final class DefaultXRPClientTest: XCTestCase {
       else {
         XCTFail("Error thrown was not mocked error")
         return
+      }
+    }
+  }
+
+  func testPaymentHistoryWithAccountHistoryWithNonPaymentTransactions() {
+    // GIVEN an XRPClient client which will return a transaction history which contains non-payment transactions
+
+    // Generate expected transactions from the default response, which only contains payments.
+    var transactionHistory = Org_Xrpl_Rpc_V1_GetAccountTransactionHistoryResponse.testTransactionHistoryResponse
+    let expectedTransactions = transactionHistory.transactions.map { transactionResponse in
+      return XRPTransaction(transaction: transactionResponse.transaction)
+    }
+
+    // Append a non-payment transaction. This is not one of the expected outputs because it is not a payment.
+    let nonPaymentTransactionResponse = Org_Xrpl_Rpc_V1_GetTransactionResponse.with {
+      $0.transaction = Org_Xrpl_Rpc_V1_Transaction.with {
+        $0.checkCash = Org_Xrpl_Rpc_V1_CheckCash()
+      }
+    }
+    transactionHistory.transactions.append(nonPaymentTransactionResponse)
+    let networkClient = FakeNetworkClient(
+      accountInfoResult: .success(.testGetAccountInfoResponse),
+      feeResult: .success(.testGetFeeResponse),
+      submitTransactionResult: .success(.testSubmitTransactionResponse),
+      transactionStatusResult: .success(.testGetTransactionResponse),
+      transactionHistoryResult: .success(transactionHistory)
+    )
+    let xrpClient = DefaultXRPClient(networkClient: networkClient)
+
+    // WHEN the transactionHistory is requested.
+    guard let transactions = try? xrpClient.paymentHistory(for: .testAddress) else {
+      XCTFail("Exception should not be thrown when trying to get a balance")
+      return
+    }
+
+    // THEN the returned transactions are conversions of the inputs with non-payment transactions filtered.
+    XCTAssertEqual(transactions, expectedTransactions)
+  }
+
+  func testPaymentHistoryWithInvalidPayment() {
+    // GIVEN an XRPClient client which will return a transaction history which contains a malformed payment.
+    let transactionHistory = Org_Xrpl_Rpc_V1_GetAccountTransactionHistoryResponse.with {
+      $0.transactions = [
+        Org_Xrpl_Rpc_V1_GetTransactionResponse.with {
+          $0.transaction = Org_Xrpl_Rpc_V1_Transaction.with {
+            $0.payment = Org_Xrpl_Rpc_V1_Payment.with {
+              $0.amount = Org_Xrpl_Rpc_V1_Amount.with {
+                $0.value = Org_Xrpl_Rpc_V1_CurrencyAmount.with {
+                  $0.issuedCurrencyAmount = .testInvalidIssuedCurrency
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+    let networkClient = FakeNetworkClient(
+      accountInfoResult: .success(.testGetAccountInfoResponse),
+      feeResult: .success(.testGetFeeResponse),
+      submitTransactionResult: .success(.testSubmitTransactionResponse),
+      transactionStatusResult: .success(.testGetTransactionResponse),
+      transactionHistoryResult: .success(transactionHistory)
+    )
+    let xrpClient = DefaultXRPClient(networkClient: networkClient)
+
+    // WHEN the transactionHistory is requested THEN an error is thrown.
+    XCTAssertThrowsError(try xrpClient.paymentHistory(for: .testAddress), "Exception not thrown") { error in
+      guard
+        let ledgerError = error as? XRPLedgerError
+      else {
+        XCTFail("Error thrown was not mocked error")
+        return
+      }
+
+      switch ledgerError {
+      case .unknown:
+        break
+      default:
+        XCTFail("Wrong error type")
       }
     }
   }
