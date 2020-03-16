@@ -208,12 +208,6 @@
 		843DF6FA24194F820002710F /* PaymentRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843DF6F824194F820002710F /* PaymentRequest.swift */; };
 		843DF6FC241952500002710F /* PaymentResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843DF6FB241952500002710F /* PaymentResult.swift */; };
 		843DF6FD241952500002710F /* PaymentResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843DF6FB241952500002710F /* PaymentResult.swift */; };
-		843DF6F624194B2C0002710F /* AccountBalance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843DF6F524194B2C0002710F /* AccountBalance.swift */; };
-		843DF6F724194B2C0002710F /* AccountBalance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843DF6F524194B2C0002710F /* AccountBalance.swift */; };
-		843DF6F924194F820002710F /* PaymentRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843DF6F824194F820002710F /* PaymentRequest.swift */; };
-		843DF6FA24194F820002710F /* PaymentRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843DF6F824194F820002710F /* PaymentRequest.swift */; };
-		843DF6FC241952500002710F /* PaymentResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843DF6FB241952500002710F /* PaymentResult.swift */; };
-		843DF6FD241952500002710F /* PaymentResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843DF6FB241952500002710F /* PaymentResult.swift */; };
 		84BE3957241AB28B0039BEC9 /* AccountBalance+Org_Interledger_Stream_Proto_GetBalanceResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BE3956241AB28B0039BEC9 /* AccountBalance+Org_Interledger_Stream_Proto_GetBalanceResponse.swift */; };
 		84BE3958241AB28B0039BEC9 /* AccountBalance+Org_Interledger_Stream_Proto_GetBalanceResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BE3956241AB28B0039BEC9 /* AccountBalance+Org_Interledger_Stream_Proto_GetBalanceResponse.swift */; };
 		84BE395A241ACD200039BEC9 /* PaymentRequest+Org_Interledger_Stream_Proto_SendPaymentRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BE3959241ACD200039BEC9 /* PaymentRequest+Org_Interledger_Stream_Proto_SendPaymentRequest.swift */; };
@@ -512,9 +506,6 @@
 		7EB336C65560B88294E5E38C /* Org_Xrpl_Rpc_V1_Payment.PathElement+XRPPathElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Org_Xrpl_Rpc_V1_Payment.PathElement+XRPPathElement.swift"; sourceTree = "<group>"; };
 		8113A7B1A4F26A434C63CDF8 /* XpringKitTestError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XpringKitTestError.swift; sourceTree = "<group>"; };
 		8177F7A2319DBD1509D6D5DF /* PaymentPointer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentPointer.swift; sourceTree = "<group>"; };
-		843DF6F524194B2C0002710F /* AccountBalance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountBalance.swift; sourceTree = "<group>"; };
-		843DF6F824194F820002710F /* PaymentRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentRequest.swift; sourceTree = "<group>"; };
-		843DF6FB241952500002710F /* PaymentResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentResult.swift; sourceTree = "<group>"; };
 		843DF6F524194B2C0002710F /* AccountBalance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountBalance.swift; sourceTree = "<group>"; };
 		843DF6F824194F820002710F /* PaymentRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentRequest.swift; sourceTree = "<group>"; };
 		843DF6FB241952500002710F /* PaymentResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentResult.swift; sourceTree = "<group>"; };
@@ -854,16 +845,6 @@
 				8D7CE69F01BAB5B027753EB1 /* index.js */,
 			);
 			path = Resources;
-			sourceTree = "<group>";
-		};
-		843DF6F424194B080002710F /* model */ = {
-			isa = PBXGroup;
-			children = (
-				843DF6F524194B2C0002710F /* AccountBalance.swift */,
-				843DF6F824194F820002710F /* PaymentRequest.swift */,
-				843DF6FB241952500002710F /* PaymentResult.swift */,
-			);
-			path = model;
 			sourceTree = "<group>";
 		};
 		843DF6F424194B080002710F /* model */ = {

@@ -48,7 +48,7 @@ extension DefaultIlpClient: IlpClientDecorator {
         let metaData = Metadata()
         try metaData.add(key: "authorization", value: bearerToken)
         let getBalanceResponse = try self.balanceNetworkClient.getBalance(balanceRequest, metadata: metaData)
-        return AccountBalance.from(getBalanceResponse)
+        return AccountBalance(getBalanceResponse: getBalanceResponse)
     }
 
     /// Send a payment from the given accountID to the destinationPaymentPointer payment pointer
@@ -67,6 +67,6 @@ extension DefaultIlpClient: IlpClientDecorator {
         let metaData = Metadata()
         try metaData.add(key: "authorization", value: bearerToken)
         let paymentResponse = try self.paymentNetworkClient.sendMoney(paymentRequest, metadata: metaData)
-        return PaymentResult.from(paymentResponse)
+        return PaymentResult(sendPaymentResponse: paymentResponse)
     }
 }
