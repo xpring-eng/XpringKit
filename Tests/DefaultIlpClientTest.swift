@@ -13,7 +13,7 @@ final class DefaultIlpClientTest: XCTestCase {
         )
 
         // WHEN the balance is requested
-        guard let balance: AccountBalance =
+        guard let balance =
             try? ilpClient.getBalance(
                 for: .testAccountID,
                 withAuthorization: .testBearerToken
