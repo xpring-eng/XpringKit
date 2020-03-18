@@ -46,7 +46,7 @@ public class XRPClient {
 
   /// Check if an address exists on the XRP Ledger
   ///
-  /// - Parameter address: The address to check the existence of.
+  /// - Parameter address: The address (account) for which to retrieve the payment history.
   /// - Throws: An error if there was a problem communicating with the XRP Ledger.
   /// - Returns: A boolean if the account is on the blockchain.
   public func accountExists(for address: Address) throws -> Bool {
