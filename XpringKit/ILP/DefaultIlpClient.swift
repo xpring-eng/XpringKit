@@ -47,7 +47,7 @@ extension DefaultIlpClient: IlpClientDecorator {
         }
         let getBalanceResponse = try self.balanceNetworkClient.getBalance(
             balanceRequest,
-            metadata: IlpCredentials(bearerToken).get()
+            metadata: IlpCredentials(bearerToken).getMetadata()
         )
         return AccountBalance(getBalanceResponse: getBalanceResponse)
     }
@@ -67,7 +67,7 @@ extension DefaultIlpClient: IlpClientDecorator {
         let paymentRequest = paymentRequest.toProto()
         let paymentResponse = try self.paymentNetworkClient.sendMoney(
             paymentRequest,
-            metadata: IlpCredentials(bearerToken).get()
+            metadata: IlpCredentials(bearerToken).getMetadata()
         )
         return PaymentResult(sendPaymentResponse: paymentResponse)
     }

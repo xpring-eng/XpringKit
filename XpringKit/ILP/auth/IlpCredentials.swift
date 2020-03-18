@@ -3,7 +3,7 @@ import SwiftGRPC
 /// A helper which provides a convenient way to initialize grpc.Metadata and
 /// add an Authorization metadata header, and ensures every bearer token
 /// going over the wire is prefixed with "Bearer "
-class IlpCredentials {
+internal class IlpCredentials {
 
     /// Unfortunately, Metadata is not an open class in SwiftGRPC, so we cannot extend it.
     /// Instead, it is wrapped in IlpCredentials
@@ -27,7 +27,7 @@ class IlpCredentials {
     }
 
     /// Get the Metadata to pass to network calls
-    public func get() -> Metadata {
+    public func getMetadata() -> Metadata {
         return self.metadata
     }
 }
