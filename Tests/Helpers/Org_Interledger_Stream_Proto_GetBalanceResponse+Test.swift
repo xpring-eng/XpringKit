@@ -7,6 +7,6 @@ extension Org_Interledger_Stream_Proto_GetBalanceResponse {
         $0.assetScale = .testAssetScale
         $0.clearingBalance = .testIlpBalance
         $0.prepaidAmount = .testIlpBalance
-        $0.netBalance = .testIlpBalance
+        $0.netBalance = .testIlpBalance + .testIlpBalance
     }
 }
