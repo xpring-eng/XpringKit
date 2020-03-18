@@ -1,6 +1,6 @@
 /// Conforms to PaymentResult struct while providing an initializer that can construct a PaymentResult from a  Org_Interledger_Stream_Proto_SendPaymentResponse
 extension PaymentResult {
-    
+
     /// Constructs a PaymentResult from a protobuf SendPaymentResponse
     ///
     /// - Parameters:

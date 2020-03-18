@@ -1,6 +1,6 @@
 /// Conforms to AccountBalance struct while providing an initializer that can construct an AccountBalance from a  Org_Interledger_Stream_Proto_GetBalanceResponse
 extension AccountBalance {
-    
+
     /// Constructs an AccountBalance from a Org_Interledger_Stream_Proto_GetBalanceResponse
     ///
     /// - Parameters:

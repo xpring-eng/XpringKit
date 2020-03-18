@@ -45,9 +45,7 @@ extension DefaultIlpClient: IlpClientDecorator {
         let balanceRequest = Org_Interledger_Stream_Proto_GetBalanceRequest.with {
             $0.accountID = accountID
         }
-        let metaData = Metadata()
-        try metaData.add(key: "authorization", value: bearerToken)
-        return try self.balanceNetworkClient.getBalance(balanceRequest, metadata: metaData)
+        return try self.balanceNetworkClient.getBalance(balanceRequest, metadata: IlpCredentials(bearerToken).get())
     }
 
     /// Send a payment from the given accountID to the destinationPaymentPointer payment pointer
@@ -71,9 +69,6 @@ extension DefaultIlpClient: IlpClientDecorator {
             $0.destinationPaymentPointer = destinationPaymentPointer
             $0.accountID = senderAccountId
         }
-
-        let metaData = Metadata()
-        try metaData.add(key: "authorization", value: bearerToken)
-        return try self.paymentNetworkClient.sendMoney(paymentRequest, metadata: metaData)
+        return try self.paymentNetworkClient.sendMoney(paymentRequest, metadata: IlpCredentials(bearerToken).get())
     }
 }
