@@ -14,7 +14,7 @@ class IlpCredentials {
     /// of that entry will be the bearerToken with "Bearer " prefix.
     public init(_ bearerToken: String) throws {
         self.metadata = Metadata()
-        try metadata.add(key: "Authorization", value: self.applyBearer(bearerToken))
+        try metadata.add(key: "authorization", value: self.applyBearer(bearerToken))
     }
 
     /// Prepends 'Bearer ' to an auth token, if it is not already prefixed with "Bearer "
