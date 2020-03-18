@@ -1,6 +1,6 @@
 /// Conforms to PaymentRequest struct and provides a converter to Org_Interledger_Stream_Proto_SendPaymentRequest
 extension PaymentRequest {
-    
+
     /// Initializes a PaymentRequest with more idiomatic parameter labels
     public init(
         _ amount: UInt64,

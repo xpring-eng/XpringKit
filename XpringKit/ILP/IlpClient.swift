@@ -16,34 +16,28 @@ public class IlpClient {
     /// - Parameters:
     ///     -  accountID The account ID to get the balance for.
     ///     -  bearerToken Authentication bearer token.
-    /// - Returns: A Org_Interledger_Stream_Proto_GetBalanceResponse with balance information of the specified account
+    /// - Returns: An AccountBalance with balance information of the specified account
     /// - Throws: An error If the given inputs were invalid, the account doesn't exist, or authentication failed.
     public func getBalance(for accountID: AccountID,
                            withAuthorization bearerToken: BearerToken
-    ) throws -> Org_Interledger_Stream_Proto_GetBalanceResponse {
+    ) throws -> AccountBalance {
         return try decoratedClient.getBalance(for: accountID, withAuthorization: bearerToken)
     }
 
     /// Send a payment from the given accountID to the destinationPaymentPointer payment pointer
     ///
     /// - Note: This method will not necessarily throw an exception if the payment failed.
-    ///         Payment status can be checked in SendPaymentResponse#getSuccessfulPayment()
+    ///         Payment status can be checked in PaymentResult.successfulPayment
     /// - Parameters:
-    ///     -  amount : Amount to send
-    ///     -  paymentPointer : payment pointer of the receiver
-    ///     -  senderAccountId : accountID of the sender
+    ///     -  paymentRequest: A PaymentRequest with options for a payment
     ///     -  bearerToken : auth token of the sender
-    /// - Returns: A Org_Interledger_Stream_Proto_SendPaymentResponse with details about the payment.
+    /// - Returns: A PaymentResult with details about the payment.
     /// - Throws: An error If the given inputs were invalid.
-    public func sendPayment(_ amount: UInt64,
-                            to destinationPaymentPointer: PaymentPointer,
-                            from senderAccountId: AccountID,
+    public func sendPayment(_ paymentRequest: PaymentRequest,
                             withAuthorization bearerToken: BearerToken
-    ) throws -> Org_Interledger_Stream_Proto_SendPaymentResponse {
+    ) throws -> PaymentResult {
         return try decoratedClient.sendPayment(
-            amount,
-            to: destinationPaymentPointer,
-            from: senderAccountId,
+            paymentRequest,
             withAuthorization: bearerToken
         )
     }
