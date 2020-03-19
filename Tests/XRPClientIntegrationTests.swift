@@ -56,6 +56,15 @@ final class XRPClientIntegrationTests: XCTestCase {
       }
   }
 
+  func testPaymentHistory() {
+    do {
+      let payments = try client.paymentHistory(for: Wallet.testWallet.address)
+      XCTAssert(payments.count > 0)
+    } catch {
+      XCTFail("Failed checking account existence with error: \(error)")
+    }
+  }
+
   // MARK: - Legacy Protocol Buffers
 
   func testGetBalance_legacy() {
