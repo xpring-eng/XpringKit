@@ -179,6 +179,21 @@ let transactionStatus = xrpClient.getTransactionStatus(for: transactionHash) // 
 
 **Note:** The example transactionHash may lead to a "Transaction not found." error because the TestNet is regularly reset, or the accessed node may only maintain one month of history.  Recent transaction hashes can be found in the [XRP Ledger Explorer ](https://livenet.xrpl.org/).
 
+#### Payment history
+
+An `XRPClient` can return payments to and from an account.
+
+```
+import xpringkit
+
+let remoteURL = "alpha.test.xrp.xpring.io:50051"; // TestNet URL, use alpha.xrp.xpring.io:50051 for MainNet
+let xrpClient = XRPClient(grpcURL: remoteURL, useNewProtocolBuffers: true)
+
+let address = "XVMFQQBMhdouRqhPMuawgBMN1AVFTofPAdRsXG5RkPtUPNQ"
+
+let transactions = try! xrpClient.paymentHistory(for: address)
+```
+
 #### Sending XRP
 
 A `XRPClient` can send XRP to other accounts on the XRP Ledger.

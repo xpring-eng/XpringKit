@@ -7,8 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## 2.0.0 - March 19, 2020
 
+## 2.0.0 - March 19, 2020
+- Add a new `paymentHistory` method to `XRPClient`. This method allows clients to retrieve payment history for an address.
 - `XpringClient` is removed from XpringKit. This class has been deprecated since 1.5.0. Clients should use `XRPClient` instead.
 - Introduces a breaking change to `IlpClient` API.
 	- `IlpClient.getBalance` now returns an `AccountBalance` instead of a protobuf generated `GetBalanceResponse`.
