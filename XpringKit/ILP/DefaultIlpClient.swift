@@ -45,9 +45,10 @@ extension DefaultIlpClient: IlpClientDecorator {
         let balanceRequest = Org_Interledger_Stream_Proto_GetBalanceRequest.with {
             $0.accountID = accountID
         }
-        let metaData = Metadata()
-        try metaData.add(key: "authorization", value: bearerToken)
-        let getBalanceResponse = try self.balanceNetworkClient.getBalance(balanceRequest, metadata: metaData)
+        let getBalanceResponse = try self.balanceNetworkClient.getBalance(
+            balanceRequest,
+            metadata: IlpCredentials(bearerToken).getMetadata()
+        )
         return AccountBalance(getBalanceResponse: getBalanceResponse)
     }
 
@@ -64,9 +65,10 @@ extension DefaultIlpClient: IlpClientDecorator {
                             withAuthorization bearerToken: BearerToken
     ) throws -> PaymentResult {
         let paymentRequest = paymentRequest.toProto()
-        let metaData = Metadata()
-        try metaData.add(key: "authorization", value: bearerToken)
-        let paymentResponse = try self.paymentNetworkClient.sendMoney(paymentRequest, metadata: metaData)
+        let paymentResponse = try self.paymentNetworkClient.sendMoney(
+            paymentRequest,
+            metadata: IlpCredentials(bearerToken).getMetadata()
+        )
         return PaymentResult(sendPaymentResponse: paymentResponse)
     }
 }

@@ -214,6 +214,10 @@
 		84BE395B241ACD200039BEC9 /* PaymentRequest+Org_Interledger_Stream_Proto_SendPaymentRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BE3959241ACD200039BEC9 /* PaymentRequest+Org_Interledger_Stream_Proto_SendPaymentRequest.swift */; };
 		84BE395D241AD0AA0039BEC9 /* PaymentResult+Org_Interledger_Stream_Proto_PaymentResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BE395C241AD0AA0039BEC9 /* PaymentResult+Org_Interledger_Stream_Proto_PaymentResult.swift */; };
 		84BE395E241AD0AA0039BEC9 /* PaymentResult+Org_Interledger_Stream_Proto_PaymentResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BE395C241AD0AA0039BEC9 /* PaymentResult+Org_Interledger_Stream_Proto_PaymentResult.swift */; };
+		84DBE06A24215D7100D5617B /* IlpCredentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DBE06924215D7100D5617B /* IlpCredentials.swift */; };
+		84DBE06B24215D7100D5617B /* IlpCredentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DBE06924215D7100D5617B /* IlpCredentials.swift */; };
+		84DBE06D2422696C00D5617B /* IlpCredentialsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DBE06C2422696C00D5617B /* IlpCredentialsTest.swift */; };
+		84DBE06E2422696C00D5617B /* IlpCredentialsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DBE06C2422696C00D5617B /* IlpCredentialsTest.swift */; };
 		862D5FCA714E1ABB87AF54CF /* amount.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 779FFD5A983DED90B4D0D534 /* amount.pb.swift */; };
 		863DEEBC8E94EDDD09DE80D9 /* Io_Xpring_Fee+Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED8A03E4EEC4791525CA44F /* Io_Xpring_Fee+Test.swift */; };
 		86B2A810A7784BDA97A5A4DC /* send_payment_request.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56B46264F4BC24B7608F5E9A /* send_payment_request.pb.swift */; };
@@ -512,6 +516,8 @@
 		84BE3956241AB28B0039BEC9 /* AccountBalance+Org_Interledger_Stream_Proto_GetBalanceResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AccountBalance+Org_Interledger_Stream_Proto_GetBalanceResponse.swift"; sourceTree = "<group>"; };
 		84BE3959241ACD200039BEC9 /* PaymentRequest+Org_Interledger_Stream_Proto_SendPaymentRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PaymentRequest+Org_Interledger_Stream_Proto_SendPaymentRequest.swift"; sourceTree = "<group>"; };
 		84BE395C241AD0AA0039BEC9 /* PaymentResult+Org_Interledger_Stream_Proto_PaymentResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PaymentResult+Org_Interledger_Stream_Proto_PaymentResult.swift"; sourceTree = "<group>"; };
+		84DBE06924215D7100D5617B /* IlpCredentials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IlpCredentials.swift; sourceTree = "<group>"; };
+		84DBE06C2422696C00D5617B /* IlpCredentialsTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IlpCredentialsTest.swift; sourceTree = "<group>"; };
 		8561A4CDC03D07B17AAB8924 /* Address.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Address.swift; sourceTree = "<group>"; };
 		875501A3CB68BA56309F3BDF /* JavaScriptWalletGenerationResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JavaScriptWalletGenerationResult.swift; sourceTree = "<group>"; };
 		87675498A19D191B1C64AF43 /* PayIDUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayIDUtils.swift; sourceTree = "<group>"; };
@@ -860,9 +866,18 @@
 			path = model;
 			sourceTree = "<group>";
 		};
+		84DBE06824215D5500D5617B /* auth */ = {
+			isa = PBXGroup;
+			children = (
+				84DBE06924215D7100D5617B /* IlpCredentials.swift */,
+			);
+			path = auth;
+			sourceTree = "<group>";
+		};
 		8F3DE3793EF5F8F4C091F096 /* ILP */ = {
 			isa = PBXGroup;
 			children = (
+				84DBE06824215D5500D5617B /* auth */,
 				843DF6F424194B080002710F /* model */,
 				A1BB07A638CE67FC301F0529 /* AccountID.swift */,
 				638E420BC5B8916C1176F5A8 /* BearerToken.swift */,
@@ -967,6 +982,7 @@
 				07D01DAB4FF83BA669FDA499 /* Helpers */,
 				CE640A55C36573172D2B93CB /* Legacy */,
 				BD48CE8554C5C17F3F38EB37 /* PayID */,
+				84DBE06C2422696C00D5617B /* IlpCredentialsTest.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -1277,6 +1293,7 @@
 				75E18326164A32CC06316FE2 /* XRPIssuedCurrency.swift in Sources */,
 				28430C7E1BD753FC9BEE2746 /* XRPJavaScriptLoader.swift in Sources */,
 				FB60706C284D4869588ACD12 /* XRPLedgerError.swift in Sources */,
+				84DBE06A24215D7100D5617B /* IlpCredentials.swift in Sources */,
 				84BE3957241AB28B0039BEC9 /* AccountBalance+Org_Interledger_Stream_Proto_GetBalanceResponse.swift in Sources */,
 				3FB6D6EB39741F7F0D43C4A3 /* XRPMemo.swift in Sources */,
 				FD90EAF0DEA6DDF987345CC5 /* XRPPath.swift in Sources */,
@@ -1357,6 +1374,7 @@
 				2B6A6239E761D7404F48F915 /* Int32+Test.swift in Sources */,
 				080BE0988354EE3939208741 /* Int64+Test.swift in Sources */,
 				AAE07BFDB6A2E0E3598E1F21 /* Io_Xpring_AccountInfo+Test.swift in Sources */,
+				84DBE06E2422696C00D5617B /* IlpCredentialsTest.swift in Sources */,
 				863DEEBC8E94EDDD09DE80D9 /* Io_Xpring_Fee+Test.swift in Sources */,
 				48662544C50C4A74F0245ADE /* Io_Xpring_LedgerSequence+Test.swift in Sources */,
 				0966D410DA2D6C95EF288868 /* Io_Xpring_SubmitSignedTransactionResponse+Test.swift in Sources */,
@@ -1415,6 +1433,7 @@
 				50B188F73E35377249BE074D /* Int32+Test.swift in Sources */,
 				B090DBDEB01B5F7424C0E418 /* Int64+Test.swift in Sources */,
 				C556A563E8FC44E5D9C8F002 /* Io_Xpring_AccountInfo+Test.swift in Sources */,
+				84DBE06D2422696C00D5617B /* IlpCredentialsTest.swift in Sources */,
 				DF27CE44403C5FA54D4BADCB /* Io_Xpring_Fee+Test.swift in Sources */,
 				08BCA7C8AFC6517002842D6D /* Io_Xpring_LedgerSequence+Test.swift in Sources */,
 				4715CEF01259CFDDFBD12CC1 /* Io_Xpring_SubmitSignedTransactionResponse+Test.swift in Sources */,
@@ -1520,6 +1539,7 @@
 				37B1F6C6380B024C0EE3E6DD /* XRPIssuedCurrency.swift in Sources */,
 				52FEEA10075B52FD7F425E46 /* XRPJavaScriptLoader.swift in Sources */,
 				E48C20215EBBCB8C44B08A0B /* XRPLedgerError.swift in Sources */,
+				84DBE06B24215D7100D5617B /* IlpCredentials.swift in Sources */,
 				84BE3958241AB28B0039BEC9 /* AccountBalance+Org_Interledger_Stream_Proto_GetBalanceResponse.swift in Sources */,
 				A1D2E7D910A73C69E700409E /* XRPMemo.swift in Sources */,
 				693CAC4B65818B3E4CDBBFB5 /* XRPPath.swift in Sources */,
