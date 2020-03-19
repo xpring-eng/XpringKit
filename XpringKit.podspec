@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name         = "XpringKit"
-  spec.version      = "1.5.0"
+  spec.version      = "2.0.0"
   spec.summary      = "XpringKit provides a Swift based SDK for interacting with Xpring Platform (XRP/ILP)"
 
   spec.description  = "

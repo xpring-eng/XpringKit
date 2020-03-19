@@ -7,9 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-### Removed
+## 2.0.0 - March 19, 2020
 
 - `XpringClient` is removed from XpringKit. This class has been deprecated since 1.5.0. Clients should use `XRPClient` instead.
+- Introduces a breaking change to `IlpClient` API.
+	- `IlpClient.getBalance` now returns an `AccountBalance` instead of a protobuf generated `GetBalanceResponse`.
+	- `IlpClient.send` has been changed to `IlpClient.sendPayment` to better align with other versions of the Xpring SDK
+	- `IlpClient.sendPayment` now consumes a `PaymentRequest` instead of individual parameters, and now returns a `PaymentResult` instead of a protobuf generated `SendPaymentResponse`
+- Fixed a bug in `DefaultIlpClient`. "Bearer " prefix was not being prepended to auth tokens, which caused authentication issues on Hermes.
+	- "Bearer " prefix now gets prepended to auth tokens, if it is not already there
 
 ## 1.5.0 - March 9, 2020
 
