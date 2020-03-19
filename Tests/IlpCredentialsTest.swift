@@ -12,7 +12,7 @@ class IlpCredentialsTest: XCTestCase {
         // THEN the credentials' Metadata has an Authorization header
         // AND "Bearer " prefix has been prepended to bearerToken
         XCTAssertEqual(
-            credentials.get().dictionaryRepresentation["authorization"],
+            credentials.getMetadata().dictionaryRepresentation["authorization"],
             "Bearer " + .testBearerToken
         )
     }
@@ -27,7 +27,7 @@ class IlpCredentialsTest: XCTestCase {
         // THEN the credentials' Metadata has an Authorization header
         // AND its value is equal to bearerToken
         XCTAssertEqual(
-            credentials.get().dictionaryRepresentation["authorization"],
+            credentials.getMetadata().dictionaryRepresentation["authorization"],
             bearerToken
         )
     }
