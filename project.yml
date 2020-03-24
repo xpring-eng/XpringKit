@@ -21,7 +21,10 @@ targets:
       - script: swiftlint autocorrect --config .swiftlint.yml
         name: SwiftLint
     dependencies:
+      - carthage: AlamoFire
       - carthage: BigInt
+      - carthage: BoringSSL
+      - carthage: CgRPC
       - carthage: SwiftProtobuf
       - carthage: SwiftGRPC
   XpringKitTests:
