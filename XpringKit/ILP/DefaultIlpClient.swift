@@ -36,18 +36,18 @@ extension DefaultIlpClient: IlpClientDecorator {
     ///
     /// - Parameters:
     ///     -  accountID The account ID to get the balance for.
-    ///     -  bearerToken Authentication bearer token.
+    ///     -  accessToken Authentication access token. Can not start with "Bearer "
     /// - Returns: An AccountBalance with balance information of the specified account
     /// - Throws: An error If the given inputs were invalid, the account doesn't exist, or authentication failed.
     public func getBalance(for accountID: AccountID,
-                           withAuthorization bearerToken: BearerToken
+                           withAuthorization accessToken: AccessToken
     ) throws -> AccountBalance {
         let balanceRequest = Org_Interledger_Stream_Proto_GetBalanceRequest.with {
             $0.accountID = accountID
         }
         let getBalanceResponse = try self.balanceNetworkClient.getBalance(
             balanceRequest,
-            metadata: IlpCredentials(bearerToken).getMetadata()
+            metadata: IlpCredentials(accessToken).getMetadata()
         )
         return AccountBalance(getBalanceResponse: getBalanceResponse)
     }
@@ -58,16 +58,16 @@ extension DefaultIlpClient: IlpClientDecorator {
     ///         Payment status can be checked in PaymentResult.successfulPayment
     /// - Parameters:
     ///     -  paymentRequest: A PaymentRequest with options for a payment
-    ///     -  bearerToken : auth token of the sender
+    ///     -  accessToken : access token of the sender. Can not start with "Bearer "
     /// - Returns: A PaymentResult with details about the payment.
     /// - Throws: An error If the given inputs were invalid.
     public func sendPayment(_ paymentRequest: PaymentRequest,
-                            withAuthorization bearerToken: BearerToken
+                            withAuthorization accessToken: AccessToken
     ) throws -> PaymentResult {
         let paymentRequest = paymentRequest.toProto()
         let paymentResponse = try self.paymentNetworkClient.sendMoney(
             paymentRequest,
-            metadata: IlpCredentials(bearerToken).getMetadata()
+            metadata: IlpCredentials(accessToken).getMetadata()
         )
         return PaymentResult(sendPaymentResponse: paymentResponse)
     }
