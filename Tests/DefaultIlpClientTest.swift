@@ -16,7 +16,7 @@ final class DefaultIlpClientTest: XCTestCase {
         guard let balance =
             try? ilpClient.getBalance(
                 for: .testAccountID,
-                withAuthorization: .testBearerToken
+                withAuthorization: .testAccessToken
             ) else {
               XCTFail("Exception should not be thrown when trying to get a balance")
               return
@@ -40,7 +40,7 @@ final class DefaultIlpClientTest: XCTestCase {
         // WHEN the balance is requested THEN an error is thrown
         XCTAssertThrowsError(try ilpClient.getBalance(
             for: .testAccountID,
-            withAuthorization: .testBearerToken
+            withAuthorization: .testAccessToken
         ), "Exception not thrown") { error in
             guard
               let _ = error as? XpringKitTestError
@@ -69,7 +69,7 @@ final class DefaultIlpClientTest: XCTestCase {
         guard let payment: PaymentResult =
             try? ilpClient.sendPayment(
                 paymentRequest,
-                withAuthorization: .testBearerToken
+                withAuthorization: .testAccessToken
             ) else {
                 XCTFail("Exception should not be thrown when trying to send a payment")
                 return
@@ -96,7 +96,7 @@ final class DefaultIlpClientTest: XCTestCase {
         // WHEN a payment is sent THEN an error is thrown
         XCTAssertThrowsError(try ilpClient.sendPayment(
             paymentRequest,
-            withAuthorization: .testBearerToken
+            withAuthorization: .testAccessToken
         ), "Exception not thrown") { error in
             guard
               let _ = error as? XpringKitTestError
