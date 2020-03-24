@@ -323,3 +323,6 @@ components:
         - invoiceHash
         - transactionConfirmation
 openapi: '3.0.0'
+servers:
+  - url: 'http:/'
+    description: ''

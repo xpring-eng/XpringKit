@@ -3,10 +3,10 @@
 set -e -o pipefail
 
 # Folder to place the generated classes in.
-DESTINATION_FOLDER=./XpringKit/PayID/Generated/Swagger
+DESTINATION_FOLDER=./XpringKit/PayID/Generated/
 
 # Open API Specfication to use for generation.
-PAY_ID_OPEN_API_SPEC=./pay-id-api-spec/payid.spec
+PAY_ID_OPEN_API_SPEC=./pay-id-api-spec/pay-id.v1.yml
 
 # Temporary directory to write files to.
 TMP_SWAGGER_DIR=./.tmp_swagger
@@ -15,7 +15,7 @@ TMP_SWAGGER_DIR=./.tmp_swagger
 LANG=swift5
 
 # Folder containing generated sources.
-GENERATED_SOURCES_FOLDER=$TMP_SWAGGER_DIR/SwaggerClient
+GENERATED_SOURCES_FOLDER=$TMP_SWAGGER_DIR/SwaggerClient/Classes/Swaggers
 
 ##########################################################################
 # Remove any stale files which are already generated.
@@ -35,7 +35,6 @@ mkdir -p $DESTINATION_FOLDER
 swagger-codegen generate --lang $LANG \
   --input $PAY_ID_OPEN_API_SPEC \
   -o $TMP_SWAGGER_DIR \
-  --disable-examples
 
 echo "Swagger Generation Complete!"
 
