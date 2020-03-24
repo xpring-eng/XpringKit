@@ -2,8 +2,13 @@ info:
   title: PayID
   version: '0.0.1'
 paths:
-  '/{path}':
+  '/{host}/{path}':
     parameters:
+      - schema:
+          type: string
+        name: host
+        in: path
+        required: true
       - schema:
           type: string
         name: path
@@ -156,7 +161,7 @@ components:
         paymentPointer:
           type: string
       required:
-        - addressDetailsType
+        - addressDetailType
         - addressDetails
     Invoice:
       title: Invoice
@@ -324,5 +329,5 @@ components:
         - transactionConfirmation
 openapi: '3.0.0'
 servers:
-  - url: 'http:/'
+  - url: 'https:/'
     description: ''
