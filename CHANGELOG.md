@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+#### Added
+- A new `getPaymentStatus` is added which retrieves the status of payment transactions.
+
+#### Deprecated
+- `getTransactionStatus` is deprecated. Please use `getPaymentStatus` instead.
 
 ## 2.0.0 - March 19, 2020
 - Add a new `paymentHistory` method to `XRPClient`. This method allows clients to retrieve payment history for an address.
