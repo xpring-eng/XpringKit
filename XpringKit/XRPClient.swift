@@ -65,4 +65,16 @@ public class XRPClient {
   public func accountExists(for address: Address) throws -> Bool {
     return try decoratedClient.accountExists(for: address)
   }
+
+  /// Return the history of payments for the given account.
+  ///
+  /// - Note: This method only works for payment type transactions, see: https://xrpl.org/payment.html
+  /// - Note: This method only returns the history that is contained on the remote node, which may not contain a full history of the network. 
+  ///
+  /// - Parameter address: The address (account) for which to retrive payment history.
+  /// - Throws: An error if there was a problem communicating with the XRP Ledger.
+  /// - Returns: An array of transactions associated with the account.
+  public func paymentHistory(for address: Address) throws -> [XRPTransaction] {
+    return try decoratedClient.paymentHistory(for: address)
+  }
 }

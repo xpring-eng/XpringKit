@@ -6,14 +6,14 @@ extension String {
   public static let legacyRemoteURL = "grpc.xpring.tech:80"
 
   /// The URL of a remote rippled node with gRPC enabled.
-  public static let remoteURL = "3.14.64.116:50051"
+  public static let remoteURL = "test.xrp.xpring.io:50051"
 
   /// An address on the chain to receive funds.
   public static let recipientAddress = "X7cBcY4bdTTzk3LHmrKAK6GyrirkXfLHGFxzke5zTmYMfw4"
 }
 
 extension TransactionHash {
-  public static let successfulTransactionHash = "24E31668208A3165E6C702CDA66425808EAD670EABCBFA6C4403FFA93500D486"
+  public static let successfulTransactionHash = "A040256A283FA2DC1E732AF70D24DC289E6BE8B9782917F0A7FDCB23D0B48F70"
 }
 
 /// Integration tests run against a live remote client.
@@ -54,6 +54,15 @@ final class XRPClientIntegrationTests: XCTestCase {
       } catch {
         XCTFail("Failed checking account existence with error: \(error)")
       }
+  }
+
+  func testPaymentHistory() {
+    do {
+      let payments = try client.paymentHistory(for: Wallet.testWallet.address)
+      XCTAssert(payments.count > 0)
+    } catch {
+      XCTFail("Failed checking account existence with error: \(error)")
+    }
   }
 
   // MARK: - Legacy Protocol Buffers
