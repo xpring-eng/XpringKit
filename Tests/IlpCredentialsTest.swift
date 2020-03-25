@@ -4,7 +4,7 @@ class IlpCredentialsTest: XCTestCase {
 
     func testConstructIlpCredentialsWithoutPrefix() throws {
         // GIVEN a bearer token with no "Bearer " prefix
-        let bearerToken: String = .testBearerToken
+        let bearerToken: String = .testAccessToken
 
         // WHEN IlpCredentials are initialized
         let credentials = try IlpCredentials(bearerToken)
@@ -13,22 +13,19 @@ class IlpCredentialsTest: XCTestCase {
         // AND "Bearer " prefix has been prepended to bearerToken
         XCTAssertEqual(
             credentials.getMetadata().dictionaryRepresentation["authorization"],
-            "Bearer " + .testBearerToken
+            "Bearer " + .testAccessToken
         )
     }
 
     func testConstructIlpCredentialsWithPrefix() throws {
         // GIVEN a bearer token with a "Bearer " prefix
-        let bearerToken: String = "Bearer " + .testBearerToken
+        let bearerToken: String = "Bearer " + .testAccessToken
 
         // WHEN IlpCredentials are initialized
-        let credentials = try IlpCredentials(bearerToken)
-
-        // THEN the credentials' Metadata has an Authorization header
-        // AND its value is equal to bearerToken
-        XCTAssertEqual(
-            credentials.getMetadata().dictionaryRepresentation["authorization"],
-            bearerToken
+        // THEN an Error is thrown
+        XCTAssertThrowsError(
+            try IlpCredentials(bearerToken),
+            XpringIlpError.invalidAccessToken.localizedDescription
         )
     }
 }
