@@ -9,7 +9,7 @@ internal class IlpCredentials {
     /// Instead, it is wrapped in IlpCredentials
     private var metadata: Metadata
 
-    private let BEARER_SPACE = "Bearer "
+    private let BEARER_PREFIX = "Bearer "
 
     /// Initialize a new IlpCredentials
     /// self.metadata will be initialized and an Authorization header will be added to it.  The value
@@ -19,12 +19,12 @@ internal class IlpCredentials {
     ///     - accessToken: An access token with no "Bearer " prefix
     /// - Throws: if accessToken starts with "Bearer "
     public init(_ accessToken: String) throws {
-        if accessToken.starts(with: BEARER_SPACE) {
+        if accessToken.starts(with: BEARER_PREFIX) {
             throw XpringIlpError.invalidAccessToken
         }
 
         self.metadata = Metadata()
-        try metadata.add(key: "authorization", value: BEARER_SPACE + accessToken)
+        try metadata.add(key: "authorization", value: BEARER_PREFIX + accessToken)
     }
 
     /// Get the Metadata to pass to network calls
