@@ -146,13 +146,13 @@ let xrpClient = XRPClient(grpcURL: remoteURL)
 
 #### Retrieving a Balance
 
-A `XRPClient` can check the balance of an account on the XRP Ledger.
+An `XRPClient` can check the balance of an account on the XRP Ledger.
 
 ```swift
 import XpringKit
 
 let remoteURL = "test.xrp.xpring.io:50051"; // TestNet URL, use main.xrp.xpring.io:50051 for MainNet
-let xrpClient = XRPClient(grpcURL: remoteURL, useNewProtocolBuffers: true)
+let xrpClient = XRPClient(grpcURL: remoteURL)
 
 let address = "XVMFQQBMhdouRqhPMuawgBMN1AVFTofPAdRsXG5RkPtUPNQ"
 
@@ -180,7 +180,7 @@ These states are determined by the `TransactionStatus` enum.
 import XpringKit
 
 let remoteURL = "test.xrp.xpring.io:50051"; // TestNet URL, use main.xrp.xpring.io:50051 for MainNet
-let xrpClient = XRPClient(grpcURL: remoteURL, useNewProtocolBuffers: true)
+let xrpClient = XRPClient(grpcURL: remoteURL)
 
 let transactionHash = "9FC7D277C1C8ED9CE133CC17AEA9978E71FC644CE6F5F0C8E26F1C635D97AF4A"
 
@@ -206,7 +206,7 @@ let transactions = try! xrpClient.paymentHistory(for: address)
 
 #### Sending XRP
 
-A `XRPClient` can send XRP to other accounts on the XRP Ledger.
+An `XRPClient` can send XRP to other accounts on the XRP Ledger.
 
 **Note:** The payment operation will block the calling thread until the operation reaches a definitive and irreversible success or failure state.
 
@@ -214,7 +214,7 @@ A `XRPClient` can send XRP to other accounts on the XRP Ledger.
 import XpringKit
 
 let remoteURL = "test.xrp.xpring.io:50051"; // TestNet URL, use main.xrp.xpring.io:50051 for MainNet
-let xrpClient = XRPClient(grpcURL: remoteURL, useNewProtocolBuffers: true)
+let xrpClient = XRPClient(grpcURL: remoteURL)
 
 // Wallet which will send XRP
 let generationResult = Wallet.generateRandomWallet()!
