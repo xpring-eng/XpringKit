@@ -45,11 +45,19 @@ extension DefaultIlpClient: IlpClientDecorator {
         let balanceRequest = Org_Interledger_Stream_Proto_GetBalanceRequest.with {
             $0.accountID = accountID
         }
-        let getBalanceResponse = try self.balanceNetworkClient.getBalance(
-            balanceRequest,
-            metadata: IlpCredentials(accessToken).getMetadata()
-        )
-        return AccountBalance(getBalanceResponse: getBalanceResponse)
+        do {
+            let getBalanceResponse = try self.balanceNetworkClient.getBalance(
+                balanceRequest,
+                metadata: IlpCredentials(accessToken).getMetadata()
+            )
+            return AccountBalance(getBalanceResponse: getBalanceResponse)
+        } catch RPCError.callError(let callResult) {
+            // Translate callResult into a XpringIlpError and throw
+            throw ExceptionHandlerUtils.handleIlpRPCErrorCallResult(callResult)
+        } catch {
+            // Rethrow all other errors
+            throw error
+        }
     }
 
     /// Send a payment from the given accountID to the destinationPaymentPointer payment pointer
@@ -65,10 +73,18 @@ extension DefaultIlpClient: IlpClientDecorator {
                             withAuthorization accessToken: AccessToken
     ) throws -> PaymentResult {
         let paymentRequest = paymentRequest.toProto()
-        let paymentResponse = try self.paymentNetworkClient.sendMoney(
-            paymentRequest,
-            metadata: IlpCredentials(accessToken).getMetadata()
-        )
-        return PaymentResult(sendPaymentResponse: paymentResponse)
+        do {
+            let paymentResponse = try self.paymentNetworkClient.sendMoney(
+                paymentRequest,
+                metadata: IlpCredentials(accessToken).getMetadata()
+            )
+            return PaymentResult(sendPaymentResponse: paymentResponse)
+        } catch RPCError.callError(let callResult) {
+            // Translate callResult into a XpringIlpError and throw
+            throw ExceptionHandlerUtils.handleIlpRPCErrorCallResult(callResult)
+        } catch {
+            // Rethrow all other errors
+            throw error
+        }
     }
 }
