@@ -23,8 +23,8 @@ Pod::Spec.new do |spec|
   spec.resources =     [ "XpringKit/Resources/*" ]
 
   spec.dependency 'BigInt', '~> 5.0.0'
-  spec.dependency 'SwiftGRPC', '~> 0.10.0'
-  spec.dependency 'SwiftProtobuf', '~> 1.7.0'
+  spec.dependency 'SwiftGRPC', '~> 0.9.1'
+  spec.dependency 'SwiftProtobuf', '~> 1.5.0'
 
   spec.frameworks = "Foundation"
 
