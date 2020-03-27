@@ -22,17 +22,17 @@ Pod::Spec.new do |spec|
   spec.source_files  = "XpringKit/**/*.swift"
   spec.resources =     [ "XpringKit/Resources/*" ]
 
-  spec.dependency 'BigInt'
-  spec.dependency 'SwiftGRPC'
-  spec.dependency 'SwiftProtobuf'
-  
+  spec.dependency 'BigInt' ~> 5.0.0
+  spec.dependency 'SwiftGRPC' ~> 0.9.1
+  spec.dependency 'SwiftProtobuf' ~> 1.6.0
+
   spec.frameworks = "Foundation"
 
   spec.test_spec "Tests" do |test_spec|
     test_spec.source_files = ["Tests/**/*.swift"]
 
-    test_spec.dependency 'BigInt'
-    
+    test_spec.dependency 'BigInt' ~> 5.0.0
+
     test_spec.frameworks = "Foundation"
   end
 end
