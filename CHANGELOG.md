@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## 3.0.0 - March 27, 2020
+
+This release contains serveral breaking changes that are required in order to:
+- Support more protocols than just XRP Ledger (ILP, etc)
+- Migrate the library to use the rippled node directly
+
+Please note the changes and deprecations below. 
+
 #### Changed
 - `XRPClient` now uses [rippled's protocol buffer API](https://github.com/ripple/rippled/pull/3254) rather than the legacy API. Users who wish to use the legacy API should pass `false` for `useNewProtocolBuffers` in the constructor.
 
