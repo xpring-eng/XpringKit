@@ -1,4 +1,5 @@
 /// A bridge between various model classes that represent raw transaction status.
+// TODO(keefertaylor): This class no longer needs to exist. Refactor helper methods and remove.
 public struct RawTransactionStatus {
   /// Whether the transaction has been validated.
   public let validated: Bool
