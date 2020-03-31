@@ -24,7 +24,7 @@ internal class LegacyJavaScriptSigner {
   ///
   /// - Note: Initialization will fail if the expected bundle is missing or malformed.
   public init() {
-    signerClass = XRPJavaScriptLoader.load(ResourceNames.Classes.signer)
+    signerClass = JavaScriptLoader.load(ResourceNames.Classes.signer)
     javaScriptSerializer = JavaScriptSerializer()
   }
 
