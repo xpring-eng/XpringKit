@@ -5,11 +5,11 @@ public protocol IlpClientDecorator {
     ///
     /// - Parameters:
     ///     -  accountID The account ID to get the balance for.
-    ///     -  bearerToken Authentication bearer token.
+    ///     -  accessToken Authentication access token. Can not start with "Bearer "
     /// - Returns: An AccountBalance with balance information of the specified account
     /// - Throws: An error If the given inputs were invalid, the account doesn't exist, or authentication failed.
     func getBalance(for accountID: AccountID,
-                    withAuthorization bearerToken: BearerToken
+                    withAuthorization accessToken: AccessToken
     ) throws -> AccountBalance
 
     /// Send a payment from the given accountID to the destinationPaymentPointer payment pointer
@@ -18,10 +18,10 @@ public protocol IlpClientDecorator {
     ///         Payment status can be checked in PaymentResult.successfulPayment
     /// - Parameters:
     ///     -  paymentRequest: A PaymentRequest with options for a payment
-    ///     -  bearerToken : auth token of the sender
+    ///     -  accessToken : Access token of the sender. Can not start with "Bearer "
     /// - Returns: A PaymentResult with details about the payment.
     /// - Throws: An error If the given inputs were invalid.
     func sendPayment(_ paymentRequest: PaymentRequest,
-                     withAuthorization bearerToken: BearerToken
+                     withAuthorization accessToken: AccessToken
     ) throws -> PaymentResult
 }

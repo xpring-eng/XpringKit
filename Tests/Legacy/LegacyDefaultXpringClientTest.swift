@@ -173,9 +173,9 @@ final class LegacyDefaultXRPClientTest: XCTestCase {
       ))
   }
 
-  // MARK: - Transaction Status
+  // MARK: - Payment Status
 
-  func testGetTransactionStatusWithUnvalidatedTransactionAndFailureCode() {
+  func testPaymentStatusWithUnvalidatedTransactionAndFailureCode() {
     // Iterate over different types of transaction status codes which represent failures.
     for transactionStatusCodeFailure in LegacyDefaultXRPClientTest.transactionStatusFailureCodes {
       // GIVEN an XRPClient which returns an unvalidated transaction and a failed transaction status code.
@@ -192,15 +192,15 @@ final class LegacyDefaultXRPClientTest: XCTestCase {
       )
       let xrpClient = LegacyDefaultXRPClient(networkClient: networkClient)
 
-      // WHEN the transaction status is retrieved.
-      let transactionStatus = try? xrpClient.getTransactionStatus(for: .testTransactionHash)
+      // WHEN the payment status is retrieved.
+      let paymentStatus = try? xrpClient.paymentStatus(for: .testTransactionHash)
 
-      // THEN the transaction status is pending.
-      XCTAssertEqual(transactionStatus, .pending)
+      // THEN the payment status is pending.
+      XCTAssertEqual(paymentStatus, .pending)
     }
   }
 
-  func testGetTransactionStatusWithUnvalidatedTransactionAndSuccessCode() {
+  func testPaymentStatusWithUnvalidatedTransactionAndSuccessCode() {
     // GIVEN an XRPClient which returns an unvalidated transaction and a succeeded transaction status code.
     let transactionStatusResponse = Io_Xpring_TransactionStatus.with {
       $0.validated = false
@@ -215,14 +215,14 @@ final class LegacyDefaultXRPClientTest: XCTestCase {
     )
     let xrpClient = LegacyDefaultXRPClient(networkClient: networkClient)
 
-    // WHEN the transaction status is retrieved.
-    let transactionStatus = try? xrpClient.getTransactionStatus(for: .testTransactionHash)
+    // WHEN the payment status is retrieved.
+    let paymentStatus = try? xrpClient.paymentStatus(for: .testTransactionHash)
 
-    // THEN the transaction status is pending.
-    XCTAssertEqual(transactionStatus, .pending)
+    // THEN the payment status is pending.
+    XCTAssertEqual(paymentStatus, .pending)
   }
 
-  func testGetTransactionStatusWithValidatedTransactionAndFailureCode() {
+  func testGetPaymentStatusWithValidatedTransactionAndFailureCode() {
     // Iterate over different types of transaction status codes which represent failures.
     for transactionStatusCodeFailure in LegacyDefaultXRPClientTest.transactionStatusFailureCodes {
       // GIVEN an XRPClient which returns a validated transaction and a failed transaction status code.
@@ -239,15 +239,15 @@ final class LegacyDefaultXRPClientTest: XCTestCase {
       )
       let xrpClient = LegacyDefaultXRPClient(networkClient: networkClient)
 
-      // WHEN the transaction status is retrieved.
-      let transactionStatus = try? xrpClient.getTransactionStatus(for: .testTransactionHash)
+      // WHEN the payment status is retrieved.
+      let paymentStatus = try? xrpClient.paymentStatus(for: .testTransactionHash)
 
-      // THEN the transaction status is failed.
-      XCTAssertEqual(transactionStatus, .failed)
+      // THEN the payment status is failed.
+      XCTAssertEqual(paymentStatus, .failed)
     }
   }
 
-  func testGetTransactionStatusWithValidatedTransactionAndSuccessCode() {
+  func testGetPaymentStatusWithValidatedTransactionAndSuccessCode() {
     // GIVEN an XRPClient which returns a validated transaction and a succeeded transaction status code.
     let transactionStatusResponse = Io_Xpring_TransactionStatus.with {
       $0.validated = true
@@ -262,14 +262,14 @@ final class LegacyDefaultXRPClientTest: XCTestCase {
     )
     let xrpClient = LegacyDefaultXRPClient(networkClient: networkClient)
 
-    // WHEN the transaction status is retrieved.
-    let transactionStatus = try? xrpClient.getTransactionStatus(for: .testTransactionHash)
+    // WHEN the payment status is retrieved.
+    let paymentStatus = try? xrpClient.paymentStatus(for: .testTransactionHash)
 
-    // THEN the transaction status is succeeded.
-    XCTAssertEqual(transactionStatus, .succeeded)
+    // THEN the payment status is succeeded.
+    XCTAssertEqual(paymentStatus, .succeeded)
   }
 
-  func testGetTransactionStatusWithServerFailure() {
+  func testGetPaymentStatusWithServerFailure() {
     // GIVEN an XRPClient which fails to return a transaction status.
     let networkClient = LegacyFakeNetworkClient(
       accountInfoResult: .success(.testAccountInfo),
@@ -280,8 +280,8 @@ final class LegacyDefaultXRPClientTest: XCTestCase {
     )
     let xrpClient = LegacyDefaultXRPClient(networkClient: networkClient)
 
-    // WHEN the transaction status is retrieved THEN an error is thrown.
-    XCTAssertThrowsError(try xrpClient.getTransactionStatus(for: .testTransactionHash))
+    // WHEN the payment status is retrieved THEN an error is thrown.
+    XCTAssertThrowsError(try xrpClient.paymentStatus(for: .testTransactionHash))
   }
 
   // MARK: - Account Existence

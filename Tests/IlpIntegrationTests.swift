@@ -15,7 +15,7 @@ class IlpIntegrationTests: XCTestCase {
         do {
             // WHEN the balance of sdk_account1 is requested
             let balance = try ilpClient.getBalance(for: .testAccountID,
-                                                   withAuthorization: .testBearerToken)
+                                                   withAuthorization: .testAccessToken)
 
             // THEN the accountId is sdk_account1
             // AND the assetCode is "XRP"
@@ -34,6 +34,21 @@ class IlpIntegrationTests: XCTestCase {
         }
     }
 
+    func testGetBalanceWithBearerToken() {
+        // GIVEN an IlpClient with a network client hooked up to Hermes
+        // AND an ILP account with accountId = sdk_account1
+
+        // WHEN the balance of sdk_account1 is requested with an access token that starts with "Bearer "
+        // THEN an error is thrown
+        XCTAssertThrowsError(
+            try ilpClient.getBalance(
+                for: .testAccountID,
+                withAuthorization: "Bearer " + .testAccessToken
+            ),
+            XpringIlpError.invalidAccessToken.localizedDescription
+        )
+    }
+
     func testSendPayment() {
         // GIVEN an IlpClient with a network client hooked up to Hermes
         // AND an ILP account with accountId = sdk_account1
@@ -47,7 +62,7 @@ class IlpIntegrationTests: XCTestCase {
             // WHEN a payment is sent from sdk_account1 to sdk_account2
             let payment = try ilpClient.sendPayment(
                 paymentRequest,
-                withAuthorization: .testBearerToken
+                withAuthorization: .testAccessToken
             )
 
             // THEN the originalAmount is equal to the amount requested
@@ -63,4 +78,23 @@ class IlpIntegrationTests: XCTestCase {
         }
     }
 
+    func testSendPaymentWithBearerToken() {
+        // GIVEN an IlpClient with a network client hooked up to Hermes
+        // AND an ILP account with accountId = sdk_account1
+
+        // WHEN a payment is sent from sdk_account1 to sdk_account2 with an access token that starts with "Bearer "
+        // THEN an error is thrown
+        let paymentRequest = PaymentRequest(
+            .testIlpSendAmount,
+            to: .testIlpPaymentPointer,
+            from: .testAccountID
+        )
+        XCTAssertThrowsError(
+            try ilpClient.sendPayment(
+                paymentRequest,
+                withAuthorization: "Bearer " + .testAccessToken
+            ),
+            XpringIlpError.invalidAccessToken.localizedDescription
+        )
+    }
 }

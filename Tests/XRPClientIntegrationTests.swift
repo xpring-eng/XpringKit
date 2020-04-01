@@ -12,14 +12,10 @@ extension String {
   public static let recipientAddress = "X7cBcY4bdTTzk3LHmrKAK6GyrirkXfLHGFxzke5zTmYMfw4"
 }
 
-extension TransactionHash {
-  public static let successfulTransactionHash = "A040256A283FA2DC1E732AF70D24DC289E6BE8B9782917F0A7FDCB23D0B48F70"
-}
-
 /// Integration tests run against a live remote client.
 final class XRPClientIntegrationTests: XCTestCase {
   private let legacyClient = XRPClient(grpcURL: .legacyRemoteURL, useNewProtocolBuffers: false)
-  private let client = XRPClient(grpcURL: .remoteURL, useNewProtocolBuffers: true)
+  private let client = XRPClient(grpcURL: .remoteURL)
 
   // MARK: - rippled Protocol Buffers
 
@@ -41,7 +37,8 @@ final class XRPClientIntegrationTests: XCTestCase {
 
   func testGetTransactionStatus() {
     do {
-      let transactionStatus = try client.getTransactionStatus(for: .successfulTransactionHash)
+      let transactionHash = try client.send(.testSendAmount, to: .recipientAddress, from: .testWallet)
+      let transactionStatus = try client.getTransactionStatus(for: transactionHash)
       XCTAssertEqual(transactionStatus, .succeeded)
     } catch {
       XCTFail("Failed retrieving transaction hash with error: \(error)")
@@ -85,7 +82,8 @@ final class XRPClientIntegrationTests: XCTestCase {
 
   func testGetTransactionStatus_legacy() {
     do {
-      let transactionStatus = try legacyClient.getTransactionStatus(for: .successfulTransactionHash)
+      let transactionHash = try client.send(.testSendAmount, to: .recipientAddress, from: .testWallet)
+      let transactionStatus = try legacyClient.getTransactionStatus(for: transactionHash)
       XCTAssertEqual(transactionStatus, .succeeded)
     } catch {
       XCTFail("Failed retrieving transaction hash with error: \(error)")

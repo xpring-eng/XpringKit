@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+#### Changed
+- `XRPClient` now uses [rippled's protocol buffer API](https://github.com/ripple/rippled/pull/3254) rather than the legacy API. Users who wish to use the legacy API should pass `false` for `useNewProtocolBuffers` in the constructor.
+
+#### Added
+- A new `getPaymentStatus` is added which retrieves the status of payment transactions.
+
+#### Deprecated
+- `getTransactionStatus` is deprecated. Please use `getPaymentStatus` instead.
 
 ## 2.0.0 - March 19, 2020
 - Add a new `paymentHistory` method to `XRPClient`. This method allows clients to retrieve payment history for an address.
