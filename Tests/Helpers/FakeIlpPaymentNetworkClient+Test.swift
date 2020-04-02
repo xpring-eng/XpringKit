@@ -18,4 +18,7 @@ extension FakeIlpPaymentNetworkClient {
 
     /// A network client that always fails with IlpError.invalidAccessToken
     static let invalidAccessTokenPaymentNetworkClient = FakeIlpPaymentNetworkClient(sendPaymentResult: .failure(IlpError.invalidAccessToken))
+
+    /// A network client that always fails with IlpError.invalidAccessToken
+    static let unknownPaymentNetworkClient = FakeIlpPaymentNetworkClient(sendPaymentResult: .failure(FakeIlpError.unknownError))
 }

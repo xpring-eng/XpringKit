@@ -51,4 +51,16 @@ public class FakeIlpError {
             trailingMetadata: nil
         )
     )
+
+    /// A fake RPCError with statusCode = StatusCode.unknown
+    static let unknownError = RPCError.callError(
+        CallResult(
+            success: false,
+            statusCode: .unknown,
+            statusMessage: "Mocked RPCError w/ notFound",
+            resultData: nil,
+            initialMetadata: nil,
+            trailingMetadata: nil
+        )
+    )
 }

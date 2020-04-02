@@ -21,6 +21,9 @@ public enum IlpError: Error {
     /// Something went wrong on the ILP network
     case internalError
 
+    /// An unknown error occured
+    case unknown
+
     /// Handle an Error thrown from an Ilp network client call by translating it to an IlpError.
     /// gRPC services return an error with a status code,
     /// so we need to map gRPC error status to native IlpErrors.
@@ -35,8 +38,10 @@ public enum IlpError: Error {
             return IlpError.unauthenticated
         case .invalidArgument:
             return IlpError.invalidArgument
-        default:
+        case .internalError:
             return IlpError.internalError
+        default:
+            return IlpError.unknown
         }
     }
 }

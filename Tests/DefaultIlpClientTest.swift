@@ -86,6 +86,17 @@ final class DefaultIlpClientTest: XCTestCase {
         assertGetBalanceWithError(using: ilpClient, expectedError: IlpError.internalError)
     }
 
+    func testGetBalanceWithUnknownFailure() {
+        // GIVEN an IlpClient with a network client which will always throw a RPCError.unknown error.
+        let ilpClient = DefaultIlpClient(
+            balanceNetworkClient: FakeIlpBalanceNetworkClient.unknownBalanceNetworkClient,
+            paymentNetworkClient: FakeIlpPaymentNetworkClient.unknownPaymentNetworkClient
+        )
+
+        // WHEN the balance is requested THEN an IlpError.unknown is thrown
+        assertGetBalanceWithError(using: ilpClient, expectedError: IlpError.unknown)
+    }
+
     /// Helper function which calls getBalance on a DefaultIlpClient and asserts it throws the expected error
     fileprivate func assertGetBalanceWithError(using ilpClient: DefaultIlpClient, expectedError: IlpError) {
         XCTAssertThrowsError(try ilpClient.getBalance(
@@ -180,6 +191,17 @@ final class DefaultIlpClientTest: XCTestCase {
 
         // WHEN a payment is sent THEN an IlpError.internalError error is thrown
         assertSendPaymentWithError(using: ilpClient, expectedError: IlpError.internalError)
+    }
+    
+    func testSendPaymentWithUnknownFailure() {
+        // GIVEN an IlpClient with a network client which will always throw a RPCError.unknown error.
+        let ilpClient = DefaultIlpClient(
+            balanceNetworkClient: FakeIlpBalanceNetworkClient.unknownBalanceNetworkClient,
+            paymentNetworkClient: FakeIlpPaymentNetworkClient.unknownPaymentNetworkClient
+        )
+
+        // WHEN a payment is sent THEN an IlpError.unknown is thrown
+        assertSendPaymentWithError(using: ilpClient, expectedError: IlpError.unknown)
     }
 
     /// Helper function which calls sendPayment on a DefaultIlpClient and asserts it throws the expected error
