@@ -4,21 +4,21 @@ import SwiftGRPC
 public class ExceptionHandlerUtils {
 
     /// Handle an Error thrown from an Ilp network client call by translating it to
-    /// a XpringIlpError. gRPC services return an error with a status code,
-    /// so we need to map gRPC error status to native XpringIlpErrors.
+    /// a IlpError. gRPC services return an error with a status code,
+    /// so we need to map gRPC error status to native IlpErrors.
     ///
     /// - Parameters:
     ///   - callResult: The CallResult of an RPCError returned by a network call.
-    public static func handleIlpRPCErrorCallResult(_ callResult: CallResult) -> XpringIlpError {
+    public static func handleIlpRPCErrorCallResult(_ callResult: CallResult) -> IlpError {
         switch callResult.statusCode {
         case .notFound:
-            return XpringIlpError.accountNotFound
+            return IlpError.accountNotFound
         case .unauthenticated:
-            return XpringIlpError.unauthenticated
+            return IlpError.unauthenticated
         case .invalidArgument:
-            return XpringIlpError.invalidArgument
+            return IlpError.invalidArgument
         default:
-            return XpringIlpError.internalError
+            return IlpError.internalError
         }
     }
 }

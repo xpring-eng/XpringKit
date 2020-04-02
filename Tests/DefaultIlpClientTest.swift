@@ -32,14 +32,14 @@ final class DefaultIlpClientTest: XCTestCase {
     }
 
     func testGetBalanceWithInvalidAccessTokenFailure() {
-        // GIVEN an IlpClient with a network client which will always throw a XpringIlpError.invalidAccessToken.
+        // GIVEN an IlpClient with a network client which will always throw a IlpError.invalidAccessToken.
         let ilpClient = DefaultIlpClient(
             balanceNetworkClient: FakeIlpBalanceNetworkClient.invalidAccessTokenBalanceNetworkClient,
             paymentNetworkClient: FakeIlpPaymentNetworkClient.invalidAccessTokenPaymentNetworkClient
         )
 
-        // WHEN the balance is requested THEN a XpringIlpError.invalidAccessToken is thrown
-        assertGetBalanceWithError(using: ilpClient, expectedError: XpringIlpError.invalidAccessToken)
+        // WHEN the balance is requested THEN a IlpError.invalidAccessToken is thrown
+        assertGetBalanceWithError(using: ilpClient, expectedError: IlpError.invalidAccessToken)
     }
 
     func testGetBalanceWithAccountNotFoundFailure() {
@@ -49,8 +49,8 @@ final class DefaultIlpClientTest: XCTestCase {
             paymentNetworkClient: FakeIlpPaymentNetworkClient.accountNotFoundPaymentNetworkClient
         )
 
-        // WHEN the balance is requested THEN a XpringIlpError.accountNotFound error is thrown
-        assertGetBalanceWithError(using: ilpClient, expectedError: XpringIlpError.accountNotFound)
+        // WHEN the balance is requested THEN a IlpError.accountNotFound error is thrown
+        assertGetBalanceWithError(using: ilpClient, expectedError: IlpError.accountNotFound)
     }
 
     func testGetBalanceWithUnauthenticatedFailure() {
@@ -60,8 +60,8 @@ final class DefaultIlpClientTest: XCTestCase {
             paymentNetworkClient: FakeIlpPaymentNetworkClient.unauthenticatedPaymentNetworkClient
         )
 
-        // WHEN the balance is requested THEN a XpringIlpError.unauthenticated error is thrown
-        assertGetBalanceWithError(using: ilpClient, expectedError: XpringIlpError.unauthenticated)
+        // WHEN the balance is requested THEN a IlpError.unauthenticated error is thrown
+        assertGetBalanceWithError(using: ilpClient, expectedError: IlpError.unauthenticated)
     }
 
     func testGetBalanceWithInvalidArgumentFailure() {
@@ -71,8 +71,8 @@ final class DefaultIlpClientTest: XCTestCase {
             paymentNetworkClient: FakeIlpPaymentNetworkClient.invalidArgumentPaymentNetworkClient
         )
 
-        // WHEN the balance is requested THEN a XpringIlpError.invalidArgument error is thrown
-        assertGetBalanceWithError(using: ilpClient, expectedError: XpringIlpError.invalidArgument)
+        // WHEN the balance is requested THEN a IlpError.invalidArgument error is thrown
+        assertGetBalanceWithError(using: ilpClient, expectedError: IlpError.invalidArgument)
     }
 
     func testGetBalanceWithInternalErrorFailure() {
@@ -82,18 +82,18 @@ final class DefaultIlpClientTest: XCTestCase {
             paymentNetworkClient: FakeIlpPaymentNetworkClient.internalErrorPaymentNetworkClient
         )
 
-        // WHEN the balance is requested THEN a XpringIlpError.internalError is thrown
-        assertGetBalanceWithError(using: ilpClient, expectedError: XpringIlpError.internalError)
+        // WHEN the balance is requested THEN a IlpError.internalError is thrown
+        assertGetBalanceWithError(using: ilpClient, expectedError: IlpError.internalError)
     }
 
     /// Helper function which calls getBalance on a DefaultIlpClient and asserts it throws the expected error
-    fileprivate func assertGetBalanceWithError(using ilpClient: DefaultIlpClient, expectedError: XpringIlpError) {
+    fileprivate func assertGetBalanceWithError(using ilpClient: DefaultIlpClient, expectedError: IlpError) {
         XCTAssertThrowsError(try ilpClient.getBalance(
             for: .testAccountID,
             withAuthorization: .testAccessToken
         ), "Exception not thrown") { error in
             guard
-                let ilpError = error as? XpringIlpError
+                let ilpError = error as? IlpError
                 else {
                   XCTFail("Error thrown was not mocked error")
                   return
@@ -128,14 +128,14 @@ final class DefaultIlpClientTest: XCTestCase {
     }
 
     func testSendPaymentWithInvalidAccessTokenFailure() {
-        // GIVEN an IlpClient with a network client which will always throw a XpringIlpError.invalidAccessToken.
+        // GIVEN an IlpClient with a network client which will always throw a IlpError.invalidAccessToken.
         let ilpClient = DefaultIlpClient(
             balanceNetworkClient: FakeIlpBalanceNetworkClient.invalidAccessTokenBalanceNetworkClient,
             paymentNetworkClient: FakeIlpPaymentNetworkClient.invalidAccessTokenPaymentNetworkClient
         )
 
         // WHEN a payment is sent THEN a XpringIlpErrror.invalidAccessToken error is thrown
-        assertSendPaymentWithError(using: ilpClient, expectedError: XpringIlpError.invalidAccessToken)
+        assertSendPaymentWithError(using: ilpClient, expectedError: IlpError.invalidAccessToken)
     }
 
     func testSendPaymentWithAccountNotFoundFailure() {
@@ -145,8 +145,8 @@ final class DefaultIlpClientTest: XCTestCase {
             paymentNetworkClient: FakeIlpPaymentNetworkClient.accountNotFoundPaymentNetworkClient
         )
 
-        // WHEN a payment is sent THEN a XpringIlpError.accountNotFound error is thrown
-        assertSendPaymentWithError(using: ilpClient, expectedError: XpringIlpError.accountNotFound)
+        // WHEN a payment is sent THEN a IlpError.accountNotFound error is thrown
+        assertSendPaymentWithError(using: ilpClient, expectedError: IlpError.accountNotFound)
     }
 
     func testSendPaymentWithUnauthenticatedFailure() {
@@ -156,8 +156,8 @@ final class DefaultIlpClientTest: XCTestCase {
             paymentNetworkClient: FakeIlpPaymentNetworkClient.unauthenticatedPaymentNetworkClient
         )
 
-        // WHEN a payment is sent THEN a XpringIlpError.unauthenticated error is thrown
-        assertSendPaymentWithError(using: ilpClient, expectedError: XpringIlpError.unauthenticated)
+        // WHEN a payment is sent THEN a IlpError.unauthenticated error is thrown
+        assertSendPaymentWithError(using: ilpClient, expectedError: IlpError.unauthenticated)
     }
 
     func testSendPaymentWithInvalidArgumentFailure() {
@@ -167,8 +167,8 @@ final class DefaultIlpClientTest: XCTestCase {
             paymentNetworkClient: FakeIlpPaymentNetworkClient.invalidArgumentPaymentNetworkClient
         )
 
-        // WHEN a payment is sent THEN a XpringIlpError.invalidArgument error is thrown
-        assertSendPaymentWithError(using: ilpClient, expectedError: XpringIlpError.invalidArgument)
+        // WHEN a payment is sent THEN a IlpError.invalidArgument error is thrown
+        assertSendPaymentWithError(using: ilpClient, expectedError: IlpError.invalidArgument)
     }
 
     func testSendPaymentWithInternalErrorFailure() {
@@ -178,20 +178,20 @@ final class DefaultIlpClientTest: XCTestCase {
             paymentNetworkClient: FakeIlpPaymentNetworkClient.internalErrorPaymentNetworkClient
         )
 
-        // WHEN a payment is sent THEN a XpringIlpError.internalError error is thrown
-        assertSendPaymentWithError(using: ilpClient, expectedError: XpringIlpError.internalError)
+        // WHEN a payment is sent THEN a IlpError.internalError error is thrown
+        assertSendPaymentWithError(using: ilpClient, expectedError: IlpError.internalError)
     }
 
     /// Helper function which calls sendPayment on a DefaultIlpClient and asserts it throws the expected error
-    fileprivate func assertSendPaymentWithError(using ilpClient: DefaultIlpClient, expectedError: XpringIlpError) {
+    fileprivate func assertSendPaymentWithError(using ilpClient: DefaultIlpClient, expectedError: IlpError) {
         XCTAssertThrowsError(try ilpClient.sendPayment(
             .testPaymentRequest,
             withAuthorization: .testAccessToken
         ), "Exception not thrown") { error in
             guard
-                let ilpError = error as? XpringIlpError
+                let ilpError = error as? IlpError
                 else {
-                    XCTFail("Error thrown was not XpringIlpError")
+                    XCTFail("Error thrown was not IlpError")
                     return
             }
             XCTAssertEqual(ilpError, expectedError)

@@ -16,6 +16,6 @@ extension FakeIlpBalanceNetworkClient {
     /// A network client that always fails with FakeIlpError.internalError
     static let internalErrorBalanceNetworkClient = FakeIlpBalanceNetworkClient(getBalanceResult: .failure(FakeIlpError.internalError))
     
-    /// A network client that always fails with XpringIlpError.invalidAccessToken
-    static let invalidAccessTokenBalanceNetworkClient = FakeIlpBalanceNetworkClient(getBalanceResult: .failure(XpringIlpError.invalidAccessToken))
+    /// A network client that always fails with IlpError.invalidAccessToken
+    static let invalidAccessTokenBalanceNetworkClient = FakeIlpBalanceNetworkClient(getBalanceResult: .failure(IlpError.invalidAccessToken))
 }
