@@ -35,10 +35,10 @@ final class XRPClientIntegrationTests: XCTestCase {
     }
   }
 
-  func testGetTransactionStatus() {
+  func testPaymentStatus() {
     do {
       let transactionHash = try client.send(.testSendAmount, to: .recipientAddress, from: .testWallet)
-      let transactionStatus = try client.getTransactionStatus(for: transactionHash)
+      let transactionStatus = try client.paymentStatus(for: transactionHash)
       XCTAssertEqual(transactionStatus, .succeeded)
     } catch {
       XCTFail("Failed retrieving transaction hash with error: \(error)")
@@ -80,10 +80,10 @@ final class XRPClientIntegrationTests: XCTestCase {
     }
   }
 
-  func testGetTransactionStatus_legacy() {
+  func testPaymentStatus_legacy() {
     do {
       let transactionHash = try client.send(.testSendAmount, to: .recipientAddress, from: .testWallet)
-      let transactionStatus = try legacyClient.getTransactionStatus(for: transactionHash)
+      let transactionStatus = try legacyClient.paymentStatus(for: transactionHash)
       XCTAssertEqual(transactionStatus, .succeeded)
     } catch {
       XCTFail("Failed retrieving transaction hash with error: \(error)")
