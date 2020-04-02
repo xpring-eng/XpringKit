@@ -12,10 +12,6 @@ extension String {
   public static let recipientAddress = "X7cBcY4bdTTzk3LHmrKAK6GyrirkXfLHGFxzke5zTmYMfw4"
 }
 
-extension TransactionHash {
-  public static let successfulTransactionHash = "DAA9F31628C952A48DAE71829E91847BF4EF23C0FABDD7218E41836D1E68EEBD"
-}
-
 /// Integration tests run against a live remote client.
 final class XRPClientIntegrationTests: XCTestCase {
   private let legacyClient = XRPClient(grpcURL: .legacyRemoteURL, useNewProtocolBuffers: false)
@@ -41,7 +37,8 @@ final class XRPClientIntegrationTests: XCTestCase {
 
   func testGetTransactionStatus() {
     do {
-      let transactionStatus = try client.getTransactionStatus(for: .successfulTransactionHash)
+      let transactionHash = try client.send(.testSendAmount, to: .recipientAddress, from: .testWallet)
+      let transactionStatus = try client.getTransactionStatus(for: transactionHash)
       XCTAssertEqual(transactionStatus, .succeeded)
     } catch {
       XCTFail("Failed retrieving transaction hash with error: \(error)")
@@ -85,7 +82,8 @@ final class XRPClientIntegrationTests: XCTestCase {
 
   func testGetTransactionStatus_legacy() {
     do {
-      let transactionStatus = try legacyClient.getTransactionStatus(for: .successfulTransactionHash)
+      let transactionHash = try client.send(.testSendAmount, to: .recipientAddress, from: .testWallet)
+      let transactionStatus = try legacyClient.getTransactionStatus(for: transactionHash)
       XCTAssertEqual(transactionStatus, .succeeded)
     } catch {
       XCTFail("Failed retrieving transaction hash with error: \(error)")
