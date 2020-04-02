@@ -216,8 +216,6 @@
 		84DBE06B24215D7100D5617B /* IlpCredentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DBE06924215D7100D5617B /* IlpCredentials.swift */; };
 		84DBE06D2422696C00D5617B /* IlpCredentialsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DBE06C2422696C00D5617B /* IlpCredentialsTest.swift */; };
 		84DBE06E2422696C00D5617B /* IlpCredentialsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DBE06C2422696C00D5617B /* IlpCredentialsTest.swift */; };
-		84F8500E242E4E8D006A0EBC /* ExceptionHandlerUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F8500D242E4E8D006A0EBC /* ExceptionHandlerUtils.swift */; };
-		84F8500F242E4E8D006A0EBC /* ExceptionHandlerUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F8500D242E4E8D006A0EBC /* ExceptionHandlerUtils.swift */; };
 		84F85012242E66D6006A0EBC /* Org_Interledger_Stream_Proto_GetBalanceResponse+Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F85010242E66D6006A0EBC /* Org_Interledger_Stream_Proto_GetBalanceResponse+Test.swift */; };
 		84F85013242E66D6006A0EBC /* Org_Interledger_Stream_Proto_GetBalanceResponse+Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F85010242E66D6006A0EBC /* Org_Interledger_Stream_Proto_GetBalanceResponse+Test.swift */; };
 		84F85014242E66D6006A0EBC /* Org_Interledger_Stream_Proto_SendPaymentResponse+Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F85011242E66D6006A0EBC /* Org_Interledger_Stream_Proto_SendPaymentResponse+Test.swift */; };
@@ -523,7 +521,6 @@
 		84BE395C241AD0AA0039BEC9 /* PaymentResult+Org_Interledger_Stream_Proto_PaymentResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PaymentResult+Org_Interledger_Stream_Proto_PaymentResult.swift"; sourceTree = "<group>"; };
 		84DBE06924215D7100D5617B /* IlpCredentials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IlpCredentials.swift; sourceTree = "<group>"; };
 		84DBE06C2422696C00D5617B /* IlpCredentialsTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IlpCredentialsTest.swift; sourceTree = "<group>"; };
-		84F8500D242E4E8D006A0EBC /* ExceptionHandlerUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExceptionHandlerUtils.swift; sourceTree = "<group>"; };
 		84F85010242E66D6006A0EBC /* Org_Interledger_Stream_Proto_GetBalanceResponse+Test.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Org_Interledger_Stream_Proto_GetBalanceResponse+Test.swift"; sourceTree = "<group>"; };
 		84F85011242E66D6006A0EBC /* Org_Interledger_Stream_Proto_SendPaymentResponse+Test.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Org_Interledger_Stream_Proto_SendPaymentResponse+Test.swift"; sourceTree = "<group>"; };
 		84F85016242E673C006A0EBC /* RPCError+Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RPCError+Test.swift"; sourceTree = "<group>"; };
@@ -885,18 +882,9 @@
 			path = auth;
 			sourceTree = "<group>";
 		};
-		84F8500C242E4E72006A0EBC /* utils */ = {
-			isa = PBXGroup;
-			children = (
-				84F8500D242E4E8D006A0EBC /* ExceptionHandlerUtils.swift */,
-			);
-			path = utils;
-			sourceTree = "<group>";
-		};
 		8F3DE3793EF5F8F4C091F096 /* ILP */ = {
 			isa = PBXGroup;
 			children = (
-				84F8500C242E4E72006A0EBC /* utils */,
 				84DBE06824215D5500D5617B /* auth */,
 				843DF6F424194B080002710F /* model */,
 				A1BB07A638CE67FC301F0529 /* AccountID.swift */,
@@ -1356,7 +1344,6 @@
 				AD0C9E75F6D4A2F5BA16C161 /* meta.pb.swift in Sources */,
 				F5AF1E6BE2328B56AD0912F3 /* payment.legacy.pb.swift in Sources */,
 				8945810DE27DF575C5578692 /* send_payment_request.pb.swift in Sources */,
-				84F8500E242E4E8D006A0EBC /* ExceptionHandlerUtils.swift in Sources */,
 				60458AFF3A05D04518AF512C /* send_payment_response.pb.swift in Sources */,
 				3FFAEF53DBD5E5C2FD3CCAA3 /* signed_transaction.legacy.pb.swift in Sources */,
 				2E6AF66659EAE38E69291CB2 /* submit.pb.swift in Sources */,
@@ -1607,7 +1594,6 @@
 				90CFBB6D040734C7937C74FD /* meta.pb.swift in Sources */,
 				FC72E5CBA4635904E636D3E9 /* payment.legacy.pb.swift in Sources */,
 				86B2A810A7784BDA97A5A4DC /* send_payment_request.pb.swift in Sources */,
-				84F8500F242E4E8D006A0EBC /* ExceptionHandlerUtils.swift in Sources */,
 				73A88C53338897780B4F4D15 /* send_payment_response.pb.swift in Sources */,
 				9B79447614BE2E909D988BBC /* signed_transaction.legacy.pb.swift in Sources */,
 				621744E2E364A500F471DC48 /* submit.pb.swift in Sources */,

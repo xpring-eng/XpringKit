@@ -32,13 +32,13 @@ final class DefaultIlpClientTest: XCTestCase {
     }
 
     func testGetBalanceWithInvalidAccessTokenFailure() {
-        // GIVEN an IlpClient with a network client which will always throw a IlpError.invalidAccessToken.
+        // GIVEN an IlpClient with a network client which will always throw an IlpError.invalidAccessToken.
         let ilpClient = DefaultIlpClient(
             balanceNetworkClient: FakeIlpBalanceNetworkClient.invalidAccessTokenBalanceNetworkClient,
             paymentNetworkClient: FakeIlpPaymentNetworkClient.invalidAccessTokenPaymentNetworkClient
         )
 
-        // WHEN the balance is requested THEN a IlpError.invalidAccessToken is thrown
+        // WHEN the balance is requested THEN an IlpError.invalidAccessToken is thrown
         assertGetBalanceWithError(using: ilpClient, expectedError: IlpError.invalidAccessToken)
     }
 
@@ -49,7 +49,7 @@ final class DefaultIlpClientTest: XCTestCase {
             paymentNetworkClient: FakeIlpPaymentNetworkClient.accountNotFoundPaymentNetworkClient
         )
 
-        // WHEN the balance is requested THEN a IlpError.accountNotFound error is thrown
+        // WHEN the balance is requested THEN an IlpError.accountNotFound error is thrown
         assertGetBalanceWithError(using: ilpClient, expectedError: IlpError.accountNotFound)
     }
 
@@ -60,7 +60,7 @@ final class DefaultIlpClientTest: XCTestCase {
             paymentNetworkClient: FakeIlpPaymentNetworkClient.unauthenticatedPaymentNetworkClient
         )
 
-        // WHEN the balance is requested THEN a IlpError.unauthenticated error is thrown
+        // WHEN the balance is requested THEN an IlpError.unauthenticated error is thrown
         assertGetBalanceWithError(using: ilpClient, expectedError: IlpError.unauthenticated)
     }
 
@@ -71,7 +71,7 @@ final class DefaultIlpClientTest: XCTestCase {
             paymentNetworkClient: FakeIlpPaymentNetworkClient.invalidArgumentPaymentNetworkClient
         )
 
-        // WHEN the balance is requested THEN a IlpError.invalidArgument error is thrown
+        // WHEN the balance is requested THEN an IlpError.invalidArgument error is thrown
         assertGetBalanceWithError(using: ilpClient, expectedError: IlpError.invalidArgument)
     }
 
@@ -82,7 +82,7 @@ final class DefaultIlpClientTest: XCTestCase {
             paymentNetworkClient: FakeIlpPaymentNetworkClient.internalErrorPaymentNetworkClient
         )
 
-        // WHEN the balance is requested THEN a IlpError.internalError is thrown
+        // WHEN the balance is requested THEN an IlpError.internalError is thrown
         assertGetBalanceWithError(using: ilpClient, expectedError: IlpError.internalError)
     }
 
@@ -128,7 +128,7 @@ final class DefaultIlpClientTest: XCTestCase {
     }
 
     func testSendPaymentWithInvalidAccessTokenFailure() {
-        // GIVEN an IlpClient with a network client which will always throw a IlpError.invalidAccessToken.
+        // GIVEN an IlpClient with a network client which will always throw an IlpError.invalidAccessToken.
         let ilpClient = DefaultIlpClient(
             balanceNetworkClient: FakeIlpBalanceNetworkClient.invalidAccessTokenBalanceNetworkClient,
             paymentNetworkClient: FakeIlpPaymentNetworkClient.invalidAccessTokenPaymentNetworkClient
@@ -145,7 +145,7 @@ final class DefaultIlpClientTest: XCTestCase {
             paymentNetworkClient: FakeIlpPaymentNetworkClient.accountNotFoundPaymentNetworkClient
         )
 
-        // WHEN a payment is sent THEN a IlpError.accountNotFound error is thrown
+        // WHEN a payment is sent THEN an IlpError.accountNotFound error is thrown
         assertSendPaymentWithError(using: ilpClient, expectedError: IlpError.accountNotFound)
     }
 
@@ -156,7 +156,7 @@ final class DefaultIlpClientTest: XCTestCase {
             paymentNetworkClient: FakeIlpPaymentNetworkClient.unauthenticatedPaymentNetworkClient
         )
 
-        // WHEN a payment is sent THEN a IlpError.unauthenticated error is thrown
+        // WHEN a payment is sent THEN an IlpError.unauthenticated error is thrown
         assertSendPaymentWithError(using: ilpClient, expectedError: IlpError.unauthenticated)
     }
 
@@ -167,7 +167,7 @@ final class DefaultIlpClientTest: XCTestCase {
             paymentNetworkClient: FakeIlpPaymentNetworkClient.invalidArgumentPaymentNetworkClient
         )
 
-        // WHEN a payment is sent THEN a IlpError.invalidArgument error is thrown
+        // WHEN a payment is sent THEN an IlpError.invalidArgument error is thrown
         assertSendPaymentWithError(using: ilpClient, expectedError: IlpError.invalidArgument)
     }
 
@@ -178,7 +178,7 @@ final class DefaultIlpClientTest: XCTestCase {
             paymentNetworkClient: FakeIlpPaymentNetworkClient.internalErrorPaymentNetworkClient
         )
 
-        // WHEN a payment is sent THEN a IlpError.internalError error is thrown
+        // WHEN a payment is sent THEN an IlpError.internalError error is thrown
         assertSendPaymentWithError(using: ilpClient, expectedError: IlpError.internalError)
     }
 

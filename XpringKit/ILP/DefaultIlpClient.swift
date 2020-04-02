@@ -52,8 +52,8 @@ extension DefaultIlpClient: IlpClientDecorator {
             )
             return AccountBalance(getBalanceResponse: getBalanceResponse)
         } catch RPCError.callError(let callResult) {
-            // Translate callResult into a IlpError and throw
-            throw ExceptionHandlerUtils.handleIlpRPCErrorCallResult(callResult)
+            // Translate callResult into an IlpError and throw
+            throw IlpError.from(callResult)
         } catch {
             // Rethrow all other errors
             throw error
@@ -80,8 +80,8 @@ extension DefaultIlpClient: IlpClientDecorator {
             )
             return PaymentResult(sendPaymentResponse: paymentResponse)
         } catch RPCError.callError(let callResult) {
-            // Translate callResult into a IlpError and throw
-            throw ExceptionHandlerUtils.handleIlpRPCErrorCallResult(callResult)
+            // Translate callResult into an IlpError and throw
+            throw IlpError.from(callResult)
         } catch {
             // Rethrow all other errors
             throw error

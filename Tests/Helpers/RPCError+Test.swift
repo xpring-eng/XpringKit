@@ -3,7 +3,7 @@ import XpringKit
 
 /// Wrapper class for fake RPCErrors
 public class FakeIlpError {
-    
+
     /// A fake RPCError with statusCode = StatusCode.notFound
     static let notFoundError = RPCError.callError(
         CallResult(
