@@ -1,24 +1,26 @@
+import SwiftGRPC
 import XpringKit
 
 extension FakeIlpBalanceNetworkClient {
     /// A network client that always succeeds
     static let successfulFakeNetworkClient = FakeIlpBalanceNetworkClient(getBalanceResult: .success(.testGetBalanceResponse))
 
-    /// A network client that always fails with FakeIlpError.notFoundError
-    static let accountNotFoundBalanceNetworkClient = FakeIlpBalanceNetworkClient(getBalanceResult: .failure(FakeIlpError.notFoundError))
+    public static func withErrorResponse(_ errorResponse: Error) -> FakeIlpBalanceNetworkClient {
+        return FakeIlpBalanceNetworkClient(getBalanceResult: .failure(errorResponse))
+    }
 
-    /// A network client that always fails with FakeIlpError.unauthenticatedError
-    static let unauthenticatedBalanceNetworkClient = FakeIlpBalanceNetworkClient(getBalanceResult: .failure(FakeIlpError.unauthenticatedError))
+    public static func withErrorResponse(_ statusCode: StatusCode) -> FakeIlpBalanceNetworkClient {
+        let rpcError = RPCError.callError(
+            CallResult(
+                success: false,
+                statusCode: statusCode,
+                statusMessage: "Mocked RPCError",
+                resultData: nil,
+                initialMetadata: nil,
+                trailingMetadata: nil
+            )
+        )
 
-    /// A network client that always fails with FakeIlpError.invalidArgumentError
-    static let invalidArgumentBalanceNetworkClient = FakeIlpBalanceNetworkClient(getBalanceResult: .failure(FakeIlpError.invalidArgumentError))
-
-    /// A network client that always fails with FakeIlpError.internalError
-    static let internalErrorBalanceNetworkClient = FakeIlpBalanceNetworkClient(getBalanceResult: .failure(FakeIlpError.internalError))
-
-    /// A network client that always fails with IlpError.invalidAccessToken
-    static let invalidAccessTokenBalanceNetworkClient = FakeIlpBalanceNetworkClient(getBalanceResult: .failure(IlpError.invalidAccessToken))
-
-    /// A network client that always fails with FakeIlpError.unknown
-    static let unknownBalanceNetworkClient = FakeIlpBalanceNetworkClient(getBalanceResult: .failure(FakeIlpError.unknownError))
+        return FakeIlpBalanceNetworkClient(getBalanceResult: .failure(rpcError))
+    }
 }
