@@ -24,7 +24,8 @@ public enum IlpError: Error {
     /// An unknown error occured
     case unknown
 
-    /// Handle an Error thrown from an Ilp network client call by translating it to an IlpError.
+    /// Translate an Error thrown from an Ilp network client to an IlpError.
+    ///
     /// gRPC services return an error with a status code,
     /// so we need to map gRPC error status to native IlpErrors.
     ///

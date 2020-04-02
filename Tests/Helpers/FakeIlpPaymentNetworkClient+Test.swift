@@ -5,10 +5,18 @@ extension FakeIlpPaymentNetworkClient {
     /// A network client that always succeeds
     static let successfulFakeNetworkClient = FakeIlpPaymentNetworkClient(sendPaymentResult: .success(.testSendPaymentResponse))
 
+    /// Creates a FakeIlpPaymentNetworkClient which will always throw the specified Error
+    ///
+    /// - Parameters:
+    ///     - errorResponse: An Error that will be thrown by the network client
     public static func withErrorResponse(_ errorResponse: Error) -> FakeIlpPaymentNetworkClient {
         return FakeIlpPaymentNetworkClient(sendPaymentResult: .failure(errorResponse))
     }
 
+    /// Creates a FakeIlpPaymentNetworkClient which will always return an RPCError with callError of the specified status code
+    ///
+    /// - Parameters:
+    ///     - statusCode: The grpc status code of the RPCError returned by the network client
     public static func withErrorResponse(_ statusCode: StatusCode) -> FakeIlpPaymentNetworkClient {
         let rpcError = RPCError.callError(
             CallResult(
