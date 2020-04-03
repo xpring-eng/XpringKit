@@ -25,7 +25,7 @@ class IlpCredentialsTest: XCTestCase {
         // THEN an Error is thrown
         XCTAssertThrowsError(
             try IlpCredentials(bearerToken),
-            XpringIlpError.invalidAccessToken.localizedDescription
+            IlpError.invalidAccessToken.localizedDescription
         )
     }
 }

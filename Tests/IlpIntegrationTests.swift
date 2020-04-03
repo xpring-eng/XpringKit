@@ -45,7 +45,7 @@ class IlpIntegrationTests: XCTestCase {
                 for: .testAccountID,
                 withAuthorization: "Bearer " + .testAccessToken
             ),
-            XpringIlpError.invalidAccessToken.localizedDescription
+            IlpError.invalidAccessToken.localizedDescription
         )
     }
 
@@ -94,7 +94,7 @@ class IlpIntegrationTests: XCTestCase {
                 paymentRequest,
                 withAuthorization: "Bearer " + .testAccessToken
             ),
-            XpringIlpError.invalidAccessToken.localizedDescription
+            IlpError.invalidAccessToken.localizedDescription
         )
     }
 }
