@@ -9,7 +9,7 @@ extension FakeIlpPaymentNetworkClient {
     ///
     /// - Parameters:
     ///     - errorResponse: An Error that will be thrown by the network client
-    public static func withErrorResponse(_ errorResponse: Error) -> FakeIlpPaymentNetworkClient {
+    public static func with(errorResponse: Error) -> FakeIlpPaymentNetworkClient {
         return FakeIlpPaymentNetworkClient(sendPaymentResult: .failure(errorResponse))
     }
 
@@ -17,7 +17,7 @@ extension FakeIlpPaymentNetworkClient {
     ///
     /// - Parameters:
     ///     - statusCode: The grpc status code of the RPCError returned by the network client
-    public static func withErrorResponse(_ statusCode: StatusCode) -> FakeIlpPaymentNetworkClient {
+    public static func with(statusCode: StatusCode) -> FakeIlpPaymentNetworkClient {
         let rpcError = RPCError.callError(
             CallResult(
                 success: false,

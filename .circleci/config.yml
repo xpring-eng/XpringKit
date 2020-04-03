@@ -3,6 +3,7 @@ jobs:
   build:
     macos:
       xcode: "11.1.0"
+    resource_class: large
 
     steps:
       - checkout
