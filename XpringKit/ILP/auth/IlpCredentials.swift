@@ -20,7 +20,7 @@ internal class IlpCredentials {
     /// - Throws: if accessToken starts with "Bearer "
     public init(_ accessToken: String) throws {
         if accessToken.starts(with: BEARER_PREFIX) {
-            throw XpringIlpError.invalidAccessToken
+            throw IlpError.invalidAccessToken
         }
 
         self.metadata = Metadata()
