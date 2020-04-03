@@ -6,11 +6,8 @@ public class XRPClient {
   ///
   /// - Parameters:
   ///   - grpcURL: A remote URL for a rippled gRPC service.
-  ///   - useNewProtocolBuffers:  If `true`, then the new protocol buffer implementation from rippled will be used. Defaults to true.
-  public init(grpcURL: String, useNewProtocolBuffers: Bool = true) {
-    let defaultClient: XRPClientDecorator = useNewProtocolBuffers ?
-      DefaultXRPClient(grpcURL: grpcURL) :
-      LegacyDefaultXRPClient(grpcURL: grpcURL)
+  public init(grpcURL: String) {
+    let defaultClient = DefaultXRPClient(grpcURL: grpcURL)
     decoratedClient = ReliableSubmissionXRPClient(decoratedClient: defaultClient)
   }
 

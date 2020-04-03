@@ -7,7 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-#### Deprecated
+#### Removed
+
+- All legacy services are removed from XpringKit. All RPC's go through [rippled's protocol buffer API](https://github.com/ripple/rippled/pull/3254).
 - `getTransactionStatus` is removed. Please use `getPaymentStatus` instead.
 
 #### Changed

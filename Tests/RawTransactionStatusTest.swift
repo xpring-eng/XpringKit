@@ -2,20 +2,6 @@ import XCTest
 import XpringKit
 
 class RawTransactionStatusTest: XCTestCase {
-
-  // MARK: - Legacy Protocol Buffers
-
-  func testLegacyProtoIsFullPayment () {
-    // GIVEN a legacy transaction status protocol buffer.
-    let transactionStatus = Io_Xpring_TransactionStatus.testTransactionStatus
-
-    // WHEN the transaction status is wrapped into a RawTransactionStatus object.
-    let rawTransactionStatus = RawTransactionStatus(transactionStatus: transactionStatus)
-
-    // THEN the raw transaction status reports it is a full payment.
-    XCTAssertTrue(rawTransactionStatus.isFullPayment)
-  }
-
   // MARK: - rippled Protocol Buffers
 
   func testNonPaymentIsFullPayment() {
