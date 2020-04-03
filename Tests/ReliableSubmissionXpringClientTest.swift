@@ -7,10 +7,18 @@ final class ReliableSubmissionClientTest: XCTestCase {
   let defaultSendValue = "DEADBEEF"
   let defaultLastestValidatedLedgerValue: UInt32 = 10
   let defaultRawTransactionStatusValue = RawTransactionStatus(
-    transactionStatus: Io_Xpring_TransactionStatus.with {
+    getTransactionResponse: Org_Xrpl_Rpc_V1_GetTransactionResponse.with {
+      $0.transaction = Org_Xrpl_Rpc_V1_Transaction.with {
+        $0.lastLedgerSequence = Org_Xrpl_Rpc_V1_LastLedgerSequence.with {
+          $0.value = 100
+        }
+      }
+      $0.meta = Org_Xrpl_Rpc_V1_Meta.with {
+        $0.transactionResult = Org_Xrpl_Rpc_V1_TransactionResult.with {
+          $0.result = "tesSuccess"
+        }
+      }
       $0.validated = true
-      $0.transactionStatusCode = "tesSuccess"
-      $0.lastLedgerSequence = 100
     }
   )
   let defaultPaymentHistoryValue: [XRPTransaction] = [ .testTransaction, .testTransaction, .testTransaction ]
@@ -65,10 +73,18 @@ final class ReliableSubmissionClientTest: XCTestCase {
     // GIVEN A ledger sequence number that will increment in 60s.
     let lastLedgerSequence: UInt32 = 20
     fakeXRPClient.rawTransactionStatusValue = RawTransactionStatus(
-      transactionStatus: Io_Xpring_TransactionStatus.with {
+      getTransactionResponse: Org_Xrpl_Rpc_V1_GetTransactionResponse.with {
+        $0.transaction = Org_Xrpl_Rpc_V1_Transaction.with {
+          $0.lastLedgerSequence = Org_Xrpl_Rpc_V1_LastLedgerSequence.with {
+            $0.value = lastLedgerSequence
+          }
+        }
+        $0.meta = Org_Xrpl_Rpc_V1_Meta.with {
+          $0.transactionResult = Org_Xrpl_Rpc_V1_TransactionResult.with {
+            $0.result = "tesSuccess"
+          }
+        }
         $0.validated = false
-        $0.lastLedgerSequence = lastLedgerSequence
-        $0.transactionStatusCode = "tesSuccess"
       }
     )
     runAfterOneSecond({ self.fakeXRPClient.latestValidatedLedgerValue = lastLedgerSequence + 1 })
@@ -90,18 +106,34 @@ final class ReliableSubmissionClientTest: XCTestCase {
     // GIVEN A ledger sequence number that will increment in 60s.
     let lastLedgerSequence: UInt32 = 20
     fakeXRPClient.rawTransactionStatusValue = RawTransactionStatus(
-      transactionStatus: Io_Xpring_TransactionStatus.with {
+      getTransactionResponse: Org_Xrpl_Rpc_V1_GetTransactionResponse.with {
+        $0.transaction = Org_Xrpl_Rpc_V1_Transaction.with {
+          $0.lastLedgerSequence = Org_Xrpl_Rpc_V1_LastLedgerSequence.with {
+            $0.value = lastLedgerSequence
+          }
+        }
+        $0.meta = Org_Xrpl_Rpc_V1_Meta.with {
+          $0.transactionResult = Org_Xrpl_Rpc_V1_TransactionResult.with {
+            $0.result = "tesSuccess"
+          }
+        }
         $0.validated = false
-        $0.lastLedgerSequence = lastLedgerSequence
-        $0.transactionStatusCode = "tesSuccess"
       }
     )
     runAfterOneSecond {
       self.fakeXRPClient.rawTransactionStatusValue = RawTransactionStatus(
-        transactionStatus: Io_Xpring_TransactionStatus.with {
+        getTransactionResponse: Org_Xrpl_Rpc_V1_GetTransactionResponse.with {
+          $0.transaction = Org_Xrpl_Rpc_V1_Transaction.with {
+            $0.lastLedgerSequence = Org_Xrpl_Rpc_V1_LastLedgerSequence.with {
+              $0.value = lastLedgerSequence
+            }
+          }
+          $0.meta = Org_Xrpl_Rpc_V1_Meta.with {
+            $0.transactionResult = Org_Xrpl_Rpc_V1_TransactionResult.with {
+              $0.result = "tesSuccess"
+            }
+          }
           $0.validated = true
-          $0.lastLedgerSequence = lastLedgerSequence
-          $0.transactionStatusCode = "tesSuccess"
         }
       )
     }
@@ -122,9 +154,13 @@ final class ReliableSubmissionClientTest: XCTestCase {
   func testSendWithNoLastLedgerSequence() throws {
     // GIVEN a `ReliableSubmissionXRPClient` decorating a `FakeXRPClient` which will return a transaction that did not have a last ledger sequence attached.
     fakeXRPClient.rawTransactionStatusValue = RawTransactionStatus(
-      transactionStatus: Io_Xpring_TransactionStatus.with {
+      getTransactionResponse: Org_Xrpl_Rpc_V1_GetTransactionResponse.with {
+        $0.meta = Org_Xrpl_Rpc_V1_Meta.with {
+          $0.transactionResult = Org_Xrpl_Rpc_V1_TransactionResult.with {
+            $0.result = "tesSuccess"
+          }
+        }
         $0.validated = false
-        $0.transactionStatusCode = "tesSuccess"
       }
     )
 

@@ -5,7 +5,6 @@ internal class JavaScriptSerializer {
   private enum ResourceNames {
     public enum Classes {
       public static let wallet = "Wallet"
-      public static let legacyTransaction = "LegacyTransaction"
       public static let transaction = "Transaction"
     }
 
@@ -17,13 +16,11 @@ internal class JavaScriptSerializer {
   /// References to JavaScript classes.
   private let walletClass: JSValue
   private let transactionClass: JSValue
-  private let legacyTransactionClass: JSValue
 
   /// Initialize a new JavaScriptSerializer.
   public init() {
     walletClass = JavaScriptLoader.load(ResourceNames.Classes.wallet)
     transactionClass = JavaScriptLoader.load(ResourceNames.Classes.transaction)
-    legacyTransactionClass = JavaScriptLoader.load(ResourceNames.Classes.legacyTransaction)
   }
 
   /// Serialize a `Wallet` to a JavaScript object.
@@ -46,22 +43,5 @@ internal class JavaScriptSerializer {
     }
     let transactionBytes = [UInt8](transactionData)
     return transactionClass.invokeMethod(ResourceNames.Methods.deserializeBinary, withArguments: [transactionBytes])!
-  }
-
-  /// Serialize a legacy transaction to a JavaScript object.
-  ///
-  /// - Parameter legacyTransaction: The transaction to serialize.
-  /// - Returns: A JSValue representing the transaction.
-  public func serialize(legacyTransaction: Io_Xpring_Transaction) -> JSValue? {
-    guard
-      let transactionData = try? legacyTransaction.serializedData()
-      else {
-        return nil
-    }
-    let transactionBytes = [UInt8](transactionData)
-    return legacyTransactionClass.invokeMethod(
-      ResourceNames.Methods.deserializeBinary,
-      withArguments: [transactionBytes]
-    )!
   }
 }
