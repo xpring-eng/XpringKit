@@ -3,7 +3,7 @@ import XpringKit
 /// A  fake XRPClient which returns the given iVars as results from XRPClientDecorator calls.
 /// - Note: Since this class is passed by reference and the iVars are mutable, outputs of this class can be changed after it is injected.
 public class FakeXRPClient {
-  public let networkClient: LegacyNetworkClient = LegacyFakeNetworkClient.successfulFakeNetworkClient
+  public let networkClient = FakeNetworkClient.successfulFakeNetworkClient
 
   public var getBalanceValue: UInt64
   public var paymentStatusValue: TransactionStatus
