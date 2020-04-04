@@ -27,7 +27,7 @@ internal class JavaScriptWalletFactory {
 
   /// Initialize a new `JavaScriptWalletFactory`.
   public init() {
-    walletClass = XRPJavaScriptLoader.load(ResourceNames.Classes.wallet)
+    walletClass = JavaScriptLoader.load(ResourceNames.Classes.wallet)
   }
 
   /// Generate a new wallet.

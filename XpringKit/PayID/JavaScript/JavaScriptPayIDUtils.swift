@@ -24,7 +24,7 @@ internal class JavaScriptPayIDUtils {
 
   /// Initialize a JavaScriptPayIDUtils object.
   public init() {
-    payIDUtilsClass = XRPJavaScriptLoader.load(ResourceNames.Classes.payIDUtils)
+    payIDUtilsClass = JavaScriptLoader.load(ResourceNames.Classes.payIDUtils)
   }
 
   /// Parse a payment pointer string to a payment pointer object
@@ -40,8 +40,8 @@ internal class JavaScriptPayIDUtils {
       return nil
     }
 
-    let host = XRPJavaScriptLoader.load(ResourceNames.Properties.host, from: result).toString()!
-    let path = XRPJavaScriptLoader.load(ResourceNames.Properties.path, from: result).toString()!
+    let host = JavaScriptLoader.load(ResourceNames.Properties.host, from: result).toString()!
+    let path = JavaScriptLoader.load(ResourceNames.Properties.path, from: result).toString()!
 
     return (host: host, path: path)
   }

@@ -19,8 +19,8 @@ internal class JavaScriptSerializer {
 
   /// Initialize a new JavaScriptSerializer.
   public init() {
-    walletClass = XRPJavaScriptLoader.load(ResourceNames.Classes.wallet)
-    transactionClass = XRPJavaScriptLoader.load(ResourceNames.Classes.transaction)
+    walletClass = JavaScriptLoader.load(ResourceNames.Classes.wallet)
+    transactionClass = JavaScriptLoader.load(ResourceNames.Classes.transaction)
   }
 
   /// Serialize a `Wallet` to a JavaScript object.
