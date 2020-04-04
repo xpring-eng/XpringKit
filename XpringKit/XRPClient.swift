@@ -20,18 +20,7 @@ public class XRPClient {
     return try decoratedClient.getBalance(for: address)
   }
 
-  /// Retrieve the transaction status for a Payment given transaction hash.
-  ///
-  /// - Note: This method will only work for Payment type transactions which do not have the tf_partial_payment attribute set.
-  /// - SeeAlso: https://xrpl.org/payment.html#payment-flags
-  ///
-  /// - Parameter transactionHash The hash of the transaction.
-  /// - Returns: The status of the given transaction.
-  public func getTransactionStatus(for transactionHash: TransactionHash) throws -> TransactionStatus {
-    return try self.paymentStatus(for: transactionHash)
-  }
-
-  /// Retrieve the transaction status for a Payment given transaction hash.
+  /// Retrieve the payment status for a Payment given transaction hash.
   ///
   /// - Note: This method will only work for Payment type transactions which do not have the tf_partial_payment attribute set.
   /// - SeeAlso: https://xrpl.org/payment.html#payment-flags
