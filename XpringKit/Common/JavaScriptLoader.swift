@@ -1,8 +1,7 @@
 import JavaScriptCore
 
 /// Helper functions to load common JavaScript functionality for the XRP Ledger.
-/// TODO(keefertaylor): This loads more than XRP functionality. Rename to something generic.
-internal enum XRPJavaScriptLoader {
+internal enum JavaScriptLoader {
   /// Resource names
   public enum ResourceNames {
     public enum Objects {
