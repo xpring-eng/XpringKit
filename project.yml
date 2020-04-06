@@ -11,7 +11,10 @@ targets:
   XpringKit:
     type: framework
     platform: [iOS, macOS]
-    sources: [XpringKit]
+    sources:  
+      - path: XpringKit
+        excludes:
+          - "**/.swiftlint.yml"
     resources: [XpringKit/Resources]
     scheme:
       testTargets:
