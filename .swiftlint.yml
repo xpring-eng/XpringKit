@@ -2,7 +2,9 @@ disabled_rules:
   - file_length
   - function_parameter_count
   - function_body_length
+  - large_tuple
   - nesting
+  - todo
   - type_body_length
   - xctfail_message
 
@@ -17,6 +19,7 @@ opt_in_rules:
   - first_where
   - force_unwrapping
   - implicitly_unwrapped_optional
+  - indentation_width
   - literal_expression_end_indentation
   - multiline_arguments
   - multiline_arguments_brackets
@@ -24,7 +27,6 @@ opt_in_rules:
   - multiline_parameters
   - multiline_parameters_brackets
   - multiple_closures_with_trailing_closure
-  - no_extension_access_modifier
   - number_separator
   - object_literal
   - operator_usage_whitespace
@@ -39,3 +41,7 @@ excluded:
   - Carthage/
   - Pods/
   - XpringKit/generated/
+
+# Use indentation equal to two spaces.
+indentation_width:
+  indentation_width: 2

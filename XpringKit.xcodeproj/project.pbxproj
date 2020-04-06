@@ -645,9 +645,9 @@
 				0B920E684C066A8E85125C98 /* RippledFlags.swift */,
 				EE0D72F217D9F818E4980FCF /* Rpc_V1_XRPLedgerAPIServiceServiceClient+NetworkClient.swift */,
 				C987E39201D5B0AA9E73428E /* Signer.swift */,
-				BC9FE3C197FEAD7C98B45EAC /* Utils.swift */,
 				FB2C2BF0895DEDD1C9AB5D2D /* TransactionHash.swift */,
 				CBB02CC192CD7AE7E3218E98 /* TransactionStatus.swift */,
+				BC9FE3C197FEAD7C98B45EAC /* Utils.swift */,
 				CFA89B2B4CE85050623E1F1A /* Wallet.swift */,
 				ADD0BDE0881A1C6DDE6D939A /* WalletGenerationResult.swift */,
 				A9A167500395386FC3A1D8F6 /* XRPClient.swift */,
@@ -903,7 +903,7 @@
 			path = model;
 			sourceTree = "<group>";
 		};
-		"TEMP_60C3C097-A155-4775-A52B-2601D0F05F5B" /* Legacy */ = {
+		"TEMP_0314C0A1-D6BD-4600-8304-C8F4EFF0F607" /* Legacy */ = {
 			isa = PBXGroup;
 			children = (
 			);
@@ -1050,7 +1050,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "swiftlint autocorrect --config .swiftlint.yml";
+			shellScript = "if which swiftlint >/dev/null; then\n  # Autocorrect anything SwiftLint can solve, then lint.\n  swiftlint autocorrect\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 		751AE346C9B77FEB1B14A857 /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1068,7 +1068,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "swiftlint autocorrect --config .swiftlint.yml";
+			shellScript = "if which swiftlint >/dev/null; then\n  # Autocorrect anything SwiftLint can solve, then lint.\n  swiftlint autocorrect\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 

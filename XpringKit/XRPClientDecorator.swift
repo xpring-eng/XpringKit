@@ -9,7 +9,8 @@ public protocol XRPClientDecorator {
 
   /// Retrieve the transaction status for a Payment given transaction hash.
   ///
-  /// - Note: This method will only work for Payment type transactions which do not have the tf_partial_payment attribute set.
+  /// - Note: This method will only work for Payment type transactions which do not have the tf_partial_payment
+  ///         attribute set.
   /// - SeeAlso: https://xrpl.org/payment.html#payment-flags
   ///
   /// - Parameter transactionHash The hash of the transaction.
@@ -42,7 +43,8 @@ public protocol XRPClientDecorator {
   /// Return the history of payments for the given account.
   ///
   /// - Note: This method only works for payment type transactions, see: https://xrpl.org/payment.html
-  /// - Note: This method only returns the history that is contained on the remote node, which may not contain a full history of the network.
+  /// - Note: This method only returns the history that is contained on the remote node, which may not contain a
+  ///         full history of the network.
   ///
   /// - Parameter address: The address to check the existence of.
   /// - Throws: An error if there was a problem communicating with the XRP Ledger.

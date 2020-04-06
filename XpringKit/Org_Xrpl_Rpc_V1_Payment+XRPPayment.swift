@@ -21,7 +21,7 @@ internal extension XRPPayment {
     }
 
     self.invoiceID = payment.hasInvoiceID ? payment.invoiceID.value : nil
-    self.paths = payment.paths.count > 0 ? payment.paths.map { path in XRPPath(path: path) } : nil
+    self.paths = !payment.paths.isEmpty ? payment.paths.map { path in XRPPath(path: path) } : nil
 
     // If the sendMax field is set, it must be able to be transformed into a XRPCurrencyAmount.
     if payment.hasSendMax {

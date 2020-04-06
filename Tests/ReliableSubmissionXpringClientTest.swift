@@ -28,6 +28,8 @@ final class ReliableSubmissionClientTest: XCTestCase {
   var reliableSubmissionClient: ReliableSubmissionXRPClient!
 
   override func setUp() {
+    super.setUp()
+
     fakeXRPClient = FakeXRPClient(
       getBalanceValue: defaultBalanceValue,
       paymentStatusValue: defaultTransactionStatusValue,
@@ -42,27 +44,38 @@ final class ReliableSubmissionClientTest: XCTestCase {
   }
 
   func testGetBalance() {
-    // GIVEN a `ReliableSubmissionClient` decorating a FakeXRPClient WHEN a balance is retrieved THEN the result is returned unaltered.
+    // GIVEN a `ReliableSubmissionClient` decorating a FakeXRPClient WHEN a balance is retrieved
+    // THEN the result is returned unaltered.
     XCTAssertEqual(try? reliableSubmissionClient.getBalance(for: .testAddress), defaultBalanceValue)
   }
 
   func testPaymentStatus() {
-    // GIVEN a `ReliableSubmissionClient` decorating a FakeXRPClient WHEN a transaction status is retrieved THEN the result is returned unaltered.
-    XCTAssertEqual(try? reliableSubmissionClient.paymentStatus(for: .testTransactionHash), defaultTransactionStatusValue)
+    // GIVEN a `ReliableSubmissionClient` decorating a FakeXRPClient WHEN a transaction status is retrieved
+    // THEN the result is returned unaltered.
+    XCTAssertEqual(
+      try? reliableSubmissionClient.paymentStatus(for: .testTransactionHash),
+      defaultTransactionStatusValue
+    )
   }
 
   func testGetLatestValidatedLedgerSequence() {
-    // GIVEN a `ReliableSubmissionClient` decorating a FakeXRPClient WHEN the latest ledger sequence is retrieved THEN the result is returned unaltered.
+    // GIVEN a `ReliableSubmissionClient` decorating a FakeXRPClient WHEN the latest ledger sequence is retrieved
+    // THEN the result is returned unaltered.
     XCTAssertEqual(try? reliableSubmissionClient.getLatestValidatedLedgerSequence(), defaultLastestValidatedLedgerValue)
   }
 
   func testGetRawTransactionStatus() {
-    // GIVEN a `ReliableSubmissionClient` decorating a FakeXRPClient WHEN a raw transaction status is retrieved THEN the result is returned unaltered.
-    XCTAssertEqual(try? reliableSubmissionClient.getRawTransactionStatus(for: .testTransactionHash), defaultRawTransactionStatusValue)
+    // GIVEN a `ReliableSubmissionClient` decorating a FakeXRPClient WHEN a raw transaction status is retrieved
+    // THEN the result is returned unaltered.
+    XCTAssertEqual(
+      try? reliableSubmissionClient.getRawTransactionStatus(for: .testTransactionHash),
+      defaultRawTransactionStatusValue
+    )
   }
 
   func testPaymentHistory() {
-    // GIVEN a `ReliableSubmissionClient` decorating a FakeXRPClient WHEN transaction history is retrieved THEN the result is returned unaltered.
+    // GIVEN a `ReliableSubmissionClient` decorating a FakeXRPClient WHEN transaction history is retrieved
+    // THEN the result is returned unaltered.
     XCTAssertEqual(
       try? reliableSubmissionClient.paymentHistory(for: .testAddress),
       defaultPaymentHistoryValue
@@ -87,7 +100,7 @@ final class ReliableSubmissionClientTest: XCTestCase {
         $0.validated = false
       }
     )
-    runAfterOneSecond({ self.fakeXRPClient.latestValidatedLedgerValue = lastLedgerSequence + 1 })
+    runAfterOneSecond { self.fakeXRPClient.latestValidatedLedgerValue = lastLedgerSequence + 1 }
 
     // WHEN a reliable send is submitted
     let expectation = XCTestExpectation(description: "Send returned")
@@ -152,7 +165,8 @@ final class ReliableSubmissionClientTest: XCTestCase {
   }
 
   func testSendWithNoLastLedgerSequence() throws {
-    // GIVEN a `ReliableSubmissionXRPClient` decorating a `FakeXRPClient` which will return a transaction that did not have a last ledger sequence attached.
+    // GIVEN a `ReliableSubmissionXRPClient` decorating a `FakeXRPClient` which will return a transaction
+    // that did not have a last ledger sequence attached.
     fakeXRPClient.rawTransactionStatusValue = RawTransactionStatus(
       getTransactionResponse: Org_Xrpl_Rpc_V1_GetTransactionResponse.with {
         $0.meta = Org_Xrpl_Rpc_V1_Meta.with {

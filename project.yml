@@ -18,8 +18,15 @@ targets:
         - XpringKitTests_${platform}
       gatherCoverageData: true
     postCompileScripts:
-      - script: swiftlint autocorrect --config .swiftlint.yml
-        name: SwiftLint
+      - name: SwiftLint
+        script: |
+          if which swiftlint >/dev/null; then
+            # Autocorrect anything SwiftLint can solve, then lint.
+            swiftlint autocorrect
+            swiftlint
+          else
+            echo "warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint"
+          fi
     dependencies:
       - carthage: BigInt
       - carthage: SwiftProtobuf

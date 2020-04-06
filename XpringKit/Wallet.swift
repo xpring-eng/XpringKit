@@ -22,7 +22,8 @@ public class Wallet {
   ///
   /// Inputs to the generation process (mnemonic, derivation path) are returned along with a newly generated wallet.
   ///
-  /// - Note: This call uses Swift's Math.Random functionality to ensure randomly generated numbers are cryptographically secure.
+  /// - Note: This call uses Swift's Math.Random functionality to ensure randomly generated numbers are
+  ///         cryptographically secure.
   ///
   /// - Parameter isTest: Whether the address is for use on a test network.
   /// - Returns: Artifacts of the generation process in a WalletGenerationResult.
