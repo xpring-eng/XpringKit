@@ -62,6 +62,24 @@ public class Wallet {
     self.init(javaScriptWallet: javaScriptWallet)
   }
 
+  /// Initialize a new `Wallet` with a set of keys.
+  ///
+  /// - Parameters:
+  ///   - publicKey: Bytes representing a public key.
+  ///   - privateKey: Bytes representing a private key.
+  ///   - isTest: Whether the address is for use on a test network.
+  /// - Returns: A new wallet if inputs were valid, otherwise nil.
+  public convenience init?(publicKey: [UInt8], privateKey: [UInt8], isTest: Bool = false) {
+    guard let javaScriptWallet = Wallet.javaScriptWalletFactory.wallet(
+      publicKey: publicKey,
+      privateKey: privateKey,
+      isTest: isTest
+    ) else {
+      return nil
+    }
+    self.init(javaScriptWallet: javaScriptWallet)
+  }
+
   /// Initialize a new `Wallet` backed by the given JavaScript based wallet.
   internal init(javaScriptWallet: JavaScriptWallet) {
     self.javaScriptWallet = javaScriptWallet
