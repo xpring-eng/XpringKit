@@ -37,10 +37,10 @@ Xpring SDK needs to communicate with a rippled node which has gRPC enabled. Cons
 To get developers started right away, Xpring currently provides nodes:
 
 ```
-# TestNet
+# Testnet
 test.xrp.xpring.io:50051
 
-# MainNet
+# Mainnet
 main.xrp.xpring.io:50051
 ```
 
@@ -140,7 +140,7 @@ wallet.verify(message, signature); // true
 ```swift
 import XpringKit
 
-let remoteURL = "test.xrp.xpring.io:50051"; // TestNet URL, use main.xrp.xpring.io:50051 for MainNet
+let remoteURL = "test.xrp.xpring.io:50051"; // Testnet URL, use main.xrp.xpring.io:50051 for Mainnet
 let xrpClient = XRPClient(grpcURL: remoteURL)
 ```
 
@@ -151,7 +151,7 @@ An `XRPClient` can check the balance of an account on the XRP Ledger.
 ```swift
 import XpringKit
 
-let remoteURL = "test.xrp.xpring.io:50051"; // TestNet URL, use main.xrp.xpring.io:50051 for MainNet
+let remoteURL = "test.xrp.xpring.io:50051"; // Testnet URL, use main.xrp.xpring.io:50051 for Mainnet
 let xrpClient = XRPClient(grpcURL: remoteURL)
 
 let address = "XVMFQQBMhdouRqhPMuawgBMN1AVFTofPAdRsXG5RkPtUPNQ"
@@ -179,7 +179,7 @@ These states are determined by the `TransactionStatus` enum.
 ```swift
 import XpringKit
 
-let remoteURL = "test.xrp.xpring.io:50051"; // TestNet URL, use main.xrp.xpring.io:50051 for MainNet
+let remoteURL = "test.xrp.xpring.io:50051"; // Testnet URL, use main.xrp.xpring.io:50051 for Mainnet
 let xrpClient = XRPClient(grpcURL: remoteURL)
 
 let transactionHash = "9FC7D277C1C8ED9CE133CC17AEA9978E71FC644CE6F5F0C8E26F1C635D97AF4A"
@@ -196,7 +196,7 @@ An `XRPClient` can return payments to and from an account.
 ```
 import xpringkit
 
-let remoteURL = "alpha.test.xrp.xpring.io:50051"; // TestNet URL, use alpha.xrp.xpring.io:50051 for MainNet
+let remoteURL = "alpha.test.xrp.xpring.io:50051"; // TestNet URL, use alpha.xrp.xpring.io:50051 for Mainnet
 let xrpClient = XRPClient(grpcURL: remoteURL, useNewProtocolBuffers: true)
 
 let address = "XVMFQQBMhdouRqhPMuawgBMN1AVFTofPAdRsXG5RkPtUPNQ"
@@ -213,7 +213,7 @@ An `XRPClient` can send XRP to other accounts on the XRP Ledger.
 ```swift
 import XpringKit
 
-let remoteURL = "test.xrp.xpring.io:50051"; // TestNet URL, use main.xrp.xpring.io:50051 for MainNet
+let remoteURL = "test.xrp.xpring.io:50051"; // TestNet URL, use main.xrp.xpring.io:50051 for Mainnet
 let xrpClient = XRPClient(grpcURL: remoteURL)
 
 // Wallet which will send XRP
