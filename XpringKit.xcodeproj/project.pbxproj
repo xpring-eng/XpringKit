@@ -915,7 +915,7 @@
 			path = model;
 			sourceTree = "<group>";
 		};
-		"TEMP_40DDDEAC-EA48-40E9-BE0D-1C6C2F73337B" /* Legacy */ = {
+		"TEMP_164B110A-230E-4C39-8CFB-F0A1FE50CE13" /* Legacy */ = {
 			isa = PBXGroup;
 			children = (
 			);
