@@ -40,7 +40,7 @@ opt_in_rules:
 excluded:
   - Carthage/
   - Pods/
-  - XpringKit/generated/
+  - XpringKit/**/Generated/*
 
 # Use indentation equal to two spaces.
 indentation_width:

@@ -15,7 +15,7 @@ targets:
       - path: XpringKit
         excludes:
           - "**/.swiftlint.yml"
-    resources: [XpringKit/Resources]
+    resources: [XpringKit/Common/Resources]
     scheme:
       testTargets:
         - XpringKitTests_${platform}
