@@ -8,7 +8,7 @@ set -e -o pipefail
 
 echo "Regenerating Protocol Buffers from Hermes ILP"
 
-ILP_SWIFT_OUT_DIR=./XpringKit/generated/ilp
+ILP_SWIFT_OUT_DIR=./XpringKit/ILP/Generated
 
 mkdir -p $ILP_SWIFT_OUT_DIR
 protoc \
@@ -24,7 +24,7 @@ protoc \
 
 echo "Regenerating Protocol Buffers from Rippled"
 
-SWIFT_OUT_DIR=./XpringKit/generated
+SWIFT_OUT_DIR=./XpringKit/XRP/Generated/
 
 mkdir -p $SWIFT_OUT_DIR
 protoc \

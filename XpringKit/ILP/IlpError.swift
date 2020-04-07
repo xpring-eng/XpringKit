@@ -5,7 +5,7 @@ public enum IlpError: Error {
 
     /// The accountID that was provided does not exist.
     case accountNotFound
-    
+
     /// Something went wrong on the ILP network
     case internalError
 
