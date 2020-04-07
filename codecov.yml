@@ -1,2 +1,2 @@
 ignore:
-- "XpringKit/generated/**/*"
+- "XpringKit/*/Generated/**/*"
