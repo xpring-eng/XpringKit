@@ -7,6 +7,8 @@
 
 import Foundation
 
+
+
 public struct SignatureWrapperCompliance: Codable {
 
     public var messageType: String
@@ -25,4 +27,6 @@ public struct SignatureWrapperCompliance: Codable {
         self.signature = signature
     }
 
+
 }
+

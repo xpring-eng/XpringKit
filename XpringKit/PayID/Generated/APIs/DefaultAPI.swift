@@ -5,8 +5,9 @@
 // https://github.com/swagger-api/swagger-codegen
 //
 
-import Alamofire
 import Foundation
+import Alamofire
+
 
 open class DefaultAPI {
     /**
@@ -16,11 +17,12 @@ open class DefaultAPI {
      - parameter nonce: (query)  
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func getPathInvoice(path: String, nonce: String, completion: @escaping ((_ data: SignatureWrapperInvoice?, _ error: Error?) -> Void)) {
+    open class func getPathInvoice(path: String, nonce: String, completion: @escaping ((_ data: SignatureWrapperInvoice?,_ error: Error?) -> Void)) {
         getPathInvoiceWithRequestBuilder(path: path, nonce: nonce).execute { (response, error) -> Void in
             completion(response?.body, error)
         }
     }
+
 
     /**
      get-invoice
@@ -67,7 +69,7 @@ open class DefaultAPI {
         let pathPostEscape = pathPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         path = path.replacingOccurrences(of: "{path}", with: pathPostEscape, options: .literal, range: nil)
         let URLString = SwaggerClientAPI.basePath + path
-        let parameters: [String: Any]? = nil
+        let parameters: [String:Any]? = nil
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
                         "nonce": nonce
@@ -85,11 +87,12 @@ open class DefaultAPI {
      - parameter body: (body)  (optional)
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func postPathInvoice(path: String, body: SignatureWrapperInvoice? = nil, completion: @escaping ((_ data: SignatureWrapperCompliance?, _ error: Error?) -> Void)) {
+    open class func postPathInvoice(path: String, body: SignatureWrapperInvoice? = nil, completion: @escaping ((_ data: SignatureWrapperCompliance?,_ error: Error?) -> Void)) {
         postPathInvoiceWithRequestBuilder(path: path, body: body).execute { (response, error) -> Void in
             completion(response?.body, error)
         }
     }
+
 
     /**
      post-invoice
@@ -151,8 +154,8 @@ open class DefaultAPI {
      - parameter body: (body)  (optional)
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func postPathReceipt(path: String, body: Receipt? = nil, completion: @escaping ((_ data: Void?, _ error: Error?) -> Void)) {
-        postPathReceiptWithRequestBuilder(path: path, body: body).execute { (_, error) -> Void in
+    open class func postPathReceipt(path: String, body: Receipt? = nil, completion: @escaping ((_ data: Void?,_ error: Error?) -> Void)) {
+        postPathReceiptWithRequestBuilder(path: path, body: body).execute { (response, error) -> Void in
             if error == nil {
                 completion((), error)
             } else {
@@ -160,6 +163,7 @@ open class DefaultAPI {
             }
         }
     }
+
 
     /**
      - POST /{path}/receipt
@@ -192,11 +196,12 @@ open class DefaultAPI {
      - parameter path: (path)  
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func resolvePayID(host: String, path: String, completion: @escaping ((_ data: PaymentInformation?, _ error: Error?) -> Void)) {
+    open class func resolvePayID(host: String, path: String, completion: @escaping ((_ data: PaymentInformation?,_ error: Error?) -> Void)) {
         resolvePayIDWithRequestBuilder(host: host, path: path).execute { (response, error) -> Void in
             completion(response?.body, error)
         }
     }
+
 
     /**
      get-pay-id
@@ -225,7 +230,7 @@ open class DefaultAPI {
         let pathPostEscape = pathPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         path = path.replacingOccurrences(of: "{path}", with: pathPostEscape, options: .literal, range: nil)
         let URLString = SwaggerClientAPI.basePath + path
-        let parameters: [String: Any]? = nil
+        let parameters: [String:Any]? = nil
 
         let url = URLComponents(string: URLString)
 

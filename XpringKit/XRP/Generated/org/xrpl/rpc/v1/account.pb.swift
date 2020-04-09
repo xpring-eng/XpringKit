@@ -14,7 +14,7 @@ import SwiftProtobuf
 // incompatible with the version of SwiftProtobuf to which you are linking.
 // Please ensure that you are building against the same version of the API
 // that was used to generate this file.
-private struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAPIVersionCheck {
+fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAPIVersionCheck {
   struct _2: SwiftProtobuf.ProtobufAPIVersion_2 {}
   typealias Version = _2
 }
@@ -36,12 +36,12 @@ public struct Org_Xrpl_Rpc_V1_AccountAddress {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-private let _protobuf_package = "org.xrpl.rpc.v1"
+fileprivate let _protobuf_package = "org.xrpl.rpc.v1"
 
 extension Org_Xrpl_Rpc_V1_AccountAddress: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".AccountAddress"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "address")
+    1: .same(proto: "address"),
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -61,8 +61,8 @@ extension Org_Xrpl_Rpc_V1_AccountAddress: SwiftProtobuf.Message, SwiftProtobuf._
   }
 
   public static func ==(lhs: Org_Xrpl_Rpc_V1_AccountAddress, rhs: Org_Xrpl_Rpc_V1_AccountAddress) -> Bool {
-    if lhs.address != rhs.address { return false }
-    if lhs.unknownFields != rhs.unknownFields { return false }
+    if lhs.address != rhs.address {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

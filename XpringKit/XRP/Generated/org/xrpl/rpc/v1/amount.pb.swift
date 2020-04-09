@@ -14,7 +14,7 @@ import SwiftProtobuf
 // incompatible with the version of SwiftProtobuf to which you are linking.
 // Please ensure that you are building against the same version of the API
 // that was used to generate this file.
-private struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAPIVersionCheck {
+fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAPIVersionCheck {
   struct _2: SwiftProtobuf.ProtobufAPIVersion_2 {}
   typealias Version = _2
 }
@@ -25,22 +25,22 @@ public struct Org_Xrpl_Rpc_V1_CurrencyAmount {
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
-  public var amount: Org_Xrpl_Rpc_V1_CurrencyAmount.OneOf_Amount?
+  public var amount: Org_Xrpl_Rpc_V1_CurrencyAmount.OneOf_Amount? = nil
 
   public var xrpAmount: Org_Xrpl_Rpc_V1_XRPDropsAmount {
     get {
-      if case .xrpAmount(let v)? = amount { return v }
+      if case .xrpAmount(let v)? = amount {return v}
       return Org_Xrpl_Rpc_V1_XRPDropsAmount()
     }
-    set { amount = .xrpAmount(newValue) }
+    set {amount = .xrpAmount(newValue)}
   }
 
   public var issuedCurrencyAmount: Org_Xrpl_Rpc_V1_IssuedCurrencyAmount {
     get {
-      if case .issuedCurrencyAmount(let v)? = amount { return v }
+      if case .issuedCurrencyAmount(let v)? = amount {return v}
       return Org_Xrpl_Rpc_V1_IssuedCurrencyAmount()
     }
-    set { amount = .issuedCurrencyAmount(newValue) }
+    set {amount = .issuedCurrencyAmount(newValue)}
   }
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
@@ -86,33 +86,33 @@ public struct Org_Xrpl_Rpc_V1_IssuedCurrencyAmount {
 
   /// The currency used to value the amount.
   public var currency: Org_Xrpl_Rpc_V1_Currency {
-    get { return _currency ?? Org_Xrpl_Rpc_V1_Currency() }
-    set { _currency = newValue }
+    get {return _currency ?? Org_Xrpl_Rpc_V1_Currency()}
+    set {_currency = newValue}
   }
   /// Returns true if `currency` has been explicitly set.
-  public var hasCurrency: Bool { return self._currency != nil }
+  public var hasCurrency: Bool {return self._currency != nil}
   /// Clears the value of `currency`. Subsequent reads from it will return its default value.
-  public mutating func clearCurrency() { self._currency = nil }
+  public mutating func clearCurrency() {self._currency = nil}
 
   /// The value of the amount. 8 bytes
   public var value: String = String()
 
   /// Unique account address of the entity issuing the currency.
   public var issuer: Org_Xrpl_Rpc_V1_AccountAddress {
-    get { return _issuer ?? Org_Xrpl_Rpc_V1_AccountAddress() }
-    set { _issuer = newValue }
+    get {return _issuer ?? Org_Xrpl_Rpc_V1_AccountAddress()}
+    set {_issuer = newValue}
   }
   /// Returns true if `issuer` has been explicitly set.
-  public var hasIssuer: Bool { return self._issuer != nil }
+  public var hasIssuer: Bool {return self._issuer != nil}
   /// Clears the value of `issuer`. Subsequent reads from it will return its default value.
-  public mutating func clearIssuer() { self._issuer = nil }
+  public mutating func clearIssuer() {self._issuer = nil}
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
 
-  fileprivate var _currency: Org_Xrpl_Rpc_V1_Currency?
-  fileprivate var _issuer: Org_Xrpl_Rpc_V1_AccountAddress?
+  fileprivate var _currency: Org_Xrpl_Rpc_V1_Currency? = nil
+  fileprivate var _issuer: Org_Xrpl_Rpc_V1_AccountAddress? = nil
 }
 
 /// Next field: 3
@@ -134,13 +134,13 @@ public struct Org_Xrpl_Rpc_V1_Currency {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-private let _protobuf_package = "org.xrpl.rpc.v1"
+fileprivate let _protobuf_package = "org.xrpl.rpc.v1"
 
 extension Org_Xrpl_Rpc_V1_CurrencyAmount: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".CurrencyAmount"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .standard(proto: "xrp_amount"),
-    2: .standard(proto: "issued_currency_amount")
+    2: .standard(proto: "issued_currency_amount"),
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -150,18 +150,18 @@ extension Org_Xrpl_Rpc_V1_CurrencyAmount: SwiftProtobuf.Message, SwiftProtobuf._
         var v: Org_Xrpl_Rpc_V1_XRPDropsAmount?
         if let current = self.amount {
           try decoder.handleConflictingOneOf()
-          if case .xrpAmount(let m) = current { v = m }
+          if case .xrpAmount(let m) = current {v = m}
         }
         try decoder.decodeSingularMessageField(value: &v)
-        if let v = v { self.amount = .xrpAmount(v) }
+        if let v = v {self.amount = .xrpAmount(v)}
       case 2:
         var v: Org_Xrpl_Rpc_V1_IssuedCurrencyAmount?
         if let current = self.amount {
           try decoder.handleConflictingOneOf()
-          if case .issuedCurrencyAmount(let m) = current { v = m }
+          if case .issuedCurrencyAmount(let m) = current {v = m}
         }
         try decoder.decodeSingularMessageField(value: &v)
-        if let v = v { self.amount = .issuedCurrencyAmount(v) }
+        if let v = v {self.amount = .issuedCurrencyAmount(v)}
       default: break
       }
     }
@@ -179,8 +179,8 @@ extension Org_Xrpl_Rpc_V1_CurrencyAmount: SwiftProtobuf.Message, SwiftProtobuf._
   }
 
   public static func ==(lhs: Org_Xrpl_Rpc_V1_CurrencyAmount, rhs: Org_Xrpl_Rpc_V1_CurrencyAmount) -> Bool {
-    if lhs.amount != rhs.amount { return false }
-    if lhs.unknownFields != rhs.unknownFields { return false }
+    if lhs.amount != rhs.amount {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -188,7 +188,7 @@ extension Org_Xrpl_Rpc_V1_CurrencyAmount: SwiftProtobuf.Message, SwiftProtobuf._
 extension Org_Xrpl_Rpc_V1_XRPDropsAmount: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".XRPDropsAmount"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "drops")
+    1: .same(proto: "drops"),
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -208,8 +208,8 @@ extension Org_Xrpl_Rpc_V1_XRPDropsAmount: SwiftProtobuf.Message, SwiftProtobuf._
   }
 
   public static func ==(lhs: Org_Xrpl_Rpc_V1_XRPDropsAmount, rhs: Org_Xrpl_Rpc_V1_XRPDropsAmount) -> Bool {
-    if lhs.drops != rhs.drops { return false }
-    if lhs.unknownFields != rhs.unknownFields { return false }
+    if lhs.drops != rhs.drops {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -219,7 +219,7 @@ extension Org_Xrpl_Rpc_V1_IssuedCurrencyAmount: SwiftProtobuf.Message, SwiftProt
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "currency"),
     2: .same(proto: "value"),
-    3: .same(proto: "issuer")
+    3: .same(proto: "issuer"),
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -247,10 +247,10 @@ extension Org_Xrpl_Rpc_V1_IssuedCurrencyAmount: SwiftProtobuf.Message, SwiftProt
   }
 
   public static func ==(lhs: Org_Xrpl_Rpc_V1_IssuedCurrencyAmount, rhs: Org_Xrpl_Rpc_V1_IssuedCurrencyAmount) -> Bool {
-    if lhs._currency != rhs._currency { return false }
-    if lhs.value != rhs.value { return false }
-    if lhs._issuer != rhs._issuer { return false }
-    if lhs.unknownFields != rhs.unknownFields { return false }
+    if lhs._currency != rhs._currency {return false}
+    if lhs.value != rhs.value {return false}
+    if lhs._issuer != rhs._issuer {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -259,7 +259,7 @@ extension Org_Xrpl_Rpc_V1_Currency: SwiftProtobuf.Message, SwiftProtobuf._Messag
   public static let protoMessageName: String = _protobuf_package + ".Currency"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "name"),
-    2: .same(proto: "code")
+    2: .same(proto: "code"),
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -283,9 +283,9 @@ extension Org_Xrpl_Rpc_V1_Currency: SwiftProtobuf.Message, SwiftProtobuf._Messag
   }
 
   public static func ==(lhs: Org_Xrpl_Rpc_V1_Currency, rhs: Org_Xrpl_Rpc_V1_Currency) -> Bool {
-    if lhs.name != rhs.name { return false }
-    if lhs.code != rhs.code { return false }
-    if lhs.unknownFields != rhs.unknownFields { return false }
+    if lhs.name != rhs.name {return false}
+    if lhs.code != rhs.code {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

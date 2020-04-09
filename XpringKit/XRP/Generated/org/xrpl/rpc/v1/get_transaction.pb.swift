@@ -14,7 +14,7 @@ import SwiftProtobuf
 // incompatible with the version of SwiftProtobuf to which you are linking.
 // Please ensure that you are building against the same version of the API
 // that was used to generate this file.
-private struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAPIVersionCheck {
+fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAPIVersionCheck {
   struct _2: SwiftProtobuf.ProtobufAPIVersion_2 {}
   typealias Version = _2
 }
@@ -38,19 +38,19 @@ public struct Org_Xrpl_Rpc_V1_GetTransactionRequest {
 
   /// search only specified range. optional
   public var ledgerRange: Org_Xrpl_Rpc_V1_LedgerRange {
-    get { return _ledgerRange ?? Org_Xrpl_Rpc_V1_LedgerRange() }
-    set { _ledgerRange = newValue }
+    get {return _ledgerRange ?? Org_Xrpl_Rpc_V1_LedgerRange()}
+    set {_ledgerRange = newValue}
   }
   /// Returns true if `ledgerRange` has been explicitly set.
-  public var hasLedgerRange: Bool { return self._ledgerRange != nil }
+  public var hasLedgerRange: Bool {return self._ledgerRange != nil}
   /// Clears the value of `ledgerRange`. Subsequent reads from it will return its default value.
-  public mutating func clearLedgerRange() { self._ledgerRange = nil }
+  public mutating func clearLedgerRange() {self._ledgerRange = nil}
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
 
-  fileprivate var _ledgerRange: Org_Xrpl_Rpc_V1_LedgerRange?
+  fileprivate var _ledgerRange: Org_Xrpl_Rpc_V1_LedgerRange? = nil
 }
 
 /// Next field: 9
@@ -59,23 +59,23 @@ public struct Org_Xrpl_Rpc_V1_GetTransactionResponse {
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
-  public var serializedTransaction: Org_Xrpl_Rpc_V1_GetTransactionResponse.OneOf_SerializedTransaction?
+  public var serializedTransaction: Org_Xrpl_Rpc_V1_GetTransactionResponse.OneOf_SerializedTransaction? = nil
 
   public var transaction: Org_Xrpl_Rpc_V1_Transaction {
     get {
-      if case .transaction(let v)? = serializedTransaction { return v }
+      if case .transaction(let v)? = serializedTransaction {return v}
       return Org_Xrpl_Rpc_V1_Transaction()
     }
-    set { serializedTransaction = .transaction(newValue) }
+    set {serializedTransaction = .transaction(newValue)}
   }
 
   /// Variable length
   public var transactionBinary: Data {
     get {
-      if case .transactionBinary(let v)? = serializedTransaction { return v }
+      if case .transactionBinary(let v)? = serializedTransaction {return v}
       return SwiftProtobuf.Internal.emptyData
     }
-    set { serializedTransaction = .transactionBinary(newValue) }
+    set {serializedTransaction = .transactionBinary(newValue)}
   }
 
   /// Sequence number of ledger that contains this transaction
@@ -88,33 +88,33 @@ public struct Org_Xrpl_Rpc_V1_GetTransactionResponse {
   public var validated: Bool = false
 
   /// metadata about the transaction
-  public var serializedMeta: Org_Xrpl_Rpc_V1_GetTransactionResponse.OneOf_SerializedMeta?
+  public var serializedMeta: Org_Xrpl_Rpc_V1_GetTransactionResponse.OneOf_SerializedMeta? = nil
 
   public var meta: Org_Xrpl_Rpc_V1_Meta {
     get {
-      if case .meta(let v)? = serializedMeta { return v }
+      if case .meta(let v)? = serializedMeta {return v}
       return Org_Xrpl_Rpc_V1_Meta()
     }
-    set { serializedMeta = .meta(newValue) }
+    set {serializedMeta = .meta(newValue)}
   }
 
   /// Variable length
   public var metaBinary: Data {
     get {
-      if case .metaBinary(let v)? = serializedMeta { return v }
+      if case .metaBinary(let v)? = serializedMeta {return v}
       return SwiftProtobuf.Internal.emptyData
     }
-    set { serializedMeta = .metaBinary(newValue) }
+    set {serializedMeta = .metaBinary(newValue)}
   }
 
   public var date: Org_Xrpl_Rpc_V1_Date {
-    get { return _date ?? Org_Xrpl_Rpc_V1_Date() }
-    set { _date = newValue }
+    get {return _date ?? Org_Xrpl_Rpc_V1_Date()}
+    set {_date = newValue}
   }
   /// Returns true if `date` has been explicitly set.
-  public var hasDate: Bool { return self._date != nil }
+  public var hasDate: Bool {return self._date != nil}
   /// Clears the value of `date`. Subsequent reads from it will return its default value.
-  public mutating func clearDate() { self._date = nil }
+  public mutating func clearDate() {self._date = nil}
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -153,19 +153,19 @@ public struct Org_Xrpl_Rpc_V1_GetTransactionResponse {
 
   public init() {}
 
-  fileprivate var _date: Org_Xrpl_Rpc_V1_Date?
+  fileprivate var _date: Org_Xrpl_Rpc_V1_Date? = nil
 }
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-private let _protobuf_package = "org.xrpl.rpc.v1"
+fileprivate let _protobuf_package = "org.xrpl.rpc.v1"
 
 extension Org_Xrpl_Rpc_V1_GetTransactionRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".GetTransactionRequest"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "hash"),
     2: .same(proto: "binary"),
-    3: .standard(proto: "ledger_range")
+    3: .standard(proto: "ledger_range"),
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -193,10 +193,10 @@ extension Org_Xrpl_Rpc_V1_GetTransactionRequest: SwiftProtobuf.Message, SwiftPro
   }
 
   public static func ==(lhs: Org_Xrpl_Rpc_V1_GetTransactionRequest, rhs: Org_Xrpl_Rpc_V1_GetTransactionRequest) -> Bool {
-    if lhs.hash != rhs.hash { return false }
-    if lhs.binary != rhs.binary { return false }
-    if lhs._ledgerRange != rhs._ledgerRange { return false }
-    if lhs.unknownFields != rhs.unknownFields { return false }
+    if lhs.hash != rhs.hash {return false}
+    if lhs.binary != rhs.binary {return false}
+    if lhs._ledgerRange != rhs._ledgerRange {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -211,7 +211,7 @@ extension Org_Xrpl_Rpc_V1_GetTransactionResponse: SwiftProtobuf.Message, SwiftPr
     5: .same(proto: "validated"),
     6: .same(proto: "meta"),
     7: .standard(proto: "meta_binary"),
-    8: .same(proto: "date")
+    8: .same(proto: "date"),
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -221,15 +221,15 @@ extension Org_Xrpl_Rpc_V1_GetTransactionResponse: SwiftProtobuf.Message, SwiftPr
         var v: Org_Xrpl_Rpc_V1_Transaction?
         if let current = self.serializedTransaction {
           try decoder.handleConflictingOneOf()
-          if case .transaction(let m) = current { v = m }
+          if case .transaction(let m) = current {v = m}
         }
         try decoder.decodeSingularMessageField(value: &v)
-        if let v = v { self.serializedTransaction = .transaction(v) }
+        if let v = v {self.serializedTransaction = .transaction(v)}
       case 2:
-        if self.serializedTransaction != nil { try decoder.handleConflictingOneOf() }
+        if self.serializedTransaction != nil {try decoder.handleConflictingOneOf()}
         var v: Data?
         try decoder.decodeSingularBytesField(value: &v)
-        if let v = v { self.serializedTransaction = .transactionBinary(v) }
+        if let v = v {self.serializedTransaction = .transactionBinary(v)}
       case 3: try decoder.decodeSingularUInt32Field(value: &self.ledgerIndex)
       case 4: try decoder.decodeSingularBytesField(value: &self.hash)
       case 5: try decoder.decodeSingularBoolField(value: &self.validated)
@@ -237,15 +237,15 @@ extension Org_Xrpl_Rpc_V1_GetTransactionResponse: SwiftProtobuf.Message, SwiftPr
         var v: Org_Xrpl_Rpc_V1_Meta?
         if let current = self.serializedMeta {
           try decoder.handleConflictingOneOf()
-          if case .meta(let m) = current { v = m }
+          if case .meta(let m) = current {v = m}
         }
         try decoder.decodeSingularMessageField(value: &v)
-        if let v = v { self.serializedMeta = .meta(v) }
+        if let v = v {self.serializedMeta = .meta(v)}
       case 7:
-        if self.serializedMeta != nil { try decoder.handleConflictingOneOf() }
+        if self.serializedMeta != nil {try decoder.handleConflictingOneOf()}
         var v: Data?
         try decoder.decodeSingularBytesField(value: &v)
-        if let v = v { self.serializedMeta = .metaBinary(v) }
+        if let v = v {self.serializedMeta = .metaBinary(v)}
       case 8: try decoder.decodeSingularMessageField(value: &self._date)
       default: break
       }
@@ -283,13 +283,13 @@ extension Org_Xrpl_Rpc_V1_GetTransactionResponse: SwiftProtobuf.Message, SwiftPr
   }
 
   public static func ==(lhs: Org_Xrpl_Rpc_V1_GetTransactionResponse, rhs: Org_Xrpl_Rpc_V1_GetTransactionResponse) -> Bool {
-    if lhs.serializedTransaction != rhs.serializedTransaction { return false }
-    if lhs.ledgerIndex != rhs.ledgerIndex { return false }
-    if lhs.hash != rhs.hash { return false }
-    if lhs.validated != rhs.validated { return false }
-    if lhs.serializedMeta != rhs.serializedMeta { return false }
-    if lhs._date != rhs._date { return false }
-    if lhs.unknownFields != rhs.unknownFields { return false }
+    if lhs.serializedTransaction != rhs.serializedTransaction {return false}
+    if lhs.ledgerIndex != rhs.ledgerIndex {return false}
+    if lhs.hash != rhs.hash {return false}
+    if lhs.validated != rhs.validated {return false}
+    if lhs.serializedMeta != rhs.serializedMeta {return false}
+    if lhs._date != rhs._date {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
