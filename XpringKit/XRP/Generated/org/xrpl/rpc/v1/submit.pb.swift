@@ -14,7 +14,7 @@ import SwiftProtobuf
 // incompatible with the version of SwiftProtobuf to which you are linking.
 // Please ensure that you are building against the same version of the API
 // that was used to generate this file.
-fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAPIVersionCheck {
+private struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAPIVersionCheck {
   struct _2: SwiftProtobuf.ProtobufAPIVersion_2 {}
   typealias Version = _2
 }
@@ -45,13 +45,13 @@ public struct Org_Xrpl_Rpc_V1_SubmitTransactionResponse {
 
   /// Code indicating the preliminary result of the transaction.
   public var engineResult: Org_Xrpl_Rpc_V1_TransactionResult {
-    get {return _engineResult ?? Org_Xrpl_Rpc_V1_TransactionResult()}
-    set {_engineResult = newValue}
+    get { return _engineResult ?? Org_Xrpl_Rpc_V1_TransactionResult() }
+    set { _engineResult = newValue }
   }
   /// Returns true if `engineResult` has been explicitly set.
-  public var hasEngineResult: Bool {return self._engineResult != nil}
+  public var hasEngineResult: Bool { return self._engineResult != nil }
   /// Clears the value of `engineResult`. Subsequent reads from it will return its default value.
-  public mutating func clearEngineResult() {self._engineResult = nil}
+  public mutating func clearEngineResult() { self._engineResult = nil }
 
   /// Numeric code indicating the preliminary result of the transaction,
   /// directly correlated to engine_result.
@@ -67,18 +67,18 @@ public struct Org_Xrpl_Rpc_V1_SubmitTransactionResponse {
 
   public init() {}
 
-  fileprivate var _engineResult: Org_Xrpl_Rpc_V1_TransactionResult? = nil
+  fileprivate var _engineResult: Org_Xrpl_Rpc_V1_TransactionResult?
 }
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "org.xrpl.rpc.v1"
+private let _protobuf_package = "org.xrpl.rpc.v1"
 
 extension Org_Xrpl_Rpc_V1_SubmitTransactionRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".SubmitTransactionRequest"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .standard(proto: "signed_transaction"),
-    2: .standard(proto: "fail_hard"),
+    2: .standard(proto: "fail_hard")
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -102,9 +102,9 @@ extension Org_Xrpl_Rpc_V1_SubmitTransactionRequest: SwiftProtobuf.Message, Swift
   }
 
   public static func ==(lhs: Org_Xrpl_Rpc_V1_SubmitTransactionRequest, rhs: Org_Xrpl_Rpc_V1_SubmitTransactionRequest) -> Bool {
-    if lhs.signedTransaction != rhs.signedTransaction {return false}
-    if lhs.failHard != rhs.failHard {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
+    if lhs.signedTransaction != rhs.signedTransaction { return false }
+    if lhs.failHard != rhs.failHard { return false }
+    if lhs.unknownFields != rhs.unknownFields { return false }
     return true
   }
 }
@@ -115,7 +115,7 @@ extension Org_Xrpl_Rpc_V1_SubmitTransactionResponse: SwiftProtobuf.Message, Swif
     1: .standard(proto: "engine_result"),
     2: .standard(proto: "engine_result_code"),
     3: .standard(proto: "engine_result_message"),
-    4: .same(proto: "hash"),
+    4: .same(proto: "hash")
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -147,11 +147,11 @@ extension Org_Xrpl_Rpc_V1_SubmitTransactionResponse: SwiftProtobuf.Message, Swif
   }
 
   public static func ==(lhs: Org_Xrpl_Rpc_V1_SubmitTransactionResponse, rhs: Org_Xrpl_Rpc_V1_SubmitTransactionResponse) -> Bool {
-    if lhs._engineResult != rhs._engineResult {return false}
-    if lhs.engineResultCode != rhs.engineResultCode {return false}
-    if lhs.engineResultMessage != rhs.engineResultMessage {return false}
-    if lhs.hash != rhs.hash {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
+    if lhs._engineResult != rhs._engineResult { return false }
+    if lhs.engineResultCode != rhs.engineResultCode { return false }
+    if lhs.engineResultMessage != rhs.engineResultMessage { return false }
+    if lhs.hash != rhs.hash { return false }
+    if lhs.unknownFields != rhs.unknownFields { return false }
     return true
   }
 }

@@ -14,7 +14,7 @@ import SwiftProtobuf
 // incompatible with the version of SwiftProtobuf to which you are linking.
 // Please ensure that you are building against the same version of the API
 // that was used to generate this file.
-fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAPIVersionCheck {
+private struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAPIVersionCheck {
   struct _2: SwiftProtobuf.ProtobufAPIVersion_2 {}
   typealias Version = _2
 }
@@ -766,19 +766,19 @@ public struct Org_Xrpl_Rpc_V1_TakerGetsCurreny {
   // methods supported on all messages.
 
   public var value: Org_Xrpl_Rpc_V1_Currency {
-    get {return _value ?? Org_Xrpl_Rpc_V1_Currency()}
-    set {_value = newValue}
+    get { return _value ?? Org_Xrpl_Rpc_V1_Currency() }
+    set { _value = newValue }
   }
   /// Returns true if `value` has been explicitly set.
-  public var hasValue: Bool {return self._value != nil}
+  public var hasValue: Bool { return self._value != nil }
   /// Clears the value of `value`. Subsequent reads from it will return its default value.
-  public mutating func clearValue() {self._value = nil}
+  public mutating func clearValue() { self._value = nil }
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
 
-  fileprivate var _value: Org_Xrpl_Rpc_V1_Currency? = nil
+  fileprivate var _value: Org_Xrpl_Rpc_V1_Currency?
 }
 
 public struct Org_Xrpl_Rpc_V1_TakerPaysCurrency {
@@ -787,19 +787,19 @@ public struct Org_Xrpl_Rpc_V1_TakerPaysCurrency {
   // methods supported on all messages.
 
   public var value: Org_Xrpl_Rpc_V1_Currency {
-    get {return _value ?? Org_Xrpl_Rpc_V1_Currency()}
-    set {_value = newValue}
+    get { return _value ?? Org_Xrpl_Rpc_V1_Currency() }
+    set { _value = newValue }
   }
   /// Returns true if `value` has been explicitly set.
-  public var hasValue: Bool {return self._value != nil}
+  public var hasValue: Bool { return self._value != nil }
   /// Clears the value of `value`. Subsequent reads from it will return its default value.
-  public mutating func clearValue() {self._value = nil}
+  public mutating func clearValue() { self._value = nil }
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
 
-  fileprivate var _value: Org_Xrpl_Rpc_V1_Currency? = nil
+  fileprivate var _value: Org_Xrpl_Rpc_V1_Currency?
 }
 
 public struct Org_Xrpl_Rpc_V1_Amount {
@@ -814,19 +814,19 @@ public struct Org_Xrpl_Rpc_V1_Amount {
   /// Currency amount, but the Amount field of a PaymentChannelClaim
   /// transaction can only be an XRP drops amount.
   public var value: Org_Xrpl_Rpc_V1_CurrencyAmount {
-    get {return _value ?? Org_Xrpl_Rpc_V1_CurrencyAmount()}
-    set {_value = newValue}
+    get { return _value ?? Org_Xrpl_Rpc_V1_CurrencyAmount() }
+    set { _value = newValue }
   }
   /// Returns true if `value` has been explicitly set.
-  public var hasValue: Bool {return self._value != nil}
+  public var hasValue: Bool { return self._value != nil }
   /// Clears the value of `value`. Subsequent reads from it will return its default value.
-  public mutating func clearValue() {self._value = nil}
+  public mutating func clearValue() { self._value = nil }
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
 
-  fileprivate var _value: Org_Xrpl_Rpc_V1_CurrencyAmount? = nil
+  fileprivate var _value: Org_Xrpl_Rpc_V1_CurrencyAmount?
 }
 
 public struct Org_Xrpl_Rpc_V1_Balance {
@@ -835,19 +835,19 @@ public struct Org_Xrpl_Rpc_V1_Balance {
   // methods supported on all messages.
 
   public var value: Org_Xrpl_Rpc_V1_CurrencyAmount {
-    get {return _value ?? Org_Xrpl_Rpc_V1_CurrencyAmount()}
-    set {_value = newValue}
+    get { return _value ?? Org_Xrpl_Rpc_V1_CurrencyAmount() }
+    set { _value = newValue }
   }
   /// Returns true if `value` has been explicitly set.
-  public var hasValue: Bool {return self._value != nil}
+  public var hasValue: Bool { return self._value != nil }
   /// Clears the value of `value`. Subsequent reads from it will return its default value.
-  public mutating func clearValue() {self._value = nil}
+  public mutating func clearValue() { self._value = nil }
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
 
-  fileprivate var _value: Org_Xrpl_Rpc_V1_CurrencyAmount? = nil
+  fileprivate var _value: Org_Xrpl_Rpc_V1_CurrencyAmount?
 }
 
 public struct Org_Xrpl_Rpc_V1_DeliverMin {
@@ -856,19 +856,19 @@ public struct Org_Xrpl_Rpc_V1_DeliverMin {
   // methods supported on all messages.
 
   public var value: Org_Xrpl_Rpc_V1_CurrencyAmount {
-    get {return _value ?? Org_Xrpl_Rpc_V1_CurrencyAmount()}
-    set {_value = newValue}
+    get { return _value ?? Org_Xrpl_Rpc_V1_CurrencyAmount() }
+    set { _value = newValue }
   }
   /// Returns true if `value` has been explicitly set.
-  public var hasValue: Bool {return self._value != nil}
+  public var hasValue: Bool { return self._value != nil }
   /// Clears the value of `value`. Subsequent reads from it will return its default value.
-  public mutating func clearValue() {self._value = nil}
+  public mutating func clearValue() { self._value = nil }
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
 
-  fileprivate var _value: Org_Xrpl_Rpc_V1_CurrencyAmount? = nil
+  fileprivate var _value: Org_Xrpl_Rpc_V1_CurrencyAmount?
 }
 
 public struct Org_Xrpl_Rpc_V1_DeliveredAmount {
@@ -877,19 +877,19 @@ public struct Org_Xrpl_Rpc_V1_DeliveredAmount {
   // methods supported on all messages.
 
   public var value: Org_Xrpl_Rpc_V1_CurrencyAmount {
-    get {return _value ?? Org_Xrpl_Rpc_V1_CurrencyAmount()}
-    set {_value = newValue}
+    get { return _value ?? Org_Xrpl_Rpc_V1_CurrencyAmount() }
+    set { _value = newValue }
   }
   /// Returns true if `value` has been explicitly set.
-  public var hasValue: Bool {return self._value != nil}
+  public var hasValue: Bool { return self._value != nil }
   /// Clears the value of `value`. Subsequent reads from it will return its default value.
-  public mutating func clearValue() {self._value = nil}
+  public mutating func clearValue() { self._value = nil }
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
 
-  fileprivate var _value: Org_Xrpl_Rpc_V1_CurrencyAmount? = nil
+  fileprivate var _value: Org_Xrpl_Rpc_V1_CurrencyAmount?
 }
 
 public struct Org_Xrpl_Rpc_V1_HighLimit {
@@ -898,19 +898,19 @@ public struct Org_Xrpl_Rpc_V1_HighLimit {
   // methods supported on all messages.
 
   public var value: Org_Xrpl_Rpc_V1_CurrencyAmount {
-    get {return _value ?? Org_Xrpl_Rpc_V1_CurrencyAmount()}
-    set {_value = newValue}
+    get { return _value ?? Org_Xrpl_Rpc_V1_CurrencyAmount() }
+    set { _value = newValue }
   }
   /// Returns true if `value` has been explicitly set.
-  public var hasValue: Bool {return self._value != nil}
+  public var hasValue: Bool { return self._value != nil }
   /// Clears the value of `value`. Subsequent reads from it will return its default value.
-  public mutating func clearValue() {self._value = nil}
+  public mutating func clearValue() { self._value = nil }
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
 
-  fileprivate var _value: Org_Xrpl_Rpc_V1_CurrencyAmount? = nil
+  fileprivate var _value: Org_Xrpl_Rpc_V1_CurrencyAmount?
 }
 
 public struct Org_Xrpl_Rpc_V1_LimitAmount {
@@ -919,19 +919,19 @@ public struct Org_Xrpl_Rpc_V1_LimitAmount {
   // methods supported on all messages.
 
   public var value: Org_Xrpl_Rpc_V1_CurrencyAmount {
-    get {return _value ?? Org_Xrpl_Rpc_V1_CurrencyAmount()}
-    set {_value = newValue}
+    get { return _value ?? Org_Xrpl_Rpc_V1_CurrencyAmount() }
+    set { _value = newValue }
   }
   /// Returns true if `value` has been explicitly set.
-  public var hasValue: Bool {return self._value != nil}
+  public var hasValue: Bool { return self._value != nil }
   /// Clears the value of `value`. Subsequent reads from it will return its default value.
-  public mutating func clearValue() {self._value = nil}
+  public mutating func clearValue() { self._value = nil }
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
 
-  fileprivate var _value: Org_Xrpl_Rpc_V1_CurrencyAmount? = nil
+  fileprivate var _value: Org_Xrpl_Rpc_V1_CurrencyAmount?
 }
 
 public struct Org_Xrpl_Rpc_V1_LowLimit {
@@ -940,19 +940,19 @@ public struct Org_Xrpl_Rpc_V1_LowLimit {
   // methods supported on all messages.
 
   public var value: Org_Xrpl_Rpc_V1_CurrencyAmount {
-    get {return _value ?? Org_Xrpl_Rpc_V1_CurrencyAmount()}
-    set {_value = newValue}
+    get { return _value ?? Org_Xrpl_Rpc_V1_CurrencyAmount() }
+    set { _value = newValue }
   }
   /// Returns true if `value` has been explicitly set.
-  public var hasValue: Bool {return self._value != nil}
+  public var hasValue: Bool { return self._value != nil }
   /// Clears the value of `value`. Subsequent reads from it will return its default value.
-  public mutating func clearValue() {self._value = nil}
+  public mutating func clearValue() { self._value = nil }
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
 
-  fileprivate var _value: Org_Xrpl_Rpc_V1_CurrencyAmount? = nil
+  fileprivate var _value: Org_Xrpl_Rpc_V1_CurrencyAmount?
 }
 
 public struct Org_Xrpl_Rpc_V1_SendMax {
@@ -961,19 +961,19 @@ public struct Org_Xrpl_Rpc_V1_SendMax {
   // methods supported on all messages.
 
   public var value: Org_Xrpl_Rpc_V1_CurrencyAmount {
-    get {return _value ?? Org_Xrpl_Rpc_V1_CurrencyAmount()}
-    set {_value = newValue}
+    get { return _value ?? Org_Xrpl_Rpc_V1_CurrencyAmount() }
+    set { _value = newValue }
   }
   /// Returns true if `value` has been explicitly set.
-  public var hasValue: Bool {return self._value != nil}
+  public var hasValue: Bool { return self._value != nil }
   /// Clears the value of `value`. Subsequent reads from it will return its default value.
-  public mutating func clearValue() {self._value = nil}
+  public mutating func clearValue() { self._value = nil }
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
 
-  fileprivate var _value: Org_Xrpl_Rpc_V1_CurrencyAmount? = nil
+  fileprivate var _value: Org_Xrpl_Rpc_V1_CurrencyAmount?
 }
 
 public struct Org_Xrpl_Rpc_V1_TakerGets {
@@ -982,19 +982,19 @@ public struct Org_Xrpl_Rpc_V1_TakerGets {
   // methods supported on all messages.
 
   public var value: Org_Xrpl_Rpc_V1_CurrencyAmount {
-    get {return _value ?? Org_Xrpl_Rpc_V1_CurrencyAmount()}
-    set {_value = newValue}
+    get { return _value ?? Org_Xrpl_Rpc_V1_CurrencyAmount() }
+    set { _value = newValue }
   }
   /// Returns true if `value` has been explicitly set.
-  public var hasValue: Bool {return self._value != nil}
+  public var hasValue: Bool { return self._value != nil }
   /// Clears the value of `value`. Subsequent reads from it will return its default value.
-  public mutating func clearValue() {self._value = nil}
+  public mutating func clearValue() { self._value = nil }
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
 
-  fileprivate var _value: Org_Xrpl_Rpc_V1_CurrencyAmount? = nil
+  fileprivate var _value: Org_Xrpl_Rpc_V1_CurrencyAmount?
 }
 
 public struct Org_Xrpl_Rpc_V1_TakerPays {
@@ -1003,19 +1003,19 @@ public struct Org_Xrpl_Rpc_V1_TakerPays {
   // methods supported on all messages.
 
   public var value: Org_Xrpl_Rpc_V1_CurrencyAmount {
-    get {return _value ?? Org_Xrpl_Rpc_V1_CurrencyAmount()}
-    set {_value = newValue}
+    get { return _value ?? Org_Xrpl_Rpc_V1_CurrencyAmount() }
+    set { _value = newValue }
   }
   /// Returns true if `value` has been explicitly set.
-  public var hasValue: Bool {return self._value != nil}
+  public var hasValue: Bool { return self._value != nil }
   /// Clears the value of `value`. Subsequent reads from it will return its default value.
-  public mutating func clearValue() {self._value = nil}
+  public mutating func clearValue() { self._value = nil }
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
 
-  fileprivate var _value: Org_Xrpl_Rpc_V1_CurrencyAmount? = nil
+  fileprivate var _value: Org_Xrpl_Rpc_V1_CurrencyAmount?
 }
 
 public struct Org_Xrpl_Rpc_V1_Account {
@@ -1024,19 +1024,19 @@ public struct Org_Xrpl_Rpc_V1_Account {
   // methods supported on all messages.
 
   public var value: Org_Xrpl_Rpc_V1_AccountAddress {
-    get {return _value ?? Org_Xrpl_Rpc_V1_AccountAddress()}
-    set {_value = newValue}
+    get { return _value ?? Org_Xrpl_Rpc_V1_AccountAddress() }
+    set { _value = newValue }
   }
   /// Returns true if `value` has been explicitly set.
-  public var hasValue: Bool {return self._value != nil}
+  public var hasValue: Bool { return self._value != nil }
   /// Clears the value of `value`. Subsequent reads from it will return its default value.
-  public mutating func clearValue() {self._value = nil}
+  public mutating func clearValue() { self._value = nil }
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
 
-  fileprivate var _value: Org_Xrpl_Rpc_V1_AccountAddress? = nil
+  fileprivate var _value: Org_Xrpl_Rpc_V1_AccountAddress?
 }
 
 public struct Org_Xrpl_Rpc_V1_Authorize {
@@ -1045,19 +1045,19 @@ public struct Org_Xrpl_Rpc_V1_Authorize {
   // methods supported on all messages.
 
   public var value: Org_Xrpl_Rpc_V1_AccountAddress {
-    get {return _value ?? Org_Xrpl_Rpc_V1_AccountAddress()}
-    set {_value = newValue}
+    get { return _value ?? Org_Xrpl_Rpc_V1_AccountAddress() }
+    set { _value = newValue }
   }
   /// Returns true if `value` has been explicitly set.
-  public var hasValue: Bool {return self._value != nil}
+  public var hasValue: Bool { return self._value != nil }
   /// Clears the value of `value`. Subsequent reads from it will return its default value.
-  public mutating func clearValue() {self._value = nil}
+  public mutating func clearValue() { self._value = nil }
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
 
-  fileprivate var _value: Org_Xrpl_Rpc_V1_AccountAddress? = nil
+  fileprivate var _value: Org_Xrpl_Rpc_V1_AccountAddress?
 }
 
 public struct Org_Xrpl_Rpc_V1_Destination {
@@ -1066,19 +1066,19 @@ public struct Org_Xrpl_Rpc_V1_Destination {
   // methods supported on all messages.
 
   public var value: Org_Xrpl_Rpc_V1_AccountAddress {
-    get {return _value ?? Org_Xrpl_Rpc_V1_AccountAddress()}
-    set {_value = newValue}
+    get { return _value ?? Org_Xrpl_Rpc_V1_AccountAddress() }
+    set { _value = newValue }
   }
   /// Returns true if `value` has been explicitly set.
-  public var hasValue: Bool {return self._value != nil}
+  public var hasValue: Bool { return self._value != nil }
   /// Clears the value of `value`. Subsequent reads from it will return its default value.
-  public mutating func clearValue() {self._value = nil}
+  public mutating func clearValue() { self._value = nil }
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
 
-  fileprivate var _value: Org_Xrpl_Rpc_V1_AccountAddress? = nil
+  fileprivate var _value: Org_Xrpl_Rpc_V1_AccountAddress?
 }
 
 public struct Org_Xrpl_Rpc_V1_Owner {
@@ -1087,19 +1087,19 @@ public struct Org_Xrpl_Rpc_V1_Owner {
   // methods supported on all messages.
 
   public var value: Org_Xrpl_Rpc_V1_AccountAddress {
-    get {return _value ?? Org_Xrpl_Rpc_V1_AccountAddress()}
-    set {_value = newValue}
+    get { return _value ?? Org_Xrpl_Rpc_V1_AccountAddress() }
+    set { _value = newValue }
   }
   /// Returns true if `value` has been explicitly set.
-  public var hasValue: Bool {return self._value != nil}
+  public var hasValue: Bool { return self._value != nil }
   /// Clears the value of `value`. Subsequent reads from it will return its default value.
-  public mutating func clearValue() {self._value = nil}
+  public mutating func clearValue() { self._value = nil }
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
 
-  fileprivate var _value: Org_Xrpl_Rpc_V1_AccountAddress? = nil
+  fileprivate var _value: Org_Xrpl_Rpc_V1_AccountAddress?
 }
 
 public struct Org_Xrpl_Rpc_V1_RegularKey {
@@ -1108,19 +1108,19 @@ public struct Org_Xrpl_Rpc_V1_RegularKey {
   // methods supported on all messages.
 
   public var value: Org_Xrpl_Rpc_V1_AccountAddress {
-    get {return _value ?? Org_Xrpl_Rpc_V1_AccountAddress()}
-    set {_value = newValue}
+    get { return _value ?? Org_Xrpl_Rpc_V1_AccountAddress() }
+    set { _value = newValue }
   }
   /// Returns true if `value` has been explicitly set.
-  public var hasValue: Bool {return self._value != nil}
+  public var hasValue: Bool { return self._value != nil }
   /// Clears the value of `value`. Subsequent reads from it will return its default value.
-  public mutating func clearValue() {self._value = nil}
+  public mutating func clearValue() { self._value = nil }
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
 
-  fileprivate var _value: Org_Xrpl_Rpc_V1_AccountAddress? = nil
+  fileprivate var _value: Org_Xrpl_Rpc_V1_AccountAddress?
 }
 
 public struct Org_Xrpl_Rpc_V1_Unauthorize {
@@ -1129,19 +1129,19 @@ public struct Org_Xrpl_Rpc_V1_Unauthorize {
   // methods supported on all messages.
 
   public var value: Org_Xrpl_Rpc_V1_AccountAddress {
-    get {return _value ?? Org_Xrpl_Rpc_V1_AccountAddress()}
-    set {_value = newValue}
+    get { return _value ?? Org_Xrpl_Rpc_V1_AccountAddress() }
+    set { _value = newValue }
   }
   /// Returns true if `value` has been explicitly set.
-  public var hasValue: Bool {return self._value != nil}
+  public var hasValue: Bool { return self._value != nil }
   /// Clears the value of `value`. Subsequent reads from it will return its default value.
-  public mutating func clearValue() {self._value = nil}
+  public mutating func clearValue() { self._value = nil }
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
 
-  fileprivate var _value: Org_Xrpl_Rpc_V1_AccountAddress? = nil
+  fileprivate var _value: Org_Xrpl_Rpc_V1_AccountAddress?
 }
 
 public struct Org_Xrpl_Rpc_V1_Domain {
@@ -1163,39 +1163,39 @@ public struct Org_Xrpl_Rpc_V1_SignerEntry {
   // methods supported on all messages.
 
   public var account: Org_Xrpl_Rpc_V1_Account {
-    get {return _account ?? Org_Xrpl_Rpc_V1_Account()}
-    set {_account = newValue}
+    get { return _account ?? Org_Xrpl_Rpc_V1_Account() }
+    set { _account = newValue }
   }
   /// Returns true if `account` has been explicitly set.
-  public var hasAccount: Bool {return self._account != nil}
+  public var hasAccount: Bool { return self._account != nil }
   /// Clears the value of `account`. Subsequent reads from it will return its default value.
-  public mutating func clearAccount() {self._account = nil}
+  public mutating func clearAccount() { self._account = nil }
 
   public var signerWeight: Org_Xrpl_Rpc_V1_SignerWeight {
-    get {return _signerWeight ?? Org_Xrpl_Rpc_V1_SignerWeight()}
-    set {_signerWeight = newValue}
+    get { return _signerWeight ?? Org_Xrpl_Rpc_V1_SignerWeight() }
+    set { _signerWeight = newValue }
   }
   /// Returns true if `signerWeight` has been explicitly set.
-  public var hasSignerWeight: Bool {return self._signerWeight != nil}
+  public var hasSignerWeight: Bool { return self._signerWeight != nil }
   /// Clears the value of `signerWeight`. Subsequent reads from it will return its default value.
-  public mutating func clearSignerWeight() {self._signerWeight = nil}
+  public mutating func clearSignerWeight() { self._signerWeight = nil }
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
 
-  fileprivate var _account: Org_Xrpl_Rpc_V1_Account? = nil
-  fileprivate var _signerWeight: Org_Xrpl_Rpc_V1_SignerWeight? = nil
+  fileprivate var _account: Org_Xrpl_Rpc_V1_Account?
+  fileprivate var _signerWeight: Org_Xrpl_Rpc_V1_SignerWeight?
 }
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "org.xrpl.rpc.v1"
+private let _protobuf_package = "org.xrpl.rpc.v1"
 
 extension Org_Xrpl_Rpc_V1_CancelAfter: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".CancelAfter"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "value"),
+    1: .same(proto: "value")
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -1215,8 +1215,8 @@ extension Org_Xrpl_Rpc_V1_CancelAfter: SwiftProtobuf.Message, SwiftProtobuf._Mes
   }
 
   public static func ==(lhs: Org_Xrpl_Rpc_V1_CancelAfter, rhs: Org_Xrpl_Rpc_V1_CancelAfter) -> Bool {
-    if lhs.value != rhs.value {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
+    if lhs.value != rhs.value { return false }
+    if lhs.unknownFields != rhs.unknownFields { return false }
     return true
   }
 }
@@ -1224,7 +1224,7 @@ extension Org_Xrpl_Rpc_V1_CancelAfter: SwiftProtobuf.Message, SwiftProtobuf._Mes
 extension Org_Xrpl_Rpc_V1_ClearFlag: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".ClearFlag"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "value"),
+    1: .same(proto: "value")
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -1244,8 +1244,8 @@ extension Org_Xrpl_Rpc_V1_ClearFlag: SwiftProtobuf.Message, SwiftProtobuf._Messa
   }
 
   public static func ==(lhs: Org_Xrpl_Rpc_V1_ClearFlag, rhs: Org_Xrpl_Rpc_V1_ClearFlag) -> Bool {
-    if lhs.value != rhs.value {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
+    if lhs.value != rhs.value { return false }
+    if lhs.unknownFields != rhs.unknownFields { return false }
     return true
   }
 }
@@ -1253,7 +1253,7 @@ extension Org_Xrpl_Rpc_V1_ClearFlag: SwiftProtobuf.Message, SwiftProtobuf._Messa
 extension Org_Xrpl_Rpc_V1_CloseTime: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".CloseTime"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "value"),
+    1: .same(proto: "value")
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -1273,8 +1273,8 @@ extension Org_Xrpl_Rpc_V1_CloseTime: SwiftProtobuf.Message, SwiftProtobuf._Messa
   }
 
   public static func ==(lhs: Org_Xrpl_Rpc_V1_CloseTime, rhs: Org_Xrpl_Rpc_V1_CloseTime) -> Bool {
-    if lhs.value != rhs.value {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
+    if lhs.value != rhs.value { return false }
+    if lhs.unknownFields != rhs.unknownFields { return false }
     return true
   }
 }
@@ -1282,7 +1282,7 @@ extension Org_Xrpl_Rpc_V1_CloseTime: SwiftProtobuf.Message, SwiftProtobuf._Messa
 extension Org_Xrpl_Rpc_V1_Date: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".Date"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "value"),
+    1: .same(proto: "value")
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -1302,8 +1302,8 @@ extension Org_Xrpl_Rpc_V1_Date: SwiftProtobuf.Message, SwiftProtobuf._MessageImp
   }
 
   public static func ==(lhs: Org_Xrpl_Rpc_V1_Date, rhs: Org_Xrpl_Rpc_V1_Date) -> Bool {
-    if lhs.value != rhs.value {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
+    if lhs.value != rhs.value { return false }
+    if lhs.unknownFields != rhs.unknownFields { return false }
     return true
   }
 }
@@ -1311,7 +1311,7 @@ extension Org_Xrpl_Rpc_V1_Date: SwiftProtobuf.Message, SwiftProtobuf._MessageImp
 extension Org_Xrpl_Rpc_V1_DestinationTag: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".DestinationTag"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "value"),
+    1: .same(proto: "value")
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -1331,8 +1331,8 @@ extension Org_Xrpl_Rpc_V1_DestinationTag: SwiftProtobuf.Message, SwiftProtobuf._
   }
 
   public static func ==(lhs: Org_Xrpl_Rpc_V1_DestinationTag, rhs: Org_Xrpl_Rpc_V1_DestinationTag) -> Bool {
-    if lhs.value != rhs.value {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
+    if lhs.value != rhs.value { return false }
+    if lhs.unknownFields != rhs.unknownFields { return false }
     return true
   }
 }
@@ -1340,7 +1340,7 @@ extension Org_Xrpl_Rpc_V1_DestinationTag: SwiftProtobuf.Message, SwiftProtobuf._
 extension Org_Xrpl_Rpc_V1_Expiration: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".Expiration"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "value"),
+    1: .same(proto: "value")
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -1360,8 +1360,8 @@ extension Org_Xrpl_Rpc_V1_Expiration: SwiftProtobuf.Message, SwiftProtobuf._Mess
   }
 
   public static func ==(lhs: Org_Xrpl_Rpc_V1_Expiration, rhs: Org_Xrpl_Rpc_V1_Expiration) -> Bool {
-    if lhs.value != rhs.value {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
+    if lhs.value != rhs.value { return false }
+    if lhs.unknownFields != rhs.unknownFields { return false }
     return true
   }
 }
@@ -1369,7 +1369,7 @@ extension Org_Xrpl_Rpc_V1_Expiration: SwiftProtobuf.Message, SwiftProtobuf._Mess
 extension Org_Xrpl_Rpc_V1_FinishAfter: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".FinishAfter"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "value"),
+    1: .same(proto: "value")
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -1389,8 +1389,8 @@ extension Org_Xrpl_Rpc_V1_FinishAfter: SwiftProtobuf.Message, SwiftProtobuf._Mes
   }
 
   public static func ==(lhs: Org_Xrpl_Rpc_V1_FinishAfter, rhs: Org_Xrpl_Rpc_V1_FinishAfter) -> Bool {
-    if lhs.value != rhs.value {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
+    if lhs.value != rhs.value { return false }
+    if lhs.unknownFields != rhs.unknownFields { return false }
     return true
   }
 }
@@ -1398,7 +1398,7 @@ extension Org_Xrpl_Rpc_V1_FinishAfter: SwiftProtobuf.Message, SwiftProtobuf._Mes
 extension Org_Xrpl_Rpc_V1_Flags: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".Flags"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "value"),
+    1: .same(proto: "value")
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -1418,8 +1418,8 @@ extension Org_Xrpl_Rpc_V1_Flags: SwiftProtobuf.Message, SwiftProtobuf._MessageIm
   }
 
   public static func ==(lhs: Org_Xrpl_Rpc_V1_Flags, rhs: Org_Xrpl_Rpc_V1_Flags) -> Bool {
-    if lhs.value != rhs.value {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
+    if lhs.value != rhs.value { return false }
+    if lhs.unknownFields != rhs.unknownFields { return false }
     return true
   }
 }
@@ -1427,7 +1427,7 @@ extension Org_Xrpl_Rpc_V1_Flags: SwiftProtobuf.Message, SwiftProtobuf._MessageIm
 extension Org_Xrpl_Rpc_V1_HighQualityIn: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".HighQualityIn"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "value"),
+    1: .same(proto: "value")
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -1447,8 +1447,8 @@ extension Org_Xrpl_Rpc_V1_HighQualityIn: SwiftProtobuf.Message, SwiftProtobuf._M
   }
 
   public static func ==(lhs: Org_Xrpl_Rpc_V1_HighQualityIn, rhs: Org_Xrpl_Rpc_V1_HighQualityIn) -> Bool {
-    if lhs.value != rhs.value {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
+    if lhs.value != rhs.value { return false }
+    if lhs.unknownFields != rhs.unknownFields { return false }
     return true
   }
 }
@@ -1456,7 +1456,7 @@ extension Org_Xrpl_Rpc_V1_HighQualityIn: SwiftProtobuf.Message, SwiftProtobuf._M
 extension Org_Xrpl_Rpc_V1_HighQualityOut: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".HighQualityOut"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "value"),
+    1: .same(proto: "value")
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -1476,8 +1476,8 @@ extension Org_Xrpl_Rpc_V1_HighQualityOut: SwiftProtobuf.Message, SwiftProtobuf._
   }
 
   public static func ==(lhs: Org_Xrpl_Rpc_V1_HighQualityOut, rhs: Org_Xrpl_Rpc_V1_HighQualityOut) -> Bool {
-    if lhs.value != rhs.value {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
+    if lhs.value != rhs.value { return false }
+    if lhs.unknownFields != rhs.unknownFields { return false }
     return true
   }
 }
@@ -1485,7 +1485,7 @@ extension Org_Xrpl_Rpc_V1_HighQualityOut: SwiftProtobuf.Message, SwiftProtobuf._
 extension Org_Xrpl_Rpc_V1_LastLedgerSequence: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".LastLedgerSequence"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "value"),
+    1: .same(proto: "value")
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -1505,8 +1505,8 @@ extension Org_Xrpl_Rpc_V1_LastLedgerSequence: SwiftProtobuf.Message, SwiftProtob
   }
 
   public static func ==(lhs: Org_Xrpl_Rpc_V1_LastLedgerSequence, rhs: Org_Xrpl_Rpc_V1_LastLedgerSequence) -> Bool {
-    if lhs.value != rhs.value {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
+    if lhs.value != rhs.value { return false }
+    if lhs.unknownFields != rhs.unknownFields { return false }
     return true
   }
 }
@@ -1514,7 +1514,7 @@ extension Org_Xrpl_Rpc_V1_LastLedgerSequence: SwiftProtobuf.Message, SwiftProtob
 extension Org_Xrpl_Rpc_V1_LowQualityIn: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".LowQualityIn"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "value"),
+    1: .same(proto: "value")
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -1534,8 +1534,8 @@ extension Org_Xrpl_Rpc_V1_LowQualityIn: SwiftProtobuf.Message, SwiftProtobuf._Me
   }
 
   public static func ==(lhs: Org_Xrpl_Rpc_V1_LowQualityIn, rhs: Org_Xrpl_Rpc_V1_LowQualityIn) -> Bool {
-    if lhs.value != rhs.value {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
+    if lhs.value != rhs.value { return false }
+    if lhs.unknownFields != rhs.unknownFields { return false }
     return true
   }
 }
@@ -1543,7 +1543,7 @@ extension Org_Xrpl_Rpc_V1_LowQualityIn: SwiftProtobuf.Message, SwiftProtobuf._Me
 extension Org_Xrpl_Rpc_V1_LowQualityOut: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".LowQualityOut"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "value"),
+    1: .same(proto: "value")
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -1563,8 +1563,8 @@ extension Org_Xrpl_Rpc_V1_LowQualityOut: SwiftProtobuf.Message, SwiftProtobuf._M
   }
 
   public static func ==(lhs: Org_Xrpl_Rpc_V1_LowQualityOut, rhs: Org_Xrpl_Rpc_V1_LowQualityOut) -> Bool {
-    if lhs.value != rhs.value {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
+    if lhs.value != rhs.value { return false }
+    if lhs.unknownFields != rhs.unknownFields { return false }
     return true
   }
 }
@@ -1572,7 +1572,7 @@ extension Org_Xrpl_Rpc_V1_LowQualityOut: SwiftProtobuf.Message, SwiftProtobuf._M
 extension Org_Xrpl_Rpc_V1_OfferSequence: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".OfferSequence"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "value"),
+    1: .same(proto: "value")
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -1592,8 +1592,8 @@ extension Org_Xrpl_Rpc_V1_OfferSequence: SwiftProtobuf.Message, SwiftProtobuf._M
   }
 
   public static func ==(lhs: Org_Xrpl_Rpc_V1_OfferSequence, rhs: Org_Xrpl_Rpc_V1_OfferSequence) -> Bool {
-    if lhs.value != rhs.value {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
+    if lhs.value != rhs.value { return false }
+    if lhs.unknownFields != rhs.unknownFields { return false }
     return true
   }
 }
@@ -1601,7 +1601,7 @@ extension Org_Xrpl_Rpc_V1_OfferSequence: SwiftProtobuf.Message, SwiftProtobuf._M
 extension Org_Xrpl_Rpc_V1_OwnerCount: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".OwnerCount"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "value"),
+    1: .same(proto: "value")
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -1621,8 +1621,8 @@ extension Org_Xrpl_Rpc_V1_OwnerCount: SwiftProtobuf.Message, SwiftProtobuf._Mess
   }
 
   public static func ==(lhs: Org_Xrpl_Rpc_V1_OwnerCount, rhs: Org_Xrpl_Rpc_V1_OwnerCount) -> Bool {
-    if lhs.value != rhs.value {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
+    if lhs.value != rhs.value { return false }
+    if lhs.unknownFields != rhs.unknownFields { return false }
     return true
   }
 }
@@ -1630,7 +1630,7 @@ extension Org_Xrpl_Rpc_V1_OwnerCount: SwiftProtobuf.Message, SwiftProtobuf._Mess
 extension Org_Xrpl_Rpc_V1_PreviousTransactionLedgerSequence: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".PreviousTransactionLedgerSequence"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "value"),
+    1: .same(proto: "value")
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -1650,8 +1650,8 @@ extension Org_Xrpl_Rpc_V1_PreviousTransactionLedgerSequence: SwiftProtobuf.Messa
   }
 
   public static func ==(lhs: Org_Xrpl_Rpc_V1_PreviousTransactionLedgerSequence, rhs: Org_Xrpl_Rpc_V1_PreviousTransactionLedgerSequence) -> Bool {
-    if lhs.value != rhs.value {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
+    if lhs.value != rhs.value { return false }
+    if lhs.unknownFields != rhs.unknownFields { return false }
     return true
   }
 }
@@ -1659,7 +1659,7 @@ extension Org_Xrpl_Rpc_V1_PreviousTransactionLedgerSequence: SwiftProtobuf.Messa
 extension Org_Xrpl_Rpc_V1_QualityIn: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".QualityIn"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "value"),
+    1: .same(proto: "value")
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -1679,8 +1679,8 @@ extension Org_Xrpl_Rpc_V1_QualityIn: SwiftProtobuf.Message, SwiftProtobuf._Messa
   }
 
   public static func ==(lhs: Org_Xrpl_Rpc_V1_QualityIn, rhs: Org_Xrpl_Rpc_V1_QualityIn) -> Bool {
-    if lhs.value != rhs.value {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
+    if lhs.value != rhs.value { return false }
+    if lhs.unknownFields != rhs.unknownFields { return false }
     return true
   }
 }
@@ -1688,7 +1688,7 @@ extension Org_Xrpl_Rpc_V1_QualityIn: SwiftProtobuf.Message, SwiftProtobuf._Messa
 extension Org_Xrpl_Rpc_V1_QualityOut: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".QualityOut"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "value"),
+    1: .same(proto: "value")
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -1708,8 +1708,8 @@ extension Org_Xrpl_Rpc_V1_QualityOut: SwiftProtobuf.Message, SwiftProtobuf._Mess
   }
 
   public static func ==(lhs: Org_Xrpl_Rpc_V1_QualityOut, rhs: Org_Xrpl_Rpc_V1_QualityOut) -> Bool {
-    if lhs.value != rhs.value {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
+    if lhs.value != rhs.value { return false }
+    if lhs.unknownFields != rhs.unknownFields { return false }
     return true
   }
 }
@@ -1717,7 +1717,7 @@ extension Org_Xrpl_Rpc_V1_QualityOut: SwiftProtobuf.Message, SwiftProtobuf._Mess
 extension Org_Xrpl_Rpc_V1_ReferenceFeeUnits: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".ReferenceFeeUnits"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "value"),
+    1: .same(proto: "value")
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -1737,8 +1737,8 @@ extension Org_Xrpl_Rpc_V1_ReferenceFeeUnits: SwiftProtobuf.Message, SwiftProtobu
   }
 
   public static func ==(lhs: Org_Xrpl_Rpc_V1_ReferenceFeeUnits, rhs: Org_Xrpl_Rpc_V1_ReferenceFeeUnits) -> Bool {
-    if lhs.value != rhs.value {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
+    if lhs.value != rhs.value { return false }
+    if lhs.unknownFields != rhs.unknownFields { return false }
     return true
   }
 }
@@ -1746,7 +1746,7 @@ extension Org_Xrpl_Rpc_V1_ReferenceFeeUnits: SwiftProtobuf.Message, SwiftProtobu
 extension Org_Xrpl_Rpc_V1_ReserveBase: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".ReserveBase"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "value"),
+    1: .same(proto: "value")
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -1766,8 +1766,8 @@ extension Org_Xrpl_Rpc_V1_ReserveBase: SwiftProtobuf.Message, SwiftProtobuf._Mes
   }
 
   public static func ==(lhs: Org_Xrpl_Rpc_V1_ReserveBase, rhs: Org_Xrpl_Rpc_V1_ReserveBase) -> Bool {
-    if lhs.value != rhs.value {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
+    if lhs.value != rhs.value { return false }
+    if lhs.unknownFields != rhs.unknownFields { return false }
     return true
   }
 }
@@ -1775,7 +1775,7 @@ extension Org_Xrpl_Rpc_V1_ReserveBase: SwiftProtobuf.Message, SwiftProtobuf._Mes
 extension Org_Xrpl_Rpc_V1_ReserveIncrement: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".ReserveIncrement"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "value"),
+    1: .same(proto: "value")
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -1795,8 +1795,8 @@ extension Org_Xrpl_Rpc_V1_ReserveIncrement: SwiftProtobuf.Message, SwiftProtobuf
   }
 
   public static func ==(lhs: Org_Xrpl_Rpc_V1_ReserveIncrement, rhs: Org_Xrpl_Rpc_V1_ReserveIncrement) -> Bool {
-    if lhs.value != rhs.value {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
+    if lhs.value != rhs.value { return false }
+    if lhs.unknownFields != rhs.unknownFields { return false }
     return true
   }
 }
@@ -1804,7 +1804,7 @@ extension Org_Xrpl_Rpc_V1_ReserveIncrement: SwiftProtobuf.Message, SwiftProtobuf
 extension Org_Xrpl_Rpc_V1_Sequence: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".Sequence"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "value"),
+    1: .same(proto: "value")
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -1824,8 +1824,8 @@ extension Org_Xrpl_Rpc_V1_Sequence: SwiftProtobuf.Message, SwiftProtobuf._Messag
   }
 
   public static func ==(lhs: Org_Xrpl_Rpc_V1_Sequence, rhs: Org_Xrpl_Rpc_V1_Sequence) -> Bool {
-    if lhs.value != rhs.value {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
+    if lhs.value != rhs.value { return false }
+    if lhs.unknownFields != rhs.unknownFields { return false }
     return true
   }
 }
@@ -1833,7 +1833,7 @@ extension Org_Xrpl_Rpc_V1_Sequence: SwiftProtobuf.Message, SwiftProtobuf._Messag
 extension Org_Xrpl_Rpc_V1_SetFlag: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".SetFlag"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "value"),
+    1: .same(proto: "value")
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -1853,8 +1853,8 @@ extension Org_Xrpl_Rpc_V1_SetFlag: SwiftProtobuf.Message, SwiftProtobuf._Message
   }
 
   public static func ==(lhs: Org_Xrpl_Rpc_V1_SetFlag, rhs: Org_Xrpl_Rpc_V1_SetFlag) -> Bool {
-    if lhs.value != rhs.value {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
+    if lhs.value != rhs.value { return false }
+    if lhs.unknownFields != rhs.unknownFields { return false }
     return true
   }
 }
@@ -1862,7 +1862,7 @@ extension Org_Xrpl_Rpc_V1_SetFlag: SwiftProtobuf.Message, SwiftProtobuf._Message
 extension Org_Xrpl_Rpc_V1_SettleDelay: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".SettleDelay"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "value"),
+    1: .same(proto: "value")
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -1882,8 +1882,8 @@ extension Org_Xrpl_Rpc_V1_SettleDelay: SwiftProtobuf.Message, SwiftProtobuf._Mes
   }
 
   public static func ==(lhs: Org_Xrpl_Rpc_V1_SettleDelay, rhs: Org_Xrpl_Rpc_V1_SettleDelay) -> Bool {
-    if lhs.value != rhs.value {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
+    if lhs.value != rhs.value { return false }
+    if lhs.unknownFields != rhs.unknownFields { return false }
     return true
   }
 }
@@ -1891,7 +1891,7 @@ extension Org_Xrpl_Rpc_V1_SettleDelay: SwiftProtobuf.Message, SwiftProtobuf._Mes
 extension Org_Xrpl_Rpc_V1_SignerListID: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".SignerListID"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "value"),
+    1: .same(proto: "value")
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -1911,8 +1911,8 @@ extension Org_Xrpl_Rpc_V1_SignerListID: SwiftProtobuf.Message, SwiftProtobuf._Me
   }
 
   public static func ==(lhs: Org_Xrpl_Rpc_V1_SignerListID, rhs: Org_Xrpl_Rpc_V1_SignerListID) -> Bool {
-    if lhs.value != rhs.value {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
+    if lhs.value != rhs.value { return false }
+    if lhs.unknownFields != rhs.unknownFields { return false }
     return true
   }
 }
@@ -1920,7 +1920,7 @@ extension Org_Xrpl_Rpc_V1_SignerListID: SwiftProtobuf.Message, SwiftProtobuf._Me
 extension Org_Xrpl_Rpc_V1_SignerQuorum: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".SignerQuorum"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "value"),
+    1: .same(proto: "value")
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -1940,8 +1940,8 @@ extension Org_Xrpl_Rpc_V1_SignerQuorum: SwiftProtobuf.Message, SwiftProtobuf._Me
   }
 
   public static func ==(lhs: Org_Xrpl_Rpc_V1_SignerQuorum, rhs: Org_Xrpl_Rpc_V1_SignerQuorum) -> Bool {
-    if lhs.value != rhs.value {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
+    if lhs.value != rhs.value { return false }
+    if lhs.unknownFields != rhs.unknownFields { return false }
     return true
   }
 }
@@ -1949,7 +1949,7 @@ extension Org_Xrpl_Rpc_V1_SignerQuorum: SwiftProtobuf.Message, SwiftProtobuf._Me
 extension Org_Xrpl_Rpc_V1_SignerWeight: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".SignerWeight"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "value"),
+    1: .same(proto: "value")
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -1969,8 +1969,8 @@ extension Org_Xrpl_Rpc_V1_SignerWeight: SwiftProtobuf.Message, SwiftProtobuf._Me
   }
 
   public static func ==(lhs: Org_Xrpl_Rpc_V1_SignerWeight, rhs: Org_Xrpl_Rpc_V1_SignerWeight) -> Bool {
-    if lhs.value != rhs.value {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
+    if lhs.value != rhs.value { return false }
+    if lhs.unknownFields != rhs.unknownFields { return false }
     return true
   }
 }
@@ -1978,7 +1978,7 @@ extension Org_Xrpl_Rpc_V1_SignerWeight: SwiftProtobuf.Message, SwiftProtobuf._Me
 extension Org_Xrpl_Rpc_V1_SourceTag: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".SourceTag"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "value"),
+    1: .same(proto: "value")
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -1998,8 +1998,8 @@ extension Org_Xrpl_Rpc_V1_SourceTag: SwiftProtobuf.Message, SwiftProtobuf._Messa
   }
 
   public static func ==(lhs: Org_Xrpl_Rpc_V1_SourceTag, rhs: Org_Xrpl_Rpc_V1_SourceTag) -> Bool {
-    if lhs.value != rhs.value {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
+    if lhs.value != rhs.value { return false }
+    if lhs.unknownFields != rhs.unknownFields { return false }
     return true
   }
 }
@@ -2007,7 +2007,7 @@ extension Org_Xrpl_Rpc_V1_SourceTag: SwiftProtobuf.Message, SwiftProtobuf._Messa
 extension Org_Xrpl_Rpc_V1_TickSize: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".TickSize"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "value"),
+    1: .same(proto: "value")
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -2027,8 +2027,8 @@ extension Org_Xrpl_Rpc_V1_TickSize: SwiftProtobuf.Message, SwiftProtobuf._Messag
   }
 
   public static func ==(lhs: Org_Xrpl_Rpc_V1_TickSize, rhs: Org_Xrpl_Rpc_V1_TickSize) -> Bool {
-    if lhs.value != rhs.value {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
+    if lhs.value != rhs.value { return false }
+    if lhs.unknownFields != rhs.unknownFields { return false }
     return true
   }
 }
@@ -2036,7 +2036,7 @@ extension Org_Xrpl_Rpc_V1_TickSize: SwiftProtobuf.Message, SwiftProtobuf._Messag
 extension Org_Xrpl_Rpc_V1_TransferRate: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".TransferRate"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "value"),
+    1: .same(proto: "value")
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -2056,8 +2056,8 @@ extension Org_Xrpl_Rpc_V1_TransferRate: SwiftProtobuf.Message, SwiftProtobuf._Me
   }
 
   public static func ==(lhs: Org_Xrpl_Rpc_V1_TransferRate, rhs: Org_Xrpl_Rpc_V1_TransferRate) -> Bool {
-    if lhs.value != rhs.value {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
+    if lhs.value != rhs.value { return false }
+    if lhs.unknownFields != rhs.unknownFields { return false }
     return true
   }
 }
@@ -2065,7 +2065,7 @@ extension Org_Xrpl_Rpc_V1_TransferRate: SwiftProtobuf.Message, SwiftProtobuf._Me
 extension Org_Xrpl_Rpc_V1_BaseFee: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".BaseFee"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "value"),
+    1: .same(proto: "value")
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -2085,8 +2085,8 @@ extension Org_Xrpl_Rpc_V1_BaseFee: SwiftProtobuf.Message, SwiftProtobuf._Message
   }
 
   public static func ==(lhs: Org_Xrpl_Rpc_V1_BaseFee, rhs: Org_Xrpl_Rpc_V1_BaseFee) -> Bool {
-    if lhs.value != rhs.value {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
+    if lhs.value != rhs.value { return false }
+    if lhs.unknownFields != rhs.unknownFields { return false }
     return true
   }
 }
@@ -2094,7 +2094,7 @@ extension Org_Xrpl_Rpc_V1_BaseFee: SwiftProtobuf.Message, SwiftProtobuf._Message
 extension Org_Xrpl_Rpc_V1_BookNode: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".BookNode"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "value"),
+    1: .same(proto: "value")
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -2114,8 +2114,8 @@ extension Org_Xrpl_Rpc_V1_BookNode: SwiftProtobuf.Message, SwiftProtobuf._Messag
   }
 
   public static func ==(lhs: Org_Xrpl_Rpc_V1_BookNode, rhs: Org_Xrpl_Rpc_V1_BookNode) -> Bool {
-    if lhs.value != rhs.value {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
+    if lhs.value != rhs.value { return false }
+    if lhs.unknownFields != rhs.unknownFields { return false }
     return true
   }
 }
@@ -2123,7 +2123,7 @@ extension Org_Xrpl_Rpc_V1_BookNode: SwiftProtobuf.Message, SwiftProtobuf._Messag
 extension Org_Xrpl_Rpc_V1_DestinationNode: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".DestinationNode"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "value"),
+    1: .same(proto: "value")
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -2143,8 +2143,8 @@ extension Org_Xrpl_Rpc_V1_DestinationNode: SwiftProtobuf.Message, SwiftProtobuf.
   }
 
   public static func ==(lhs: Org_Xrpl_Rpc_V1_DestinationNode, rhs: Org_Xrpl_Rpc_V1_DestinationNode) -> Bool {
-    if lhs.value != rhs.value {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
+    if lhs.value != rhs.value { return false }
+    if lhs.unknownFields != rhs.unknownFields { return false }
     return true
   }
 }
@@ -2152,7 +2152,7 @@ extension Org_Xrpl_Rpc_V1_DestinationNode: SwiftProtobuf.Message, SwiftProtobuf.
 extension Org_Xrpl_Rpc_V1_HighNode: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".HighNode"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "value"),
+    1: .same(proto: "value")
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -2172,8 +2172,8 @@ extension Org_Xrpl_Rpc_V1_HighNode: SwiftProtobuf.Message, SwiftProtobuf._Messag
   }
 
   public static func ==(lhs: Org_Xrpl_Rpc_V1_HighNode, rhs: Org_Xrpl_Rpc_V1_HighNode) -> Bool {
-    if lhs.value != rhs.value {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
+    if lhs.value != rhs.value { return false }
+    if lhs.unknownFields != rhs.unknownFields { return false }
     return true
   }
 }
@@ -2181,7 +2181,7 @@ extension Org_Xrpl_Rpc_V1_HighNode: SwiftProtobuf.Message, SwiftProtobuf._Messag
 extension Org_Xrpl_Rpc_V1_IndexNext: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".IndexNext"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "value"),
+    1: .same(proto: "value")
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -2201,8 +2201,8 @@ extension Org_Xrpl_Rpc_V1_IndexNext: SwiftProtobuf.Message, SwiftProtobuf._Messa
   }
 
   public static func ==(lhs: Org_Xrpl_Rpc_V1_IndexNext, rhs: Org_Xrpl_Rpc_V1_IndexNext) -> Bool {
-    if lhs.value != rhs.value {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
+    if lhs.value != rhs.value { return false }
+    if lhs.unknownFields != rhs.unknownFields { return false }
     return true
   }
 }
@@ -2210,7 +2210,7 @@ extension Org_Xrpl_Rpc_V1_IndexNext: SwiftProtobuf.Message, SwiftProtobuf._Messa
 extension Org_Xrpl_Rpc_V1_IndexPrevious: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".IndexPrevious"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "value"),
+    1: .same(proto: "value")
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -2230,8 +2230,8 @@ extension Org_Xrpl_Rpc_V1_IndexPrevious: SwiftProtobuf.Message, SwiftProtobuf._M
   }
 
   public static func ==(lhs: Org_Xrpl_Rpc_V1_IndexPrevious, rhs: Org_Xrpl_Rpc_V1_IndexPrevious) -> Bool {
-    if lhs.value != rhs.value {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
+    if lhs.value != rhs.value { return false }
+    if lhs.unknownFields != rhs.unknownFields { return false }
     return true
   }
 }
@@ -2239,7 +2239,7 @@ extension Org_Xrpl_Rpc_V1_IndexPrevious: SwiftProtobuf.Message, SwiftProtobuf._M
 extension Org_Xrpl_Rpc_V1_LowNode: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".LowNode"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "value"),
+    1: .same(proto: "value")
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -2259,8 +2259,8 @@ extension Org_Xrpl_Rpc_V1_LowNode: SwiftProtobuf.Message, SwiftProtobuf._Message
   }
 
   public static func ==(lhs: Org_Xrpl_Rpc_V1_LowNode, rhs: Org_Xrpl_Rpc_V1_LowNode) -> Bool {
-    if lhs.value != rhs.value {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
+    if lhs.value != rhs.value { return false }
+    if lhs.unknownFields != rhs.unknownFields { return false }
     return true
   }
 }
@@ -2268,7 +2268,7 @@ extension Org_Xrpl_Rpc_V1_LowNode: SwiftProtobuf.Message, SwiftProtobuf._Message
 extension Org_Xrpl_Rpc_V1_OwnerNode: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".OwnerNode"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "value"),
+    1: .same(proto: "value")
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -2288,8 +2288,8 @@ extension Org_Xrpl_Rpc_V1_OwnerNode: SwiftProtobuf.Message, SwiftProtobuf._Messa
   }
 
   public static func ==(lhs: Org_Xrpl_Rpc_V1_OwnerNode, rhs: Org_Xrpl_Rpc_V1_OwnerNode) -> Bool {
-    if lhs.value != rhs.value {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
+    if lhs.value != rhs.value { return false }
+    if lhs.unknownFields != rhs.unknownFields { return false }
     return true
   }
 }
@@ -2297,7 +2297,7 @@ extension Org_Xrpl_Rpc_V1_OwnerNode: SwiftProtobuf.Message, SwiftProtobuf._Messa
 extension Org_Xrpl_Rpc_V1_EmailHash: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".EmailHash"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "value"),
+    1: .same(proto: "value")
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -2317,8 +2317,8 @@ extension Org_Xrpl_Rpc_V1_EmailHash: SwiftProtobuf.Message, SwiftProtobuf._Messa
   }
 
   public static func ==(lhs: Org_Xrpl_Rpc_V1_EmailHash, rhs: Org_Xrpl_Rpc_V1_EmailHash) -> Bool {
-    if lhs.value != rhs.value {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
+    if lhs.value != rhs.value { return false }
+    if lhs.unknownFields != rhs.unknownFields { return false }
     return true
   }
 }
@@ -2326,7 +2326,7 @@ extension Org_Xrpl_Rpc_V1_EmailHash: SwiftProtobuf.Message, SwiftProtobuf._Messa
 extension Org_Xrpl_Rpc_V1_TakerGetsIssuer: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".TakerGetsIssuer"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "value"),
+    1: .same(proto: "value")
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -2346,8 +2346,8 @@ extension Org_Xrpl_Rpc_V1_TakerGetsIssuer: SwiftProtobuf.Message, SwiftProtobuf.
   }
 
   public static func ==(lhs: Org_Xrpl_Rpc_V1_TakerGetsIssuer, rhs: Org_Xrpl_Rpc_V1_TakerGetsIssuer) -> Bool {
-    if lhs.value != rhs.value {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
+    if lhs.value != rhs.value { return false }
+    if lhs.unknownFields != rhs.unknownFields { return false }
     return true
   }
 }
@@ -2355,7 +2355,7 @@ extension Org_Xrpl_Rpc_V1_TakerGetsIssuer: SwiftProtobuf.Message, SwiftProtobuf.
 extension Org_Xrpl_Rpc_V1_TakerPaysIssuer: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".TakerPaysIssuer"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "value"),
+    1: .same(proto: "value")
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -2375,8 +2375,8 @@ extension Org_Xrpl_Rpc_V1_TakerPaysIssuer: SwiftProtobuf.Message, SwiftProtobuf.
   }
 
   public static func ==(lhs: Org_Xrpl_Rpc_V1_TakerPaysIssuer, rhs: Org_Xrpl_Rpc_V1_TakerPaysIssuer) -> Bool {
-    if lhs.value != rhs.value {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
+    if lhs.value != rhs.value { return false }
+    if lhs.unknownFields != rhs.unknownFields { return false }
     return true
   }
 }
@@ -2384,7 +2384,7 @@ extension Org_Xrpl_Rpc_V1_TakerPaysIssuer: SwiftProtobuf.Message, SwiftProtobuf.
 extension Org_Xrpl_Rpc_V1_AccountTransactionID: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".AccountTransactionID"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "value"),
+    1: .same(proto: "value")
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -2404,8 +2404,8 @@ extension Org_Xrpl_Rpc_V1_AccountTransactionID: SwiftProtobuf.Message, SwiftProt
   }
 
   public static func ==(lhs: Org_Xrpl_Rpc_V1_AccountTransactionID, rhs: Org_Xrpl_Rpc_V1_AccountTransactionID) -> Bool {
-    if lhs.value != rhs.value {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
+    if lhs.value != rhs.value { return false }
+    if lhs.unknownFields != rhs.unknownFields { return false }
     return true
   }
 }
@@ -2413,7 +2413,7 @@ extension Org_Xrpl_Rpc_V1_AccountTransactionID: SwiftProtobuf.Message, SwiftProt
 extension Org_Xrpl_Rpc_V1_BookDirectory: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".BookDirectory"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "value"),
+    1: .same(proto: "value")
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -2433,8 +2433,8 @@ extension Org_Xrpl_Rpc_V1_BookDirectory: SwiftProtobuf.Message, SwiftProtobuf._M
   }
 
   public static func ==(lhs: Org_Xrpl_Rpc_V1_BookDirectory, rhs: Org_Xrpl_Rpc_V1_BookDirectory) -> Bool {
-    if lhs.value != rhs.value {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
+    if lhs.value != rhs.value { return false }
+    if lhs.unknownFields != rhs.unknownFields { return false }
     return true
   }
 }
@@ -2442,7 +2442,7 @@ extension Org_Xrpl_Rpc_V1_BookDirectory: SwiftProtobuf.Message, SwiftProtobuf._M
 extension Org_Xrpl_Rpc_V1_Channel: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".Channel"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "value"),
+    1: .same(proto: "value")
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -2462,8 +2462,8 @@ extension Org_Xrpl_Rpc_V1_Channel: SwiftProtobuf.Message, SwiftProtobuf._Message
   }
 
   public static func ==(lhs: Org_Xrpl_Rpc_V1_Channel, rhs: Org_Xrpl_Rpc_V1_Channel) -> Bool {
-    if lhs.value != rhs.value {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
+    if lhs.value != rhs.value { return false }
+    if lhs.unknownFields != rhs.unknownFields { return false }
     return true
   }
 }
@@ -2471,7 +2471,7 @@ extension Org_Xrpl_Rpc_V1_Channel: SwiftProtobuf.Message, SwiftProtobuf._Message
 extension Org_Xrpl_Rpc_V1_CheckID: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".CheckID"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "value"),
+    1: .same(proto: "value")
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -2491,8 +2491,8 @@ extension Org_Xrpl_Rpc_V1_CheckID: SwiftProtobuf.Message, SwiftProtobuf._Message
   }
 
   public static func ==(lhs: Org_Xrpl_Rpc_V1_CheckID, rhs: Org_Xrpl_Rpc_V1_CheckID) -> Bool {
-    if lhs.value != rhs.value {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
+    if lhs.value != rhs.value { return false }
+    if lhs.unknownFields != rhs.unknownFields { return false }
     return true
   }
 }
@@ -2500,7 +2500,7 @@ extension Org_Xrpl_Rpc_V1_CheckID: SwiftProtobuf.Message, SwiftProtobuf._Message
 extension Org_Xrpl_Rpc_V1_Hash: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".Hash"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "value"),
+    1: .same(proto: "value")
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -2520,8 +2520,8 @@ extension Org_Xrpl_Rpc_V1_Hash: SwiftProtobuf.Message, SwiftProtobuf._MessageImp
   }
 
   public static func ==(lhs: Org_Xrpl_Rpc_V1_Hash, rhs: Org_Xrpl_Rpc_V1_Hash) -> Bool {
-    if lhs.value != rhs.value {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
+    if lhs.value != rhs.value { return false }
+    if lhs.unknownFields != rhs.unknownFields { return false }
     return true
   }
 }
@@ -2529,7 +2529,7 @@ extension Org_Xrpl_Rpc_V1_Hash: SwiftProtobuf.Message, SwiftProtobuf._MessageImp
 extension Org_Xrpl_Rpc_V1_Index: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".Index"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "value"),
+    1: .same(proto: "value")
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -2549,8 +2549,8 @@ extension Org_Xrpl_Rpc_V1_Index: SwiftProtobuf.Message, SwiftProtobuf._MessageIm
   }
 
   public static func ==(lhs: Org_Xrpl_Rpc_V1_Index, rhs: Org_Xrpl_Rpc_V1_Index) -> Bool {
-    if lhs.value != rhs.value {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
+    if lhs.value != rhs.value { return false }
+    if lhs.unknownFields != rhs.unknownFields { return false }
     return true
   }
 }
@@ -2558,7 +2558,7 @@ extension Org_Xrpl_Rpc_V1_Index: SwiftProtobuf.Message, SwiftProtobuf._MessageIm
 extension Org_Xrpl_Rpc_V1_InvoiceID: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".InvoiceID"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "value"),
+    1: .same(proto: "value")
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -2578,8 +2578,8 @@ extension Org_Xrpl_Rpc_V1_InvoiceID: SwiftProtobuf.Message, SwiftProtobuf._Messa
   }
 
   public static func ==(lhs: Org_Xrpl_Rpc_V1_InvoiceID, rhs: Org_Xrpl_Rpc_V1_InvoiceID) -> Bool {
-    if lhs.value != rhs.value {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
+    if lhs.value != rhs.value { return false }
+    if lhs.unknownFields != rhs.unknownFields { return false }
     return true
   }
 }
@@ -2587,7 +2587,7 @@ extension Org_Xrpl_Rpc_V1_InvoiceID: SwiftProtobuf.Message, SwiftProtobuf._Messa
 extension Org_Xrpl_Rpc_V1_PreviousTransactionID: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".PreviousTransactionID"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "value"),
+    1: .same(proto: "value")
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -2607,8 +2607,8 @@ extension Org_Xrpl_Rpc_V1_PreviousTransactionID: SwiftProtobuf.Message, SwiftPro
   }
 
   public static func ==(lhs: Org_Xrpl_Rpc_V1_PreviousTransactionID, rhs: Org_Xrpl_Rpc_V1_PreviousTransactionID) -> Bool {
-    if lhs.value != rhs.value {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
+    if lhs.value != rhs.value { return false }
+    if lhs.unknownFields != rhs.unknownFields { return false }
     return true
   }
 }
@@ -2616,7 +2616,7 @@ extension Org_Xrpl_Rpc_V1_PreviousTransactionID: SwiftProtobuf.Message, SwiftPro
 extension Org_Xrpl_Rpc_V1_RootIndex: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".RootIndex"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "value"),
+    1: .same(proto: "value")
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -2636,8 +2636,8 @@ extension Org_Xrpl_Rpc_V1_RootIndex: SwiftProtobuf.Message, SwiftProtobuf._Messa
   }
 
   public static func ==(lhs: Org_Xrpl_Rpc_V1_RootIndex, rhs: Org_Xrpl_Rpc_V1_RootIndex) -> Bool {
-    if lhs.value != rhs.value {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
+    if lhs.value != rhs.value { return false }
+    if lhs.unknownFields != rhs.unknownFields { return false }
     return true
   }
 }
@@ -2645,7 +2645,7 @@ extension Org_Xrpl_Rpc_V1_RootIndex: SwiftProtobuf.Message, SwiftProtobuf._Messa
 extension Org_Xrpl_Rpc_V1_Condition: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".Condition"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "value"),
+    1: .same(proto: "value")
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -2665,8 +2665,8 @@ extension Org_Xrpl_Rpc_V1_Condition: SwiftProtobuf.Message, SwiftProtobuf._Messa
   }
 
   public static func ==(lhs: Org_Xrpl_Rpc_V1_Condition, rhs: Org_Xrpl_Rpc_V1_Condition) -> Bool {
-    if lhs.value != rhs.value {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
+    if lhs.value != rhs.value { return false }
+    if lhs.unknownFields != rhs.unknownFields { return false }
     return true
   }
 }
@@ -2674,7 +2674,7 @@ extension Org_Xrpl_Rpc_V1_Condition: SwiftProtobuf.Message, SwiftProtobuf._Messa
 extension Org_Xrpl_Rpc_V1_Fulfillment: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".Fulfillment"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "value"),
+    1: .same(proto: "value")
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -2694,8 +2694,8 @@ extension Org_Xrpl_Rpc_V1_Fulfillment: SwiftProtobuf.Message, SwiftProtobuf._Mes
   }
 
   public static func ==(lhs: Org_Xrpl_Rpc_V1_Fulfillment, rhs: Org_Xrpl_Rpc_V1_Fulfillment) -> Bool {
-    if lhs.value != rhs.value {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
+    if lhs.value != rhs.value { return false }
+    if lhs.unknownFields != rhs.unknownFields { return false }
     return true
   }
 }
@@ -2703,7 +2703,7 @@ extension Org_Xrpl_Rpc_V1_Fulfillment: SwiftProtobuf.Message, SwiftProtobuf._Mes
 extension Org_Xrpl_Rpc_V1_MemoData: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".MemoData"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "value"),
+    1: .same(proto: "value")
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -2723,8 +2723,8 @@ extension Org_Xrpl_Rpc_V1_MemoData: SwiftProtobuf.Message, SwiftProtobuf._Messag
   }
 
   public static func ==(lhs: Org_Xrpl_Rpc_V1_MemoData, rhs: Org_Xrpl_Rpc_V1_MemoData) -> Bool {
-    if lhs.value != rhs.value {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
+    if lhs.value != rhs.value { return false }
+    if lhs.unknownFields != rhs.unknownFields { return false }
     return true
   }
 }
@@ -2732,7 +2732,7 @@ extension Org_Xrpl_Rpc_V1_MemoData: SwiftProtobuf.Message, SwiftProtobuf._Messag
 extension Org_Xrpl_Rpc_V1_MemoFormat: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".MemoFormat"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "value"),
+    1: .same(proto: "value")
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -2752,8 +2752,8 @@ extension Org_Xrpl_Rpc_V1_MemoFormat: SwiftProtobuf.Message, SwiftProtobuf._Mess
   }
 
   public static func ==(lhs: Org_Xrpl_Rpc_V1_MemoFormat, rhs: Org_Xrpl_Rpc_V1_MemoFormat) -> Bool {
-    if lhs.value != rhs.value {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
+    if lhs.value != rhs.value { return false }
+    if lhs.unknownFields != rhs.unknownFields { return false }
     return true
   }
 }
@@ -2761,7 +2761,7 @@ extension Org_Xrpl_Rpc_V1_MemoFormat: SwiftProtobuf.Message, SwiftProtobuf._Mess
 extension Org_Xrpl_Rpc_V1_MemoType: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".MemoType"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "value"),
+    1: .same(proto: "value")
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -2781,8 +2781,8 @@ extension Org_Xrpl_Rpc_V1_MemoType: SwiftProtobuf.Message, SwiftProtobuf._Messag
   }
 
   public static func ==(lhs: Org_Xrpl_Rpc_V1_MemoType, rhs: Org_Xrpl_Rpc_V1_MemoType) -> Bool {
-    if lhs.value != rhs.value {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
+    if lhs.value != rhs.value { return false }
+    if lhs.unknownFields != rhs.unknownFields { return false }
     return true
   }
 }
@@ -2790,7 +2790,7 @@ extension Org_Xrpl_Rpc_V1_MemoType: SwiftProtobuf.Message, SwiftProtobuf._Messag
 extension Org_Xrpl_Rpc_V1_MessageKey: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".MessageKey"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "value"),
+    1: .same(proto: "value")
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -2810,8 +2810,8 @@ extension Org_Xrpl_Rpc_V1_MessageKey: SwiftProtobuf.Message, SwiftProtobuf._Mess
   }
 
   public static func ==(lhs: Org_Xrpl_Rpc_V1_MessageKey, rhs: Org_Xrpl_Rpc_V1_MessageKey) -> Bool {
-    if lhs.value != rhs.value {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
+    if lhs.value != rhs.value { return false }
+    if lhs.unknownFields != rhs.unknownFields { return false }
     return true
   }
 }
@@ -2819,7 +2819,7 @@ extension Org_Xrpl_Rpc_V1_MessageKey: SwiftProtobuf.Message, SwiftProtobuf._Mess
 extension Org_Xrpl_Rpc_V1_PublicKey: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".PublicKey"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "value"),
+    1: .same(proto: "value")
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -2839,8 +2839,8 @@ extension Org_Xrpl_Rpc_V1_PublicKey: SwiftProtobuf.Message, SwiftProtobuf._Messa
   }
 
   public static func ==(lhs: Org_Xrpl_Rpc_V1_PublicKey, rhs: Org_Xrpl_Rpc_V1_PublicKey) -> Bool {
-    if lhs.value != rhs.value {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
+    if lhs.value != rhs.value { return false }
+    if lhs.unknownFields != rhs.unknownFields { return false }
     return true
   }
 }
@@ -2848,7 +2848,7 @@ extension Org_Xrpl_Rpc_V1_PublicKey: SwiftProtobuf.Message, SwiftProtobuf._Messa
 extension Org_Xrpl_Rpc_V1_PaymentChannelSignature: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".PaymentChannelSignature"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "value"),
+    1: .same(proto: "value")
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -2868,8 +2868,8 @@ extension Org_Xrpl_Rpc_V1_PaymentChannelSignature: SwiftProtobuf.Message, SwiftP
   }
 
   public static func ==(lhs: Org_Xrpl_Rpc_V1_PaymentChannelSignature, rhs: Org_Xrpl_Rpc_V1_PaymentChannelSignature) -> Bool {
-    if lhs.value != rhs.value {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
+    if lhs.value != rhs.value { return false }
+    if lhs.unknownFields != rhs.unknownFields { return false }
     return true
   }
 }
@@ -2877,7 +2877,7 @@ extension Org_Xrpl_Rpc_V1_PaymentChannelSignature: SwiftProtobuf.Message, SwiftP
 extension Org_Xrpl_Rpc_V1_SigningPublicKey: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".SigningPublicKey"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "value"),
+    1: .same(proto: "value")
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -2897,8 +2897,8 @@ extension Org_Xrpl_Rpc_V1_SigningPublicKey: SwiftProtobuf.Message, SwiftProtobuf
   }
 
   public static func ==(lhs: Org_Xrpl_Rpc_V1_SigningPublicKey, rhs: Org_Xrpl_Rpc_V1_SigningPublicKey) -> Bool {
-    if lhs.value != rhs.value {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
+    if lhs.value != rhs.value { return false }
+    if lhs.unknownFields != rhs.unknownFields { return false }
     return true
   }
 }
@@ -2906,7 +2906,7 @@ extension Org_Xrpl_Rpc_V1_SigningPublicKey: SwiftProtobuf.Message, SwiftProtobuf
 extension Org_Xrpl_Rpc_V1_TransactionSignature: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".TransactionSignature"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "value"),
+    1: .same(proto: "value")
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -2926,8 +2926,8 @@ extension Org_Xrpl_Rpc_V1_TransactionSignature: SwiftProtobuf.Message, SwiftProt
   }
 
   public static func ==(lhs: Org_Xrpl_Rpc_V1_TransactionSignature, rhs: Org_Xrpl_Rpc_V1_TransactionSignature) -> Bool {
-    if lhs.value != rhs.value {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
+    if lhs.value != rhs.value { return false }
+    if lhs.unknownFields != rhs.unknownFields { return false }
     return true
   }
 }
@@ -2935,7 +2935,7 @@ extension Org_Xrpl_Rpc_V1_TransactionSignature: SwiftProtobuf.Message, SwiftProt
 extension Org_Xrpl_Rpc_V1_TakerGetsCurreny: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".TakerGetsCurreny"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "value"),
+    1: .same(proto: "value")
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -2955,8 +2955,8 @@ extension Org_Xrpl_Rpc_V1_TakerGetsCurreny: SwiftProtobuf.Message, SwiftProtobuf
   }
 
   public static func ==(lhs: Org_Xrpl_Rpc_V1_TakerGetsCurreny, rhs: Org_Xrpl_Rpc_V1_TakerGetsCurreny) -> Bool {
-    if lhs._value != rhs._value {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
+    if lhs._value != rhs._value { return false }
+    if lhs.unknownFields != rhs.unknownFields { return false }
     return true
   }
 }
@@ -2964,7 +2964,7 @@ extension Org_Xrpl_Rpc_V1_TakerGetsCurreny: SwiftProtobuf.Message, SwiftProtobuf
 extension Org_Xrpl_Rpc_V1_TakerPaysCurrency: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".TakerPaysCurrency"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "value"),
+    1: .same(proto: "value")
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -2984,8 +2984,8 @@ extension Org_Xrpl_Rpc_V1_TakerPaysCurrency: SwiftProtobuf.Message, SwiftProtobu
   }
 
   public static func ==(lhs: Org_Xrpl_Rpc_V1_TakerPaysCurrency, rhs: Org_Xrpl_Rpc_V1_TakerPaysCurrency) -> Bool {
-    if lhs._value != rhs._value {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
+    if lhs._value != rhs._value { return false }
+    if lhs.unknownFields != rhs.unknownFields { return false }
     return true
   }
 }
@@ -2993,7 +2993,7 @@ extension Org_Xrpl_Rpc_V1_TakerPaysCurrency: SwiftProtobuf.Message, SwiftProtobu
 extension Org_Xrpl_Rpc_V1_Amount: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".Amount"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "value"),
+    1: .same(proto: "value")
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -3013,8 +3013,8 @@ extension Org_Xrpl_Rpc_V1_Amount: SwiftProtobuf.Message, SwiftProtobuf._MessageI
   }
 
   public static func ==(lhs: Org_Xrpl_Rpc_V1_Amount, rhs: Org_Xrpl_Rpc_V1_Amount) -> Bool {
-    if lhs._value != rhs._value {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
+    if lhs._value != rhs._value { return false }
+    if lhs.unknownFields != rhs.unknownFields { return false }
     return true
   }
 }
@@ -3022,7 +3022,7 @@ extension Org_Xrpl_Rpc_V1_Amount: SwiftProtobuf.Message, SwiftProtobuf._MessageI
 extension Org_Xrpl_Rpc_V1_Balance: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".Balance"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "value"),
+    1: .same(proto: "value")
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -3042,8 +3042,8 @@ extension Org_Xrpl_Rpc_V1_Balance: SwiftProtobuf.Message, SwiftProtobuf._Message
   }
 
   public static func ==(lhs: Org_Xrpl_Rpc_V1_Balance, rhs: Org_Xrpl_Rpc_V1_Balance) -> Bool {
-    if lhs._value != rhs._value {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
+    if lhs._value != rhs._value { return false }
+    if lhs.unknownFields != rhs.unknownFields { return false }
     return true
   }
 }
@@ -3051,7 +3051,7 @@ extension Org_Xrpl_Rpc_V1_Balance: SwiftProtobuf.Message, SwiftProtobuf._Message
 extension Org_Xrpl_Rpc_V1_DeliverMin: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".DeliverMin"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "value"),
+    1: .same(proto: "value")
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -3071,8 +3071,8 @@ extension Org_Xrpl_Rpc_V1_DeliverMin: SwiftProtobuf.Message, SwiftProtobuf._Mess
   }
 
   public static func ==(lhs: Org_Xrpl_Rpc_V1_DeliverMin, rhs: Org_Xrpl_Rpc_V1_DeliverMin) -> Bool {
-    if lhs._value != rhs._value {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
+    if lhs._value != rhs._value { return false }
+    if lhs.unknownFields != rhs.unknownFields { return false }
     return true
   }
 }
@@ -3080,7 +3080,7 @@ extension Org_Xrpl_Rpc_V1_DeliverMin: SwiftProtobuf.Message, SwiftProtobuf._Mess
 extension Org_Xrpl_Rpc_V1_DeliveredAmount: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".DeliveredAmount"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "value"),
+    1: .same(proto: "value")
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -3100,8 +3100,8 @@ extension Org_Xrpl_Rpc_V1_DeliveredAmount: SwiftProtobuf.Message, SwiftProtobuf.
   }
 
   public static func ==(lhs: Org_Xrpl_Rpc_V1_DeliveredAmount, rhs: Org_Xrpl_Rpc_V1_DeliveredAmount) -> Bool {
-    if lhs._value != rhs._value {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
+    if lhs._value != rhs._value { return false }
+    if lhs.unknownFields != rhs.unknownFields { return false }
     return true
   }
 }
@@ -3109,7 +3109,7 @@ extension Org_Xrpl_Rpc_V1_DeliveredAmount: SwiftProtobuf.Message, SwiftProtobuf.
 extension Org_Xrpl_Rpc_V1_HighLimit: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".HighLimit"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "value"),
+    1: .same(proto: "value")
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -3129,8 +3129,8 @@ extension Org_Xrpl_Rpc_V1_HighLimit: SwiftProtobuf.Message, SwiftProtobuf._Messa
   }
 
   public static func ==(lhs: Org_Xrpl_Rpc_V1_HighLimit, rhs: Org_Xrpl_Rpc_V1_HighLimit) -> Bool {
-    if lhs._value != rhs._value {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
+    if lhs._value != rhs._value { return false }
+    if lhs.unknownFields != rhs.unknownFields { return false }
     return true
   }
 }
@@ -3138,7 +3138,7 @@ extension Org_Xrpl_Rpc_V1_HighLimit: SwiftProtobuf.Message, SwiftProtobuf._Messa
 extension Org_Xrpl_Rpc_V1_LimitAmount: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".LimitAmount"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "value"),
+    1: .same(proto: "value")
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -3158,8 +3158,8 @@ extension Org_Xrpl_Rpc_V1_LimitAmount: SwiftProtobuf.Message, SwiftProtobuf._Mes
   }
 
   public static func ==(lhs: Org_Xrpl_Rpc_V1_LimitAmount, rhs: Org_Xrpl_Rpc_V1_LimitAmount) -> Bool {
-    if lhs._value != rhs._value {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
+    if lhs._value != rhs._value { return false }
+    if lhs.unknownFields != rhs.unknownFields { return false }
     return true
   }
 }
@@ -3167,7 +3167,7 @@ extension Org_Xrpl_Rpc_V1_LimitAmount: SwiftProtobuf.Message, SwiftProtobuf._Mes
 extension Org_Xrpl_Rpc_V1_LowLimit: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".LowLimit"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "value"),
+    1: .same(proto: "value")
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -3187,8 +3187,8 @@ extension Org_Xrpl_Rpc_V1_LowLimit: SwiftProtobuf.Message, SwiftProtobuf._Messag
   }
 
   public static func ==(lhs: Org_Xrpl_Rpc_V1_LowLimit, rhs: Org_Xrpl_Rpc_V1_LowLimit) -> Bool {
-    if lhs._value != rhs._value {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
+    if lhs._value != rhs._value { return false }
+    if lhs.unknownFields != rhs.unknownFields { return false }
     return true
   }
 }
@@ -3196,7 +3196,7 @@ extension Org_Xrpl_Rpc_V1_LowLimit: SwiftProtobuf.Message, SwiftProtobuf._Messag
 extension Org_Xrpl_Rpc_V1_SendMax: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".SendMax"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "value"),
+    1: .same(proto: "value")
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -3216,8 +3216,8 @@ extension Org_Xrpl_Rpc_V1_SendMax: SwiftProtobuf.Message, SwiftProtobuf._Message
   }
 
   public static func ==(lhs: Org_Xrpl_Rpc_V1_SendMax, rhs: Org_Xrpl_Rpc_V1_SendMax) -> Bool {
-    if lhs._value != rhs._value {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
+    if lhs._value != rhs._value { return false }
+    if lhs.unknownFields != rhs.unknownFields { return false }
     return true
   }
 }
@@ -3225,7 +3225,7 @@ extension Org_Xrpl_Rpc_V1_SendMax: SwiftProtobuf.Message, SwiftProtobuf._Message
 extension Org_Xrpl_Rpc_V1_TakerGets: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".TakerGets"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "value"),
+    1: .same(proto: "value")
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -3245,8 +3245,8 @@ extension Org_Xrpl_Rpc_V1_TakerGets: SwiftProtobuf.Message, SwiftProtobuf._Messa
   }
 
   public static func ==(lhs: Org_Xrpl_Rpc_V1_TakerGets, rhs: Org_Xrpl_Rpc_V1_TakerGets) -> Bool {
-    if lhs._value != rhs._value {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
+    if lhs._value != rhs._value { return false }
+    if lhs.unknownFields != rhs.unknownFields { return false }
     return true
   }
 }
@@ -3254,7 +3254,7 @@ extension Org_Xrpl_Rpc_V1_TakerGets: SwiftProtobuf.Message, SwiftProtobuf._Messa
 extension Org_Xrpl_Rpc_V1_TakerPays: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".TakerPays"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "value"),
+    1: .same(proto: "value")
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -3274,8 +3274,8 @@ extension Org_Xrpl_Rpc_V1_TakerPays: SwiftProtobuf.Message, SwiftProtobuf._Messa
   }
 
   public static func ==(lhs: Org_Xrpl_Rpc_V1_TakerPays, rhs: Org_Xrpl_Rpc_V1_TakerPays) -> Bool {
-    if lhs._value != rhs._value {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
+    if lhs._value != rhs._value { return false }
+    if lhs.unknownFields != rhs.unknownFields { return false }
     return true
   }
 }
@@ -3283,7 +3283,7 @@ extension Org_Xrpl_Rpc_V1_TakerPays: SwiftProtobuf.Message, SwiftProtobuf._Messa
 extension Org_Xrpl_Rpc_V1_Account: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".Account"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "value"),
+    1: .same(proto: "value")
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -3303,8 +3303,8 @@ extension Org_Xrpl_Rpc_V1_Account: SwiftProtobuf.Message, SwiftProtobuf._Message
   }
 
   public static func ==(lhs: Org_Xrpl_Rpc_V1_Account, rhs: Org_Xrpl_Rpc_V1_Account) -> Bool {
-    if lhs._value != rhs._value {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
+    if lhs._value != rhs._value { return false }
+    if lhs.unknownFields != rhs.unknownFields { return false }
     return true
   }
 }
@@ -3312,7 +3312,7 @@ extension Org_Xrpl_Rpc_V1_Account: SwiftProtobuf.Message, SwiftProtobuf._Message
 extension Org_Xrpl_Rpc_V1_Authorize: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".Authorize"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "value"),
+    1: .same(proto: "value")
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -3332,8 +3332,8 @@ extension Org_Xrpl_Rpc_V1_Authorize: SwiftProtobuf.Message, SwiftProtobuf._Messa
   }
 
   public static func ==(lhs: Org_Xrpl_Rpc_V1_Authorize, rhs: Org_Xrpl_Rpc_V1_Authorize) -> Bool {
-    if lhs._value != rhs._value {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
+    if lhs._value != rhs._value { return false }
+    if lhs.unknownFields != rhs.unknownFields { return false }
     return true
   }
 }
@@ -3341,7 +3341,7 @@ extension Org_Xrpl_Rpc_V1_Authorize: SwiftProtobuf.Message, SwiftProtobuf._Messa
 extension Org_Xrpl_Rpc_V1_Destination: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".Destination"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "value"),
+    1: .same(proto: "value")
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -3361,8 +3361,8 @@ extension Org_Xrpl_Rpc_V1_Destination: SwiftProtobuf.Message, SwiftProtobuf._Mes
   }
 
   public static func ==(lhs: Org_Xrpl_Rpc_V1_Destination, rhs: Org_Xrpl_Rpc_V1_Destination) -> Bool {
-    if lhs._value != rhs._value {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
+    if lhs._value != rhs._value { return false }
+    if lhs.unknownFields != rhs.unknownFields { return false }
     return true
   }
 }
@@ -3370,7 +3370,7 @@ extension Org_Xrpl_Rpc_V1_Destination: SwiftProtobuf.Message, SwiftProtobuf._Mes
 extension Org_Xrpl_Rpc_V1_Owner: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".Owner"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "value"),
+    1: .same(proto: "value")
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -3390,8 +3390,8 @@ extension Org_Xrpl_Rpc_V1_Owner: SwiftProtobuf.Message, SwiftProtobuf._MessageIm
   }
 
   public static func ==(lhs: Org_Xrpl_Rpc_V1_Owner, rhs: Org_Xrpl_Rpc_V1_Owner) -> Bool {
-    if lhs._value != rhs._value {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
+    if lhs._value != rhs._value { return false }
+    if lhs.unknownFields != rhs.unknownFields { return false }
     return true
   }
 }
@@ -3399,7 +3399,7 @@ extension Org_Xrpl_Rpc_V1_Owner: SwiftProtobuf.Message, SwiftProtobuf._MessageIm
 extension Org_Xrpl_Rpc_V1_RegularKey: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".RegularKey"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "value"),
+    1: .same(proto: "value")
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -3419,8 +3419,8 @@ extension Org_Xrpl_Rpc_V1_RegularKey: SwiftProtobuf.Message, SwiftProtobuf._Mess
   }
 
   public static func ==(lhs: Org_Xrpl_Rpc_V1_RegularKey, rhs: Org_Xrpl_Rpc_V1_RegularKey) -> Bool {
-    if lhs._value != rhs._value {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
+    if lhs._value != rhs._value { return false }
+    if lhs.unknownFields != rhs.unknownFields { return false }
     return true
   }
 }
@@ -3428,7 +3428,7 @@ extension Org_Xrpl_Rpc_V1_RegularKey: SwiftProtobuf.Message, SwiftProtobuf._Mess
 extension Org_Xrpl_Rpc_V1_Unauthorize: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".Unauthorize"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "value"),
+    1: .same(proto: "value")
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -3448,8 +3448,8 @@ extension Org_Xrpl_Rpc_V1_Unauthorize: SwiftProtobuf.Message, SwiftProtobuf._Mes
   }
 
   public static func ==(lhs: Org_Xrpl_Rpc_V1_Unauthorize, rhs: Org_Xrpl_Rpc_V1_Unauthorize) -> Bool {
-    if lhs._value != rhs._value {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
+    if lhs._value != rhs._value { return false }
+    if lhs.unknownFields != rhs.unknownFields { return false }
     return true
   }
 }
@@ -3457,7 +3457,7 @@ extension Org_Xrpl_Rpc_V1_Unauthorize: SwiftProtobuf.Message, SwiftProtobuf._Mes
 extension Org_Xrpl_Rpc_V1_Domain: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".Domain"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "value"),
+    1: .same(proto: "value")
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -3477,8 +3477,8 @@ extension Org_Xrpl_Rpc_V1_Domain: SwiftProtobuf.Message, SwiftProtobuf._MessageI
   }
 
   public static func ==(lhs: Org_Xrpl_Rpc_V1_Domain, rhs: Org_Xrpl_Rpc_V1_Domain) -> Bool {
-    if lhs.value != rhs.value {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
+    if lhs.value != rhs.value { return false }
+    if lhs.unknownFields != rhs.unknownFields { return false }
     return true
   }
 }
@@ -3487,7 +3487,7 @@ extension Org_Xrpl_Rpc_V1_SignerEntry: SwiftProtobuf.Message, SwiftProtobuf._Mes
   public static let protoMessageName: String = _protobuf_package + ".SignerEntry"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "account"),
-    2: .standard(proto: "signer_weight"),
+    2: .standard(proto: "signer_weight")
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -3511,9 +3511,9 @@ extension Org_Xrpl_Rpc_V1_SignerEntry: SwiftProtobuf.Message, SwiftProtobuf._Mes
   }
 
   public static func ==(lhs: Org_Xrpl_Rpc_V1_SignerEntry, rhs: Org_Xrpl_Rpc_V1_SignerEntry) -> Bool {
-    if lhs._account != rhs._account {return false}
-    if lhs._signerWeight != rhs._signerWeight {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
+    if lhs._account != rhs._account { return false }
+    if lhs._signerWeight != rhs._signerWeight { return false }
+    if lhs.unknownFields != rhs.unknownFields { return false }
     return true
   }
 }

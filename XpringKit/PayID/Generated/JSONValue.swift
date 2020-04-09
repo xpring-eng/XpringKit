@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 public enum JSONValue: Codable, Equatable {
     case string(String)
     case int(Int)
@@ -16,7 +15,7 @@ public enum JSONValue: Codable, Equatable {
     case object([String: JSONValue])
     case array([JSONValue])
     case null
-    
+
     public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
@@ -26,10 +25,10 @@ public enum JSONValue: Codable, Equatable {
         case .bool(let bool): try container.encode(bool)
         case .object(let object): try container.encode(object)
         case .array(let array): try container.encode(array)
-        case .null: try container.encode(Optional<String>.none)
+        case .null: try container.encode(String?.none)
         }
     }
-    
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
         self = try ((try? container.decode(String.self)).map(JSONValue.string))
@@ -49,7 +48,7 @@ public enum JSONValue: Codable, Equatable {
             )
         )
     }
-    
+
 }
 
 extension JSONValue: ExpressibleByStringLiteral {

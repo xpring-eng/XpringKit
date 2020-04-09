@@ -37,7 +37,6 @@ fileprivate final class Org_Interledger_Stream_Proto_AccountServiceCreateAccount
   override class var method: String { return "/org.interledger.stream.proto.AccountService/CreateAccount" }
 }
 
-
 /// Instantiate Org_Interledger_Stream_Proto_AccountServiceServiceClient, then call methods of this protocol to make API calls.
 internal protocol Org_Interledger_Stream_Proto_AccountServiceService: ServiceClient {
   /// Synchronous. Unary.
@@ -142,4 +141,3 @@ fileprivate final class Org_Interledger_Stream_Proto_AccountServiceGetAccountSes
 internal protocol Org_Interledger_Stream_Proto_AccountServiceCreateAccountSession: ServerSessionUnary {}
 
 fileprivate final class Org_Interledger_Stream_Proto_AccountServiceCreateAccountSessionBase: ServerSessionUnaryBase<Org_Interledger_Stream_Proto_CreateAccountRequest, Org_Interledger_Stream_Proto_CreateAccountResponse>, Org_Interledger_Stream_Proto_AccountServiceCreateAccountSession {}
-

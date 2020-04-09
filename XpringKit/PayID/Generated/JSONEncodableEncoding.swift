@@ -5,8 +5,8 @@
 // https://github.com/swagger-api/swagger-codegen
 //
 
-import Foundation
 import Alamofire
+import Foundation
 
 public struct JSONDataEncoding: ParameterEncoding {
 
@@ -42,7 +42,7 @@ public struct JSONDataEncoding: ParameterEncoding {
     }
 
     public static func encodingParameters(jsonData: Data?) -> Parameters? {
-        var returnedParams: Parameters? = nil
+        var returnedParams: Parameters?
         if let jsonData = jsonData, !jsonData.isEmpty {
             var params = Parameters()
             params[jsonDataKey] = jsonData

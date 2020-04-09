@@ -7,8 +7,6 @@
 
 import Foundation
 
-
-
 public struct Compliance: Codable {
 
     public var type: String
@@ -19,6 +17,4 @@ public struct Compliance: Codable {
         self.data = data
     }
 
-
 }
-

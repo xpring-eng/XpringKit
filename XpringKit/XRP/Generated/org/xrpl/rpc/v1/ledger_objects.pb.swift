@@ -14,7 +14,7 @@ import SwiftProtobuf
 // incompatible with the version of SwiftProtobuf to which you are linking.
 // Please ensure that you are building against the same version of the API
 // that was used to generate this file.
-fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAPIVersionCheck {
+private struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAPIVersionCheck {
   struct _2: SwiftProtobuf.ProtobufAPIVersion_2 {}
   typealias Version = _2
 }
@@ -98,7 +98,7 @@ extension Org_Xrpl_Rpc_V1_LedgerEntryType: CaseIterable {
     .offer,
     .payChannel,
     .rippleState,
-    .signerList,
+    .signerList
   ]
 }
 
@@ -110,102 +110,102 @@ public struct Org_Xrpl_Rpc_V1_LedgerObject {
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
-  public var object: Org_Xrpl_Rpc_V1_LedgerObject.OneOf_Object? = nil
+  public var object: Org_Xrpl_Rpc_V1_LedgerObject.OneOf_Object?
 
   public var accountRoot: Org_Xrpl_Rpc_V1_AccountRoot {
     get {
-      if case .accountRoot(let v)? = object {return v}
+      if case .accountRoot(let v)? = object { return v }
       return Org_Xrpl_Rpc_V1_AccountRoot()
     }
-    set {object = .accountRoot(newValue)}
+    set { object = .accountRoot(newValue) }
   }
 
   public var amendments: Org_Xrpl_Rpc_V1_Amendments {
     get {
-      if case .amendments(let v)? = object {return v}
+      if case .amendments(let v)? = object { return v }
       return Org_Xrpl_Rpc_V1_Amendments()
     }
-    set {object = .amendments(newValue)}
+    set { object = .amendments(newValue) }
   }
 
   public var check: Org_Xrpl_Rpc_V1_Check {
     get {
-      if case .check(let v)? = object {return v}
+      if case .check(let v)? = object { return v }
       return Org_Xrpl_Rpc_V1_Check()
     }
-    set {object = .check(newValue)}
+    set { object = .check(newValue) }
   }
 
   public var depositPreauth: Org_Xrpl_Rpc_V1_DepositPreauthObject {
     get {
-      if case .depositPreauth(let v)? = object {return v}
+      if case .depositPreauth(let v)? = object { return v }
       return Org_Xrpl_Rpc_V1_DepositPreauthObject()
     }
-    set {object = .depositPreauth(newValue)}
+    set { object = .depositPreauth(newValue) }
   }
 
   public var directoryNode: Org_Xrpl_Rpc_V1_DirectoryNode {
     get {
-      if case .directoryNode(let v)? = object {return v}
+      if case .directoryNode(let v)? = object { return v }
       return Org_Xrpl_Rpc_V1_DirectoryNode()
     }
-    set {object = .directoryNode(newValue)}
+    set { object = .directoryNode(newValue) }
   }
 
   public var escrow: Org_Xrpl_Rpc_V1_Escrow {
     get {
-      if case .escrow(let v)? = object {return v}
+      if case .escrow(let v)? = object { return v }
       return Org_Xrpl_Rpc_V1_Escrow()
     }
-    set {object = .escrow(newValue)}
+    set { object = .escrow(newValue) }
   }
 
   public var feeSettings: Org_Xrpl_Rpc_V1_FeeSettings {
     get {
-      if case .feeSettings(let v)? = object {return v}
+      if case .feeSettings(let v)? = object { return v }
       return Org_Xrpl_Rpc_V1_FeeSettings()
     }
-    set {object = .feeSettings(newValue)}
+    set { object = .feeSettings(newValue) }
   }
 
   public var ledgerHashes: Org_Xrpl_Rpc_V1_LedgerHashes {
     get {
-      if case .ledgerHashes(let v)? = object {return v}
+      if case .ledgerHashes(let v)? = object { return v }
       return Org_Xrpl_Rpc_V1_LedgerHashes()
     }
-    set {object = .ledgerHashes(newValue)}
+    set { object = .ledgerHashes(newValue) }
   }
 
   public var offer: Org_Xrpl_Rpc_V1_Offer {
     get {
-      if case .offer(let v)? = object {return v}
+      if case .offer(let v)? = object { return v }
       return Org_Xrpl_Rpc_V1_Offer()
     }
-    set {object = .offer(newValue)}
+    set { object = .offer(newValue) }
   }
 
   public var payChannel: Org_Xrpl_Rpc_V1_PayChannel {
     get {
-      if case .payChannel(let v)? = object {return v}
+      if case .payChannel(let v)? = object { return v }
       return Org_Xrpl_Rpc_V1_PayChannel()
     }
-    set {object = .payChannel(newValue)}
+    set { object = .payChannel(newValue) }
   }
 
   public var rippleState: Org_Xrpl_Rpc_V1_RippleState {
     get {
-      if case .rippleState(let v)? = object {return v}
+      if case .rippleState(let v)? = object { return v }
       return Org_Xrpl_Rpc_V1_RippleState()
     }
-    set {object = .rippleState(newValue)}
+    set { object = .rippleState(newValue) }
   }
 
   public var signerList: Org_Xrpl_Rpc_V1_SignerList {
     get {
-      if case .signerList(let v)? = object {return v}
+      if case .signerList(let v)? = object { return v }
       return Org_Xrpl_Rpc_V1_SignerList()
     }
-    set {object = .signerList(newValue)}
+    set { object = .signerList(newValue) }
   }
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
@@ -255,149 +255,149 @@ public struct Org_Xrpl_Rpc_V1_AccountRoot {
   // methods supported on all messages.
 
   public var account: Org_Xrpl_Rpc_V1_Account {
-    get {return _account ?? Org_Xrpl_Rpc_V1_Account()}
-    set {_account = newValue}
+    get { return _account ?? Org_Xrpl_Rpc_V1_Account() }
+    set { _account = newValue }
   }
   /// Returns true if `account` has been explicitly set.
-  public var hasAccount: Bool {return self._account != nil}
+  public var hasAccount: Bool { return self._account != nil }
   /// Clears the value of `account`. Subsequent reads from it will return its default value.
-  public mutating func clearAccount() {self._account = nil}
+  public mutating func clearAccount() { self._account = nil }
 
   public var balance: Org_Xrpl_Rpc_V1_Balance {
-    get {return _balance ?? Org_Xrpl_Rpc_V1_Balance()}
-    set {_balance = newValue}
+    get { return _balance ?? Org_Xrpl_Rpc_V1_Balance() }
+    set { _balance = newValue }
   }
   /// Returns true if `balance` has been explicitly set.
-  public var hasBalance: Bool {return self._balance != nil}
+  public var hasBalance: Bool { return self._balance != nil }
   /// Clears the value of `balance`. Subsequent reads from it will return its default value.
-  public mutating func clearBalance() {self._balance = nil}
+  public mutating func clearBalance() { self._balance = nil }
 
   public var sequence: Org_Xrpl_Rpc_V1_Sequence {
-    get {return _sequence ?? Org_Xrpl_Rpc_V1_Sequence()}
-    set {_sequence = newValue}
+    get { return _sequence ?? Org_Xrpl_Rpc_V1_Sequence() }
+    set { _sequence = newValue }
   }
   /// Returns true if `sequence` has been explicitly set.
-  public var hasSequence: Bool {return self._sequence != nil}
+  public var hasSequence: Bool { return self._sequence != nil }
   /// Clears the value of `sequence`. Subsequent reads from it will return its default value.
-  public mutating func clearSequence() {self._sequence = nil}
+  public mutating func clearSequence() { self._sequence = nil }
 
   public var flags: Org_Xrpl_Rpc_V1_Flags {
-    get {return _flags ?? Org_Xrpl_Rpc_V1_Flags()}
-    set {_flags = newValue}
+    get { return _flags ?? Org_Xrpl_Rpc_V1_Flags() }
+    set { _flags = newValue }
   }
   /// Returns true if `flags` has been explicitly set.
-  public var hasFlags: Bool {return self._flags != nil}
+  public var hasFlags: Bool { return self._flags != nil }
   /// Clears the value of `flags`. Subsequent reads from it will return its default value.
-  public mutating func clearFlags() {self._flags = nil}
+  public mutating func clearFlags() { self._flags = nil }
 
   public var ownerCount: Org_Xrpl_Rpc_V1_OwnerCount {
-    get {return _ownerCount ?? Org_Xrpl_Rpc_V1_OwnerCount()}
-    set {_ownerCount = newValue}
+    get { return _ownerCount ?? Org_Xrpl_Rpc_V1_OwnerCount() }
+    set { _ownerCount = newValue }
   }
   /// Returns true if `ownerCount` has been explicitly set.
-  public var hasOwnerCount: Bool {return self._ownerCount != nil}
+  public var hasOwnerCount: Bool { return self._ownerCount != nil }
   /// Clears the value of `ownerCount`. Subsequent reads from it will return its default value.
-  public mutating func clearOwnerCount() {self._ownerCount = nil}
+  public mutating func clearOwnerCount() { self._ownerCount = nil }
 
   public var previousTransactionID: Org_Xrpl_Rpc_V1_PreviousTransactionID {
-    get {return _previousTransactionID ?? Org_Xrpl_Rpc_V1_PreviousTransactionID()}
-    set {_previousTransactionID = newValue}
+    get { return _previousTransactionID ?? Org_Xrpl_Rpc_V1_PreviousTransactionID() }
+    set { _previousTransactionID = newValue }
   }
   /// Returns true if `previousTransactionID` has been explicitly set.
-  public var hasPreviousTransactionID: Bool {return self._previousTransactionID != nil}
+  public var hasPreviousTransactionID: Bool { return self._previousTransactionID != nil }
   /// Clears the value of `previousTransactionID`. Subsequent reads from it will return its default value.
-  public mutating func clearPreviousTransactionID() {self._previousTransactionID = nil}
+  public mutating func clearPreviousTransactionID() { self._previousTransactionID = nil }
 
   public var previousTransactionLedgerSequence: Org_Xrpl_Rpc_V1_PreviousTransactionLedgerSequence {
-    get {return _previousTransactionLedgerSequence ?? Org_Xrpl_Rpc_V1_PreviousTransactionLedgerSequence()}
-    set {_previousTransactionLedgerSequence = newValue}
+    get { return _previousTransactionLedgerSequence ?? Org_Xrpl_Rpc_V1_PreviousTransactionLedgerSequence() }
+    set { _previousTransactionLedgerSequence = newValue }
   }
   /// Returns true if `previousTransactionLedgerSequence` has been explicitly set.
-  public var hasPreviousTransactionLedgerSequence: Bool {return self._previousTransactionLedgerSequence != nil}
+  public var hasPreviousTransactionLedgerSequence: Bool { return self._previousTransactionLedgerSequence != nil }
   /// Clears the value of `previousTransactionLedgerSequence`. Subsequent reads from it will return its default value.
-  public mutating func clearPreviousTransactionLedgerSequence() {self._previousTransactionLedgerSequence = nil}
+  public mutating func clearPreviousTransactionLedgerSequence() { self._previousTransactionLedgerSequence = nil }
 
   public var accountTransactionID: Org_Xrpl_Rpc_V1_AccountTransactionID {
-    get {return _accountTransactionID ?? Org_Xrpl_Rpc_V1_AccountTransactionID()}
-    set {_accountTransactionID = newValue}
+    get { return _accountTransactionID ?? Org_Xrpl_Rpc_V1_AccountTransactionID() }
+    set { _accountTransactionID = newValue }
   }
   /// Returns true if `accountTransactionID` has been explicitly set.
-  public var hasAccountTransactionID: Bool {return self._accountTransactionID != nil}
+  public var hasAccountTransactionID: Bool { return self._accountTransactionID != nil }
   /// Clears the value of `accountTransactionID`. Subsequent reads from it will return its default value.
-  public mutating func clearAccountTransactionID() {self._accountTransactionID = nil}
+  public mutating func clearAccountTransactionID() { self._accountTransactionID = nil }
 
   public var domain: Org_Xrpl_Rpc_V1_Domain {
-    get {return _domain ?? Org_Xrpl_Rpc_V1_Domain()}
-    set {_domain = newValue}
+    get { return _domain ?? Org_Xrpl_Rpc_V1_Domain() }
+    set { _domain = newValue }
   }
   /// Returns true if `domain` has been explicitly set.
-  public var hasDomain: Bool {return self._domain != nil}
+  public var hasDomain: Bool { return self._domain != nil }
   /// Clears the value of `domain`. Subsequent reads from it will return its default value.
-  public mutating func clearDomain() {self._domain = nil}
+  public mutating func clearDomain() { self._domain = nil }
 
   public var emailHash: Org_Xrpl_Rpc_V1_EmailHash {
-    get {return _emailHash ?? Org_Xrpl_Rpc_V1_EmailHash()}
-    set {_emailHash = newValue}
+    get { return _emailHash ?? Org_Xrpl_Rpc_V1_EmailHash() }
+    set { _emailHash = newValue }
   }
   /// Returns true if `emailHash` has been explicitly set.
-  public var hasEmailHash: Bool {return self._emailHash != nil}
+  public var hasEmailHash: Bool { return self._emailHash != nil }
   /// Clears the value of `emailHash`. Subsequent reads from it will return its default value.
-  public mutating func clearEmailHash() {self._emailHash = nil}
+  public mutating func clearEmailHash() { self._emailHash = nil }
 
   public var messageKey: Org_Xrpl_Rpc_V1_MessageKey {
-    get {return _messageKey ?? Org_Xrpl_Rpc_V1_MessageKey()}
-    set {_messageKey = newValue}
+    get { return _messageKey ?? Org_Xrpl_Rpc_V1_MessageKey() }
+    set { _messageKey = newValue }
   }
   /// Returns true if `messageKey` has been explicitly set.
-  public var hasMessageKey: Bool {return self._messageKey != nil}
+  public var hasMessageKey: Bool { return self._messageKey != nil }
   /// Clears the value of `messageKey`. Subsequent reads from it will return its default value.
-  public mutating func clearMessageKey() {self._messageKey = nil}
+  public mutating func clearMessageKey() { self._messageKey = nil }
 
   public var regularKey: Org_Xrpl_Rpc_V1_RegularKey {
-    get {return _regularKey ?? Org_Xrpl_Rpc_V1_RegularKey()}
-    set {_regularKey = newValue}
+    get { return _regularKey ?? Org_Xrpl_Rpc_V1_RegularKey() }
+    set { _regularKey = newValue }
   }
   /// Returns true if `regularKey` has been explicitly set.
-  public var hasRegularKey: Bool {return self._regularKey != nil}
+  public var hasRegularKey: Bool { return self._regularKey != nil }
   /// Clears the value of `regularKey`. Subsequent reads from it will return its default value.
-  public mutating func clearRegularKey() {self._regularKey = nil}
+  public mutating func clearRegularKey() { self._regularKey = nil }
 
   public var tickSize: Org_Xrpl_Rpc_V1_TickSize {
-    get {return _tickSize ?? Org_Xrpl_Rpc_V1_TickSize()}
-    set {_tickSize = newValue}
+    get { return _tickSize ?? Org_Xrpl_Rpc_V1_TickSize() }
+    set { _tickSize = newValue }
   }
   /// Returns true if `tickSize` has been explicitly set.
-  public var hasTickSize: Bool {return self._tickSize != nil}
+  public var hasTickSize: Bool { return self._tickSize != nil }
   /// Clears the value of `tickSize`. Subsequent reads from it will return its default value.
-  public mutating func clearTickSize() {self._tickSize = nil}
+  public mutating func clearTickSize() { self._tickSize = nil }
 
   public var transferRate: Org_Xrpl_Rpc_V1_TransferRate {
-    get {return _transferRate ?? Org_Xrpl_Rpc_V1_TransferRate()}
-    set {_transferRate = newValue}
+    get { return _transferRate ?? Org_Xrpl_Rpc_V1_TransferRate() }
+    set { _transferRate = newValue }
   }
   /// Returns true if `transferRate` has been explicitly set.
-  public var hasTransferRate: Bool {return self._transferRate != nil}
+  public var hasTransferRate: Bool { return self._transferRate != nil }
   /// Clears the value of `transferRate`. Subsequent reads from it will return its default value.
-  public mutating func clearTransferRate() {self._transferRate = nil}
+  public mutating func clearTransferRate() { self._transferRate = nil }
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
 
-  fileprivate var _account: Org_Xrpl_Rpc_V1_Account? = nil
-  fileprivate var _balance: Org_Xrpl_Rpc_V1_Balance? = nil
-  fileprivate var _sequence: Org_Xrpl_Rpc_V1_Sequence? = nil
-  fileprivate var _flags: Org_Xrpl_Rpc_V1_Flags? = nil
-  fileprivate var _ownerCount: Org_Xrpl_Rpc_V1_OwnerCount? = nil
-  fileprivate var _previousTransactionID: Org_Xrpl_Rpc_V1_PreviousTransactionID? = nil
-  fileprivate var _previousTransactionLedgerSequence: Org_Xrpl_Rpc_V1_PreviousTransactionLedgerSequence? = nil
-  fileprivate var _accountTransactionID: Org_Xrpl_Rpc_V1_AccountTransactionID? = nil
-  fileprivate var _domain: Org_Xrpl_Rpc_V1_Domain? = nil
-  fileprivate var _emailHash: Org_Xrpl_Rpc_V1_EmailHash? = nil
-  fileprivate var _messageKey: Org_Xrpl_Rpc_V1_MessageKey? = nil
-  fileprivate var _regularKey: Org_Xrpl_Rpc_V1_RegularKey? = nil
-  fileprivate var _tickSize: Org_Xrpl_Rpc_V1_TickSize? = nil
-  fileprivate var _transferRate: Org_Xrpl_Rpc_V1_TransferRate? = nil
+  fileprivate var _account: Org_Xrpl_Rpc_V1_Account?
+  fileprivate var _balance: Org_Xrpl_Rpc_V1_Balance?
+  fileprivate var _sequence: Org_Xrpl_Rpc_V1_Sequence?
+  fileprivate var _flags: Org_Xrpl_Rpc_V1_Flags?
+  fileprivate var _ownerCount: Org_Xrpl_Rpc_V1_OwnerCount?
+  fileprivate var _previousTransactionID: Org_Xrpl_Rpc_V1_PreviousTransactionID?
+  fileprivate var _previousTransactionLedgerSequence: Org_Xrpl_Rpc_V1_PreviousTransactionLedgerSequence?
+  fileprivate var _accountTransactionID: Org_Xrpl_Rpc_V1_AccountTransactionID?
+  fileprivate var _domain: Org_Xrpl_Rpc_V1_Domain?
+  fileprivate var _emailHash: Org_Xrpl_Rpc_V1_EmailHash?
+  fileprivate var _messageKey: Org_Xrpl_Rpc_V1_MessageKey?
+  fileprivate var _regularKey: Org_Xrpl_Rpc_V1_RegularKey?
+  fileprivate var _tickSize: Org_Xrpl_Rpc_V1_TickSize?
+  fileprivate var _transferRate: Org_Xrpl_Rpc_V1_TransferRate?
 }
 
 /// Next field: 4
@@ -411,13 +411,13 @@ public struct Org_Xrpl_Rpc_V1_Amendments {
   public var majorities: [Org_Xrpl_Rpc_V1_Amendments.Majority] = []
 
   public var flags: Org_Xrpl_Rpc_V1_Flags {
-    get {return _flags ?? Org_Xrpl_Rpc_V1_Flags()}
-    set {_flags = newValue}
+    get { return _flags ?? Org_Xrpl_Rpc_V1_Flags() }
+    set { _flags = newValue }
   }
   /// Returns true if `flags` has been explicitly set.
-  public var hasFlags: Bool {return self._flags != nil}
+  public var hasFlags: Bool { return self._flags != nil }
   /// Clears the value of `flags`. Subsequent reads from it will return its default value.
-  public mutating func clearFlags() {self._flags = nil}
+  public mutating func clearFlags() { self._flags = nil }
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -442,34 +442,34 @@ public struct Org_Xrpl_Rpc_V1_Amendments {
     // methods supported on all messages.
 
     public var amendment: Org_Xrpl_Rpc_V1_Amendments.Amendment {
-      get {return _amendment ?? Org_Xrpl_Rpc_V1_Amendments.Amendment()}
-      set {_amendment = newValue}
+      get { return _amendment ?? Org_Xrpl_Rpc_V1_Amendments.Amendment() }
+      set { _amendment = newValue }
     }
     /// Returns true if `amendment` has been explicitly set.
-    public var hasAmendment: Bool {return self._amendment != nil}
+    public var hasAmendment: Bool { return self._amendment != nil }
     /// Clears the value of `amendment`. Subsequent reads from it will return its default value.
-    public mutating func clearAmendment() {self._amendment = nil}
+    public mutating func clearAmendment() { self._amendment = nil }
 
     public var closeTime: Org_Xrpl_Rpc_V1_CloseTime {
-      get {return _closeTime ?? Org_Xrpl_Rpc_V1_CloseTime()}
-      set {_closeTime = newValue}
+      get { return _closeTime ?? Org_Xrpl_Rpc_V1_CloseTime() }
+      set { _closeTime = newValue }
     }
     /// Returns true if `closeTime` has been explicitly set.
-    public var hasCloseTime: Bool {return self._closeTime != nil}
+    public var hasCloseTime: Bool { return self._closeTime != nil }
     /// Clears the value of `closeTime`. Subsequent reads from it will return its default value.
-    public mutating func clearCloseTime() {self._closeTime = nil}
+    public mutating func clearCloseTime() { self._closeTime = nil }
 
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
     public init() {}
 
-    fileprivate var _amendment: Org_Xrpl_Rpc_V1_Amendments.Amendment? = nil
-    fileprivate var _closeTime: Org_Xrpl_Rpc_V1_CloseTime? = nil
+    fileprivate var _amendment: Org_Xrpl_Rpc_V1_Amendments.Amendment?
+    fileprivate var _closeTime: Org_Xrpl_Rpc_V1_CloseTime?
   }
 
   public init() {}
 
-  fileprivate var _flags: Org_Xrpl_Rpc_V1_Flags? = nil
+  fileprivate var _flags: Org_Xrpl_Rpc_V1_Flags?
 }
 
 /// Next field: 14
@@ -479,139 +479,139 @@ public struct Org_Xrpl_Rpc_V1_Check {
   // methods supported on all messages.
 
   public var account: Org_Xrpl_Rpc_V1_Account {
-    get {return _account ?? Org_Xrpl_Rpc_V1_Account()}
-    set {_account = newValue}
+    get { return _account ?? Org_Xrpl_Rpc_V1_Account() }
+    set { _account = newValue }
   }
   /// Returns true if `account` has been explicitly set.
-  public var hasAccount: Bool {return self._account != nil}
+  public var hasAccount: Bool { return self._account != nil }
   /// Clears the value of `account`. Subsequent reads from it will return its default value.
-  public mutating func clearAccount() {self._account = nil}
+  public mutating func clearAccount() { self._account = nil }
 
   public var destination: Org_Xrpl_Rpc_V1_Destination {
-    get {return _destination ?? Org_Xrpl_Rpc_V1_Destination()}
-    set {_destination = newValue}
+    get { return _destination ?? Org_Xrpl_Rpc_V1_Destination() }
+    set { _destination = newValue }
   }
   /// Returns true if `destination` has been explicitly set.
-  public var hasDestination: Bool {return self._destination != nil}
+  public var hasDestination: Bool { return self._destination != nil }
   /// Clears the value of `destination`. Subsequent reads from it will return its default value.
-  public mutating func clearDestination() {self._destination = nil}
+  public mutating func clearDestination() { self._destination = nil }
 
   public var flags: Org_Xrpl_Rpc_V1_Flags {
-    get {return _flags ?? Org_Xrpl_Rpc_V1_Flags()}
-    set {_flags = newValue}
+    get { return _flags ?? Org_Xrpl_Rpc_V1_Flags() }
+    set { _flags = newValue }
   }
   /// Returns true if `flags` has been explicitly set.
-  public var hasFlags: Bool {return self._flags != nil}
+  public var hasFlags: Bool { return self._flags != nil }
   /// Clears the value of `flags`. Subsequent reads from it will return its default value.
-  public mutating func clearFlags() {self._flags = nil}
+  public mutating func clearFlags() { self._flags = nil }
 
   public var ownerNode: Org_Xrpl_Rpc_V1_OwnerNode {
-    get {return _ownerNode ?? Org_Xrpl_Rpc_V1_OwnerNode()}
-    set {_ownerNode = newValue}
+    get { return _ownerNode ?? Org_Xrpl_Rpc_V1_OwnerNode() }
+    set { _ownerNode = newValue }
   }
   /// Returns true if `ownerNode` has been explicitly set.
-  public var hasOwnerNode: Bool {return self._ownerNode != nil}
+  public var hasOwnerNode: Bool { return self._ownerNode != nil }
   /// Clears the value of `ownerNode`. Subsequent reads from it will return its default value.
-  public mutating func clearOwnerNode() {self._ownerNode = nil}
+  public mutating func clearOwnerNode() { self._ownerNode = nil }
 
   public var previousTransactionID: Org_Xrpl_Rpc_V1_PreviousTransactionID {
-    get {return _previousTransactionID ?? Org_Xrpl_Rpc_V1_PreviousTransactionID()}
-    set {_previousTransactionID = newValue}
+    get { return _previousTransactionID ?? Org_Xrpl_Rpc_V1_PreviousTransactionID() }
+    set { _previousTransactionID = newValue }
   }
   /// Returns true if `previousTransactionID` has been explicitly set.
-  public var hasPreviousTransactionID: Bool {return self._previousTransactionID != nil}
+  public var hasPreviousTransactionID: Bool { return self._previousTransactionID != nil }
   /// Clears the value of `previousTransactionID`. Subsequent reads from it will return its default value.
-  public mutating func clearPreviousTransactionID() {self._previousTransactionID = nil}
+  public mutating func clearPreviousTransactionID() { self._previousTransactionID = nil }
 
   public var previousTransactionLedgerSequence: Org_Xrpl_Rpc_V1_PreviousTransactionLedgerSequence {
-    get {return _previousTransactionLedgerSequence ?? Org_Xrpl_Rpc_V1_PreviousTransactionLedgerSequence()}
-    set {_previousTransactionLedgerSequence = newValue}
+    get { return _previousTransactionLedgerSequence ?? Org_Xrpl_Rpc_V1_PreviousTransactionLedgerSequence() }
+    set { _previousTransactionLedgerSequence = newValue }
   }
   /// Returns true if `previousTransactionLedgerSequence` has been explicitly set.
-  public var hasPreviousTransactionLedgerSequence: Bool {return self._previousTransactionLedgerSequence != nil}
+  public var hasPreviousTransactionLedgerSequence: Bool { return self._previousTransactionLedgerSequence != nil }
   /// Clears the value of `previousTransactionLedgerSequence`. Subsequent reads from it will return its default value.
-  public mutating func clearPreviousTransactionLedgerSequence() {self._previousTransactionLedgerSequence = nil}
+  public mutating func clearPreviousTransactionLedgerSequence() { self._previousTransactionLedgerSequence = nil }
 
   public var sendMax: Org_Xrpl_Rpc_V1_SendMax {
-    get {return _sendMax ?? Org_Xrpl_Rpc_V1_SendMax()}
-    set {_sendMax = newValue}
+    get { return _sendMax ?? Org_Xrpl_Rpc_V1_SendMax() }
+    set { _sendMax = newValue }
   }
   /// Returns true if `sendMax` has been explicitly set.
-  public var hasSendMax: Bool {return self._sendMax != nil}
+  public var hasSendMax: Bool { return self._sendMax != nil }
   /// Clears the value of `sendMax`. Subsequent reads from it will return its default value.
-  public mutating func clearSendMax() {self._sendMax = nil}
+  public mutating func clearSendMax() { self._sendMax = nil }
 
   public var sequence: Org_Xrpl_Rpc_V1_Sequence {
-    get {return _sequence ?? Org_Xrpl_Rpc_V1_Sequence()}
-    set {_sequence = newValue}
+    get { return _sequence ?? Org_Xrpl_Rpc_V1_Sequence() }
+    set { _sequence = newValue }
   }
   /// Returns true if `sequence` has been explicitly set.
-  public var hasSequence: Bool {return self._sequence != nil}
+  public var hasSequence: Bool { return self._sequence != nil }
   /// Clears the value of `sequence`. Subsequent reads from it will return its default value.
-  public mutating func clearSequence() {self._sequence = nil}
+  public mutating func clearSequence() { self._sequence = nil }
 
   public var destinationNode: Org_Xrpl_Rpc_V1_DestinationNode {
-    get {return _destinationNode ?? Org_Xrpl_Rpc_V1_DestinationNode()}
-    set {_destinationNode = newValue}
+    get { return _destinationNode ?? Org_Xrpl_Rpc_V1_DestinationNode() }
+    set { _destinationNode = newValue }
   }
   /// Returns true if `destinationNode` has been explicitly set.
-  public var hasDestinationNode: Bool {return self._destinationNode != nil}
+  public var hasDestinationNode: Bool { return self._destinationNode != nil }
   /// Clears the value of `destinationNode`. Subsequent reads from it will return its default value.
-  public mutating func clearDestinationNode() {self._destinationNode = nil}
+  public mutating func clearDestinationNode() { self._destinationNode = nil }
 
   public var destinationTag: Org_Xrpl_Rpc_V1_DestinationTag {
-    get {return _destinationTag ?? Org_Xrpl_Rpc_V1_DestinationTag()}
-    set {_destinationTag = newValue}
+    get { return _destinationTag ?? Org_Xrpl_Rpc_V1_DestinationTag() }
+    set { _destinationTag = newValue }
   }
   /// Returns true if `destinationTag` has been explicitly set.
-  public var hasDestinationTag: Bool {return self._destinationTag != nil}
+  public var hasDestinationTag: Bool { return self._destinationTag != nil }
   /// Clears the value of `destinationTag`. Subsequent reads from it will return its default value.
-  public mutating func clearDestinationTag() {self._destinationTag = nil}
+  public mutating func clearDestinationTag() { self._destinationTag = nil }
 
   public var expiration: Org_Xrpl_Rpc_V1_Expiration {
-    get {return _expiration ?? Org_Xrpl_Rpc_V1_Expiration()}
-    set {_expiration = newValue}
+    get { return _expiration ?? Org_Xrpl_Rpc_V1_Expiration() }
+    set { _expiration = newValue }
   }
   /// Returns true if `expiration` has been explicitly set.
-  public var hasExpiration: Bool {return self._expiration != nil}
+  public var hasExpiration: Bool { return self._expiration != nil }
   /// Clears the value of `expiration`. Subsequent reads from it will return its default value.
-  public mutating func clearExpiration() {self._expiration = nil}
+  public mutating func clearExpiration() { self._expiration = nil }
 
   public var invoiceID: Org_Xrpl_Rpc_V1_InvoiceID {
-    get {return _invoiceID ?? Org_Xrpl_Rpc_V1_InvoiceID()}
-    set {_invoiceID = newValue}
+    get { return _invoiceID ?? Org_Xrpl_Rpc_V1_InvoiceID() }
+    set { _invoiceID = newValue }
   }
   /// Returns true if `invoiceID` has been explicitly set.
-  public var hasInvoiceID: Bool {return self._invoiceID != nil}
+  public var hasInvoiceID: Bool { return self._invoiceID != nil }
   /// Clears the value of `invoiceID`. Subsequent reads from it will return its default value.
-  public mutating func clearInvoiceID() {self._invoiceID = nil}
+  public mutating func clearInvoiceID() { self._invoiceID = nil }
 
   public var sourceTag: Org_Xrpl_Rpc_V1_SourceTag {
-    get {return _sourceTag ?? Org_Xrpl_Rpc_V1_SourceTag()}
-    set {_sourceTag = newValue}
+    get { return _sourceTag ?? Org_Xrpl_Rpc_V1_SourceTag() }
+    set { _sourceTag = newValue }
   }
   /// Returns true if `sourceTag` has been explicitly set.
-  public var hasSourceTag: Bool {return self._sourceTag != nil}
+  public var hasSourceTag: Bool { return self._sourceTag != nil }
   /// Clears the value of `sourceTag`. Subsequent reads from it will return its default value.
-  public mutating func clearSourceTag() {self._sourceTag = nil}
+  public mutating func clearSourceTag() { self._sourceTag = nil }
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
 
-  fileprivate var _account: Org_Xrpl_Rpc_V1_Account? = nil
-  fileprivate var _destination: Org_Xrpl_Rpc_V1_Destination? = nil
-  fileprivate var _flags: Org_Xrpl_Rpc_V1_Flags? = nil
-  fileprivate var _ownerNode: Org_Xrpl_Rpc_V1_OwnerNode? = nil
-  fileprivate var _previousTransactionID: Org_Xrpl_Rpc_V1_PreviousTransactionID? = nil
-  fileprivate var _previousTransactionLedgerSequence: Org_Xrpl_Rpc_V1_PreviousTransactionLedgerSequence? = nil
-  fileprivate var _sendMax: Org_Xrpl_Rpc_V1_SendMax? = nil
-  fileprivate var _sequence: Org_Xrpl_Rpc_V1_Sequence? = nil
-  fileprivate var _destinationNode: Org_Xrpl_Rpc_V1_DestinationNode? = nil
-  fileprivate var _destinationTag: Org_Xrpl_Rpc_V1_DestinationTag? = nil
-  fileprivate var _expiration: Org_Xrpl_Rpc_V1_Expiration? = nil
-  fileprivate var _invoiceID: Org_Xrpl_Rpc_V1_InvoiceID? = nil
-  fileprivate var _sourceTag: Org_Xrpl_Rpc_V1_SourceTag? = nil
+  fileprivate var _account: Org_Xrpl_Rpc_V1_Account?
+  fileprivate var _destination: Org_Xrpl_Rpc_V1_Destination?
+  fileprivate var _flags: Org_Xrpl_Rpc_V1_Flags?
+  fileprivate var _ownerNode: Org_Xrpl_Rpc_V1_OwnerNode?
+  fileprivate var _previousTransactionID: Org_Xrpl_Rpc_V1_PreviousTransactionID?
+  fileprivate var _previousTransactionLedgerSequence: Org_Xrpl_Rpc_V1_PreviousTransactionLedgerSequence?
+  fileprivate var _sendMax: Org_Xrpl_Rpc_V1_SendMax?
+  fileprivate var _sequence: Org_Xrpl_Rpc_V1_Sequence?
+  fileprivate var _destinationNode: Org_Xrpl_Rpc_V1_DestinationNode?
+  fileprivate var _destinationTag: Org_Xrpl_Rpc_V1_DestinationTag?
+  fileprivate var _expiration: Org_Xrpl_Rpc_V1_Expiration?
+  fileprivate var _invoiceID: Org_Xrpl_Rpc_V1_InvoiceID?
+  fileprivate var _sourceTag: Org_Xrpl_Rpc_V1_SourceTag?
 }
 
 /// Next field: 7
@@ -621,69 +621,69 @@ public struct Org_Xrpl_Rpc_V1_DepositPreauthObject {
   // methods supported on all messages.
 
   public var account: Org_Xrpl_Rpc_V1_Account {
-    get {return _account ?? Org_Xrpl_Rpc_V1_Account()}
-    set {_account = newValue}
+    get { return _account ?? Org_Xrpl_Rpc_V1_Account() }
+    set { _account = newValue }
   }
   /// Returns true if `account` has been explicitly set.
-  public var hasAccount: Bool {return self._account != nil}
+  public var hasAccount: Bool { return self._account != nil }
   /// Clears the value of `account`. Subsequent reads from it will return its default value.
-  public mutating func clearAccount() {self._account = nil}
+  public mutating func clearAccount() { self._account = nil }
 
   public var authorize: Org_Xrpl_Rpc_V1_Authorize {
-    get {return _authorize ?? Org_Xrpl_Rpc_V1_Authorize()}
-    set {_authorize = newValue}
+    get { return _authorize ?? Org_Xrpl_Rpc_V1_Authorize() }
+    set { _authorize = newValue }
   }
   /// Returns true if `authorize` has been explicitly set.
-  public var hasAuthorize: Bool {return self._authorize != nil}
+  public var hasAuthorize: Bool { return self._authorize != nil }
   /// Clears the value of `authorize`. Subsequent reads from it will return its default value.
-  public mutating func clearAuthorize() {self._authorize = nil}
+  public mutating func clearAuthorize() { self._authorize = nil }
 
   public var flags: Org_Xrpl_Rpc_V1_Flags {
-    get {return _flags ?? Org_Xrpl_Rpc_V1_Flags()}
-    set {_flags = newValue}
+    get { return _flags ?? Org_Xrpl_Rpc_V1_Flags() }
+    set { _flags = newValue }
   }
   /// Returns true if `flags` has been explicitly set.
-  public var hasFlags: Bool {return self._flags != nil}
+  public var hasFlags: Bool { return self._flags != nil }
   /// Clears the value of `flags`. Subsequent reads from it will return its default value.
-  public mutating func clearFlags() {self._flags = nil}
+  public mutating func clearFlags() { self._flags = nil }
 
   public var ownerNode: Org_Xrpl_Rpc_V1_OwnerNode {
-    get {return _ownerNode ?? Org_Xrpl_Rpc_V1_OwnerNode()}
-    set {_ownerNode = newValue}
+    get { return _ownerNode ?? Org_Xrpl_Rpc_V1_OwnerNode() }
+    set { _ownerNode = newValue }
   }
   /// Returns true if `ownerNode` has been explicitly set.
-  public var hasOwnerNode: Bool {return self._ownerNode != nil}
+  public var hasOwnerNode: Bool { return self._ownerNode != nil }
   /// Clears the value of `ownerNode`. Subsequent reads from it will return its default value.
-  public mutating func clearOwnerNode() {self._ownerNode = nil}
+  public mutating func clearOwnerNode() { self._ownerNode = nil }
 
   public var previousTransactionID: Org_Xrpl_Rpc_V1_PreviousTransactionID {
-    get {return _previousTransactionID ?? Org_Xrpl_Rpc_V1_PreviousTransactionID()}
-    set {_previousTransactionID = newValue}
+    get { return _previousTransactionID ?? Org_Xrpl_Rpc_V1_PreviousTransactionID() }
+    set { _previousTransactionID = newValue }
   }
   /// Returns true if `previousTransactionID` has been explicitly set.
-  public var hasPreviousTransactionID: Bool {return self._previousTransactionID != nil}
+  public var hasPreviousTransactionID: Bool { return self._previousTransactionID != nil }
   /// Clears the value of `previousTransactionID`. Subsequent reads from it will return its default value.
-  public mutating func clearPreviousTransactionID() {self._previousTransactionID = nil}
+  public mutating func clearPreviousTransactionID() { self._previousTransactionID = nil }
 
   public var previousTransactionLedgerSequence: Org_Xrpl_Rpc_V1_PreviousTransactionLedgerSequence {
-    get {return _previousTransactionLedgerSequence ?? Org_Xrpl_Rpc_V1_PreviousTransactionLedgerSequence()}
-    set {_previousTransactionLedgerSequence = newValue}
+    get { return _previousTransactionLedgerSequence ?? Org_Xrpl_Rpc_V1_PreviousTransactionLedgerSequence() }
+    set { _previousTransactionLedgerSequence = newValue }
   }
   /// Returns true if `previousTransactionLedgerSequence` has been explicitly set.
-  public var hasPreviousTransactionLedgerSequence: Bool {return self._previousTransactionLedgerSequence != nil}
+  public var hasPreviousTransactionLedgerSequence: Bool { return self._previousTransactionLedgerSequence != nil }
   /// Clears the value of `previousTransactionLedgerSequence`. Subsequent reads from it will return its default value.
-  public mutating func clearPreviousTransactionLedgerSequence() {self._previousTransactionLedgerSequence = nil}
+  public mutating func clearPreviousTransactionLedgerSequence() { self._previousTransactionLedgerSequence = nil }
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
 
-  fileprivate var _account: Org_Xrpl_Rpc_V1_Account? = nil
-  fileprivate var _authorize: Org_Xrpl_Rpc_V1_Authorize? = nil
-  fileprivate var _flags: Org_Xrpl_Rpc_V1_Flags? = nil
-  fileprivate var _ownerNode: Org_Xrpl_Rpc_V1_OwnerNode? = nil
-  fileprivate var _previousTransactionID: Org_Xrpl_Rpc_V1_PreviousTransactionID? = nil
-  fileprivate var _previousTransactionLedgerSequence: Org_Xrpl_Rpc_V1_PreviousTransactionLedgerSequence? = nil
+  fileprivate var _account: Org_Xrpl_Rpc_V1_Account?
+  fileprivate var _authorize: Org_Xrpl_Rpc_V1_Authorize?
+  fileprivate var _flags: Org_Xrpl_Rpc_V1_Flags?
+  fileprivate var _ownerNode: Org_Xrpl_Rpc_V1_OwnerNode?
+  fileprivate var _previousTransactionID: Org_Xrpl_Rpc_V1_PreviousTransactionID?
+  fileprivate var _previousTransactionLedgerSequence: Org_Xrpl_Rpc_V1_PreviousTransactionLedgerSequence?
 }
 
 /// Next field: 11
@@ -693,101 +693,101 @@ public struct Org_Xrpl_Rpc_V1_DirectoryNode {
   // methods supported on all messages.
 
   public var flags: Org_Xrpl_Rpc_V1_Flags {
-    get {return _flags ?? Org_Xrpl_Rpc_V1_Flags()}
-    set {_flags = newValue}
+    get { return _flags ?? Org_Xrpl_Rpc_V1_Flags() }
+    set { _flags = newValue }
   }
   /// Returns true if `flags` has been explicitly set.
-  public var hasFlags: Bool {return self._flags != nil}
+  public var hasFlags: Bool { return self._flags != nil }
   /// Clears the value of `flags`. Subsequent reads from it will return its default value.
-  public mutating func clearFlags() {self._flags = nil}
+  public mutating func clearFlags() { self._flags = nil }
 
   public var rootIndex: Org_Xrpl_Rpc_V1_RootIndex {
-    get {return _rootIndex ?? Org_Xrpl_Rpc_V1_RootIndex()}
-    set {_rootIndex = newValue}
+    get { return _rootIndex ?? Org_Xrpl_Rpc_V1_RootIndex() }
+    set { _rootIndex = newValue }
   }
   /// Returns true if `rootIndex` has been explicitly set.
-  public var hasRootIndex: Bool {return self._rootIndex != nil}
+  public var hasRootIndex: Bool { return self._rootIndex != nil }
   /// Clears the value of `rootIndex`. Subsequent reads from it will return its default value.
-  public mutating func clearRootIndex() {self._rootIndex = nil}
+  public mutating func clearRootIndex() { self._rootIndex = nil }
 
   public var indexes: [Org_Xrpl_Rpc_V1_Index] = []
 
   public var indexNext: Org_Xrpl_Rpc_V1_IndexNext {
-    get {return _indexNext ?? Org_Xrpl_Rpc_V1_IndexNext()}
-    set {_indexNext = newValue}
+    get { return _indexNext ?? Org_Xrpl_Rpc_V1_IndexNext() }
+    set { _indexNext = newValue }
   }
   /// Returns true if `indexNext` has been explicitly set.
-  public var hasIndexNext: Bool {return self._indexNext != nil}
+  public var hasIndexNext: Bool { return self._indexNext != nil }
   /// Clears the value of `indexNext`. Subsequent reads from it will return its default value.
-  public mutating func clearIndexNext() {self._indexNext = nil}
+  public mutating func clearIndexNext() { self._indexNext = nil }
 
   public var indexPrevious: Org_Xrpl_Rpc_V1_IndexPrevious {
-    get {return _indexPrevious ?? Org_Xrpl_Rpc_V1_IndexPrevious()}
-    set {_indexPrevious = newValue}
+    get { return _indexPrevious ?? Org_Xrpl_Rpc_V1_IndexPrevious() }
+    set { _indexPrevious = newValue }
   }
   /// Returns true if `indexPrevious` has been explicitly set.
-  public var hasIndexPrevious: Bool {return self._indexPrevious != nil}
+  public var hasIndexPrevious: Bool { return self._indexPrevious != nil }
   /// Clears the value of `indexPrevious`. Subsequent reads from it will return its default value.
-  public mutating func clearIndexPrevious() {self._indexPrevious = nil}
+  public mutating func clearIndexPrevious() { self._indexPrevious = nil }
 
   public var owner: Org_Xrpl_Rpc_V1_Owner {
-    get {return _owner ?? Org_Xrpl_Rpc_V1_Owner()}
-    set {_owner = newValue}
+    get { return _owner ?? Org_Xrpl_Rpc_V1_Owner() }
+    set { _owner = newValue }
   }
   /// Returns true if `owner` has been explicitly set.
-  public var hasOwner: Bool {return self._owner != nil}
+  public var hasOwner: Bool { return self._owner != nil }
   /// Clears the value of `owner`. Subsequent reads from it will return its default value.
-  public mutating func clearOwner() {self._owner = nil}
+  public mutating func clearOwner() { self._owner = nil }
 
   public var takerPaysCurrency: Org_Xrpl_Rpc_V1_TakerPaysCurrency {
-    get {return _takerPaysCurrency ?? Org_Xrpl_Rpc_V1_TakerPaysCurrency()}
-    set {_takerPaysCurrency = newValue}
+    get { return _takerPaysCurrency ?? Org_Xrpl_Rpc_V1_TakerPaysCurrency() }
+    set { _takerPaysCurrency = newValue }
   }
   /// Returns true if `takerPaysCurrency` has been explicitly set.
-  public var hasTakerPaysCurrency: Bool {return self._takerPaysCurrency != nil}
+  public var hasTakerPaysCurrency: Bool { return self._takerPaysCurrency != nil }
   /// Clears the value of `takerPaysCurrency`. Subsequent reads from it will return its default value.
-  public mutating func clearTakerPaysCurrency() {self._takerPaysCurrency = nil}
+  public mutating func clearTakerPaysCurrency() { self._takerPaysCurrency = nil }
 
   public var takerPaysIssuer: Org_Xrpl_Rpc_V1_TakerPaysIssuer {
-    get {return _takerPaysIssuer ?? Org_Xrpl_Rpc_V1_TakerPaysIssuer()}
-    set {_takerPaysIssuer = newValue}
+    get { return _takerPaysIssuer ?? Org_Xrpl_Rpc_V1_TakerPaysIssuer() }
+    set { _takerPaysIssuer = newValue }
   }
   /// Returns true if `takerPaysIssuer` has been explicitly set.
-  public var hasTakerPaysIssuer: Bool {return self._takerPaysIssuer != nil}
+  public var hasTakerPaysIssuer: Bool { return self._takerPaysIssuer != nil }
   /// Clears the value of `takerPaysIssuer`. Subsequent reads from it will return its default value.
-  public mutating func clearTakerPaysIssuer() {self._takerPaysIssuer = nil}
+  public mutating func clearTakerPaysIssuer() { self._takerPaysIssuer = nil }
 
   public var takerGetsCurrency: Org_Xrpl_Rpc_V1_TakerGetsCurreny {
-    get {return _takerGetsCurrency ?? Org_Xrpl_Rpc_V1_TakerGetsCurreny()}
-    set {_takerGetsCurrency = newValue}
+    get { return _takerGetsCurrency ?? Org_Xrpl_Rpc_V1_TakerGetsCurreny() }
+    set { _takerGetsCurrency = newValue }
   }
   /// Returns true if `takerGetsCurrency` has been explicitly set.
-  public var hasTakerGetsCurrency: Bool {return self._takerGetsCurrency != nil}
+  public var hasTakerGetsCurrency: Bool { return self._takerGetsCurrency != nil }
   /// Clears the value of `takerGetsCurrency`. Subsequent reads from it will return its default value.
-  public mutating func clearTakerGetsCurrency() {self._takerGetsCurrency = nil}
+  public mutating func clearTakerGetsCurrency() { self._takerGetsCurrency = nil }
 
   public var takerGetsIssuer: Org_Xrpl_Rpc_V1_TakerGetsIssuer {
-    get {return _takerGetsIssuer ?? Org_Xrpl_Rpc_V1_TakerGetsIssuer()}
-    set {_takerGetsIssuer = newValue}
+    get { return _takerGetsIssuer ?? Org_Xrpl_Rpc_V1_TakerGetsIssuer() }
+    set { _takerGetsIssuer = newValue }
   }
   /// Returns true if `takerGetsIssuer` has been explicitly set.
-  public var hasTakerGetsIssuer: Bool {return self._takerGetsIssuer != nil}
+  public var hasTakerGetsIssuer: Bool { return self._takerGetsIssuer != nil }
   /// Clears the value of `takerGetsIssuer`. Subsequent reads from it will return its default value.
-  public mutating func clearTakerGetsIssuer() {self._takerGetsIssuer = nil}
+  public mutating func clearTakerGetsIssuer() { self._takerGetsIssuer = nil }
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
 
-  fileprivate var _flags: Org_Xrpl_Rpc_V1_Flags? = nil
-  fileprivate var _rootIndex: Org_Xrpl_Rpc_V1_RootIndex? = nil
-  fileprivate var _indexNext: Org_Xrpl_Rpc_V1_IndexNext? = nil
-  fileprivate var _indexPrevious: Org_Xrpl_Rpc_V1_IndexPrevious? = nil
-  fileprivate var _owner: Org_Xrpl_Rpc_V1_Owner? = nil
-  fileprivate var _takerPaysCurrency: Org_Xrpl_Rpc_V1_TakerPaysCurrency? = nil
-  fileprivate var _takerPaysIssuer: Org_Xrpl_Rpc_V1_TakerPaysIssuer? = nil
-  fileprivate var _takerGetsCurrency: Org_Xrpl_Rpc_V1_TakerGetsCurreny? = nil
-  fileprivate var _takerGetsIssuer: Org_Xrpl_Rpc_V1_TakerGetsIssuer? = nil
+  fileprivate var _flags: Org_Xrpl_Rpc_V1_Flags?
+  fileprivate var _rootIndex: Org_Xrpl_Rpc_V1_RootIndex?
+  fileprivate var _indexNext: Org_Xrpl_Rpc_V1_IndexNext?
+  fileprivate var _indexPrevious: Org_Xrpl_Rpc_V1_IndexPrevious?
+  fileprivate var _owner: Org_Xrpl_Rpc_V1_Owner?
+  fileprivate var _takerPaysCurrency: Org_Xrpl_Rpc_V1_TakerPaysCurrency?
+  fileprivate var _takerPaysIssuer: Org_Xrpl_Rpc_V1_TakerPaysIssuer?
+  fileprivate var _takerGetsCurrency: Org_Xrpl_Rpc_V1_TakerGetsCurreny?
+  fileprivate var _takerGetsIssuer: Org_Xrpl_Rpc_V1_TakerGetsIssuer?
 }
 
 /// Next field: 14
@@ -797,139 +797,139 @@ public struct Org_Xrpl_Rpc_V1_Escrow {
   // methods supported on all messages.
 
   public var account: Org_Xrpl_Rpc_V1_Account {
-    get {return _account ?? Org_Xrpl_Rpc_V1_Account()}
-    set {_account = newValue}
+    get { return _account ?? Org_Xrpl_Rpc_V1_Account() }
+    set { _account = newValue }
   }
   /// Returns true if `account` has been explicitly set.
-  public var hasAccount: Bool {return self._account != nil}
+  public var hasAccount: Bool { return self._account != nil }
   /// Clears the value of `account`. Subsequent reads from it will return its default value.
-  public mutating func clearAccount() {self._account = nil}
+  public mutating func clearAccount() { self._account = nil }
 
   public var destination: Org_Xrpl_Rpc_V1_Destination {
-    get {return _destination ?? Org_Xrpl_Rpc_V1_Destination()}
-    set {_destination = newValue}
+    get { return _destination ?? Org_Xrpl_Rpc_V1_Destination() }
+    set { _destination = newValue }
   }
   /// Returns true if `destination` has been explicitly set.
-  public var hasDestination: Bool {return self._destination != nil}
+  public var hasDestination: Bool { return self._destination != nil }
   /// Clears the value of `destination`. Subsequent reads from it will return its default value.
-  public mutating func clearDestination() {self._destination = nil}
+  public mutating func clearDestination() { self._destination = nil }
 
   public var amount: Org_Xrpl_Rpc_V1_Amount {
-    get {return _amount ?? Org_Xrpl_Rpc_V1_Amount()}
-    set {_amount = newValue}
+    get { return _amount ?? Org_Xrpl_Rpc_V1_Amount() }
+    set { _amount = newValue }
   }
   /// Returns true if `amount` has been explicitly set.
-  public var hasAmount: Bool {return self._amount != nil}
+  public var hasAmount: Bool { return self._amount != nil }
   /// Clears the value of `amount`. Subsequent reads from it will return its default value.
-  public mutating func clearAmount() {self._amount = nil}
+  public mutating func clearAmount() { self._amount = nil }
 
   public var condition: Org_Xrpl_Rpc_V1_Condition {
-    get {return _condition ?? Org_Xrpl_Rpc_V1_Condition()}
-    set {_condition = newValue}
+    get { return _condition ?? Org_Xrpl_Rpc_V1_Condition() }
+    set { _condition = newValue }
   }
   /// Returns true if `condition` has been explicitly set.
-  public var hasCondition: Bool {return self._condition != nil}
+  public var hasCondition: Bool { return self._condition != nil }
   /// Clears the value of `condition`. Subsequent reads from it will return its default value.
-  public mutating func clearCondition() {self._condition = nil}
+  public mutating func clearCondition() { self._condition = nil }
 
   public var cancelAfter: Org_Xrpl_Rpc_V1_CancelAfter {
-    get {return _cancelAfter ?? Org_Xrpl_Rpc_V1_CancelAfter()}
-    set {_cancelAfter = newValue}
+    get { return _cancelAfter ?? Org_Xrpl_Rpc_V1_CancelAfter() }
+    set { _cancelAfter = newValue }
   }
   /// Returns true if `cancelAfter` has been explicitly set.
-  public var hasCancelAfter: Bool {return self._cancelAfter != nil}
+  public var hasCancelAfter: Bool { return self._cancelAfter != nil }
   /// Clears the value of `cancelAfter`. Subsequent reads from it will return its default value.
-  public mutating func clearCancelAfter() {self._cancelAfter = nil}
+  public mutating func clearCancelAfter() { self._cancelAfter = nil }
 
   public var finishAfter: Org_Xrpl_Rpc_V1_FinishAfter {
-    get {return _finishAfter ?? Org_Xrpl_Rpc_V1_FinishAfter()}
-    set {_finishAfter = newValue}
+    get { return _finishAfter ?? Org_Xrpl_Rpc_V1_FinishAfter() }
+    set { _finishAfter = newValue }
   }
   /// Returns true if `finishAfter` has been explicitly set.
-  public var hasFinishAfter: Bool {return self._finishAfter != nil}
+  public var hasFinishAfter: Bool { return self._finishAfter != nil }
   /// Clears the value of `finishAfter`. Subsequent reads from it will return its default value.
-  public mutating func clearFinishAfter() {self._finishAfter = nil}
+  public mutating func clearFinishAfter() { self._finishAfter = nil }
 
   public var flags: Org_Xrpl_Rpc_V1_Flags {
-    get {return _flags ?? Org_Xrpl_Rpc_V1_Flags()}
-    set {_flags = newValue}
+    get { return _flags ?? Org_Xrpl_Rpc_V1_Flags() }
+    set { _flags = newValue }
   }
   /// Returns true if `flags` has been explicitly set.
-  public var hasFlags: Bool {return self._flags != nil}
+  public var hasFlags: Bool { return self._flags != nil }
   /// Clears the value of `flags`. Subsequent reads from it will return its default value.
-  public mutating func clearFlags() {self._flags = nil}
+  public mutating func clearFlags() { self._flags = nil }
 
   public var sourceTag: Org_Xrpl_Rpc_V1_SourceTag {
-    get {return _sourceTag ?? Org_Xrpl_Rpc_V1_SourceTag()}
-    set {_sourceTag = newValue}
+    get { return _sourceTag ?? Org_Xrpl_Rpc_V1_SourceTag() }
+    set { _sourceTag = newValue }
   }
   /// Returns true if `sourceTag` has been explicitly set.
-  public var hasSourceTag: Bool {return self._sourceTag != nil}
+  public var hasSourceTag: Bool { return self._sourceTag != nil }
   /// Clears the value of `sourceTag`. Subsequent reads from it will return its default value.
-  public mutating func clearSourceTag() {self._sourceTag = nil}
+  public mutating func clearSourceTag() { self._sourceTag = nil }
 
   public var destinationTag: Org_Xrpl_Rpc_V1_DestinationTag {
-    get {return _destinationTag ?? Org_Xrpl_Rpc_V1_DestinationTag()}
-    set {_destinationTag = newValue}
+    get { return _destinationTag ?? Org_Xrpl_Rpc_V1_DestinationTag() }
+    set { _destinationTag = newValue }
   }
   /// Returns true if `destinationTag` has been explicitly set.
-  public var hasDestinationTag: Bool {return self._destinationTag != nil}
+  public var hasDestinationTag: Bool { return self._destinationTag != nil }
   /// Clears the value of `destinationTag`. Subsequent reads from it will return its default value.
-  public mutating func clearDestinationTag() {self._destinationTag = nil}
+  public mutating func clearDestinationTag() { self._destinationTag = nil }
 
   public var ownerNode: Org_Xrpl_Rpc_V1_OwnerNode {
-    get {return _ownerNode ?? Org_Xrpl_Rpc_V1_OwnerNode()}
-    set {_ownerNode = newValue}
+    get { return _ownerNode ?? Org_Xrpl_Rpc_V1_OwnerNode() }
+    set { _ownerNode = newValue }
   }
   /// Returns true if `ownerNode` has been explicitly set.
-  public var hasOwnerNode: Bool {return self._ownerNode != nil}
+  public var hasOwnerNode: Bool { return self._ownerNode != nil }
   /// Clears the value of `ownerNode`. Subsequent reads from it will return its default value.
-  public mutating func clearOwnerNode() {self._ownerNode = nil}
+  public mutating func clearOwnerNode() { self._ownerNode = nil }
 
   public var destinationNode: Org_Xrpl_Rpc_V1_DestinationNode {
-    get {return _destinationNode ?? Org_Xrpl_Rpc_V1_DestinationNode()}
-    set {_destinationNode = newValue}
+    get { return _destinationNode ?? Org_Xrpl_Rpc_V1_DestinationNode() }
+    set { _destinationNode = newValue }
   }
   /// Returns true if `destinationNode` has been explicitly set.
-  public var hasDestinationNode: Bool {return self._destinationNode != nil}
+  public var hasDestinationNode: Bool { return self._destinationNode != nil }
   /// Clears the value of `destinationNode`. Subsequent reads from it will return its default value.
-  public mutating func clearDestinationNode() {self._destinationNode = nil}
+  public mutating func clearDestinationNode() { self._destinationNode = nil }
 
   public var previousTransactionID: Org_Xrpl_Rpc_V1_PreviousTransactionID {
-    get {return _previousTransactionID ?? Org_Xrpl_Rpc_V1_PreviousTransactionID()}
-    set {_previousTransactionID = newValue}
+    get { return _previousTransactionID ?? Org_Xrpl_Rpc_V1_PreviousTransactionID() }
+    set { _previousTransactionID = newValue }
   }
   /// Returns true if `previousTransactionID` has been explicitly set.
-  public var hasPreviousTransactionID: Bool {return self._previousTransactionID != nil}
+  public var hasPreviousTransactionID: Bool { return self._previousTransactionID != nil }
   /// Clears the value of `previousTransactionID`. Subsequent reads from it will return its default value.
-  public mutating func clearPreviousTransactionID() {self._previousTransactionID = nil}
+  public mutating func clearPreviousTransactionID() { self._previousTransactionID = nil }
 
   public var previousTransactionLedgerSequence: Org_Xrpl_Rpc_V1_PreviousTransactionLedgerSequence {
-    get {return _previousTransactionLedgerSequence ?? Org_Xrpl_Rpc_V1_PreviousTransactionLedgerSequence()}
-    set {_previousTransactionLedgerSequence = newValue}
+    get { return _previousTransactionLedgerSequence ?? Org_Xrpl_Rpc_V1_PreviousTransactionLedgerSequence() }
+    set { _previousTransactionLedgerSequence = newValue }
   }
   /// Returns true if `previousTransactionLedgerSequence` has been explicitly set.
-  public var hasPreviousTransactionLedgerSequence: Bool {return self._previousTransactionLedgerSequence != nil}
+  public var hasPreviousTransactionLedgerSequence: Bool { return self._previousTransactionLedgerSequence != nil }
   /// Clears the value of `previousTransactionLedgerSequence`. Subsequent reads from it will return its default value.
-  public mutating func clearPreviousTransactionLedgerSequence() {self._previousTransactionLedgerSequence = nil}
+  public mutating func clearPreviousTransactionLedgerSequence() { self._previousTransactionLedgerSequence = nil }
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
 
-  fileprivate var _account: Org_Xrpl_Rpc_V1_Account? = nil
-  fileprivate var _destination: Org_Xrpl_Rpc_V1_Destination? = nil
-  fileprivate var _amount: Org_Xrpl_Rpc_V1_Amount? = nil
-  fileprivate var _condition: Org_Xrpl_Rpc_V1_Condition? = nil
-  fileprivate var _cancelAfter: Org_Xrpl_Rpc_V1_CancelAfter? = nil
-  fileprivate var _finishAfter: Org_Xrpl_Rpc_V1_FinishAfter? = nil
-  fileprivate var _flags: Org_Xrpl_Rpc_V1_Flags? = nil
-  fileprivate var _sourceTag: Org_Xrpl_Rpc_V1_SourceTag? = nil
-  fileprivate var _destinationTag: Org_Xrpl_Rpc_V1_DestinationTag? = nil
-  fileprivate var _ownerNode: Org_Xrpl_Rpc_V1_OwnerNode? = nil
-  fileprivate var _destinationNode: Org_Xrpl_Rpc_V1_DestinationNode? = nil
-  fileprivate var _previousTransactionID: Org_Xrpl_Rpc_V1_PreviousTransactionID? = nil
-  fileprivate var _previousTransactionLedgerSequence: Org_Xrpl_Rpc_V1_PreviousTransactionLedgerSequence? = nil
+  fileprivate var _account: Org_Xrpl_Rpc_V1_Account?
+  fileprivate var _destination: Org_Xrpl_Rpc_V1_Destination?
+  fileprivate var _amount: Org_Xrpl_Rpc_V1_Amount?
+  fileprivate var _condition: Org_Xrpl_Rpc_V1_Condition?
+  fileprivate var _cancelAfter: Org_Xrpl_Rpc_V1_CancelAfter?
+  fileprivate var _finishAfter: Org_Xrpl_Rpc_V1_FinishAfter?
+  fileprivate var _flags: Org_Xrpl_Rpc_V1_Flags?
+  fileprivate var _sourceTag: Org_Xrpl_Rpc_V1_SourceTag?
+  fileprivate var _destinationTag: Org_Xrpl_Rpc_V1_DestinationTag?
+  fileprivate var _ownerNode: Org_Xrpl_Rpc_V1_OwnerNode?
+  fileprivate var _destinationNode: Org_Xrpl_Rpc_V1_DestinationNode?
+  fileprivate var _previousTransactionID: Org_Xrpl_Rpc_V1_PreviousTransactionID?
+  fileprivate var _previousTransactionLedgerSequence: Org_Xrpl_Rpc_V1_PreviousTransactionLedgerSequence?
 }
 
 /// Next field: 6
@@ -939,59 +939,59 @@ public struct Org_Xrpl_Rpc_V1_FeeSettings {
   // methods supported on all messages.
 
   public var baseFee: Org_Xrpl_Rpc_V1_BaseFee {
-    get {return _baseFee ?? Org_Xrpl_Rpc_V1_BaseFee()}
-    set {_baseFee = newValue}
+    get { return _baseFee ?? Org_Xrpl_Rpc_V1_BaseFee() }
+    set { _baseFee = newValue }
   }
   /// Returns true if `baseFee` has been explicitly set.
-  public var hasBaseFee: Bool {return self._baseFee != nil}
+  public var hasBaseFee: Bool { return self._baseFee != nil }
   /// Clears the value of `baseFee`. Subsequent reads from it will return its default value.
-  public mutating func clearBaseFee() {self._baseFee = nil}
+  public mutating func clearBaseFee() { self._baseFee = nil }
 
   public var referenceFeeUnits: Org_Xrpl_Rpc_V1_ReferenceFeeUnits {
-    get {return _referenceFeeUnits ?? Org_Xrpl_Rpc_V1_ReferenceFeeUnits()}
-    set {_referenceFeeUnits = newValue}
+    get { return _referenceFeeUnits ?? Org_Xrpl_Rpc_V1_ReferenceFeeUnits() }
+    set { _referenceFeeUnits = newValue }
   }
   /// Returns true if `referenceFeeUnits` has been explicitly set.
-  public var hasReferenceFeeUnits: Bool {return self._referenceFeeUnits != nil}
+  public var hasReferenceFeeUnits: Bool { return self._referenceFeeUnits != nil }
   /// Clears the value of `referenceFeeUnits`. Subsequent reads from it will return its default value.
-  public mutating func clearReferenceFeeUnits() {self._referenceFeeUnits = nil}
+  public mutating func clearReferenceFeeUnits() { self._referenceFeeUnits = nil }
 
   public var reserveBase: Org_Xrpl_Rpc_V1_ReserveBase {
-    get {return _reserveBase ?? Org_Xrpl_Rpc_V1_ReserveBase()}
-    set {_reserveBase = newValue}
+    get { return _reserveBase ?? Org_Xrpl_Rpc_V1_ReserveBase() }
+    set { _reserveBase = newValue }
   }
   /// Returns true if `reserveBase` has been explicitly set.
-  public var hasReserveBase: Bool {return self._reserveBase != nil}
+  public var hasReserveBase: Bool { return self._reserveBase != nil }
   /// Clears the value of `reserveBase`. Subsequent reads from it will return its default value.
-  public mutating func clearReserveBase() {self._reserveBase = nil}
+  public mutating func clearReserveBase() { self._reserveBase = nil }
 
   public var reserveIncrement: Org_Xrpl_Rpc_V1_ReserveIncrement {
-    get {return _reserveIncrement ?? Org_Xrpl_Rpc_V1_ReserveIncrement()}
-    set {_reserveIncrement = newValue}
+    get { return _reserveIncrement ?? Org_Xrpl_Rpc_V1_ReserveIncrement() }
+    set { _reserveIncrement = newValue }
   }
   /// Returns true if `reserveIncrement` has been explicitly set.
-  public var hasReserveIncrement: Bool {return self._reserveIncrement != nil}
+  public var hasReserveIncrement: Bool { return self._reserveIncrement != nil }
   /// Clears the value of `reserveIncrement`. Subsequent reads from it will return its default value.
-  public mutating func clearReserveIncrement() {self._reserveIncrement = nil}
+  public mutating func clearReserveIncrement() { self._reserveIncrement = nil }
 
   public var flags: Org_Xrpl_Rpc_V1_Flags {
-    get {return _flags ?? Org_Xrpl_Rpc_V1_Flags()}
-    set {_flags = newValue}
+    get { return _flags ?? Org_Xrpl_Rpc_V1_Flags() }
+    set { _flags = newValue }
   }
   /// Returns true if `flags` has been explicitly set.
-  public var hasFlags: Bool {return self._flags != nil}
+  public var hasFlags: Bool { return self._flags != nil }
   /// Clears the value of `flags`. Subsequent reads from it will return its default value.
-  public mutating func clearFlags() {self._flags = nil}
+  public mutating func clearFlags() { self._flags = nil }
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
 
-  fileprivate var _baseFee: Org_Xrpl_Rpc_V1_BaseFee? = nil
-  fileprivate var _referenceFeeUnits: Org_Xrpl_Rpc_V1_ReferenceFeeUnits? = nil
-  fileprivate var _reserveBase: Org_Xrpl_Rpc_V1_ReserveBase? = nil
-  fileprivate var _reserveIncrement: Org_Xrpl_Rpc_V1_ReserveIncrement? = nil
-  fileprivate var _flags: Org_Xrpl_Rpc_V1_Flags? = nil
+  fileprivate var _baseFee: Org_Xrpl_Rpc_V1_BaseFee?
+  fileprivate var _referenceFeeUnits: Org_Xrpl_Rpc_V1_ReferenceFeeUnits?
+  fileprivate var _reserveBase: Org_Xrpl_Rpc_V1_ReserveBase?
+  fileprivate var _reserveIncrement: Org_Xrpl_Rpc_V1_ReserveIncrement?
+  fileprivate var _flags: Org_Xrpl_Rpc_V1_Flags?
 }
 
 /// Next field: 4
@@ -1001,31 +1001,31 @@ public struct Org_Xrpl_Rpc_V1_LedgerHashes {
   // methods supported on all messages.
 
   public var lastLedgerSequence: Org_Xrpl_Rpc_V1_LastLedgerSequence {
-    get {return _lastLedgerSequence ?? Org_Xrpl_Rpc_V1_LastLedgerSequence()}
-    set {_lastLedgerSequence = newValue}
+    get { return _lastLedgerSequence ?? Org_Xrpl_Rpc_V1_LastLedgerSequence() }
+    set { _lastLedgerSequence = newValue }
   }
   /// Returns true if `lastLedgerSequence` has been explicitly set.
-  public var hasLastLedgerSequence: Bool {return self._lastLedgerSequence != nil}
+  public var hasLastLedgerSequence: Bool { return self._lastLedgerSequence != nil }
   /// Clears the value of `lastLedgerSequence`. Subsequent reads from it will return its default value.
-  public mutating func clearLastLedgerSequence() {self._lastLedgerSequence = nil}
+  public mutating func clearLastLedgerSequence() { self._lastLedgerSequence = nil }
 
   public var hashes: [Org_Xrpl_Rpc_V1_Hash] = []
 
   public var flags: Org_Xrpl_Rpc_V1_Flags {
-    get {return _flags ?? Org_Xrpl_Rpc_V1_Flags()}
-    set {_flags = newValue}
+    get { return _flags ?? Org_Xrpl_Rpc_V1_Flags() }
+    set { _flags = newValue }
   }
   /// Returns true if `flags` has been explicitly set.
-  public var hasFlags: Bool {return self._flags != nil}
+  public var hasFlags: Bool { return self._flags != nil }
   /// Clears the value of `flags`. Subsequent reads from it will return its default value.
-  public mutating func clearFlags() {self._flags = nil}
+  public mutating func clearFlags() { self._flags = nil }
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
 
-  fileprivate var _lastLedgerSequence: Org_Xrpl_Rpc_V1_LastLedgerSequence? = nil
-  fileprivate var _flags: Org_Xrpl_Rpc_V1_Flags? = nil
+  fileprivate var _lastLedgerSequence: Org_Xrpl_Rpc_V1_LastLedgerSequence?
+  fileprivate var _flags: Org_Xrpl_Rpc_V1_Flags?
 }
 
 /// Next field: 12
@@ -1035,119 +1035,119 @@ public struct Org_Xrpl_Rpc_V1_Offer {
   // methods supported on all messages.
 
   public var account: Org_Xrpl_Rpc_V1_Account {
-    get {return _account ?? Org_Xrpl_Rpc_V1_Account()}
-    set {_account = newValue}
+    get { return _account ?? Org_Xrpl_Rpc_V1_Account() }
+    set { _account = newValue }
   }
   /// Returns true if `account` has been explicitly set.
-  public var hasAccount: Bool {return self._account != nil}
+  public var hasAccount: Bool { return self._account != nil }
   /// Clears the value of `account`. Subsequent reads from it will return its default value.
-  public mutating func clearAccount() {self._account = nil}
+  public mutating func clearAccount() { self._account = nil }
 
   public var sequence: Org_Xrpl_Rpc_V1_Sequence {
-    get {return _sequence ?? Org_Xrpl_Rpc_V1_Sequence()}
-    set {_sequence = newValue}
+    get { return _sequence ?? Org_Xrpl_Rpc_V1_Sequence() }
+    set { _sequence = newValue }
   }
   /// Returns true if `sequence` has been explicitly set.
-  public var hasSequence: Bool {return self._sequence != nil}
+  public var hasSequence: Bool { return self._sequence != nil }
   /// Clears the value of `sequence`. Subsequent reads from it will return its default value.
-  public mutating func clearSequence() {self._sequence = nil}
+  public mutating func clearSequence() { self._sequence = nil }
 
   public var flags: Org_Xrpl_Rpc_V1_Flags {
-    get {return _flags ?? Org_Xrpl_Rpc_V1_Flags()}
-    set {_flags = newValue}
+    get { return _flags ?? Org_Xrpl_Rpc_V1_Flags() }
+    set { _flags = newValue }
   }
   /// Returns true if `flags` has been explicitly set.
-  public var hasFlags: Bool {return self._flags != nil}
+  public var hasFlags: Bool { return self._flags != nil }
   /// Clears the value of `flags`. Subsequent reads from it will return its default value.
-  public mutating func clearFlags() {self._flags = nil}
+  public mutating func clearFlags() { self._flags = nil }
 
   public var takerPays: Org_Xrpl_Rpc_V1_TakerPays {
-    get {return _takerPays ?? Org_Xrpl_Rpc_V1_TakerPays()}
-    set {_takerPays = newValue}
+    get { return _takerPays ?? Org_Xrpl_Rpc_V1_TakerPays() }
+    set { _takerPays = newValue }
   }
   /// Returns true if `takerPays` has been explicitly set.
-  public var hasTakerPays: Bool {return self._takerPays != nil}
+  public var hasTakerPays: Bool { return self._takerPays != nil }
   /// Clears the value of `takerPays`. Subsequent reads from it will return its default value.
-  public mutating func clearTakerPays() {self._takerPays = nil}
+  public mutating func clearTakerPays() { self._takerPays = nil }
 
   public var takerGets: Org_Xrpl_Rpc_V1_TakerGets {
-    get {return _takerGets ?? Org_Xrpl_Rpc_V1_TakerGets()}
-    set {_takerGets = newValue}
+    get { return _takerGets ?? Org_Xrpl_Rpc_V1_TakerGets() }
+    set { _takerGets = newValue }
   }
   /// Returns true if `takerGets` has been explicitly set.
-  public var hasTakerGets: Bool {return self._takerGets != nil}
+  public var hasTakerGets: Bool { return self._takerGets != nil }
   /// Clears the value of `takerGets`. Subsequent reads from it will return its default value.
-  public mutating func clearTakerGets() {self._takerGets = nil}
+  public mutating func clearTakerGets() { self._takerGets = nil }
 
   public var bookDirectory: Org_Xrpl_Rpc_V1_BookDirectory {
-    get {return _bookDirectory ?? Org_Xrpl_Rpc_V1_BookDirectory()}
-    set {_bookDirectory = newValue}
+    get { return _bookDirectory ?? Org_Xrpl_Rpc_V1_BookDirectory() }
+    set { _bookDirectory = newValue }
   }
   /// Returns true if `bookDirectory` has been explicitly set.
-  public var hasBookDirectory: Bool {return self._bookDirectory != nil}
+  public var hasBookDirectory: Bool { return self._bookDirectory != nil }
   /// Clears the value of `bookDirectory`. Subsequent reads from it will return its default value.
-  public mutating func clearBookDirectory() {self._bookDirectory = nil}
+  public mutating func clearBookDirectory() { self._bookDirectory = nil }
 
   public var bookNode: Org_Xrpl_Rpc_V1_BookNode {
-    get {return _bookNode ?? Org_Xrpl_Rpc_V1_BookNode()}
-    set {_bookNode = newValue}
+    get { return _bookNode ?? Org_Xrpl_Rpc_V1_BookNode() }
+    set { _bookNode = newValue }
   }
   /// Returns true if `bookNode` has been explicitly set.
-  public var hasBookNode: Bool {return self._bookNode != nil}
+  public var hasBookNode: Bool { return self._bookNode != nil }
   /// Clears the value of `bookNode`. Subsequent reads from it will return its default value.
-  public mutating func clearBookNode() {self._bookNode = nil}
+  public mutating func clearBookNode() { self._bookNode = nil }
 
   public var ownerNode: Org_Xrpl_Rpc_V1_OwnerNode {
-    get {return _ownerNode ?? Org_Xrpl_Rpc_V1_OwnerNode()}
-    set {_ownerNode = newValue}
+    get { return _ownerNode ?? Org_Xrpl_Rpc_V1_OwnerNode() }
+    set { _ownerNode = newValue }
   }
   /// Returns true if `ownerNode` has been explicitly set.
-  public var hasOwnerNode: Bool {return self._ownerNode != nil}
+  public var hasOwnerNode: Bool { return self._ownerNode != nil }
   /// Clears the value of `ownerNode`. Subsequent reads from it will return its default value.
-  public mutating func clearOwnerNode() {self._ownerNode = nil}
+  public mutating func clearOwnerNode() { self._ownerNode = nil }
 
   public var expiration: Org_Xrpl_Rpc_V1_Expiration {
-    get {return _expiration ?? Org_Xrpl_Rpc_V1_Expiration()}
-    set {_expiration = newValue}
+    get { return _expiration ?? Org_Xrpl_Rpc_V1_Expiration() }
+    set { _expiration = newValue }
   }
   /// Returns true if `expiration` has been explicitly set.
-  public var hasExpiration: Bool {return self._expiration != nil}
+  public var hasExpiration: Bool { return self._expiration != nil }
   /// Clears the value of `expiration`. Subsequent reads from it will return its default value.
-  public mutating func clearExpiration() {self._expiration = nil}
+  public mutating func clearExpiration() { self._expiration = nil }
 
   public var previousTransactionID: Org_Xrpl_Rpc_V1_PreviousTransactionID {
-    get {return _previousTransactionID ?? Org_Xrpl_Rpc_V1_PreviousTransactionID()}
-    set {_previousTransactionID = newValue}
+    get { return _previousTransactionID ?? Org_Xrpl_Rpc_V1_PreviousTransactionID() }
+    set { _previousTransactionID = newValue }
   }
   /// Returns true if `previousTransactionID` has been explicitly set.
-  public var hasPreviousTransactionID: Bool {return self._previousTransactionID != nil}
+  public var hasPreviousTransactionID: Bool { return self._previousTransactionID != nil }
   /// Clears the value of `previousTransactionID`. Subsequent reads from it will return its default value.
-  public mutating func clearPreviousTransactionID() {self._previousTransactionID = nil}
+  public mutating func clearPreviousTransactionID() { self._previousTransactionID = nil }
 
   public var previousTransactionLedgerSequence: Org_Xrpl_Rpc_V1_PreviousTransactionLedgerSequence {
-    get {return _previousTransactionLedgerSequence ?? Org_Xrpl_Rpc_V1_PreviousTransactionLedgerSequence()}
-    set {_previousTransactionLedgerSequence = newValue}
+    get { return _previousTransactionLedgerSequence ?? Org_Xrpl_Rpc_V1_PreviousTransactionLedgerSequence() }
+    set { _previousTransactionLedgerSequence = newValue }
   }
   /// Returns true if `previousTransactionLedgerSequence` has been explicitly set.
-  public var hasPreviousTransactionLedgerSequence: Bool {return self._previousTransactionLedgerSequence != nil}
+  public var hasPreviousTransactionLedgerSequence: Bool { return self._previousTransactionLedgerSequence != nil }
   /// Clears the value of `previousTransactionLedgerSequence`. Subsequent reads from it will return its default value.
-  public mutating func clearPreviousTransactionLedgerSequence() {self._previousTransactionLedgerSequence = nil}
+  public mutating func clearPreviousTransactionLedgerSequence() { self._previousTransactionLedgerSequence = nil }
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
 
-  fileprivate var _account: Org_Xrpl_Rpc_V1_Account? = nil
-  fileprivate var _sequence: Org_Xrpl_Rpc_V1_Sequence? = nil
-  fileprivate var _flags: Org_Xrpl_Rpc_V1_Flags? = nil
-  fileprivate var _takerPays: Org_Xrpl_Rpc_V1_TakerPays? = nil
-  fileprivate var _takerGets: Org_Xrpl_Rpc_V1_TakerGets? = nil
-  fileprivate var _bookDirectory: Org_Xrpl_Rpc_V1_BookDirectory? = nil
-  fileprivate var _bookNode: Org_Xrpl_Rpc_V1_BookNode? = nil
-  fileprivate var _ownerNode: Org_Xrpl_Rpc_V1_OwnerNode? = nil
-  fileprivate var _expiration: Org_Xrpl_Rpc_V1_Expiration? = nil
-  fileprivate var _previousTransactionID: Org_Xrpl_Rpc_V1_PreviousTransactionID? = nil
-  fileprivate var _previousTransactionLedgerSequence: Org_Xrpl_Rpc_V1_PreviousTransactionLedgerSequence? = nil
+  fileprivate var _account: Org_Xrpl_Rpc_V1_Account?
+  fileprivate var _sequence: Org_Xrpl_Rpc_V1_Sequence?
+  fileprivate var _flags: Org_Xrpl_Rpc_V1_Flags?
+  fileprivate var _takerPays: Org_Xrpl_Rpc_V1_TakerPays?
+  fileprivate var _takerGets: Org_Xrpl_Rpc_V1_TakerGets?
+  fileprivate var _bookDirectory: Org_Xrpl_Rpc_V1_BookDirectory?
+  fileprivate var _bookNode: Org_Xrpl_Rpc_V1_BookNode?
+  fileprivate var _ownerNode: Org_Xrpl_Rpc_V1_OwnerNode?
+  fileprivate var _expiration: Org_Xrpl_Rpc_V1_Expiration?
+  fileprivate var _previousTransactionID: Org_Xrpl_Rpc_V1_PreviousTransactionID?
+  fileprivate var _previousTransactionLedgerSequence: Org_Xrpl_Rpc_V1_PreviousTransactionLedgerSequence?
 }
 
 /// Next field: 13
@@ -1157,149 +1157,149 @@ public struct Org_Xrpl_Rpc_V1_PayChannel {
   // methods supported on all messages.
 
   public var account: Org_Xrpl_Rpc_V1_Account {
-    get {return _account ?? Org_Xrpl_Rpc_V1_Account()}
-    set {_account = newValue}
+    get { return _account ?? Org_Xrpl_Rpc_V1_Account() }
+    set { _account = newValue }
   }
   /// Returns true if `account` has been explicitly set.
-  public var hasAccount: Bool {return self._account != nil}
+  public var hasAccount: Bool { return self._account != nil }
   /// Clears the value of `account`. Subsequent reads from it will return its default value.
-  public mutating func clearAccount() {self._account = nil}
+  public mutating func clearAccount() { self._account = nil }
 
   public var destination: Org_Xrpl_Rpc_V1_Destination {
-    get {return _destination ?? Org_Xrpl_Rpc_V1_Destination()}
-    set {_destination = newValue}
+    get { return _destination ?? Org_Xrpl_Rpc_V1_Destination() }
+    set { _destination = newValue }
   }
   /// Returns true if `destination` has been explicitly set.
-  public var hasDestination: Bool {return self._destination != nil}
+  public var hasDestination: Bool { return self._destination != nil }
   /// Clears the value of `destination`. Subsequent reads from it will return its default value.
-  public mutating func clearDestination() {self._destination = nil}
+  public mutating func clearDestination() { self._destination = nil }
 
   public var amount: Org_Xrpl_Rpc_V1_Amount {
-    get {return _amount ?? Org_Xrpl_Rpc_V1_Amount()}
-    set {_amount = newValue}
+    get { return _amount ?? Org_Xrpl_Rpc_V1_Amount() }
+    set { _amount = newValue }
   }
   /// Returns true if `amount` has been explicitly set.
-  public var hasAmount: Bool {return self._amount != nil}
+  public var hasAmount: Bool { return self._amount != nil }
   /// Clears the value of `amount`. Subsequent reads from it will return its default value.
-  public mutating func clearAmount() {self._amount = nil}
+  public mutating func clearAmount() { self._amount = nil }
 
   public var balance: Org_Xrpl_Rpc_V1_Balance {
-    get {return _balance ?? Org_Xrpl_Rpc_V1_Balance()}
-    set {_balance = newValue}
+    get { return _balance ?? Org_Xrpl_Rpc_V1_Balance() }
+    set { _balance = newValue }
   }
   /// Returns true if `balance` has been explicitly set.
-  public var hasBalance: Bool {return self._balance != nil}
+  public var hasBalance: Bool { return self._balance != nil }
   /// Clears the value of `balance`. Subsequent reads from it will return its default value.
-  public mutating func clearBalance() {self._balance = nil}
+  public mutating func clearBalance() { self._balance = nil }
 
   public var publicKey: Org_Xrpl_Rpc_V1_PublicKey {
-    get {return _publicKey ?? Org_Xrpl_Rpc_V1_PublicKey()}
-    set {_publicKey = newValue}
+    get { return _publicKey ?? Org_Xrpl_Rpc_V1_PublicKey() }
+    set { _publicKey = newValue }
   }
   /// Returns true if `publicKey` has been explicitly set.
-  public var hasPublicKey: Bool {return self._publicKey != nil}
+  public var hasPublicKey: Bool { return self._publicKey != nil }
   /// Clears the value of `publicKey`. Subsequent reads from it will return its default value.
-  public mutating func clearPublicKey() {self._publicKey = nil}
+  public mutating func clearPublicKey() { self._publicKey = nil }
 
   public var settleDelay: Org_Xrpl_Rpc_V1_SettleDelay {
-    get {return _settleDelay ?? Org_Xrpl_Rpc_V1_SettleDelay()}
-    set {_settleDelay = newValue}
+    get { return _settleDelay ?? Org_Xrpl_Rpc_V1_SettleDelay() }
+    set { _settleDelay = newValue }
   }
   /// Returns true if `settleDelay` has been explicitly set.
-  public var hasSettleDelay: Bool {return self._settleDelay != nil}
+  public var hasSettleDelay: Bool { return self._settleDelay != nil }
   /// Clears the value of `settleDelay`. Subsequent reads from it will return its default value.
-  public mutating func clearSettleDelay() {self._settleDelay = nil}
+  public mutating func clearSettleDelay() { self._settleDelay = nil }
 
   public var ownerNode: Org_Xrpl_Rpc_V1_OwnerNode {
-    get {return _ownerNode ?? Org_Xrpl_Rpc_V1_OwnerNode()}
-    set {_ownerNode = newValue}
+    get { return _ownerNode ?? Org_Xrpl_Rpc_V1_OwnerNode() }
+    set { _ownerNode = newValue }
   }
   /// Returns true if `ownerNode` has been explicitly set.
-  public var hasOwnerNode: Bool {return self._ownerNode != nil}
+  public var hasOwnerNode: Bool { return self._ownerNode != nil }
   /// Clears the value of `ownerNode`. Subsequent reads from it will return its default value.
-  public mutating func clearOwnerNode() {self._ownerNode = nil}
+  public mutating func clearOwnerNode() { self._ownerNode = nil }
 
   public var previousTransactionID: Org_Xrpl_Rpc_V1_PreviousTransactionID {
-    get {return _previousTransactionID ?? Org_Xrpl_Rpc_V1_PreviousTransactionID()}
-    set {_previousTransactionID = newValue}
+    get { return _previousTransactionID ?? Org_Xrpl_Rpc_V1_PreviousTransactionID() }
+    set { _previousTransactionID = newValue }
   }
   /// Returns true if `previousTransactionID` has been explicitly set.
-  public var hasPreviousTransactionID: Bool {return self._previousTransactionID != nil}
+  public var hasPreviousTransactionID: Bool { return self._previousTransactionID != nil }
   /// Clears the value of `previousTransactionID`. Subsequent reads from it will return its default value.
-  public mutating func clearPreviousTransactionID() {self._previousTransactionID = nil}
+  public mutating func clearPreviousTransactionID() { self._previousTransactionID = nil }
 
   public var previousTransactionLedgerSequence: Org_Xrpl_Rpc_V1_PreviousTransactionLedgerSequence {
-    get {return _previousTransactionLedgerSequence ?? Org_Xrpl_Rpc_V1_PreviousTransactionLedgerSequence()}
-    set {_previousTransactionLedgerSequence = newValue}
+    get { return _previousTransactionLedgerSequence ?? Org_Xrpl_Rpc_V1_PreviousTransactionLedgerSequence() }
+    set { _previousTransactionLedgerSequence = newValue }
   }
   /// Returns true if `previousTransactionLedgerSequence` has been explicitly set.
-  public var hasPreviousTransactionLedgerSequence: Bool {return self._previousTransactionLedgerSequence != nil}
+  public var hasPreviousTransactionLedgerSequence: Bool { return self._previousTransactionLedgerSequence != nil }
   /// Clears the value of `previousTransactionLedgerSequence`. Subsequent reads from it will return its default value.
-  public mutating func clearPreviousTransactionLedgerSequence() {self._previousTransactionLedgerSequence = nil}
+  public mutating func clearPreviousTransactionLedgerSequence() { self._previousTransactionLedgerSequence = nil }
 
   public var flags: Org_Xrpl_Rpc_V1_Flags {
-    get {return _flags ?? Org_Xrpl_Rpc_V1_Flags()}
-    set {_flags = newValue}
+    get { return _flags ?? Org_Xrpl_Rpc_V1_Flags() }
+    set { _flags = newValue }
   }
   /// Returns true if `flags` has been explicitly set.
-  public var hasFlags: Bool {return self._flags != nil}
+  public var hasFlags: Bool { return self._flags != nil }
   /// Clears the value of `flags`. Subsequent reads from it will return its default value.
-  public mutating func clearFlags() {self._flags = nil}
+  public mutating func clearFlags() { self._flags = nil }
 
   public var expiration: Org_Xrpl_Rpc_V1_Expiration {
-    get {return _expiration ?? Org_Xrpl_Rpc_V1_Expiration()}
-    set {_expiration = newValue}
+    get { return _expiration ?? Org_Xrpl_Rpc_V1_Expiration() }
+    set { _expiration = newValue }
   }
   /// Returns true if `expiration` has been explicitly set.
-  public var hasExpiration: Bool {return self._expiration != nil}
+  public var hasExpiration: Bool { return self._expiration != nil }
   /// Clears the value of `expiration`. Subsequent reads from it will return its default value.
-  public mutating func clearExpiration() {self._expiration = nil}
+  public mutating func clearExpiration() { self._expiration = nil }
 
   public var cancelAfter: Org_Xrpl_Rpc_V1_CancelAfter {
-    get {return _cancelAfter ?? Org_Xrpl_Rpc_V1_CancelAfter()}
-    set {_cancelAfter = newValue}
+    get { return _cancelAfter ?? Org_Xrpl_Rpc_V1_CancelAfter() }
+    set { _cancelAfter = newValue }
   }
   /// Returns true if `cancelAfter` has been explicitly set.
-  public var hasCancelAfter: Bool {return self._cancelAfter != nil}
+  public var hasCancelAfter: Bool { return self._cancelAfter != nil }
   /// Clears the value of `cancelAfter`. Subsequent reads from it will return its default value.
-  public mutating func clearCancelAfter() {self._cancelAfter = nil}
+  public mutating func clearCancelAfter() { self._cancelAfter = nil }
 
   public var sourceTag: Org_Xrpl_Rpc_V1_SourceTag {
-    get {return _sourceTag ?? Org_Xrpl_Rpc_V1_SourceTag()}
-    set {_sourceTag = newValue}
+    get { return _sourceTag ?? Org_Xrpl_Rpc_V1_SourceTag() }
+    set { _sourceTag = newValue }
   }
   /// Returns true if `sourceTag` has been explicitly set.
-  public var hasSourceTag: Bool {return self._sourceTag != nil}
+  public var hasSourceTag: Bool { return self._sourceTag != nil }
   /// Clears the value of `sourceTag`. Subsequent reads from it will return its default value.
-  public mutating func clearSourceTag() {self._sourceTag = nil}
+  public mutating func clearSourceTag() { self._sourceTag = nil }
 
   public var destinationTag: Org_Xrpl_Rpc_V1_DestinationTag {
-    get {return _destinationTag ?? Org_Xrpl_Rpc_V1_DestinationTag()}
-    set {_destinationTag = newValue}
+    get { return _destinationTag ?? Org_Xrpl_Rpc_V1_DestinationTag() }
+    set { _destinationTag = newValue }
   }
   /// Returns true if `destinationTag` has been explicitly set.
-  public var hasDestinationTag: Bool {return self._destinationTag != nil}
+  public var hasDestinationTag: Bool { return self._destinationTag != nil }
   /// Clears the value of `destinationTag`. Subsequent reads from it will return its default value.
-  public mutating func clearDestinationTag() {self._destinationTag = nil}
+  public mutating func clearDestinationTag() { self._destinationTag = nil }
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
 
-  fileprivate var _account: Org_Xrpl_Rpc_V1_Account? = nil
-  fileprivate var _destination: Org_Xrpl_Rpc_V1_Destination? = nil
-  fileprivate var _amount: Org_Xrpl_Rpc_V1_Amount? = nil
-  fileprivate var _balance: Org_Xrpl_Rpc_V1_Balance? = nil
-  fileprivate var _publicKey: Org_Xrpl_Rpc_V1_PublicKey? = nil
-  fileprivate var _settleDelay: Org_Xrpl_Rpc_V1_SettleDelay? = nil
-  fileprivate var _ownerNode: Org_Xrpl_Rpc_V1_OwnerNode? = nil
-  fileprivate var _previousTransactionID: Org_Xrpl_Rpc_V1_PreviousTransactionID? = nil
-  fileprivate var _previousTransactionLedgerSequence: Org_Xrpl_Rpc_V1_PreviousTransactionLedgerSequence? = nil
-  fileprivate var _flags: Org_Xrpl_Rpc_V1_Flags? = nil
-  fileprivate var _expiration: Org_Xrpl_Rpc_V1_Expiration? = nil
-  fileprivate var _cancelAfter: Org_Xrpl_Rpc_V1_CancelAfter? = nil
-  fileprivate var _sourceTag: Org_Xrpl_Rpc_V1_SourceTag? = nil
-  fileprivate var _destinationTag: Org_Xrpl_Rpc_V1_DestinationTag? = nil
+  fileprivate var _account: Org_Xrpl_Rpc_V1_Account?
+  fileprivate var _destination: Org_Xrpl_Rpc_V1_Destination?
+  fileprivate var _amount: Org_Xrpl_Rpc_V1_Amount?
+  fileprivate var _balance: Org_Xrpl_Rpc_V1_Balance?
+  fileprivate var _publicKey: Org_Xrpl_Rpc_V1_PublicKey?
+  fileprivate var _settleDelay: Org_Xrpl_Rpc_V1_SettleDelay?
+  fileprivate var _ownerNode: Org_Xrpl_Rpc_V1_OwnerNode?
+  fileprivate var _previousTransactionID: Org_Xrpl_Rpc_V1_PreviousTransactionID?
+  fileprivate var _previousTransactionLedgerSequence: Org_Xrpl_Rpc_V1_PreviousTransactionLedgerSequence?
+  fileprivate var _flags: Org_Xrpl_Rpc_V1_Flags?
+  fileprivate var _expiration: Org_Xrpl_Rpc_V1_Expiration?
+  fileprivate var _cancelAfter: Org_Xrpl_Rpc_V1_CancelAfter?
+  fileprivate var _sourceTag: Org_Xrpl_Rpc_V1_SourceTag?
+  fileprivate var _destinationTag: Org_Xrpl_Rpc_V1_DestinationTag?
 }
 
 /// Next field: 13
@@ -1309,129 +1309,129 @@ public struct Org_Xrpl_Rpc_V1_RippleState {
   // methods supported on all messages.
 
   public var balance: Org_Xrpl_Rpc_V1_Balance {
-    get {return _balance ?? Org_Xrpl_Rpc_V1_Balance()}
-    set {_balance = newValue}
+    get { return _balance ?? Org_Xrpl_Rpc_V1_Balance() }
+    set { _balance = newValue }
   }
   /// Returns true if `balance` has been explicitly set.
-  public var hasBalance: Bool {return self._balance != nil}
+  public var hasBalance: Bool { return self._balance != nil }
   /// Clears the value of `balance`. Subsequent reads from it will return its default value.
-  public mutating func clearBalance() {self._balance = nil}
+  public mutating func clearBalance() { self._balance = nil }
 
   public var flags: Org_Xrpl_Rpc_V1_Flags {
-    get {return _flags ?? Org_Xrpl_Rpc_V1_Flags()}
-    set {_flags = newValue}
+    get { return _flags ?? Org_Xrpl_Rpc_V1_Flags() }
+    set { _flags = newValue }
   }
   /// Returns true if `flags` has been explicitly set.
-  public var hasFlags: Bool {return self._flags != nil}
+  public var hasFlags: Bool { return self._flags != nil }
   /// Clears the value of `flags`. Subsequent reads from it will return its default value.
-  public mutating func clearFlags() {self._flags = nil}
+  public mutating func clearFlags() { self._flags = nil }
 
   public var lowLimit: Org_Xrpl_Rpc_V1_LowLimit {
-    get {return _lowLimit ?? Org_Xrpl_Rpc_V1_LowLimit()}
-    set {_lowLimit = newValue}
+    get { return _lowLimit ?? Org_Xrpl_Rpc_V1_LowLimit() }
+    set { _lowLimit = newValue }
   }
   /// Returns true if `lowLimit` has been explicitly set.
-  public var hasLowLimit: Bool {return self._lowLimit != nil}
+  public var hasLowLimit: Bool { return self._lowLimit != nil }
   /// Clears the value of `lowLimit`. Subsequent reads from it will return its default value.
-  public mutating func clearLowLimit() {self._lowLimit = nil}
+  public mutating func clearLowLimit() { self._lowLimit = nil }
 
   public var highLimit: Org_Xrpl_Rpc_V1_HighLimit {
-    get {return _highLimit ?? Org_Xrpl_Rpc_V1_HighLimit()}
-    set {_highLimit = newValue}
+    get { return _highLimit ?? Org_Xrpl_Rpc_V1_HighLimit() }
+    set { _highLimit = newValue }
   }
   /// Returns true if `highLimit` has been explicitly set.
-  public var hasHighLimit: Bool {return self._highLimit != nil}
+  public var hasHighLimit: Bool { return self._highLimit != nil }
   /// Clears the value of `highLimit`. Subsequent reads from it will return its default value.
-  public mutating func clearHighLimit() {self._highLimit = nil}
+  public mutating func clearHighLimit() { self._highLimit = nil }
 
   public var lowNode: Org_Xrpl_Rpc_V1_LowNode {
-    get {return _lowNode ?? Org_Xrpl_Rpc_V1_LowNode()}
-    set {_lowNode = newValue}
+    get { return _lowNode ?? Org_Xrpl_Rpc_V1_LowNode() }
+    set { _lowNode = newValue }
   }
   /// Returns true if `lowNode` has been explicitly set.
-  public var hasLowNode: Bool {return self._lowNode != nil}
+  public var hasLowNode: Bool { return self._lowNode != nil }
   /// Clears the value of `lowNode`. Subsequent reads from it will return its default value.
-  public mutating func clearLowNode() {self._lowNode = nil}
+  public mutating func clearLowNode() { self._lowNode = nil }
 
   public var highNode: Org_Xrpl_Rpc_V1_HighNode {
-    get {return _highNode ?? Org_Xrpl_Rpc_V1_HighNode()}
-    set {_highNode = newValue}
+    get { return _highNode ?? Org_Xrpl_Rpc_V1_HighNode() }
+    set { _highNode = newValue }
   }
   /// Returns true if `highNode` has been explicitly set.
-  public var hasHighNode: Bool {return self._highNode != nil}
+  public var hasHighNode: Bool { return self._highNode != nil }
   /// Clears the value of `highNode`. Subsequent reads from it will return its default value.
-  public mutating func clearHighNode() {self._highNode = nil}
+  public mutating func clearHighNode() { self._highNode = nil }
 
   public var lowQualityIn: Org_Xrpl_Rpc_V1_LowQualityIn {
-    get {return _lowQualityIn ?? Org_Xrpl_Rpc_V1_LowQualityIn()}
-    set {_lowQualityIn = newValue}
+    get { return _lowQualityIn ?? Org_Xrpl_Rpc_V1_LowQualityIn() }
+    set { _lowQualityIn = newValue }
   }
   /// Returns true if `lowQualityIn` has been explicitly set.
-  public var hasLowQualityIn: Bool {return self._lowQualityIn != nil}
+  public var hasLowQualityIn: Bool { return self._lowQualityIn != nil }
   /// Clears the value of `lowQualityIn`. Subsequent reads from it will return its default value.
-  public mutating func clearLowQualityIn() {self._lowQualityIn = nil}
+  public mutating func clearLowQualityIn() { self._lowQualityIn = nil }
 
   public var lowQualityOut: Org_Xrpl_Rpc_V1_LowQualityOut {
-    get {return _lowQualityOut ?? Org_Xrpl_Rpc_V1_LowQualityOut()}
-    set {_lowQualityOut = newValue}
+    get { return _lowQualityOut ?? Org_Xrpl_Rpc_V1_LowQualityOut() }
+    set { _lowQualityOut = newValue }
   }
   /// Returns true if `lowQualityOut` has been explicitly set.
-  public var hasLowQualityOut: Bool {return self._lowQualityOut != nil}
+  public var hasLowQualityOut: Bool { return self._lowQualityOut != nil }
   /// Clears the value of `lowQualityOut`. Subsequent reads from it will return its default value.
-  public mutating func clearLowQualityOut() {self._lowQualityOut = nil}
+  public mutating func clearLowQualityOut() { self._lowQualityOut = nil }
 
   public var highQualityIn: Org_Xrpl_Rpc_V1_HighQualityIn {
-    get {return _highQualityIn ?? Org_Xrpl_Rpc_V1_HighQualityIn()}
-    set {_highQualityIn = newValue}
+    get { return _highQualityIn ?? Org_Xrpl_Rpc_V1_HighQualityIn() }
+    set { _highQualityIn = newValue }
   }
   /// Returns true if `highQualityIn` has been explicitly set.
-  public var hasHighQualityIn: Bool {return self._highQualityIn != nil}
+  public var hasHighQualityIn: Bool { return self._highQualityIn != nil }
   /// Clears the value of `highQualityIn`. Subsequent reads from it will return its default value.
-  public mutating func clearHighQualityIn() {self._highQualityIn = nil}
+  public mutating func clearHighQualityIn() { self._highQualityIn = nil }
 
   public var highQualityOut: Org_Xrpl_Rpc_V1_HighQualityOut {
-    get {return _highQualityOut ?? Org_Xrpl_Rpc_V1_HighQualityOut()}
-    set {_highQualityOut = newValue}
+    get { return _highQualityOut ?? Org_Xrpl_Rpc_V1_HighQualityOut() }
+    set { _highQualityOut = newValue }
   }
   /// Returns true if `highQualityOut` has been explicitly set.
-  public var hasHighQualityOut: Bool {return self._highQualityOut != nil}
+  public var hasHighQualityOut: Bool { return self._highQualityOut != nil }
   /// Clears the value of `highQualityOut`. Subsequent reads from it will return its default value.
-  public mutating func clearHighQualityOut() {self._highQualityOut = nil}
+  public mutating func clearHighQualityOut() { self._highQualityOut = nil }
 
   public var previousTransactionID: Org_Xrpl_Rpc_V1_PreviousTransactionID {
-    get {return _previousTransactionID ?? Org_Xrpl_Rpc_V1_PreviousTransactionID()}
-    set {_previousTransactionID = newValue}
+    get { return _previousTransactionID ?? Org_Xrpl_Rpc_V1_PreviousTransactionID() }
+    set { _previousTransactionID = newValue }
   }
   /// Returns true if `previousTransactionID` has been explicitly set.
-  public var hasPreviousTransactionID: Bool {return self._previousTransactionID != nil}
+  public var hasPreviousTransactionID: Bool { return self._previousTransactionID != nil }
   /// Clears the value of `previousTransactionID`. Subsequent reads from it will return its default value.
-  public mutating func clearPreviousTransactionID() {self._previousTransactionID = nil}
+  public mutating func clearPreviousTransactionID() { self._previousTransactionID = nil }
 
   public var previousTransactionLedgerSequence: Org_Xrpl_Rpc_V1_PreviousTransactionLedgerSequence {
-    get {return _previousTransactionLedgerSequence ?? Org_Xrpl_Rpc_V1_PreviousTransactionLedgerSequence()}
-    set {_previousTransactionLedgerSequence = newValue}
+    get { return _previousTransactionLedgerSequence ?? Org_Xrpl_Rpc_V1_PreviousTransactionLedgerSequence() }
+    set { _previousTransactionLedgerSequence = newValue }
   }
   /// Returns true if `previousTransactionLedgerSequence` has been explicitly set.
-  public var hasPreviousTransactionLedgerSequence: Bool {return self._previousTransactionLedgerSequence != nil}
+  public var hasPreviousTransactionLedgerSequence: Bool { return self._previousTransactionLedgerSequence != nil }
   /// Clears the value of `previousTransactionLedgerSequence`. Subsequent reads from it will return its default value.
-  public mutating func clearPreviousTransactionLedgerSequence() {self._previousTransactionLedgerSequence = nil}
+  public mutating func clearPreviousTransactionLedgerSequence() { self._previousTransactionLedgerSequence = nil }
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
 
-  fileprivate var _balance: Org_Xrpl_Rpc_V1_Balance? = nil
-  fileprivate var _flags: Org_Xrpl_Rpc_V1_Flags? = nil
-  fileprivate var _lowLimit: Org_Xrpl_Rpc_V1_LowLimit? = nil
-  fileprivate var _highLimit: Org_Xrpl_Rpc_V1_HighLimit? = nil
-  fileprivate var _lowNode: Org_Xrpl_Rpc_V1_LowNode? = nil
-  fileprivate var _highNode: Org_Xrpl_Rpc_V1_HighNode? = nil
-  fileprivate var _lowQualityIn: Org_Xrpl_Rpc_V1_LowQualityIn? = nil
-  fileprivate var _lowQualityOut: Org_Xrpl_Rpc_V1_LowQualityOut? = nil
-  fileprivate var _highQualityIn: Org_Xrpl_Rpc_V1_HighQualityIn? = nil
-  fileprivate var _highQualityOut: Org_Xrpl_Rpc_V1_HighQualityOut? = nil
-  fileprivate var _previousTransactionID: Org_Xrpl_Rpc_V1_PreviousTransactionID? = nil
-  fileprivate var _previousTransactionLedgerSequence: Org_Xrpl_Rpc_V1_PreviousTransactionLedgerSequence? = nil
+  fileprivate var _balance: Org_Xrpl_Rpc_V1_Balance?
+  fileprivate var _flags: Org_Xrpl_Rpc_V1_Flags?
+  fileprivate var _lowLimit: Org_Xrpl_Rpc_V1_LowLimit?
+  fileprivate var _highLimit: Org_Xrpl_Rpc_V1_HighLimit?
+  fileprivate var _lowNode: Org_Xrpl_Rpc_V1_LowNode?
+  fileprivate var _highNode: Org_Xrpl_Rpc_V1_HighNode?
+  fileprivate var _lowQualityIn: Org_Xrpl_Rpc_V1_LowQualityIn?
+  fileprivate var _lowQualityOut: Org_Xrpl_Rpc_V1_LowQualityOut?
+  fileprivate var _highQualityIn: Org_Xrpl_Rpc_V1_HighQualityIn?
+  fileprivate var _highQualityOut: Org_Xrpl_Rpc_V1_HighQualityOut?
+  fileprivate var _previousTransactionID: Org_Xrpl_Rpc_V1_PreviousTransactionID?
+  fileprivate var _previousTransactionLedgerSequence: Org_Xrpl_Rpc_V1_PreviousTransactionLedgerSequence?
 }
 
 /// Next field: 8
@@ -1441,76 +1441,76 @@ public struct Org_Xrpl_Rpc_V1_SignerList {
   // methods supported on all messages.
 
   public var flags: Org_Xrpl_Rpc_V1_Flags {
-    get {return _flags ?? Org_Xrpl_Rpc_V1_Flags()}
-    set {_flags = newValue}
+    get { return _flags ?? Org_Xrpl_Rpc_V1_Flags() }
+    set { _flags = newValue }
   }
   /// Returns true if `flags` has been explicitly set.
-  public var hasFlags: Bool {return self._flags != nil}
+  public var hasFlags: Bool { return self._flags != nil }
   /// Clears the value of `flags`. Subsequent reads from it will return its default value.
-  public mutating func clearFlags() {self._flags = nil}
+  public mutating func clearFlags() { self._flags = nil }
 
   public var previousTransactionID: Org_Xrpl_Rpc_V1_PreviousTransactionID {
-    get {return _previousTransactionID ?? Org_Xrpl_Rpc_V1_PreviousTransactionID()}
-    set {_previousTransactionID = newValue}
+    get { return _previousTransactionID ?? Org_Xrpl_Rpc_V1_PreviousTransactionID() }
+    set { _previousTransactionID = newValue }
   }
   /// Returns true if `previousTransactionID` has been explicitly set.
-  public var hasPreviousTransactionID: Bool {return self._previousTransactionID != nil}
+  public var hasPreviousTransactionID: Bool { return self._previousTransactionID != nil }
   /// Clears the value of `previousTransactionID`. Subsequent reads from it will return its default value.
-  public mutating func clearPreviousTransactionID() {self._previousTransactionID = nil}
+  public mutating func clearPreviousTransactionID() { self._previousTransactionID = nil }
 
   public var previousTransactionLedgerSequence: Org_Xrpl_Rpc_V1_PreviousTransactionLedgerSequence {
-    get {return _previousTransactionLedgerSequence ?? Org_Xrpl_Rpc_V1_PreviousTransactionLedgerSequence()}
-    set {_previousTransactionLedgerSequence = newValue}
+    get { return _previousTransactionLedgerSequence ?? Org_Xrpl_Rpc_V1_PreviousTransactionLedgerSequence() }
+    set { _previousTransactionLedgerSequence = newValue }
   }
   /// Returns true if `previousTransactionLedgerSequence` has been explicitly set.
-  public var hasPreviousTransactionLedgerSequence: Bool {return self._previousTransactionLedgerSequence != nil}
+  public var hasPreviousTransactionLedgerSequence: Bool { return self._previousTransactionLedgerSequence != nil }
   /// Clears the value of `previousTransactionLedgerSequence`. Subsequent reads from it will return its default value.
-  public mutating func clearPreviousTransactionLedgerSequence() {self._previousTransactionLedgerSequence = nil}
+  public mutating func clearPreviousTransactionLedgerSequence() { self._previousTransactionLedgerSequence = nil }
 
   public var ownerNode: Org_Xrpl_Rpc_V1_OwnerNode {
-    get {return _ownerNode ?? Org_Xrpl_Rpc_V1_OwnerNode()}
-    set {_ownerNode = newValue}
+    get { return _ownerNode ?? Org_Xrpl_Rpc_V1_OwnerNode() }
+    set { _ownerNode = newValue }
   }
   /// Returns true if `ownerNode` has been explicitly set.
-  public var hasOwnerNode: Bool {return self._ownerNode != nil}
+  public var hasOwnerNode: Bool { return self._ownerNode != nil }
   /// Clears the value of `ownerNode`. Subsequent reads from it will return its default value.
-  public mutating func clearOwnerNode() {self._ownerNode = nil}
+  public mutating func clearOwnerNode() { self._ownerNode = nil }
 
   public var signerEntries: [Org_Xrpl_Rpc_V1_SignerEntry] = []
 
   public var signerListID: Org_Xrpl_Rpc_V1_SignerListID {
-    get {return _signerListID ?? Org_Xrpl_Rpc_V1_SignerListID()}
-    set {_signerListID = newValue}
+    get { return _signerListID ?? Org_Xrpl_Rpc_V1_SignerListID() }
+    set { _signerListID = newValue }
   }
   /// Returns true if `signerListID` has been explicitly set.
-  public var hasSignerListID: Bool {return self._signerListID != nil}
+  public var hasSignerListID: Bool { return self._signerListID != nil }
   /// Clears the value of `signerListID`. Subsequent reads from it will return its default value.
-  public mutating func clearSignerListID() {self._signerListID = nil}
+  public mutating func clearSignerListID() { self._signerListID = nil }
 
   public var signerQuorum: Org_Xrpl_Rpc_V1_SignerQuorum {
-    get {return _signerQuorum ?? Org_Xrpl_Rpc_V1_SignerQuorum()}
-    set {_signerQuorum = newValue}
+    get { return _signerQuorum ?? Org_Xrpl_Rpc_V1_SignerQuorum() }
+    set { _signerQuorum = newValue }
   }
   /// Returns true if `signerQuorum` has been explicitly set.
-  public var hasSignerQuorum: Bool {return self._signerQuorum != nil}
+  public var hasSignerQuorum: Bool { return self._signerQuorum != nil }
   /// Clears the value of `signerQuorum`. Subsequent reads from it will return its default value.
-  public mutating func clearSignerQuorum() {self._signerQuorum = nil}
+  public mutating func clearSignerQuorum() { self._signerQuorum = nil }
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
 
-  fileprivate var _flags: Org_Xrpl_Rpc_V1_Flags? = nil
-  fileprivate var _previousTransactionID: Org_Xrpl_Rpc_V1_PreviousTransactionID? = nil
-  fileprivate var _previousTransactionLedgerSequence: Org_Xrpl_Rpc_V1_PreviousTransactionLedgerSequence? = nil
-  fileprivate var _ownerNode: Org_Xrpl_Rpc_V1_OwnerNode? = nil
-  fileprivate var _signerListID: Org_Xrpl_Rpc_V1_SignerListID? = nil
-  fileprivate var _signerQuorum: Org_Xrpl_Rpc_V1_SignerQuorum? = nil
+  fileprivate var _flags: Org_Xrpl_Rpc_V1_Flags?
+  fileprivate var _previousTransactionID: Org_Xrpl_Rpc_V1_PreviousTransactionID?
+  fileprivate var _previousTransactionLedgerSequence: Org_Xrpl_Rpc_V1_PreviousTransactionLedgerSequence?
+  fileprivate var _ownerNode: Org_Xrpl_Rpc_V1_OwnerNode?
+  fileprivate var _signerListID: Org_Xrpl_Rpc_V1_SignerListID?
+  fileprivate var _signerQuorum: Org_Xrpl_Rpc_V1_SignerQuorum?
 }
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "org.xrpl.rpc.v1"
+private let _protobuf_package = "org.xrpl.rpc.v1"
 
 extension Org_Xrpl_Rpc_V1_LedgerEntryType: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
@@ -1526,7 +1526,7 @@ extension Org_Xrpl_Rpc_V1_LedgerEntryType: SwiftProtobuf._ProtoNameProviding {
     9: .same(proto: "LEDGER_ENTRY_TYPE_OFFER"),
     10: .same(proto: "LEDGER_ENTRY_TYPE_PAY_CHANNEL"),
     11: .same(proto: "LEDGER_ENTRY_TYPE_RIPPLE_STATE"),
-    12: .same(proto: "LEDGER_ENTRY_TYPE_SIGNER_LIST"),
+    12: .same(proto: "LEDGER_ENTRY_TYPE_SIGNER_LIST")
   ]
 }
 
@@ -1544,7 +1544,7 @@ extension Org_Xrpl_Rpc_V1_LedgerObject: SwiftProtobuf.Message, SwiftProtobuf._Me
     9: .same(proto: "offer"),
     10: .standard(proto: "pay_channel"),
     11: .standard(proto: "ripple_state"),
-    12: .standard(proto: "signer_list"),
+    12: .standard(proto: "signer_list")
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -1554,98 +1554,98 @@ extension Org_Xrpl_Rpc_V1_LedgerObject: SwiftProtobuf.Message, SwiftProtobuf._Me
         var v: Org_Xrpl_Rpc_V1_AccountRoot?
         if let current = self.object {
           try decoder.handleConflictingOneOf()
-          if case .accountRoot(let m) = current {v = m}
+          if case .accountRoot(let m) = current { v = m }
         }
         try decoder.decodeSingularMessageField(value: &v)
-        if let v = v {self.object = .accountRoot(v)}
+        if let v = v { self.object = .accountRoot(v) }
       case 2:
         var v: Org_Xrpl_Rpc_V1_Amendments?
         if let current = self.object {
           try decoder.handleConflictingOneOf()
-          if case .amendments(let m) = current {v = m}
+          if case .amendments(let m) = current { v = m }
         }
         try decoder.decodeSingularMessageField(value: &v)
-        if let v = v {self.object = .amendments(v)}
+        if let v = v { self.object = .amendments(v) }
       case 3:
         var v: Org_Xrpl_Rpc_V1_Check?
         if let current = self.object {
           try decoder.handleConflictingOneOf()
-          if case .check(let m) = current {v = m}
+          if case .check(let m) = current { v = m }
         }
         try decoder.decodeSingularMessageField(value: &v)
-        if let v = v {self.object = .check(v)}
+        if let v = v { self.object = .check(v) }
       case 4:
         var v: Org_Xrpl_Rpc_V1_DepositPreauthObject?
         if let current = self.object {
           try decoder.handleConflictingOneOf()
-          if case .depositPreauth(let m) = current {v = m}
+          if case .depositPreauth(let m) = current { v = m }
         }
         try decoder.decodeSingularMessageField(value: &v)
-        if let v = v {self.object = .depositPreauth(v)}
+        if let v = v { self.object = .depositPreauth(v) }
       case 5:
         var v: Org_Xrpl_Rpc_V1_DirectoryNode?
         if let current = self.object {
           try decoder.handleConflictingOneOf()
-          if case .directoryNode(let m) = current {v = m}
+          if case .directoryNode(let m) = current { v = m }
         }
         try decoder.decodeSingularMessageField(value: &v)
-        if let v = v {self.object = .directoryNode(v)}
+        if let v = v { self.object = .directoryNode(v) }
       case 6:
         var v: Org_Xrpl_Rpc_V1_Escrow?
         if let current = self.object {
           try decoder.handleConflictingOneOf()
-          if case .escrow(let m) = current {v = m}
+          if case .escrow(let m) = current { v = m }
         }
         try decoder.decodeSingularMessageField(value: &v)
-        if let v = v {self.object = .escrow(v)}
+        if let v = v { self.object = .escrow(v) }
       case 7:
         var v: Org_Xrpl_Rpc_V1_FeeSettings?
         if let current = self.object {
           try decoder.handleConflictingOneOf()
-          if case .feeSettings(let m) = current {v = m}
+          if case .feeSettings(let m) = current { v = m }
         }
         try decoder.decodeSingularMessageField(value: &v)
-        if let v = v {self.object = .feeSettings(v)}
+        if let v = v { self.object = .feeSettings(v) }
       case 8:
         var v: Org_Xrpl_Rpc_V1_LedgerHashes?
         if let current = self.object {
           try decoder.handleConflictingOneOf()
-          if case .ledgerHashes(let m) = current {v = m}
+          if case .ledgerHashes(let m) = current { v = m }
         }
         try decoder.decodeSingularMessageField(value: &v)
-        if let v = v {self.object = .ledgerHashes(v)}
+        if let v = v { self.object = .ledgerHashes(v) }
       case 9:
         var v: Org_Xrpl_Rpc_V1_Offer?
         if let current = self.object {
           try decoder.handleConflictingOneOf()
-          if case .offer(let m) = current {v = m}
+          if case .offer(let m) = current { v = m }
         }
         try decoder.decodeSingularMessageField(value: &v)
-        if let v = v {self.object = .offer(v)}
+        if let v = v { self.object = .offer(v) }
       case 10:
         var v: Org_Xrpl_Rpc_V1_PayChannel?
         if let current = self.object {
           try decoder.handleConflictingOneOf()
-          if case .payChannel(let m) = current {v = m}
+          if case .payChannel(let m) = current { v = m }
         }
         try decoder.decodeSingularMessageField(value: &v)
-        if let v = v {self.object = .payChannel(v)}
+        if let v = v { self.object = .payChannel(v) }
       case 11:
         var v: Org_Xrpl_Rpc_V1_RippleState?
         if let current = self.object {
           try decoder.handleConflictingOneOf()
-          if case .rippleState(let m) = current {v = m}
+          if case .rippleState(let m) = current { v = m }
         }
         try decoder.decodeSingularMessageField(value: &v)
-        if let v = v {self.object = .rippleState(v)}
+        if let v = v { self.object = .rippleState(v) }
       case 12:
         var v: Org_Xrpl_Rpc_V1_SignerList?
         if let current = self.object {
           try decoder.handleConflictingOneOf()
-          if case .signerList(let m) = current {v = m}
+          if case .signerList(let m) = current { v = m }
         }
         try decoder.decodeSingularMessageField(value: &v)
-        if let v = v {self.object = .signerList(v)}
+        if let v = v { self.object = .signerList(v) }
       default: break
       }
     }
@@ -1683,8 +1683,8 @@ extension Org_Xrpl_Rpc_V1_LedgerObject: SwiftProtobuf.Message, SwiftProtobuf._Me
   }
 
   public static func ==(lhs: Org_Xrpl_Rpc_V1_LedgerObject, rhs: Org_Xrpl_Rpc_V1_LedgerObject) -> Bool {
-    if lhs.object != rhs.object {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
+    if lhs.object != rhs.object { return false }
+    if lhs.unknownFields != rhs.unknownFields { return false }
     return true
   }
 }
@@ -1705,7 +1705,7 @@ extension Org_Xrpl_Rpc_V1_AccountRoot: SwiftProtobuf.Message, SwiftProtobuf._Mes
     11: .standard(proto: "message_key"),
     12: .standard(proto: "regular_key"),
     13: .standard(proto: "tick_size"),
-    14: .standard(proto: "transfer_rate"),
+    14: .standard(proto: "transfer_rate")
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -1777,21 +1777,21 @@ extension Org_Xrpl_Rpc_V1_AccountRoot: SwiftProtobuf.Message, SwiftProtobuf._Mes
   }
 
   public static func ==(lhs: Org_Xrpl_Rpc_V1_AccountRoot, rhs: Org_Xrpl_Rpc_V1_AccountRoot) -> Bool {
-    if lhs._account != rhs._account {return false}
-    if lhs._balance != rhs._balance {return false}
-    if lhs._sequence != rhs._sequence {return false}
-    if lhs._flags != rhs._flags {return false}
-    if lhs._ownerCount != rhs._ownerCount {return false}
-    if lhs._previousTransactionID != rhs._previousTransactionID {return false}
-    if lhs._previousTransactionLedgerSequence != rhs._previousTransactionLedgerSequence {return false}
-    if lhs._accountTransactionID != rhs._accountTransactionID {return false}
-    if lhs._domain != rhs._domain {return false}
-    if lhs._emailHash != rhs._emailHash {return false}
-    if lhs._messageKey != rhs._messageKey {return false}
-    if lhs._regularKey != rhs._regularKey {return false}
-    if lhs._tickSize != rhs._tickSize {return false}
-    if lhs._transferRate != rhs._transferRate {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
+    if lhs._account != rhs._account { return false }
+    if lhs._balance != rhs._balance { return false }
+    if lhs._sequence != rhs._sequence { return false }
+    if lhs._flags != rhs._flags { return false }
+    if lhs._ownerCount != rhs._ownerCount { return false }
+    if lhs._previousTransactionID != rhs._previousTransactionID { return false }
+    if lhs._previousTransactionLedgerSequence != rhs._previousTransactionLedgerSequence { return false }
+    if lhs._accountTransactionID != rhs._accountTransactionID { return false }
+    if lhs._domain != rhs._domain { return false }
+    if lhs._emailHash != rhs._emailHash { return false }
+    if lhs._messageKey != rhs._messageKey { return false }
+    if lhs._regularKey != rhs._regularKey { return false }
+    if lhs._tickSize != rhs._tickSize { return false }
+    if lhs._transferRate != rhs._transferRate { return false }
+    if lhs.unknownFields != rhs.unknownFields { return false }
     return true
   }
 }
@@ -1801,7 +1801,7 @@ extension Org_Xrpl_Rpc_V1_Amendments: SwiftProtobuf.Message, SwiftProtobuf._Mess
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "amendments"),
     2: .same(proto: "majorities"),
-    3: .same(proto: "flags"),
+    3: .same(proto: "flags")
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -1829,10 +1829,10 @@ extension Org_Xrpl_Rpc_V1_Amendments: SwiftProtobuf.Message, SwiftProtobuf._Mess
   }
 
   public static func ==(lhs: Org_Xrpl_Rpc_V1_Amendments, rhs: Org_Xrpl_Rpc_V1_Amendments) -> Bool {
-    if lhs.amendments != rhs.amendments {return false}
-    if lhs.majorities != rhs.majorities {return false}
-    if lhs._flags != rhs._flags {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
+    if lhs.amendments != rhs.amendments { return false }
+    if lhs.majorities != rhs.majorities { return false }
+    if lhs._flags != rhs._flags { return false }
+    if lhs.unknownFields != rhs.unknownFields { return false }
     return true
   }
 }
@@ -1840,7 +1840,7 @@ extension Org_Xrpl_Rpc_V1_Amendments: SwiftProtobuf.Message, SwiftProtobuf._Mess
 extension Org_Xrpl_Rpc_V1_Amendments.Amendment: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = Org_Xrpl_Rpc_V1_Amendments.protoMessageName + ".Amendment"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "value"),
+    1: .same(proto: "value")
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -1860,8 +1860,8 @@ extension Org_Xrpl_Rpc_V1_Amendments.Amendment: SwiftProtobuf.Message, SwiftProt
   }
 
   public static func ==(lhs: Org_Xrpl_Rpc_V1_Amendments.Amendment, rhs: Org_Xrpl_Rpc_V1_Amendments.Amendment) -> Bool {
-    if lhs.value != rhs.value {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
+    if lhs.value != rhs.value { return false }
+    if lhs.unknownFields != rhs.unknownFields { return false }
     return true
   }
 }
@@ -1870,7 +1870,7 @@ extension Org_Xrpl_Rpc_V1_Amendments.Majority: SwiftProtobuf.Message, SwiftProto
   public static let protoMessageName: String = Org_Xrpl_Rpc_V1_Amendments.protoMessageName + ".Majority"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "amendment"),
-    2: .standard(proto: "close_time"),
+    2: .standard(proto: "close_time")
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -1894,9 +1894,9 @@ extension Org_Xrpl_Rpc_V1_Amendments.Majority: SwiftProtobuf.Message, SwiftProto
   }
 
   public static func ==(lhs: Org_Xrpl_Rpc_V1_Amendments.Majority, rhs: Org_Xrpl_Rpc_V1_Amendments.Majority) -> Bool {
-    if lhs._amendment != rhs._amendment {return false}
-    if lhs._closeTime != rhs._closeTime {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
+    if lhs._amendment != rhs._amendment { return false }
+    if lhs._closeTime != rhs._closeTime { return false }
+    if lhs.unknownFields != rhs.unknownFields { return false }
     return true
   }
 }
@@ -1916,7 +1916,7 @@ extension Org_Xrpl_Rpc_V1_Check: SwiftProtobuf.Message, SwiftProtobuf._MessageIm
     10: .standard(proto: "destination_tag"),
     11: .same(proto: "expiration"),
     12: .standard(proto: "invoice_id"),
-    13: .standard(proto: "source_tag"),
+    13: .standard(proto: "source_tag")
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -1984,20 +1984,20 @@ extension Org_Xrpl_Rpc_V1_Check: SwiftProtobuf.Message, SwiftProtobuf._MessageIm
   }
 
   public static func ==(lhs: Org_Xrpl_Rpc_V1_Check, rhs: Org_Xrpl_Rpc_V1_Check) -> Bool {
-    if lhs._account != rhs._account {return false}
-    if lhs._destination != rhs._destination {return false}
-    if lhs._flags != rhs._flags {return false}
-    if lhs._ownerNode != rhs._ownerNode {return false}
-    if lhs._previousTransactionID != rhs._previousTransactionID {return false}
-    if lhs._previousTransactionLedgerSequence != rhs._previousTransactionLedgerSequence {return false}
-    if lhs._sendMax != rhs._sendMax {return false}
-    if lhs._sequence != rhs._sequence {return false}
-    if lhs._destinationNode != rhs._destinationNode {return false}
-    if lhs._destinationTag != rhs._destinationTag {return false}
-    if lhs._expiration != rhs._expiration {return false}
-    if lhs._invoiceID != rhs._invoiceID {return false}
-    if lhs._sourceTag != rhs._sourceTag {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
+    if lhs._account != rhs._account { return false }
+    if lhs._destination != rhs._destination { return false }
+    if lhs._flags != rhs._flags { return false }
+    if lhs._ownerNode != rhs._ownerNode { return false }
+    if lhs._previousTransactionID != rhs._previousTransactionID { return false }
+    if lhs._previousTransactionLedgerSequence != rhs._previousTransactionLedgerSequence { return false }
+    if lhs._sendMax != rhs._sendMax { return false }
+    if lhs._sequence != rhs._sequence { return false }
+    if lhs._destinationNode != rhs._destinationNode { return false }
+    if lhs._destinationTag != rhs._destinationTag { return false }
+    if lhs._expiration != rhs._expiration { return false }
+    if lhs._invoiceID != rhs._invoiceID { return false }
+    if lhs._sourceTag != rhs._sourceTag { return false }
+    if lhs.unknownFields != rhs.unknownFields { return false }
     return true
   }
 }
@@ -2010,7 +2010,7 @@ extension Org_Xrpl_Rpc_V1_DepositPreauthObject: SwiftProtobuf.Message, SwiftProt
     3: .same(proto: "flags"),
     4: .standard(proto: "owner_node"),
     5: .standard(proto: "previous_transaction_id"),
-    6: .standard(proto: "previous_transaction_ledger_sequence"),
+    6: .standard(proto: "previous_transaction_ledger_sequence")
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -2050,13 +2050,13 @@ extension Org_Xrpl_Rpc_V1_DepositPreauthObject: SwiftProtobuf.Message, SwiftProt
   }
 
   public static func ==(lhs: Org_Xrpl_Rpc_V1_DepositPreauthObject, rhs: Org_Xrpl_Rpc_V1_DepositPreauthObject) -> Bool {
-    if lhs._account != rhs._account {return false}
-    if lhs._authorize != rhs._authorize {return false}
-    if lhs._flags != rhs._flags {return false}
-    if lhs._ownerNode != rhs._ownerNode {return false}
-    if lhs._previousTransactionID != rhs._previousTransactionID {return false}
-    if lhs._previousTransactionLedgerSequence != rhs._previousTransactionLedgerSequence {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
+    if lhs._account != rhs._account { return false }
+    if lhs._authorize != rhs._authorize { return false }
+    if lhs._flags != rhs._flags { return false }
+    if lhs._ownerNode != rhs._ownerNode { return false }
+    if lhs._previousTransactionID != rhs._previousTransactionID { return false }
+    if lhs._previousTransactionLedgerSequence != rhs._previousTransactionLedgerSequence { return false }
+    if lhs.unknownFields != rhs.unknownFields { return false }
     return true
   }
 }
@@ -2073,7 +2073,7 @@ extension Org_Xrpl_Rpc_V1_DirectoryNode: SwiftProtobuf.Message, SwiftProtobuf._M
     7: .standard(proto: "taker_pays_currency"),
     8: .standard(proto: "taker_pays_issuer"),
     9: .standard(proto: "taker_gets_currency"),
-    10: .standard(proto: "taker_gets_issuer"),
+    10: .standard(proto: "taker_gets_issuer")
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -2129,17 +2129,17 @@ extension Org_Xrpl_Rpc_V1_DirectoryNode: SwiftProtobuf.Message, SwiftProtobuf._M
   }
 
   public static func ==(lhs: Org_Xrpl_Rpc_V1_DirectoryNode, rhs: Org_Xrpl_Rpc_V1_DirectoryNode) -> Bool {
-    if lhs._flags != rhs._flags {return false}
-    if lhs._rootIndex != rhs._rootIndex {return false}
-    if lhs.indexes != rhs.indexes {return false}
-    if lhs._indexNext != rhs._indexNext {return false}
-    if lhs._indexPrevious != rhs._indexPrevious {return false}
-    if lhs._owner != rhs._owner {return false}
-    if lhs._takerPaysCurrency != rhs._takerPaysCurrency {return false}
-    if lhs._takerPaysIssuer != rhs._takerPaysIssuer {return false}
-    if lhs._takerGetsCurrency != rhs._takerGetsCurrency {return false}
-    if lhs._takerGetsIssuer != rhs._takerGetsIssuer {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
+    if lhs._flags != rhs._flags { return false }
+    if lhs._rootIndex != rhs._rootIndex { return false }
+    if lhs.indexes != rhs.indexes { return false }
+    if lhs._indexNext != rhs._indexNext { return false }
+    if lhs._indexPrevious != rhs._indexPrevious { return false }
+    if lhs._owner != rhs._owner { return false }
+    if lhs._takerPaysCurrency != rhs._takerPaysCurrency { return false }
+    if lhs._takerPaysIssuer != rhs._takerPaysIssuer { return false }
+    if lhs._takerGetsCurrency != rhs._takerGetsCurrency { return false }
+    if lhs._takerGetsIssuer != rhs._takerGetsIssuer { return false }
+    if lhs.unknownFields != rhs.unknownFields { return false }
     return true
   }
 }
@@ -2159,7 +2159,7 @@ extension Org_Xrpl_Rpc_V1_Escrow: SwiftProtobuf.Message, SwiftProtobuf._MessageI
     10: .standard(proto: "owner_node"),
     11: .standard(proto: "destination_node"),
     12: .standard(proto: "previous_transaction_id"),
-    13: .standard(proto: "previous_transaction_ledger_sequence"),
+    13: .standard(proto: "previous_transaction_ledger_sequence")
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -2227,20 +2227,20 @@ extension Org_Xrpl_Rpc_V1_Escrow: SwiftProtobuf.Message, SwiftProtobuf._MessageI
   }
 
   public static func ==(lhs: Org_Xrpl_Rpc_V1_Escrow, rhs: Org_Xrpl_Rpc_V1_Escrow) -> Bool {
-    if lhs._account != rhs._account {return false}
-    if lhs._destination != rhs._destination {return false}
-    if lhs._amount != rhs._amount {return false}
-    if lhs._condition != rhs._condition {return false}
-    if lhs._cancelAfter != rhs._cancelAfter {return false}
-    if lhs._finishAfter != rhs._finishAfter {return false}
-    if lhs._flags != rhs._flags {return false}
-    if lhs._sourceTag != rhs._sourceTag {return false}
-    if lhs._destinationTag != rhs._destinationTag {return false}
-    if lhs._ownerNode != rhs._ownerNode {return false}
-    if lhs._destinationNode != rhs._destinationNode {return false}
-    if lhs._previousTransactionID != rhs._previousTransactionID {return false}
-    if lhs._previousTransactionLedgerSequence != rhs._previousTransactionLedgerSequence {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
+    if lhs._account != rhs._account { return false }
+    if lhs._destination != rhs._destination { return false }
+    if lhs._amount != rhs._amount { return false }
+    if lhs._condition != rhs._condition { return false }
+    if lhs._cancelAfter != rhs._cancelAfter { return false }
+    if lhs._finishAfter != rhs._finishAfter { return false }
+    if lhs._flags != rhs._flags { return false }
+    if lhs._sourceTag != rhs._sourceTag { return false }
+    if lhs._destinationTag != rhs._destinationTag { return false }
+    if lhs._ownerNode != rhs._ownerNode { return false }
+    if lhs._destinationNode != rhs._destinationNode { return false }
+    if lhs._previousTransactionID != rhs._previousTransactionID { return false }
+    if lhs._previousTransactionLedgerSequence != rhs._previousTransactionLedgerSequence { return false }
+    if lhs.unknownFields != rhs.unknownFields { return false }
     return true
   }
 }
@@ -2252,7 +2252,7 @@ extension Org_Xrpl_Rpc_V1_FeeSettings: SwiftProtobuf.Message, SwiftProtobuf._Mes
     2: .standard(proto: "reference_fee_units"),
     3: .standard(proto: "reserve_base"),
     4: .standard(proto: "reserve_increment"),
-    5: .same(proto: "flags"),
+    5: .same(proto: "flags")
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -2288,12 +2288,12 @@ extension Org_Xrpl_Rpc_V1_FeeSettings: SwiftProtobuf.Message, SwiftProtobuf._Mes
   }
 
   public static func ==(lhs: Org_Xrpl_Rpc_V1_FeeSettings, rhs: Org_Xrpl_Rpc_V1_FeeSettings) -> Bool {
-    if lhs._baseFee != rhs._baseFee {return false}
-    if lhs._referenceFeeUnits != rhs._referenceFeeUnits {return false}
-    if lhs._reserveBase != rhs._reserveBase {return false}
-    if lhs._reserveIncrement != rhs._reserveIncrement {return false}
-    if lhs._flags != rhs._flags {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
+    if lhs._baseFee != rhs._baseFee { return false }
+    if lhs._referenceFeeUnits != rhs._referenceFeeUnits { return false }
+    if lhs._reserveBase != rhs._reserveBase { return false }
+    if lhs._reserveIncrement != rhs._reserveIncrement { return false }
+    if lhs._flags != rhs._flags { return false }
+    if lhs.unknownFields != rhs.unknownFields { return false }
     return true
   }
 }
@@ -2303,7 +2303,7 @@ extension Org_Xrpl_Rpc_V1_LedgerHashes: SwiftProtobuf.Message, SwiftProtobuf._Me
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .standard(proto: "last_ledger_sequence"),
     2: .same(proto: "hashes"),
-    3: .same(proto: "flags"),
+    3: .same(proto: "flags")
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -2331,10 +2331,10 @@ extension Org_Xrpl_Rpc_V1_LedgerHashes: SwiftProtobuf.Message, SwiftProtobuf._Me
   }
 
   public static func ==(lhs: Org_Xrpl_Rpc_V1_LedgerHashes, rhs: Org_Xrpl_Rpc_V1_LedgerHashes) -> Bool {
-    if lhs._lastLedgerSequence != rhs._lastLedgerSequence {return false}
-    if lhs.hashes != rhs.hashes {return false}
-    if lhs._flags != rhs._flags {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
+    if lhs._lastLedgerSequence != rhs._lastLedgerSequence { return false }
+    if lhs.hashes != rhs.hashes { return false }
+    if lhs._flags != rhs._flags { return false }
+    if lhs.unknownFields != rhs.unknownFields { return false }
     return true
   }
 }
@@ -2352,7 +2352,7 @@ extension Org_Xrpl_Rpc_V1_Offer: SwiftProtobuf.Message, SwiftProtobuf._MessageIm
     8: .standard(proto: "owner_node"),
     9: .same(proto: "expiration"),
     10: .standard(proto: "previous_transaction_id"),
-    11: .standard(proto: "previous_transaction_ledger_sequence"),
+    11: .standard(proto: "previous_transaction_ledger_sequence")
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -2412,18 +2412,18 @@ extension Org_Xrpl_Rpc_V1_Offer: SwiftProtobuf.Message, SwiftProtobuf._MessageIm
   }
 
   public static func ==(lhs: Org_Xrpl_Rpc_V1_Offer, rhs: Org_Xrpl_Rpc_V1_Offer) -> Bool {
-    if lhs._account != rhs._account {return false}
-    if lhs._sequence != rhs._sequence {return false}
-    if lhs._flags != rhs._flags {return false}
-    if lhs._takerPays != rhs._takerPays {return false}
-    if lhs._takerGets != rhs._takerGets {return false}
-    if lhs._bookDirectory != rhs._bookDirectory {return false}
-    if lhs._bookNode != rhs._bookNode {return false}
-    if lhs._ownerNode != rhs._ownerNode {return false}
-    if lhs._expiration != rhs._expiration {return false}
-    if lhs._previousTransactionID != rhs._previousTransactionID {return false}
-    if lhs._previousTransactionLedgerSequence != rhs._previousTransactionLedgerSequence {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
+    if lhs._account != rhs._account { return false }
+    if lhs._sequence != rhs._sequence { return false }
+    if lhs._flags != rhs._flags { return false }
+    if lhs._takerPays != rhs._takerPays { return false }
+    if lhs._takerGets != rhs._takerGets { return false }
+    if lhs._bookDirectory != rhs._bookDirectory { return false }
+    if lhs._bookNode != rhs._bookNode { return false }
+    if lhs._ownerNode != rhs._ownerNode { return false }
+    if lhs._expiration != rhs._expiration { return false }
+    if lhs._previousTransactionID != rhs._previousTransactionID { return false }
+    if lhs._previousTransactionLedgerSequence != rhs._previousTransactionLedgerSequence { return false }
+    if lhs.unknownFields != rhs.unknownFields { return false }
     return true
   }
 }
@@ -2444,7 +2444,7 @@ extension Org_Xrpl_Rpc_V1_PayChannel: SwiftProtobuf.Message, SwiftProtobuf._Mess
     11: .same(proto: "expiration"),
     12: .standard(proto: "cancel_after"),
     13: .standard(proto: "source_tag"),
-    14: .standard(proto: "destination_tag"),
+    14: .standard(proto: "destination_tag")
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -2516,21 +2516,21 @@ extension Org_Xrpl_Rpc_V1_PayChannel: SwiftProtobuf.Message, SwiftProtobuf._Mess
   }
 
   public static func ==(lhs: Org_Xrpl_Rpc_V1_PayChannel, rhs: Org_Xrpl_Rpc_V1_PayChannel) -> Bool {
-    if lhs._account != rhs._account {return false}
-    if lhs._destination != rhs._destination {return false}
-    if lhs._amount != rhs._amount {return false}
-    if lhs._balance != rhs._balance {return false}
-    if lhs._publicKey != rhs._publicKey {return false}
-    if lhs._settleDelay != rhs._settleDelay {return false}
-    if lhs._ownerNode != rhs._ownerNode {return false}
-    if lhs._previousTransactionID != rhs._previousTransactionID {return false}
-    if lhs._previousTransactionLedgerSequence != rhs._previousTransactionLedgerSequence {return false}
-    if lhs._flags != rhs._flags {return false}
-    if lhs._expiration != rhs._expiration {return false}
-    if lhs._cancelAfter != rhs._cancelAfter {return false}
-    if lhs._sourceTag != rhs._sourceTag {return false}
-    if lhs._destinationTag != rhs._destinationTag {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
+    if lhs._account != rhs._account { return false }
+    if lhs._destination != rhs._destination { return false }
+    if lhs._amount != rhs._amount { return false }
+    if lhs._balance != rhs._balance { return false }
+    if lhs._publicKey != rhs._publicKey { return false }
+    if lhs._settleDelay != rhs._settleDelay { return false }
+    if lhs._ownerNode != rhs._ownerNode { return false }
+    if lhs._previousTransactionID != rhs._previousTransactionID { return false }
+    if lhs._previousTransactionLedgerSequence != rhs._previousTransactionLedgerSequence { return false }
+    if lhs._flags != rhs._flags { return false }
+    if lhs._expiration != rhs._expiration { return false }
+    if lhs._cancelAfter != rhs._cancelAfter { return false }
+    if lhs._sourceTag != rhs._sourceTag { return false }
+    if lhs._destinationTag != rhs._destinationTag { return false }
+    if lhs.unknownFields != rhs.unknownFields { return false }
     return true
   }
 }
@@ -2549,7 +2549,7 @@ extension Org_Xrpl_Rpc_V1_RippleState: SwiftProtobuf.Message, SwiftProtobuf._Mes
     9: .standard(proto: "high_quality_in"),
     10: .standard(proto: "high_quality_out"),
     11: .standard(proto: "previous_transaction_id"),
-    12: .standard(proto: "previous_transaction_ledger_sequence"),
+    12: .standard(proto: "previous_transaction_ledger_sequence")
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -2613,19 +2613,19 @@ extension Org_Xrpl_Rpc_V1_RippleState: SwiftProtobuf.Message, SwiftProtobuf._Mes
   }
 
   public static func ==(lhs: Org_Xrpl_Rpc_V1_RippleState, rhs: Org_Xrpl_Rpc_V1_RippleState) -> Bool {
-    if lhs._balance != rhs._balance {return false}
-    if lhs._flags != rhs._flags {return false}
-    if lhs._lowLimit != rhs._lowLimit {return false}
-    if lhs._highLimit != rhs._highLimit {return false}
-    if lhs._lowNode != rhs._lowNode {return false}
-    if lhs._highNode != rhs._highNode {return false}
-    if lhs._lowQualityIn != rhs._lowQualityIn {return false}
-    if lhs._lowQualityOut != rhs._lowQualityOut {return false}
-    if lhs._highQualityIn != rhs._highQualityIn {return false}
-    if lhs._highQualityOut != rhs._highQualityOut {return false}
-    if lhs._previousTransactionID != rhs._previousTransactionID {return false}
-    if lhs._previousTransactionLedgerSequence != rhs._previousTransactionLedgerSequence {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
+    if lhs._balance != rhs._balance { return false }
+    if lhs._flags != rhs._flags { return false }
+    if lhs._lowLimit != rhs._lowLimit { return false }
+    if lhs._highLimit != rhs._highLimit { return false }
+    if lhs._lowNode != rhs._lowNode { return false }
+    if lhs._highNode != rhs._highNode { return false }
+    if lhs._lowQualityIn != rhs._lowQualityIn { return false }
+    if lhs._lowQualityOut != rhs._lowQualityOut { return false }
+    if lhs._highQualityIn != rhs._highQualityIn { return false }
+    if lhs._highQualityOut != rhs._highQualityOut { return false }
+    if lhs._previousTransactionID != rhs._previousTransactionID { return false }
+    if lhs._previousTransactionLedgerSequence != rhs._previousTransactionLedgerSequence { return false }
+    if lhs.unknownFields != rhs.unknownFields { return false }
     return true
   }
 }
@@ -2639,7 +2639,7 @@ extension Org_Xrpl_Rpc_V1_SignerList: SwiftProtobuf.Message, SwiftProtobuf._Mess
     4: .standard(proto: "owner_node"),
     5: .standard(proto: "signer_entries"),
     6: .standard(proto: "signer_list_id"),
-    7: .standard(proto: "signer_quorum"),
+    7: .standard(proto: "signer_quorum")
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -2683,14 +2683,14 @@ extension Org_Xrpl_Rpc_V1_SignerList: SwiftProtobuf.Message, SwiftProtobuf._Mess
   }
 
   public static func ==(lhs: Org_Xrpl_Rpc_V1_SignerList, rhs: Org_Xrpl_Rpc_V1_SignerList) -> Bool {
-    if lhs._flags != rhs._flags {return false}
-    if lhs._previousTransactionID != rhs._previousTransactionID {return false}
-    if lhs._previousTransactionLedgerSequence != rhs._previousTransactionLedgerSequence {return false}
-    if lhs._ownerNode != rhs._ownerNode {return false}
-    if lhs.signerEntries != rhs.signerEntries {return false}
-    if lhs._signerListID != rhs._signerListID {return false}
-    if lhs._signerQuorum != rhs._signerQuorum {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
+    if lhs._flags != rhs._flags { return false }
+    if lhs._previousTransactionID != rhs._previousTransactionID { return false }
+    if lhs._previousTransactionLedgerSequence != rhs._previousTransactionLedgerSequence { return false }
+    if lhs._ownerNode != rhs._ownerNode { return false }
+    if lhs.signerEntries != rhs.signerEntries { return false }
+    if lhs._signerListID != rhs._signerListID { return false }
+    if lhs._signerQuorum != rhs._signerQuorum { return false }
+    if lhs.unknownFields != rhs.unknownFields { return false }
     return true
   }
 }

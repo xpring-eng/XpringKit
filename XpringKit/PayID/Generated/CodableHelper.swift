@@ -17,9 +17,9 @@ open class CodableHelper {
 
     public static var dateformatter: DateFormatter?
 
-    open class func decode<T>(_ type: T.Type, from data: Data) -> (decodableObj: T?, error: Error?) where T : Decodable {
-        var returnedDecodable: T? = nil
-        var returnedError: Error? = nil
+    open class func decode<T>(_ type: T.Type, from data: Data) -> (decodableObj: T?, error: Error?) where T: Decodable {
+        var returnedDecodable: T?
+        var returnedError: Error?
 
         let decoder = JSONDecoder()
 
@@ -39,7 +39,7 @@ open class CodableHelper {
                     "yyyy-MM-dd'T'HH:mm:ss.SSS",
                     "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'",
                     "yyyy-MM-dd HH:mm:ss"
-                    ].map { (format: String) -> DateFormatter in
+                ].map { (format: String) -> DateFormatter in
                         let formatter = DateFormatter()
                         formatter.locale = Locale(identifier: "en_US_POSIX")
                         formatter.dateFormat = format
@@ -66,9 +66,9 @@ open class CodableHelper {
         return (returnedDecodable, returnedError)
     }
 
-    open class func encode<T>(_ value: T, prettyPrint: Bool = false) -> EncodeResult where T : Encodable {
+    open class func encode<T>(_ value: T, prettyPrint: Bool = false) -> EncodeResult where T: Encodable {
         var returnedData: Data?
-        var returnedError: Error? = nil
+        var returnedError: Error?
 
         let encoder = JSONEncoder()
         if prettyPrint {

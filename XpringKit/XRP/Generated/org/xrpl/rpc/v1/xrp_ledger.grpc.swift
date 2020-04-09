@@ -55,7 +55,6 @@ fileprivate final class Org_Xrpl_Rpc_V1_XRPLedgerAPIServiceGetAccountTransaction
   override class var method: String { return "/org.xrpl.rpc.v1.XRPLedgerAPIService/GetAccountTransactionHistory" }
 }
 
-
 /// Instantiate Org_Xrpl_Rpc_V1_XRPLedgerAPIServiceServiceClient, then call methods of this protocol to make API calls.
 internal protocol Org_Xrpl_Rpc_V1_XRPLedgerAPIServiceService: ServiceClient {
   /// Synchronous. Unary.
@@ -274,4 +273,3 @@ fileprivate final class Org_Xrpl_Rpc_V1_XRPLedgerAPIServiceGetTransactionSession
 internal protocol Org_Xrpl_Rpc_V1_XRPLedgerAPIServiceGetAccountTransactionHistorySession: ServerSessionUnary {}
 
 fileprivate final class Org_Xrpl_Rpc_V1_XRPLedgerAPIServiceGetAccountTransactionHistorySessionBase: ServerSessionUnaryBase<Org_Xrpl_Rpc_V1_GetAccountTransactionHistoryRequest, Org_Xrpl_Rpc_V1_GetAccountTransactionHistoryResponse>, Org_Xrpl_Rpc_V1_XRPLedgerAPIServiceGetAccountTransactionHistorySession {}
-

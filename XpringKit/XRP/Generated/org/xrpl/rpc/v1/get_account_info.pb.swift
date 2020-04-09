@@ -14,7 +14,7 @@ import SwiftProtobuf
 // incompatible with the version of SwiftProtobuf to which you are linking.
 // Please ensure that you are building against the same version of the API
 // that was used to generate this file.
-fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAPIVersionCheck {
+private struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAPIVersionCheck {
   struct _2: SwiftProtobuf.ProtobufAPIVersion_2 {}
   typealias Version = _2
 }
@@ -28,24 +28,24 @@ public struct Org_Xrpl_Rpc_V1_GetAccountInfoRequest {
 
   /// The address to get info about.
   public var account: Org_Xrpl_Rpc_V1_AccountAddress {
-    get {return _account ?? Org_Xrpl_Rpc_V1_AccountAddress()}
-    set {_account = newValue}
+    get { return _account ?? Org_Xrpl_Rpc_V1_AccountAddress() }
+    set { _account = newValue }
   }
   /// Returns true if `account` has been explicitly set.
-  public var hasAccount: Bool {return self._account != nil}
+  public var hasAccount: Bool { return self._account != nil }
   /// Clears the value of `account`. Subsequent reads from it will return its default value.
-  public mutating func clearAccount() {self._account = nil}
+  public mutating func clearAccount() { self._account = nil }
 
   public var strict: Bool = false
 
   public var ledger: Org_Xrpl_Rpc_V1_LedgerSpecifier {
-    get {return _ledger ?? Org_Xrpl_Rpc_V1_LedgerSpecifier()}
-    set {_ledger = newValue}
+    get { return _ledger ?? Org_Xrpl_Rpc_V1_LedgerSpecifier() }
+    set { _ledger = newValue }
   }
   /// Returns true if `ledger` has been explicitly set.
-  public var hasLedger: Bool {return self._ledger != nil}
+  public var hasLedger: Bool { return self._ledger != nil }
   /// Clears the value of `ledger`. Subsequent reads from it will return its default value.
-  public mutating func clearLedger() {self._ledger = nil}
+  public mutating func clearLedger() { self._ledger = nil }
 
   public var queue: Bool = false
 
@@ -55,8 +55,8 @@ public struct Org_Xrpl_Rpc_V1_GetAccountInfoRequest {
 
   public init() {}
 
-  fileprivate var _account: Org_Xrpl_Rpc_V1_AccountAddress? = nil
-  fileprivate var _ledger: Org_Xrpl_Rpc_V1_LedgerSpecifier? = nil
+  fileprivate var _account: Org_Xrpl_Rpc_V1_AccountAddress?
+  fileprivate var _ledger: Org_Xrpl_Rpc_V1_LedgerSpecifier?
 }
 
 /// Response to GetAccountInfo RPC
@@ -67,33 +67,33 @@ public struct Org_Xrpl_Rpc_V1_GetAccountInfoResponse {
   // methods supported on all messages.
 
   public var accountData: Org_Xrpl_Rpc_V1_AccountRoot {
-    get {return _accountData ?? Org_Xrpl_Rpc_V1_AccountRoot()}
-    set {_accountData = newValue}
+    get { return _accountData ?? Org_Xrpl_Rpc_V1_AccountRoot() }
+    set { _accountData = newValue }
   }
   /// Returns true if `accountData` has been explicitly set.
-  public var hasAccountData: Bool {return self._accountData != nil}
+  public var hasAccountData: Bool { return self._accountData != nil }
   /// Clears the value of `accountData`. Subsequent reads from it will return its default value.
-  public mutating func clearAccountData() {self._accountData = nil}
+  public mutating func clearAccountData() { self._accountData = nil }
 
   public var signerList: Org_Xrpl_Rpc_V1_SignerList {
-    get {return _signerList ?? Org_Xrpl_Rpc_V1_SignerList()}
-    set {_signerList = newValue}
+    get { return _signerList ?? Org_Xrpl_Rpc_V1_SignerList() }
+    set { _signerList = newValue }
   }
   /// Returns true if `signerList` has been explicitly set.
-  public var hasSignerList: Bool {return self._signerList != nil}
+  public var hasSignerList: Bool { return self._signerList != nil }
   /// Clears the value of `signerList`. Subsequent reads from it will return its default value.
-  public mutating func clearSignerList() {self._signerList = nil}
+  public mutating func clearSignerList() { self._signerList = nil }
 
   public var ledgerIndex: UInt32 = 0
 
   public var queueData: Org_Xrpl_Rpc_V1_QueueData {
-    get {return _queueData ?? Org_Xrpl_Rpc_V1_QueueData()}
-    set {_queueData = newValue}
+    get { return _queueData ?? Org_Xrpl_Rpc_V1_QueueData() }
+    set { _queueData = newValue }
   }
   /// Returns true if `queueData` has been explicitly set.
-  public var hasQueueData: Bool {return self._queueData != nil}
+  public var hasQueueData: Bool { return self._queueData != nil }
   /// Clears the value of `queueData`. Subsequent reads from it will return its default value.
-  public mutating func clearQueueData() {self._queueData = nil}
+  public mutating func clearQueueData() { self._queueData = nil }
 
   public var validated: Bool = false
 
@@ -101,9 +101,9 @@ public struct Org_Xrpl_Rpc_V1_GetAccountInfoResponse {
 
   public init() {}
 
-  fileprivate var _accountData: Org_Xrpl_Rpc_V1_AccountRoot? = nil
-  fileprivate var _signerList: Org_Xrpl_Rpc_V1_SignerList? = nil
-  fileprivate var _queueData: Org_Xrpl_Rpc_V1_QueueData? = nil
+  fileprivate var _accountData: Org_Xrpl_Rpc_V1_AccountRoot?
+  fileprivate var _signerList: Org_Xrpl_Rpc_V1_SignerList?
+  fileprivate var _queueData: Org_Xrpl_Rpc_V1_QueueData?
 }
 
 /// Aggregate data about queued transactions
@@ -122,13 +122,13 @@ public struct Org_Xrpl_Rpc_V1_QueueData {
   public var highestSequence: UInt32 = 0
 
   public var maxSpendDropsTotal: Org_Xrpl_Rpc_V1_XRPDropsAmount {
-    get {return _maxSpendDropsTotal ?? Org_Xrpl_Rpc_V1_XRPDropsAmount()}
-    set {_maxSpendDropsTotal = newValue}
+    get { return _maxSpendDropsTotal ?? Org_Xrpl_Rpc_V1_XRPDropsAmount() }
+    set { _maxSpendDropsTotal = newValue }
   }
   /// Returns true if `maxSpendDropsTotal` has been explicitly set.
-  public var hasMaxSpendDropsTotal: Bool {return self._maxSpendDropsTotal != nil}
+  public var hasMaxSpendDropsTotal: Bool { return self._maxSpendDropsTotal != nil }
   /// Clears the value of `maxSpendDropsTotal`. Subsequent reads from it will return its default value.
-  public mutating func clearMaxSpendDropsTotal() {self._maxSpendDropsTotal = nil}
+  public mutating func clearMaxSpendDropsTotal() { self._maxSpendDropsTotal = nil }
 
   public var transactions: [Org_Xrpl_Rpc_V1_QueuedTransaction] = []
 
@@ -136,7 +136,7 @@ public struct Org_Xrpl_Rpc_V1_QueueData {
 
   public init() {}
 
-  fileprivate var _maxSpendDropsTotal: Org_Xrpl_Rpc_V1_XRPDropsAmount? = nil
+  fileprivate var _maxSpendDropsTotal: Org_Xrpl_Rpc_V1_XRPDropsAmount?
 }
 
 /// Data about a single queued transaction
@@ -149,56 +149,56 @@ public struct Org_Xrpl_Rpc_V1_QueuedTransaction {
   public var authChange: Bool = false
 
   public var fee: Org_Xrpl_Rpc_V1_XRPDropsAmount {
-    get {return _fee ?? Org_Xrpl_Rpc_V1_XRPDropsAmount()}
-    set {_fee = newValue}
+    get { return _fee ?? Org_Xrpl_Rpc_V1_XRPDropsAmount() }
+    set { _fee = newValue }
   }
   /// Returns true if `fee` has been explicitly set.
-  public var hasFee: Bool {return self._fee != nil}
+  public var hasFee: Bool { return self._fee != nil }
   /// Clears the value of `fee`. Subsequent reads from it will return its default value.
-  public mutating func clearFee() {self._fee = nil}
+  public mutating func clearFee() { self._fee = nil }
 
   public var feeLevel: UInt64 = 0
 
   public var maxSpendDrops: Org_Xrpl_Rpc_V1_XRPDropsAmount {
-    get {return _maxSpendDrops ?? Org_Xrpl_Rpc_V1_XRPDropsAmount()}
-    set {_maxSpendDrops = newValue}
+    get { return _maxSpendDrops ?? Org_Xrpl_Rpc_V1_XRPDropsAmount() }
+    set { _maxSpendDrops = newValue }
   }
   /// Returns true if `maxSpendDrops` has been explicitly set.
-  public var hasMaxSpendDrops: Bool {return self._maxSpendDrops != nil}
+  public var hasMaxSpendDrops: Bool { return self._maxSpendDrops != nil }
   /// Clears the value of `maxSpendDrops`. Subsequent reads from it will return its default value.
-  public mutating func clearMaxSpendDrops() {self._maxSpendDrops = nil}
+  public mutating func clearMaxSpendDrops() { self._maxSpendDrops = nil }
 
   public var sequence: Org_Xrpl_Rpc_V1_Sequence {
-    get {return _sequence ?? Org_Xrpl_Rpc_V1_Sequence()}
-    set {_sequence = newValue}
+    get { return _sequence ?? Org_Xrpl_Rpc_V1_Sequence() }
+    set { _sequence = newValue }
   }
   /// Returns true if `sequence` has been explicitly set.
-  public var hasSequence: Bool {return self._sequence != nil}
+  public var hasSequence: Bool { return self._sequence != nil }
   /// Clears the value of `sequence`. Subsequent reads from it will return its default value.
-  public mutating func clearSequence() {self._sequence = nil}
+  public mutating func clearSequence() { self._sequence = nil }
 
   public var lastLedgerSequence: Org_Xrpl_Rpc_V1_LastLedgerSequence {
-    get {return _lastLedgerSequence ?? Org_Xrpl_Rpc_V1_LastLedgerSequence()}
-    set {_lastLedgerSequence = newValue}
+    get { return _lastLedgerSequence ?? Org_Xrpl_Rpc_V1_LastLedgerSequence() }
+    set { _lastLedgerSequence = newValue }
   }
   /// Returns true if `lastLedgerSequence` has been explicitly set.
-  public var hasLastLedgerSequence: Bool {return self._lastLedgerSequence != nil}
+  public var hasLastLedgerSequence: Bool { return self._lastLedgerSequence != nil }
   /// Clears the value of `lastLedgerSequence`. Subsequent reads from it will return its default value.
-  public mutating func clearLastLedgerSequence() {self._lastLedgerSequence = nil}
+  public mutating func clearLastLedgerSequence() { self._lastLedgerSequence = nil }
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
 
-  fileprivate var _fee: Org_Xrpl_Rpc_V1_XRPDropsAmount? = nil
-  fileprivate var _maxSpendDrops: Org_Xrpl_Rpc_V1_XRPDropsAmount? = nil
-  fileprivate var _sequence: Org_Xrpl_Rpc_V1_Sequence? = nil
-  fileprivate var _lastLedgerSequence: Org_Xrpl_Rpc_V1_LastLedgerSequence? = nil
+  fileprivate var _fee: Org_Xrpl_Rpc_V1_XRPDropsAmount?
+  fileprivate var _maxSpendDrops: Org_Xrpl_Rpc_V1_XRPDropsAmount?
+  fileprivate var _sequence: Org_Xrpl_Rpc_V1_Sequence?
+  fileprivate var _lastLedgerSequence: Org_Xrpl_Rpc_V1_LastLedgerSequence?
 }
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "org.xrpl.rpc.v1"
+private let _protobuf_package = "org.xrpl.rpc.v1"
 
 extension Org_Xrpl_Rpc_V1_GetAccountInfoRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".GetAccountInfoRequest"
@@ -207,7 +207,7 @@ extension Org_Xrpl_Rpc_V1_GetAccountInfoRequest: SwiftProtobuf.Message, SwiftPro
     2: .same(proto: "strict"),
     3: .same(proto: "ledger"),
     4: .same(proto: "queue"),
-    5: .standard(proto: "signer_lists"),
+    5: .standard(proto: "signer_lists")
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -243,12 +243,12 @@ extension Org_Xrpl_Rpc_V1_GetAccountInfoRequest: SwiftProtobuf.Message, SwiftPro
   }
 
   public static func ==(lhs: Org_Xrpl_Rpc_V1_GetAccountInfoRequest, rhs: Org_Xrpl_Rpc_V1_GetAccountInfoRequest) -> Bool {
-    if lhs._account != rhs._account {return false}
-    if lhs.strict != rhs.strict {return false}
-    if lhs._ledger != rhs._ledger {return false}
-    if lhs.queue != rhs.queue {return false}
-    if lhs.signerLists != rhs.signerLists {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
+    if lhs._account != rhs._account { return false }
+    if lhs.strict != rhs.strict { return false }
+    if lhs._ledger != rhs._ledger { return false }
+    if lhs.queue != rhs.queue { return false }
+    if lhs.signerLists != rhs.signerLists { return false }
+    if lhs.unknownFields != rhs.unknownFields { return false }
     return true
   }
 }
@@ -260,7 +260,7 @@ extension Org_Xrpl_Rpc_V1_GetAccountInfoResponse: SwiftProtobuf.Message, SwiftPr
     2: .standard(proto: "signer_list"),
     3: .standard(proto: "ledger_index"),
     4: .standard(proto: "queue_data"),
-    5: .same(proto: "validated"),
+    5: .same(proto: "validated")
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -296,12 +296,12 @@ extension Org_Xrpl_Rpc_V1_GetAccountInfoResponse: SwiftProtobuf.Message, SwiftPr
   }
 
   public static func ==(lhs: Org_Xrpl_Rpc_V1_GetAccountInfoResponse, rhs: Org_Xrpl_Rpc_V1_GetAccountInfoResponse) -> Bool {
-    if lhs._accountData != rhs._accountData {return false}
-    if lhs._signerList != rhs._signerList {return false}
-    if lhs.ledgerIndex != rhs.ledgerIndex {return false}
-    if lhs._queueData != rhs._queueData {return false}
-    if lhs.validated != rhs.validated {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
+    if lhs._accountData != rhs._accountData { return false }
+    if lhs._signerList != rhs._signerList { return false }
+    if lhs.ledgerIndex != rhs.ledgerIndex { return false }
+    if lhs._queueData != rhs._queueData { return false }
+    if lhs.validated != rhs.validated { return false }
+    if lhs.unknownFields != rhs.unknownFields { return false }
     return true
   }
 }
@@ -314,7 +314,7 @@ extension Org_Xrpl_Rpc_V1_QueueData: SwiftProtobuf.Message, SwiftProtobuf._Messa
     3: .standard(proto: "lowest_sequence"),
     4: .standard(proto: "highest_sequence"),
     5: .standard(proto: "max_spend_drops_total"),
-    6: .same(proto: "transactions"),
+    6: .same(proto: "transactions")
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -354,13 +354,13 @@ extension Org_Xrpl_Rpc_V1_QueueData: SwiftProtobuf.Message, SwiftProtobuf._Messa
   }
 
   public static func ==(lhs: Org_Xrpl_Rpc_V1_QueueData, rhs: Org_Xrpl_Rpc_V1_QueueData) -> Bool {
-    if lhs.txnCount != rhs.txnCount {return false}
-    if lhs.authChangeQueued != rhs.authChangeQueued {return false}
-    if lhs.lowestSequence != rhs.lowestSequence {return false}
-    if lhs.highestSequence != rhs.highestSequence {return false}
-    if lhs._maxSpendDropsTotal != rhs._maxSpendDropsTotal {return false}
-    if lhs.transactions != rhs.transactions {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
+    if lhs.txnCount != rhs.txnCount { return false }
+    if lhs.authChangeQueued != rhs.authChangeQueued { return false }
+    if lhs.lowestSequence != rhs.lowestSequence { return false }
+    if lhs.highestSequence != rhs.highestSequence { return false }
+    if lhs._maxSpendDropsTotal != rhs._maxSpendDropsTotal { return false }
+    if lhs.transactions != rhs.transactions { return false }
+    if lhs.unknownFields != rhs.unknownFields { return false }
     return true
   }
 }
@@ -373,7 +373,7 @@ extension Org_Xrpl_Rpc_V1_QueuedTransaction: SwiftProtobuf.Message, SwiftProtobu
     3: .standard(proto: "fee_level"),
     4: .standard(proto: "max_spend_drops"),
     5: .same(proto: "sequence"),
-    6: .standard(proto: "last_ledger_sequence"),
+    6: .standard(proto: "last_ledger_sequence")
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -413,13 +413,13 @@ extension Org_Xrpl_Rpc_V1_QueuedTransaction: SwiftProtobuf.Message, SwiftProtobu
   }
 
   public static func ==(lhs: Org_Xrpl_Rpc_V1_QueuedTransaction, rhs: Org_Xrpl_Rpc_V1_QueuedTransaction) -> Bool {
-    if lhs.authChange != rhs.authChange {return false}
-    if lhs._fee != rhs._fee {return false}
-    if lhs.feeLevel != rhs.feeLevel {return false}
-    if lhs._maxSpendDrops != rhs._maxSpendDrops {return false}
-    if lhs._sequence != rhs._sequence {return false}
-    if lhs._lastLedgerSequence != rhs._lastLedgerSequence {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
+    if lhs.authChange != rhs.authChange { return false }
+    if lhs._fee != rhs._fee { return false }
+    if lhs.feeLevel != rhs.feeLevel { return false }
+    if lhs._maxSpendDrops != rhs._maxSpendDrops { return false }
+    if lhs._sequence != rhs._sequence { return false }
+    if lhs._lastLedgerSequence != rhs._lastLedgerSequence { return false }
+    if lhs.unknownFields != rhs.unknownFields { return false }
     return true
   }
 }

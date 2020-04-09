@@ -14,7 +14,7 @@ import SwiftProtobuf
 // incompatible with the version of SwiftProtobuf to which you are linking.
 // Please ensure that you are building against the same version of the API
 // that was used to generate this file.
-fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAPIVersionCheck {
+private struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAPIVersionCheck {
   struct _2: SwiftProtobuf.ProtobufAPIVersion_2 {}
   typealias Version = _2
 }
@@ -25,31 +25,31 @@ public struct Org_Xrpl_Rpc_V1_LedgerSpecifier {
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
-  public var ledger: Org_Xrpl_Rpc_V1_LedgerSpecifier.OneOf_Ledger? = nil
+  public var ledger: Org_Xrpl_Rpc_V1_LedgerSpecifier.OneOf_Ledger?
 
   public var shortcut: Org_Xrpl_Rpc_V1_LedgerSpecifier.Shortcut {
     get {
-      if case .shortcut(let v)? = ledger {return v}
+      if case .shortcut(let v)? = ledger { return v }
       return .unspecified
     }
-    set {ledger = .shortcut(newValue)}
+    set { ledger = .shortcut(newValue) }
   }
 
   public var sequence: UInt32 {
     get {
-      if case .sequence(let v)? = ledger {return v}
+      if case .sequence(let v)? = ledger { return v }
       return 0
     }
-    set {ledger = .sequence(newValue)}
+    set { ledger = .sequence(newValue) }
   }
 
   /// 32 bytes
   public var hash: Data {
     get {
-      if case .hash(let v)? = ledger {return v}
+      if case .hash(let v)? = ledger { return v }
       return SwiftProtobuf.Internal.emptyData
     }
-    set {ledger = .hash(newValue)}
+    set { ledger = .hash(newValue) }
   }
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
@@ -118,7 +118,7 @@ extension Org_Xrpl_Rpc_V1_LedgerSpecifier.Shortcut: CaseIterable {
     .unspecified,
     .validated,
     .closed,
-    .current,
+    .current
   ]
 }
 
@@ -143,34 +143,34 @@ public struct Org_Xrpl_Rpc_V1_LedgerRange {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "org.xrpl.rpc.v1"
+private let _protobuf_package = "org.xrpl.rpc.v1"
 
 extension Org_Xrpl_Rpc_V1_LedgerSpecifier: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".LedgerSpecifier"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "shortcut"),
     2: .same(proto: "sequence"),
-    3: .same(proto: "hash"),
+    3: .same(proto: "hash")
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
       switch fieldNumber {
       case 1:
-        if self.ledger != nil {try decoder.handleConflictingOneOf()}
+        if self.ledger != nil { try decoder.handleConflictingOneOf() }
         var v: Org_Xrpl_Rpc_V1_LedgerSpecifier.Shortcut?
         try decoder.decodeSingularEnumField(value: &v)
-        if let v = v {self.ledger = .shortcut(v)}
+        if let v = v { self.ledger = .shortcut(v) }
       case 2:
-        if self.ledger != nil {try decoder.handleConflictingOneOf()}
+        if self.ledger != nil { try decoder.handleConflictingOneOf() }
         var v: UInt32?
         try decoder.decodeSingularUInt32Field(value: &v)
-        if let v = v {self.ledger = .sequence(v)}
+        if let v = v { self.ledger = .sequence(v) }
       case 3:
-        if self.ledger != nil {try decoder.handleConflictingOneOf()}
+        if self.ledger != nil { try decoder.handleConflictingOneOf() }
         var v: Data?
         try decoder.decodeSingularBytesField(value: &v)
-        if let v = v {self.ledger = .hash(v)}
+        if let v = v { self.ledger = .hash(v) }
       default: break
       }
     }
@@ -190,8 +190,8 @@ extension Org_Xrpl_Rpc_V1_LedgerSpecifier: SwiftProtobuf.Message, SwiftProtobuf.
   }
 
   public static func ==(lhs: Org_Xrpl_Rpc_V1_LedgerSpecifier, rhs: Org_Xrpl_Rpc_V1_LedgerSpecifier) -> Bool {
-    if lhs.ledger != rhs.ledger {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
+    if lhs.ledger != rhs.ledger { return false }
+    if lhs.unknownFields != rhs.unknownFields { return false }
     return true
   }
 }
@@ -201,7 +201,7 @@ extension Org_Xrpl_Rpc_V1_LedgerSpecifier.Shortcut: SwiftProtobuf._ProtoNameProv
     0: .same(proto: "SHORTCUT_UNSPECIFIED"),
     1: .same(proto: "SHORTCUT_VALIDATED"),
     2: .same(proto: "SHORTCUT_CLOSED"),
-    3: .same(proto: "SHORTCUT_CURRENT"),
+    3: .same(proto: "SHORTCUT_CURRENT")
   ]
 }
 
@@ -209,7 +209,7 @@ extension Org_Xrpl_Rpc_V1_LedgerRange: SwiftProtobuf.Message, SwiftProtobuf._Mes
   public static let protoMessageName: String = _protobuf_package + ".LedgerRange"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .standard(proto: "ledger_index_min"),
-    2: .standard(proto: "ledger_index_max"),
+    2: .standard(proto: "ledger_index_max")
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -233,9 +233,9 @@ extension Org_Xrpl_Rpc_V1_LedgerRange: SwiftProtobuf.Message, SwiftProtobuf._Mes
   }
 
   public static func ==(lhs: Org_Xrpl_Rpc_V1_LedgerRange, rhs: Org_Xrpl_Rpc_V1_LedgerRange) -> Bool {
-    if lhs.ledgerIndexMin != rhs.ledgerIndexMin {return false}
-    if lhs.ledgerIndexMax != rhs.ledgerIndexMax {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
+    if lhs.ledgerIndexMin != rhs.ledgerIndexMin { return false }
+    if lhs.ledgerIndexMax != rhs.ledgerIndexMax { return false }
+    if lhs.unknownFields != rhs.unknownFields { return false }
     return true
   }
 }
