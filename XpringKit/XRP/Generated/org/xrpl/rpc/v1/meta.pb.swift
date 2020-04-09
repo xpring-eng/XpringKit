@@ -14,7 +14,7 @@ import SwiftProtobuf
 // incompatible with the version of SwiftProtobuf to which you are linking.
 // Please ensure that you are building against the same version of the API
 // that was used to generate this file.
-fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAPIVersionCheck {
+private struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAPIVersionCheck {
   struct _2: SwiftProtobuf.ProtobufAPIVersion_2 {}
   typealias Version = _2
 }
@@ -30,31 +30,31 @@ public struct Org_Xrpl_Rpc_V1_Meta {
 
   /// result code indicating whether the transaction succeeded or failed
   public var transactionResult: Org_Xrpl_Rpc_V1_TransactionResult {
-    get {return _transactionResult ?? Org_Xrpl_Rpc_V1_TransactionResult()}
-    set {_transactionResult = newValue}
+    get { return _transactionResult ?? Org_Xrpl_Rpc_V1_TransactionResult() }
+    set { _transactionResult = newValue }
   }
   /// Returns true if `transactionResult` has been explicitly set.
-  public var hasTransactionResult: Bool {return self._transactionResult != nil}
+  public var hasTransactionResult: Bool { return self._transactionResult != nil }
   /// Clears the value of `transactionResult`. Subsequent reads from it will return its default value.
-  public mutating func clearTransactionResult() {self._transactionResult = nil}
+  public mutating func clearTransactionResult() { self._transactionResult = nil }
 
   public var affectedNodes: [Org_Xrpl_Rpc_V1_AffectedNode] = []
 
   public var deliveredAmount: Org_Xrpl_Rpc_V1_DeliveredAmount {
-    get {return _deliveredAmount ?? Org_Xrpl_Rpc_V1_DeliveredAmount()}
-    set {_deliveredAmount = newValue}
+    get { return _deliveredAmount ?? Org_Xrpl_Rpc_V1_DeliveredAmount() }
+    set { _deliveredAmount = newValue }
   }
   /// Returns true if `deliveredAmount` has been explicitly set.
-  public var hasDeliveredAmount: Bool {return self._deliveredAmount != nil}
+  public var hasDeliveredAmount: Bool { return self._deliveredAmount != nil }
   /// Clears the value of `deliveredAmount`. Subsequent reads from it will return its default value.
-  public mutating func clearDeliveredAmount() {self._deliveredAmount = nil}
+  public mutating func clearDeliveredAmount() { self._deliveredAmount = nil }
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
 
-  fileprivate var _transactionResult: Org_Xrpl_Rpc_V1_TransactionResult? = nil
-  fileprivate var _deliveredAmount: Org_Xrpl_Rpc_V1_DeliveredAmount? = nil
+  fileprivate var _transactionResult: Org_Xrpl_Rpc_V1_TransactionResult?
+  fileprivate var _deliveredAmount: Org_Xrpl_Rpc_V1_DeliveredAmount?
 }
 
 /// Next field: 3
@@ -141,7 +141,7 @@ extension Org_Xrpl_Rpc_V1_TransactionResult.ResultType: CaseIterable {
     .tel,
     .tem,
     .ter,
-    .tes,
+    .tes
   ]
 }
 
@@ -158,30 +158,30 @@ public struct Org_Xrpl_Rpc_V1_AffectedNode {
   /// 32 bytes
   public var ledgerIndex: Data = SwiftProtobuf.Internal.emptyData
 
-  public var node: Org_Xrpl_Rpc_V1_AffectedNode.OneOf_Node? = nil
+  public var node: Org_Xrpl_Rpc_V1_AffectedNode.OneOf_Node?
 
   public var createdNode: Org_Xrpl_Rpc_V1_CreatedNode {
     get {
-      if case .createdNode(let v)? = node {return v}
+      if case .createdNode(let v)? = node { return v }
       return Org_Xrpl_Rpc_V1_CreatedNode()
     }
-    set {node = .createdNode(newValue)}
+    set { node = .createdNode(newValue) }
   }
 
   public var deletedNode: Org_Xrpl_Rpc_V1_DeletedNode {
     get {
-      if case .deletedNode(let v)? = node {return v}
+      if case .deletedNode(let v)? = node { return v }
       return Org_Xrpl_Rpc_V1_DeletedNode()
     }
-    set {node = .deletedNode(newValue)}
+    set { node = .deletedNode(newValue) }
   }
 
   public var modifiedNode: Org_Xrpl_Rpc_V1_ModifiedNode {
     get {
-      if case .modifiedNode(let v)? = node {return v}
+      if case .modifiedNode(let v)? = node { return v }
       return Org_Xrpl_Rpc_V1_ModifiedNode()
     }
-    set {node = .modifiedNode(newValue)}
+    set { node = .modifiedNode(newValue) }
   }
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
@@ -213,19 +213,19 @@ public struct Org_Xrpl_Rpc_V1_CreatedNode {
   // methods supported on all messages.
 
   public var newFields: Org_Xrpl_Rpc_V1_LedgerObject {
-    get {return _newFields ?? Org_Xrpl_Rpc_V1_LedgerObject()}
-    set {_newFields = newValue}
+    get { return _newFields ?? Org_Xrpl_Rpc_V1_LedgerObject() }
+    set { _newFields = newValue }
   }
   /// Returns true if `newFields` has been explicitly set.
-  public var hasNewFields: Bool {return self._newFields != nil}
+  public var hasNewFields: Bool { return self._newFields != nil }
   /// Clears the value of `newFields`. Subsequent reads from it will return its default value.
-  public mutating func clearNewFields() {self._newFields = nil}
+  public mutating func clearNewFields() { self._newFields = nil }
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
 
-  fileprivate var _newFields: Org_Xrpl_Rpc_V1_LedgerObject? = nil
+  fileprivate var _newFields: Org_Xrpl_Rpc_V1_LedgerObject?
 }
 
 /// Next field: 2
@@ -235,19 +235,19 @@ public struct Org_Xrpl_Rpc_V1_DeletedNode {
   // methods supported on all messages.
 
   public var finalFields: Org_Xrpl_Rpc_V1_LedgerObject {
-    get {return _finalFields ?? Org_Xrpl_Rpc_V1_LedgerObject()}
-    set {_finalFields = newValue}
+    get { return _finalFields ?? Org_Xrpl_Rpc_V1_LedgerObject() }
+    set { _finalFields = newValue }
   }
   /// Returns true if `finalFields` has been explicitly set.
-  public var hasFinalFields: Bool {return self._finalFields != nil}
+  public var hasFinalFields: Bool { return self._finalFields != nil }
   /// Clears the value of `finalFields`. Subsequent reads from it will return its default value.
-  public mutating func clearFinalFields() {self._finalFields = nil}
+  public mutating func clearFinalFields() { self._finalFields = nil }
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
 
-  fileprivate var _finalFields: Org_Xrpl_Rpc_V1_LedgerObject? = nil
+  fileprivate var _finalFields: Org_Xrpl_Rpc_V1_LedgerObject?
 }
 
 /// Next field: 5
@@ -257,54 +257,54 @@ public struct Org_Xrpl_Rpc_V1_ModifiedNode {
   // methods supported on all messages.
 
   public var finalFields: Org_Xrpl_Rpc_V1_LedgerObject {
-    get {return _finalFields ?? Org_Xrpl_Rpc_V1_LedgerObject()}
-    set {_finalFields = newValue}
+    get { return _finalFields ?? Org_Xrpl_Rpc_V1_LedgerObject() }
+    set { _finalFields = newValue }
   }
   /// Returns true if `finalFields` has been explicitly set.
-  public var hasFinalFields: Bool {return self._finalFields != nil}
+  public var hasFinalFields: Bool { return self._finalFields != nil }
   /// Clears the value of `finalFields`. Subsequent reads from it will return its default value.
-  public mutating func clearFinalFields() {self._finalFields = nil}
+  public mutating func clearFinalFields() { self._finalFields = nil }
 
   public var previousFields: Org_Xrpl_Rpc_V1_LedgerObject {
-    get {return _previousFields ?? Org_Xrpl_Rpc_V1_LedgerObject()}
-    set {_previousFields = newValue}
+    get { return _previousFields ?? Org_Xrpl_Rpc_V1_LedgerObject() }
+    set { _previousFields = newValue }
   }
   /// Returns true if `previousFields` has been explicitly set.
-  public var hasPreviousFields: Bool {return self._previousFields != nil}
+  public var hasPreviousFields: Bool { return self._previousFields != nil }
   /// Clears the value of `previousFields`. Subsequent reads from it will return its default value.
-  public mutating func clearPreviousFields() {self._previousFields = nil}
+  public mutating func clearPreviousFields() { self._previousFields = nil }
 
   public var previousTransactionID: Org_Xrpl_Rpc_V1_PreviousTransactionID {
-    get {return _previousTransactionID ?? Org_Xrpl_Rpc_V1_PreviousTransactionID()}
-    set {_previousTransactionID = newValue}
+    get { return _previousTransactionID ?? Org_Xrpl_Rpc_V1_PreviousTransactionID() }
+    set { _previousTransactionID = newValue }
   }
   /// Returns true if `previousTransactionID` has been explicitly set.
-  public var hasPreviousTransactionID: Bool {return self._previousTransactionID != nil}
+  public var hasPreviousTransactionID: Bool { return self._previousTransactionID != nil }
   /// Clears the value of `previousTransactionID`. Subsequent reads from it will return its default value.
-  public mutating func clearPreviousTransactionID() {self._previousTransactionID = nil}
+  public mutating func clearPreviousTransactionID() { self._previousTransactionID = nil }
 
   public var previousTransactionLedgerSequence: Org_Xrpl_Rpc_V1_PreviousTransactionLedgerSequence {
-    get {return _previousTransactionLedgerSequence ?? Org_Xrpl_Rpc_V1_PreviousTransactionLedgerSequence()}
-    set {_previousTransactionLedgerSequence = newValue}
+    get { return _previousTransactionLedgerSequence ?? Org_Xrpl_Rpc_V1_PreviousTransactionLedgerSequence() }
+    set { _previousTransactionLedgerSequence = newValue }
   }
   /// Returns true if `previousTransactionLedgerSequence` has been explicitly set.
-  public var hasPreviousTransactionLedgerSequence: Bool {return self._previousTransactionLedgerSequence != nil}
+  public var hasPreviousTransactionLedgerSequence: Bool { return self._previousTransactionLedgerSequence != nil }
   /// Clears the value of `previousTransactionLedgerSequence`. Subsequent reads from it will return its default value.
-  public mutating func clearPreviousTransactionLedgerSequence() {self._previousTransactionLedgerSequence = nil}
+  public mutating func clearPreviousTransactionLedgerSequence() { self._previousTransactionLedgerSequence = nil }
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
 
-  fileprivate var _finalFields: Org_Xrpl_Rpc_V1_LedgerObject? = nil
-  fileprivate var _previousFields: Org_Xrpl_Rpc_V1_LedgerObject? = nil
-  fileprivate var _previousTransactionID: Org_Xrpl_Rpc_V1_PreviousTransactionID? = nil
-  fileprivate var _previousTransactionLedgerSequence: Org_Xrpl_Rpc_V1_PreviousTransactionLedgerSequence? = nil
+  fileprivate var _finalFields: Org_Xrpl_Rpc_V1_LedgerObject?
+  fileprivate var _previousFields: Org_Xrpl_Rpc_V1_LedgerObject?
+  fileprivate var _previousTransactionID: Org_Xrpl_Rpc_V1_PreviousTransactionID?
+  fileprivate var _previousTransactionLedgerSequence: Org_Xrpl_Rpc_V1_PreviousTransactionLedgerSequence?
 }
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "org.xrpl.rpc.v1"
+private let _protobuf_package = "org.xrpl.rpc.v1"
 
 extension Org_Xrpl_Rpc_V1_Meta: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".Meta"
@@ -312,7 +312,7 @@ extension Org_Xrpl_Rpc_V1_Meta: SwiftProtobuf.Message, SwiftProtobuf._MessageImp
     1: .standard(proto: "transaction_index"),
     2: .standard(proto: "transaction_result"),
     3: .standard(proto: "affected_nodes"),
-    4: .standard(proto: "delivered_amount"),
+    4: .standard(proto: "delivered_amount")
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -344,11 +344,11 @@ extension Org_Xrpl_Rpc_V1_Meta: SwiftProtobuf.Message, SwiftProtobuf._MessageImp
   }
 
   public static func ==(lhs: Org_Xrpl_Rpc_V1_Meta, rhs: Org_Xrpl_Rpc_V1_Meta) -> Bool {
-    if lhs.transactionIndex != rhs.transactionIndex {return false}
-    if lhs._transactionResult != rhs._transactionResult {return false}
-    if lhs.affectedNodes != rhs.affectedNodes {return false}
-    if lhs._deliveredAmount != rhs._deliveredAmount {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
+    if lhs.transactionIndex != rhs.transactionIndex { return false }
+    if lhs._transactionResult != rhs._transactionResult { return false }
+    if lhs.affectedNodes != rhs.affectedNodes { return false }
+    if lhs._deliveredAmount != rhs._deliveredAmount { return false }
+    if lhs.unknownFields != rhs.unknownFields { return false }
     return true
   }
 }
@@ -357,7 +357,7 @@ extension Org_Xrpl_Rpc_V1_TransactionResult: SwiftProtobuf.Message, SwiftProtobu
   public static let protoMessageName: String = _protobuf_package + ".TransactionResult"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .standard(proto: "result_type"),
-    2: .same(proto: "result"),
+    2: .same(proto: "result")
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -381,9 +381,9 @@ extension Org_Xrpl_Rpc_V1_TransactionResult: SwiftProtobuf.Message, SwiftProtobu
   }
 
   public static func ==(lhs: Org_Xrpl_Rpc_V1_TransactionResult, rhs: Org_Xrpl_Rpc_V1_TransactionResult) -> Bool {
-    if lhs.resultType != rhs.resultType {return false}
-    if lhs.result != rhs.result {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
+    if lhs.resultType != rhs.resultType { return false }
+    if lhs.result != rhs.result { return false }
+    if lhs.unknownFields != rhs.unknownFields { return false }
     return true
   }
 }
@@ -396,7 +396,7 @@ extension Org_Xrpl_Rpc_V1_TransactionResult.ResultType: SwiftProtobuf._ProtoName
     3: .same(proto: "RESULT_TYPE_TEL"),
     4: .same(proto: "RESULT_TYPE_TEM"),
     5: .same(proto: "RESULT_TYPE_TER"),
-    6: .same(proto: "RESULT_TYPE_TES"),
+    6: .same(proto: "RESULT_TYPE_TES")
   ]
 }
 
@@ -407,7 +407,7 @@ extension Org_Xrpl_Rpc_V1_AffectedNode: SwiftProtobuf.Message, SwiftProtobuf._Me
     2: .standard(proto: "ledger_index"),
     3: .standard(proto: "created_node"),
     4: .standard(proto: "deleted_node"),
-    5: .standard(proto: "modified_node"),
+    5: .standard(proto: "modified_node")
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -419,26 +419,26 @@ extension Org_Xrpl_Rpc_V1_AffectedNode: SwiftProtobuf.Message, SwiftProtobuf._Me
         var v: Org_Xrpl_Rpc_V1_CreatedNode?
         if let current = self.node {
           try decoder.handleConflictingOneOf()
-          if case .createdNode(let m) = current {v = m}
+          if case .createdNode(let m) = current { v = m }
         }
         try decoder.decodeSingularMessageField(value: &v)
-        if let v = v {self.node = .createdNode(v)}
+        if let v = v { self.node = .createdNode(v) }
       case 4:
         var v: Org_Xrpl_Rpc_V1_DeletedNode?
         if let current = self.node {
           try decoder.handleConflictingOneOf()
-          if case .deletedNode(let m) = current {v = m}
+          if case .deletedNode(let m) = current { v = m }
         }
         try decoder.decodeSingularMessageField(value: &v)
-        if let v = v {self.node = .deletedNode(v)}
+        if let v = v { self.node = .deletedNode(v) }
       case 5:
         var v: Org_Xrpl_Rpc_V1_ModifiedNode?
         if let current = self.node {
           try decoder.handleConflictingOneOf()
-          if case .modifiedNode(let m) = current {v = m}
+          if case .modifiedNode(let m) = current { v = m }
         }
         try decoder.decodeSingularMessageField(value: &v)
-        if let v = v {self.node = .modifiedNode(v)}
+        if let v = v { self.node = .modifiedNode(v) }
       default: break
       }
     }
@@ -464,10 +464,10 @@ extension Org_Xrpl_Rpc_V1_AffectedNode: SwiftProtobuf.Message, SwiftProtobuf._Me
   }
 
   public static func ==(lhs: Org_Xrpl_Rpc_V1_AffectedNode, rhs: Org_Xrpl_Rpc_V1_AffectedNode) -> Bool {
-    if lhs.ledgerEntryType != rhs.ledgerEntryType {return false}
-    if lhs.ledgerIndex != rhs.ledgerIndex {return false}
-    if lhs.node != rhs.node {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
+    if lhs.ledgerEntryType != rhs.ledgerEntryType { return false }
+    if lhs.ledgerIndex != rhs.ledgerIndex { return false }
+    if lhs.node != rhs.node { return false }
+    if lhs.unknownFields != rhs.unknownFields { return false }
     return true
   }
 }
@@ -475,7 +475,7 @@ extension Org_Xrpl_Rpc_V1_AffectedNode: SwiftProtobuf.Message, SwiftProtobuf._Me
 extension Org_Xrpl_Rpc_V1_CreatedNode: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".CreatedNode"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .standard(proto: "new_fields"),
+    1: .standard(proto: "new_fields")
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -495,8 +495,8 @@ extension Org_Xrpl_Rpc_V1_CreatedNode: SwiftProtobuf.Message, SwiftProtobuf._Mes
   }
 
   public static func ==(lhs: Org_Xrpl_Rpc_V1_CreatedNode, rhs: Org_Xrpl_Rpc_V1_CreatedNode) -> Bool {
-    if lhs._newFields != rhs._newFields {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
+    if lhs._newFields != rhs._newFields { return false }
+    if lhs.unknownFields != rhs.unknownFields { return false }
     return true
   }
 }
@@ -504,7 +504,7 @@ extension Org_Xrpl_Rpc_V1_CreatedNode: SwiftProtobuf.Message, SwiftProtobuf._Mes
 extension Org_Xrpl_Rpc_V1_DeletedNode: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".DeletedNode"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .standard(proto: "final_fields"),
+    1: .standard(proto: "final_fields")
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -524,8 +524,8 @@ extension Org_Xrpl_Rpc_V1_DeletedNode: SwiftProtobuf.Message, SwiftProtobuf._Mes
   }
 
   public static func ==(lhs: Org_Xrpl_Rpc_V1_DeletedNode, rhs: Org_Xrpl_Rpc_V1_DeletedNode) -> Bool {
-    if lhs._finalFields != rhs._finalFields {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
+    if lhs._finalFields != rhs._finalFields { return false }
+    if lhs.unknownFields != rhs.unknownFields { return false }
     return true
   }
 }
@@ -536,7 +536,7 @@ extension Org_Xrpl_Rpc_V1_ModifiedNode: SwiftProtobuf.Message, SwiftProtobuf._Me
     1: .standard(proto: "final_fields"),
     2: .standard(proto: "previous_fields"),
     3: .standard(proto: "previous_transaction_id"),
-    4: .standard(proto: "previous_transaction_ledger_sequence"),
+    4: .standard(proto: "previous_transaction_ledger_sequence")
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -568,11 +568,11 @@ extension Org_Xrpl_Rpc_V1_ModifiedNode: SwiftProtobuf.Message, SwiftProtobuf._Me
   }
 
   public static func ==(lhs: Org_Xrpl_Rpc_V1_ModifiedNode, rhs: Org_Xrpl_Rpc_V1_ModifiedNode) -> Bool {
-    if lhs._finalFields != rhs._finalFields {return false}
-    if lhs._previousFields != rhs._previousFields {return false}
-    if lhs._previousTransactionID != rhs._previousTransactionID {return false}
-    if lhs._previousTransactionLedgerSequence != rhs._previousTransactionLedgerSequence {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
+    if lhs._finalFields != rhs._finalFields { return false }
+    if lhs._previousFields != rhs._previousFields { return false }
+    if lhs._previousTransactionID != rhs._previousTransactionID { return false }
+    if lhs._previousTransactionLedgerSequence != rhs._previousTransactionLedgerSequence { return false }
+    if lhs.unknownFields != rhs.unknownFields { return false }
     return true
   }
 }

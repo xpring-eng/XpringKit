@@ -31,7 +31,6 @@ fileprivate final class Org_Interledger_Stream_Proto_IlpOverHttpServiceSendMoney
   override class var method: String { return "/org.interledger.stream.proto.IlpOverHttpService/SendMoney" }
 }
 
-
 /// Instantiate Org_Interledger_Stream_Proto_IlpOverHttpServiceServiceClient, then call methods of this protocol to make API calls.
 internal protocol Org_Interledger_Stream_Proto_IlpOverHttpServiceService: ServiceClient {
   /// Synchronous. Unary.
@@ -98,4 +97,3 @@ extension Org_Interledger_Stream_Proto_IlpOverHttpServiceProvider {
 internal protocol Org_Interledger_Stream_Proto_IlpOverHttpServiceSendMoneySession: ServerSessionUnary {}
 
 fileprivate final class Org_Interledger_Stream_Proto_IlpOverHttpServiceSendMoneySessionBase: ServerSessionUnaryBase<Org_Interledger_Stream_Proto_SendPaymentRequest, Org_Interledger_Stream_Proto_SendPaymentResponse>, Org_Interledger_Stream_Proto_IlpOverHttpServiceSendMoneySession {}
-

@@ -7,8 +7,6 @@
 
 import Foundation
 
-
-
 public struct InvoiceComplianceHashes: Codable {
 
     public var type: String?
@@ -19,6 +17,4 @@ public struct InvoiceComplianceHashes: Codable {
         self.hash = hash
     }
 
-
 }
-

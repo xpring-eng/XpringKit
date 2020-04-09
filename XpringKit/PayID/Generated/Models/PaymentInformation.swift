@@ -7,8 +7,6 @@
 
 import Foundation
 
-
-
 public struct PaymentInformation: Codable {
 
     public var addressDetailsType: String?
@@ -23,7 +21,7 @@ public struct PaymentInformation: Codable {
         self.paymentPointer = paymentPointer
     }
 
-    public enum CodingKeys: String, CodingKey { 
+    public enum CodingKeys: String, CodingKey {
         case addressDetailsType
         case addressDetails
         case proofOfControlSignature = "proof_of_control_signature"
@@ -31,4 +29,3 @@ public struct PaymentInformation: Codable {
     }
 
 }
-

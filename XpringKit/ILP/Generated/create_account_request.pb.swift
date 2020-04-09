@@ -14,7 +14,7 @@ import SwiftProtobuf
 // incompatible with the version of SwiftProtobuf to which you are linking.
 // Please ensure that you are building against the same version of the API
 // that was used to generate this file.
-fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAPIVersionCheck {
+private struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAPIVersionCheck {
   struct _2: SwiftProtobuf.ProtobufAPIVersion_2 {}
   typealias Version = _2
 }
@@ -40,7 +40,7 @@ public struct Org_Interledger_Stream_Proto_CreateAccountRequest {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "org.interledger.stream.proto"
+private let _protobuf_package = "org.interledger.stream.proto"
 
 extension Org_Interledger_Stream_Proto_CreateAccountRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".CreateAccountRequest"
@@ -48,7 +48,7 @@ extension Org_Interledger_Stream_Proto_CreateAccountRequest: SwiftProtobuf.Messa
     1: .standard(proto: "account_id"),
     2: .standard(proto: "asset_code"),
     3: .standard(proto: "asset_scale"),
-    4: .same(proto: "description"),
+    4: .same(proto: "description")
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -80,11 +80,11 @@ extension Org_Interledger_Stream_Proto_CreateAccountRequest: SwiftProtobuf.Messa
   }
 
   public static func ==(lhs: Org_Interledger_Stream_Proto_CreateAccountRequest, rhs: Org_Interledger_Stream_Proto_CreateAccountRequest) -> Bool {
-    if lhs.accountID != rhs.accountID {return false}
-    if lhs.assetCode != rhs.assetCode {return false}
-    if lhs.assetScale != rhs.assetScale {return false}
-    if lhs.description_p != rhs.description_p {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
+    if lhs.accountID != rhs.accountID { return false }
+    if lhs.assetCode != rhs.assetCode { return false }
+    if lhs.assetScale != rhs.assetScale { return false }
+    if lhs.description_p != rhs.description_p { return false }
+    if lhs.unknownFields != rhs.unknownFields { return false }
     return true
   }
 }

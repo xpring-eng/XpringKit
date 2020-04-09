@@ -1,14 +1,20 @@
 /// An interface into the Xpring Platform.
 public class XRPClient {
+  /// The XRPL Network of the node that this client is communicating with
+  public let network: XRPLNetwork
+
   private let decoratedClient: XRPClientDecorator
 
   /// Initialize a new XRPClient.
   ///
   /// - Parameters:
   ///   - grpcURL: A remote URL for a rippled gRPC service.
-  public init(grpcURL: String) {
+  ///   - network: The network this XRPClient is connecting to.
+  public init(grpcURL: String, network: XRPLNetwork) {
     let defaultClient = DefaultXRPClient(grpcURL: grpcURL)
     decoratedClient = ReliableSubmissionXRPClient(decoratedClient: defaultClient)
+
+    self.network = network
   }
 
   /// Get the balance for the given address.
