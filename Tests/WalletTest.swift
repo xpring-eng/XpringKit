@@ -202,4 +202,13 @@ class WalletTest: XCTestCase {
 
     XCTAssertFalse(wallet.verify(message: message, signature: signature))
   }
+
+  func testGenerateWalletFromKeys() {
+    // GIVEN a set of well formed keys.
+    let publicKey = try! "031D68BC1A142E6766B2BDFB006CCFE135EF2E0E2E94ABB5CF5C9AB6104776FBAE".toBytes()
+    let privateKey = try! "0090802A50AA84EFB6CDB225F17C27616EA94048C179142FECF03F4712A07EA7A4".toBytes()
+
+    // WHEN a wallet is generated THEN it is constructed successfully.
+    XCTAssertNotNil(Wallet(publicKey: publicKey, privateKey: privateKey, isTest: false))
+  }
 }

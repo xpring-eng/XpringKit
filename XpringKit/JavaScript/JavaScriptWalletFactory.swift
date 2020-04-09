@@ -48,6 +48,18 @@ internal class JavaScriptWalletFactory {
     return result.toWalletGenerationResult()!
   }
 
+  /// Initialize a new `Wallet` with a set of keys.
+  ///
+  /// - Parameters:
+  ///   - publicKey: Bytes representing a public key.
+  ///   - privateKey: Bytes representing a private key.
+  ///   - isTest: Whether the address is for use on a test network.
+  /// - Returns: A new wallet if inputs were valid, otherwise nil.
+  public func wallet(publicKey: [UInt8], privateKey: [UInt8], isTest: Bool = false) -> JavaScriptWallet? {
+    let result = walletClass.construct(withArguments: [publicKey.toHex(), privateKey.toHex(), isTest])!
+    return result.toWallet()
+  }
+
   /// Initialize a new `Wallet` with a mnemonic and a derivation path.
   ///
   /// - Parameters:
