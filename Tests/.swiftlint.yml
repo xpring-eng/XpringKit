@@ -1,4 +1,5 @@
 # Disable some rules for tests.
 disabled_rules:
+  - force_try
   - force_unwrapping
   - implicitly_unwrapped_optional
