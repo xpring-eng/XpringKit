@@ -7,6 +7,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+#### Removed
+
+- All legacy services are removed from XpringKit. All RPC's go through [rippled's protocol buffer API](https://github.com/ripple/rippled/pull/3254).
+- `getTransactionStatus` is removed. Please use `getPaymentStatus` instead.
+
+#### Changed
+- `XRPClient` now uses [rippled's protocol buffer API](https://github.com/ripple/rippled/pull/3254) rather than the legacy API. Users who wish to use the legacy API should pass `false` for `useNewProtocolBuffers` in the constructor.
+- `IlpClient` methods now throw `IlpError`s if something goes wrong during the call (either client side or server side).  This is only breaking if users are handling special error cases, which were previously `RPCError`s
+
+#### Added
+- A new `getPaymentStatus` is added which retrieves the status of payment transactions.
+
+#### Deprecated
+- `getTransactionStatus` is deprecated. Please use `getPaymentStatus` instead.
 
 ## 2.0.0 - March 19, 2020
 - Add a new `paymentHistory` method to `XRPClient`. This method allows clients to retrieve payment history for an address.

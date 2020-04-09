@@ -12,7 +12,7 @@ targets:
     type: framework
     platform: [iOS, macOS]
     sources: [XpringKit]
-    resources: [XpringKit/Resources]
+    resources: [XpringKit/Common/Resources]
     scheme:
       testTargets:
         - XpringKitTests_${platform}

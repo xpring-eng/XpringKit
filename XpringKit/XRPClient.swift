@@ -6,11 +6,8 @@ public class XRPClient {
   ///
   /// - Parameters:
   ///   - grpcURL: A remote URL for a rippled gRPC service.
-  ///   - useNewProtocolBuffers:  If `true`, then the new protocol buffer implementation from rippled will be used. Defaults to false.
-  public init(grpcURL: String, useNewProtocolBuffers: Bool = false) {
-    let defaultClient: XRPClientDecorator = useNewProtocolBuffers ?
-      DefaultXRPClient(grpcURL: grpcURL) :
-      LegacyDefaultXRPClient(grpcURL: grpcURL)
+  public init(grpcURL: String) {
+    let defaultClient = DefaultXRPClient(grpcURL: grpcURL)
     decoratedClient = ReliableSubmissionXRPClient(decoratedClient: defaultClient)
   }
 
@@ -23,13 +20,15 @@ public class XRPClient {
     return try decoratedClient.getBalance(for: address)
   }
 
-  /// Retrieve the transaction status for a given transaction hash.
+  /// Retrieve the payment status for a Payment given transaction hash.
   ///
-  /// - Parameter transactionHash: The hash of the transaction.
-  /// - Throws: An error if there was a problem communicating with the XRP Ledger.
+  /// - Note: This method will only work for Payment type transactions which do not have the tf_partial_payment attribute set.
+  /// - SeeAlso: https://xrpl.org/payment.html#payment-flags
+  ///
+  /// - Parameter transactionHash The hash of the transaction.
   /// - Returns: The status of the given transaction.
-  public func getTransactionStatus(for transactionHash: TransactionHash) throws -> TransactionStatus {
-    return try decoratedClient.getTransactionStatus(for: transactionHash)
+  public func paymentStatus(for transactionHash: TransactionHash) throws -> TransactionStatus {
+    return try self.decoratedClient.paymentStatus(for: transactionHash)
   }
 
   /// Send XRP to a recipient on the XRP Ledger.

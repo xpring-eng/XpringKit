@@ -3,10 +3,10 @@ import XpringKit
 /// A  fake XRPClient which returns the given iVars as results from XRPClientDecorator calls.
 /// - Note: Since this class is passed by reference and the iVars are mutable, outputs of this class can be changed after it is injected.
 public class FakeXRPClient {
-  public let networkClient: LegacyNetworkClient = LegacyFakeNetworkClient.successfulFakeNetworkClient
+  public let networkClient = FakeNetworkClient.successfulFakeNetworkClient
 
   public var getBalanceValue: UInt64
-  public var transactionStatusValue: TransactionStatus
+  public var paymentStatusValue: TransactionStatus
   public var sendValue: TransactionHash
   public var latestValidatedLedgerValue: UInt32
   public var rawTransactionStatusValue: RawTransactionStatus
@@ -15,7 +15,7 @@ public class FakeXRPClient {
 
   public init(
     getBalanceValue: UInt64,
-    transactionStatusValue: TransactionStatus,
+    paymentStatusValue: TransactionStatus,
     sendValue: TransactionHash,
     latestValidatedLedgerValue: UInt32,
     rawTransactionStatusValue: RawTransactionStatus,
@@ -23,7 +23,7 @@ public class FakeXRPClient {
     accountExistsValue: Bool
   ) {
     self.getBalanceValue = getBalanceValue
-    self.transactionStatusValue = transactionStatusValue
+    self.paymentStatusValue = paymentStatusValue
     self.sendValue = sendValue
     self.latestValidatedLedgerValue = latestValidatedLedgerValue
     self.rawTransactionStatusValue = rawTransactionStatusValue
@@ -37,8 +37,8 @@ extension FakeXRPClient: XRPClientDecorator {
     return getBalanceValue
   }
 
-  public func getTransactionStatus(for transactionHash: TransactionHash) throws -> TransactionStatus {
-    return transactionStatusValue
+  public func paymentStatus(for transactionHash: TransactionHash) throws -> TransactionStatus {
+    return paymentStatusValue
   }
 
   public func send(_ amount: UInt64, to destinationAddress: Address, from sourceWallet: Wallet) throws -> TransactionHash {

@@ -16,7 +16,7 @@ final class DefaultIlpClientTest: XCTestCase {
         guard let balance =
             try? ilpClient.getBalance(
                 for: .testAccountID,
-                withAuthorization: .testBearerToken
+                withAuthorization: .testAccessToken
             ) else {
               XCTFail("Exception should not be thrown when trying to get a balance")
               return
@@ -31,23 +31,85 @@ final class DefaultIlpClientTest: XCTestCase {
         XCTAssertEqual(balance.netBalance, .testIlpBalance + .testIlpBalance)
     }
 
-    func testGetBalanceWithFailure() {
-        // GIVEN an IlpClient with a network client which will always throw an error.
-        let balanceNetworkClient = FakeIlpBalanceNetworkClient(getBalanceResult: .failure(XpringKitTestError.mockFailure))
-        let paymentNetworkClient = FakeIlpPaymentNetworkClient(sendPaymentResult: .failure(XpringKitTestError.mockFailure))
-        let ilpClient = DefaultIlpClient(balanceNetworkClient: balanceNetworkClient, paymentNetworkClient: paymentNetworkClient)
+    func testGetBalanceWithInvalidAccessTokenFailure() {
+        // GIVEN an IlpClient with a network client which will always throw an IlpError.invalidAccessToken.
+        let ilpClient = DefaultIlpClient(
+            balanceNetworkClient: FakeIlpBalanceNetworkClient.with(errorResponse: IlpError.invalidAccessToken),
+            paymentNetworkClient: FakeIlpPaymentNetworkClient.with(errorResponse: IlpError.invalidAccessToken)
+        )
 
-        // WHEN the balance is requested THEN an error is thrown
+        // WHEN the balance is requested THEN an IlpError.invalidAccessToken is thrown
+        assertGetBalanceWithError(using: ilpClient, expectedError: IlpError.invalidAccessToken)
+    }
+
+    func testGetBalanceWithAccountNotFoundFailure() {
+        // GIVEN an IlpClient with a network client which will always throw a RPCError.notFound error.
+        let ilpClient = DefaultIlpClient(
+            balanceNetworkClient: FakeIlpBalanceNetworkClient.with(statusCode: .notFound),
+            paymentNetworkClient: FakeIlpPaymentNetworkClient.with(statusCode: .notFound)
+        )
+
+        // WHEN the balance is requested THEN an IlpError.accountNotFound error is thrown
+        assertGetBalanceWithError(using: ilpClient, expectedError: IlpError.accountNotFound)
+    }
+
+    func testGetBalanceWithUnauthenticatedFailure() {
+        // GIVEN an IlpClient with a network client which will always throw a RPCError.unauthenticated error.
+        let ilpClient = DefaultIlpClient(
+            balanceNetworkClient: FakeIlpBalanceNetworkClient.with(statusCode: .unauthenticated),
+            paymentNetworkClient: FakeIlpPaymentNetworkClient.with(statusCode: .unauthenticated)
+        )
+
+        // WHEN the balance is requested THEN an IlpError.unauthenticated error is thrown
+        assertGetBalanceWithError(using: ilpClient, expectedError: IlpError.unauthenticated)
+    }
+
+    func testGetBalanceWithInvalidArgumentFailure() {
+        // GIVEN an IlpClient with a network client which will always throw a RPCError.invalidArgument error.
+        let ilpClient = DefaultIlpClient(
+            balanceNetworkClient: FakeIlpBalanceNetworkClient.with(statusCode: .invalidArgument),
+            paymentNetworkClient: FakeIlpPaymentNetworkClient.with(statusCode: .invalidArgument)
+        )
+
+        // WHEN the balance is requested THEN an IlpError.invalidArgument error is thrown
+        assertGetBalanceWithError(using: ilpClient, expectedError: IlpError.invalidArgument)
+    }
+
+    func testGetBalanceWithInternalErrorFailure() {
+        // GIVEN an IlpClient with a network client which will always throw a RPCError.internalError error.
+        let ilpClient = DefaultIlpClient(
+            balanceNetworkClient: FakeIlpBalanceNetworkClient.with(statusCode: .internalError),
+            paymentNetworkClient: FakeIlpPaymentNetworkClient.with(statusCode: .internalError)
+        )
+
+        // WHEN the balance is requested THEN an IlpError.internalError is thrown
+        assertGetBalanceWithError(using: ilpClient, expectedError: IlpError.internalError)
+    }
+
+    func testGetBalanceWithUnknownFailure() {
+        // GIVEN an IlpClient with a network client which will always throw a RPCError.unknown error.
+        let ilpClient = DefaultIlpClient(
+            balanceNetworkClient: FakeIlpBalanceNetworkClient.with(statusCode: .unknown),
+            paymentNetworkClient: FakeIlpPaymentNetworkClient.with(statusCode: .unknown)
+        )
+
+        // WHEN the balance is requested THEN an IlpError.unknown is thrown
+        assertGetBalanceWithError(using: ilpClient, expectedError: IlpError.unknown)
+    }
+
+    /// Helper function which calls getBalance on a DefaultIlpClient and asserts it throws the expected error
+    fileprivate func assertGetBalanceWithError(using ilpClient: DefaultIlpClient, expectedError: IlpError) {
         XCTAssertThrowsError(try ilpClient.getBalance(
             for: .testAccountID,
-            withAuthorization: .testBearerToken
+            withAuthorization: .testAccessToken
         ), "Exception not thrown") { error in
             guard
-              let _ = error as? XpringKitTestError
+                let ilpError = error as? IlpError
                 else {
                   XCTFail("Error thrown was not mocked error")
                   return
             }
+            XCTAssertEqual(ilpError, expectedError)
         }
     }
 
@@ -60,16 +122,10 @@ final class DefaultIlpClientTest: XCTestCase {
         )
 
         // WHEN a payment is sent
-        let paymentRequest = PaymentRequest(
-            .testIlpSendAmount,
-            to: .testIlpPaymentPointer,
-            from: .testAccountID
-        )
-
         guard let payment: PaymentResult =
             try? ilpClient.sendPayment(
-                paymentRequest,
-                withAuthorization: .testBearerToken
+                .testPaymentRequest,
+                withAuthorization: .testAccessToken
             ) else {
                 XCTFail("Exception should not be thrown when trying to send a payment")
                 return
@@ -82,28 +138,85 @@ final class DefaultIlpClientTest: XCTestCase {
         XCTAssertEqual(payment.successfulPayment, true)
     }
 
-    func testSendPaymentWithFailure() {
-        // GIVEN an IlpClient with a network client which will always throw an error.
-        let balanceNetworkClient = FakeIlpBalanceNetworkClient(getBalanceResult: .failure(XpringKitTestError.mockFailure))
-        let paymentNetworkClient = FakeIlpPaymentNetworkClient(sendPaymentResult: .failure(XpringKitTestError.mockFailure))
-        let ilpClient = DefaultIlpClient(balanceNetworkClient: balanceNetworkClient, paymentNetworkClient: paymentNetworkClient)
-
-        let paymentRequest = PaymentRequest(
-            .testIlpSendAmount,
-            to: .testIlpPaymentPointer,
-            from: .testAccountID
+    func testSendPaymentWithInvalidAccessTokenFailure() {
+        // GIVEN an IlpClient with a network client which will always throw an IlpError.invalidAccessToken.
+        let ilpClient = DefaultIlpClient(
+            balanceNetworkClient: FakeIlpBalanceNetworkClient.with(errorResponse: IlpError.invalidAccessToken),
+            paymentNetworkClient: FakeIlpPaymentNetworkClient.with(errorResponse: IlpError.invalidAccessToken)
         )
-        // WHEN a payment is sent THEN an error is thrown
+
+        // WHEN a payment is sent THEN a XpringIlpErrror.invalidAccessToken error is thrown
+        assertSendPaymentWithError(using: ilpClient, expectedError: IlpError.invalidAccessToken)
+    }
+
+    func testSendPaymentWithAccountNotFoundFailure() {
+        // GIVEN an IlpClient with a network client which will always throw a RPCError.notFound error.
+        let ilpClient = DefaultIlpClient(
+            balanceNetworkClient: FakeIlpBalanceNetworkClient.with(statusCode: .notFound),
+            paymentNetworkClient: FakeIlpPaymentNetworkClient.with(statusCode: .notFound)
+        )
+
+        // WHEN a payment is sent THEN an IlpError.accountNotFound error is thrown
+        assertSendPaymentWithError(using: ilpClient, expectedError: IlpError.accountNotFound)
+    }
+
+    func testSendPaymentWithUnauthenticatedFailure() {
+        // GIVEN an IlpClient with a network client which will always throw a RPCError.unauthenticated error.
+        let ilpClient = DefaultIlpClient(
+            balanceNetworkClient: FakeIlpBalanceNetworkClient.with(statusCode: .unauthenticated),
+            paymentNetworkClient: FakeIlpPaymentNetworkClient.with(statusCode: .unauthenticated)
+        )
+
+        // WHEN a payment is sent THEN an IlpError.unauthenticated error is thrown
+        assertSendPaymentWithError(using: ilpClient, expectedError: IlpError.unauthenticated)
+    }
+
+    func testSendPaymentWithInvalidArgumentFailure() {
+        // GIVEN an IlpClient with a network client which will always throw a RPCError.invalidArgument error.
+        let ilpClient = DefaultIlpClient(
+            balanceNetworkClient: FakeIlpBalanceNetworkClient.with(statusCode: .invalidArgument),
+            paymentNetworkClient: FakeIlpPaymentNetworkClient.with(statusCode: .invalidArgument)
+        )
+
+        // WHEN a payment is sent THEN an IlpError.invalidArgument error is thrown
+        assertSendPaymentWithError(using: ilpClient, expectedError: IlpError.invalidArgument)
+    }
+
+    func testSendPaymentWithInternalErrorFailure() {
+        // GIVEN an IlpClient with a network client which will always throw a RPCError.internalError error.
+        let ilpClient = DefaultIlpClient(
+            balanceNetworkClient: FakeIlpBalanceNetworkClient.with(statusCode: .internalError),
+            paymentNetworkClient: FakeIlpPaymentNetworkClient.with(statusCode: .internalError)
+        )
+
+        // WHEN a payment is sent THEN an IlpError.internalError error is thrown
+        assertSendPaymentWithError(using: ilpClient, expectedError: IlpError.internalError)
+    }
+
+    func testSendPaymentWithUnknownFailure() {
+        // GIVEN an IlpClient with a network client which will always throw a RPCError.unknown error.
+        let ilpClient = DefaultIlpClient(
+            balanceNetworkClient: FakeIlpBalanceNetworkClient.with(statusCode: .unknown),
+            paymentNetworkClient: FakeIlpPaymentNetworkClient.with(statusCode: .unknown)
+        )
+
+        // WHEN a payment is sent THEN an IlpError.unknown is thrown
+        assertSendPaymentWithError(using: ilpClient, expectedError: IlpError.unknown)
+    }
+
+    /// Helper function which calls sendPayment on a DefaultIlpClient and asserts it throws the expected error
+    fileprivate func assertSendPaymentWithError(using ilpClient: DefaultIlpClient, expectedError: IlpError) {
         XCTAssertThrowsError(try ilpClient.sendPayment(
-            paymentRequest,
-            withAuthorization: .testBearerToken
+            .testPaymentRequest,
+            withAuthorization: .testAccessToken
         ), "Exception not thrown") { error in
             guard
-              let _ = error as? XpringKitTestError
+                let ilpError = error as? IlpError
                 else {
-                  XCTFail("Error thrown was not mocked error")
-                  return
+                    XCTFail("Error thrown was not IlpError")
+                    return
             }
+            XCTAssertEqual(ilpError, expectedError)
         }
     }
 }

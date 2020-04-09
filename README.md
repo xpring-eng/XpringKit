@@ -37,14 +37,22 @@ Xpring SDK needs to communicate with a rippled node which has gRPC enabled. Cons
 To get developers started right away, Xpring currently provides nodes:
 
 ```
-# TestNet
+# Testnet
 test.xrp.xpring.io:50051
 
-# MainNet
+# Mainnet
 main.xrp.xpring.io:50051
 ```
 
-## Usage
+### Hermes Node
+Xpring SDK's `IlpClient` needs to communicate with Xpring's ILP infrastructure through an instance of [Hermes](https://github.com/xpring-eng/hermes-ilp).   
+
+In order to connect to the Hermes instance that Xpring currently operates, you will need to create an ILP wallet [here](https://xpring.io/portal/ilp-wallet)
+
+Once your wallet has been created, you can use the gRPC URL specified in your wallet, as well as your **access token** to check your balance
+and send payments over ILP.
+
+## Usage: XRP
 
 **Note:** Xpring SDK only works with the X-Address format. For more information about this format, see the [Utilities section](#utilities) and <http://xrpaddress.info>.
 
@@ -132,19 +140,19 @@ wallet.verify(message, signature); // true
 ```swift
 import XpringKit
 
-let remoteURL = "test.xrp.xpring.io:50051"; // TestNet URL, use main.xrp.xpring.io:50051 for MainNet
+let remoteURL = "test.xrp.xpring.io:50051"; // Testnet URL, use main.xrp.xpring.io:50051 for Mainnet
 let xrpClient = XRPClient(grpcURL: remoteURL)
 ```
 
 #### Retrieving a Balance
 
-A `XRPClient` can check the balance of an account on the XRP Ledger.
+An `XRPClient` can check the balance of an account on the XRP Ledger.
 
 ```swift
 import XpringKit
 
-let remoteURL = "test.xrp.xpring.io:50051"; // TestNet URL, use main.xrp.xpring.io:50051 for MainNet
-let xrpClient = XRPClient(grpcURL: remoteURL, useNewProtocolBuffers: true)
+let remoteURL = "test.xrp.xpring.io:50051"; // Testnet URL, use main.xrp.xpring.io:50051 for Mainnet
+let xrpClient = XRPClient(grpcURL: remoteURL)
 
 let address = "XVMFQQBMhdouRqhPMuawgBMN1AVFTofPAdRsXG5RkPtUPNQ"
 
@@ -152,15 +160,17 @@ let balance = try! xrpClient.getBalance(for: address)
 print(balance) // Logs a balance in drops of XRP
 ```
 
-### Checking Transaction Status
+### Checking Payment Status
 
-A `XRPClient` can check the status of an transaction on the XRP Ledger.
+An `XRPClient` can check the status of an payment on the XRP Ledger.
+
+This method can only determine the status of [payment transactions](https://xrpl.org/payment.html) which do not have the partial payment flag ([tfPartialPayment](https://xrpl.org/payment.html#payment-flags)) set.
 
 XpringKit returns the following transaction states:
 - `succeeded`: The transaction was successfully validated and applied to the XRP Ledger.
 - `failed:` The transaction was successfully validated but not applied to the XRP Ledger. Or the operation will never be validated.
 - `pending`: The transaction has not yet been validated, but may be validated in the future.
-- `unknown`: The transaction status could not be determined.
+- `unknown`: The transaction status could not be determined, the hash represented a non-payment type transaction, or the hash represented a transaction with the [tfPartialPayment](https://xrpl.org/payment.html#payment-flags) flag set.
 
 **Note:** For more information, see [Reliable Transaction Submission](https://xrpl.org/reliable-transaction-submission.html) and [Transaction Results](https://xrpl.org/transaction-results.html).
 
@@ -169,12 +179,12 @@ These states are determined by the `TransactionStatus` enum.
 ```swift
 import XpringKit
 
-let remoteURL = "test.xrp.xpring.io:50051"; // TestNet URL, use main.xrp.xpring.io:50051 for MainNet
-let xrpClient = XRPClient(grpcURL: remoteURL, useNewProtocolBuffers: true)
+let remoteURL = "test.xrp.xpring.io:50051"; // Testnet URL, use main.xrp.xpring.io:50051 for Mainnet
+let xrpClient = XRPClient(grpcURL: remoteURL)
 
 let transactionHash = "9FC7D277C1C8ED9CE133CC17AEA9978E71FC644CE6F5F0C8E26F1C635D97AF4A"
 
-let transactionStatus = xrpClient.getTransactionStatus(for: transactionHash) // TransactionStatus.succeeded
+let transactionStatus = xrpClient.paymentStatus(for: transactionHash) // TransactionStatus.succeeded
 ```
 
 **Note:** The example transactionHash may lead to a "Transaction not found." error because the TestNet is regularly reset, or the accessed node may only maintain one month of history.  Recent transaction hashes can be found in the [XRP Ledger Explorer ](https://livenet.xrpl.org/).
@@ -186,7 +196,7 @@ An `XRPClient` can return payments to and from an account.
 ```
 import xpringkit
 
-let remoteURL = "alpha.test.xrp.xpring.io:50051"; // TestNet URL, use alpha.xrp.xpring.io:50051 for MainNet
+let remoteURL = "alpha.test.xrp.xpring.io:50051"; // TestNet URL, use alpha.xrp.xpring.io:50051 for Mainnet
 let xrpClient = XRPClient(grpcURL: remoteURL, useNewProtocolBuffers: true)
 
 let address = "XVMFQQBMhdouRqhPMuawgBMN1AVFTofPAdRsXG5RkPtUPNQ"
@@ -196,15 +206,15 @@ let transactions = try! xrpClient.paymentHistory(for: address)
 
 #### Sending XRP
 
-A `XRPClient` can send XRP to other accounts on the XRP Ledger.
+An `XRPClient` can send XRP to other accounts on the XRP Ledger.
 
 **Note:** The payment operation will block the calling thread until the operation reaches a definitive and irreversible success or failure state.
 
 ```swift
 import XpringKit
 
-let remoteURL = "test.xrp.xpring.io:50051"; // TestNet URL, use main.xrp.xpring.io:50051 for MainNet
-let xrpClient = XRPClient(grpcURL: remoteURL, useNewProtocolBuffers: true)
+let remoteURL = "test.xrp.xpring.io:50051"; // TestNet URL, use main.xrp.xpring.io:50051 for Mainnet
+let xrpClient = XRPClient(grpcURL: remoteURL)
 
 // Wallet which will send XRP
 let generationResult = Wallet.generateRandomWallet()!
@@ -272,6 +282,54 @@ let xAddress = Utils.encode(classicAddress: address, tag: tag) // X7jjQ4d6bz1qmj
 let classicAddressTuple = Utils.decode(xAddress: address)!
 print(classicAddressTuple.classicAddress); // rnysDDrRXxz9z66DmCmfWpq4Z5s4TyUP3G
 print(classicAddressTuple.tag); // 12345
+```
+
+## Usage: ILP
+### IlpClient
+`IlpClient` is the main interface into the ILP network.  `IlpClient` must be initialized with the URL of a Hermes instance.
+This can be found in your [wallet](https://xpring.io/portal/ilp-wallet).
+
+All calls to `IlpClient` must pass an access token, which can be generated in your [wallet](https://xpring.io/portal/ilp-wallet). 
+
+```swift
+import XpringKit
+
+let grpcUrl = "hermes-grpc-test.xpring.dev" // TestNet Hermes URL
+let ilpClient = IlpClient(grpcURL: grpcUrl)
+```
+
+#### Retreiving a Balance
+An `IlpClient` can check the balance of an account on a connector.
+
+```swift
+import XpringKit
+
+let grpcUrl = "hermes-grpc-test.xpring.dev" // TestNet Hermes URL
+let ilpClient = IlpClient(grpcURL: grpcUrl)
+
+let getBalance = try ilpClient.getBalance(for: "demo_user", withAuthorization: "2S1PZh3fEKnKg") // Just a demo user on Testnet
+print("Net balance was \(getBalance.netBalance) with asset scale \(getBalance.assetScale)")
+```
+
+#### Sending a Payment
+An `IlpClient` can send an ILP payment to another ILP address by supplying a [Payment Pointer](https://github.com/interledger/rfcs/blob/master/0026-payment-pointers/0026-payment-pointers.md)
+and a sender's account ID
+
+```swift
+import XpringKit
+
+let grpcUrl = "hermes-grpc-test.xpring.dev" // TestNet Hermes URL
+let ilpClient = IlpClient(grpcURL: grpcUrl)
+
+let paymentRequest = PaymentRequest(
+    100, 
+    to: "$xpring.money/demo_receiver", 
+    from: "demo_user"
+)
+let payment = try ilpClient.sendPayment(
+    paymentRequest,
+    withAuthorization: "2S1PZh3fEKnKg"
+)
 ```
 
 # Contributing
