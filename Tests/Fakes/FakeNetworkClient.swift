@@ -22,7 +22,8 @@ public class FakeNetworkClient {
   /// - Parameters:
   ///   - accountInfoResult: A result which will be used to determine the behavior of getAccountInfo().
   ///   - feeResult: A result which will be used to determine the behavior of getFee().
-  ///   - submitSignedTransactionResult: A result which will be used to determine the behavior of submitSignedTransaction().
+  ///   - submitSignedTransactionResult: A result which will be used to determine the behavior of
+  ///                                    submitSignedTransaction().
   ///   - transactionStatusResult: A result which will be used to determine behavior of getTransactionStatus().
   ///   - getTransactionHistoryResult: A result which will be used to determine the behavior of getTransactionHistory()
   public init(
@@ -42,7 +43,9 @@ public class FakeNetworkClient {
 
 /// Conform to NetworkClient protocol, returning faked results.
 extension FakeNetworkClient: NetworkClient {
-  public func getAccountInfo(_ request: Org_Xrpl_Rpc_V1_GetAccountInfoRequest) throws -> Org_Xrpl_Rpc_V1_GetAccountInfoResponse {
+  public func getAccountInfo(
+    _ request: Org_Xrpl_Rpc_V1_GetAccountInfoRequest
+  ) throws -> Org_Xrpl_Rpc_V1_GetAccountInfoResponse {
     switch accountInfoResult {
     case .success(let accountInfo):
       return accountInfo
@@ -60,7 +63,9 @@ extension FakeNetworkClient: NetworkClient {
     }
   }
 
-  public func submitTransaction(_ request: Org_Xrpl_Rpc_V1_SubmitTransactionRequest) throws -> Org_Xrpl_Rpc_V1_SubmitTransactionResponse {
+  public func submitTransaction(
+    _ request: Org_Xrpl_Rpc_V1_SubmitTransactionRequest
+  ) throws -> Org_Xrpl_Rpc_V1_SubmitTransactionResponse {
     switch submitTransactionResult {
     case .success(let result):
       return result
@@ -80,7 +85,9 @@ extension FakeNetworkClient: NetworkClient {
     }
   }
 
-  public func getAccountTransactionHistory(_ request: Org_Xrpl_Rpc_V1_GetAccountTransactionHistoryRequest) throws -> Org_Xrpl_Rpc_V1_GetAccountTransactionHistoryResponse {
+  public func getAccountTransactionHistory(
+    _ request: Org_Xrpl_Rpc_V1_GetAccountTransactionHistoryRequest
+  ) throws -> Org_Xrpl_Rpc_V1_GetAccountTransactionHistoryResponse {
     switch transactionHistoryResult {
     case .success(let result):
       return result

@@ -11,8 +11,8 @@ internal extension XRPTransaction {
     self.accountTransactionID = transaction.hasAccountTransactionID ? transaction.accountTransactionID.value : nil
     self.flags = transaction.hasFlags ? RippledFlags(rawValue: transaction.flags.value) : nil
     self.lastLedgerSequence = transaction.hasLastLedgerSequence ? transaction.lastLedgerSequence.value : nil
-    self.memos = transaction.memos.count > 0 ? transaction.memos.map { memo in XRPMemo(memo: memo) } : nil
-    self.signers = transaction.signers.count > 0 ? transaction.signers.map { signer in XRPSigner(signer: signer) } : nil
+    self.memos = !transaction.memos.isEmpty ? transaction.memos.map { memo in XRPMemo(memo: memo) } : nil
+    self.signers = !transaction.signers.isEmpty ? transaction.signers.map { signer in XRPSigner(signer: signer) } : nil
     self.sourceTag = transaction.hasSourceTag ? transaction.sourceTag.value : nil
 
     switch transaction.transactionData {
