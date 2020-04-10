@@ -15,10 +15,13 @@ extension JSContext {
   /// Error messages that can occur while loading resources.
   private enum LoaderErrors {
     /// Missing `index.js`
-    public static let missingIndexJS = "Could not load JavaScript resources for the XRP Ledger. Check that `index.js` exists and is well formed."
+    public static let missingIndexJS =
+      "Could not load JavaScript resources for the XRP Ledger. Check that `index.js` exists and is well formed."
 
     /// Missing `XpringCommonJS.default` as a global variable.
-    public static let missingXpringCommonJS = "Could not find global XpringCommonJS in Context. Check that `XpringCommonJS.default` is defined as a global variable."
+    public static let missingXpringCommonJS =
+      "Could not find global XpringCommonJS in Context. " +
+      "Check that `XpringCommonJS.default` is defined as a global variable."
   }
 
   /// A `JSContext` which is initialized with XRP Ledger functionality.

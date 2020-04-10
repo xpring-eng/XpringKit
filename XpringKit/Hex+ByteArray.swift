@@ -24,10 +24,10 @@ extension Hex {
 
   /// Checks whether this string is valid hex.
   private func isValidHex() -> Bool {
-     let chars = CharacterSet(charactersIn: "0123456789ABCDEF")
-     guard uppercased().rangeOfCharacter(from: chars) != nil else {
-        return false
-     }
-     return true
+    let chars = CharacterSet(charactersIn: "0123456789ABCDEF")
+    guard uppercased().rangeOfCharacter(from: chars) != nil else {
+      return false
+    }
+    return true
   }
 }
