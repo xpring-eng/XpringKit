@@ -1,7 +1,9 @@
 import XpringKit
 
 /// A  fake XRPClient which returns the given iVars as results from XRPClientDecorator calls.
-/// - Note: Since this class is passed by reference and the iVars are mutable, outputs of this class can be changed after it is injected.
+///
+/// - Note: Since this class is passed by reference and the instance variables are mutable, outputs of this class
+///         can be changed after it is instantiated.
 public class FakeXRPClient: XRPClientProtocol {
   public let networkClient = FakeNetworkClient.successfulFakeNetworkClient
 
@@ -41,7 +43,11 @@ extension FakeXRPClient: XRPClientDecorator {
     return paymentStatusValue
   }
 
-  public func send(_ amount: UInt64, to destinationAddress: Address, from sourceWallet: Wallet) throws -> TransactionHash {
+  public func send(
+    _ amount: UInt64,
+    to destinationAddress: Address,
+    from sourceWallet: Wallet
+  ) throws -> TransactionHash {
     return sendValue
   }
 
