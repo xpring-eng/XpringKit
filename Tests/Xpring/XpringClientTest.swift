@@ -5,7 +5,7 @@ import XpringKit
 final class XpringClientTest: XCTestCase {
   /// Default values for FakeXRPClient. These values must be provided but are not varied in testing.
   private let fakeBalanceValue = 10
-  private let fakeTransactionStatusValue = TransactionStatus.Succeeded
+  private let fakeTransactionStatusValue = TransactionStatus.succeeded
   private let fakeLastLedgerSequenceValue = 10
   private let fakeRawTransactionStatusValue = RawTransactionStatus(
     getTransactionResponse: Org_Xrpl_Rpc_V1_GetTransactionResponse()
@@ -20,7 +20,7 @@ final class XpringClientTest: XCTestCase {
   private let payID = "$xpring.money/georgewashington"
 
   /// A wallet
-  private let wallet = FakeWallet("01234567890")
+  private let wallet = FakeWallet(signature: [0, 1, 2, 3])
 
   /// Errors  to throw.
   private let payIDError = PayIDError.unknown(error: "Test PayID error")
