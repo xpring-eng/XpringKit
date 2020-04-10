@@ -915,13 +915,6 @@
 			path = model;
 			sourceTree = "<group>";
 		};
-		"TEMP_8354BC7D-5E83-4104-8B36-58A91489C45F" /* Legacy */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Legacy;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
