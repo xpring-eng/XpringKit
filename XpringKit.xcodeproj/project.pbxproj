@@ -249,6 +249,7 @@
 		A48E4696CF41DF96FFB80ACD /* index.js in Resources */ = {isa = PBXBuildFile; fileRef = 1E87C4427452AFF47BAF7DED /* index.js */; };
 		A4BC9C71B6DAF6FA4176F68B /* XRPClientIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A83D4BCA01516F962F5020 /* XRPClientIntegrationTests.swift */; };
 		A616BF3A705195EF13794504 /* XRPCurrencyAmount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BAEA48B8B441D4347A4BCD8 /* XRPCurrencyAmount.swift */; };
+		A6275A9F041F661C9DB5E042 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 35B9D2AEB49E254E30BBE667 /* .swiftlint.yml */; };
 		A6381C0B8DCC9A55F62C0FE7 /* XRPLNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB92F8C5679AD7205DDF3745 /* XRPLNetwork.swift */; };
 		A6D394FAE62F0607CD89FD8A /* PaymentResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D1416C0788AA834D2EA7CD /* PaymentResult.swift */; };
 		A736E962DD7C2C3BEE567315 /* account.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 131CA8117639B2887A575A67 /* account.pb.swift */; };
@@ -321,6 +322,7 @@
 		D46CEB4EEB226058EE99A903 /* Invoice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FF086761CDA5FA60BD96B13 /* Invoice.swift */; };
 		D83A4953FAAE8645AEE51A75 /* DefaultXRPClientTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA158D7B2CE015FD85B49545 /* DefaultXRPClientTest.swift */; };
 		D8E74E91B35041F96DC839A7 /* get_account_response.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32FD6AF7FDFBB0907A404ABA /* get_account_response.pb.swift */; };
+		D95D4F58D63B1A41FD865BAB /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 35B9D2AEB49E254E30BBE667 /* .swiftlint.yml */; };
 		D9C00C64D0382D104653EACC /* BoringSSL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D18C5D33C7ACC0B9FDC80B8 /* BoringSSL.framework */; };
 		DA05CAE82B01D29BF03C896F /* PaymentResult+Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA4760A9380FA1F76372071 /* PaymentResult+Test.swift */; };
 		DA5B7CEFFDDBF1FB7F23C1EA /* AccessToken+Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DE4F8075EC00DA5707E05C1 /* AccessToken+Test.swift */; };
@@ -478,6 +480,7 @@
 		334F52A4395C8AC41032C3F1 /* IlpNetworkBalanceClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IlpNetworkBalanceClient.swift; sourceTree = "<group>"; };
 		340FE2D5D6C662530418EBD9 /* Org_Xrpl_Rpc_V1_IssuedCurrencyAmount+XRPCurrencyAmount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Org_Xrpl_Rpc_V1_IssuedCurrencyAmount+XRPCurrencyAmount.swift"; sourceTree = "<group>"; };
 		34571465D83FEF59B4A761AF /* xrp_ledger.grpc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = xrp_ledger.grpc.swift; sourceTree = "<group>"; };
+		35B9D2AEB49E254E30BBE667 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		367711CBA6DD24C5C890B35F /* XRPLedgerError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XRPLedgerError.swift; sourceTree = "<group>"; };
 		3902C4858DC4BFEB9303589B /* APIs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIs.swift; sourceTree = "<group>"; };
 		3BFC5809B7F1BD2A3DC97867 /* JavaScriptLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JavaScriptLoader.swift; sourceTree = "<group>"; };
@@ -1023,6 +1026,7 @@
 		CB9535AD222E7D0A4AEA492D /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				35B9D2AEB49E254E30BBE667 /* .swiftlint.yml */,
 				CA32FFE800379858635FA6AA /* DefaultIlpClientTest.swift */,
 				CA158D7B2CE015FD85B49545 /* DefaultXRPClientTest.swift */,
 				D300276FE254845F4B571FFE /* Hex+ByteArrayTest.swift */,
@@ -1105,6 +1109,7 @@
 			buildConfigurationList = E297DD85A482E745EB6971F6 /* Build configuration list for PBXNativeTarget "XpringKitTests_iOS" */;
 			buildPhases = (
 				8E8E62B8EBC976CF2C2FD834 /* Sources */,
+				72BAF9A7E83F6A091350E2A4 /* Resources */,
 				693EC403948C5859B445823F /* Frameworks */,
 				9AB1F7C745FB1FDC9BE8C468 /* Embed Frameworks */,
 			);
@@ -1123,6 +1128,7 @@
 			buildConfigurationList = DE1C2C903A3D9332AC35F1CF /* Build configuration list for PBXNativeTarget "XpringKitTests_macOS" */;
 			buildPhases = (
 				34E3DE1F00648D7AFA5C9223 /* Sources */,
+				FDD0D4E53F01C15B4AF71687 /* Resources */,
 				BA65C296758FB8766FBA69E8 /* Frameworks */,
 				4BB7D29CABBA1557303B4049 /* Embed Frameworks */,
 			);
@@ -1192,11 +1198,27 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		72BAF9A7E83F6A091350E2A4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D95D4F58D63B1A41FD865BAB /* .swiftlint.yml in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8181CA1761747D043FA78A24 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				1BA018D2C59D52A341F0FAAE /* index.js in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FDD0D4E53F01C15B4AF71687 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A6275A9F041F661C9DB5E042 /* .swiftlint.yml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1219,7 +1241,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "swiftlint autocorrect --config .swiftlint.yml";
+			shellScript = "if which swiftlint >/dev/null; then\n  # Autocorrect anything SwiftLint can solve, then lint.\n  swiftlint autocorrect\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 		751AE346C9B77FEB1B14A857 /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1237,7 +1259,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "swiftlint autocorrect --config .swiftlint.yml";
+			shellScript = "if which swiftlint >/dev/null; then\n  # Autocorrect anything SwiftLint can solve, then lint.\n  swiftlint autocorrect\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 

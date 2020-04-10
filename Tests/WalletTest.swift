@@ -107,7 +107,12 @@ class WalletTest: XCTestCase {
 
     let result = wallet.sign(input: "74657374206d657373616765")
     XCTAssertNotNil(result)
-    XCTAssertEqual(result, "3045022100E10177E86739A9C38B485B6AA04BF2B9AA00E79189A1132E7172B70F400ED1170220566BD64AA3F01DDE8D99DFFF0523D165E7DD2B9891ABDA1944E2F3A52CCCB83A")
+    // swiftlint:disable line_length
+    XCTAssertEqual(
+      result,
+      "3045022100E10177E86739A9C38B485B6AA04BF2B9AA00E79189A1132E7172B70F400ED1170220566BD64AA3F01DDE8D99DFFF0523D165E7DD2B9891ABDA1944E2F3A52CCCB83A"
+    )
+    // swiftlint:enable line_length
   }
 
   func testSignInvalidHex() {
@@ -130,7 +135,9 @@ class WalletTest: XCTestCase {
     }
 
     let message = "74657374206d657373616765"
+    // swiftlint:disable line_length
     let signature = "3045022100E10177E86739A9C38B485B6AA04BF2B9AA00E79189A1132E7172B70F400ED1170220566BD64AA3F01DDE8D99DFFF0523D165E7DD2B9891ABDA1944E2F3A52CCCB83A"
+    // swiftlint:enable line_length
 
     XCTAssertTrue(wallet.verify(message: message, signature: signature))
   }
@@ -158,7 +165,9 @@ class WalletTest: XCTestCase {
     }
 
     let message = "xrp"
+    // swiftlint:disable line_length
     let signature = "3045022100E10177E86739A9C38B485B6AA04BF2B9AA00E79189A1132E7172B70F400ED1170220566BD64AA3F01DDE8D99DFFF0523D165E7DD2B9891ABDA1944E2F3A52CCCB83A"
+    // swiftlint:enable line_length
 
     XCTAssertFalse(wallet.verify(message: message, signature: signature))
   }

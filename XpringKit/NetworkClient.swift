@@ -19,7 +19,9 @@ public protocol NetworkClient {
   /// - Parameter request: Request parameters for submitting a signed transaction.
   /// - Throws: An error if there was a problem communicating with the XRP Ledger.
   /// - Returns: A response from the ledger acknowledging the transaction submission.
-  func submitTransaction(_ request: Org_Xrpl_Rpc_V1_SubmitTransactionRequest) throws -> Org_Xrpl_Rpc_V1_SubmitTransactionResponse
+  func submitTransaction(
+    _ request: Org_Xrpl_Rpc_V1_SubmitTransactionRequest
+  ) throws -> Org_Xrpl_Rpc_V1_SubmitTransactionResponse
 
   /// Retrieve transaction status for a given transaction hash from the XRP Ledger.
   ///

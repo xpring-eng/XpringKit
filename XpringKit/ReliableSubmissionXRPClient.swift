@@ -26,7 +26,11 @@ extension ReliableSubmissionXRPClient: XRPClientDecorator {
     return try decoratedClient.getRawTransactionStatus(for: transactionHash)
   }
 
-  public func send(_ amount: UInt64, to destinationAddress: Address, from sourceWallet: Wallet) throws -> TransactionHash {
+  public func send(
+    _ amount: UInt64,
+    to destinationAddress: Address,
+    from sourceWallet: Wallet
+  ) throws -> TransactionHash {
     let ledgerCloseTime: TimeInterval = 4
 
     // Submit a transaction hash and wait for a ledger to close.
@@ -37,7 +41,9 @@ extension ReliableSubmissionXRPClient: XRPClientDecorator {
     var transactionStatus = try getRawTransactionStatus(for: transactionHash)
     let lastLedgerSequence = transactionStatus.lastLedgerSequence
     if lastLedgerSequence == 0 {
-      throw XRPLedgerError.unknown("The transaction did not have a lastLedgerSequence field so transaction status cannot be reliably determined.")
+      throw XRPLedgerError.unknown(
+        "The transaction did not have a lastLedgerSequence field so transaction status cannot be reliably determined."
+      )
     }
 
     // Retrieve the latest ledger index.

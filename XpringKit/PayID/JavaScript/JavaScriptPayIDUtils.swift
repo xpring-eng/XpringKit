@@ -34,7 +34,7 @@ internal class JavaScriptPayIDUtils {
   public func parse(paymentPointer: String) -> (host: String, path: String)? {
     let result = payIDUtilsClass.invokeMethod(
       ResourceNames.Methods.parsePaymentPointer, withArguments: [ paymentPointer ]
-    )!
+      )!
 
     guard !result.isUndefined else {
       return nil

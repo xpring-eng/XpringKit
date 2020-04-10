@@ -77,7 +77,8 @@ extension DefaultXRPClient: XRPClientDecorator {
 
   /// Retrieve the transaction status for a Payment given transaction hash.
   ///
-  /// - Note: This method will only work for Payment type transactions which do not have the tf_partial_payment attribute set.
+  /// - Note: This method will only work for Payment type transactions which do not have the tf_partial_payment
+  ///         attribute set.
   /// - SeeAlso: https://xrpl.org/payment.html#payment-flags
   ///
   /// - Parameter transactionHash The hash of the transaction.
@@ -105,7 +106,11 @@ extension DefaultXRPClient: XRPClientDecorator {
   ///    - sourceWallet: The wallet sending the XRP.
   /// - Throws: An error if there was a problem communicating with the XRP Ledger or the inputs were invalid.
   /// - Returns: A transaction hash for the submitted transaction.
-  public func send(_ amount: UInt64, to destinationAddress: Address, from sourceWallet: Wallet) throws -> TransactionHash {
+  public func send(
+    _ amount: UInt64,
+    to destinationAddress: Address,
+    from sourceWallet: Wallet
+  ) throws -> TransactionHash {
     guard
       let destinationClassicAddressComponents = Utils.decode(xAddress: destinationAddress),
       let sourceClassicAddressComponents = Utils.decode(xAddress: sourceWallet.address)
@@ -207,7 +212,7 @@ extension DefaultXRPClient: XRPClientDecorator {
   /// - Returns: A boolean if the account is on the blockchain.
   public func accountExists(for address: Address) throws -> Bool {
     guard
-      let _ = Utils.decode(xAddress: address)
+      Utils.decode(xAddress: address) != nil
     else {
       throw XRPLedgerError.invalidInputs("Please use the X-Address format. See: https://xrpaddress.info/.")
     }
@@ -228,7 +233,8 @@ extension DefaultXRPClient: XRPClientDecorator {
   /// Return the history of payments for the given account.
   ///
   /// - Note: This method only works for payment type transactions, see: https://xrpl.org/payment.html
-  /// - Note: This method only returns the history that is contained on the remote node, which may not contain a full history of the network.
+  /// - Note: This method only returns the history that is contained on the remote node, which may not contain a full
+  ///         history of the network.
   ///
   /// - Parameter address: The address (account) for which to retrive payment history.
   /// - Throws: An error if there was a problem communicating with the XRP Ledger.
@@ -259,7 +265,10 @@ extension DefaultXRPClient: XRPClientDecorator {
       case .payment:
         // If a payment can't be converted throw an error to prevent returning incomplete data.
         guard let xrpTransaction = XRPTransaction(transaction: transaction) else {
-          throw XRPLedgerError.unknown("Could not convert payment transaction: \(transaction). Please file a bug at https://github.com/xpring-eng/xpringkit")
+          throw XRPLedgerError.unknown(
+            "Could not convert payment transaction: \(transaction). " +
+            "Please file a bug at https://github.com/xpring-eng/xpringkit"
+          )
         }
         return xrpTransaction
       default:

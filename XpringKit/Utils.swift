@@ -5,7 +5,8 @@ public enum Utils {
 
   /// Check if the given address is a valid XRP address.
   ///
-  /// - Note: This function only checks that the address is a valid address, the activation status of the address on the ledger is not checked by this function.
+  /// - Note: This function only checks that the address is a valid address, the activation status of the address on the
+  ///         ledger is not checked by this function.
   ///
   /// - Parameter address: The address to validate.
   ///	- Returns: true if the address is valid, otherwise false.
