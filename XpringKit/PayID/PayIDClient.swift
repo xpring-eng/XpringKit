@@ -3,7 +3,7 @@ import Foundation
 
 /// Implements interaction with a PayID service.
 /// - Warning:  This class is experimental and should not be used in production applications.
-public class PayIDClient {
+public class PayIDClient: PayIDClientProtocol {
   /// The network this PayID client resolves on.
   private let network: XRPLNetwork
 
@@ -49,7 +49,8 @@ public class PayIDClient {
     let request = requestBuilder.init(
       method: "GET",
       URLString: (url?.string ?? URLString),
-      parameters: parameters, isBody: false
+      parameters: parameters,
+      isBody: false
     ).addHeader(
       name: "Accept",
       value: acceptHeaderValue
