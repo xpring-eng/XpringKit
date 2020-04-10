@@ -49,7 +49,8 @@ public class PayIDClient {
     let request = requestBuilder.init(
       method: "GET",
       URLString: (url?.string ?? URLString),
-      parameters: parameters, isBody: false
+      parameters: parameters,
+      isBody: false
     ).addHeader(
       name: "Accept",
       value: acceptHeaderValue
