@@ -7,6 +7,8 @@
 
 import Foundation
 
+
+
 public struct TravelRule: Codable {
 
     public var originator: Originator
@@ -17,4 +19,6 @@ public struct TravelRule: Codable {
         self.beneficiary = beneficiary
     }
 
+
 }
+

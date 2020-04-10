@@ -13,7 +13,10 @@ public class FakePayIDClient: PayIDClientProtocol {
     self.addressResult = addressResult
   }
 
-  public func xrpAddress(for payID: String, completion: @escaping (Result<String, PayIDError>) -> Void) {
-    completion(addressResult)
+  public func xrpAddress(
+    for payID: String,
+    completion: @escaping (Result<String, PayIDError>) -> Void
+  ) {
+    completion(self.addressResult)
   }
 }

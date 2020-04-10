@@ -25,32 +25,31 @@ public class XpringClient {
   ///    - amount: An unsigned integer representing the amount of XRP to send.
   ///    - destinationPaymentPointer: The payment pointer which will receive the XRP.
   ///    - sourceWallet: The wallet sending the XRP.
+  ///    - completion: A completion handler with the result of the operation.
   /// - Throws: An error if there was a problem communicating with the XRP Ledger or the inputs were invalid.
-  /// - Returns: A transaction hash for the submitted transaction.
+  // TODO(keefertaylor): Make this API synchronous to mirror functionality provided by ILP / XRP.
   public func send(
     _ amount: UInt64,
     to destinationPayID: PaymentPointer,
-    from sourceWallet: Wallet
-  ) throws -> TransactionHash {
-    // Use a dispatch group to make this method behave synchronously.
-    // TODO(keefertaylor): Clean this up when we have a synchronous call for resolving Pay IDs.
-    let resolveDispatchGroup = DispatchGroup()
-    resolveDispatchGroup.enter()
-    var destinationResult: Result<Address, PayIDError> = .failure(.unknown(error: "Unknown"))
-    self.payIDClient.xrpAddress(for: destinationPayID) { result in
-      defer {
-        resolveDispatchGroup.leave()
+    from sourceWallet: Wallet,
+    completion: @escaping (Result<TransactionHash, Error>) -> Void
+  ) {
+    self.payIDClient.xrpAddress(for: destinationPayID) { [weak self] result in
+      guard let self = self else {
+        return
       }
-      destinationResult = result
-    }
-    resolveDispatchGroup.wait()
 
-    // Send XRP to the resolved destination or throw the error if there was an error during resolution.
-    switch destinationResult {
-    case .failure(let error):
-      throw error
-    case.success(let address):
-      return try self.xrpClient.send(amount, to: address, from: sourceWallet)
+      switch result {
+      case .success(let address):
+        do {
+          let transactionHash = try self.xrpClient.send(amount, to: address, from: sourceWallet)
+          completion(.success(transactionHash))
+        } catch {
+          completion(.failure(error))
+        }
+      case .failure(let payIDError):
+        completion(.failure(payIDError))
+      }
     }
   }
 }

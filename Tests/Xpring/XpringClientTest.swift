@@ -4,9 +4,9 @@ import XpringKit
 
 final class XpringClientTest: XCTestCase {
   /// Default values for FakeXRPClient. These values must be provided but are not varied in testing.
-  private let fakeBalanceValue = 10
+  private let fakeBalanceValue: UInt64 = 10
   private let fakeTransactionStatusValue = TransactionStatus.succeeded
-  private let fakeLastLedgerSequenceValue = 10
+  private let fakeLastLedgerSequenceValue: UInt32 = 10
   private let fakeRawTransactionStatusValue = RawTransactionStatus(
     getTransactionResponse: Org_Xrpl_Rpc_V1_GetTransactionResponse()
   )
@@ -14,7 +14,7 @@ final class XpringClientTest: XCTestCase {
   private let fakeAccountExistsValue = true
 
   ///An amount to send.
-  private let amount = 10
+  private let amount: UInt64 = 10
 
   /// A Pay ID to resolve.
   private let payID = "$xpring.money/georgewashington"
@@ -24,12 +24,12 @@ final class XpringClientTest: XCTestCase {
 
   /// Errors  to throw.
   private let payIDError = PayIDError.unknown(error: "Test PayID error")
-  private let xrpError = XRPError.unknown(error: "Test XRP error")
+  private let xrpError = XRPLedgerError.unknown("Test XRP error")
 
   func testSendSuccess() throws {
     // GIVEN a XpringClient composed of a fake PayIDClient and a fake XRPClient which will both succeed.
     let expectedTransactionHash = "deadbeefdeadbeefdeadbeef"
-    let xrpClient = FakeXRPClient(
+    let xrpClient: XRPClientProtocol = FakeXRPClient(
       getBalanceValue: .success(fakeBalanceValue),
       paymentStatusValue: .success(fakeTransactionStatusValue),
       sendValue: .success(expectedTransactionHash),
@@ -42,87 +42,116 @@ final class XpringClientTest: XCTestCase {
     let fakeResolvedPayID = "r123"
     let payIDClient = FakePayIDClient(addressResult: .success(fakeResolvedPayID))
 
-    let xpringClient = XpringClient(payIDClient, xrpClient)
+    let xpringClient = XpringClient(payIDClient: payIDClient, xrpClient: xrpClient)
 
     // WHEN XRP is sent to the Pay ID.
-    let transactionHash = xpringClient.send(amount, payID, wallet)
+    let completionCalledExpectation = XCTestExpectation(description: "Completion called")
+    xpringClient.send(amount, to: payID, from: wallet) { result in
+      switch result {
+      case .success(let transactionHash):
+        XCTAssertEqual(transactionHash, expectedTransactionHash)
+        completionCalledExpectation.fulfill()
+      case .failure:
+        XCTFail("Error making transaction")
+      }
+    }
 
-    // THEN the returned hash is correct and no error was thrown.
-    XCTAssertEqual(transactionHash, expectedTransactionHash)
+    self.wait(for: [completionCalledExpectation], timeout: 10)
+  }
+
+  func testSendFailureInPayID() throws {
+    // GIVEN a XpringClient composed of a PayIDClient which will throw an error.
+    let expectedTransactionHash = "deadbeefdeadbeefdeadbeef"
+    let xrpClient: XRPClientProtocol = FakeXRPClient(
+      getBalanceValue: .success(fakeBalanceValue),
+      paymentStatusValue: .success(fakeTransactionStatusValue),
+      sendValue: .success(expectedTransactionHash),
+      latestValidatedLedgerValue: .success(fakeLastLedgerSequenceValue),
+      rawTransactionStatusValue: .success(fakeRawTransactionStatusValue),
+      paymentHistoryValue: .success(fakePaymentHistoryValue),
+      accountExistsValue: .success(fakeAccountExistsValue)
+    )
+
+    let payIDClient = FakePayIDClient(addressResult: .failure(payIDError))
+
+    let xpringClient = XpringClient(payIDClient: payIDClient, xrpClient: xrpClient)
+
+    // WHEN XRP is sent to the Pay ID THEN the exception thrown is from Pay ID.
+    let completionCalledExpectation = XCTestExpectation(description: "Completion called")
+    xpringClient.send(amount, to: payID, from: wallet) { result in
+      switch result {
+      case .success:
+        XCTFail("Should not have produced a transaction hash")
+      case .failure(let error):
+        XCTAssertEqual(error as? PayIDError, self.payIDError)
+        completionCalledExpectation.fulfill()
+      }
+    }
+
+    self.wait(for: [completionCalledExpectation], timeout: 10)
+  }
+
+  func testSendFailureInXRP() throws {
+    // GIVEN a XpringClient composed of a XRPClient which will throw an error.
+    let xrpClient: XRPClientProtocol = FakeXRPClient(
+      getBalanceValue: .success(fakeBalanceValue),
+      paymentStatusValue: .success(fakeTransactionStatusValue),
+      sendValue: .failure(xrpError),
+      latestValidatedLedgerValue: .success(fakeLastLedgerSequenceValue),
+      rawTransactionStatusValue: .success(fakeRawTransactionStatusValue),
+      paymentHistoryValue: .success(fakePaymentHistoryValue),
+      accountExistsValue: .success(fakeAccountExistsValue)
+    )
+
+    let fakeResolvedPayID = "r123"
+    let payIDClient = FakePayIDClient(addressResult: .success(fakeResolvedPayID))
+
+    let xpringClient = XpringClient(payIDClient: payIDClient, xrpClient: xrpClient)
+
+    // WHEN XRP is sent to the Pay ID THEN the exception thrown is from XRP.
+    let completionCalledExpectation = XCTestExpectation(description: "Completion called")
+    xpringClient.send(amount, to: payID, from: wallet) { result in
+      switch result {
+      case .success:
+        XCTFail("Should not have produced a transaction hash")
+      case .failure(let error):
+        XCTAssertEqual(error as? XRPLedgerError, self.xrpError)
+        completionCalledExpectation.fulfill()
+      }
+
+    }
+
+    self.wait(for: [completionCalledExpectation], timeout: 10)
+  }
+
+  func testSendFailureInBoth() throws {
+    // GIVEN a XpringClient composed of an XRPClient and a PayID client which both throw errors.
+    let xrpClient: XRPClientProtocol = FakeXRPClient(
+      getBalanceValue: .success(fakeBalanceValue),
+      paymentStatusValue: .success(fakeTransactionStatusValue),
+      sendValue: .failure(xrpError),
+      latestValidatedLedgerValue: .success(fakeLastLedgerSequenceValue),
+      rawTransactionStatusValue: .success(fakeRawTransactionStatusValue),
+      paymentHistoryValue: .success(fakePaymentHistoryValue),
+      accountExistsValue: .success(fakeAccountExistsValue)
+    )
+
+    let payIDClient = FakePayIDClient(addressResult: .failure(payIDError))
+
+    let xpringClient = XpringClient(payIDClient: payIDClient, xrpClient: xrpClient)
+
+    // WHEN XRP is sent to the Pay ID THEN the exception thrown is from Pay ID.
+    let completionCalledExpectation = XCTestExpectation(description: "Completion called")
+    xpringClient.send(amount, to: payID, from: wallet) { result in
+      switch result {
+      case .success:
+        XCTFail("Should not have produced a transaction hash")
+      case .failure(let error):
+        XCTAssertEqual(error as? PayIDError, self.payIDError)
+        completionCalledExpectation.fulfill()
+      }
+    }
+
+    self.wait(for: [completionCalledExpectation], timeout: 10)
   }
 }
-//
-//  @SuppressWarnings("checkstyle:AbbreviationAsWordInName")
-//  @Test
-//  public void testSendFailureInPayID() throws PayIDException, XRPException {
-//    // GIVEN a XpringClient composed of a PayIDClient which will throw an error.
-//    String expectedTransactionHash = "deadbeefdeadbeefdeadbeef";
-//    XRPClientInterface xrpClient = new FakeXRPClient(
-//        XRPLNetwork.TEST,
-//        Result.ok(FAKE_BALANCE_VALUE),
-//        Result.ok(FAKE_TRANSACTION_STATUS_VALUE),
-//        Result.ok(expectedTransactionHash),
-//        Result.ok(FAKE_LAST_LEDGER_SEQUENCE_VALUE),
-//        Result.ok(DEFAULT_RAW_TRANSACTION_STATUS_VALUE),
-//        Result.ok(FAKE_PAYMENT_HISTORY_VALUE),
-//        Result.ok(FAKE_ACCOUNT_EXISTS_VALUE)
-//    );
-//
-//    PayIDClientInterface payIDClient = new FakePayIDClient(XRPLNetwork.TEST, Result.error(PAY_ID_EXCEPTION));
-//
-//    XpringClient xpringClient = new XpringClient(payIDClient, xrpClient);
-//
-//    // WHEN XRP is sent to the Pay ID THEN the exception thrown is from Pay ID.
-//    expectedException.expect(PayIDException.class);
-//    xpringClient.send(AMOUNT, PAY_ID, this.wallet);
-//  }
-//
-//  @SuppressWarnings("checkstyle:AbbreviationAsWordInName")
-//  @Test
-//  public void testSendFailureInXRP() throws PayIDException, XRPException {
-//    // GIVEN a XpringClient composed of a XRPClient which will throw an error.
-//    XRPClientInterface xrpClient = new FakeXRPClient(
-//        XRPLNetwork.TEST,
-//        Result.ok(FAKE_BALANCE_VALUE),
-//        Result.ok(FAKE_TRANSACTION_STATUS_VALUE),
-//        Result.error(XRP_EXCEPTION),
-//        Result.ok(FAKE_LAST_LEDGER_SEQUENCE_VALUE),
-//        Result.ok(DEFAULT_RAW_TRANSACTION_STATUS_VALUE),
-//        Result.ok(FAKE_PAYMENT_HISTORY_VALUE),
-//        Result.ok(FAKE_ACCOUNT_EXISTS_VALUE)
-//    );
-//
-//    String fakeResolvedPayID = "r123";
-//    PayIDClientInterface payIDClient = new FakePayIDClient(XRPLNetwork.TEST, Result.ok(fakeResolvedPayID));
-//
-//    XpringClient xpringClient = new XpringClient(payIDClient, xrpClient);
-//
-//    // WHEN XRP is sent to the Pay ID THEN the exception thrown is from XRP.
-//    expectedException.expect(XRPException.class);
-//    xpringClient.send(AMOUNT, PAY_ID, this.wallet);
-//  }
-//
-//  @SuppressWarnings("checkstyle:AbbreviationAsWordInName")
-//  @Test
-//  public void testSendFailureInBoth() throws PayIDException, XRPException {
-//    // GIVEN a XpringClient composed of an XRPClient and a PayID client which both throw errors.
-//    XRPClientInterface xrpClient = new FakeXRPClient(
-//        XRPLNetwork.TEST,
-//        Result.ok(FAKE_BALANCE_VALUE),
-//        Result.ok(FAKE_TRANSACTION_STATUS_VALUE),
-//        Result.error(XRP_EXCEPTION),
-//        Result.ok(FAKE_LAST_LEDGER_SEQUENCE_VALUE),
-//        Result.ok(DEFAULT_RAW_TRANSACTION_STATUS_VALUE),
-//        Result.ok(FAKE_PAYMENT_HISTORY_VALUE),
-//        Result.ok(FAKE_ACCOUNT_EXISTS_VALUE)
-//    );
-//
-//    PayIDClientInterface payIDClient = new FakePayIDClient(XRPLNetwork.TEST, Result.error(PAY_ID_EXCEPTION));
-//
-//    XpringClient xpringClient = new XpringClient(payIDClient, xrpClient);
-//
-//    // WHEN XRP is sent to the Pay ID THEN the exception thrown is from Pay ID.
-//    expectedException.expect(PayIDException.class);
-//    xpringClient.send(AMOUNT, PAY_ID, this.wallet);
-//  }
-//}

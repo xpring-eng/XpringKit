@@ -7,6 +7,8 @@
 
 import Foundation
 
+
+
 public struct Originator: Codable {
 
     public var userLegalName: String
@@ -25,4 +27,6 @@ public struct Originator: Codable {
         self.timestamp = timestamp
     }
 
+
 }
+

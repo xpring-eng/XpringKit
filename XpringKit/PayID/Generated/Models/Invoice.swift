@@ -7,6 +7,8 @@
 
 import Foundation
 
+
+
 public struct Invoice: Codable {
 
     public var nonce: String
@@ -25,4 +27,6 @@ public struct Invoice: Codable {
         self.complianceHashes = complianceHashes
     }
 
+
 }
+
