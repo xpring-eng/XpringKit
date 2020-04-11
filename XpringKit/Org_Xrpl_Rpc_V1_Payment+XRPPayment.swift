@@ -9,7 +9,7 @@ internal extension XRPPayment {
   /// (https://github.com/ripple/rippled/blob/develop/src/ripple/proto/org/xrpl/rpc/v1/transaction.proto#L224)
   ///
   /// - Parameters:
-  ///     - payment: a Org_Xrpl_Rpc_V1_Payment (protobuf object) whose field values will be used to
+  ///     - payment: an Org_Xrpl_Rpc_V1_Payment (protobuf object) whose field values will be used to
   ///             construct an XRPPayment
   /// - Returns: an XRPPayment with its fields set via the analogous protobuf fields.
   init?(payment: Org_Xrpl_Rpc_V1_Payment) {

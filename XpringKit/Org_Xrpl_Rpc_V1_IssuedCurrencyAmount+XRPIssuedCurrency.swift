@@ -8,8 +8,8 @@ internal extension XRPIssuedCurrency {
   /// (https://github.com/ripple/rippled/blob/develop/src/ripple/proto/org/xrpl/rpc/v1/amount.proto#L28)
   ///
   /// - Parameters:
-  ///     - issuedCurrency: an IssuedCurrencyAmount (protobuf object) whose field values will be used
-  ///                       to construct an XRPIssuedCurrency
+  ///     - issuedCurrency: an Org_Xrpl_Rpc_V1_IssuedCurrencyAmount (protobuf object) whose
+  ///                       field values will be used to construct an XRPIssuedCurrency
   /// - Returns: an XRPIssuedCurrency with its fields set via the analogous protobuf fields.
   init?(issuedCurrency: Org_Xrpl_Rpc_V1_IssuedCurrencyAmount) {
     guard let value = BigInt(issuedCurrency.value) else {

@@ -7,7 +7,7 @@ internal extension XRPPathElement {
   /// (https://github.com/ripple/rippled/blob/develop/src/ripple/proto/org/xrpl/rpc/v1/transaction.proto#L227)
   ///
   /// - Parameters:
-  ///     - pathElement: a Org_Xrpl_Rpc_V1_Payment.PathElement (protobuf object) whose field values will be used to
+  ///     - pathElement: an Org_Xrpl_Rpc_V1_Payment.PathElement (protobuf object) whose field values will be used to
   ///             construct an XRPPathElement
   /// - Returns: an XRPPathElement with its fields set via the analogous protobuf fields.
   init(pathElement: Org_Xrpl_Rpc_V1_Payment.PathElement) {
