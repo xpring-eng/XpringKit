@@ -3,7 +3,8 @@
 internal extension XRPCurrency {
 
   /// Constructs an XRPCurrency from an Org_Xrpl_Rpc_V1_Currency
-  /// - SeeAlso: [Currency Protocol Buffer] (https://github.com/ripple/rippled/blob/develop/src/ripple/proto/org/xrpl/rpc/v1/amount.proto#L41)
+  /// - SeeAlso: [Currency Protocol Buffer]
+  /// (https://github.com/ripple/rippled/blob/develop/src/ripple/proto/org/xrpl/rpc/v1/amount.proto#L41)
   ///
   /// - Parameters:
   ///     - currency: a Currency (protobuf object) whose field values will be used to construct an XRPCurrency
