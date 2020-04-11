@@ -1,7 +1,7 @@
 /// Conforms to XRPSigner struct while providing an initializer that can construct an XRPSigner
 /// from an Org_Xrpl_Rpc_V1_Signer
 internal extension XRPSigner {
-  
+
   /// Constructs an XRPSigner from an Org_Xrpl_Rpc_V1_Signer
   /// - SeeAlso: [Signer Protocol Buffer]
   /// (https://github.com/ripple/rippled/blob/develop/src/ripple/proto/org/xrpl/rpc/v1/transaction.proto#L90)
