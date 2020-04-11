@@ -1,7 +1,7 @@
 /// Conforms to XRPPath struct while providing an initializer that can construct an XRPPath
 /// from an Org_Xrpl_Rpc_V1_Payment.Path
 internal extension XRPPath {
-  
+
   /// Constructs an XRPPath from an Org_Xrpl_Rpc_V1_Payment.Path
   /// - SeeAlso: [Path Protocol Buffer]
   /// (https://github.com/ripple/rippled/blob/develop/src/ripple/proto/org/xrpl/rpc/v1/transaction.proto#L237)
