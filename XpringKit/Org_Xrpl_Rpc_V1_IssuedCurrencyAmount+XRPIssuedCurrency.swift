@@ -4,7 +4,8 @@ import BigInt
 /// from an Org_Xrpl_Rpc_V1_IssuedCurrencyAmount
 internal extension XRPIssuedCurrency {
   /// Constructs an XRPIssuedCurrency from an Org_Xrpl_Rpc_V1_IssuedCurrencyAmount
-  /// - SeeAlso: [IssuedCurrencyAmount Protocol Buffer] (https://github.com/ripple/rippled/blob/develop/src/ripple/proto/org/xrpl/rpc/v1/amount.proto#L28)
+  /// - SeeAlso: [IssuedCurrencyAmount Protocol Buffer]
+  /// (https://github.com/ripple/rippled/blob/develop/src/ripple/proto/org/xrpl/rpc/v1/amount.proto#L28)
   ///
   /// - Parameters:
   ///     - issuedCurrency: an IssuedCurrencyAmount (protobuf object) whose field values will be used
