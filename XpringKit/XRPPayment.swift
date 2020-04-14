@@ -11,7 +11,7 @@ public struct XRPPayment: Equatable {
   /// The unique address of the account receiving the payment.
   public let destination: Address
 
-  /// (Optional) Arbitrary tag that identifies the reason for the payment.
+  /// (Optional) Arbitrary tag that identifies a hosted recipient to pay, or the reason for the payment.
   public let destinationTag: UInt32?
 
   /// (Optional) Minimum amount of destination currency this transaction should deliver.
