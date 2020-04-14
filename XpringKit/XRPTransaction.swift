@@ -3,7 +3,7 @@ import Foundation
 /// A transaction on the XRP Ledger.
 ///
 /// - SeeAlso: https://xrpl.org/transaction-formats.html
-/// TODO(keefertaylor): Modify this object to use X-Address format.
+// TODO(keefertaylor): Modify this object to use X-Address format.
 public struct XRPTransaction: Equatable {
   /// Common fields
 
