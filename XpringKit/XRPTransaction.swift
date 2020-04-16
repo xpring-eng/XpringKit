@@ -19,8 +19,8 @@ public struct XRPTransaction: Equatable {
   public let sourceTag: UInt32?
   public let transactionSignature: Data
   public let type: XRPTransactionType
-  public let timestamp: UInt64
-  public let deliveredAmount: String
+  public let timestamp: UInt64?
+  public let deliveredAmount: String?
 
   /// Transaction specific fields, only one of the following will be set.
   public let paymentFields: XRPPayment?
