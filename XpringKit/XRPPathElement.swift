@@ -2,12 +2,12 @@
 /// - SeeAlso: https://xrpl.org/paths.html#path-specifications
 public struct XRPPathElement: Equatable {
 
-  /// If present, this path step represents rippling through the specified address.
-  /// This field is optional. MUST NOT be provided if this path element specifies the currency or issuer fields.
+  /// (Optional) If present, this path step represents rippling through the specified address.
+  /// MUST NOT be provided if this path element specifies the currency or issuer fields.
   public let account: Address?
 
-  /// If present, this path element represents changing currencies through an order book.
-  /// This field is optional. The currency specified indicates the new currency. MUST NOT be provided if this path
+  /// (Optional) If present, this path element represents changing currencies through an order book.
+  /// The currency specified indicates the new currency. MUST NOT be provided if this path
   /// element specifies the account field.
   public let currency: XRPCurrency?
 
