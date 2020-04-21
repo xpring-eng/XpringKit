@@ -3,7 +3,7 @@ import XpringKit
 
 extension PaymentPointer {
   /// The PayID to resolve.
-  public static let testPointer = "$dev.payid.xpring.money/hbergren"
+  public static let testPointer = "$dev.payid.xpring.money/alice"
 }
 
 /// Integration tests run against a live PayID service.
