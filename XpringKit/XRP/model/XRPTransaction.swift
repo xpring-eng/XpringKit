@@ -7,6 +7,9 @@ import Foundation
 public struct XRPTransaction: Equatable {
   /// Common fields
 
+  /// The identifying hash of the transaction.
+  public let hash: String
+
   /// The unique address of the account that initiated the transaction.
   public let account: Address
 
@@ -49,6 +52,15 @@ public struct XRPTransaction: Equatable {
 
   /// The type of transaction.
   public let type: XRPTransactionType
+
+  /// (Optional) The timestamp of the transaction reported in Unix time (seconds).
+  /// - SeeAlso: "https://xrpl.org/basic-data-types.html#specifying-time"
+  public let timestamp: UInt64?
+
+  /// (Optional, omitted for non-Payment transactions) The Currency Amount actually received by the Destination account.
+  /// Use this field to determine how much was delivered, regardless of whether the transaction is a partial payment.
+  /// - SeeAlso: "https://xrpl.org/transaction-metadata.html#delivered_amount"
+  public let deliveredAmount: String?
 
   /// Transaction specific fields, only one of the following will be set.
 
