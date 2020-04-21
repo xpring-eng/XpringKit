@@ -121,11 +121,4 @@ internal class JavaScriptUtils {
     }
     return result.toString()
   }
-
-  /// Convert the given byte array to a hexadecimal string.
-  /// - Parameter bytes: An array of bytes
-  /// - Returns: An encoded hexadecimal string.
-  public func toHex(bytes: Data) -> String {
-    return "STUB toHex"
-  }
 }

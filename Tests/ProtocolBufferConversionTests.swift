@@ -555,7 +555,7 @@ final class ProtocolBufferConversionTests: XCTestCase {
     let transaction = XRPTransaction(getTransactionResponse: getTransactionResponseProto)
 
     // THEN all fields are present and converted correctly.
-    XCTAssertEqual(transaction?.hash, "STUB toHex")
+    XCTAssertEqual(transaction?.hash, [UInt8](hash).toHex())
     XCTAssertEqual(transaction?.account, account)
     XCTAssertEqual(transaction?.fee, fee)
     XCTAssertEqual(transaction?.sequence, sequence)
@@ -621,7 +621,7 @@ final class ProtocolBufferConversionTests: XCTestCase {
     let transaction = XRPTransaction(getTransactionResponse: getTransactionResponseProto)
 
     // THEN all fields are present and converted correctly.
-    XCTAssertEqual(transaction?.hash, "STUB toHex")
+    XCTAssertEqual(transaction?.hash, [UInt8](hash).toHex())
     XCTAssertEqual(transaction?.account, account)
     XCTAssertEqual(transaction?.fee, fee)
     XCTAssertEqual(transaction?.sequence, sequence)

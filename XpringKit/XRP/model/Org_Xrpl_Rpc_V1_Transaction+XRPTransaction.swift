@@ -3,8 +3,6 @@ import Foundation
 /// Conforms to XRPTransaction struct while providing an initializer that can construct an XRPTransaction
 /// from an Org_Xrpl_Rpc_V1_Transaction
 internal extension XRPTransaction {
-  private static let javaScriptUtils = JavaScriptUtils()
-
   /// Constructs an XRPTransaction from an Org_Xrpl_Rpc_V1_Transaction
   /// - SeeAlso: [Transaction Protocol Buffer]
   /// (https://github.com/ripple/rippled/blob/develop/src/ripple/proto/org/xrpl/rpc/v1/transaction.proto#L13)
@@ -17,7 +15,8 @@ internal extension XRPTransaction {
 
     let transaction: Org_Xrpl_Rpc_V1_Transaction = getTransactionResponse.transaction
 
-    self.hash = XRPTransaction.javaScriptUtils.toHex(bytes: getTransactionResponse.hash)
+    let hashBytes = [UInt8](getTransactionResponse.hash)
+    self.hash = hashBytes.toHex()
     self.account = transaction.account.value.address
     self.fee = transaction.fee.drops
     self.sequence = transaction.sequence.value
