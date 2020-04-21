@@ -618,6 +618,27 @@
 		09367A3FEDE0D910ACEED104 /* XRP */ = {
 			isa = PBXGroup;
 			children = (
+				8561A4CDC03D07B17AAB8924 /* Address.swift */,
+				0DD77F8CDC039E5870305B91 /* ByteArray+Hex.swift */,
+				FCD54D1CD3F440E73218FF8B /* Hex.swift */,
+				59A5E636868E66D9F1B3C047 /* Hex+ByteArray.swift */,
+				6B4505055EADFAE26992AF3B /* NetworkClient.swift */,
+				6652A59C1C60CE0A44DB808D /* RandomBytesUtil.swift */,
+				681E4DB6D35C3037EC14870E /* RawTransactionStatus.swift */,
+				0B920E684C066A8E85125C98 /* RippledFlags.swift */,
+				C987E39201D5B0AA9E73428E /* Signer.swift */,
+				FB2C2BF0895DEDD1C9AB5D2D /* TransactionHash.swift */,
+				CBB02CC192CD7AE7E3218E98 /* TransactionStatus.swift */,
+				BC9FE3C197FEAD7C98B45EAC /* Utils.swift */,
+				CFA89B2B4CE85050623E1F1A /* Wallet.swift */,
+				ADD0BDE0881A1C6DDE6D939A /* WalletGenerationResult.swift */,
+				1BF9D90FFD0EBA501DCE0E8F /* DefaultXRPClient.swift */,
+				BB18BB25F004CF24432B4741 /* ReliableSubmissionXRPClient.swift */,
+				EE0D72F217D9F818E4980FCF /* Rpc_V1_XRPLedgerAPIServiceServiceClient+NetworkClient.swift */,
+				A9A167500395386FC3A1D8F6 /* XRPClient.swift */,
+				1ED315B116B6146255B9B6AC /* XRPClientDecorator.swift */,
+				367711CBA6DD24C5C890B35F /* XRPLedgerError.swift */,
+				CD4D72EE244F4116006E0EDB /* model */,
 				4A8AD8F98933683BA06DC15C /* XRPClientProtocol.swift */,
 				0142DBC59B38A112FE93D18E /* Generated */,
 			);
@@ -647,45 +668,6 @@
 		287FB39E169194BD52DF18EC /* XpringKit */ = {
 			isa = PBXGroup;
 			children = (
-				8561A4CDC03D07B17AAB8924 /* Address.swift */,
-				0DD77F8CDC039E5870305B91 /* ByteArray+Hex.swift */,
-				1BF9D90FFD0EBA501DCE0E8F /* DefaultXRPClient.swift */,
-				FCD54D1CD3F440E73218FF8B /* Hex.swift */,
-				59A5E636868E66D9F1B3C047 /* Hex+ByteArray.swift */,
-				6B4505055EADFAE26992AF3B /* NetworkClient.swift */,
-				62D8FDD6C8453C48CA406D31 /* Org_Xrpl_Rpc_V1_CurrencyAmount+XRPCurrency.swift */,
-				340FE2D5D6C662530418EBD9 /* Org_Xrpl_Rpc_V1_IssuedCurrencyAmount+XRPCurrencyAmount.swift */,
-				2D5B4BEC72FE3B7B13CEA0D3 /* Org_Xrpl_Rpc_V1_IssuedCurrencyAmount+XRPIssuedCurrency.swift */,
-				B3719D429444F9E13BE09E2B /* Org_Xrpl_Rpc_V1_Memo+XRPMemo.swift */,
-				11256203F2C41DCE466F0620 /* Org_Xrpl_Rpc_V1_Payment.Path+XRPPath.swift */,
-				7EB336C65560B88294E5E38C /* Org_Xrpl_Rpc_V1_Payment.PathElement+XRPPathElement.swift */,
-				311B163D0A1CDE967F2C5DFA /* Org_Xrpl_Rpc_V1_Payment+XRPPayment.swift */,
-				7119B08386793446E0A2DFC8 /* Org_Xrpl_Rpc_V1_Signer+XRPSigner.swift */,
-				E86298965F7DA6A76DFF8337 /* Org_Xrpl_Rpc_V1_Transaction+XRPTransaction.swift */,
-				6652A59C1C60CE0A44DB808D /* RandomBytesUtil.swift */,
-				681E4DB6D35C3037EC14870E /* RawTransactionStatus.swift */,
-				BB18BB25F004CF24432B4741 /* ReliableSubmissionXRPClient.swift */,
-				0B920E684C066A8E85125C98 /* RippledFlags.swift */,
-				EE0D72F217D9F818E4980FCF /* Rpc_V1_XRPLedgerAPIServiceServiceClient+NetworkClient.swift */,
-				C987E39201D5B0AA9E73428E /* Signer.swift */,
-				FB2C2BF0895DEDD1C9AB5D2D /* TransactionHash.swift */,
-				CBB02CC192CD7AE7E3218E98 /* TransactionStatus.swift */,
-				BC9FE3C197FEAD7C98B45EAC /* Utils.swift */,
-				CFA89B2B4CE85050623E1F1A /* Wallet.swift */,
-				ADD0BDE0881A1C6DDE6D939A /* WalletGenerationResult.swift */,
-				A9A167500395386FC3A1D8F6 /* XRPClient.swift */,
-				1ED315B116B6146255B9B6AC /* XRPClientDecorator.swift */,
-				DBD299FFC4591148890D144F /* XRPCurrency.swift */,
-				9BAEA48B8B441D4347A4BCD8 /* XRPCurrencyAmount.swift */,
-				72426752939A1A6C08AD5F46 /* XRPIssuedCurrency.swift */,
-				367711CBA6DD24C5C890B35F /* XRPLedgerError.swift */,
-				70C09E4C2721F48A85843F9E /* XRPMemo.swift */,
-				0E36DFA8E7A96810E106D7E8 /* XRPPath.swift */,
-				4BB22FDA177435630E3BF9EE /* XRPPathElement.swift */,
-				208B11B24E3C97D246A3B79B /* XRPPayment.swift */,
-				BADEF77AA5C0021AD393BF87 /* XRPSigner.swift */,
-				C28E7D2CDDE3753739075C77 /* XRPTransaction.swift */,
-				B80A7460546A2B5B2FA7C4CF /* XRPTransactionType.swift */,
 				14B78A5859A68A71CA308083 /* Common */,
 				8F3DE3793EF5F8F4C091F096 /* ILP */,
 				009F4F860C930900CA85DF4C /* JavaScript */,
@@ -885,6 +867,32 @@
 			path = Tests;
 			sourceTree = "<group>";
 		};
+		CD4D72EE244F4116006E0EDB /* model */ = {
+			isa = PBXGroup;
+			children = (
+				62D8FDD6C8453C48CA406D31 /* Org_Xrpl_Rpc_V1_CurrencyAmount+XRPCurrency.swift */,
+				340FE2D5D6C662530418EBD9 /* Org_Xrpl_Rpc_V1_IssuedCurrencyAmount+XRPCurrencyAmount.swift */,
+				2D5B4BEC72FE3B7B13CEA0D3 /* Org_Xrpl_Rpc_V1_IssuedCurrencyAmount+XRPIssuedCurrency.swift */,
+				B3719D429444F9E13BE09E2B /* Org_Xrpl_Rpc_V1_Memo+XRPMemo.swift */,
+				11256203F2C41DCE466F0620 /* Org_Xrpl_Rpc_V1_Payment.Path+XRPPath.swift */,
+				7EB336C65560B88294E5E38C /* Org_Xrpl_Rpc_V1_Payment.PathElement+XRPPathElement.swift */,
+				311B163D0A1CDE967F2C5DFA /* Org_Xrpl_Rpc_V1_Payment+XRPPayment.swift */,
+				7119B08386793446E0A2DFC8 /* Org_Xrpl_Rpc_V1_Signer+XRPSigner.swift */,
+				E86298965F7DA6A76DFF8337 /* Org_Xrpl_Rpc_V1_Transaction+XRPTransaction.swift */,
+				DBD299FFC4591148890D144F /* XRPCurrency.swift */,
+				9BAEA48B8B441D4347A4BCD8 /* XRPCurrencyAmount.swift */,
+				72426752939A1A6C08AD5F46 /* XRPIssuedCurrency.swift */,
+				70C09E4C2721F48A85843F9E /* XRPMemo.swift */,
+				0E36DFA8E7A96810E106D7E8 /* XRPPath.swift */,
+				4BB22FDA177435630E3BF9EE /* XRPPathElement.swift */,
+				208B11B24E3C97D246A3B79B /* XRPPayment.swift */,
+				BADEF77AA5C0021AD393BF87 /* XRPSigner.swift */,
+				C28E7D2CDDE3753739075C77 /* XRPTransaction.swift */,
+				B80A7460546A2B5B2FA7C4CF /* XRPTransactionType.swift */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
 		D0B2CC3200C991751870213B /* Carthage */ = {
 			isa = PBXGroup;
 			children = (
@@ -929,6 +937,7 @@
 				751AE346C9B77FEB1B14A857 /* SwiftLint */,
 				2FC2717DCC21C577314715EE /* Resources */,
 				E497FA3D1B436D18BFD43EBD /* Frameworks */,
+				CDCAD35A24421241005C0B5D /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -985,6 +994,7 @@
 				1A831B35A547D74992BCE1B6 /* SwiftLint */,
 				8181CA1761747D043FA78A24 /* Resources */,
 				D78BE88CF57466D7E5A78C1C /* Frameworks */,
+				CDCAD35B2442127A005C0B5D /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -1093,6 +1103,40 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "if which swiftlint >/dev/null; then\n  # Autocorrect anything SwiftLint can solve, then lint.\n  swiftlint autocorrect\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+		CDCAD35A24421241005C0B5D /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+		CDCAD35B2442127A005C0B5D /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 

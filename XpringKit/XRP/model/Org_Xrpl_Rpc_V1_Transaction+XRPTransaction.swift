@@ -1,8 +1,18 @@
 import Foundation
 
+/// Conforms to XRPTransaction struct while providing an initializer that can construct an XRPTransaction
+/// from an Org_Xrpl_Rpc_V1_Transaction
 internal extension XRPTransaction {
   private static let javaScriptUtils = JavaScriptUtils()
 
+  /// Constructs an XRPTransaction from an Org_Xrpl_Rpc_V1_Transaction
+  /// - SeeAlso: [Transaction Protocol Buffer]
+  /// (https://github.com/ripple/rippled/blob/develop/src/ripple/proto/org/xrpl/rpc/v1/transaction.proto#L13)
+  ///
+  /// - Parameters:
+  ///     - transaction: an Org_Xrpl_Rpc_V1_Transaction (protobuf object) whose field values will be used to
+  ///                 construct an XRPTransaction
+  /// - Returns: an XRPTransaction with its fields set via the analogous protobuf fields.
   init?(getTransactionResponse: Org_Xrpl_Rpc_V1_GetTransactionResponse) {
 
     let transaction: Org_Xrpl_Rpc_V1_Transaction = getTransactionResponse.transaction
