@@ -5,7 +5,6 @@ extension UInt64 {
   public static let testSequence: UInt64 = 2
   public static let testIlpSendAmount: UInt64 = 10
   public static let testDeliveredAmount: UInt64 = 20
-  public static let testTimestamp: UInt64 = 0
   public static let expectedTimestamp: UInt64 = 946_684_800
 
 }
