@@ -31,6 +31,7 @@ fileprivate final class Org_Interledger_Stream_Proto_BalanceServiceGetBalanceCal
   override class var method: String { return "/org.interledger.stream.proto.BalanceService/GetBalance" }
 }
 
+
 /// Instantiate Org_Interledger_Stream_Proto_BalanceServiceServiceClient, then call methods of this protocol to make API calls.
 internal protocol Org_Interledger_Stream_Proto_BalanceServiceService: ServiceClient {
   /// Synchronous. Unary.
@@ -97,3 +98,4 @@ extension Org_Interledger_Stream_Proto_BalanceServiceProvider {
 internal protocol Org_Interledger_Stream_Proto_BalanceServiceGetBalanceSession: ServerSessionUnary {}
 
 fileprivate final class Org_Interledger_Stream_Proto_BalanceServiceGetBalanceSessionBase: ServerSessionUnaryBase<Org_Interledger_Stream_Proto_GetBalanceRequest, Org_Interledger_Stream_Proto_GetBalanceResponse>, Org_Interledger_Stream_Proto_BalanceServiceGetBalanceSession {}
+

@@ -31,7 +31,10 @@ targets:
             echo "warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint"
           fi
     dependencies:
+      - carthage: AlamoFire
       - carthage: BigInt
+      - carthage: BoringSSL
+      - carthage: CgRPC
       - carthage: SwiftProtobuf
       - carthage: SwiftGRPC
   XpringKitTests:

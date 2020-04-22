@@ -14,7 +14,7 @@ import SwiftProtobuf
 // incompatible with the version of SwiftProtobuf to which you are linking.
 // Please ensure that you are building against the same version of the API
 // that was used to generate this file.
-private struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAPIVersionCheck {
+fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAPIVersionCheck {
   struct _2: SwiftProtobuf.ProtobufAPIVersion_2 {}
   typealias Version = _2
 }
@@ -44,7 +44,7 @@ public struct Org_Interledger_Stream_Proto_GetBalanceResponse {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-private let _protobuf_package = "org.interledger.stream.proto"
+fileprivate let _protobuf_package = "org.interledger.stream.proto"
 
 extension Org_Interledger_Stream_Proto_GetBalanceResponse: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".GetBalanceResponse"
@@ -54,7 +54,7 @@ extension Org_Interledger_Stream_Proto_GetBalanceResponse: SwiftProtobuf.Message
     3: .standard(proto: "asset_scale"),
     4: .standard(proto: "net_balance"),
     5: .standard(proto: "prepaid_amount"),
-    6: .standard(proto: "clearing_balance")
+    6: .standard(proto: "clearing_balance"),
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -94,13 +94,13 @@ extension Org_Interledger_Stream_Proto_GetBalanceResponse: SwiftProtobuf.Message
   }
 
   public static func ==(lhs: Org_Interledger_Stream_Proto_GetBalanceResponse, rhs: Org_Interledger_Stream_Proto_GetBalanceResponse) -> Bool {
-    if lhs.accountID != rhs.accountID { return false }
-    if lhs.assetCode != rhs.assetCode { return false }
-    if lhs.assetScale != rhs.assetScale { return false }
-    if lhs.netBalance != rhs.netBalance { return false }
-    if lhs.prepaidAmount != rhs.prepaidAmount { return false }
-    if lhs.clearingBalance != rhs.clearingBalance { return false }
-    if lhs.unknownFields != rhs.unknownFields { return false }
+    if lhs.accountID != rhs.accountID {return false}
+    if lhs.assetCode != rhs.assetCode {return false}
+    if lhs.assetScale != rhs.assetScale {return false}
+    if lhs.netBalance != rhs.netBalance {return false}
+    if lhs.prepaidAmount != rhs.prepaidAmount {return false}
+    if lhs.clearingBalance != rhs.clearingBalance {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
