@@ -10,7 +10,7 @@ internal class JavaScriptPayIDUtils {
     }
 
     public enum Methods {
-      public static let parsePaymentPointer = "parsePayID"
+      public static let parsePayID = "parsePayID"
     }
 
     public enum Properties {
@@ -33,7 +33,7 @@ internal class JavaScriptPayIDUtils {
   /// - Returns: A set of components parsed from the PayID.
   public func parse(payID: String) -> (host: String, path: String)? {
     let result = payIDUtilsClass.invokeMethod(
-      ResourceNames.Methods.parsePaymentPointer, withArguments: [ payID ]
+      ResourceNames.Methods.parsePayID, withArguments: [ payID ]
     )!
 
     guard !result.isUndefined else {
