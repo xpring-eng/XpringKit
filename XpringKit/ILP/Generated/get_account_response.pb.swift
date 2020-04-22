@@ -14,7 +14,7 @@ import SwiftProtobuf
 // incompatible with the version of SwiftProtobuf to which you are linking.
 // Please ensure that you are building against the same version of the API
 // that was used to generate this file.
-private struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAPIVersionCheck {
+fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAPIVersionCheck {
   struct _2: SwiftProtobuf.ProtobufAPIVersion_2 {}
   typealias Version = _2
 }
@@ -25,127 +25,127 @@ public struct Org_Interledger_Stream_Proto_GetAccountResponse {
   // methods supported on all messages.
 
   public var accountRelationship: String {
-    get { return _storage._accountRelationship }
-    set { _uniqueStorage()._accountRelationship = newValue }
+    get {return _storage._accountRelationship}
+    set {_uniqueStorage()._accountRelationship = newValue}
   }
 
   public var assetCode: String {
-    get { return _storage._assetCode }
-    set { _uniqueStorage()._assetCode = newValue }
+    get {return _storage._assetCode}
+    set {_uniqueStorage()._assetCode = newValue}
   }
 
   public var assetScale: Int32 {
-    get { return _storage._assetScale }
-    set { _uniqueStorage()._assetScale = newValue }
+    get {return _storage._assetScale}
+    set {_uniqueStorage()._assetScale = newValue}
   }
 
   public var maximumPacketAmount: UInt64 {
-    get { return _storage._maximumPacketAmount }
-    set { _uniqueStorage()._maximumPacketAmount = newValue }
+    get {return _storage._maximumPacketAmount}
+    set {_uniqueStorage()._maximumPacketAmount = newValue}
   }
 
   /// TODO: What should protobuf :value type be?
-  public var customSettings: [String: String] {
-    get { return _storage._customSettings }
-    set { _uniqueStorage()._customSettings = newValue }
+  public var customSettings: Dictionary<String,String> {
+    get {return _storage._customSettings}
+    set {_uniqueStorage()._customSettings = newValue}
   }
 
   public var accountID: String {
-    get { return _storage._accountID }
-    set { _uniqueStorage()._accountID = newValue }
+    get {return _storage._accountID}
+    set {_uniqueStorage()._accountID = newValue}
   }
 
   public var createdAt: String {
-    get { return _storage._createdAt }
-    set { _uniqueStorage()._createdAt = newValue }
+    get {return _storage._createdAt}
+    set {_uniqueStorage()._createdAt = newValue}
   }
 
   public var modifiedAt: String {
-    get { return _storage._modifiedAt }
-    set { _uniqueStorage()._modifiedAt = newValue }
+    get {return _storage._modifiedAt}
+    set {_uniqueStorage()._modifiedAt = newValue}
   }
 
   public var description_p: String {
-    get { return _storage._description_p }
-    set { _uniqueStorage()._description_p = newValue }
+    get {return _storage._description_p}
+    set {_uniqueStorage()._description_p = newValue}
   }
 
   public var linkType: String {
-    get { return _storage._linkType }
-    set { _uniqueStorage()._linkType = newValue }
+    get {return _storage._linkType}
+    set {_uniqueStorage()._linkType = newValue}
   }
 
   public var isInternal: Bool {
-    get { return _storage._isInternal }
-    set { _uniqueStorage()._isInternal = newValue }
+    get {return _storage._isInternal}
+    set {_uniqueStorage()._isInternal = newValue}
   }
 
   public var isConnectionInitiator: Bool {
-    get { return _storage._isConnectionInitiator }
-    set { _uniqueStorage()._isConnectionInitiator = newValue }
+    get {return _storage._isConnectionInitiator}
+    set {_uniqueStorage()._isConnectionInitiator = newValue}
   }
 
   public var ilpAddressSegment: String {
-    get { return _storage._ilpAddressSegment }
-    set { _uniqueStorage()._ilpAddressSegment = newValue }
+    get {return _storage._ilpAddressSegment}
+    set {_uniqueStorage()._ilpAddressSegment = newValue}
   }
 
   public var isSendRoutes: Bool {
-    get { return _storage._isSendRoutes }
-    set { _uniqueStorage()._isSendRoutes = newValue }
+    get {return _storage._isSendRoutes}
+    set {_uniqueStorage()._isSendRoutes = newValue}
   }
 
   public var isReceiveRoutes: Bool {
-    get { return _storage._isReceiveRoutes }
-    set { _uniqueStorage()._isReceiveRoutes = newValue }
+    get {return _storage._isReceiveRoutes}
+    set {_uniqueStorage()._isReceiveRoutes = newValue}
   }
 
   public var balanceSettings: Org_Interledger_Stream_Proto_GetAccountResponse.BalanceSettings {
-    get { return _storage._balanceSettings ?? Org_Interledger_Stream_Proto_GetAccountResponse.BalanceSettings() }
-    set { _uniqueStorage()._balanceSettings = newValue }
+    get {return _storage._balanceSettings ?? Org_Interledger_Stream_Proto_GetAccountResponse.BalanceSettings()}
+    set {_uniqueStorage()._balanceSettings = newValue}
   }
   /// Returns true if `balanceSettings` has been explicitly set.
-  public var hasBalanceSettings: Bool { return _storage._balanceSettings != nil }
+  public var hasBalanceSettings: Bool {return _storage._balanceSettings != nil}
   /// Clears the value of `balanceSettings`. Subsequent reads from it will return its default value.
-  public mutating func clearBalanceSettings() { _uniqueStorage()._balanceSettings = nil }
+  public mutating func clearBalanceSettings() {_uniqueStorage()._balanceSettings = nil}
 
   public var maxPacketsPerSecond: Int32 {
-    get { return _storage._maxPacketsPerSecond }
-    set { _uniqueStorage()._maxPacketsPerSecond = newValue }
+    get {return _storage._maxPacketsPerSecond}
+    set {_uniqueStorage()._maxPacketsPerSecond = newValue}
   }
 
   public var settlementEngineDetails: Org_Interledger_Stream_Proto_GetAccountResponse.SettlementEngineDetails {
-    get { return _storage._settlementEngineDetails ?? Org_Interledger_Stream_Proto_GetAccountResponse.SettlementEngineDetails() }
-    set { _uniqueStorage()._settlementEngineDetails = newValue }
+    get {return _storage._settlementEngineDetails ?? Org_Interledger_Stream_Proto_GetAccountResponse.SettlementEngineDetails()}
+    set {_uniqueStorage()._settlementEngineDetails = newValue}
   }
   /// Returns true if `settlementEngineDetails` has been explicitly set.
-  public var hasSettlementEngineDetails: Bool { return _storage._settlementEngineDetails != nil }
+  public var hasSettlementEngineDetails: Bool {return _storage._settlementEngineDetails != nil}
   /// Clears the value of `settlementEngineDetails`. Subsequent reads from it will return its default value.
-  public mutating func clearSettlementEngineDetails() { _uniqueStorage()._settlementEngineDetails = nil }
+  public mutating func clearSettlementEngineDetails() {_uniqueStorage()._settlementEngineDetails = nil}
 
   public var isParentAccount: Bool {
-    get { return _storage._isParentAccount }
-    set { _uniqueStorage()._isParentAccount = newValue }
+    get {return _storage._isParentAccount}
+    set {_uniqueStorage()._isParentAccount = newValue}
   }
 
   public var isChildAccount: Bool {
-    get { return _storage._isChildAccount }
-    set { _uniqueStorage()._isChildAccount = newValue }
+    get {return _storage._isChildAccount}
+    set {_uniqueStorage()._isChildAccount = newValue}
   }
 
   public var isPeerAccount: Bool {
-    get { return _storage._isPeerAccount }
-    set { _uniqueStorage()._isPeerAccount = newValue }
+    get {return _storage._isPeerAccount}
+    set {_uniqueStorage()._isPeerAccount = newValue}
   }
 
   public var isPeerOrParentAccount: Bool {
-    get { return _storage._isPeerOrParentAccount }
-    set { _uniqueStorage()._isPeerOrParentAccount = newValue }
+    get {return _storage._isPeerOrParentAccount}
+    set {_uniqueStorage()._isPeerOrParentAccount = newValue}
   }
 
   public var paymentPointer: String {
-    get { return _storage._paymentPointer }
-    set { _uniqueStorage()._paymentPointer = newValue }
+    get {return _storage._paymentPointer}
+    set {_uniqueStorage()._paymentPointer = newValue}
   }
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
@@ -159,7 +159,7 @@ public struct Org_Interledger_Stream_Proto_GetAccountResponse {
 
     public var baseURL: String = String()
 
-    public var customSettings: [String: String] = [:]
+    public var customSettings: Dictionary<String,String> = [:]
 
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -189,7 +189,7 @@ public struct Org_Interledger_Stream_Proto_GetAccountResponse {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-private let _protobuf_package = "org.interledger.stream.proto"
+fileprivate let _protobuf_package = "org.interledger.stream.proto"
 
 extension Org_Interledger_Stream_Proto_GetAccountResponse: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".GetAccountResponse"
@@ -216,7 +216,7 @@ extension Org_Interledger_Stream_Proto_GetAccountResponse: SwiftProtobuf.Message
     20: .standard(proto: "is_child_account"),
     21: .standard(proto: "is_peer_account"),
     22: .standard(proto: "is_peer_or_parent_account"),
-    23: .same(proto: "paymentPointer")
+    23: .same(proto: "paymentPointer"),
   ]
 
   fileprivate class _StorageClass {
@@ -224,7 +224,7 @@ extension Org_Interledger_Stream_Proto_GetAccountResponse: SwiftProtobuf.Message
     var _assetCode: String = String()
     var _assetScale: Int32 = 0
     var _maximumPacketAmount: UInt64 = 0
-    var _customSettings: [String: String] = [:]
+    var _customSettings: Dictionary<String,String> = [:]
     var _accountID: String = String()
     var _createdAt: String = String()
     var _modifiedAt: String = String()
@@ -235,9 +235,9 @@ extension Org_Interledger_Stream_Proto_GetAccountResponse: SwiftProtobuf.Message
     var _ilpAddressSegment: String = String()
     var _isSendRoutes: Bool = false
     var _isReceiveRoutes: Bool = false
-    var _balanceSettings: Org_Interledger_Stream_Proto_GetAccountResponse.BalanceSettings?
+    var _balanceSettings: Org_Interledger_Stream_Proto_GetAccountResponse.BalanceSettings? = nil
     var _maxPacketsPerSecond: Int32 = 0
-    var _settlementEngineDetails: Org_Interledger_Stream_Proto_GetAccountResponse.SettlementEngineDetails?
+    var _settlementEngineDetails: Org_Interledger_Stream_Proto_GetAccountResponse.SettlementEngineDetails? = nil
     var _isParentAccount: Bool = false
     var _isChildAccount: Bool = false
     var _isPeerAccount: Bool = false
@@ -291,7 +291,7 @@ extension Org_Interledger_Stream_Proto_GetAccountResponse: SwiftProtobuf.Message
         case 2: try decoder.decodeSingularStringField(value: &_storage._assetCode)
         case 3: try decoder.decodeSingularInt32Field(value: &_storage._assetScale)
         case 4: try decoder.decodeSingularUInt64Field(value: &_storage._maximumPacketAmount)
-        case 5: try decoder.decodeMapField(fieldType: SwiftProtobuf._ProtobufMap<SwiftProtobuf.ProtobufString, SwiftProtobuf.ProtobufString>.self, value: &_storage._customSettings)
+        case 5: try decoder.decodeMapField(fieldType: SwiftProtobuf._ProtobufMap<SwiftProtobuf.ProtobufString,SwiftProtobuf.ProtobufString>.self, value: &_storage._customSettings)
         case 6: try decoder.decodeSingularStringField(value: &_storage._accountID)
         case 7: try decoder.decodeSingularStringField(value: &_storage._createdAt)
         case 8: try decoder.decodeSingularStringField(value: &_storage._modifiedAt)
@@ -331,7 +331,7 @@ extension Org_Interledger_Stream_Proto_GetAccountResponse: SwiftProtobuf.Message
         try visitor.visitSingularUInt64Field(value: _storage._maximumPacketAmount, fieldNumber: 4)
       }
       if !_storage._customSettings.isEmpty {
-        try visitor.visitMapField(fieldType: SwiftProtobuf._ProtobufMap<SwiftProtobuf.ProtobufString, SwiftProtobuf.ProtobufString>.self, value: _storage._customSettings, fieldNumber: 5)
+        try visitor.visitMapField(fieldType: SwiftProtobuf._ProtobufMap<SwiftProtobuf.ProtobufString,SwiftProtobuf.ProtobufString>.self, value: _storage._customSettings, fieldNumber: 5)
       }
       if !_storage._accountID.isEmpty {
         try visitor.visitSingularStringField(value: _storage._accountID, fieldNumber: 6)
@@ -396,34 +396,34 @@ extension Org_Interledger_Stream_Proto_GetAccountResponse: SwiftProtobuf.Message
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
         let rhs_storage = _args.1
-        if _storage._accountRelationship != rhs_storage._accountRelationship { return false }
-        if _storage._assetCode != rhs_storage._assetCode { return false }
-        if _storage._assetScale != rhs_storage._assetScale { return false }
-        if _storage._maximumPacketAmount != rhs_storage._maximumPacketAmount { return false }
-        if _storage._customSettings != rhs_storage._customSettings { return false }
-        if _storage._accountID != rhs_storage._accountID { return false }
-        if _storage._createdAt != rhs_storage._createdAt { return false }
-        if _storage._modifiedAt != rhs_storage._modifiedAt { return false }
-        if _storage._description_p != rhs_storage._description_p { return false }
-        if _storage._linkType != rhs_storage._linkType { return false }
-        if _storage._isInternal != rhs_storage._isInternal { return false }
-        if _storage._isConnectionInitiator != rhs_storage._isConnectionInitiator { return false }
-        if _storage._ilpAddressSegment != rhs_storage._ilpAddressSegment { return false }
-        if _storage._isSendRoutes != rhs_storage._isSendRoutes { return false }
-        if _storage._isReceiveRoutes != rhs_storage._isReceiveRoutes { return false }
-        if _storage._balanceSettings != rhs_storage._balanceSettings { return false }
-        if _storage._maxPacketsPerSecond != rhs_storage._maxPacketsPerSecond { return false }
-        if _storage._settlementEngineDetails != rhs_storage._settlementEngineDetails { return false }
-        if _storage._isParentAccount != rhs_storage._isParentAccount { return false }
-        if _storage._isChildAccount != rhs_storage._isChildAccount { return false }
-        if _storage._isPeerAccount != rhs_storage._isPeerAccount { return false }
-        if _storage._isPeerOrParentAccount != rhs_storage._isPeerOrParentAccount { return false }
-        if _storage._paymentPointer != rhs_storage._paymentPointer { return false }
+        if _storage._accountRelationship != rhs_storage._accountRelationship {return false}
+        if _storage._assetCode != rhs_storage._assetCode {return false}
+        if _storage._assetScale != rhs_storage._assetScale {return false}
+        if _storage._maximumPacketAmount != rhs_storage._maximumPacketAmount {return false}
+        if _storage._customSettings != rhs_storage._customSettings {return false}
+        if _storage._accountID != rhs_storage._accountID {return false}
+        if _storage._createdAt != rhs_storage._createdAt {return false}
+        if _storage._modifiedAt != rhs_storage._modifiedAt {return false}
+        if _storage._description_p != rhs_storage._description_p {return false}
+        if _storage._linkType != rhs_storage._linkType {return false}
+        if _storage._isInternal != rhs_storage._isInternal {return false}
+        if _storage._isConnectionInitiator != rhs_storage._isConnectionInitiator {return false}
+        if _storage._ilpAddressSegment != rhs_storage._ilpAddressSegment {return false}
+        if _storage._isSendRoutes != rhs_storage._isSendRoutes {return false}
+        if _storage._isReceiveRoutes != rhs_storage._isReceiveRoutes {return false}
+        if _storage._balanceSettings != rhs_storage._balanceSettings {return false}
+        if _storage._maxPacketsPerSecond != rhs_storage._maxPacketsPerSecond {return false}
+        if _storage._settlementEngineDetails != rhs_storage._settlementEngineDetails {return false}
+        if _storage._isParentAccount != rhs_storage._isParentAccount {return false}
+        if _storage._isChildAccount != rhs_storage._isChildAccount {return false}
+        if _storage._isPeerAccount != rhs_storage._isPeerAccount {return false}
+        if _storage._isPeerOrParentAccount != rhs_storage._isPeerOrParentAccount {return false}
+        if _storage._paymentPointer != rhs_storage._paymentPointer {return false}
         return true
       }
-      if !storagesAreEqual { return false }
+      if !storagesAreEqual {return false}
     }
-    if lhs.unknownFields != rhs.unknownFields { return false }
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -433,7 +433,7 @@ extension Org_Interledger_Stream_Proto_GetAccountResponse.SettlementEngineDetail
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .standard(proto: "settlement_engine_account_id"),
     2: .standard(proto: "base_url"),
-    3: .standard(proto: "custom_settings")
+    3: .standard(proto: "custom_settings"),
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -441,7 +441,7 @@ extension Org_Interledger_Stream_Proto_GetAccountResponse.SettlementEngineDetail
       switch fieldNumber {
       case 1: try decoder.decodeSingularStringField(value: &self.settlementEngineAccountID)
       case 2: try decoder.decodeSingularStringField(value: &self.baseURL)
-      case 3: try decoder.decodeMapField(fieldType: SwiftProtobuf._ProtobufMap<SwiftProtobuf.ProtobufString, SwiftProtobuf.ProtobufString>.self, value: &self.customSettings)
+      case 3: try decoder.decodeMapField(fieldType: SwiftProtobuf._ProtobufMap<SwiftProtobuf.ProtobufString,SwiftProtobuf.ProtobufString>.self, value: &self.customSettings)
       default: break
       }
     }
@@ -455,16 +455,16 @@ extension Org_Interledger_Stream_Proto_GetAccountResponse.SettlementEngineDetail
       try visitor.visitSingularStringField(value: self.baseURL, fieldNumber: 2)
     }
     if !self.customSettings.isEmpty {
-      try visitor.visitMapField(fieldType: SwiftProtobuf._ProtobufMap<SwiftProtobuf.ProtobufString, SwiftProtobuf.ProtobufString>.self, value: self.customSettings, fieldNumber: 3)
+      try visitor.visitMapField(fieldType: SwiftProtobuf._ProtobufMap<SwiftProtobuf.ProtobufString,SwiftProtobuf.ProtobufString>.self, value: self.customSettings, fieldNumber: 3)
     }
     try unknownFields.traverse(visitor: &visitor)
   }
 
   public static func ==(lhs: Org_Interledger_Stream_Proto_GetAccountResponse.SettlementEngineDetails, rhs: Org_Interledger_Stream_Proto_GetAccountResponse.SettlementEngineDetails) -> Bool {
-    if lhs.settlementEngineAccountID != rhs.settlementEngineAccountID { return false }
-    if lhs.baseURL != rhs.baseURL { return false }
-    if lhs.customSettings != rhs.customSettings { return false }
-    if lhs.unknownFields != rhs.unknownFields { return false }
+    if lhs.settlementEngineAccountID != rhs.settlementEngineAccountID {return false}
+    if lhs.baseURL != rhs.baseURL {return false}
+    if lhs.customSettings != rhs.customSettings {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -474,7 +474,7 @@ extension Org_Interledger_Stream_Proto_GetAccountResponse.BalanceSettings: Swift
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .standard(proto: "min_balance"),
     2: .standard(proto: "settle_threshold"),
-    3: .standard(proto: "settle_to")
+    3: .standard(proto: "settle_to"),
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -502,10 +502,10 @@ extension Org_Interledger_Stream_Proto_GetAccountResponse.BalanceSettings: Swift
   }
 
   public static func ==(lhs: Org_Interledger_Stream_Proto_GetAccountResponse.BalanceSettings, rhs: Org_Interledger_Stream_Proto_GetAccountResponse.BalanceSettings) -> Bool {
-    if lhs.minBalance != rhs.minBalance { return false }
-    if lhs.settleThreshold != rhs.settleThreshold { return false }
-    if lhs.settleTo != rhs.settleTo { return false }
-    if lhs.unknownFields != rhs.unknownFields { return false }
+    if lhs.minBalance != rhs.minBalance {return false}
+    if lhs.settleThreshold != rhs.settleThreshold {return false}
+    if lhs.settleTo != rhs.settleTo {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
