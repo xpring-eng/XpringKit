@@ -3,7 +3,10 @@ import XpringKit
 
 extension PaymentPointer {
   /// The PayID to resolve.
-  public static let testPointer = "$dev.payid.xpring.money/hbergren"
+  public static let testPointer = "$dev.payid.xpring.money / alice"
+
+  /// A pay ID that does not exist.
+  public static let nonExistentPointer = "$dev.payid.xpring.money / does - not - exist"
 }
 
 /// Integration tests run against a live PayID service.
@@ -59,7 +62,7 @@ final class PayIDIntegrationTests: XCTestCase {
     let payIDClient = PayIDClient(network: .dev)
 
     // WHEN it is resolved to an XRP address.
-    payIDClient.xrpAddress(for: .testPointer) { result in
+    payIDClient.xrpAddress(for: .nonExistentPointer) { result in
       // THEN the result contains an `mappingNotFound` error.
       switch result {
       case .success:
