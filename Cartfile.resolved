@@ -1,3 +1,4 @@
+github "Alamofire/Alamofire" "4.9.1"
 github "apple/swift-protobuf" "1.8.0"
 github "attaswift/bigint" "5.1.0"
 github "grpc/grpc-swift" "0.9.1"
