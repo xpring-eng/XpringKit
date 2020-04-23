@@ -7,22 +7,22 @@ import XpringKit
 public class FakeXRPClient: XRPClientProtocol {
   public let networkClient = FakeNetworkClient.successfulFakeNetworkClient
 
-  public var getBalanceValue: UInt64
-  public var paymentStatusValue: TransactionStatus
-  public var sendValue: TransactionHash
-  public var latestValidatedLedgerValue: UInt32
-  public var rawTransactionStatusValue: RawTransactionStatus
-  public var paymentHistoryValue: [XRPTransaction]
-  public var accountExistsValue: Bool
+  public var getBalanceValue: Result<UInt64, XRPLedgerError>
+  public var paymentStatusValue: Result<TransactionStatus, XRPLedgerError>
+  public var sendValue: Result<TransactionHash, XRPLedgerError>
+  public var latestValidatedLedgerValue: Result<UInt32, XRPLedgerError>
+  public var rawTransactionStatusValue: Result<RawTransactionStatus, XRPLedgerError>
+  public var paymentHistoryValue: Result<[XRPTransaction], XRPLedgerError>
+  public var accountExistsValue: Result<Bool, XRPLedgerError>
 
   public init(
-    getBalanceValue: UInt64,
-    paymentStatusValue: TransactionStatus,
-    sendValue: TransactionHash,
-    latestValidatedLedgerValue: UInt32,
-    rawTransactionStatusValue: RawTransactionStatus,
-    paymentHistoryValue: [XRPTransaction],
-    accountExistsValue: Bool
+    getBalanceValue: Result<UInt64, XRPLedgerError>,
+    paymentStatusValue: Result<TransactionStatus, XRPLedgerError>,
+    sendValue: Result<TransactionHash, XRPLedgerError>,
+    latestValidatedLedgerValue: Result<UInt32, XRPLedgerError>,
+    rawTransactionStatusValue: Result<RawTransactionStatus, XRPLedgerError>,
+    paymentHistoryValue: Result<[XRPTransaction], XRPLedgerError>,
+    accountExistsValue: Result<Bool, XRPLedgerError>
   ) {
     self.getBalanceValue = getBalanceValue
     self.paymentStatusValue = paymentStatusValue
@@ -36,11 +36,11 @@ public class FakeXRPClient: XRPClientProtocol {
 
 extension FakeXRPClient: XRPClientDecorator {
   public func getBalance(for address: Address) throws -> UInt64 {
-    return getBalanceValue
+    return try returnOrThrow(result: getBalanceValue)
   }
 
   public func paymentStatus(for transactionHash: TransactionHash) throws -> TransactionStatus {
-    return paymentStatusValue
+    return try returnOrThrow(result: paymentStatusValue)
   }
 
   public func send(
@@ -48,22 +48,32 @@ extension FakeXRPClient: XRPClientDecorator {
     to destinationAddress: Address,
     from sourceWallet: Wallet
   ) throws -> TransactionHash {
-    return sendValue
+    return try returnOrThrow(result: sendValue)
   }
 
   public func getLatestValidatedLedgerSequence() throws -> UInt32 {
-    return latestValidatedLedgerValue
+    return try returnOrThrow(result: latestValidatedLedgerValue)
   }
 
   public func getRawTransactionStatus(for transactionHash: TransactionHash) throws -> RawTransactionStatus {
-    return rawTransactionStatusValue
+    return try returnOrThrow(result: rawTransactionStatusValue)
   }
 
   public func paymentHistory(for address: Address) throws -> [XRPTransaction] {
-    return paymentHistoryValue
+    return try returnOrThrow(result: paymentHistoryValue)
   }
 
   public func accountExists(for address: Address) throws -> Bool {
-    return accountExistsValue
+    return try returnOrThrow(result: accountExistsValue)
+  }
+
+  /// Given a result monad, return the value if the state is success, otherwise throw the error.
+  private func returnOrThrow<T>(result: Result<T, XRPLedgerError>) throws -> T {
+    switch result {
+    case .success(let value):
+      return value
+    case .failure(let error):
+      throw error
+    }
   }
 }
