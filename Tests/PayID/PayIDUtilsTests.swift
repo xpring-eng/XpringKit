@@ -43,8 +43,8 @@ class PayIDUtilsTest: XCTestCase {
   }
 
   func testParsePayIDEmptyPath() {
-    // GIVEN a Pay ID with an empty host.
-    let host = "xpring.money" // Extra '$'
+    // GIVEN a Pay ID with an empty user.
+    let host = "xpring.money"
     let path = ""
     let rawPayID = "\(path)$\(host)"
 
