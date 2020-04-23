@@ -10,7 +10,7 @@ internal class JavaScriptPayIDUtils {
     }
 
     public enum Methods {
-      public static let parsePaymentPointer = "parsePaymentPointer"
+      public static let parsePayID = "parsePayID"
     }
 
     public enum Properties {
@@ -27,13 +27,13 @@ internal class JavaScriptPayIDUtils {
     payIDUtilsClass = JavaScriptLoader.load(ResourceNames.Classes.payIDUtils)
   }
 
-  /// Parse a payment pointer string to a payment pointer object
+  /// Parse the given Pay ID to a set of components.
   ///
-  /// - Parameter paymentPointer: The input string payment pointer.
-  /// - Returns: A  tuple containing components of the payment pointer if the inputs were valid, otherwise nil.
-  public func parse(paymentPointer: String) -> (host: String, path: String)? {
+  /// - Parameter payID: A PayID to parse.
+  /// - Returns: A set of components parsed from the PayID.
+  public func parse(payID: String) -> (host: String, path: String)? {
     let result = payIDUtilsClass.invokeMethod(
-      ResourceNames.Methods.parsePaymentPointer, withArguments: [ paymentPointer ]
+      ResourceNames.Methods.parsePayID, withArguments: [ payID ]
     )!
 
     guard !result.isUndefined else {

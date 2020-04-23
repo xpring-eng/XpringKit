@@ -7,6 +7,8 @@
 
 import Foundation
 
+
+
 public struct Value: Codable {
 
     public var amount: String
@@ -17,4 +19,6 @@ public struct Value: Codable {
         self.scale = scale
     }
 
+
 }
+

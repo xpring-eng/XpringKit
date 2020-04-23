@@ -42,17 +42,17 @@ final class XRPClientIntegrationTests: XCTestCase {
   }
 
   func testAccountExists() {
-      do {
-        _ = try client.accountExists(for: Wallet.testWallet.address)
-      } catch {
-        XCTFail("Failed checking account existence with error: \(error)")
-      }
+    do {
+      _ = try client.accountExists(for: Wallet.testWallet.address)
+    } catch {
+      XCTFail("Failed checking account existence with error: \(error)")
+    }
   }
 
   func testPaymentHistory() {
     do {
       let payments = try client.paymentHistory(for: Wallet.testWallet.address)
-      XCTAssert(payments.count > 0)
+      XCTAssert(!payments.isEmpty)
     } catch {
       XCTFail("Failed checking account existence with error: \(error)")
     }

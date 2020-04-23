@@ -7,6 +7,8 @@
 
 import Foundation
 
+
+
 public struct Receipt: Codable {
 
     public var invoiceHash: String
@@ -17,4 +19,6 @@ public struct Receipt: Codable {
         self.transactionConfirmation = transactionConfirmation
     }
 
+
 }
+

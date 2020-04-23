@@ -14,7 +14,7 @@ import SwiftProtobuf
 // incompatible with the version of SwiftProtobuf to which you are linking.
 // Please ensure that you are building against the same version of the API
 // that was used to generate this file.
-private struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAPIVersionCheck {
+fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAPIVersionCheck {
   struct _2: SwiftProtobuf.ProtobufAPIVersion_2 {}
   typealias Version = _2
 }
@@ -46,7 +46,7 @@ public struct Org_Interledger_Stream_Proto_SendPaymentRequest {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-private let _protobuf_package = "org.interledger.stream.proto"
+fileprivate let _protobuf_package = "org.interledger.stream.proto"
 
 extension Org_Interledger_Stream_Proto_SendPaymentRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".SendPaymentRequest"
@@ -54,7 +54,7 @@ extension Org_Interledger_Stream_Proto_SendPaymentRequest: SwiftProtobuf.Message
     1: .standard(proto: "destination_payment_pointer"),
     2: .same(proto: "amount"),
     3: .standard(proto: "timeout_seconds"),
-    4: .standard(proto: "account_id")
+    4: .standard(proto: "account_id"),
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -86,11 +86,11 @@ extension Org_Interledger_Stream_Proto_SendPaymentRequest: SwiftProtobuf.Message
   }
 
   public static func ==(lhs: Org_Interledger_Stream_Proto_SendPaymentRequest, rhs: Org_Interledger_Stream_Proto_SendPaymentRequest) -> Bool {
-    if lhs.destinationPaymentPointer != rhs.destinationPaymentPointer { return false }
-    if lhs.amount != rhs.amount { return false }
-    if lhs.timeoutSeconds != rhs.timeoutSeconds { return false }
-    if lhs.accountID != rhs.accountID { return false }
-    if lhs.unknownFields != rhs.unknownFields { return false }
+    if lhs.destinationPaymentPointer != rhs.destinationPaymentPointer {return false}
+    if lhs.amount != rhs.amount {return false}
+    if lhs.timeoutSeconds != rhs.timeoutSeconds {return false}
+    if lhs.accountID != rhs.accountID {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

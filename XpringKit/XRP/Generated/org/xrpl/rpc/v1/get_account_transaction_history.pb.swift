@@ -14,7 +14,7 @@ import SwiftProtobuf
 // incompatible with the version of SwiftProtobuf to which you are linking.
 // Please ensure that you are building against the same version of the API
 // that was used to generate this file.
-private struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAPIVersionCheck {
+fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAPIVersionCheck {
   struct _2: SwiftProtobuf.ProtobufAPIVersion_2 {}
   typealias Version = _2
 }
@@ -26,33 +26,33 @@ public struct Org_Xrpl_Rpc_V1_GetAccountTransactionHistoryRequest {
   // methods supported on all messages.
 
   public var account: Org_Xrpl_Rpc_V1_AccountAddress {
-    get { return _account ?? Org_Xrpl_Rpc_V1_AccountAddress() }
-    set { _account = newValue }
+    get {return _account ?? Org_Xrpl_Rpc_V1_AccountAddress()}
+    set {_account = newValue}
   }
   /// Returns true if `account` has been explicitly set.
-  public var hasAccount: Bool { return self._account != nil }
+  public var hasAccount: Bool {return self._account != nil}
   /// Clears the value of `account`. Subsequent reads from it will return its default value.
-  public mutating func clearAccount() { self._account = nil }
+  public mutating func clearAccount() {self._account = nil}
 
   /// What ledger to include results from. Specifying a not yet validated
   /// ledger results in an error. Not specifying a ledger uses the entire
   /// range of validated ledgers available to the server.
-  public var ledger: Org_Xrpl_Rpc_V1_GetAccountTransactionHistoryRequest.OneOf_Ledger?
+  public var ledger: Org_Xrpl_Rpc_V1_GetAccountTransactionHistoryRequest.OneOf_Ledger? = nil
 
   public var ledgerSpecifier: Org_Xrpl_Rpc_V1_LedgerSpecifier {
     get {
-      if case .ledgerSpecifier(let v)? = ledger { return v }
+      if case .ledgerSpecifier(let v)? = ledger {return v}
       return Org_Xrpl_Rpc_V1_LedgerSpecifier()
     }
-    set { ledger = .ledgerSpecifier(newValue) }
+    set {ledger = .ledgerSpecifier(newValue)}
   }
 
   public var ledgerRange: Org_Xrpl_Rpc_V1_LedgerRange {
     get {
-      if case .ledgerRange(let v)? = ledger { return v }
+      if case .ledgerRange(let v)? = ledger {return v}
       return Org_Xrpl_Rpc_V1_LedgerRange()
     }
-    set { ledger = .ledgerRange(newValue) }
+    set {ledger = .ledgerRange(newValue)}
   }
 
   /// Return results as binary blobs. Defaults to false.
@@ -70,13 +70,13 @@ public struct Org_Xrpl_Rpc_V1_GetAccountTransactionHistoryRequest {
   /// Marker to resume where previous request left off
   /// Used for pagination
   public var marker: Org_Xrpl_Rpc_V1_Marker {
-    get { return _marker ?? Org_Xrpl_Rpc_V1_Marker() }
-    set { _marker = newValue }
+    get {return _marker ?? Org_Xrpl_Rpc_V1_Marker()}
+    set {_marker = newValue}
   }
   /// Returns true if `marker` has been explicitly set.
-  public var hasMarker: Bool { return self._marker != nil }
+  public var hasMarker: Bool {return self._marker != nil}
   /// Clears the value of `marker`. Subsequent reads from it will return its default value.
-  public mutating func clearMarker() { self._marker = nil }
+  public mutating func clearMarker() {self._marker = nil}
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -100,8 +100,8 @@ public struct Org_Xrpl_Rpc_V1_GetAccountTransactionHistoryRequest {
 
   public init() {}
 
-  fileprivate var _account: Org_Xrpl_Rpc_V1_AccountAddress?
-  fileprivate var _marker: Org_Xrpl_Rpc_V1_Marker?
+  fileprivate var _account: Org_Xrpl_Rpc_V1_AccountAddress? = nil
+  fileprivate var _marker: Org_Xrpl_Rpc_V1_Marker? = nil
 }
 
 /// Next field: 8
@@ -111,13 +111,13 @@ public struct Org_Xrpl_Rpc_V1_GetAccountTransactionHistoryResponse {
   // methods supported on all messages.
 
   public var account: Org_Xrpl_Rpc_V1_AccountAddress {
-    get { return _account ?? Org_Xrpl_Rpc_V1_AccountAddress() }
-    set { _account = newValue }
+    get {return _account ?? Org_Xrpl_Rpc_V1_AccountAddress()}
+    set {_account = newValue}
   }
   /// Returns true if `account` has been explicitly set.
-  public var hasAccount: Bool { return self._account != nil }
+  public var hasAccount: Bool {return self._account != nil}
   /// Clears the value of `account`. Subsequent reads from it will return its default value.
-  public mutating func clearAccount() { self._account = nil }
+  public mutating func clearAccount() {self._account = nil}
 
   public var ledgerIndexMin: UInt32 = 0
 
@@ -126,13 +126,13 @@ public struct Org_Xrpl_Rpc_V1_GetAccountTransactionHistoryResponse {
   public var limit: UInt32 = 0
 
   public var marker: Org_Xrpl_Rpc_V1_Marker {
-    get { return _marker ?? Org_Xrpl_Rpc_V1_Marker() }
-    set { _marker = newValue }
+    get {return _marker ?? Org_Xrpl_Rpc_V1_Marker()}
+    set {_marker = newValue}
   }
   /// Returns true if `marker` has been explicitly set.
-  public var hasMarker: Bool { return self._marker != nil }
+  public var hasMarker: Bool {return self._marker != nil}
   /// Clears the value of `marker`. Subsequent reads from it will return its default value.
-  public mutating func clearMarker() { self._marker = nil }
+  public mutating func clearMarker() {self._marker = nil}
 
   public var transactions: [Org_Xrpl_Rpc_V1_GetTransactionResponse] = []
 
@@ -142,8 +142,8 @@ public struct Org_Xrpl_Rpc_V1_GetAccountTransactionHistoryResponse {
 
   public init() {}
 
-  fileprivate var _account: Org_Xrpl_Rpc_V1_AccountAddress?
-  fileprivate var _marker: Org_Xrpl_Rpc_V1_Marker?
+  fileprivate var _account: Org_Xrpl_Rpc_V1_AccountAddress? = nil
+  fileprivate var _marker: Org_Xrpl_Rpc_V1_Marker? = nil
 }
 
 /// Next field: 3
@@ -163,7 +163,7 @@ public struct Org_Xrpl_Rpc_V1_Marker {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-private let _protobuf_package = "org.xrpl.rpc.v1"
+fileprivate let _protobuf_package = "org.xrpl.rpc.v1"
 
 extension Org_Xrpl_Rpc_V1_GetAccountTransactionHistoryRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".GetAccountTransactionHistoryRequest"
@@ -174,7 +174,7 @@ extension Org_Xrpl_Rpc_V1_GetAccountTransactionHistoryRequest: SwiftProtobuf.Mes
     4: .same(proto: "binary"),
     5: .same(proto: "forward"),
     6: .same(proto: "limit"),
-    7: .same(proto: "marker")
+    7: .same(proto: "marker"),
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -185,18 +185,18 @@ extension Org_Xrpl_Rpc_V1_GetAccountTransactionHistoryRequest: SwiftProtobuf.Mes
         var v: Org_Xrpl_Rpc_V1_LedgerSpecifier?
         if let current = self.ledger {
           try decoder.handleConflictingOneOf()
-          if case .ledgerSpecifier(let m) = current { v = m }
+          if case .ledgerSpecifier(let m) = current {v = m}
         }
         try decoder.decodeSingularMessageField(value: &v)
-        if let v = v { self.ledger = .ledgerSpecifier(v) }
+        if let v = v {self.ledger = .ledgerSpecifier(v)}
       case 3:
         var v: Org_Xrpl_Rpc_V1_LedgerRange?
         if let current = self.ledger {
           try decoder.handleConflictingOneOf()
-          if case .ledgerRange(let m) = current { v = m }
+          if case .ledgerRange(let m) = current {v = m}
         }
         try decoder.decodeSingularMessageField(value: &v)
-        if let v = v { self.ledger = .ledgerRange(v) }
+        if let v = v {self.ledger = .ledgerRange(v)}
       case 4: try decoder.decodeSingularBoolField(value: &self.binary)
       case 5: try decoder.decodeSingularBoolField(value: &self.forward)
       case 6: try decoder.decodeSingularUInt32Field(value: &self.limit)
@@ -233,13 +233,13 @@ extension Org_Xrpl_Rpc_V1_GetAccountTransactionHistoryRequest: SwiftProtobuf.Mes
   }
 
   public static func ==(lhs: Org_Xrpl_Rpc_V1_GetAccountTransactionHistoryRequest, rhs: Org_Xrpl_Rpc_V1_GetAccountTransactionHistoryRequest) -> Bool {
-    if lhs._account != rhs._account { return false }
-    if lhs.ledger != rhs.ledger { return false }
-    if lhs.binary != rhs.binary { return false }
-    if lhs.forward != rhs.forward { return false }
-    if lhs.limit != rhs.limit { return false }
-    if lhs._marker != rhs._marker { return false }
-    if lhs.unknownFields != rhs.unknownFields { return false }
+    if lhs._account != rhs._account {return false}
+    if lhs.ledger != rhs.ledger {return false}
+    if lhs.binary != rhs.binary {return false}
+    if lhs.forward != rhs.forward {return false}
+    if lhs.limit != rhs.limit {return false}
+    if lhs._marker != rhs._marker {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -253,7 +253,7 @@ extension Org_Xrpl_Rpc_V1_GetAccountTransactionHistoryResponse: SwiftProtobuf.Me
     4: .same(proto: "limit"),
     5: .same(proto: "marker"),
     6: .same(proto: "transactions"),
-    7: .same(proto: "validated")
+    7: .same(proto: "validated"),
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -297,14 +297,14 @@ extension Org_Xrpl_Rpc_V1_GetAccountTransactionHistoryResponse: SwiftProtobuf.Me
   }
 
   public static func ==(lhs: Org_Xrpl_Rpc_V1_GetAccountTransactionHistoryResponse, rhs: Org_Xrpl_Rpc_V1_GetAccountTransactionHistoryResponse) -> Bool {
-    if lhs._account != rhs._account { return false }
-    if lhs.ledgerIndexMin != rhs.ledgerIndexMin { return false }
-    if lhs.ledgerIndexMax != rhs.ledgerIndexMax { return false }
-    if lhs.limit != rhs.limit { return false }
-    if lhs._marker != rhs._marker { return false }
-    if lhs.transactions != rhs.transactions { return false }
-    if lhs.validated != rhs.validated { return false }
-    if lhs.unknownFields != rhs.unknownFields { return false }
+    if lhs._account != rhs._account {return false}
+    if lhs.ledgerIndexMin != rhs.ledgerIndexMin {return false}
+    if lhs.ledgerIndexMax != rhs.ledgerIndexMax {return false}
+    if lhs.limit != rhs.limit {return false}
+    if lhs._marker != rhs._marker {return false}
+    if lhs.transactions != rhs.transactions {return false}
+    if lhs.validated != rhs.validated {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -313,7 +313,7 @@ extension Org_Xrpl_Rpc_V1_Marker: SwiftProtobuf.Message, SwiftProtobuf._MessageI
   public static let protoMessageName: String = _protobuf_package + ".Marker"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .standard(proto: "ledger_index"),
-    2: .standard(proto: "account_sequence")
+    2: .standard(proto: "account_sequence"),
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -337,9 +337,9 @@ extension Org_Xrpl_Rpc_V1_Marker: SwiftProtobuf.Message, SwiftProtobuf._MessageI
   }
 
   public static func ==(lhs: Org_Xrpl_Rpc_V1_Marker, rhs: Org_Xrpl_Rpc_V1_Marker) -> Bool {
-    if lhs.ledgerIndex != rhs.ledgerIndex { return false }
-    if lhs.accountSequence != rhs.accountSequence { return false }
-    if lhs.unknownFields != rhs.unknownFields { return false }
+    if lhs.ledgerIndex != rhs.ledgerIndex {return false}
+    if lhs.accountSequence != rhs.accountSequence {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

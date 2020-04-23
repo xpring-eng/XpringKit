@@ -38,6 +38,9 @@ $ git submodule update --init --recursive
 # Install required tooling
 $ brew install xcodegen swiftlint carthage swift-protobuf grpc-swift
 
+# Recommended: Install linter configuration to run SwiftLint from within XCode:
+# See: https://github.com/ypresto/SwiftLintXcode
+
 # Generate project
 $ ./scripts/generate_project.sh
 $ open XpringKit.xcodeproj

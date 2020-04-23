@@ -7,6 +7,8 @@
 
 import Foundation
 
+
+
 public struct Beneficiary: Codable {
 
     public var institutionName: String
@@ -21,4 +23,6 @@ public struct Beneficiary: Codable {
         self.accountId = accountId
     }
 
+
 }
+

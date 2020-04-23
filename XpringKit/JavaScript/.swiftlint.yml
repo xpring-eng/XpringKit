@@ -1,0 +1,9 @@
+# Disable force_unwrapping warnings in JavaScript files.
+#
+# The nature of working with JavaScript is that values and methods are dynamically 
+# invoked so there are no type signatures. As a result, the way to get the
+# cleanest code is to use force unwrapping. This project owns both the JavaScript
+# code and the invoking Swift code, so it is reasonable to assume the code behaves
+# the way we expect, even if there are no programmatic guarantees.
+disabled_rules:
+  - force_unwrapping 

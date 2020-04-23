@@ -7,6 +7,8 @@
 
 import Foundation
 
+
+
 public struct CryptoAddressDetails: Codable {
 
     public var address: String
@@ -17,4 +19,6 @@ public struct CryptoAddressDetails: Codable {
         self.tag = tag
     }
 
+
 }
+

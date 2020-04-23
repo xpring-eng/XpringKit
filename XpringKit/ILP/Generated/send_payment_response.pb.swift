@@ -14,7 +14,7 @@ import SwiftProtobuf
 // incompatible with the version of SwiftProtobuf to which you are linking.
 // Please ensure that you are building against the same version of the API
 // that was used to generate this file.
-private struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAPIVersionCheck {
+fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAPIVersionCheck {
   struct _2: SwiftProtobuf.ProtobufAPIVersion_2 {}
   typealias Version = _2
 }
@@ -45,7 +45,7 @@ public struct Org_Interledger_Stream_Proto_SendPaymentResponse {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-private let _protobuf_package = "org.interledger.stream.proto"
+fileprivate let _protobuf_package = "org.interledger.stream.proto"
 
 extension Org_Interledger_Stream_Proto_SendPaymentResponse: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".SendPaymentResponse"
@@ -53,7 +53,7 @@ extension Org_Interledger_Stream_Proto_SendPaymentResponse: SwiftProtobuf.Messag
     1: .standard(proto: "original_amount"),
     2: .standard(proto: "amount_delivered"),
     3: .standard(proto: "amount_sent"),
-    4: .standard(proto: "successful_payment")
+    4: .standard(proto: "successful_payment"),
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -85,11 +85,11 @@ extension Org_Interledger_Stream_Proto_SendPaymentResponse: SwiftProtobuf.Messag
   }
 
   public static func ==(lhs: Org_Interledger_Stream_Proto_SendPaymentResponse, rhs: Org_Interledger_Stream_Proto_SendPaymentResponse) -> Bool {
-    if lhs.originalAmount != rhs.originalAmount { return false }
-    if lhs.amountDelivered != rhs.amountDelivered { return false }
-    if lhs.amountSent != rhs.amountSent { return false }
-    if lhs.successfulPayment != rhs.successfulPayment { return false }
-    if lhs.unknownFields != rhs.unknownFields { return false }
+    if lhs.originalAmount != rhs.originalAmount {return false}
+    if lhs.amountDelivered != rhs.amountDelivered {return false}
+    if lhs.amountSent != rhs.amountSent {return false}
+    if lhs.successfulPayment != rhs.successfulPayment {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
