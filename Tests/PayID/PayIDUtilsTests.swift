@@ -2,67 +2,63 @@ import XCTest
 import XpringKit
 
 class PayIDUtilsTest: XCTestCase {
-  func testParseValidPayID() {
-    // GIVEN a Pay ID with a host and a path.
-    let host = "xpring.money"
-    let path = "georgewashington"
-    let rawPayID = "\(path)$\(host)"
+  func testParsePaymentPointerHostAndPath() {
+    // GIVEN a payment pointer with a host and a path.
+    let rawPaymentPointer = "$example.com/foo"
 
-    // WHEN it is parsed to components.
-    let payIDComponents = PayIDUtils.parse(payID: rawPayID)
+    // WHEN it is parsed to a PaymentPointer object
+    let paymentPointer = PayIDUtils.parse(paymentPointer: rawPaymentPointer)
 
     // THEN the host and path are set correctly.
-    XCTAssertEqual(payIDComponents?.host, host)
-    XCTAssertEqual(payIDComponents?.path, "/\(path)")
+    XCTAssertEqual(paymentPointer?.host, "example.com")
+    XCTAssertEqual(paymentPointer?.path, "/foo")
   }
 
-  func testParsePayIDTooManyDollarSigns() {
-    // GIVEN a Pay ID with too many '$'.
-    let host = "xpring$money" // Extra '$'
-    let path = "georgewashington"
-    let rawPayID = "\(path)$\(host)"
+  func testParsePaymentPointerWithWellKnownPath() {
+    // GIVEN a payment pointer with a well known path.
+    let rawPaymentPointer = "$example.com"
 
-    // WHEN it is parsed to components.
-    let payIDComponents = PayIDUtils.parse(payID: rawPayID)
+    // WHEN it is parsed to a PaymentPointer object
+    let paymentPointer = PayIDUtils.parse(paymentPointer: rawPaymentPointer)
 
-    // THEN the Pay ID failed to parse.
-    XCTAssertNil(payIDComponents)
+    // THEN the host and path are set correctly.
+    XCTAssertEqual(paymentPointer?.host, "example.com")
+    XCTAssertEqual(paymentPointer?.path, PaymentPointer.paymentPointerWellKnownPath)
   }
 
-  func testParsePayIDEmptyHost() {
-    // GIVEN a Pay ID with an empty host.
-    let host = ""
-    let path = "georgewashington"
-    let rawPayID = "\(path)$\(host)"
+  func testParsePaymentPointerWithWellKnownPathAndTrailingSlash() {
+    // GIVEN a payment pointer with a well known path and a trailing slash.
+    let rawPaymentPointer = "$example.com"
 
-    // WHEN it is parsed to components.
-    let payIDComponents = PayIDUtils.parse(payID: rawPayID)
+    // WHEN it is parsed to a PaymentPointer object
+    let paymentPointer = PayIDUtils.parse(paymentPointer: rawPaymentPointer)
 
-    // THEN the Pay ID failed to parse.
-    XCTAssertNil(payIDComponents)
+    // THEN the host and path are set correctly.
+    XCTAssertEqual(paymentPointer?.host, "example.com")
+    XCTAssertEqual(paymentPointer?.path, PaymentPointer.paymentPointerWellKnownPath)
   }
 
-  func testParsePayIDEmptyPath() {
-    // GIVEN a Pay ID with an empty user.
-    let host = "xpring.money"
-    let path = ""
-    let rawPayID = "\(path)$\(host)"
+  func testParsePaymentPointerIncorrectPrefix() {
+    // GIVEN a payment pointer without a '$' prefix
+    let rawPaymentPointer = "example.com/"
 
-    // WHEN it is parsed to components.
-    let payIDComponents = PayIDUtils.parse(payID: rawPayID)
-
-    // THEN the Pay ID failed to parse.
-    XCTAssertNil(payIDComponents)
+    // WHEN it is parsed to a PaymentPointer object THEN the result is undefined
+    XCTAssertNil(PayIDUtils.parse(paymentPointer: rawPaymentPointer))
   }
 
-  func testParsePayIDNonASCII() {
-    // GIVEN a Pay ID with non-ascii characters.
-    let rawPayID = "ZA̡͊͠͝LGΌIS̯͈͕̹̘̱ͮ$TO͇̹̺ͅƝ̴ȳ̳TH̘Ë͖́̉ ͠P̯͍̭O̚N̐Y̡"
+  func testParsePaymentPointerEmptyHost() {
+    // GIVEN a payment pointer without a host.
+    let rawPaymentPointer = "$"
 
-    // WHEN it is parsed to components.
-    let payIDComponents = PayIDUtils.parse(payID: rawPayID)
+    // WHEN it is parsed to a PaymentPointer object THEN the result is undefined
+    XCTAssertNil(PayIDUtils.parse(paymentPointer: rawPaymentPointer))
+  }
 
-    // THEN the Pay ID failed to parse.
-    XCTAssertNil(payIDComponents)
+  func testParsePaymentPointerNonAscii() {
+    // GIVEN a payment pointer with non-ascii characters.
+    let rawPaymentPointer = "$ZA̡͊͠͝LGΌ IS̯͈͕̹̘̱ͮ TO͇̹̺ͅƝ̴ȳ̳ TH̘Ë͖́̉ ͠P̯͍̭O̚N̐Y̡"
+
+    // WHEN it is parsed to a PaymentPointer object THEN the result is undefined
+    XCTAssertNil(PayIDUtils.parse(paymentPointer: rawPaymentPointer))
   }
 }

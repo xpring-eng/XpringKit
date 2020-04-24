@@ -38,7 +38,6 @@ opt_in_rules:
   - vertical_parameter_alignment_on_call
 
 excluded:
-  - .git/
   - Carthage/
   - Pods/
   - XpringKit/**/Generated/*

@@ -3,11 +3,11 @@ public enum PayIDUtils {
   /// The underlying JavaScript based PayIDUtils.
   private static let javaScriptPayIDUtils = JavaScriptPayIDUtils()
 
-  /// Parse the given Pay ID to a set of components.
+  /// Parse a payment pointer string to a payment pointer object
   ///
-  /// - Parameter payID: A PayID to parse.
-  /// - Returns: A set of components parsed from the PayID.
-  public static func parse(payID: String) -> (host: String, path: String)? {
-    return javaScriptPayIDUtils.parse(payID: payID)
+  /// - Parameter paymentPointer: The input string payment pointer.
+  /// - Returns: A  `PaymentPointer` object if the input was valid, otherwise undefined.
+  public static func parse(paymentPointer: String) -> (host: String, path: String)? {
+    return javaScriptPayIDUtils.parse(paymentPointer: paymentPointer)
   }
 }

@@ -1,5 +1,5 @@
 /// Errors that originate from PayID.
-public enum PayIDError: Error {
+public enum PayIDError: Equatable, Error {
   /// The payment pointer was invalid.
   /// - Parameter paymentPointer: The invalid payment pointer.
   case invalidPaymentPointer(paymentPointer: String)
