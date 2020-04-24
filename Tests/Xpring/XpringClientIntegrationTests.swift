@@ -7,7 +7,7 @@ public class XpringClientIntegrationTest: XCTestCase {
 
   func testSendXRP() throws {
     // GIVEN a Pay ID that will resolve and a wallet with a balance on TestNet and a XpringClient.
-    let payID = "$dev.payid.xpring.money/hbergren"
+    let payID = "alice$dev.payid.xpring.money"
     let wallet = Wallet(seed: "snYP7oArxKepd3GPDcrjMsJYiJeJB")!
     let payIDClient = PayIDClient(network: network)
     let xrpClient = XRPClient(grpcURL: "test.xrp.xpring.io:50051")
