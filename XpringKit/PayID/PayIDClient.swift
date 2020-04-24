@@ -3,7 +3,7 @@ import Foundation
 
 /// Implements interaction with a PayID service.
 /// - Warning:  This class is experimental and should not be used in production applications.
-public class PayIDClient {
+public class PayIDClient: PayIDClientProtocol {
   /// The network this PayID client resolves on.
   private let network: XRPLNetwork
 
@@ -22,7 +22,7 @@ public class PayIDClient {
   /// - Returns: An XRP address representing the given PayID.
   // TODO(keefertaylor): Make this API synchronous to mirror functionality provided by ILP / XRP.
   public func xrpAddress(for payID: String, completion: @escaping (Swift.Result<String, PayIDError>) -> Void) {
-    guard let paymentPointer = PayIDUtils.parse(paymentPointer: payID) else {
+    guard let paymentPointer = PayIDUtils.parse(payID: payID) else {
       return completion(.failure(.invalidPaymentPointer(paymentPointer: payID)))
     }
 
