@@ -2,11 +2,10 @@ import XCTest
 import XpringKit
 
 extension PaymentPointer {
-  /// The PayID to resolve.
   public static let testPointer = "alice$dev.payid.xpring.money"
 
   /// A pay ID that does not exist.
-  public static let nonExistentPointer = "does - not - exist$dev.payid.xpring.money"
+  public static let nonExistentPointer = "doesNotExist$dev.payid.xpring.money"
 }
 
 /// Integration tests run against a live PayID service.
