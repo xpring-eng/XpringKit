@@ -8,12 +8,8 @@ extension Org_Xrpl_Rpc_V1_GetAccountTransactionHistoryResponse {
     }
 
     $0.transactions = [
-      Org_Xrpl_Rpc_V1_GetTransactionResponse.with {
-        $0.transaction = .testTransaction
-      },
-      Org_Xrpl_Rpc_V1_GetTransactionResponse.with {
-        $0.transaction = .testTransaction
-      }
+      .testGetTransactionResponse,
+      .testGetTransactionResponse
     ]
   }
 }

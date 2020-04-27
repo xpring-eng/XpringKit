@@ -458,7 +458,7 @@ final class DefaultXRPClientTest: XCTestCase {
       .testTransactionHistoryResponse
       .transactions
       .map { transactionResponse in
-        return XRPTransaction(transaction: transactionResponse.transaction)
+        return XRPTransaction(getTransactionResponse: transactionResponse)
       }
 
     // WHEN the transactionHistory is requested.
@@ -522,7 +522,7 @@ final class DefaultXRPClientTest: XCTestCase {
     // Generate expected transactions from the default response, which only contains payments.
     var transactionHistory = Org_Xrpl_Rpc_V1_GetAccountTransactionHistoryResponse.testTransactionHistoryResponse
     let expectedTransactions = transactionHistory.transactions.map { transactionResponse in
-      return XRPTransaction(transaction: transactionResponse.transaction)
+      return XRPTransaction(getTransactionResponse: transactionResponse)
     }
 
     // Append a non-payment transaction. This is not one of the expected outputs because it is not a payment.
