@@ -44,7 +44,7 @@ final class XpringClientTest: XCTestCase {
 
     let xpringClient = XpringClient(payIDClient: payIDClient, xrpClient: xrpClient)
 
-    // WHEN XRP is sent to the Pay ID.
+    // WHEN XRP is sent to the Pay ID THEN the expected transaction hash is returned.
     let completionCalledExpectation = XCTestExpectation(description: "Completion called")
     xpringClient.send(amount, to: payID, from: wallet) { result in
       switch result {
