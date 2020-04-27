@@ -448,6 +448,9 @@ final class ProtocolBufferConversionTests: XCTestCase {
 
   func testConvertPaymentTransactionAllCommonFieldsSet() {
     // GIVEN a Transaction protocol buffer with all common fields set.
+    let hash = Data([2, 4, 6])
+    let timestamp: UInt32 = 0
+    let deliveredAmount: UInt64 = 20
     let account = "r123"
     let fee: UInt64 = 1
     let sequence: UInt32 = 2
@@ -532,10 +535,27 @@ final class ProtocolBufferConversionTests: XCTestCase {
       }
     }
 
+    let getTransactionResponseProto = Org_Xrpl_Rpc_V1_GetTransactionResponse.with {
+      $0.transaction = transactionProto
+      $0.hash = hash
+      $0.date = Org_Xrpl_Rpc_V1_Date.with {
+        $0.value = timestamp
+      }
+      $0.meta = Org_Xrpl_Rpc_V1_Meta.with {
+        $0.deliveredAmount = Org_Xrpl_Rpc_V1_DeliveredAmount.with {
+          $0.value = Org_Xrpl_Rpc_V1_CurrencyAmount.with {
+            $0.xrpAmount = Org_Xrpl_Rpc_V1_XRPDropsAmount.with {
+              $0.drops = deliveredAmount
+            }
+          }
+        }
+      }
+    }
     // WHEN the protocol buffer is converted to a native Swift type.
-    let transaction = XRPTransaction(transaction: transactionProto)
+    let transaction = XRPTransaction(getTransactionResponse: getTransactionResponseProto)
 
     // THEN all fields are present and converted correctly.
+    XCTAssertEqual(transaction?.hash, [UInt8](hash).toHex())
     XCTAssertEqual(transaction?.account, account)
     XCTAssertEqual(transaction?.fee, fee)
     XCTAssertEqual(transaction?.sequence, sequence)
@@ -547,10 +567,13 @@ final class ProtocolBufferConversionTests: XCTestCase {
     XCTAssertEqual(transaction?.memos, [ XRPMemo(memo: memoProto) ])
     XCTAssertEqual(transaction?.signers, [ XRPSigner(signer: signerProto) ])
     XCTAssertEqual(transaction?.sourceTag, sourceTag)
+    XCTAssertEqual(transaction?.timestamp, .expectedTimestamp)
+    XCTAssertEqual(transaction?.deliveredAmount, String(deliveredAmount))
   }
 
   func testConvertPaymentTransactionOnlyMandatoryCommonFieldsSet() {
     // GIVEN a Transaction protocol buffer with only mandatory common fields set.
+    let hash = Data([2, 4, 6])
     let account = "r123"
     let fee: UInt64 = 1
     let sequence: UInt32 = 2
@@ -590,10 +613,15 @@ final class ProtocolBufferConversionTests: XCTestCase {
       }
     }
 
+    let getTransactionResponseProto = Org_Xrpl_Rpc_V1_GetTransactionResponse.with {
+      $0.transaction = transactionProto
+      $0.hash = hash
+    }
     // WHEN the protocol buffer is converted to a native Swift type.
-    let transaction = XRPTransaction(transaction: transactionProto)
+    let transaction = XRPTransaction(getTransactionResponse: getTransactionResponseProto)
 
     // THEN all fields are present and converted correctly.
+    XCTAssertEqual(transaction?.hash, [UInt8](hash).toHex())
     XCTAssertEqual(transaction?.account, account)
     XCTAssertEqual(transaction?.fee, fee)
     XCTAssertEqual(transaction?.sequence, sequence)
@@ -605,10 +633,13 @@ final class ProtocolBufferConversionTests: XCTestCase {
     XCTAssertNil(transaction?.memos)
     XCTAssertNil(transaction?.signers)
     XCTAssertNil(transaction?.sourceTag)
+    XCTAssertNil(transaction?.timestamp)
+    XCTAssertNil(transaction?.deliveredAmount)
   }
 
   func testConvertPaymentTransactionWithBadPaymentFields() {
     // GIVEN a Transaction protocol buffer with payment fields which are incorrect
+    let hash = Data([2, 4, 6])
     let account = "r123"
     let fee: UInt64 = 1
     let sequence: UInt32 = 2
@@ -637,8 +668,12 @@ final class ProtocolBufferConversionTests: XCTestCase {
       $0.payment = Org_Xrpl_Rpc_V1_Payment() // Empty fields, will not convert
     }
 
+    let getTransactionResponseProto = Org_Xrpl_Rpc_V1_GetTransactionResponse.with {
+      $0.transaction = transactionProto
+      $0.hash = hash
+    }
     // WHEN the protocol buffer is converted to a native Swift type.
-    let transaction = XRPTransaction(transaction: transactionProto)
+    let transaction = XRPTransaction(getTransactionResponse: getTransactionResponseProto)
 
     // THEN the result is nil
     XCTAssertNil(transaction)
@@ -646,6 +681,7 @@ final class ProtocolBufferConversionTests: XCTestCase {
 
   func testConvertUnsupportedTransactionType() {
     // GIVEN a Transaction protocol buffer with an unsupported transaction type.
+    let hash = Data([2, 4, 6])
     let account = "r123"
     let fee: UInt64 = 1
     let sequence: UInt32 = 2
@@ -674,8 +710,13 @@ final class ProtocolBufferConversionTests: XCTestCase {
       $0.checkCash = Org_Xrpl_Rpc_V1_CheckCash() // Unsupported
     }
 
+    let getTransactionResponseProto = Org_Xrpl_Rpc_V1_GetTransactionResponse.with {
+      $0.transaction = transactionProto
+      $0.hash = hash
+    }
+
     // WHEN the protocol buffer is converted to a native Swift type.
-    let transaction = XRPTransaction(transaction: transactionProto)
+    let transaction = XRPTransaction(getTransactionResponse: getTransactionResponseProto)
 
     // THEN the result is nil
     XCTAssertNil(transaction)
