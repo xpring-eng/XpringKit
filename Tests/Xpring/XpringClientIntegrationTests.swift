@@ -10,8 +10,8 @@ public class XpringClientIntegrationTest: XCTestCase {
     let payID = "alice$dev.payid.xpring.money"
     let wallet = Wallet(seed: "snYP7oArxKepd3GPDcrjMsJYiJeJB")!
     let payIDClient = PayIDClient(network: network)
-    let xrpClient = XRPClient(grpcURL: "test.xrp.xpring.io:50051")
-    let xpringClient = XpringClient(payIDClient: payIDClient, xrpClient: xrpClient)
+    let xrpClient = XRPClient(grpcURL: "test.xrp.xpring.io:50051", network: .test)
+    let xpringClient = try XpringClient(payIDClient: payIDClient, xrpClient: xrpClient)
 
     // WHEN XRP is sent to the Pay ID THEN a transaction hash is returned.
     let transactionSentExpectation = XCTestExpectation(description: "Transaction hash received.")

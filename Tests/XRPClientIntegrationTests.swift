@@ -11,7 +11,7 @@ extension String {
 
 /// Integration tests run against a live remote client.
 final class XRPClientIntegrationTests: XCTestCase {
-  private let client = XRPClient(grpcURL: .remoteURL)
+  private let client = XRPClient(grpcURL: .remoteURL, network: .test)
 
   // MARK: - rippled Protocol Buffers
 

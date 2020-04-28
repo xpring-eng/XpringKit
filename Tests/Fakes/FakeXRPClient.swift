@@ -5,6 +5,8 @@ import XpringKit
 /// - Note: Since this class is passed by reference and the instance variables are mutable, outputs of this class
 ///         can be changed after it is instantiated.
 public class FakeXRPClient: XRPClientProtocol {
+  public let network: XRPLNetwork
+
   public let networkClient = FakeNetworkClient.successfulFakeNetworkClient
 
   public var getBalanceValue: Result<UInt64, XRPLedgerError>
@@ -16,6 +18,7 @@ public class FakeXRPClient: XRPClientProtocol {
   public var accountExistsValue: Result<Bool, XRPLedgerError>
 
   public init(
+    network: XRPLNetwork = .test,
     getBalanceValue: Result<UInt64, XRPLedgerError>,
     paymentStatusValue: Result<TransactionStatus, XRPLedgerError>,
     sendValue: Result<TransactionHash, XRPLedgerError>,
@@ -24,6 +27,7 @@ public class FakeXRPClient: XRPClientProtocol {
     paymentHistoryValue: Result<[XRPTransaction], XRPLedgerError>,
     accountExistsValue: Result<Bool, XRPLedgerError>
   ) {
+    self.network = network
     self.getBalanceValue = getBalanceValue
     self.paymentStatusValue = paymentStatusValue
     self.sendValue = sendValue

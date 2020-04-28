@@ -13,7 +13,7 @@ final class PayIDIntegrationTests: XCTestCase {
   func testResolvePaymentPointerKnownPointerMainnet() {
     let expectation = XCTestExpectation(description: "resolveToXRP completion called.")
 
-    // GIVEN a Pay ID that will resolve on mainnet and a PayID client.
+    // GIVEN a Pay ID that will resolve on Mainnet and a PayID client.
     let payIDClient = PayIDClient(network: .main)
 
     // WHEN it is resolved to an XRP address.
@@ -35,7 +35,7 @@ final class PayIDIntegrationTests: XCTestCase {
   func testResolvePaymentPointerKnownPointerTestnet() {
     let expectation = XCTestExpectation(description: "resolveToXRP completion called.")
 
-    // GIVEN a Pay ID that will resolve on testnet and a PayID client.
+    // GIVEN a Pay ID that will resolve on Testnet and a PayID client.
     let payIDClient = PayIDClient(network: .test)
 
     // WHEN it is resolved to an XRP address.
