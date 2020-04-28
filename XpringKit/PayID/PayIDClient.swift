@@ -5,7 +5,7 @@ import Foundation
 /// - Warning:  This class is experimental and should not be used in production applications.
 public class PayIDClient: PayIDClientProtocol {
   /// The network this PayID client resolves on.
-  private let network: XRPLNetwork
+  public let network: XRPLNetwork
 
   /// Initialize a new PayIDClient.
   ///
