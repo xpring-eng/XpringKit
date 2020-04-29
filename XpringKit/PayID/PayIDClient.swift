@@ -34,7 +34,7 @@ public class PayIDClient {
 
     let path = String(paymentPointer.path.dropFirst())
     let host = paymentPointer.host
-    let acceptHeaderValue = "application/\(self.network.rawValue)+json"
+    let acceptHeaderValue = "application/\(self.network)+json"
 
     var endpoint = "/{host}/{path}"
 
