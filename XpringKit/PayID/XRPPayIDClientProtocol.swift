@@ -1,7 +1,7 @@
 import Foundation
 
-/// An interface for interaction with a PayID service.
-public protocol PayIDClientProtocol {
+/// An interface for an XRP PayID client.
+public protocol XRPPayIDClientProtocol {
   /// Resolve the given PayID to an XRP Address.
   ///
   /// - Note: The returned value will always be in an X-Address format.

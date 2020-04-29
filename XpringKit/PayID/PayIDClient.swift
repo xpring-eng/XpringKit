@@ -27,7 +27,7 @@ public class PayIDClient {
   /// - Parameter payID: The PayID to resolve for an address.
   /// - Returns: An address representing the given PayID.
   // TODO(keefertaylor): Make this API synchronous to mirror functionality provided by ILP / XRP.
-  public func addressForPayID(for payID: String, completion: @escaping (Swift.Result<CryptoAddressDetails, PayIDError>) -> Void) {
+  public func address(for payID: String, completion: @escaping (Swift.Result<CryptoAddressDetails, PayIDError>) -> Void) {
     guard let paymentPointer = PayIDUtils.parse(payID: payID) else {
       return completion(.failure(.invalidPaymentPointer(paymentPointer: payID)))
     }
