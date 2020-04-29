@@ -7,12 +7,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## 3.0.0 - March 27, 2020
+
+This release contains serveral breaking changes that are required in order to:
+- Support more protocols than just XRP Ledger (ILP, etc)
+- Migrate the library to use the rippled node directly
+
+Please note the changes and deprecations below. 
+
 #### Removed
 
 - All legacy services are removed from XpringKit. All RPC's go through [rippled's protocol buffer API](https://github.com/ripple/rippled/pull/3254).
 - `getTransactionStatus` is removed. Please use `getPaymentStatus` instead.
 
 #### Changed
+- `XRPClient` requires a new parameter in its constructor that identifies the network it is attached to.
 - `XRPClient` now uses [rippled's protocol buffer API](https://github.com/ripple/rippled/pull/3254) rather than the legacy API. Users who wish to use the legacy API should pass `false` for `useNewProtocolBuffers` in the constructor.
 - `IlpClient` methods now throw `IlpError`s if something goes wrong during the call (either client side or server side).  This is only breaking if users are handling special error cases, which were previously `RPCError`s
 
