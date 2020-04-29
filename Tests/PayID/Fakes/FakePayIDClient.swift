@@ -2,7 +2,7 @@ import Foundation
 import XpringKit
 
 /// Fakes a PayID client.
-public class FakePayIDClient: PayIDClientProtocol {
+public class FakePayIDClient: XRPPayIDClientProtocol {
   /// Results from method calls.
   private let addressResult: Result<String, PayIDError>
 

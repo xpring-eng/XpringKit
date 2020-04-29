@@ -27,7 +27,7 @@ final class XpringClientTest: XCTestCase {
   private let xrpError = XRPLedgerError.unknown("Test XRP error")
 
   func testSendSuccess() throws {
-    // GIVEN a XpringClient composed of a fake PayIDClient and a fake XRPClient which will both succeed.
+    // GIVEN a XpringClient composed of a fake XRPPayIDClient and a fake XRPClient which will both succeed.
     let expectedTransactionHash = "deadbeefdeadbeefdeadbeef"
     let xrpClient: XRPClientProtocol = FakeXRPClient(
       getBalanceValue: .success(fakeBalanceValue),
@@ -60,7 +60,7 @@ final class XpringClientTest: XCTestCase {
   }
 
   func testSendFailureInPayID() throws {
-    // GIVEN a XpringClient composed of a PayIDClient which will throw an error.
+    // GIVEN a XpringClient composed of an XRPPayIDClient which will throw an error.
     let expectedTransactionHash = "deadbeefdeadbeefdeadbeef"
     let xrpClient: XRPClientProtocol = FakeXRPClient(
       getBalanceValue: .success(fakeBalanceValue),
