@@ -8,7 +8,7 @@ set -e -o pipefail
 
 echo "Regenerating Protocol Buffers from Hermes ILP"
 
-ILP_SWIFT_OUT_DIR=./XpringKit/generated/ilp
+ILP_SWIFT_OUT_DIR=./XpringKit/ILP/Generated
 
 mkdir -p $ILP_SWIFT_OUT_DIR
 protoc \
@@ -24,7 +24,7 @@ protoc \
 
 echo "Regenerating Protocol Buffers from Rippled"
 
-SWIFT_OUT_DIR=./XpringKit/generated
+SWIFT_OUT_DIR=./XpringKit/XRP/Generated/
 
 mkdir -p $SWIFT_OUT_DIR
 protoc \
@@ -33,34 +33,5 @@ protoc \
     --swift_out=$SWIFT_OUT_DIR \
     --swiftgrpc_out=$SWIFT_OUT_DIR \
     ./rippled/src/ripple/proto/org/xrpl/rpc/v1/*.proto
-
-echo "Regenerating Common Protos..."
-
-LEGACY_PROTO_DIR=./XpringKit/generated/Legacy
-
-mkdir -p $LEGACY_PROTO_DIR
-protoc \
-    --proto_path=./xpring-common-protocol-buffers/proto \
-    --swift_opt=Visibility=Public \
-    --swift_out=$LEGACY_PROTO_DIR \
-    --swiftgrpc_out=$LEGACY_PROTO_DIR \
-    ./xpring-common-protocol-buffers/proto/*.proto
-
-echo "Prefixing Legacy Protocol Buffers"
-cd $LEGACY_PROTO_DIR
-for file in *.pb.swift
-do
-  if [[ $file != *".legacy."* ]];
-  then
-    mv "$file" "${file/.pb.swift/.legacy.pb.swift}"
-  fi
-done
-for file in *.grpc.swift
-do
-  if [[ $file != *".legacy."* ]];
-  then
-    mv "$file" "${file/.grpc.swift/.legacy.grpc.swift}"
-  fi
-done
 
 echo "All done!"

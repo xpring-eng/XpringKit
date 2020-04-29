@@ -11,17 +11,30 @@ targets:
   XpringKit:
     type: framework
     platform: [iOS, macOS]
-    sources: [XpringKit]
-    resources: [XpringKit/Resources]
+    sources:  
+      - path: XpringKit
+        excludes:
+          - "**/.swiftlint.yml"
+    resources: [XpringKit/Common/Resources]
     scheme:
       testTargets:
         - XpringKitTests_${platform}
       gatherCoverageData: true
     postCompileScripts:
-      - script: swiftlint autocorrect --config .swiftlint.yml
-        name: SwiftLint
+      - name: SwiftLint
+        script: |
+          if which swiftlint >/dev/null; then
+            # Autocorrect anything SwiftLint can solve, then lint.
+            swiftlint autocorrect
+            swiftlint
+          else
+            echo "warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint"
+          fi
     dependencies:
+      - carthage: AlamoFire
       - carthage: BigInt
+      - carthage: BoringSSL
+      - carthage: CgRPC
       - carthage: SwiftProtobuf
       - carthage: SwiftGRPC
   XpringKitTests:

@@ -10,7 +10,7 @@ internal class JavaScriptPayIDUtils {
     }
 
     public enum Methods {
-      public static let parsePaymentPointer = "parsePaymentPointer"
+      public static let parsePayID = "parsePayID"
     }
 
     public enum Properties {
@@ -24,24 +24,24 @@ internal class JavaScriptPayIDUtils {
 
   /// Initialize a JavaScriptPayIDUtils object.
   public init() {
-    payIDUtilsClass = XRPJavaScriptLoader.load(ResourceNames.Classes.payIDUtils)
+    payIDUtilsClass = JavaScriptLoader.load(ResourceNames.Classes.payIDUtils)
   }
 
-  /// Parse a payment pointer string to a payment pointer object
+  /// Parse the given Pay ID to a set of components.
   ///
-  /// - Parameter paymentPointer: The input string payment pointer.
-  /// - Returns: A  tuple containing components of the payment pointer if the inputs were valid, otherwise nil.
-  public func parse(paymentPointer: String) -> (host: String, path: String)? {
+  /// - Parameter payID: A PayID to parse.
+  /// - Returns: A set of components parsed from the PayID.
+  public func parse(payID: String) -> (host: String, path: String)? {
     let result = payIDUtilsClass.invokeMethod(
-      ResourceNames.Methods.parsePaymentPointer, withArguments: [ paymentPointer ]
+      ResourceNames.Methods.parsePayID, withArguments: [ payID ]
     )!
 
     guard !result.isUndefined else {
       return nil
     }
 
-    let host = XRPJavaScriptLoader.load(ResourceNames.Properties.host, from: result).toString()!
-    let path = XRPJavaScriptLoader.load(ResourceNames.Properties.path, from: result).toString()!
+    let host = JavaScriptLoader.load(ResourceNames.Properties.host, from: result).toString()!
+    let path = JavaScriptLoader.load(ResourceNames.Properties.path, from: result).toString()!
 
     return (host: host, path: path)
   }

@@ -30,12 +30,13 @@ internal class JavaScriptUtils {
 
   /// Initialize a JavaScriptUtils object.
   public init() {
-    utilsClass = XRPJavaScriptLoader.load(ResourceNames.Classes.utils)
+    utilsClass = JavaScriptLoader.load(ResourceNames.Classes.utils)
   }
 
   /// Check if the given address is a valid XRP address.
   ///
-  /// - Note: This function only checks that the address is a valid address, the activation status of the address on the ledger is not checked by this function.
+  /// - Note: This function only checks that the address is a valid address, the activation status of the address on the
+  ///         ledger is not checked by this function.
   ///
   /// - Parameter address: The address to validate.
   ///	- Returns: true if the address is valid, otherwise false.
@@ -98,9 +99,9 @@ internal class JavaScriptUtils {
       return nil
     }
 
-    let classicAddress = XRPJavaScriptLoader.load(ResourceNames.Properties.address, from: result).toString()!
-    let isTest = XRPJavaScriptLoader.load(ResourceNames.Properties.test, from: result).toBool()
-    if let tag = XRPJavaScriptLoader.failableLoad(ResourceNames.Properties.tag, from: result) {
+    let classicAddress = JavaScriptLoader.load(ResourceNames.Properties.address, from: result).toString()!
+    let isTest = JavaScriptLoader.load(ResourceNames.Properties.test, from: result).toBool()
+    if let tag = JavaScriptLoader.failableLoad(ResourceNames.Properties.tag, from: result) {
       return (classicAddress, tag.toUInt32(), isTest)
     }
     return (classicAddress, nil, isTest)
