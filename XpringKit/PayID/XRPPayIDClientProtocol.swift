@@ -4,7 +4,7 @@ import Foundation
 public protocol XRPPayIDClientProtocol {
   
   /// The XRP Ledger network that addresses will be resolved on.
-  var xrplNetwork: XRPLNetwork
+  private let xrplNetwork: XRPLNetwork
   
   /// Resolve the given PayID to an XRP Address.
   ///
