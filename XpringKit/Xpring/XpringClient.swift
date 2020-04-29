@@ -2,8 +2,8 @@ import Foundation
 
 /// Composes interactions of Xpring services.
 public class XpringClient {
-  /// A PayIDClient used to interact with the Pay ID protocol.
-  private let payIDClient: PayIDClientProtocol
+  /// An XRP PayIDClient used to interact with the Pay ID protocol.
+  private let payIDClient: XRPPayIDClientProtocol
 
   /// An XRPClient used to interact with the XRP Ledger protocol.
   private let xrpClient: XRPClientProtocol
@@ -11,9 +11,9 @@ public class XpringClient {
   /// Create a new XpringClient.
   ///
   /// - Parameters:
-  ///   - payIDClient A Pay ID Client used to interact with the Pay ID protocol.
+  ///   - payIDClient An XRP Pay ID Client used to interact with the Pay ID protocol.
   ///   - xrpClient An XRP Client used to interact with the XRP Ledger protocol.
-  public init(payIDClient: PayIDClientProtocol, xrpClient: XRPClientProtocol) {
+  public init(payIDClient: XRPPayIDClientProtocol, xrpClient: XRPClientProtocol) {
     // TODO(keefertaylor): Validate that components are attached to the same network.
     self.payIDClient = payIDClient
     self.xrpClient = xrpClient
