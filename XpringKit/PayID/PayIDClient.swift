@@ -5,30 +5,36 @@ import Foundation
 /// - Warning:  This class is experimental and should not be used in production applications.
 public class PayIDClient: PayIDClientProtocol {
   /// The network this PayID client resolves on.
-  private let network: XRPLNetwork
+  private let network: String
 
-  /// Initialize a new PayIDClient.
+  /// Initialize a new PayID client.
   ///
   /// - Parameter network: The network that addresses will be resolved on.
-  public init(network: XRPLNetwork) {
+  ///
+  /// - Note: Networks in this constructor take the form of an asset and an optional network (<asset>-<network>), for instance:
+  ///   - xrpl-testnet
+  ///   - xrpl-mainnet
+  ///   - eth-rinkby
+  ///   - ach
+  ///
+  //  TODO: Link a canonical list at payid.org when available.
+  public init(network: String) {
     self.network = network
   }
 
-  /// Resolve the given PayID to an XRP Address.
+  /// Resolve the given PayID to an address.
   ///
-  /// - Note: The returned value will always be in an X-Address format.
-  ///
-  /// - Parameter payID: The payID to resolve for an address.
-  /// - Returns: An XRP address representing the given PayID.
+  /// - Parameter payID: The PayID to resolve for an address.
+  /// - Returns: An address representing the given PayID.
   // TODO(keefertaylor): Make this API synchronous to mirror functionality provided by ILP / XRP.
-  public func xrpAddress(for payID: String, completion: @escaping (Swift.Result<String, PayIDError>) -> Void) {
+  public func addressForPayID(for payID: String, completion: @escaping (Swift.Result<String, PayIDError>) -> Void) {
     guard let paymentPointer = PayIDUtils.parse(payID: payID) else {
       return completion(.failure(.invalidPaymentPointer(paymentPointer: payID)))
     }
 
     let path = String(paymentPointer.path.dropFirst())
     let host = paymentPointer.host
-    let acceptHeaderValue = "application/xrpl-\(self.network.rawValue)+json"
+    let acceptHeaderValue = "application/\(self.network.rawValue)+json"
 
     var endpoint = "/{host}/{path}"
 
