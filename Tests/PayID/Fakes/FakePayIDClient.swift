@@ -5,6 +5,7 @@ import XpringKit
 public class FakePayIDClient: XRPPayIDClientProtocol {
   /// Results from method calls.
   private let addressResult: Result<String, PayIDError>
+  public let xrplNetwork: XRPLNetwork = .test
 
   /// Initialize a new fake Pay ID client.
   ///

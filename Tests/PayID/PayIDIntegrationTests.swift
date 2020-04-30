@@ -36,7 +36,7 @@ final class PayIDIntegrationTests: XCTestCase {
     let expectation = XCTestExpectation(description: "resolveToXRP completion called.")
 
     // GIVEN a Pay ID that will resolve on testnet and a PayID client.
-    let payIDClient = XRPPayIDClient(network: .test)
+    let payIDClient = XRPPayIDClient(xrplNetwork: .test)
 
     // WHEN it is resolved to an XRP address.
     payIDClient.xrpAddress(for: .testPointer) { result in
@@ -58,7 +58,7 @@ final class PayIDIntegrationTests: XCTestCase {
     let expectation = XCTestExpectation(description: "resolveToXRP completion called.")
 
     // GIVEN a Pay ID that will not resolve on Devnet and a PayID client.
-    let payIDClient = XRPPayIDClient(network: .dev)
+    let payIDClient = XRPPayIDClient(xrplNetwork: .dev)
 
     // WHEN it is resolved to an XRP address.
     payIDClient.xrpAddress(for: .nonExistentPointer) { result in

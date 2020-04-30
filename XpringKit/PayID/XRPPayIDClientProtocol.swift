@@ -12,5 +12,5 @@ public protocol XRPPayIDClientProtocol {
   /// - Returns: An address representing the given PayID.
   ///
   // TODO(keefertaylor): Make this API synchronous to mirror functionality provided by ILP / XRP.
-  func xrpAddress(for payID: String, completion: @escaping (String) -> Void)
+  func xrpAddress(for payID: String, completion: @escaping (Result<String, PayIDError>) -> Void)
 }
