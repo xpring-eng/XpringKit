@@ -14,7 +14,7 @@ final class PayIDIntegrationTests: XCTestCase {
     let expectation = XCTestExpectation(description: "resolveToXRP completion called.")
 
     // GIVEN a Pay ID that will resolve on mainnet and a PayID client.
-    let payIDClient = XRPPayIDClient(network: .main)
+    let payIDClient = XRPPayIDClient(xrplNetwork: .main)
 
     // WHEN it is resolved to an XRP address.
     payIDClient.xrpAddress(for: .testPointer) { result in

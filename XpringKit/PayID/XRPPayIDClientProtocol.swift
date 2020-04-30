@@ -3,12 +3,14 @@ import Foundation
 /// A protocol for an XRP PayID client.
 public protocol XRPPayIDClientProtocol {
 
-  /// Resolve the given PayID to an XRP Address.
+  /// Retrieve the XRP address associated with a PayID.
   ///
-  /// - Note: The returned value will always be in an X-Address format.
+  /// - Note: Addresses are always in the X-Address format.
+  /// - SeeAlso: https://xrpaddress.info/
   ///
   /// - Parameter payID: The payID to resolve for an address.
-  /// - Returns: An XRP address representing the given PayID.
+  /// - Returns: An address representing the given PayID.
+  ///
   // TODO(keefertaylor): Make this API synchronous to mirror functionality provided by ILP / XRP.
-  func xrpAddress(for payID: String, completion: @escaping (Swift.Result<String, PayIDError>) -> Void)
+  func xrpAddress(for payID: String, completion: @escaping (String) -> Void)
 }
