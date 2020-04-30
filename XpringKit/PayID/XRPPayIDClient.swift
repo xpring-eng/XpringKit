@@ -23,11 +23,24 @@ public class XRPPayIDClient: PayIDClient, XRPPayIDClientProtocol {
   /// - Returns: An address representing the given PayID.
   ///
   public func xrpAddress(for payID: String, completion: @escaping (Result<String, PayIDError>) -> Void) {
-    super.address(for: payID) { result in
+    super.address(for: payID) { [weak self] result in
+      guard let self = self else {
+        return
+      }
+      
       switch result {
       case .success(let resolvedAddress):
-        // here we make any necessary conversions
-        completion(.success(resolvedAddress.address))
+        if Utils.isValid(address: resolvedAddress.address) {
+          completion(.success(resolvedAddress.address))
+        }
+
+        let isTest = self.xrplNetwork !== XRPLNetwork.main
+        let encodedXAddress = Utils.encode(classicAddress: resolvedAddress.address, tag: resolvedAddress.tag, isTest: isTest)
+        if (!encodedXAddress) {
+          let unexpectedError = PayIDError.unexpectedResponse
+          completion(.failure(unexpectedError))
+        }
+        completion(.success(encodedXAddress))
       case .failure(let error):
         completion(.failure(error))
       }
