@@ -11,7 +11,8 @@ public class PayIDClient {
   ///
   /// - Parameter network: The network that addresses will be resolved on.
   ///
-  /// - Note: Networks in this constructor take the form of an asset and an optional network (<asset>-<network>), for instance:
+  /// - Note: Networks in this constructor take the form of an asset and an optional network (<asset>-<network>).
+  /// For instance:
   ///   - xrpl-testnet
   ///   - xrpl-mainnet
   ///   - eth-rinkby
@@ -27,7 +28,10 @@ public class PayIDClient {
   /// - Parameter payID: The PayID to resolve for an address.
   /// - Returns: An address representing the given PayID.
   // TODO(keefertaylor): Make this API synchronous to mirror functionality provided by ILP / XRP.
-  public func address(for payID: String, completion: @escaping (Swift.Result<CryptoAddressDetails, PayIDError>) -> Void) {
+  public func address(
+    for payID: String,
+    completion: @escaping (Swift.Result<CryptoAddressDetails, PayIDError>) -> Void
+  ) {
     guard let paymentPointer = PayIDUtils.parse(payID: payID) else {
       return completion(.failure(.invalidPaymentPointer(paymentPointer: payID)))
     }
