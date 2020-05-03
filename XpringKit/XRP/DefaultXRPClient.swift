@@ -52,6 +52,9 @@ public class DefaultXRPClient {
       $0.account = Org_Xrpl_Rpc_V1_AccountAddress.with {
         $0.address = classicAddress
       }
+      $0.ledger = Org_Xrpl_Rpc_V1_LedgerSpecifier.with {
+        $0.shortcut = Org_Xrpl_Rpc_V1_LedgerSpecifier.Shortcut.validated
+      }
     }
     return try networkClient.getAccountInfo(accountInfoRequest)
   }
@@ -198,6 +201,11 @@ extension DefaultXRPClient: XRPClientDecorator {
 
     let request = Org_Xrpl_Rpc_V1_GetTransactionRequest.with {
       $0.hash = transactionHashData
+      $0.ledgerRange = Org_Xrpl_Rpc_V1_LedgerRange.with {
+        // This config uses max validated ledger. See LedgerRange definition.
+        $0.ledgerIndexMin = 1
+        $0.ledgerIndexMax = 0
+      }
     }
 
     let getTransactionResponse = try self.networkClient.getTransaction(request)
@@ -249,6 +257,9 @@ extension DefaultXRPClient: XRPClientDecorator {
     let request = Org_Xrpl_Rpc_V1_GetAccountTransactionHistoryRequest.with {
       $0.account = Org_Xrpl_Rpc_V1_AccountAddress.with {
         $0.address = classicAddressComponents.classicAddress
+      }
+      $0.ledgerSpecifier = Org_Xrpl_Rpc_V1_LedgerSpecifier.with {
+        $0.shortcut = Org_Xrpl_Rpc_V1_LedgerSpecifier.Shortcut.validated
       }
     }
 
