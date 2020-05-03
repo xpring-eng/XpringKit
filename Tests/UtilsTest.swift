@@ -327,7 +327,7 @@ class UtilsTest: XCTestCase {
       }
     }
   }
-
+/*
   func testDropsToXrpThrowsWithAnInvalidValue() {
     // GIVEN invalid drops values, WHEN converted to xrp, THEN an exception is thrown
     XCTAssertThrowsError(try Utils.dropsToXrp("FOO"), "Exception not thrown") { error in
@@ -527,4 +527,6 @@ class UtilsTest: XCTestCase {
     // GIVEN a nil xrp value, WHEN converted to drops,
     // THEN an exception is thrown
     // TODO: do we need this test case?
-  }}
+  }
+ */
+ }
