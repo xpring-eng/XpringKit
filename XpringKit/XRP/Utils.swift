@@ -78,30 +78,20 @@ public enum Utils {
     let dropsRegex: String = "^-?[0-9]*['.']?[0-9]*$"
     if drops.range(of: dropsRegex, options: .regularExpression) == nil {
       throw XRPLedgerError.invalidDropsValue(
-        String(
-          format: "dropsToXrp: invalid value %s, should be a number matching %s.", drops, dropsRegex
-        )
+        "dropsToXrp: invalid value \(drops), should be a number matching \(dropsRegex)."
       )
     } else if drops == "." {
-      throw XRPLedgerError.invalidDropsValue(
-        String(
-          format: "dropsToXrp: invalid value %s, should be a string-encoded number.", drops
-        )
-      )
+      throw XRPLedgerError.invalidDropsValue("dropsToXrp: invalid value \(drops), should be a string-encoded number.")
     }
 
     // check for non-zero fractional amount in drops value
     if drops.contains(".") {
       let dropsComponents: [Substring] = drops.split(separator: ".")
       if dropsComponents.count > 2 {
-        throw XRPLedgerError.invalidDropsValue(
-          String(
-            format: "dropsToXrp: invalid value, %s has too many decimal points.", drops
-          )
-        )
+        throw XRPLedgerError.invalidDropsValue("dropsToXrp: invalid value, \(drops) has too many decimal points.")
       }
       if dropsComponents.count == 2 || (dropsComponents.count == 1 && drops.starts(with: ".")) {
-        if UInt64(dropsComponents[0]) != 0 {
+        if UInt64(dropsComponents[dropsComponents.count - 1]) != 0 {
           throw XRPLedgerError.invalidDropsValue("dropsToXrp: value \(drops) must be a whole number.")
         }
       }
@@ -131,7 +121,7 @@ public enum Utils {
         throw XRPLedgerError.invalidDropsValue("xrpToDrops: invalid value, \(xrp) has too many decimal points.")
       }
       if !xrp.hasSuffix(".") {
-        let fraction = xrpComponents[-1]
+        let fraction = xrpComponents[xrpComponents.count - 1]
         if fraction.count > 6 {
           let index = fraction.index(fraction.startIndex, offsetBy: 6)
           let fractionTail = fraction[index...]
@@ -141,7 +131,7 @@ public enum Utils {
         }
       }
     }
-    
+
     return NSDecimalNumber(string: xrp).multiplying(by: NSDecimalNumber(1_000_000.0))
       .description(withLocale: Locale(identifier: "en_US"))
   }
