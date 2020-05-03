@@ -125,7 +125,7 @@ public enum Utils {
         if fraction.count > 6 {
           let index = fraction.index(fraction.startIndex, offsetBy: 6)
           let fractionTail = fraction[index...]
-          if UInt32(fractionTail) == 0 {
+          if UInt32(fractionTail) != UInt32(0) {
             throw XRPLedgerError.invalidXRPValue("xrpToDrops: value \(xrp) has too many decimal places.")
           }
         }
