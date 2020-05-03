@@ -243,4 +243,288 @@ class UtilsTest: XCTestCase {
     // THEN the hash is nil.
     XCTAssertNil(transactionHash)
   }
-}
+
+  // MARK: - dropsToXrp
+
+  func testDropsToXrpWorksWithTypicalAmount() throws {
+    // GIVEN a typical, valid drops value, WHEN converted to xrp
+    let xrp: String = try Utils.dropsToXrp("2000000")
+
+    // THEN the conversion is as expected
+    XCTAssertEqual("2", xrp, "2 million drops equals 2 XRP")
+  }
+
+  func testDropsToXrpWorksWithFractions() throws {
+    // GIVEN drops amounts that convert to fractional xrp amounts
+    // WHEN converted to xrp THEN the conversion is as expected
+    var xrp: String = try Utils.dropsToXrp("3456789")
+    XCTAssertEqual("3.456789", xrp, "3,456,789 drops equals 3.456789 XRP")
+
+    xrp = try Utils.dropsToXrp("3400000")
+    XCTAssertEqual("3.4", xrp, "3,400,000 drops equals 3.4 XRP")
+
+    xrp = try Utils.dropsToXrp("1")
+    XCTAssertEqual("0.000001", xrp, "1 drop equals 0.000001 XRP")
+
+    xrp = try Utils.dropsToXrp("1.0")
+    XCTAssertEqual("0.000001", xrp, "1.0 drops equals 0.000001 XRP")
+
+    xrp = try Utils.dropsToXrp("1.00")
+    XCTAssertEqual("0.000001", xrp, "1.00 drops equals 0.000001 XRP")
+  }
+
+  func testDropsToXrpWorksWithZero() throws {
+    // GIVEN several equivalent representations of zero
+    // WHEN converted to xrp, THEN the result is zero
+    var xrp: String = try Utils.dropsToXrp("0")
+    XCTAssertEqual("0", xrp, "0 drops equals 0 XRP")
+
+    // negative zero is equivalent to zero
+    xrp = try Utils.dropsToXrp("-0")
+    XCTAssertEqual("0", xrp, "-0 drops equals 0 XRP")
+
+    xrp = try Utils.dropsToXrp("0.00")
+    XCTAssertEqual("0", xrp, "0.00 drops equals 0 XRP")
+
+    xrp = try Utils.dropsToXrp("000000000")
+    XCTAssertEqual("0", xrp, "000000000 drops equals 0 XRP")
+  }
+
+  func testDropsToXrpWorksWithNegativeValues() throws {
+    // GIVEN a negative drops amount
+    // WHEN converted to xrp
+    let xrp: String = try Utils.dropsToXrp("-2000000")
+
+    // THEN the conversion is also negative
+    XCTAssertEqual("-2", xrp, "-2 million drops equals -2 XRP")
+  }
+
+  func testDropsToXrpWorksWithValueEndingWithDecimalPoint() throws {
+    // GIVEN a positive or negative drops amount that ends with a decimal point
+    // WHEN converted to xrp THEN the conversion is successful and correct
+    var xrp: String = try Utils.dropsToXrp("2000000.")
+    XCTAssertEqual("2", xrp, "2000000. drops equals 2 XRP")
+
+    xrp = try Utils.dropsToXrp("-2000000.")
+    XCTAssertEqual("-2", xrp, "-2000000. drops equals -2 XRP")
+  }
+
+  func testDropsToXrpThrowsWithAnAmountWithTooManyDecimalPlaces() {
+    XCTAssertThrowsError(try Utils.dropsToXrp("1.2"), "Exception not thrown") { error in
+      guard
+        error as? XRPLedgerError != nil
+        else {
+          XCTFail("Error thrown was not XRPLedgerError")
+          return
+      }
+    }
+    XCTAssertThrowsError(try Utils.dropsToXrp("0.10"), "Exception not thrown") { error in
+      guard
+        error as? XRPLedgerError != nil
+        else {
+          XCTFail("Error thrown was not XRPLedgerError")
+          return
+      }
+    }
+  }
+
+  func testDropsToXrpThrowsWithAnInvalidValue() {
+    // GIVEN invalid drops values, WHEN converted to xrp, THEN an exception is thrown
+    XCTAssertThrowsError(try Utils.dropsToXrp("FOO"), "Exception not thrown") { error in
+      guard
+        error as? XRPLedgerError != nil
+        else {
+          XCTFail("Error thrown was not XRPLedgerError")
+          return
+      }
+    }
+    XCTAssertThrowsError(try Utils.dropsToXrp("1e-7"), "Exception not thrown") { error in
+      guard
+        error as? XRPLedgerError != nil
+        else {
+          XCTFail("Error thrown was not XRPLedgerError")
+          return
+      }
+    }
+    XCTAssertThrowsError(try Utils.dropsToXrp("2,0"), "Exception not thrown") { error in
+      guard
+        error as? XRPLedgerError != nil
+        else {
+          XCTFail("Error thrown was not XRPLedgerError")
+          return
+      }
+    }
+    XCTAssertThrowsError(try Utils.dropsToXrp("."), "Exception not thrown") { error in
+      guard
+        error as? XRPLedgerError != nil
+        else {
+          XCTFail("Error thrown was not XRPLedgerError")
+          return
+      }
+    }
+  }
+
+  func testDropsToXrpThrowsWithAnAmountMoreThanOneDecimalPoint() {
+    // GIVEN invalid drops values that contain more than one decimal point
+    // WHEN converted to xrp THEN an exception is thrown
+    XCTAssertThrowsError(try Utils.dropsToXrp("1.0.0"), "Exception not thrown") { error in
+      guard
+        error as? XRPLedgerError != nil
+        else {
+          XCTFail("Error thrown was not XRPLedgerError")
+          return
+      }
+    }
+    XCTAssertThrowsError(try Utils.dropsToXrp("..."), "Exception not thrown") { error in
+      guard
+        error as? XRPLedgerError != nil
+        else {
+          XCTFail("Error thrown was not XRPLedgerError")
+          return
+      }
+    }
+  }
+
+  func testDropsToXrpThrowsWithNullArgument() {
+    // GIVEN a nil drops value, WHEN converted to XRP,
+    // THEN an exception is thrown
+    // TODO: do we need this test case?
+  }
+
+  // MARK: - xrpToDrops
+
+  func testXrpToDropsWorksWithATypicalAmount() throws {
+    // GIVEN an xrp amount that is typical and valid
+    // WHEN converted to drops
+    let drops: String = try Utils.xrpToDrops("2")
+
+    // THEN the conversion is successful and correct
+    XCTAssertEqual("2000000", drops, "2 XRP equals 2 million drops")
+  }
+
+  func testXrpToDropsWorksWithFractions() throws {
+    // GIVEN xrp amounts that are fractional
+    // WHEN converted to drops THEN the conversions are successful and correct
+    var drops: String = try Utils.xrpToDrops("3.456789")
+    XCTAssertEqual("3456789", drops, "3.456789 XRP equals 3,456,789 drops")
+    drops = try Utils.xrpToDrops("3.400000")
+    XCTAssertEqual("3400000", drops, "3.400000 XRP equals 3,400,000 drops")
+    drops = try Utils.xrpToDrops("0.000001")
+    XCTAssertEqual("1", drops, "0.000001 XRP equals 1 drop")
+    drops = try Utils.xrpToDrops("0.0000010")
+    XCTAssertEqual("1", drops, "0.0000010 XRP equals 1 drop")
+  }
+
+  func testXrpToDropsWorksWithZero() throws {
+    // GIVEN xrp amounts that are various equivalent representations of zero
+    // WHEN converted to drops THEN the conversions are equal to zero
+    var drops: String = try Utils.xrpToDrops("0")
+    XCTAssertEqual("0", drops, "0 XRP equals 0 drops")
+    drops = try Utils.xrpToDrops("-0"); // negative zero is equivalent to zero
+    XCTAssertEqual("0", drops, "-0 XRP equals 0 drops")
+    drops = try Utils.xrpToDrops("0.000000")
+    XCTAssertEqual("0", drops, "0.000000 XRP equals 0 drops")
+    drops = try Utils.xrpToDrops("0.0000000")
+    XCTAssertEqual("0", drops, "0.0000000 XRP equals 0 drops")
+  }
+
+  func testXrpToDropsWorksWithNegativeValues() throws {
+    // GIVEN a negative xrp amount
+    // WHEN converted to drops THEN the conversion is also negative
+    let drops: String = try Utils.xrpToDrops("-2")
+    XCTAssertEqual("-2000000", drops, "-2 XRP equals -2 million drops")
+  }
+
+  func testXrpToDropsWorksWithAValueEndingWithADecimalPoint() throws {
+    // GIVEN an xrp amount that ends with a decimal point
+    // WHEN converted to drops THEN the conversion is correct and successful
+    var drops: String = try Utils.xrpToDrops("2.")
+    XCTAssertEqual("2000000", drops, "2. XRP equals 2000000 drops")
+    drops = try Utils.xrpToDrops("-2.")
+    XCTAssertEqual("-2000000", drops, "-2. XRP equals -2000000 drops")
+  }
+
+  func testXrpToDropsThrowsWithAnAmountWithTooManyDecimalPlaces() {
+    // GIVEN an xrp amount with too many decimal places
+    // WHEN converted to a drops amount THEN an exception is thrown
+    XCTAssertThrowsError(try Utils.xrpToDrops("1.1234567"), "Exception not thrown") { error in
+      guard
+        error as? XRPLedgerError != nil
+        else {
+          XCTFail("Error thrown was not XRPLedgerError")
+          return
+      }
+    }
+    XCTAssertThrowsError(try Utils.xrpToDrops("0.0000001"), "Exception not thrown") { error in
+      guard
+        error as? XRPLedgerError != nil
+        else {
+          XCTFail("Error thrown was not XRPLedgerError")
+          return
+      }
+    }
+  }
+
+  func testXrpToDropsThrowsWithAnInvalidValue() {
+    // GIVEN xrp amounts represented as various invalid values
+    // WHEN converted to drops THEN an exception is thrown
+    XCTAssertThrowsError(try Utils.xrpToDrops("FOO"), "Exception not thrown") { error in
+      guard
+        error as? XRPLedgerError != nil
+        else {
+          XCTFail("Error thrown was not XRPLedgerError")
+          return
+      }
+    }
+    XCTAssertThrowsError(try Utils.xrpToDrops("1e-7"), "Exception not thrown") { error in
+      guard
+        error as? XRPLedgerError != nil
+        else {
+          XCTFail("Error thrown was not XRPLedgerError")
+          return
+      }
+    }
+    XCTAssertThrowsError(try Utils.xrpToDrops("2,0"), "Exception not thrown") { error in
+      guard
+        error as? XRPLedgerError != nil
+        else {
+          XCTFail("Error thrown was not XRPLedgerError")
+          return
+      }
+    }
+    XCTAssertThrowsError(try Utils.xrpToDrops("."), "Exception not thrown") { error in
+      guard
+        error as? XRPLedgerError != nil
+        else {
+          XCTFail("Error thrown was not XRPLedgerError")
+          return
+      }
+    }
+  }
+
+  func testXrpToDropsThrowsWithAnAmountMoreThanOneDecimalPoint() {
+    // GIVEN an xrp amount with more than one decimal point, or all decimal points
+    // WHEN converted to drops THEN an exception is thrown
+    XCTAssertThrowsError(try Utils.xrpToDrops("1.0.0"), "Exception not thrown") { error in
+      guard
+        error as? XRPLedgerError != nil
+        else {
+          XCTFail("Error thrown was not XRPLedgerError")
+          return
+      }
+    }
+    XCTAssertThrowsError(try Utils.xrpToDrops("..."), "Exception not thrown") { error in
+      guard
+        error as? XRPLedgerError != nil
+        else {
+          XCTFail("Error thrown was not XRPLedgerError")
+          return
+      }
+    }
+  }
+
+  func testXrpToDropsThrowsWithNullArgument() {
+    // GIVEN a nil xrp value, WHEN converted to drops,
+    // THEN an exception is thrown
+    // TODO: do we need this test case?
+  }}

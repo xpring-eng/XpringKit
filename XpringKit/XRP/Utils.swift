@@ -66,76 +66,99 @@ public enum Utils {
   public static func toTransactionHash(transactionBlobHex: Hex) -> Hex? {
     return javaScriptUtils.toTransactionHash(transactionBlobHex: transactionBlobHex)
   }
-  
-  
+
   /// Convert from units in drops to XRP.
   ///
   /// - Parameter drops: An amount of XRP expressed in units of drops.
   /// - Returns: A String representing the drops amount in units of XRP.
-  /// - Throws: IllegalArgumentException if drops is in an invalid format.
+  /// - Throws: XRPLedgerError if drops is in an invalid format.
   public static func dropsToXrp(_ drops: String) throws -> String {
     // TODO: nil preconditions check?
 
     let dropsRegex: String = "^-?[0-9]*['.']?[0-9]*$"
     if drops.range(of: dropsRegex, options: .regularExpression) == nil {
-      throw XRPLedgerError.invalidDropsValue(String(
-        format: "dropsToXrp: invalid value %s, should be a number matching %s.", drops, dropsRegex))
-    } else if (drops == ".") {
-      throw XRPLedgerError.invalidDropsValue(String(
-        format: "dropsToXrp: invalid value %s, should be a string-encoded number.", drops))
+      throw XRPLedgerError.invalidDropsValue(
+        String(
+          format: "dropsToXrp: invalid value %s, should be a number matching %s.", drops, dropsRegex
+        )
+      )
+    } else if drops == "." {
+      throw XRPLedgerError.invalidDropsValue(
+        String(
+          format: "dropsToXrp: invalid value %s, should be a string-encoded number.", drops
+        )
+      )
     }
 
     // check for non-zero fractional amount in drops value
     if drops.contains(".") {
       let dropsComponents: [Substring] = drops.split(separator: ".")
       if dropsComponents.count > 2 {
-        throw XRPLedgerError.invalidDropsValue(String(
-          format: "dropsToXrp: invalid value, %s has too many decimal points.", drops))
+        throw XRPLedgerError.invalidDropsValue(
+          String(
+            format: "dropsToXrp: invalid value, %s has too many decimal points.", drops
+          )
+        )
       }
       if dropsComponents.count == 1 && drops.starts(with: ".") {
         if UInt64(dropsComponents[0]) != 0 {
-          throw XRPLedgerError.invalidDropsValue(String(
-            format:"dropsToXrp: value %s must be a whole number.", drops))
+          throw XRPLedgerError.invalidDropsValue(
+            String(
+              format: "dropsToXrp: value %s must be a whole number.", drops
+            )
+          )
         }
       }
     }
-    return NSDecimalNumber(string: drops).dividing(by: NSDecimalNumber(1000000.0)).description(withLocale: Locale(identifier: "en_US"))
+    return NSDecimalNumber(string: drops).dividing(by: NSDecimalNumber(1_000_000.0))
+      .description(withLocale: Locale(identifier: "en_US"))
   }
 
-  /**
-   * Convert from units in XRP to drops.
-   *
-   * @param xrp An amount of XRP expressed in units of XRP.
-   * @return A String representing an amount of XRP expressed in units of drops.
-   * @throws IllegalArgumentException if xrp is in invalid format.
-   */
+  /// Convert from units in XRP to drops.
+  ///
+  /// - Parameter xrp: An amount of XRP expressed in units of XRP.
+  /// - Returns: A String representing an amount of XRP expressed in units of drops.
+  /// - Throws: XRPLedgerError if XRP is in invalid format.
   public static func xrpToDrops(_ xrp: String) throws -> String {
     // TODO: nil preconditions check?
     let xrpRegex: String = "^-?[0-9]*['.']?[0-9]*$"
     if xrp.range(of: xrpRegex, options: .regularExpression) == nil {
-      throw XRPLedgerError.invalidXRPValue(String(
-        format: "xrpToDrops: invalid value, %s should be a number matching %s.", xrp, xrpRegex))
+      throw XRPLedgerError.invalidXRPValue(
+        String(
+          format: "xrpToDrops: invalid value, %s should be a number matching %s.", xrp, xrpRegex
+        )
+      )
     } else if xrp == "." {
-      throw XRPLedgerError.invalidXRPValue(String(
-        format: "xrpToDrops: invalid value, %s should be a string-encoded number.", xrp))
+      throw XRPLedgerError.invalidXRPValue(
+        String(
+          format: "xrpToDrops: invalid value, %s should be a string-encoded number.", xrp
+        )
+      )
     }
 
     // validate maximum of 1 decimal point and 6 decimal places.
     if xrp.contains(".") {
       let xrpComponents: [Substring] = xrp.split(separator: ".")
       if xrpComponents.count > 2 {
-        throw XRPLedgerError.invalidDropsValue(String(
-          format: "xrpToDrops: invalid value, %s has too many decimal points.", xrp))
+        throw XRPLedgerError.invalidDropsValue(
+          String(
+            format: "xrpToDrops: invalid value, %s has too many decimal points.", xrp
+          )
+        )
       }
       if !xrp.hasSuffix(".") {
         let fraction = xrpComponents[-1]
-        if UInt64(String(fraction))! > UInt64(999999) {
-          throw XRPLedgerError.invalidXRPValue(String(
-            format:"xrpToDrops: value %s has too many decimal places.", xrp))
+        if UInt64(String(fraction))! > UInt64(999_999) {
+          throw XRPLedgerError.invalidXRPValue(
+            String(
+              format: "xrpToDrops: value %s has too many decimal places.", xrp
+            )
+          )
         }
       }
 
     }
-    return NSDecimalNumber(string: xrp).multiplying(by: NSDecimalNumber(1000000.0)).description(withLocale: Locale(identifier: "en_US"))
+    return NSDecimalNumber(string: xrp).multiplying(by: NSDecimalNumber(1_000_000.0))
+      .description(withLocale: Locale(identifier: "en_US"))
   }
 }

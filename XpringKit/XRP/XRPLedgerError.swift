@@ -11,10 +11,10 @@ public enum XRPLedgerError: Equatable, Error {
 
   /// An invalid drops amount was given.  A more descriptive string is provided as an associeted value.
   case invalidDropsValue(String)
-  
+
   /// An invalid XRP amount was given.  A more descriptive string is provided as an associated value.
   case invalidXRPValue(String)
-  
+
   /// The requested functionality is not yet implemented.
   case unimplemented
 
