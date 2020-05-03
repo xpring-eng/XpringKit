@@ -71,7 +71,7 @@ public enum Utils {
   ///
   /// - Parameter drops: An amount of XRP expressed in units of drops.
   /// - Returns: A String representing the drops amount in units of XRP.
-  /// - Throws: XRPLedgerError if drops is in an invalid format.
+  /// - Throws: An XRPLedgerError if drops is in an invalid format.
   public static func dropsToXrp(_ drops: String) throws -> String {
     // TODO: nil preconditions check?
 
@@ -90,8 +90,9 @@ public enum Utils {
       if dropsComponents.count > 2 {
         throw XRPLedgerError.invalidDropsValue("dropsToXrp: invalid value, \(drops) has too many decimal points.")
       }
-      if dropsComponents.count == 2 || (dropsComponents.count == 1 && drops.starts(with: ".")) {
-        if UInt64(dropsComponents[dropsComponents.count - 1]) != 0 {
+      if !drops.hasSuffix(".") {
+        let dropsFractionalAmount = NSDecimalNumber(string: String(dropsComponents[dropsComponents.count - 1]))
+        if dropsFractionalAmount != NSDecimalNumber.zero {
           throw XRPLedgerError.invalidDropsValue("dropsToXrp: value \(drops) must be a whole number.")
         }
       }
@@ -104,9 +105,10 @@ public enum Utils {
   ///
   /// - Parameter xrp: An amount of XRP expressed in units of XRP.
   /// - Returns: A String representing an amount of XRP expressed in units of drops.
-  /// - Throws: XRPLedgerError if XRP is in invalid format.
+  /// - Throws: An XRPLedgerError if XRP is in invalid format.
   public static func xrpToDrops(_ xrp: String) throws -> String {
     // TODO: nil preconditions check?
+
     let xrpRegex: String = "^-?[0-9]*['.']?[0-9]*$"
     if xrp.range(of: xrpRegex, options: .regularExpression) == nil {
       throw XRPLedgerError.invalidXRPValue("xrpToDrops: invalid value, \(xrp) should be a number matching \(xrpRegex).")
@@ -124,9 +126,9 @@ public enum Utils {
         let fraction = xrpComponents[xrpComponents.count - 1]
         if fraction.count > 6 {
           let index = fraction.index(fraction.startIndex, offsetBy: 6)
-          let fractionTail = fraction[index...]
-          if UInt32(fractionTail) != UInt32(0) {
-            throw XRPLedgerError.invalidXRPValue("xrpToDrops: value \(xrp) has too many decimal places.")
+          let fractionTail: Substring = fraction[index...]
+          if NSDecimalNumber(string: String(fractionTail)) != NSDecimalNumber.zero {
+            throw XRPLedgerError.invalidXRPValue("xrpToDrops: value, \(xrp) has too many decimal places.")
           }
         }
       }
