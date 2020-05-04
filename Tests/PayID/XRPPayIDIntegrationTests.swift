@@ -78,4 +78,22 @@ final class PayIDIntegrationTests: XCTestCase {
 
     self.wait(for: [ expectation ], timeout: 10)
   }
+
+  func testResolveKnownPayIDToBTCTestNet() {
+    let expectation = XCTestExpectation(description: "resolveToBTC completion called.")
+
+    // GIVEN a Pay ID that will resolve on Mainnet.
+    // WHEN it is resolved to an XRP address
+    let payIDClient = PayIDClient(network: "btc-testnet")
+    payIDClient.address(for: .testPointer) { result in
+      // THEN the address is the expected value.
+      switch result {
+      case .success(let resolvedAddress):
+        XCTAssertEqual(resolvedAddress.address, "2NF9H32iwQcVcoAiiBmAtjpGmQfsmU5L6SR")
+      case .failure(let error):
+        XCTFail("Failed to resolve address: \(error)")
+      }
+      expectation.fulfill()
+    }
+  }
 }
