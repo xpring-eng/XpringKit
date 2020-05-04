@@ -52,10 +52,6 @@
       </MacroExpansion>
       <CommandLineArguments>
       </CommandLineArguments>
-      <AdditionalOptions>
-      </AdditionalOptions>
-      <CodeCoverageTargets>
-      </CodeCoverageTargets>
    </TestAction>
    <LaunchAction
       buildConfiguration = "Debug"
