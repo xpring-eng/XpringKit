@@ -1,5 +1,8 @@
 /// An interface into the XRP Platform.
 public protocol XRPClientProtocol {
+  /// The XRPL Network of the node that this client is communicating with
+  var network: XRPLNetwork { get }
+
   /// Get the balance for the given address.
   ///
   /// - Parameter address: The X-Address to retrieve the balance for.
