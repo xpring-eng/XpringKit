@@ -170,7 +170,7 @@ final class XpringClientTest: XCTestCase {
     )
 
     let fakeResolvedPayID = "r123"
-    let payIDClient = FakeXRPPayIDClient(network: .main, addressResult: .success(fakeResolvedPayID))
+    let payIDClient = FakeXRPPayIDClient(xrplNetwork: .main, addressResult: .success(fakeResolvedPayID))
 
     // WHEN a XpringClient is constructed THEN a mismatched network XpringError is thrown.
     XCTAssertThrowsError(try XpringClient(payIDClient: payIDClient, xrpClient: xrpClient)) { error in
