@@ -73,8 +73,6 @@ public enum Utils {
   /// - Returns: A String representing the drops amount in units of XRP.
   /// - Throws: An XRPLedgerError if drops is in an invalid format.
   public static func dropsToXrp(_ drops: String) throws -> String {
-    // TODO: nil preconditions check?
-
     let dropsRegex: String = "^-?[0-9]*['.']?[0-9]*$"
     if drops.range(of: dropsRegex, options: .regularExpression) == nil {
       throw XRPLedgerError.invalidDropsValue(
@@ -107,8 +105,6 @@ public enum Utils {
   /// - Returns: A String representing an amount of XRP expressed in units of drops.
   /// - Throws: An XRPLedgerError if XRP is in invalid format.
   public static func xrpToDrops(_ xrp: String) throws -> String {
-    // TODO: nil preconditions check?
-
     let xrpRegex: String = "^-?[0-9]*['.']?[0-9]*$"
     if xrp.range(of: xrpRegex, options: .regularExpression) == nil {
       throw XRPLedgerError.invalidXRPValue("xrpToDrops: invalid value, \(xrp) should be a number matching \(xrpRegex).")
