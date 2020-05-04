@@ -3,15 +3,15 @@ import XpringKit
 
 /// Fakes a PayID client.
 public class FakePayIDClient: XRPPayIDClientProtocol {
-  /// Results from method calls.
+  public let network: XRPLNetwork
   private let addressResult: Result<String, PayIDError>
-  public let xrplNetwork: XRPLNetwork = .test
 
   /// Initialize a new fake Pay ID client.
   ///
   /// - Parameter addressResult: The result that will be returned from calls to `xrpAddress(for:completion:)`.
-  public init(addressResult: Result<String, PayIDError>) {
+  public init(network: XRPLNetwork = .test, addressResult: Result<String, PayIDError>) {
     self.addressResult = addressResult
+    self.network = network
   }
 
   public func xrpAddress(
