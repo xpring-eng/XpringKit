@@ -211,12 +211,10 @@
 		7EF1A6B34B1D8B85176E3784 /* IlpCredentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F50C9DADF3CB8A5DE5E803 /* IlpCredentials.swift */; };
 		7F4104A9C7A4564B970F3521 /* SignatureWrapperInvoice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E04C7C44AFFDD411D0BC7E6 /* SignatureWrapperInvoice.swift */; };
 		7FC50C37A67CE21E363753CD /* ReliableSubmissionXpringClientTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEFA016E351D30D824FF119A /* ReliableSubmissionXpringClientTest.swift */; };
-		80416B3CCFB3B35369DC4F8C /* FakePayIDClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25EECDEB89F50F5C2CC4B7D3 /* FakePayIDClient.swift */; };
 		81696621C0B84D6070610A93 /* SwiftProtobuf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E488ABD93CCADA4769887E2 /* SwiftProtobuf.framework */; };
 		818EDC48AA3C70A615099A0C /* get_fee.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAFFCD0E594DA22514DEC01 /* get_fee.pb.swift */; };
 		8287E94AB8CE8C75B1B3C1B2 /* TransactionArray+Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B23D7C5E469B8734CBD03F2 /* TransactionArray+Test.swift */; };
 		8320AE699E90503F59E46C79 /* Org_Interledger_Stream_Proto_SendPaymentResponse+Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = E45B6F2147AB3FBF2869048F /* Org_Interledger_Stream_Proto_SendPaymentResponse+Test.swift */; };
-		84EC4AA65B525FA84609857C /* FakePayIDClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25EECDEB89F50F5C2CC4B7D3 /* FakePayIDClient.swift */; };
 		864BF8D9C529D8E26D6CB424 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C30A59A92292C3FD27F32B8 /* Utils.swift */; };
 		87E9ABF224857E3AF6C4C4DC /* XRPPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF15C7C9FB61D1D1F785FE69 /* XRPPath.swift */; };
 		87F6E5422C245F8B6AF98649 /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A676831CAF09680DEF36CC0C /* NetworkClient.swift */; };
@@ -488,7 +486,6 @@
 		21A8DF813EA75BD18BE4F7E7 /* JSValue+JavaScriptWallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JSValue+JavaScriptWallet.swift"; sourceTree = "<group>"; };
 		21F50C9DADF3CB8A5DE5E803 /* IlpCredentials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IlpCredentials.swift; sourceTree = "<group>"; };
 		231F83DBB326AC016CE0C48E /* ledger.pb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ledger.pb.swift; sourceTree = "<group>"; };
-		25EECDEB89F50F5C2CC4B7D3 /* FakePayIDClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakePayIDClient.swift; sourceTree = "<group>"; };
 		28B9BF5201AF6504807DE0CB /* account_service.grpc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = account_service.grpc.swift; sourceTree = "<group>"; };
 		28BA8F2521A91A8BA83D7C0B /* JSONValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONValue.swift; sourceTree = "<group>"; };
 		2948A856CDE0C3044BB16A53 /* APIHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIHelper.swift; sourceTree = "<group>"; };
@@ -824,7 +821,6 @@
 		2914B442FC27FE4B8AC4F2BB /* Fakes */ = {
 			isa = PBXGroup;
 			children = (
-				25EECDEB89F50F5C2CC4B7D3 /* FakePayIDClient.swift */,
 				D9255EAB215D171C857C5977 /* FakeXRPPayIDClient.swift */,
 			);
 			path = Fakes;
@@ -1259,8 +1255,6 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 1020;
-				TargetAttributes = {
-				};
 			};
 			buildConfigurationList = C0A52FC1F46AB2CDA8428A29 /* Build configuration list for PBXProject "XpringKit" */;
 			compatibilityVersion = "Xcode 10.0";
@@ -1509,7 +1503,6 @@
 				A1D10FFE642CBB4415A7DA32 /* FakeIlpPaymentNetworkClient.swift in Sources */,
 				F3B0B83254481E6444F86C8D /* FakeNetworkClient+Test.swift in Sources */,
 				559ED2AB9EF5FD27838AA624 /* FakeNetworkClient.swift in Sources */,
-				80416B3CCFB3B35369DC4F8C /* FakePayIDClient.swift in Sources */,
 				709AE5B1DE61918ED6C9941D /* FakeWallet.swift in Sources */,
 				AE01840D410DF476808D42CA /* FakeXRPClient.swift in Sources */,
 				9124ADC63FA103F96F2E4A63 /* FakeXRPPayIDClient.swift in Sources */,
@@ -1566,7 +1559,6 @@
 				4A421DF3F670E0AC08C52FC8 /* FakeIlpPaymentNetworkClient.swift in Sources */,
 				40156D93772298F5C8DFB1FF /* FakeNetworkClient+Test.swift in Sources */,
 				B525EDC4B7BBAB3CF674891F /* FakeNetworkClient.swift in Sources */,
-				84EC4AA65B525FA84609857C /* FakePayIDClient.swift in Sources */,
 				ED48C60F86C5E79EFE0CAFE7 /* FakeWallet.swift in Sources */,
 				3919CE8390C7AF26F1EAFB1B /* FakeXRPClient.swift in Sources */,
 				351D7742ACFA06F430531BC0 /* FakeXRPPayIDClient.swift in Sources */,
@@ -1830,7 +1822,12 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks $(PROJECT_DIR)/Carthage/Build/iOS";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -2023,7 +2020,12 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks $(PROJECT_DIR)/Carthage/Build/iOS";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
