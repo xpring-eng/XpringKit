@@ -2,6 +2,9 @@ import Foundation
 
 /// An interface for interaction with a PayID service.
 public protocol PayIDClientProtocol {
+  /// The network this PayID client resolves on.
+  var network: XRPLNetwork { get }
+
   /// Resolve the given PayID to an XRP Address.
   ///
   /// - Note: The returned value will always be in an X-Address format.
