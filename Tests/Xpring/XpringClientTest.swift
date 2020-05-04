@@ -40,7 +40,7 @@ final class XpringClientTest: XCTestCase {
     )
 
     let fakeResolvedPayID = "r123"
-    let payIDClient = FakePayIDClient(addressResult: .success(fakeResolvedPayID))
+    let payIDClient = FakeXRPPayIDClient(addressResult: .success(fakeResolvedPayID))
 
     let xpringClient = try XpringClient(payIDClient: payIDClient, xrpClient: xrpClient)
 
@@ -72,7 +72,7 @@ final class XpringClientTest: XCTestCase {
       accountExistsValue: .success(fakeAccountExistsValue)
     )
 
-    let payIDClient = FakePayIDClient(addressResult: .failure(payIDError))
+    let payIDClient = FakeXRPPayIDClient(addressResult: .failure(payIDError))
 
     let xpringClient = try XpringClient(payIDClient: payIDClient, xrpClient: xrpClient)
 
@@ -104,7 +104,7 @@ final class XpringClientTest: XCTestCase {
     )
 
     let fakeResolvedPayID = "r123"
-    let payIDClient = FakePayIDClient(addressResult: .success(fakeResolvedPayID))
+    let payIDClient = FakeXRPPayIDClient(addressResult: .success(fakeResolvedPayID))
 
     let xpringClient = try XpringClient(payIDClient: payIDClient, xrpClient: xrpClient)
 
@@ -136,7 +136,7 @@ final class XpringClientTest: XCTestCase {
       accountExistsValue: .success(fakeAccountExistsValue)
     )
 
-    let payIDClient = FakePayIDClient(addressResult: .failure(payIDError))
+    let payIDClient = FakeXRPPayIDClient(addressResult: .failure(payIDError))
 
     let xpringClient = try XpringClient(payIDClient: payIDClient, xrpClient: xrpClient)
 
@@ -170,7 +170,7 @@ final class XpringClientTest: XCTestCase {
     )
 
     let fakeResolvedPayID = "r123"
-    let payIDClient = FakePayIDClient(network: .main, addressResult: .success(fakeResolvedPayID))
+    let payIDClient = FakeXRPPayIDClient(network: .main, addressResult: .success(fakeResolvedPayID))
 
     // WHEN a XpringClient is constructed THEN a mismatched network XpringError is thrown.
     XCTAssertThrowsError(try XpringClient(payIDClient: payIDClient, xrpClient: xrpClient)) { error in
