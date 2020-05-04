@@ -3,7 +3,7 @@ import XpringKit
 
 /// Fakes a PayID client.
 public class FakeXRPPayIDClient: XRPPayIDClientProtocol {
-  public let xrplNetwork: XRPLNetwork
+  public var xrplNetwork: XRPLNetwork
   private let addressResult: Result<String, PayIDError>
 
   /// Initialize a new fake Pay ID client.
