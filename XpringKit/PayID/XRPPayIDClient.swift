@@ -36,12 +36,13 @@ public class XRPPayIDClient: PayIDClient, XRPPayIDClientProtocol {
 
         let isTest = self.xrplNetwork != XRPLNetwork.main
         let tag = UInt32(resolvedAddress.tag ?? "")
-        let encodedXAddress = Utils.encode(classicAddress: resolvedAddress.address, tag: tag, isTest: isTest)
-        if encodedXAddress == nil {
-          let unexpectedError = PayIDError.unexpectedResponse
-          completion(.failure(unexpectedError))
-        }
-        completion(.success(encodedXAddress!))
+        guard let encodedXAddress = Utils.encode(classicAddress: resolvedAddress.address, tag: tag, isTest: isTest)
+          else {
+            let unexpectedError = PayIDError.unexpectedResponse
+            completion(.failure(unexpectedError))
+            return
+          }
+        completion(.success(encodedXAddress))
       case .failure(let error):
         completion(.failure(error))
       }
