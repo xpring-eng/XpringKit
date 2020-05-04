@@ -13,8 +13,8 @@ public class XpringClient {
   /// - Parameters:
   ///   - payIDClient An XRP Pay ID Client used to interact with the Pay ID protocol.
   ///   - xrpClient An XRP Client used to interact with the XRP Ledger protocol.
-  public init(payIDClient: PayIDClientProtocol, xrpClient: XRPClientProtocol) throws {
-    guard payIDClient.network == xrpClient.network else {
+  public init(payIDClient: XRPPayIDClientProtocol, xrpClient: XRPClientProtocol) throws {
+    guard payIDClient.xrplNetwork == xrpClient.network else {
       throw XpringError.mismatchedNetworks
     }
 
