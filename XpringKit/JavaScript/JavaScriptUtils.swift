@@ -80,6 +80,9 @@ internal class JavaScriptUtils {
     var arguments: [Any] = [ classicAddress ]
     if tag != nil {
       arguments.append(tag as Any)
+    } else {
+      let undefined = JavaScriptLoader.load("undefined", from: JSValue(undefinedIn: <#T##JSContext!#>))
+      arguments.append(undefined)
     }
     arguments.append(isTest)
 
