@@ -76,24 +76,24 @@ public enum Utils {
     let dropsRegex: String = "^-?[0-9]*['.']?[0-9]*$"
     guard drops.range(of: dropsRegex, options: .regularExpression) != nil
       else {
-        throw XRPLedgerError.invalidDropsValue(
+        throw XRPLedgerError.invalidInputs(
           "dropsToXrp: invalid value \(drops), should be a number matching \(dropsRegex)."
         )
     }
     guard drops != "." else {
-      throw XRPLedgerError.invalidDropsValue("dropsToXrp: invalid value \(drops), should be a string-encoded number.")
+      throw XRPLedgerError.invalidInputs("dropsToXrp: invalid value \(drops), should be a string-encoded number.")
     }
 
     // check for non-zero fractional amount in drops value
     if drops.contains(".") {
       let dropsComponents: [Substring] = drops.split(separator: ".")
       if dropsComponents.count > 2 {
-        throw XRPLedgerError.invalidDropsValue("dropsToXrp: invalid value, \(drops) has too many decimal points.")
+        throw XRPLedgerError.invalidInputs("dropsToXrp: invalid value, \(drops) has too many decimal points.")
       }
       if !drops.hasSuffix(".") {
         let dropsFractionalAmount = NSDecimalNumber(string: String(dropsComponents[dropsComponents.count - 1]))
         if dropsFractionalAmount != NSDecimalNumber.zero {
-          throw XRPLedgerError.invalidDropsValue("dropsToXrp: value \(drops) must be a whole number.")
+          throw XRPLedgerError.invalidInputs("dropsToXrp: value \(drops) must be a whole number.")
         }
       }
     }
@@ -110,17 +110,17 @@ public enum Utils {
   public static func xrpToDrops(_ xrp: String) throws -> String {
     let xrpRegex: String = "^-?[0-9]*['.']?[0-9]*$"
     guard xrp.range(of: xrpRegex, options: .regularExpression) != nil else {
-      throw XRPLedgerError.invalidXRPValue("xrpToDrops: invalid value, \(xrp) should be a number matching \(xrpRegex).")
+      throw XRPLedgerError.invalidInputs("xrpToDrops: invalid value, \(xrp) should be a number matching \(xrpRegex).")
     }
     guard xrp != "." else {
-      throw XRPLedgerError.invalidXRPValue("xrpToDrops: invalid value, \(xrp) should be a string-encoded number.")
+      throw XRPLedgerError.invalidInputs("xrpToDrops: invalid value, \(xrp) should be a string-encoded number.")
     }
 
     // validate maximum of 1 decimal point and 6 decimal places.
     if xrp.contains(".") {
       let xrpComponents: [Substring] = xrp.split(separator: ".")
       if xrpComponents.count > 2 {
-        throw XRPLedgerError.invalidDropsValue("xrpToDrops: invalid value, \(xrp) has too many decimal points.")
+        throw XRPLedgerError.invalidInputs("xrpToDrops: invalid value, \(xrp) has too many decimal points.")
       }
       if !xrp.hasSuffix(".") {
         let fraction = xrpComponents[xrpComponents.count - 1]
@@ -128,7 +128,7 @@ public enum Utils {
           let index = fraction.index(fraction.startIndex, offsetBy: 6)
           let fractionTail: Substring = fraction[index...]
           if NSDecimalNumber(string: String(fractionTail)) != NSDecimalNumber.zero {
-            throw XRPLedgerError.invalidXRPValue("xrpToDrops: value, \(xrp) has too many decimal places.")
+            throw XRPLedgerError.invalidInputs("xrpToDrops: value, \(xrp) has too many decimal places.")
           }
         }
       }
