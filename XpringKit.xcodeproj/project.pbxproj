@@ -1047,8 +1047,8 @@
 			children = (
 				7D59BF92C942B39401A02C92 /* PayIDUtilsTests.swift */,
 				2BBD524BE88049BD3DBF63BB /* XRPPayIDIntegrationTests.swift */,
-				2914B442FC27FE4B8AC4F2BB /* Fakes */,
 				CDA31A5F2460C9F2002E589E /* XRPPayIDClientTests.swift */,
+				2914B442FC27FE4B8AC4F2BB /* Fakes */,
 			);
 			path = PayID;
 			sourceTree = "<group>";
