@@ -32,6 +32,7 @@ public class XRPPayIDClient: PayIDClient, XRPPayIDClientProtocol {
       case .success(let resolvedAddress):
         if Utils.isValidXAddress(address: resolvedAddress.address) {
           completion(.success(resolvedAddress.address))
+          return
         }
 
         let isTest = self.xrplNetwork != XRPLNetwork.main
