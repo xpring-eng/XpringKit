@@ -160,7 +160,7 @@ class UtilsTest: XCTestCase {
     let address = "rU6K7V3Po4snVhBBaU29sesqs2qTQJWDw1"
 
     // WHEN it is encoded to an X-Address.
-    let xAddress = Utils.encode(classicAddress: address)
+    let xAddress = Utils.encode(classicAddress: address, isTest: true)
 
     // THEN the result is as expected.
     XCTAssertEqual(xAddress, "TVsBZmcewpEHgajPi1jApLeYnHPJw8VrMCKS5g28oDXYiVA")
