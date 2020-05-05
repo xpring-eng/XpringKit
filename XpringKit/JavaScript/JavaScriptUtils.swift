@@ -81,7 +81,7 @@ internal class JavaScriptUtils {
     if tag != nil {
       arguments.append(tag as Any)
     } else {
-      arguments.append(nil)
+      arguments.append(JSValue(undefinedIn: JSContext.xpringKit))
     }
     arguments.append(isTest)
 
