@@ -74,11 +74,13 @@ public enum Utils {
   /// - Throws: An XRPLedgerError if drops is in an invalid format.
   public static func dropsToXrp(_ drops: String) throws -> String {
     let dropsRegex: String = "^-?[0-9]*['.']?[0-9]*$"
-    if drops.range(of: dropsRegex, options: .regularExpression) == nil {
-      throw XRPLedgerError.invalidDropsValue(
-        "dropsToXrp: invalid value \(drops), should be a number matching \(dropsRegex)."
-      )
-    } else if drops == "." {
+    guard drops.range(of: dropsRegex, options: .regularExpression) != nil
+      else {
+        throw XRPLedgerError.invalidDropsValue(
+          "dropsToXrp: invalid value \(drops), should be a number matching \(dropsRegex)."
+        )
+    }
+    guard drops != "." else {
       throw XRPLedgerError.invalidDropsValue("dropsToXrp: invalid value \(drops), should be a string-encoded number.")
     }
 
@@ -95,7 +97,8 @@ public enum Utils {
         }
       }
     }
-    return NSDecimalNumber(string: drops).dividing(by: NSDecimalNumber(1_000_000.0))
+    let dropsPerXrp = 1_000_000
+    return NSDecimalNumber(string: drops).dividing(by: NSDecimalNumber(value: dropsPerXrp))
       .description(withLocale: Locale(identifier: "en_US"))
   }
 
@@ -106,9 +109,10 @@ public enum Utils {
   /// - Throws: An XRPLedgerError if XRP is in invalid format.
   public static func xrpToDrops(_ xrp: String) throws -> String {
     let xrpRegex: String = "^-?[0-9]*['.']?[0-9]*$"
-    if xrp.range(of: xrpRegex, options: .regularExpression) == nil {
+    guard xrp.range(of: xrpRegex, options: .regularExpression) != nil else {
       throw XRPLedgerError.invalidXRPValue("xrpToDrops: invalid value, \(xrp) should be a number matching \(xrpRegex).")
-    } else if xrp == "." {
+    }
+    guard xrp != "." else {
       throw XRPLedgerError.invalidXRPValue("xrpToDrops: invalid value, \(xrp) should be a string-encoded number.")
     }
 
@@ -129,8 +133,8 @@ public enum Utils {
         }
       }
     }
-
-    return NSDecimalNumber(string: xrp).multiplying(by: NSDecimalNumber(1_000_000.0))
+    let dropsPerXrp = 1_000_000
+    return NSDecimalNumber(string: xrp).multiplying(by: NSDecimalNumber(value: dropsPerXrp))
       .description(withLocale: Locale(identifier: "en_US"))
   }
 }
