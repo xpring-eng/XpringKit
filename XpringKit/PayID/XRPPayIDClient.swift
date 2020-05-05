@@ -30,34 +30,38 @@ public class XRPPayIDClient: PayIDClient, XRPPayIDClientProtocol {
 
       switch result {
       case .success(let resolvedAddress):
-        if Utils.isValidXAddress(address: resolvedAddress.address) {
-          completion(.success(resolvedAddress.address))
-          return
-        }
-
-        let isTest = self.xrplNetwork != XRPLNetwork.main
-
-        if let rawTag = resolvedAddress.tag {
-          let tag = UInt32(rawTag)
-          guard let encodedXAddress = Utils.encode(classicAddress: resolvedAddress.address, tag: tag, isTest: isTest)
-            else {
-              let unexpectedError = PayIDError.unexpectedResponse
-              completion(.failure(unexpectedError))
-              return
-            }
+        do {
+          let encodedXAddress = try self.toXAddress(cryptoAddressDetails: resolvedAddress)
           completion(.success(encodedXAddress))
-        } else { // There is no tag
-          guard let encodedXAddress = Utils.encode(classicAddress: resolvedAddress.address, isTest: isTest)
-          else {
-            let unexpectedError = PayIDError.unexpectedResponse
-            completion(.failure(unexpectedError))
-            return
-          }
-        completion(.success(encodedXAddress))
+        } catch PayIDError.unexpectedResponse {
+          completion(.failure(PayIDError.unexpectedResponse))
+        } catch {
+          completion(.failure(PayIDError.unknown(error: "Unknown error occurred while converting to XAddress.")))
         }
       case .failure(let error):
         completion(.failure(error))
       }
+    }
+  }
+
+  internal func toXAddress(cryptoAddressDetails: CryptoAddressDetails) throws -> String {
+    if Utils.isValidXAddress(address: cryptoAddressDetails.address) {
+      return cryptoAddressDetails.address
+    }
+    let isTest = self.xrplNetwork != XRPLNetwork.main
+    if let rawTag = cryptoAddressDetails.tag {
+      let tag = UInt32(rawTag)
+      guard let encodedXAddress = Utils.encode(classicAddress: cryptoAddressDetails.address, tag: tag, isTest: isTest)
+        else {
+          throw PayIDError.unexpectedResponse
+        }
+      return encodedXAddress
+    } else { // There is no tag
+      guard let encodedXAddress = Utils.encode(classicAddress: cryptoAddressDetails.address, isTest: isTest)
+      else {
+        throw PayIDError.unexpectedResponse
+      }
+    return encodedXAddress
     }
   }
 }
