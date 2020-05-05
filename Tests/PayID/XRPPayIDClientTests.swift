@@ -98,5 +98,5 @@ final class XRPPayIDClientTest: XCTestCase {
       assert.equal(xrpAddress, xAddress)
     })
   })
- */
+  */
 }
