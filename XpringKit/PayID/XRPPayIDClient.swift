@@ -30,19 +30,30 @@ public class XRPPayIDClient: PayIDClient, XRPPayIDClientProtocol {
 
       switch result {
       case .success(let resolvedAddress):
-        if Utils.isValid(address: resolvedAddress.address) {
+        if Utils.isValidXAddress(address: resolvedAddress.address) {
           completion(.success(resolvedAddress.address))
         }
 
         let isTest = self.xrplNetwork != XRPLNetwork.main
-        let tag = UInt32(resolvedAddress.tag ?? "")
-        guard let encodedXAddress = Utils.encode(classicAddress: resolvedAddress.address, tag: tag, isTest: isTest)
+
+        if let rawTag = resolvedAddress.tag {
+          let tag = UInt32(rawTag)
+          guard let encodedXAddress = Utils.encode(classicAddress: resolvedAddress.address, tag: tag, isTest: isTest)
+            else {
+              let unexpectedError = PayIDError.unexpectedResponse
+              completion(.failure(unexpectedError))
+              return
+            }
+          completion(.success(encodedXAddress))
+        } else { // There is no tag
+          guard let encodedXAddress = Utils.encode(classicAddress: resolvedAddress.address, isTest: isTest)
           else {
             let unexpectedError = PayIDError.unexpectedResponse
             completion(.failure(unexpectedError))
             return
           }
         completion(.success(encodedXAddress))
+        }
       case .failure(let error):
         completion(.failure(error))
       }
