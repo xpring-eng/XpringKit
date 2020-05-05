@@ -1,102 +1,50 @@
 import XCTest
-import XpringKit
+@testable import XpringKit
 
-// Unit tests 
 final class XRPPayIDClientTest: XCTestCase {
-  /*
-  describe('XRP Pay ID Client', function (): void {
-    afterEach(function () {
-      // Clean nock after each test.
-      nock.cleanAll()
-    })
+  func testToXAddressWithXAddress() throws {
+    // GIVEN an XRPPayID client, and a CryptoAddressDetails that already contains an X-Address.
+    let payIDClient = XRPPayIDClient(xrplNetwork: .test)
+    let xAddress = "X7cBcY4bdTTzk3LHmrKAK6GyrirkXfLHGFxzke5zTmYMfw4"
+    let cryptoAddressDetails = CryptoAddressDetails(address: xAddress, tag: nil)
 
-    func testXrpAddressForPayIDWithSuccessfulResponse() {
-    // GIVEN an XRPPayID client, valid PayID and mocked networking to return an X-Address for the PayID.
-      let payID = "georgewashington$xpring.money"
-    let payIDClient = XRPPayIDClient(xrplNetwork: .test
-    }
+    // WHEN the X-Address is converted to an X-Address.
+    let encodedAddress = try payIDClient.toXAddress(cryptoAddressDetails: cryptoAddressDetails)
 
-      const payIDClient = new XRPPayIDClient(XRPLNetwork.Test)
+    // THEN the address is returned unchanged.
+    XCTAssertEqual(encodedAddress, xAddress)
 
-      const xAddress = 'X7cBcY4bdTTzk3LHmrKAK6GyrirkXfLHGFxzke5zTmYMfw4'
+  }
 
-      const payIDComponents = PayIDUtils.parsePayID(payID)
-      if (!payIDComponents) {
-        throw new Error('Test precondition failed: Could not generate a Pay ID')
-      }
-      nock('https://xpring.money')
-        .get('/georgewashington')
-        .reply(200, {
-          addressDetailsType: 'CryptoAddressDetails',
-          addressDetails: {
-            address: xAddress,
-          },
-        })
+  func testToXAddressWithClassicAddressNoTag() throws {
+    // GIVEN an XRPPayID client, and a CryptoAddressDetails that contains a classic address and no tag.
+    let payIDClient = XRPPayIDClient(xrplNetwork: .test)
+    let address = "rPEPPER7kfTD9w2To4CQk6UCfuHM9c6GDY"
+    let cryptoAddressDetails = CryptoAddressDetails(address: address, tag: nil)
 
-      // WHEN an XRP address is requested.
-      const xrpAddress = await payIDClient.xrpAddressForPayID(payID)
+    let expectedXAddress = Utils.encode(classicAddress: address, tag: nil, isTest: true)
 
-      // THEN the X-Address is the returned.
-      assert.equal(xrpAddress, xAddress)
-    })
+    // WHEN the classic address is converted to an X-Address.
+    let encodedAddress = try payIDClient.toXAddress(cryptoAddressDetails: cryptoAddressDetails)
 
-    it('xrpAddressForPayID - successful response - classic address with no tag', async function () {
-      // GIVEN a PayID client, valid PayID and mocked networking to return a classic address for the PayID.
-      const payID = 'georgewashington$xpring.money'
-      const payIDClient = new XRPPayIDClient(XRPLNetwork.Test)
+    // THEN the address is returned unchanged.
+    XCTAssertEqual(encodedAddress, expectedXAddress)
+  }
 
-      const classicAddress = 'rPEPPER7kfTD9w2To4CQk6UCfuHM9c6GDY'
-      const xAddress = Utils.encodeXAddress(classicAddress, undefined, true)
+  func testToXAddressWithClassicAddressAndTag() throws {
+    // GIVEN an XRPPayID client, and a CryptoAddressDetails that contains a classic address and a tag.
+    let payIDClient = XRPPayIDClient(xrplNetwork: .test)
+    let address = "rPEPPER7kfTD9w2To4CQk6UCfuHM9c6GDY"
+    let tag = 12_345
+    let cryptoAddressDetails = CryptoAddressDetails(address: address, tag: String(tag))
 
-      const payIDComponents = PayIDUtils.parsePayID(payID)
-      if (!payIDComponents) {
-        throw new Error('Test precondition failed: Could not generate a Pay ID')
-      }
-      nock('https://xpring.money')
-        .get('/georgewashington')
-        .reply(200, {
-          addressDetailsType: 'CryptoAddressDetails',
-          addressDetails: {
-            address: classicAddress,
-          },
-        })
+    let expectedXAddress = Utils.encode(classicAddress: address, tag: UInt32(tag), isTest: true)
 
-      // WHEN an XRP address is requested.
-      const xrpAddress = await payIDClient.xrpAddressForPayID(payID)
+    // WHEN the classic address is converted to an X-Address.
+    let encodedAddress = try payIDClient.toXAddress(cryptoAddressDetails: cryptoAddressDetails)
 
-      // THEN the address is the given input in X-Address format.
-      assert.equal(xrpAddress, xAddress)
-    })
+    // THEN the address is returned unchanged.
+    XCTAssertEqual(encodedAddress, expectedXAddress)
 
-    it('xrpAddressForPayID - successful response - classic address with tag', async function () {
-      // GIVEN a PayID client, valid PayID and mocked networking to return a classic address and tag for the PayID.
-      const payID = 'georgewashington$xpring.money'
-      const payIDClient = new XRPPayIDClient(XRPLNetwork.Test)
-
-      const classicAddress = 'rPEPPER7kfTD9w2To4CQk6UCfuHM9c6GDY'
-      const tag = 12345
-      const xAddress = Utils.encodeXAddress(classicAddress, tag, true)
-
-      const payIDComponents = PayIDUtils.parsePayID(payID)
-      if (!payIDComponents) {
-        throw new Error('Test precondition failed: Could not generate a Pay ID')
-      }
-      nock('https://xpring.money')
-        .get('/georgewashington')
-        .reply(200, {
-          addressDetailsType: 'CryptoAddressDetails',
-          addressDetails: {
-            address: classicAddress,
-            tag,
-          },
-        })
-
-      // WHEN an XRP address is requested.
-      const xrpAddress = await payIDClient.xrpAddressForPayID(payID)
-
-      // THEN the address is the given input in X-Address format.
-      assert.equal(xrpAddress, xAddress)
-    })
-  })
-  */
+  }
 }
