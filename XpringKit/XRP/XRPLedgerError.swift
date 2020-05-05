@@ -6,7 +6,7 @@ public enum XRPLedgerError: Equatable, Error {
   /// An invalid address was given. The invalid address is provided as an associated value.
   case invalidAddress(String)
 
-  /// An invalid address was given. A more descriptive string is provided as an associated value.
+  /// An invalid input was given. A more descriptive string is provided as an associated value.
   case invalidInputs(String)
 
   /// The requested functionality is not yet implemented.
