@@ -8,10 +8,10 @@ final class XRPPayIDClientTest: XCTestCase {
     let xAddress = "X7cBcY4bdTTzk3LHmrKAK6GyrirkXfLHGFxzke5zTmYMfw4"
     let cryptoAddressDetails = CryptoAddressDetails(address: xAddress, tag: nil)
 
-    // WHEN the X-Address is converted to an X-Address.
+    // WHEN the cryptoAddress details is converted to an X-Address
     let encodedAddress = try payIDClient.toXAddress(cryptoAddressDetails: cryptoAddressDetails)
 
-    // THEN the address is returned unchanged.
+    // THEN the X-Address is returned unchanged.
     XCTAssertEqual(encodedAddress, xAddress)
 
   }
@@ -27,7 +27,7 @@ final class XRPPayIDClientTest: XCTestCase {
     // WHEN the cryptoAddress details is converted to an X-Address.
     let encodedAddress = try payIDClient.toXAddress(cryptoAddressDetails: cryptoAddressDetails)
 
-    // THEN the address is returned unchanged.
+    // THEN the classic address is returned unchanged.
     XCTAssertEqual(encodedAddress, expectedXAddress)
   }
 
@@ -40,10 +40,10 @@ final class XRPPayIDClientTest: XCTestCase {
 
     let expectedXAddress = Utils.encode(classicAddress: address, tag: UInt32(tag), isTest: true)
 
-    // WHEN the classic address is converted to an X-Address.
+    // WHEN the cryptoAddressDetails is converted to an X-Address.
     let encodedAddress = try payIDClient.toXAddress(cryptoAddressDetails: cryptoAddressDetails)
 
-    // THEN the address is returned unchanged.
+    // THEN a correct X-Address is returned
     XCTAssertEqual(encodedAddress, expectedXAddress)
 
   }
