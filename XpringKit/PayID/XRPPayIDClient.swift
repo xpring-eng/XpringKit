@@ -4,7 +4,7 @@ import Foundation
 public class XRPPayIDClient: PayIDClient, XRPPayIDClientProtocol {
 
   /// The XRP Ledger network that this client attaches to.
-  public var xrplNetwork: XRPLNetwork
+  public let xrplNetwork: XRPLNetwork
 
   /// Initialize a new XRPPayIDclient
   ///

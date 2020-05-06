@@ -3,7 +3,7 @@ import Foundation
 /// A protocol for an XRP PayID client.
 public protocol XRPPayIDClientProtocol {
   /// The network that addresses will be resolved on.
-  var xrplNetwork: XRPLNetwork { get set }
+  var xrplNetwork: XRPLNetwork { get }
 
   /// Retrieve the XRP address associated with a PayID.
   ///
