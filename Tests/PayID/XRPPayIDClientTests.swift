@@ -3,7 +3,7 @@ import XCTest
 
 final class XRPPayIDClientTest: XCTestCase {
   func testToXAddressWithXAddress() throws {
-    // GIVEN an XRPPayID client, and a CryptoAddressDetails that already contains an X-Address.
+    // GIVEN an XRPPayIDClient, and a CryptoAddressDetails that already contains an X-Address.
     let payIDClient = XRPPayIDClient(xrplNetwork: .test)
     let xAddress = "X7cBcY4bdTTzk3LHmrKAK6GyrirkXfLHGFxzke5zTmYMfw4"
     let cryptoAddressDetails = CryptoAddressDetails(address: xAddress, tag: nil)
@@ -17,7 +17,7 @@ final class XRPPayIDClientTest: XCTestCase {
   }
 
   func testToXAddressWithClassicAddressNoTag() throws {
-    // GIVEN an XRPPayID client, and a CryptoAddressDetails that contains a classic address and no tag.
+    // GIVEN an XRPPayIDClient, and a CryptoAddressDetails that contains a classic address and no tag.
     let payIDClient = XRPPayIDClient(xrplNetwork: .test)
     let address = "rPEPPER7kfTD9w2To4CQk6UCfuHM9c6GDY"
     let cryptoAddressDetails = CryptoAddressDetails(address: address, tag: nil)
@@ -32,7 +32,7 @@ final class XRPPayIDClientTest: XCTestCase {
   }
 
   func testToXAddressWithClassicAddressAndTag() throws {
-    // GIVEN an XRPPayID client, and a CryptoAddressDetails that contains a classic address and a tag.
+    // GIVEN an XRPPayIDClient, and a CryptoAddressDetails that contains a classic address and a tag.
     let payIDClient = XRPPayIDClient(xrplNetwork: .test)
     let address = "rPEPPER7kfTD9w2To4CQk6UCfuHM9c6GDY"
     let tag = 12_345
