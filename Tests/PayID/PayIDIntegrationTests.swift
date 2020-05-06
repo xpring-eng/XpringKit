@@ -95,5 +95,6 @@ final class PayIDIntegrationTests: XCTestCase {
       }
       expectation.fulfill()
     }
+    self.wait(for: [ expectation ], timeout: 10)
   }
 }
