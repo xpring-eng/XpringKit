@@ -24,7 +24,7 @@ final class XRPPayIDClientTest: XCTestCase {
 
     let expectedXAddress = Utils.encode(classicAddress: address, tag: nil, isTest: true)
 
-    // WHEN the classic address is converted to an X-Address.
+    // WHEN the cryptoAddress details is converted to an X-Address.
     let encodedAddress = try payIDClient.toXAddress(cryptoAddressDetails: cryptoAddressDetails)
 
     // THEN the address is returned unchanged.
