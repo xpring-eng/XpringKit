@@ -10,8 +10,8 @@ public class FakeXRPPayIDClient: XRPPayIDClientProtocol {
   ///
   /// - Parameter addressResult: The result that will be returned from calls to `xrpAddress(for:completion:)`.
   public init(xrplNetwork: XRPLNetwork = .test, addressResult: Result<String, PayIDError>) {
-    self.addressResult = addressResult
     self.xrplNetwork = xrplNetwork
+    self.addressResult = addressResult
   }
 
   public func xrpAddress(
