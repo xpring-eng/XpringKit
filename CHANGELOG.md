@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## 3.0.1 - May 6, 2020
+
+This release contains minor fixes and performance improvements. 
+
 ## 3.0.0 - March 27, 2020
 
 This release contains serveral breaking changes that are required in order to:
