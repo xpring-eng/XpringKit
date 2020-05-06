@@ -2,7 +2,7 @@ import Foundation
 
 /// Composes interactions of Xpring services.
 public class XpringClient {
-  /// An XRP PayIDClient used to interact with the Pay ID protocol.
+  /// An XRPPayIDClient used to interact with the Pay ID protocol.
   private let payIDClient: XRPPayIDClientProtocol
 
   /// An XRPClient used to interact with the XRP Ledger protocol.
