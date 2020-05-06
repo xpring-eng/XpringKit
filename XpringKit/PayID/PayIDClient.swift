@@ -15,7 +15,7 @@ public class PayIDClient {
   /// For instance:
   ///   - xrpl-testnet
   ///   - xrpl-mainnet
-  ///   - eth-rinkby
+  ///   - eth-rinkeby
   ///   - ach
   ///
   //  TODO: Link a canonical list at payid.org when available.
