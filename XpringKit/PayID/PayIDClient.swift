@@ -26,6 +26,7 @@ public class PayIDClient {
   /// Resolve the given PayID to an address.
   ///
   /// - Parameter payID: The PayID to resolve for an address.
+  /// - Parameter completion: A closure called with the result of the operation.
   /// - Returns: An address representing the given PayID.
   // TODO(keefertaylor): Make this API synchronous to mirror functionality provided by ILP / XRP.
   public func address(

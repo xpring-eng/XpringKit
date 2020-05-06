@@ -20,8 +20,8 @@ public class XRPPayIDClient: PayIDClient, XRPPayIDClientProtocol {
   /// - SeeAlso: https://xrpaddress.info/
   ///
   /// - Parameter payID: The payID to resolve for an address.
+  /// - Parameter completion: A closure called with the result of the operation.
   /// - Returns: An address representing the given PayID.
-  ///
   public func xrpAddress(for payID: String, completion: @escaping (Result<String, PayIDError>) -> Void) {
     super.address(for: payID) { [weak self] result in
       guard let self = self else {
