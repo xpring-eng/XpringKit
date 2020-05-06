@@ -30,51 +30,27 @@ public class PayIDClient: PayIDClientProtocol {
     let host = paymentPointer.host
     let acceptHeaderValue = "application/xrpl-\(self.network.rawValue)+json"
 
-    var endpoint = "/{host}/{path}"
+    let client = APIClient(baseURL: "https://" + host)
+    client.defaultHeaders = [ "Accept": acceptHeaderValue ]
 
-    let hostPreEscape = "\(host)"
-    let hostPostEscape = hostPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
-    endpoint = endpoint.replacingOccurrences(of: "{host}", with: hostPostEscape, options: .literal, range: nil)
-
-    let pathPreEscape = "\(path)"
-    let pathPostEscape = pathPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
-    endpoint = endpoint.replacingOccurrences(of: "{path}", with: pathPostEscape, options: .literal, range: nil)
-
-    let URLString = SwaggerClientAPI.basePath + endpoint
-    let parameters: [String: Any]? = nil
-
-    let url = URLComponents(string: URLString)
-
-    let requestBuilder: RequestBuilder<PaymentInformation>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
-    let request = requestBuilder.init(
-      method: "GET",
-      URLString: (url?.string ?? URLString),
-      parameters: parameters,
-      isBody: false
-    ).addHeader(
-      name: "Accept",
-      value: acceptHeaderValue
-    )
-
-    request.execute { response, error in
-      if
-        let response = response,
-        let paymentInformation = response.body {
-        completion(.success(paymentInformation.addressDetails.address))
-      } else if
-        let errorResponse = error as? ErrorResponse,
-        case let .error(code, _, underlyingError) = errorResponse,
-        let alamoFireError = underlyingError as? AFError
-      {
-        // Mapping not found
-        if code == 404 {
-          let mappingError = PayIDError.mappingNotFound(paymentPointer: payID, network: self.network)
-          completion(.failure(mappingError))
-          return
+    let request = API.ResolvePayID.Request(path: path)
+    client.makeRequest(request) { apiResponse in
+      switch apiResponse.result {
+      case .success(let response):
+        switch response {
+        case .status200(let paymentInformation):
+          completion(.success(paymentInformation.addressDetails.address))
+        case .status404:
+          completion(.failure(PayIDError.mappingNotFound(paymentPointer: payID, network: self.network)))
+        case .status415:
+          // TODO(keefertaylor): Provide a more descriptive error.
+          completion(.failure(PayIDError.unknown(error: "Error: HTTP Status 415")))
+        case .status503:
+          // TODO(keefertaylor): Provide a more descriptive error.
+          completion(.failure(PayIDError.unknown(error: "Error: HTTP Status 503")))
         }
-        completion(.failure(.unknown(error: alamoFireError.underlyingError.debugDescription)))
-      } else {
-        completion(.failure(.unknown(error: nil)))
+      case .failure(let error):
+        completion(.failure(PayIDError.unknown(error: "Unknown error making requests: \(error)")))
       }
     }
   }

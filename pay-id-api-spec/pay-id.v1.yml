@@ -1,14 +1,10 @@
+openapi: '3.0.0'
 info:
   title: PayID
   version: '0.0.1'
 paths:
-  '/{host}/{path}':
+  '/{path}':
     parameters:
-      - schema:
-          type: string
-        name: host
-        in: path
-        required: true
       - schema:
           type: string
         name: path
@@ -38,13 +34,7 @@ paths:
           description: Internal error
       operationId: resolvePayID
       description: Resolve a pay id
-  '/{path}/invoice':
-    parameters:
-      - schema:
-          type: string
-        name: path
-        in: path
-        required: true
+  '/invoice':
     get:
       summary: get-invoice
       tags: []
@@ -84,13 +74,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/SignatureWrapper_Compliance'
+                $ref: '#/components/schemas/SignatureWrapper_Invoice'
             application/xrpl-mainnet+json:
               schema:
-                $ref: '#/components/schemas/SignatureWrapper_Compliance'
+                $ref: '#/components/schemas/SignatureWrapper_Invoice'
             application/xrpl-testnet+json:
               schema:
-                $ref: '#/components/schemas/SignatureWrapper_Compliance'
+                $ref: '#/components/schemas/SignatureWrapper_Invoice'
         '400':
           description: Bad Request
         '404':
@@ -107,15 +97,18 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/SignatureWrapper_Invoice'
+              $ref: '#/components/schemas/SignatureWrapper_Compliance'
       operationId: post-path-invoice
-  '/{path}/receipt':
-    parameters:
-      - schema:
-          type: string
-        name: path
-        in: path
-        required: true
+      parameters:
+        - schema:
+            # Typed as a string to get around swagger-codegen issues.
+            # TODO(keefertaylor): Fix after https://github.com/swagger-api/swagger-codegen/issues/10105 is resolved
+            type: string
+          in: query
+          name: nonce
+          description: ''
+          required: true
+  '/receipt':
     post:
       summary: ''
       operationId: post-path-receipt
@@ -161,7 +154,7 @@ components:
         paymentPointer:
           type: string
       required:
-        - addressDetailType
+        - addressDetailsType
         - addressDetails
     Invoice:
       title: Invoice
@@ -327,7 +320,3 @@ components:
       required:
         - invoiceHash
         - transactionConfirmation
-openapi: '3.0.0'
-servers:
-  - url: 'https:/'
-    description: ''

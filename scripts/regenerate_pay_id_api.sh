@@ -15,7 +15,7 @@ TMP_SWAGGER_DIR=./.tmp_swagger
 LANG=swift5
 
 # Folder containing generated sources.
-GENERATED_SOURCES_FOLDER=$TMP_SWAGGER_DIR/SwaggerClient/Classes/Swaggers
+GENERATED_SOURCES_FOLDER=$TMP_SWAGGER_DIR/Sources
 
 ##########################################################################
 # Remove any stale files which are already generated.
@@ -32,9 +32,7 @@ echo "Regenerating Swagger API from PayID Open API Spec"
 
 mkdir -p $TMP_SWAGGER_DIR
 mkdir -p $DESTINATION_FOLDER
-swagger-codegen generate --lang $LANG \
-  --input $PAY_ID_OPEN_API_SPEC \
-  -o $TMP_SWAGGER_DIR \
+swaggen generate $PAY_ID_OPEN_API_SPEC --destination $TMP_SWAGGER_DIR
 
 echo "Swagger Generation Complete!"
 
