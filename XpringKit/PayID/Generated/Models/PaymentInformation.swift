@@ -7,7 +7,7 @@ import Foundation
 
 public class PaymentInformation: APIModel {
 
-    public var addressDetailsType: String
+    public var addressDetailType: String
 
     public var addressDetails: CryptoAddressDetails
 
@@ -15,8 +15,8 @@ public class PaymentInformation: APIModel {
 
     public var proofOfControlSignature: String?
 
-    public init(addressDetailsType: String, addressDetails: CryptoAddressDetails, paymentPointer: String? = nil, proofOfControlSignature: String? = nil) {
-        self.addressDetailsType = addressDetailsType
+    public init(addressDetailType: String, addressDetails: CryptoAddressDetails, paymentPointer: String? = nil, proofOfControlSignature: String? = nil) {
+        self.addressDetailType = addressDetailType
         self.addressDetails = addressDetails
         self.paymentPointer = paymentPointer
         self.proofOfControlSignature = proofOfControlSignature
@@ -25,7 +25,7 @@ public class PaymentInformation: APIModel {
     public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: StringCodingKey.self)
 
-        addressDetailsType = try container.decode("addressDetailsType")
+        addressDetailType = try container.decode("addressDetailType")
         addressDetails = try container.decode("addressDetails")
         paymentPointer = try container.decodeIfPresent("paymentPointer")
         proofOfControlSignature = try container.decodeIfPresent("proof_of_control_signature")
@@ -34,7 +34,7 @@ public class PaymentInformation: APIModel {
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: StringCodingKey.self)
 
-        try container.encode(addressDetailsType, forKey: "addressDetailsType")
+        try container.encode(addressDetailType, forKey: "addressDetailType")
         try container.encode(addressDetails, forKey: "addressDetails")
         try container.encodeIfPresent(paymentPointer, forKey: "paymentPointer")
         try container.encodeIfPresent(proofOfControlSignature, forKey: "proof_of_control_signature")
@@ -42,7 +42,7 @@ public class PaymentInformation: APIModel {
 
     public func isEqual(to object: Any?) -> Bool {
       guard let object = object as? PaymentInformation else { return false }
-      guard self.addressDetailsType == object.addressDetailsType else { return false }
+      guard self.addressDetailType == object.addressDetailType else { return false }
       guard self.addressDetails == object.addressDetails else { return false }
       guard self.paymentPointer == object.paymentPointer else { return false }
       guard self.proofOfControlSignature == object.proofOfControlSignature else { return false }

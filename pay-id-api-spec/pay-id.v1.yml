@@ -145,7 +145,7 @@ components:
       title: PaymentInformation
       type: object
       properties:
-        addressDetailsType:
+        addressDetailType:
           type: string
         addressDetails:
           $ref: '#/components/schemas/CryptoAddressDetails'
@@ -154,7 +154,7 @@ components:
         paymentPointer:
           type: string
       required:
-        - addressDetailsType
+        - addressDetailType
         - addressDetails
     Invoice:
       title: Invoice
