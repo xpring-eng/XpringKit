@@ -27,7 +27,7 @@ final class XpringClientTest: XCTestCase {
   private let xrpError = XRPLedgerError.unknown("Test XRP error")
 
   func testSendSuccess() throws {
-    // GIVEN a XpringClient composed of a fake PayIDClient and a fake XRPClient which will both succeed.
+    // GIVEN a XpringClient composed of a fake XRPPayIDClient and a fake XRPClient which will both succeed.
     let expectedTransactionHash = "deadbeefdeadbeefdeadbeef"
     let xrpClient: XRPClientProtocol = FakeXRPClient(
       getBalanceValue: .success(fakeBalanceValue),
@@ -40,9 +40,9 @@ final class XpringClientTest: XCTestCase {
     )
 
     let fakeResolvedPayID = "r123"
-    let payIDClient = FakePayIDClient(addressResult: .success(fakeResolvedPayID))
+    let payIDClient = FakeXRPPayIDClient(addressResult: .success(fakeResolvedPayID))
 
-    let xpringClient = XpringClient(payIDClient: payIDClient, xrpClient: xrpClient)
+    let xpringClient = try XpringClient(payIDClient: payIDClient, xrpClient: xrpClient)
 
     // WHEN XRP is sent to the Pay ID THEN the expected transaction hash is returned.
     let completionCalledExpectation = XCTestExpectation(description: "Completion called")
@@ -60,7 +60,7 @@ final class XpringClientTest: XCTestCase {
   }
 
   func testSendFailureInPayID() throws {
-    // GIVEN a XpringClient composed of a PayIDClient which will throw an error.
+    // GIVEN a XpringClient composed of an XRPPayIDClient which will throw an error.
     let expectedTransactionHash = "deadbeefdeadbeefdeadbeef"
     let xrpClient: XRPClientProtocol = FakeXRPClient(
       getBalanceValue: .success(fakeBalanceValue),
@@ -72,9 +72,9 @@ final class XpringClientTest: XCTestCase {
       accountExistsValue: .success(fakeAccountExistsValue)
     )
 
-    let payIDClient = FakePayIDClient(addressResult: .failure(payIDError))
+    let payIDClient = FakeXRPPayIDClient(addressResult: .failure(payIDError))
 
-    let xpringClient = XpringClient(payIDClient: payIDClient, xrpClient: xrpClient)
+    let xpringClient = try XpringClient(payIDClient: payIDClient, xrpClient: xrpClient)
 
     // WHEN XRP is sent to the Pay ID THEN the exception thrown is from Pay ID.
     let completionCalledExpectation = XCTestExpectation(description: "Completion called")
@@ -104,9 +104,9 @@ final class XpringClientTest: XCTestCase {
     )
 
     let fakeResolvedPayID = "r123"
-    let payIDClient = FakePayIDClient(addressResult: .success(fakeResolvedPayID))
+    let payIDClient = FakeXRPPayIDClient(addressResult: .success(fakeResolvedPayID))
 
-    let xpringClient = XpringClient(payIDClient: payIDClient, xrpClient: xrpClient)
+    let xpringClient = try XpringClient(payIDClient: payIDClient, xrpClient: xrpClient)
 
     // WHEN XRP is sent to the Pay ID THEN the exception thrown is from XRP.
     let completionCalledExpectation = XCTestExpectation(description: "Completion called")
@@ -136,9 +136,9 @@ final class XpringClientTest: XCTestCase {
       accountExistsValue: .success(fakeAccountExistsValue)
     )
 
-    let payIDClient = FakePayIDClient(addressResult: .failure(payIDError))
+    let payIDClient = FakeXRPPayIDClient(addressResult: .failure(payIDError))
 
-    let xpringClient = XpringClient(payIDClient: payIDClient, xrpClient: xrpClient)
+    let xpringClient = try XpringClient(payIDClient: payIDClient, xrpClient: xrpClient)
 
     // WHEN XRP is sent to the Pay ID THEN the exception thrown is from Pay ID.
     let completionCalledExpectation = XCTestExpectation(description: "Completion called")
@@ -153,5 +153,28 @@ final class XpringClientTest: XCTestCase {
     }
 
     self.wait(for: [completionCalledExpectation], timeout: 10)
+  }
+
+  func testMismatchedNetworks() throws {
+    // GIVEN a PayIDClient and an XRPClient on different networks.
+    let expectedTransactionHash = "deadbeefdeadbeefdeadbeef"
+    let xrpClient: XRPClientProtocol = FakeXRPClient(
+      network: .test,
+      getBalanceValue: .success(fakeBalanceValue),
+      paymentStatusValue: .success(fakeTransactionStatusValue),
+      sendValue: .success(expectedTransactionHash),
+      latestValidatedLedgerValue: .success(fakeLastLedgerSequenceValue),
+      rawTransactionStatusValue: .success(fakeRawTransactionStatusValue),
+      paymentHistoryValue: .success(fakePaymentHistoryValue),
+      accountExistsValue: .success(fakeAccountExistsValue)
+    )
+
+    let fakeResolvedPayID = "r123"
+    let payIDClient = FakeXRPPayIDClient(xrplNetwork: .main, addressResult: .success(fakeResolvedPayID))
+
+    // WHEN a XpringClient is constructed THEN a mismatched network XpringError is thrown.
+    XCTAssertThrowsError(try XpringClient(payIDClient: payIDClient, xrpClient: xrpClient)) { error in
+      XCTAssertEqual(error as? XpringError, XpringError.mismatchedNetworks)
+    }
   }
 }

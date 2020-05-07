@@ -77,13 +77,15 @@ internal class JavaScriptUtils {
   ///   - isTest Whether the address is for use on a test network, defaults to `false`.
   /// - Returns: A new X-address if inputs were valid, otherwise undefined.
   public func encode(classicAddress: Address, tag: UInt32? = nil, isTest: Bool = false) -> Address? {
-    var arguments: [Any] = [ classicAddress ]
+    var arguments: [Any?] = [ classicAddress ]
     if tag != nil {
       arguments.append(tag as Any)
+    } else {
+      arguments.append(JSValue(undefinedIn: JSContext.xpringKit))
     }
     arguments.append(isTest)
 
-    let result = utilsClass.invokeMethod(ResourceNames.Methods.encodeXAddress, withArguments: arguments)!
+    let result = utilsClass.invokeMethod(ResourceNames.Methods.encodeXAddress, withArguments: arguments as [Any])!
     return result.isUndefined ? nil : result.toString()
   }
 
