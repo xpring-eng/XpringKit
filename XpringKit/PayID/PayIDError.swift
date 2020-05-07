@@ -8,7 +8,7 @@ public enum PayIDError: Equatable, Error {
   /// - Parameters:
   ///   - paymentPointer: The invalid payment pointer.
   ///   - network: The network resolution was attempted on.
-  case mappingNotFound(paymentPointer: String, network: XRPLNetwork)
+  case mappingNotFound(paymentPointer: String, network: String)
 
   /// The response from PayID was in an unexpected format.
   case unexpectedResponse
