@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+- A new enum, `ILPError`, replaces the functionality in `IlpError` with an idiomatically cased name.
+
+### Deprecated
+- `IlpError` is deprecated. Please use the idiomatically cased `ILPError` enum instead.
+
+
 ## 3.1.0 - May 6, 2020
 
 #### Added
