@@ -59,7 +59,7 @@ jobs:
 
       - run:
           name: "Build and Test (CocoaPods)"
-          command: pod lib lint --verbose
+          command: pod lib lint --verbose --allow-warnings
 
       - run:
           name: "Generate and Upload Code Coverage"
