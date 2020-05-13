@@ -52,6 +52,9 @@ public class DefaultXRPClient {
       $0.account = Org_Xrpl_Rpc_V1_AccountAddress.with {
         $0.address = classicAddress
       }
+      $0.ledger = Org_Xrpl_Rpc_V1_LedgerSpecifier.with {
+        $0.shortcut = Org_Xrpl_Rpc_V1_LedgerSpecifier.Shortcut.validated
+      }
     }
     return try networkClient.getAccountInfo(accountInfoRequest)
   }
