@@ -1,4 +1,6 @@
 ignore:
-  - "XpringKit/*/Generated/**/*"
+  - "XpringKit/XRP/Generated/**/*"
+  - "XpringKit/ILP/Generated/**/*"
+  - "XpringKit/PayID/Generated/**/*"
 
 
