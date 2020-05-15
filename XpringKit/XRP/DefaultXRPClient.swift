@@ -123,7 +123,7 @@ extension DefaultXRPClient: XRPClientDecorator {
 
     let accountInfo = try getAccountInfo(for: sourceClassicAddressComponents.classicAddress)
     let fee = try getFee()
-    let lastValidatedLedgerSequence = try getLatestValidatedLedgerSequence()
+    let lastValidatedLedgerSequence = try getOpenLedgerSequence()
 
     var payment = Org_Xrpl_Rpc_V1_Payment.with {
       $0.destination = Org_Xrpl_Rpc_V1_Destination.with {
@@ -180,14 +180,44 @@ extension DefaultXRPClient: XRPClientDecorator {
     return [UInt8](submitTransactionResponse.hash).toHex()
   }
 
-  /// Retrieve the latest validated ledger sequence on the XRP Ledger.
+  /// Retrieve the open ledger sequence index.
   ///
   /// - Throws: An error if there was a problem communicating with the XRP Ledger.
-  /// - Returns: The index of the latest validated ledger.
-  public func getLatestValidatedLedgerSequence() throws -> UInt32 {
+  /// - Returns: The index of the open ledger.
+  private func getOpenLedgerSequence() throws -> UInt32 {
     // The fee API response contains the last ledger sequence and a limited subset of RPCs were implemented in gRPC.
     let getFeeResponse = try getRawFee()
     return getFeeResponse.ledgerCurrentIndex
+  }
+
+  /// Retrieve the latest validated ledger sequence on the XRP Ledger.
+  ///
+  /// - Note: This call will throw if the given account does not exist on the ledger at the current time. It is the
+  /// *caller's responsibility* to ensure this invariant is met.
+  /// - Note: The input address *must* be in a classic address form. Inputs are not checked to this internal method.
+  ///
+  /// TODO(keefertaylor): The above requirements are onerous, difficult to reason about and the logic of this method is\
+  /// brittle. Replace this method's implementation when rippled supports a `ledger` RPC via gRPC.
+  ///
+  /// - Parameter address: An address that exists at the current time. The address is unchecked and must be
+  ///   a classic address.
+  /// - Throws: An error if there was a problem communicating with the XRP Ledger.
+  /// - Returns: The index of the latest validated ledger.
+  internal func getLatestValidatedLedgerSequence(address: Address) throws -> UInt32 {
+    // rippled doesn't support a gRPC call that tells us the latest validated ledger sequence. To get around this,
+    // query the account info for an account which will exist, using a shortcut for the latest validated ledger. The
+    // response will contain the ledger the information was retrieved at.
+    let getAccountInfoRequest = Org_Xrpl_Rpc_V1_GetAccountInfoRequest.with {
+      $0.account = Org_Xrpl_Rpc_V1_AccountAddress.with {
+        $0.address = address
+      }
+      $0.ledger = Org_Xrpl_Rpc_V1_LedgerSpecifier.with {
+        $0.shortcut = Org_Xrpl_Rpc_V1_LedgerSpecifier.Shortcut.validated
+      }
+    }
+
+    let getAccountInfoResponse = try networkClient.getAccountInfo(getAccountInfoRequest)
+    return getAccountInfoResponse.ledgerIndex
   }
 
   /// Retrieve the raw transaction status for the given transaction hash.
