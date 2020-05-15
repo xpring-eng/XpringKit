@@ -61,7 +61,10 @@ final class ReliableSubmissionClientTest: XCTestCase {
   func testGetLatestValidatedLedgerSequence() {
     // GIVEN a `ReliableSubmissionClient` decorating a FakeXRPClient WHEN the latest ledger sequence is retrieved
     // THEN the result is returned unaltered.
-    XCTAssertEqual(try? reliableSubmissionClient.getLatestValidatedLedgerSequence(), defaultLatestValidatedLedgerValue)
+    XCTAssertEqual(
+      try? reliableSubmissionClient.getLatestValidatedLedgerSequence(address: .testAddress),
+      defaultLatestValidatedLedgerValue
+    )
   }
 
   func testGetRawTransactionStatus() {
