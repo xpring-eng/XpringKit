@@ -65,10 +65,10 @@ public struct XRPTransaction: Equatable {
   /// A boolean indicating whether this transaction was found on a validated ledger, and not an open or closed ledger.
   /// - SeeAlso: "https://xrpl.org/ledgers.html#open-closed-and-validated-ledgers"
   public let validated: Bool
-  
+
   /// The index of the ledger on which this transaction was found.
   public let ledgerIndex: UInt32
-  
+
   /// Transaction specific fields, only one of the following will be set.
 
   /// An XRPPayment object representing the additional fields present in a PAYMENT transaction.

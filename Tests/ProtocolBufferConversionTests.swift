@@ -462,6 +462,9 @@ final class ProtocolBufferConversionTests: XCTestCase {
     let memoData = Data([1, 2, 3])
     let memoFormat = Data([4, 5, 6])
     let memoType = Data([7, 8, 9])
+    let validated = true
+    let ledgerIndex = UInt32(1_000)
+
     let memoProto = Org_Xrpl_Rpc_V1_Memo.with {
       $0.memoData = Org_Xrpl_Rpc_V1_MemoData.with {
         $0.value = memoData
@@ -550,6 +553,8 @@ final class ProtocolBufferConversionTests: XCTestCase {
           }
         }
       }
+      $0.validated = validated
+      $0.ledgerIndex = ledgerIndex
     }
     // WHEN the protocol buffer is converted to a native Swift type.
     let transaction = XRPTransaction(getTransactionResponse: getTransactionResponseProto)
@@ -569,6 +574,8 @@ final class ProtocolBufferConversionTests: XCTestCase {
     XCTAssertEqual(transaction?.sourceTag, sourceTag)
     XCTAssertEqual(transaction?.timestamp, .expectedTimestamp)
     XCTAssertEqual(transaction?.deliveredAmount, String(deliveredAmount))
+    XCTAssertEqual(transaction?.validated, validated)
+    XCTAssertEqual(transaction?.ledgerIndex, ledgerIndex)
   }
 
   func testConvertPaymentTransactionOnlyMandatoryCommonFieldsSet() {

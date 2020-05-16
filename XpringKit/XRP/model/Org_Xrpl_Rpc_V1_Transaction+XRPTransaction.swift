@@ -65,7 +65,7 @@ internal extension XRPTransaction {
     } else {
       self.deliveredAmount = nil
     }
-    
+
     self.validated = getTransactionResponse.validated
     self.ledgerIndex = getTransactionResponse.ledgerIndex
   }
