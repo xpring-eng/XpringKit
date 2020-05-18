@@ -1,5 +1,5 @@
 /// A decorator for a XRPClient.
-public protocol XRPClientDecorator {
+internal protocol XRPClientDecorator {
   /// Get the balance for the given address.
   ///
   /// - Parameter address: The X-Address to retrieve the balance for.
@@ -29,9 +29,14 @@ public protocol XRPClientDecorator {
 
   /// Retrieve the latest validated ledger sequence on the XRP Ledger.
   ///
+  /// - Note: This call will throw if the given account does not exist on the ledger at the current time. It is the
+  /// *caller's responsibility* to ensure this invariant is met.
+  /// TODO(keefertaylor): Replace this brittle logic when rippled supports a `ledger` RPC via gRPC.
+  ///
+  /// - Parameter address: An address that exists at the current time.
   /// - Throws: An error if there was a problem communicating with the XRP Ledger.
   /// - Returns: The index of the latest validated ledger.
-  func getLatestValidatedLedgerSequence() throws -> UInt32
+  func getLatestValidatedLedgerSequence(address: Address) throws -> UInt32
 
   /// Retrieve the raw transaction status for the given transaction hash.
   ///
