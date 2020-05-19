@@ -1,2 +1,3 @@
 ignore:
-  - "XpringKit/PayID/Generated/**/*"  # ignore folders and all its contents
+  - "XpringKit/*/Generated/**/*"
+  - "XpringKit/PayID/Generated/APIs.swift"
