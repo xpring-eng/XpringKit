@@ -1,6 +1,2 @@
 ignore:
-  - "XpringKit/XRP/Generated/**/*"
-  - "XpringKit/ILP/Generated/**/*"
-  - "XpringKit/PayID/Generated/**/*"
-
-
+  - "XpringKit/PayID/Generated/**/*"  # ignore folders and all its contents
