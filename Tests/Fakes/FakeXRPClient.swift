@@ -1,4 +1,4 @@
-import XpringKit
+@testable import XpringKit
 
 /// A  fake XRPClient which returns the given iVars as results from XRPClientDecorator calls.
 ///
@@ -55,7 +55,7 @@ extension FakeXRPClient: XRPClientDecorator {
     return try returnOrThrow(result: sendValue)
   }
 
-  public func getLatestValidatedLedgerSequence() throws -> UInt32 {
+  public func getLatestValidatedLedgerSequence(address: Address) throws -> UInt32 {
     return try returnOrThrow(result: latestValidatedLedgerValue)
   }
 
