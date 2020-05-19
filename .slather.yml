@@ -5,3 +5,4 @@ scheme: XpringKit_iOS
 ci_service: circleci
 ignore:
   - Tests/*
+  - XpringKit/*/Generated/**/*
