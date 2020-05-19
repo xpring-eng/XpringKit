@@ -1,3 +1,4 @@
 ignore:
   - "XpringKit/*/Generated/**/*"
   - "XpringKit/PayID/Generated/*"
+  - "XpringKit/PayID/Generated/**/*"
