@@ -23,6 +23,7 @@ final class ReliableSubmissionClientTest: XCTestCase {
   )
   let defaultPaymentHistoryValue: [XRPTransaction] = [ .testTransaction, .testTransaction, .testTransaction ]
   let defaultAccountExistsValue = true
+  let defaultGetPaymentValue = XRPTransaction(getTransactionResponse: .testGetTransactionResponse)
 
   var fakeXRPClient: FakeXRPClient!
   var reliableSubmissionClient: ReliableSubmissionXRPClient!
@@ -37,7 +38,8 @@ final class ReliableSubmissionClientTest: XCTestCase {
       latestValidatedLedgerValue: .success(defaultLatestValidatedLedgerValue),
       rawTransactionStatusValue: .success(defaultRawTransactionStatusValue),
       paymentHistoryValue: .success(defaultPaymentHistoryValue),
-      accountExistsValue: .success(defaultAccountExistsValue)
+      accountExistsValue: .success(defaultAccountExistsValue),
+      getPaymentValue: .success(defaultGetPaymentValue)
     )
 
     reliableSubmissionClient = ReliableSubmissionXRPClient(decoratedClient: fakeXRPClient)

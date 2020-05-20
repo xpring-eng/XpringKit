@@ -17,7 +17,7 @@ public class FakeXRPClient: XRPClientProtocol {
   public var rawTransactionStatusValue: Result<RawTransactionStatus, XRPLedgerError>
   public var paymentHistoryValue: Result<[XRPTransaction], XRPLedgerError>
   public var accountExistsValue: Result<Bool, XRPLedgerError>
-  public var getPaymentValue: Result<XRPTransaction, RPCError>
+  public var getPaymentValue: Result<XRPTransaction?, RPCError>
 
   public init(
     network: XRPLNetwork = .test,
@@ -28,7 +28,7 @@ public class FakeXRPClient: XRPClientProtocol {
     rawTransactionStatusValue: Result<RawTransactionStatus, XRPLedgerError>,
     paymentHistoryValue: Result<[XRPTransaction], XRPLedgerError>,
     accountExistsValue: Result<Bool, XRPLedgerError>,
-    getPaymentValue: Result<XRPTransaction, RPCError>
+    getPaymentValue: Result<XRPTransaction?, RPCError>
   ) {
     self.network = network
     self.getBalanceValue = getBalanceValue
