@@ -76,7 +76,7 @@ public class XRPClient: XRPClientProtocol {
   public func paymentHistory(for address: Address) throws -> [XRPTransaction] {
     return try decoratedClient.paymentHistory(for: address)
   }
-  
+
   /// Retrieve the payment transaction corresponding to the given transaction hash.
   ///
   /// - Note: This method can return transactions that are not included in a fully validated ledger.
@@ -85,7 +85,7 @@ public class XRPClient: XRPClientProtocol {
   /// - Parameter transactionHash: The hash of the transaction to retrieve.
   /// - Throws: An RPCError if the transaction hash was invalid.
   /// - Returns: An XRPTransaction object representing an XRP Ledger transaction.
-  func getPayment(for transactionHash: String) throws -> XRPTransaction? {
+  public func getPayment(for transactionHash: String) throws -> XRPTransaction? {
     return try decoratedClient.getPayment(for: transactionHash)
   }
 }

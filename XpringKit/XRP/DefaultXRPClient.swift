@@ -310,7 +310,7 @@ extension DefaultXRPClient: XRPClientDecorator {
       }
     }
   }
-  
+
   /// Retrieve the payment transaction corresponding to the given transaction hash.
   ///
   /// - Note: This method can return transactions that are not included in a fully validated ledger.

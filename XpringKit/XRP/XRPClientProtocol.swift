@@ -47,7 +47,7 @@ public protocol XRPClientProtocol {
   /// - Throws: An error if there was a problem communicating with the XRP Ledger.
   /// - Returns: An array of transactions associated with the account.
   func paymentHistory(for address: Address) throws -> [XRPTransaction]
-  
+
   /// Retrieve the payment transaction corresponding to the given transaction hash.
   ///
   /// - Note: This method can return transactions that are not included in a fully validated ledger.
