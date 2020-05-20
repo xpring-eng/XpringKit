@@ -674,7 +674,7 @@ final class DefaultXRPClientTest: XCTestCase {
       accountInfoResult: .success(.testGetAccountInfoResponse),
       feeResult: .success(.testGetFeeResponse),
       submitTransactionResult: .success(.testSubmitTransactionResponse),
-      transactionStatusResult: .success(.invalidTestGetTransactionResponseUnsupportedType),
+      transactionStatusResult: .success(.invalidGetTransactionResponseUnsupported),
       transactionHistoryResult: .success(.testTransactionHistoryResponse)
     )
     let xrpClient = DefaultXRPClient(networkClient: networkClient)

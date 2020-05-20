@@ -23,7 +23,7 @@ extension Org_Xrpl_Rpc_V1_GetTransactionResponse {
     $0.hash = .testHash
   }
 
-  public static let invalidTestGetTransactionResponseUnsupportedType = Org_Xrpl_Rpc_V1_GetTransactionResponse.with {
+  public static let invalidGetTransactionResponseUnsupported = Org_Xrpl_Rpc_V1_GetTransactionResponse.with {
     $0.transaction = .invalidTestTransactionUnsupportedType
     $0.hash = .testHash
   }
