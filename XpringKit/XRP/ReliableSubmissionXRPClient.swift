@@ -10,7 +10,7 @@ public class ReliableSubmissionXRPClient {
 }
 
 extension ReliableSubmissionXRPClient: XRPClientDecorator {
-  public func getBalance(for address: Address) throws -> UInt64 {
+  public func getBalance(for address: XRPAddress) throws -> UInt64 {
     return try decoratedClient.getBalance(for: address)
   }
 
@@ -18,7 +18,7 @@ extension ReliableSubmissionXRPClient: XRPClientDecorator {
     return try decoratedClient.paymentStatus(for: transactionHash)
   }
 
-  public func getLatestValidatedLedgerSequence(address: Address) throws -> UInt32 {
+  public func getLatestValidatedLedgerSequence(address: XRPAddress) throws -> UInt32 {
     return try decoratedClient.getLatestValidatedLedgerSequence(address: address)
   }
 
@@ -28,7 +28,7 @@ extension ReliableSubmissionXRPClient: XRPClientDecorator {
 
   public func send(
     _ amount: UInt64,
-    to destinationAddress: Address,
+    to destinationAddress: XRPAddress,
     from sourceWallet: Wallet
   ) throws -> TransactionHash {
     let ledgerCloseTime: TimeInterval = 4
@@ -77,11 +77,11 @@ extension ReliableSubmissionXRPClient: XRPClientDecorator {
     return transactionHash
   }
 
-  public func accountExists(for address: Address) throws -> Bool {
+  public func accountExists(for address: XRPAddress) throws -> Bool {
     return try decoratedClient.accountExists(for: address)
   }
 
-  public func paymentHistory(for address: Address) throws -> [XRPTransaction] {
+  public func paymentHistory(for address: XRPAddress) throws -> [XRPTransaction] {
     return try decoratedClient.paymentHistory(for: address)
   }
 }

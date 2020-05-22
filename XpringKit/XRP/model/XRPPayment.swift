@@ -9,7 +9,7 @@ public struct XRPPayment: Equatable {
   public let amount: XRPCurrencyAmount
 
   /// The unique address of the account receiving the payment.
-  public let destination: Address
+  public let destination: XRPAddress
 
   /// (Optional) Arbitrary tag that identifies a hosted recipient to pay, or the reason for the payment.
   public let destinationTag: UInt32?

@@ -18,7 +18,7 @@ internal class JavaScriptWallet {
   private let javaScriptWallet: JSValue
 
   /// Returns the address of this `JavaScriptWallet` on the XRP Ledger.
-  public var address: Address {
+  public var address: XRPAddress {
     let value = javaScriptWallet.invokeMethod(ResourceNames.Methods.getAddress, withArguments: [])!
     return value.toString()
   }

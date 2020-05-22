@@ -12,7 +12,7 @@ public enum Utils {
   ///
   /// - Parameter address: The address to validate.
   ///	- Returns: true if the address is valid, otherwise false.
-  public static func isValid(address: Address) -> Bool {
+  public static func isValid(address: XRPAddress) -> Bool {
     return javaScriptUtils.isValid(address: address)
   }
 
@@ -22,7 +22,7 @@ public enum Utils {
   ///
   /// - Parameter address: An address to check.
   /// - Returns true if the address is a valid X-address, otherwise false.
-  public static func isValidXAddress(address: Address) -> Bool {
+  public static func isValidXAddress(address: XRPAddress) -> Bool {
     return javaScriptUtils.isValidXAddress(address: address)
   }
 
@@ -32,7 +32,7 @@ public enum Utils {
   ///
   /// - Parameter address: An address to check.
   /// - Returns true if the address is a valid classic address, otherwise false.
-  public static func isValidClassicAddress(address: Address) -> Bool {
+  public static func isValidClassicAddress(address: XRPAddress) -> Bool {
     return javaScriptUtils.isValidClassicAddress(address: address)
   }
 
@@ -45,7 +45,7 @@ public enum Utils {
   ///   - tag: An optional tag to encode. Defaults to nil.
   ///   - isTest Whether the address is for use on a test network, defaults to `false`.
   /// - Returns: A new x-address if inputs were valid, otherwise undefined.
-  public static func encode(classicAddress: Address, tag: UInt32? = nil, isTest: Bool = false) -> Address? {
+  public static func encode(classicAddress: XRPAddress, tag: UInt32? = nil, isTest: Bool = false) -> XRPAddress? {
     return javaScriptUtils.encode(classicAddress: classicAddress, tag: tag, isTest: isTest)
   }
 
@@ -55,7 +55,7 @@ public enum Utils {
   ///
   /// - Parameter xAddress: The xAddress to decode.
   /// - Returns: a tuple containing the decoded address,  tag and bool indicating if the address was on a test network.
-  public static func decode(xAddress: Address) -> (classicAddress: String, tag: UInt32?, isTest: Bool)? {
+  public static func decode(xAddress: XRPAddress) -> (classicAddress: String, tag: UInt32?, isTest: Bool)? {
     return javaScriptUtils.decode(xAddress: xAddress)
   }
 

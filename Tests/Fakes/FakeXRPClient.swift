@@ -39,7 +39,7 @@ public class FakeXRPClient: XRPClientProtocol {
 }
 
 extension FakeXRPClient: XRPClientDecorator {
-  public func getBalance(for address: Address) throws -> UInt64 {
+  public func getBalance(for address: XRPAddress) throws -> UInt64 {
     return try returnOrThrow(result: getBalanceValue)
   }
 
@@ -49,13 +49,13 @@ extension FakeXRPClient: XRPClientDecorator {
 
   public func send(
     _ amount: UInt64,
-    to destinationAddress: Address,
+    to destinationAddress: XRPAddress,
     from sourceWallet: Wallet
   ) throws -> TransactionHash {
     return try returnOrThrow(result: sendValue)
   }
 
-  public func getLatestValidatedLedgerSequence(address: Address) throws -> UInt32 {
+  public func getLatestValidatedLedgerSequence(address: XRPAddress) throws -> UInt32 {
     return try returnOrThrow(result: latestValidatedLedgerValue)
   }
 
@@ -63,11 +63,11 @@ extension FakeXRPClient: XRPClientDecorator {
     return try returnOrThrow(result: rawTransactionStatusValue)
   }
 
-  public func paymentHistory(for address: Address) throws -> [XRPTransaction] {
+  public func paymentHistory(for address: XRPAddress) throws -> [XRPTransaction] {
     return try returnOrThrow(result: paymentHistoryValue)
   }
 
-  public func accountExists(for address: Address) throws -> Bool {
+  public func accountExists(for address: XRPAddress) throws -> Bool {
     return try returnOrThrow(result: accountExistsValue)
   }
 

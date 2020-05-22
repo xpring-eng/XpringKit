@@ -10,7 +10,7 @@ public class Wallet {
   public static var defaultDerivationPath: String { return javaScriptWalletFactory.defaultDerivationPath }
 
   /// Returns the address of this `Wallet` on the XRP Ledger.
-  public var address: Address { return javaScriptWallet.address }
+  public var address: XRPAddress { return javaScriptWallet.address }
 
   /// Returns a hex encoded public key corresponding to this `Wallet`.
   public var publicKey: Hex { return javaScriptWallet.publicKey }

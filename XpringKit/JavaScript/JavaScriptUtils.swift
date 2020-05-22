@@ -40,7 +40,7 @@ internal class JavaScriptUtils {
   ///
   /// - Parameter address: The address to validate.
   ///	- Returns: true if the address is valid, otherwise false.
-  public func isValid(address: Address) -> Bool {
+  public func isValid(address: XRPAddress) -> Bool {
     let result = utilsClass.invokeMethod(ResourceNames.Methods.isValidAddress, withArguments: [ address ])!
     return result.toBool()
   }
@@ -51,7 +51,7 @@ internal class JavaScriptUtils {
   ///
   /// - Parameter address: An address to check.
   /// - Returns true if the address is a valid X-address, otherwise false.
-  public func isValidXAddress(address: Address) -> Bool {
+  public func isValidXAddress(address: XRPAddress) -> Bool {
     let result = utilsClass.invokeMethod(ResourceNames.Methods.isValidXAddress, withArguments: [ address ])!
     return result.toBool()
   }
@@ -62,7 +62,7 @@ internal class JavaScriptUtils {
   ///
   /// - Parameter address: An address to check.
   /// - Returns true if the address is a valid classic address, otherwise false.
-  public func isValidClassicAddress(address: Address) -> Bool {
+  public func isValidClassicAddress(address: XRPAddress) -> Bool {
     let result = utilsClass.invokeMethod(ResourceNames.Methods.isValidClassicAddress, withArguments: [ address ])!
     return result.toBool()
   }
@@ -76,7 +76,7 @@ internal class JavaScriptUtils {
   ///   - tag: An optional tag to encode. Defaults to nil.
   ///   - isTest Whether the address is for use on a test network, defaults to `false`.
   /// - Returns: A new X-address if inputs were valid, otherwise undefined.
-  public func encode(classicAddress: Address, tag: UInt32? = nil, isTest: Bool = false) -> Address? {
+  public func encode(classicAddress: XRPAddress, tag: UInt32? = nil, isTest: Bool = false) -> XRPAddress? {
     var arguments: [Any?] = [ classicAddress ]
     if tag != nil {
       arguments.append(tag as Any)
@@ -95,7 +95,7 @@ internal class JavaScriptUtils {
   ///
   /// - Parameter xAddress: The X-Address to decode.
   /// - Returns: a tuple containing the decoded address,  tag and bool indicating if the address was on a test network.
-  public func decode(xAddress: Address) -> (classicAddress: String, tag: UInt32?, isTest: Bool)? {
+  public func decode(xAddress: XRPAddress) -> (classicAddress: String, tag: UInt32?, isTest: Bool)? {
     let result = utilsClass.invokeMethod(ResourceNames.Methods.decodeXAddress, withArguments: [ xAddress ])!
     guard !result.isUndefined else {
       return nil

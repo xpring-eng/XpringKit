@@ -47,7 +47,7 @@ public class DefaultXRPClient {
   /// - Parameter classicAddress: The classic address to retrieve info for.
   /// - Throws: An error if there was a problem communicating with the XRP Ledger.
   /// - Returns: A `Org_Xrpl_Rpc_V1_AccountInfo` for submitting a transaction to the ledger.
-  private func getAccountInfo(for classicAddress: Address) throws -> Org_Xrpl_Rpc_V1_GetAccountInfoResponse {
+  private func getAccountInfo(for classicAddress: XRPAddress) throws -> Org_Xrpl_Rpc_V1_GetAccountInfoResponse {
     let accountInfoRequest = Org_Xrpl_Rpc_V1_GetAccountInfoRequest.with {
       $0.account = Org_Xrpl_Rpc_V1_AccountAddress.with {
         $0.address = classicAddress
@@ -66,7 +66,7 @@ extension DefaultXRPClient: XRPClientDecorator {
   /// - Parameter address: The X-Address to retrieve the balance for.
   /// - Throws: An error if there was a problem communicating with the XRP Ledger or the inputs were invalid.
   /// - Returns: An unsigned integer containing the balance of the address in drops.
-  public func getBalance(for address: Address) throws -> UInt64 {
+  public func getBalance(for address: XRPAddress) throws -> UInt64 {
     guard
       let classicAddressComponents = Utils.decode(xAddress: address)
       else {
@@ -111,7 +111,7 @@ extension DefaultXRPClient: XRPClientDecorator {
   /// - Returns: A transaction hash for the submitted transaction.
   public func send(
     _ amount: UInt64,
-    to destinationAddress: Address,
+    to destinationAddress: XRPAddress,
     from sourceWallet: Wallet
   ) throws -> TransactionHash {
     guard
@@ -203,7 +203,7 @@ extension DefaultXRPClient: XRPClientDecorator {
   ///   a classic address.
   /// - Throws: An error if there was a problem communicating with the XRP Ledger.
   /// - Returns: The index of the latest validated ledger.
-  internal func getLatestValidatedLedgerSequence(address: Address) throws -> UInt32 {
+  internal func getLatestValidatedLedgerSequence(address: XRPAddress) throws -> UInt32 {
     // rippled doesn't support a gRPC call that tells us the latest validated ledger sequence. To get around this,
     // query the account info for an account which will exist, using a shortcut for the latest validated ledger. The
     // response will contain the ledger the information was retrieved at.
@@ -243,7 +243,7 @@ extension DefaultXRPClient: XRPClientDecorator {
   /// - Parameter address: The address to check the existence of.
   /// - Throws: An error if there was a problem communicating with the XRP Ledger.
   /// - Returns: A boolean if the account is on the blockchain.
-  public func accountExists(for address: Address) throws -> Bool {
+  public func accountExists(for address: XRPAddress) throws -> Bool {
     guard
       Utils.decode(xAddress: address) != nil
     else {
@@ -272,7 +272,7 @@ extension DefaultXRPClient: XRPClientDecorator {
   /// - Parameter address: The address (account) for which to retrive payment history.
   /// - Throws: An error if there was a problem communicating with the XRP Ledger.
   /// - Returns: An array of payments associated with the account.
-  public func paymentHistory(for address: Address) throws -> [XRPTransaction] {
+  public func paymentHistory(for address: XRPAddress) throws -> [XRPTransaction] {
     guard
       let classicAddressComponents = Utils.decode(xAddress: address)
       else {

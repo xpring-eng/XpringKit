@@ -8,7 +8,7 @@ public protocol XRPClientProtocol {
   /// - Parameter address: The X-Address to retrieve the balance for.
   /// - Throws: An error if there was a problem communicating with the XRP Ledger or the inputs were invalid.
   /// - Returns: An unsigned integer containing the balance of the address in drops.
-  func getBalance(for address: Address) throws -> UInt64
+  func getBalance(for address: XRPAddress) throws -> UInt64
 
   /// Retrieve the payment status for a Payment given transaction hash.
   ///
@@ -28,14 +28,14 @@ public protocol XRPClientProtocol {
   ///    - sourceWallet: The wallet sending the XRP.
   /// - Throws: An error if there was a problem communicating with the XRP Ledger or the inputs were invalid.
   /// - Returns: A transaction hash for the submitted transaction.
-  func send(_ amount: UInt64, to destinationAddress: Address, from sourceWallet: Wallet) throws -> TransactionHash
+  func send(_ amount: UInt64, to destinationAddress: XRPAddress, from sourceWallet: Wallet) throws -> TransactionHash
 
   /// Check if an address exists on the XRP Ledger
   ///
   /// - Parameter address: The address to check the existence of.
   /// - Throws: An error if there was a problem communicating with the XRP Ledger.
   /// - Returns: A boolean if the account is on the blockchain.
-  func accountExists(for address: Address) throws -> Bool
+  func accountExists(for address: XRPAddress) throws -> Bool
 
   /// Return the history of payments for the given account.
   ///
@@ -46,5 +46,5 @@ public protocol XRPClientProtocol {
   /// - Parameter address: The address (account) for which to retrieve payment history.
   /// - Throws: An error if there was a problem communicating with the XRP Ledger.
   /// - Returns: An array of transactions associated with the account.
-  func paymentHistory(for address: Address) throws -> [XRPTransaction]
+  func paymentHistory(for address: XRPAddress) throws -> [XRPTransaction]
 }

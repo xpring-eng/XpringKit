@@ -5,7 +5,7 @@ import Foundation
 public struct XRPSigner: Equatable {
 
   /// The address associated with this signature, as it appears in the SignerList.
-  public let account: Address
+  public let account: XRPAddress
 
   /// The public key used to create this signature.
   public let signingPublicKey: Data

@@ -11,5 +11,5 @@ public struct XRPIssuedCurrency: Equatable {
   public let value: BigInt
 
   /// Unique account address of the entity issuing the currency.
-  public let issuer: Address
+  public let issuer: XRPAddress
 }
