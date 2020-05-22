@@ -11,24 +11,18 @@ import Foundation
 
 public struct PaymentInformation: Codable {
 
-    public var addressDetailsType: String?
-    public var addressDetails: CryptoAddressDetails
+    public var addresses: [Address]
     public var proofOfControlSignature: String?
-    public var paymentPointer: String?
+    public var payId: String?
+    public var memo: String?
 
-    public init(addressDetailsType: String?, addressDetails: CryptoAddressDetails, proofOfControlSignature: String?, paymentPointer: String?) {
-        self.addressDetailsType = addressDetailsType
-        self.addressDetails = addressDetails
+    public init(addresses: [Address], proofOfControlSignature: String?, payId: String?, memo: String?) {
+        self.addresses = addresses
         self.proofOfControlSignature = proofOfControlSignature
-        self.paymentPointer = paymentPointer
+        self.payId = payId
+        self.memo = memo
     }
 
-    public enum CodingKeys: String, CodingKey { 
-        case addressDetailsType
-        case addressDetails
-        case proofOfControlSignature = "proof_of_control_signature"
-        case paymentPointer
-    }
 
 }
 
