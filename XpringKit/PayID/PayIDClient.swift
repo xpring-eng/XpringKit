@@ -71,7 +71,12 @@ public class PayIDClient {
       if
         let response = response,
         let paymentInformation = response.body {
-        // TODO(amiecorso): what if addresses is empty or has more than one address?
+        // With a specific network, exactly one address should be returned by a PayId lookup.
+        guard paymentInformation.addresses.count == 1 else {
+          let unexpectedResponseError = PayIDError.unexpectedResponse
+          completion(.failure(unexpectedResponseError))
+          return
+        }
         completion(.success(paymentInformation.addresses[0].addressDetails))
       } else if
         let errorResponse = error as? ErrorResponse,
