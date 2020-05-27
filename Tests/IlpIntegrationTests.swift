@@ -51,34 +51,34 @@ class IlpIntegrationTests: XCTestCase {
     )
   }
 
-  func testSendPayment() {
-    // GIVEN an IlpClient with a network client hooked up to Hermes
-    // AND an ILP account with accountId = sdk_account1
-    // AND an ILP account with accoundId = sdk_account2
-    do {
-      let paymentRequest = PaymentRequest(
-        .testIlpSendAmount,
-        to: .testIlpPaymentPointer,
-        from: .testAccountID
-      )
-      // WHEN a payment is sent from sdk_account1 to sdk_account2
-      let payment = try ilpClient.sendPayment(
-        paymentRequest,
-        withAuthorization: .testAccessToken
-      )
-
-      // THEN the originalAmount is equal to the amount requested
-      // AND the amountSent is equal to the amount requested
-      // AND the amountDelivered is equal to the amount requested
-      // AND the payment was successful
-      XCTAssertEqual(payment.originalAmount, .testIlpSendAmount)
-      XCTAssertEqual(payment.amountSent, .testIlpSendAmount)
-      XCTAssertEqual(payment.amountDelivered, .testIlpSendAmount)
-      XCTAssertEqual(payment.successfulPayment, true)
-    } catch {
-      XCTFail("Failed to send payment with error: \(error)")
-    }
-  }
+//  func testSendPayment() {
+//    // GIVEN an IlpClient with a network client hooked up to Hermes
+//    // AND an ILP account with accountId = sdk_account1
+//    // AND an ILP account with accoundId = sdk_account2
+//    do {
+//      let paymentRequest = PaymentRequest(
+//        .testIlpSendAmount,
+//        to: .testIlpPaymentPointer,
+//        from: .testAccountID
+//      )
+//      // WHEN a payment is sent from sdk_account1 to sdk_account2
+//      let payment = try ilpClient.sendPayment(
+//        paymentRequest,
+//        withAuthorization: .testAccessToken
+//      )
+//
+//      // THEN the originalAmount is equal to the amount requested
+//      // AND the amountSent is equal to the amount requested
+//      // AND the amountDelivered is equal to the amount requested
+//      // AND the payment was successful
+//      XCTAssertEqual(payment.originalAmount, .testIlpSendAmount)
+//      XCTAssertEqual(payment.amountSent, .testIlpSendAmount)
+//      XCTAssertEqual(payment.amountDelivered, .testIlpSendAmount)
+//      XCTAssertEqual(payment.successfulPayment, true)
+//    } catch {
+//      XCTFail("Failed to send payment with error: \(error)")
+//    }
+//  }
 
   func testSendPaymentWithBearerToken() {
     // GIVEN an IlpClient with a network client hooked up to Hermes
