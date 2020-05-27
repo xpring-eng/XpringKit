@@ -71,7 +71,8 @@ public class PayIDClient {
       if
         let response = response,
         let paymentInformation = response.body {
-        completion(.success(paymentInformation.addressDetails))
+        // TODO(amiecorso): what if addresses is empty or has more than one address?
+        completion(.success(paymentInformation.addresses[0].addressDetails))
       } else if
         let errorResponse = error as? ErrorResponse,
         case let .error(code, _, underlyingError) = errorResponse,
