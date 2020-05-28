@@ -148,21 +148,38 @@ components:
           type: string
       required:
         - address
-    PaymentInformation:
-      title: PaymentInformation
+    PayIdAddress:
+      title: PayIdAddress
       type: object
       properties:
+        paymentNetwork:
+          type: string
+        environment:
+          type: string
         addressDetailsType:
           type: string
         addressDetails:
           $ref: '#/components/schemas/CryptoAddressDetails'
-        proof_of_control_signature:
+      required:
+        - paymentNetwork
+        - addressDetailsType
+        - addressDetails
+    PaymentInformation:
+      title: PaymentInformation
+      type: object
+      properties:
+        addresses:
+          type: array
+          items:
+            $ref: '#/components/schemas/PayIdAddress'
+        proofOfControlSignature:
           type: string
-        paymentPointer:
+        payId:
+          type: string
+        memo:
           type: string
       required:
-        - addressDetailType
-        - addressDetails
+        - addresses
     Invoice:
       title: Invoice
       type: object

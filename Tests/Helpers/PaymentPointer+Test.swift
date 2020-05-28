@@ -1,5 +1,5 @@
 import XpringKit
 
 extension PaymentPointer {
-  public static let testIlpPaymentPointer = "$money.ilpv4.dev/sdk_account2"
+  public static let testIlpPaymentPointer = "$stage.xpring.money/sdk_account2"
 }
