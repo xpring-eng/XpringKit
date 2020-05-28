@@ -38,13 +38,26 @@ open class DefaultAPI {
     "expirationTime" : "expirationTime",
     "memo" : "memo",
     "paymentInformation" : {
-      "paymentPointer" : "paymentPointer",
-      "addressDetailsType" : "addressDetailsType",
-      "addressDetails" : {
-        "address" : "address",
-        "tag" : "tag"
-      },
-      "proof_of_control_signature" : "proof_of_control_signature"
+      "addresses" : [ {
+        "paymentNetwork" : "paymentNetwork",
+        "environment" : "environment",
+        "addressDetailsType" : "addressDetailsType",
+        "addressDetails" : {
+          "address" : "address",
+          "tag" : "tag"
+        }
+      }, {
+        "paymentNetwork" : "paymentNetwork",
+        "environment" : "environment",
+        "addressDetailsType" : "addressDetailsType",
+        "addressDetails" : {
+          "address" : "address",
+          "tag" : "tag"
+        }
+      } ],
+      "proofOfControlSignature" : "proofOfControlSignature",
+      "memo" : "memo",
+      "payId" : "payId"
     },
     "complianceHashes" : [ {
       "type" : "type",
@@ -208,13 +221,26 @@ open class DefaultAPI {
      - GET /{host}/{path}
 
      - examples: [{contentType=application/json, example={
-  "paymentPointer" : "paymentPointer",
-  "addressDetailsType" : "addressDetailsType",
-  "addressDetails" : {
-    "address" : "address",
-    "tag" : "tag"
-  },
-  "proof_of_control_signature" : "proof_of_control_signature"
+  "addresses" : [ {
+    "paymentNetwork" : "paymentNetwork",
+    "environment" : "environment",
+    "addressDetailsType" : "addressDetailsType",
+    "addressDetails" : {
+      "address" : "address",
+      "tag" : "tag"
+    }
+  }, {
+    "paymentNetwork" : "paymentNetwork",
+    "environment" : "environment",
+    "addressDetailsType" : "addressDetailsType",
+    "addressDetails" : {
+      "address" : "address",
+      "tag" : "tag"
+    }
+  } ],
+  "proofOfControlSignature" : "proofOfControlSignature",
+  "memo" : "memo",
+  "payId" : "payId"
 }}]
      - parameter host: (path)  
      - parameter path: (path)  
