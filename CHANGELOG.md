@@ -7,9 +7,25 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-<placeholder>
+### Added
+- A new class, `DefaultILPCLient`, provides the functionality of `DefaultIlpClient` under an idiomatic name. 
+- A new class, `ILPClient`, provides the functionality of `IlpClient` under an idiomatic name. 
+- A new protocol, `ILPClientDecorator`, provides the functionality of `IlpClientDecorator` under an idiomatic name. 
+- A new enum, `ILPError`, provides the functionality of `IlpError` under an idiomatic name. 
+- A new class, `ILPNetworkBalanceClient`, provides the functionality of `IlpNetworkBalanceClient` under an idiomatic name. 
+- A new class, `ILPNetworkPaymentClient`, provides the functionality of `IlpNetworkPaymentClient` under an idiomatic name. 
+- A new class, `ILPCredentials`, provides the functionality of `IlpCredentials` under an idiomatic name. 
 
-### 3.1.1 - 2020-05-15
+### Deprecated
+- `DefaultIlpClient` is now deprecated. Please use `DefaultILPClient` instead.
+- `IlpClient` is now deprecated. Please use `ILPClient` instead.
+- `IlpClientDecorator` is now deprecated. Please use `ILPClientDecorator` instead.
+- `IlpError` is now deprecated. Please use `ILPError` instead.
+- `IlpNetworkBalanceClient` is now deprecated. Please use `ILPNetworkBalanceClient` instead.
+- `IlpNetworkPaymentClient` is now deprecated. Please use `ILPNetworkPaymentClient` instead.
+- `IlpCredentials` is now deprecated. Please use `ILPCredentials` instead.
+
+## 3.1.1 - 2020-05-15
 
 This fix release contains minor updates and performance improvements.
 
