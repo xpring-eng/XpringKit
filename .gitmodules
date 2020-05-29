@@ -1,6 +1,6 @@
 [submodule "xpring-common-js"]
 	path = xpring-common-js
-	url = https://github.com/xpring-eng/xpring-common-js
+	url = http://github.com/xpring-eng/xpring-common-js
 	branch = master
 [submodule "hermes-ilp"]
 	path = hermes-ilp
