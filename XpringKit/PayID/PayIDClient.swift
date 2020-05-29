@@ -61,10 +61,8 @@ public class PayIDClient {
           completion(.success(paymentInformation.addresses[0].addressDetails))
         case .status404:
           completion(.failure(.mappingNotFound(payID: payID, network: self.network)))
-        case .status415:
-          completion(.failure(.unexpectedResponse("Request returned HTTP 415")))
-        case .status503:
-          completion(.failure(.unexpectedResponse("Request returned HTTP 503")))
+        case .status415, .status503:
+          completion(.failure(.unexpectedResponse))
         }
 
       case .failure(let error):

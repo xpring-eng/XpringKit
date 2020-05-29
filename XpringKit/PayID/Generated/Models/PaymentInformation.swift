@@ -7,44 +7,44 @@ import Foundation
 
 public class PaymentInformation: APIModel {
 
-    public var addressDetails: CryptoAddressDetails
+    public var addresses: [PayIdAddress]
 
-    public var addressDetailsType: String?
+    public var memo: String?
 
-    public var paymentPointer: String?
+    public var payId: String?
 
     public var proofOfControlSignature: String?
 
-    public init(addressDetails: CryptoAddressDetails, addressDetailsType: String? = nil, paymentPointer: String? = nil, proofOfControlSignature: String? = nil) {
-        self.addressDetails = addressDetails
-        self.addressDetailsType = addressDetailsType
-        self.paymentPointer = paymentPointer
+    public init(addresses: [PayIdAddress], memo: String? = nil, payId: String? = nil, proofOfControlSignature: String? = nil) {
+        self.addresses = addresses
+        self.memo = memo
+        self.payId = payId
         self.proofOfControlSignature = proofOfControlSignature
     }
 
     public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: StringCodingKey.self)
 
-        addressDetails = try container.decode("addressDetails")
-        addressDetailsType = try container.decodeIfPresent("addressDetailsType")
-        paymentPointer = try container.decodeIfPresent("paymentPointer")
-        proofOfControlSignature = try container.decodeIfPresent("proof_of_control_signature")
+        addresses = try container.decodeArray("addresses")
+        memo = try container.decodeIfPresent("memo")
+        payId = try container.decodeIfPresent("payId")
+        proofOfControlSignature = try container.decodeIfPresent("proofOfControlSignature")
     }
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: StringCodingKey.self)
 
-        try container.encode(addressDetails, forKey: "addressDetails")
-        try container.encodeIfPresent(addressDetailsType, forKey: "addressDetailsType")
-        try container.encodeIfPresent(paymentPointer, forKey: "paymentPointer")
-        try container.encodeIfPresent(proofOfControlSignature, forKey: "proof_of_control_signature")
+        try container.encode(addresses, forKey: "addresses")
+        try container.encodeIfPresent(memo, forKey: "memo")
+        try container.encodeIfPresent(payId, forKey: "payId")
+        try container.encodeIfPresent(proofOfControlSignature, forKey: "proofOfControlSignature")
     }
 
     public func isEqual(to object: Any?) -> Bool {
       guard let object = object as? PaymentInformation else { return false }
-      guard self.addressDetails == object.addressDetails else { return false }
-      guard self.addressDetailsType == object.addressDetailsType else { return false }
-      guard self.paymentPointer == object.paymentPointer else { return false }
+      guard self.addresses == object.addresses else { return false }
+      guard self.memo == object.memo else { return false }
+      guard self.payId == object.payId else { return false }
       guard self.proofOfControlSignature == object.proofOfControlSignature else { return false }
       return true
     }

@@ -2,7 +2,7 @@ import XCTest
 import XpringKit
 
 extension String {
-  public static let grpcURL = "hermes-grpc.ilpv4.dev"
+  public static let grpcURL = "stg.grpcng.wallet.xpring.io"
 }
 
 class IlpIntegrationTests: XCTestCase {
