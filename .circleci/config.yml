@@ -23,7 +23,8 @@ jobs:
           name: "Install Tooling"
           command: |
             brew update
-            brew install grpc-swift swagger-codegen swift-protobuf swiftlint xcodegen
+            brew tap yonaskolb/SwagGen https://github.com/yonaskolb/SwagGen.git
+            brew install grpc-swift swagger-codegen swift-protobuf swiftlint xcodegen SwagGen
             npm i -g grpc-tools
             sudo gem install slather cocoapods
 
