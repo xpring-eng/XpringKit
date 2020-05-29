@@ -6,7 +6,7 @@ public enum PayIDError: Equatable, Error {
 
   /// A mapping for the given payment pointer was not found.
   /// - Parameters:
-  ///   - payID: The PayID which failed resolution
+  ///   - payID: The PayID which failed resolution.
   ///   - network: The network resolution was attempted on.
   case mappingNotFound(payID: String, network: String)
 
