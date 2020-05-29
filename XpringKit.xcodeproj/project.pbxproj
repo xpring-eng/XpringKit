@@ -1271,7 +1271,6 @@
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				Base,
 				en,
 			);
 			mainGroup = BBAD321263700FD683CDB723;
@@ -2077,7 +2076,7 @@
 				2A996D83A460890FD68B8F66 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = "";
+			defaultConfigurationName = Debug;
 		};
 		7BA8FE527DC7BE7FF80239CC /* Build configuration list for PBXNativeTarget "XpringKit_iOS" */ = {
 			isa = XCConfigurationList;
@@ -2086,7 +2085,7 @@
 				D469C709197F8DA0DC20859B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = "";
+			defaultConfigurationName = Debug;
 		};
 		C0A52FC1F46AB2CDA8428A29 /* Build configuration list for PBXProject "XpringKit" */ = {
 			isa = XCConfigurationList;
@@ -2104,7 +2103,7 @@
 				B9CC46D34DCA7966151CBB65 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = "";
+			defaultConfigurationName = Debug;
 		};
 		E297DD85A482E745EB6971F6 /* Build configuration list for PBXNativeTarget "XpringKitTests_iOS" */ = {
 			isa = XCConfigurationList;
@@ -2113,7 +2112,7 @@
 				79736EE579E62374A83E2609 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = "";
+			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
 	};
