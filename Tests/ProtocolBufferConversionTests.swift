@@ -297,11 +297,16 @@ final class ProtocolBufferConversionTests: XCTestCase {
 
     // WHEN the protocol buffer is converted to a native Swift type.
     let payment = XRPPayment(payment: paymentProto)
-
+    let expectedXAddress = Utils.encode(
+      classicAddress: payment!.destination,
+      tag: payment?.destinationTag,
+      isTest: false
+    )
     // THEN the result is as expected.
     XCTAssertEqual(payment?.amount, XRPCurrencyAmount(currencyAmount: paymentProto.amount.value))
     XCTAssertEqual(payment?.destination, paymentProto.destination.value.address)
     XCTAssertEqual(payment?.destinationTag, paymentProto.destinationTag.value)
+    XCTAssertEqual(payment?.destinationXAddress, expectedXAddress)
     XCTAssertEqual(payment?.deliverMin, XRPCurrencyAmount(currencyAmount: paymentProto.deliverMin.value))
     XCTAssertEqual(payment?.invoiceID, paymentProto.invoiceID.value)
     XCTAssertEqual(payment?.paths, paymentProto.paths.map { XRPPath(path: $0) })
@@ -324,12 +329,18 @@ final class ProtocolBufferConversionTests: XCTestCase {
     }
 
     // WHEN the protocol buffer is converted to a native Swift type.
-    let payment = XRPPayment(payment: paymentProto)
-
+    let payment = XRPPayment(payment: paymentProto, xrplNetwork: XRPLNetwork.test)
+    let expectedXAddress = Utils.encode(
+      classicAddress: payment!.destination,
+      tag: payment?.destinationTag,
+      isTest: true
+    )
+    
     // THEN the result is as expected.
     XCTAssertEqual(payment?.amount, XRPCurrencyAmount(currencyAmount: paymentProto.amount.value))
     XCTAssertEqual(payment?.destination, paymentProto.destination.value.address)
     XCTAssertNil(payment?.destinationTag)
+    XCTAssertEqual(payment?.destinationXAddress, expectedXAddress)
     XCTAssertNil(payment?.deliverMin)
     XCTAssertNil(payment?.invoiceID)
     XCTAssertNil(payment?.paths)
@@ -558,10 +569,16 @@ final class ProtocolBufferConversionTests: XCTestCase {
     }
     // WHEN the protocol buffer is converted to a native Swift type.
     let transaction = XRPTransaction(getTransactionResponse: getTransactionResponseProto)
-
+    let expectedXAddress = Utils.encode(
+      classicAddress: transaction!.account,
+      tag: nil,
+      isTest: false
+    )
+    
     // THEN all fields are present and converted correctly.
     XCTAssertEqual(transaction?.hash, [UInt8](hash).toHex())
     XCTAssertEqual(transaction?.account, account)
+    XCTAssertEqual(transaction?.accountXAddress, expectedXAddress)
     XCTAssertEqual(transaction?.fee, fee)
     XCTAssertEqual(transaction?.sequence, sequence)
     XCTAssertEqual(transaction?.signingPublicKey, signingPublicKey)
@@ -625,11 +642,21 @@ final class ProtocolBufferConversionTests: XCTestCase {
       $0.hash = hash
     }
     // WHEN the protocol buffer is converted to a native Swift type.
-    let transaction = XRPTransaction(getTransactionResponse: getTransactionResponseProto)
-
+    let transaction = XRPTransaction(
+      getTransactionResponse: getTransactionResponseProto,
+      xrplNetwork: XRPLNetwork.test
+    )
+    
+    let expectedXAddress = Utils.encode(
+      classicAddress: transaction!.account,
+      tag: nil,
+      isTest: true
+    )
+    
     // THEN all fields are present and converted correctly.
     XCTAssertEqual(transaction?.hash, [UInt8](hash).toHex())
     XCTAssertEqual(transaction?.account, account)
+    XCTAssertEqual(transaction?.accountXAddress, expectedXAddress)
     XCTAssertEqual(transaction?.fee, fee)
     XCTAssertEqual(transaction?.sequence, sequence)
     XCTAssertEqual(transaction?.signingPublicKey, signingPublicKey)
