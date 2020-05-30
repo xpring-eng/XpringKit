@@ -335,7 +335,7 @@ final class ProtocolBufferConversionTests: XCTestCase {
       tag: payment?.destinationTag,
       isTest: true
     )
-    
+
     // THEN the result is as expected.
     XCTAssertEqual(payment?.amount, XRPCurrencyAmount(currencyAmount: paymentProto.amount.value))
     XCTAssertEqual(payment?.destination, paymentProto.destination.value.address)
@@ -574,7 +574,7 @@ final class ProtocolBufferConversionTests: XCTestCase {
       tag: nil,
       isTest: false
     )
-    
+
     // THEN all fields are present and converted correctly.
     XCTAssertEqual(transaction?.hash, [UInt8](hash).toHex())
     XCTAssertEqual(transaction?.account, account)
@@ -646,13 +646,13 @@ final class ProtocolBufferConversionTests: XCTestCase {
       getTransactionResponse: getTransactionResponseProto,
       xrplNetwork: XRPLNetwork.test
     )
-    
+
     let expectedXAddress = Utils.encode(
       classicAddress: transaction!.account,
       tag: nil,
       isTest: true
     )
-    
+
     // THEN all fields are present and converted correctly.
     XCTAssertEqual(transaction?.hash, [UInt8](hash).toHex())
     XCTAssertEqual(transaction?.account, account)
