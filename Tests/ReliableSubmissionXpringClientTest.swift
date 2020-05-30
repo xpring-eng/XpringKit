@@ -40,7 +40,10 @@ final class ReliableSubmissionClientTest: XCTestCase {
       accountExistsValue: .success(defaultAccountExistsValue)
     )
 
-    reliableSubmissionClient = ReliableSubmissionXRPClient(decoratedClient: fakeXRPClient)
+    reliableSubmissionClient = ReliableSubmissionXRPClient(
+      decoratedClient: fakeXRPClient,
+      xrplNetwork: fakeXRPClient.xrplNetwork
+    )
   }
 
   func testGetBalance() {

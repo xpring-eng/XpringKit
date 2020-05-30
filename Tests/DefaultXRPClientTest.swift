@@ -11,7 +11,10 @@ final class DefaultXRPClientTest: XCTestCase {
   // MARK: - Balance
   func testGetBalanceWithSuccess() {
     // GIVEN an XRPClient which will successfully return a balance from a mocked network call.
-    let xrpClient = DefaultXRPClient(networkClient: FakeNetworkClient.successfulFakeNetworkClient, xrplNetwork: XRPLNetwork.test)
+    let xrpClient = DefaultXRPClient(
+      networkClient: FakeNetworkClient.successfulFakeNetworkClient,
+      xrplNetwork: XRPLNetwork.test
+    )
 
     // WHEN the balance is requested.
     guard let balance = try? xrpClient.getBalance(for: .testAddress) else {
@@ -29,7 +32,10 @@ final class DefaultXRPClientTest: XCTestCase {
       XCTFail("Failed to decode X-Address.")
       return
     }
-    let xrpClient = DefaultXRPClient(networkClient: FakeNetworkClient.successfulFakeNetworkClient, xrplNetwork: XRPLNetwork.test)
+    let xrpClient = DefaultXRPClient(
+      networkClient: FakeNetworkClient.successfulFakeNetworkClient,
+      xrplNetwork: XRPLNetwork.test
+    )
 
     // WHEN the balance is requested THEN an error is thrown.
     XCTAssertThrowsError(
@@ -71,7 +77,10 @@ final class DefaultXRPClientTest: XCTestCase {
   // MARK: - Send
   func testSendWithSuccess() {
     // GIVEN an XRPClient client which will successfully return a balance from a mocked network call.
-    let xrpClient = DefaultXRPClient(networkClient: FakeNetworkClient.successfulFakeNetworkClient, xrplNetwork: XRPLNetwork.test)
+    let xrpClient = DefaultXRPClient(
+      networkClient: FakeNetworkClient.successfulFakeNetworkClient,
+      xrplNetwork: XRPLNetwork.test
+    )
 
     // WHEN XRP is sent.
     guard
@@ -95,7 +104,10 @@ final class DefaultXRPClientTest: XCTestCase {
       XCTFail("Failed to decode X - Address.")
       return
     }
-    let xrpClient = DefaultXRPClient(networkClient: FakeNetworkClient.successfulFakeNetworkClient, xrplNetwork: XRPLNetwork.test)
+    let xrpClient = DefaultXRPClient(
+      networkClient: FakeNetworkClient.successfulFakeNetworkClient,
+      xrplNetwork: XRPLNetwork.test
+    )
 
     // WHEN XRP is sent to a classic address THEN an error is thrown.
     XCTAssertThrowsError(
@@ -109,7 +121,10 @@ final class DefaultXRPClientTest: XCTestCase {
 
   func testSendWithInvalidAddress() {
     // GIVEN an XRPClient client and an invalid destination address.
-    let xrpClient = DefaultXRPClient(networkClient: FakeNetworkClient.successfulFakeNetworkClient, xrplNetwork: XRPLNetwork.test)
+    let xrpClient = DefaultXRPClient(
+      networkClient: FakeNetworkClient.successfulFakeNetworkClient,
+      xrplNetwork: XRPLNetwork.test
+    )
     let destinationAddress = "xrp"
 
     // WHEN XRP is sent to an invalid address THEN an error is thrown.
@@ -347,7 +362,10 @@ final class DefaultXRPClientTest: XCTestCase {
 
   func testAccountExistsWithSuccess() {
     // GIVEN an XRPClient which will successfully return a balance from a mocked network call.
-    let xrpClient = DefaultXRPClient(networkClient: FakeNetworkClient.successfulFakeNetworkClient, xrplNetwork: XRPLNetwork.test)
+    let xrpClient = DefaultXRPClient(
+      networkClient: FakeNetworkClient.successfulFakeNetworkClient,
+      xrplNetwork: XRPLNetwork.test
+    )
 
     // WHEN the existence of the account is checked.
     guard let exists = try? xrpClient.accountExists(for: .testAddress) else {
@@ -365,7 +383,10 @@ final class DefaultXRPClientTest: XCTestCase {
       XCTFail("Failed to decode X-Address.")
       return
     }
-    let xrpClient = DefaultXRPClient(networkClient: FakeNetworkClient.successfulFakeNetworkClient, xrplNetwork: XRPLNetwork.test)
+    let xrpClient = DefaultXRPClient(
+      networkClient: FakeNetworkClient.successfulFakeNetworkClient,
+      xrplNetwork: XRPLNetwork.test
+    )
 
     // WHEN the account's existence is checked THEN an error is thrown.
     XCTAssertThrowsError(
@@ -453,7 +474,10 @@ final class DefaultXRPClientTest: XCTestCase {
 
   func testPaymentHistoryWithSuccess() {
     // GIVEN an XRPClient client which will successfully return a transactionHistory mocked network call.
-    let xrpClient = DefaultXRPClient(networkClient: FakeNetworkClient.successfulFakeNetworkClient, xrplNetwork: XRPLNetwork.test)
+    let xrpClient = DefaultXRPClient(
+      networkClient: FakeNetworkClient.successfulFakeNetworkClient,
+      xrplNetwork: XRPLNetwork.test
+    )
     let expectedTransactions = Org_Xrpl_Rpc_V1_GetAccountTransactionHistoryResponse
       .testTransactionHistoryResponse
       .transactions
@@ -477,7 +501,10 @@ final class DefaultXRPClientTest: XCTestCase {
       XCTFail("Failed to decode X-Address.")
       return
     }
-    let xrpClient = DefaultXRPClient(networkClient: FakeNetworkClient.successfulFakeNetworkClient, xrplNetwork: XRPLNetwork.test)
+    let xrpClient = DefaultXRPClient(
+      networkClient: FakeNetworkClient.successfulFakeNetworkClient,
+      xrplNetwork: XRPLNetwork.test
+    )
 
     // WHEN the payment history is requested THEN an error is thrown.
     XCTAssertThrowsError(

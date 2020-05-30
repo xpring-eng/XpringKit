@@ -301,7 +301,11 @@ extension DefaultXRPClient: XRPClientDecorator {
       switch transaction.transactionData {
       case .payment:
         // If a payment can't be converted throw an error to prevent returning incomplete data.
-        guard let xrpTransaction = XRPTransaction(getTransactionResponse: transactionResponse, xrplNetwork: self.xrplNetwork) else {
+        guard let xrpTransaction = XRPTransaction(
+          getTransactionResponse: transactionResponse,
+          xrplNetwork: self.xrplNetwork
+        )
+        else {
           throw XRPLedgerError.unknown(
             "Could not convert payment transaction: \(transaction). " +
             "Please file a bug at https://github.com/xpring-eng/xpringkit"
