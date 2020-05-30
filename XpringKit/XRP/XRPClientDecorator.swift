@@ -1,5 +1,8 @@
 /// A decorator for a XRPClient.
 internal protocol XRPClientDecorator {
+  /// The XRPL network this XRPClient is connecting to.
+  var xrplNetwork: XRPLNetwork { get }
+  
   /// Get the balance for the given address.
   ///
   /// - Parameter address: The X-Address to retrieve the balance for.
