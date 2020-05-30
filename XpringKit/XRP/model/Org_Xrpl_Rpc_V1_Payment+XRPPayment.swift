@@ -12,14 +12,15 @@ internal extension XRPPayment {
   ///     - payment: an Org_Xrpl_Rpc_V1_Payment (protobuf object) whose field values will be used to
   ///             construct an XRPPayment
   /// - Returns: an XRPPayment with its fields set via the analogous protobuf fields.
-  init?(payment: Org_Xrpl_Rpc_V1_Payment) {
+  init?(payment: Org_Xrpl_Rpc_V1_Payment, xrplNetwork: XRPLNetwork) {
     guard let amount = XRPCurrencyAmount(currencyAmount: payment.amount.value) else {
       return nil
     }
     self.amount = amount
     self.destination = payment.destination.value.address
     self.destinationTag = payment.hasDestinationTag ? payment.destinationTag.value : nil
-
+    self.destinationXAddress = Utils.encode(classicAddress: self.destination, tag: self.destinationTag, isTest: xrplNetwork == XRPLNetwork.test)!
+    
     // If the deliverMin field is set, it must be able to be transformed into a XRPCurrencyAmount.
     if payment.hasDeliverMin {
       if let deliverMin = XRPCurrencyAmount(currencyAmount: payment.deliverMin.value) {
