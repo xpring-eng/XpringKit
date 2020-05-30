@@ -12,7 +12,7 @@ public class XRPClient: XRPClientProtocol {
   ///   - network: The network this XRPClient is connecting to.
   public init(grpcURL: String, network: XRPLNetwork) {
     let defaultClient = DefaultXRPClient(grpcURL: grpcURL, xrplNetwork: network)
-    decoratedClient = ReliableSubmissionXRPClient(decoratedClient: defaultClient)
+    decoratedClient = ReliableSubmissionXRPClient(decoratedClient: defaultClient, xrplNetwork: network)
 
     self.network = network
   }

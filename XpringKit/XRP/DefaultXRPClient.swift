@@ -7,11 +7,11 @@ public class DefaultXRPClient {
   private let maxLedgerVersionOffset: UInt32 = 10
 
   /// The XRPL network this XRPClient is connecting to.
-  private let xrplNetwork: XRPLNetwork
-  
+  internal let xrplNetwork: XRPLNetwork
+
   /// A network client that will make and receive requests.
   private let networkClient: NetworkClient
-  
+
   /// Initialize a new XRPClient.
   ///
   /// - Parameter grpcURL: A url for a remote gRPC service which will handle network requests.
