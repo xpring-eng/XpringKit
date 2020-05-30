@@ -11,7 +11,7 @@ public class XRPClient: XRPClientProtocol {
   ///   - grpcURL: A remote URL for a rippled gRPC service.
   ///   - network: The network this XRPClient is connecting to.
   public init(grpcURL: String, network: XRPLNetwork) {
-    let defaultClient = DefaultXRPClient(grpcURL: grpcURL)
+    let defaultClient = DefaultXRPClient(grpcURL: grpcURL, xrplNetwork: network)
     decoratedClient = ReliableSubmissionXRPClient(decoratedClient: defaultClient)
 
     self.network = network
