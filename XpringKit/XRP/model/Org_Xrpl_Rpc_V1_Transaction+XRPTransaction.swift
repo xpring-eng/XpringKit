@@ -19,9 +19,11 @@ internal extension XRPTransaction {
     let hashBytes = [UInt8](getTransactionResponse.hash)
     self.hash = hashBytes.toHex()
     self.account = transaction.account.value.address
-    self.accountXAddress = Utils.encode(classicAddress: self.account,
-                                        tag: nil,
-                                        isTest: xrplNetwork == XRPLNetwork.test)!
+    self.accountXAddress = Utils.encode(
+      classicAddress: self.account,
+      tag: nil,
+      isTest: xrplNetwork == XRPLNetwork.test
+    )
     self.fee = transaction.fee.drops
     self.sequence = transaction.sequence.value
     self.signingPublicKey = transaction.signingPublicKey.value

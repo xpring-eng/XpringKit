@@ -16,7 +16,7 @@ public struct XRPPayment: Equatable {
 
   /// The address and (optional) destination tag of the account receiving the payment, encoded in X-address format.
   /// - SeeAlso: https://xrpaddress.info
-  public let destinationXAddress: Address
+  public let destinationXAddress: Address?
 
   /// (Optional) Minimum amount of destination currency this transaction should deliver.
   public let deliverMin: XRPCurrencyAmount?

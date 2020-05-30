@@ -20,7 +20,11 @@ internal extension XRPPayment {
     self.amount = amount
     self.destination = payment.destination.value.address
     self.destinationTag = payment.hasDestinationTag ? payment.destinationTag.value : nil
-    self.destinationXAddress = Utils.encode(classicAddress: self.destination, tag: self.destinationTag, isTest: xrplNetwork == XRPLNetwork.test)!
+    self.destinationXAddress = Utils.encode(
+      classicAddress: self.destination,
+      tag: self.destinationTag,
+      isTest: xrplNetwork == XRPLNetwork.test
+    )
 
     // If the deliverMin field is set, it must be able to be transformed into a XRPCurrencyAmount.
     if payment.hasDeliverMin {
