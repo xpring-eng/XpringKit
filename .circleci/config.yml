@@ -25,7 +25,8 @@ jobs:
             brew update
             brew install grpc-swift swagger-codegen swift-protobuf swiftlint xcodegen
             npm i -g grpc-tools
-            sudo gem install slather cocoapods
+            sudo gem install slather
+            sudo gem install cocoapods -v 1.9.2
 
       - run:
           name: "Pull Submodules"
