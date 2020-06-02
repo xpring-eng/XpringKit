@@ -36,7 +36,8 @@ $ cd xpringkit
 $ git submodule update --init --recursive
 
 # Install required tooling
-$ brew install xcodegen swiftlint carthage swift-protobuf grpc-swift
+$ brew tap yonaskolb/SwagGen https://github.com/yonaskolb/SwagGen.git
+$ brew install xcodegen swiftlint carthage swift-protobuf grpc-swift SwagGen
 
 # Recommended: Install linter configuration to run SwiftLint from within XCode:
 # See: https://github.com/ypresto/SwiftLintXcode

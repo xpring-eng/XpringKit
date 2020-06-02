@@ -54,7 +54,17 @@ final class XRPClientIntegrationTests: XCTestCase {
       let payments = try client.paymentHistory(for: Wallet.testWallet.address)
       XCTAssert(!payments.isEmpty)
     } catch {
-      XCTFail("Failed checking account existence with error: \(error)")
+      XCTFail("Failed retrieving payment history with error: \(error)")
+    }
+  }
+
+  func testGetPayment() {
+    do {
+      let transactionHash = try client.send(.testSendAmount, to: .recipientAddress, from: .testWallet)
+      let transaction = try client.getPayment(for: transactionHash)
+      XCTAssertNotNil(transaction)
+    } catch {
+      XCTFail("Failed retrieving payment transaction with error: \(error)")
     }
   }
 }
