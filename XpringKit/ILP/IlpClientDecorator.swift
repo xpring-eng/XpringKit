@@ -5,7 +5,7 @@ public protocol ILPClientDecorator {
   ///
   /// - Parameters:
   ///     -  accountID The account ID to get the balance for.
-  ///     -  accessToken Authentication access token. Can not start with "Bearer "
+  ///     -  accessToken Authentication access token. Cannot start with "Bearer ".
   /// - Returns: An AccountBalance with balance information of the specified account
   /// - Throws: An error If the given inputs were invalid, the account doesn't exist, or authentication failed.
   func getBalance(
