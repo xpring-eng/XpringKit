@@ -21,7 +21,7 @@ public protocol ILPNetworkBalanceClient {
 @available(*, deprecated, message: "Please use the idiomatically named ILPNetworkBalanceClient class instead.")
 public protocol IlpNetworkBalanceClient {
 
-  /// Retreive the balance of an account
+  /// Retrieve the balance of an account
   ///
   /// - Parameters:
   ///     - request: request parameters
