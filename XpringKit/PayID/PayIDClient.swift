@@ -3,6 +3,18 @@ import Foundation
 /// Implements interaction with a PayID service.
 /// - Warning:  This class is experimental and should not be used in production applications.
 public class PayIDClient {
+  private enum Headers {
+    public enum Keys {
+      public static let accept = "Accept"
+      public static let payIDVersion = "PayID-Version"
+    }
+
+    public enum Values {
+      public static let version = "1.0"
+    }
+  }
+
+
   /// The network this PayID client resolves on.
   private let network: String
 
@@ -42,7 +54,8 @@ public class PayIDClient {
     let acceptHeaderValue = "application/\(self.network)+json"
     let client = APIClient(baseURL: "https://" + host)
     client.defaultHeaders = [
-      "Accept": acceptHeaderValue
+      Headers.Keys.accept: acceptHeaderValue,
+      Headers.Keys.payIDVersion: Headers.Values.version
     ]
 
     let request = API.ResolvePayID.Request(path: path)

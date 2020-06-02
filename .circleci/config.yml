@@ -2,7 +2,7 @@ version: 2.1
 jobs:
   build:
     macos:
-      xcode: "11.1.0"
+      xcode: "11.2.0"
     resource_class: large
 
     steps:
@@ -17,8 +17,8 @@ jobs:
           command: xcodebuild -version
       - run:
           name: Set Ruby Version
-          command:  echo "ruby-2.6.4" > ~/.ruby-version
-  
+          command: echo 'chruby ruby-2.6' >> ~/.bash_profile
+ 
       - run:
           name: "Install Tooling"
           command: |
