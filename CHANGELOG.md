@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- A new method, `getPayment`, added to `XRPClient` for retrieving payment transactions by hash.
 - A new class, `DefaultILPCLient`, provides the functionality of `DefaultIlpClient` under an idiomatic name. 
 - A new class, `ILPClient`, provides the functionality of `IlpClient` under an idiomatic name. 
 - A new protocol, `ILPClientDecorator`, provides the functionality of `IlpClientDecorator` under an idiomatic name. 
@@ -26,7 +27,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `IlpCredentials` is now deprecated. Please use `ILPCredentials` instead.
 
 ## 3.1.1 - 2020-05-15
-- A new method, `getPayment`, added to `XRPClient` for retrieving payment transactions by hash.
 
 This fix release contains minor updates and performance improvements.
 
