@@ -4,7 +4,7 @@ import SwiftProtobuf
 /// A client which can make balance related calls to the ILP network
 public protocol ILPNetworkBalanceClient {
 
-  /// Retreive the balance of an account
+  /// Retrieve the balance of an account.
   ///
   /// - Parameters:
   ///     - request: request parameters
