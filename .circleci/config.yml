@@ -17,7 +17,7 @@ jobs:
           command: xcodebuild -version
       - run:
           name: Set Ruby Version
-          command:  echo "ruby-2.6.4" > ~/.ruby-version
+          command: echo 'chruby ruby-2.6' >> ~/.bash_profile
   
       - run:
           name: "Install Tooling"
