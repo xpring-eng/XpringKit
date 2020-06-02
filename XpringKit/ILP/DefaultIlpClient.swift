@@ -40,7 +40,7 @@ extension DefaultILPClient: ILPClientDecorator {
   ///     -  accountID The account ID to get the balance for.
   ///     -  accessToken Authentication access token. Can not start with "Bearer "
   /// - Returns: An AccountBalance with balance information of the specified account
-  /// - Throws: An error If the given inputs were invalid, the account doesn't exist, or authentication failed.
+  /// - Throws: An error if the given inputs were invalid, the account doesn't exist, or authentication failed.
   public func getBalance(
     for accountID: AccountID,
     withAuthorization accessToken: AccessToken
@@ -66,12 +66,12 @@ extension DefaultILPClient: ILPClientDecorator {
   /// Send a payment from the given accountID to the destinationPaymentPointer payment pointer
   ///
   /// - Note: This method will not necessarily throw an exception if the payment failed.
-  ///         Payment status can be checked in PaymentResult.successfulPayment
+  ///         Payment status can be checked in PaymentResult.successfulPayment.
   /// - Parameters:
   ///     -  paymentRequest: A PaymentRequest with options for a payment
   ///     -  accessToken : access token of the sender. Can not start with "Bearer "
   /// - Returns: A PaymentResult with details about the payment.
-  /// - Throws: An error If the given inputs were invalid.
+  /// - Throws: An error if the given inputs were invalid.
   public func sendPayment(
     _ paymentRequest: PaymentRequest,
     withAuthorization accessToken: AccessToken
