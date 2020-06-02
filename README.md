@@ -313,7 +313,7 @@ print("Net balance was \(getBalance.netBalance) with asset scale \(getBalance.as
 
 #### Sending a Payment
 An `ILPClient` can send an ILP payment to another ILP address by supplying a [Payment Pointer](https://github.com/interledger/rfcs/blob/master/0026-payment-pointers/0026-payment-pointers.md)
-and a sender's account ID
+and a sender's account ID.
 
 ```swift
 import XpringKit
