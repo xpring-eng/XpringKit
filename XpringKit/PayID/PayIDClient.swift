@@ -1,9 +1,19 @@
-import Alamofire
 import Foundation
 
 /// Implements interaction with a PayID service.
 /// - Warning:  This class is experimental and should not be used in production applications.
 public class PayIDClient {
+  private enum Headers {
+    public enum Keys {
+      public static let accept = "Accept"
+      public static let payIDVersion = "PayID-Version"
+    }
+
+    public enum Values {
+      public static let version = "1.0"
+    }
+  }
+
   /// The network this PayID client resolves on.
   private let network: String
 
@@ -31,67 +41,44 @@ public class PayIDClient {
   // TODO(keefertaylor): Make this API synchronous to mirror functionality provided by ILP / XRP.
   public func address(
     for payID: String,
-    completion: @escaping (Swift.Result<CryptoAddressDetails, PayIDError>) -> Void
+    completion: @escaping (Result<CryptoAddressDetails, PayIDError>) -> Void
   ) {
-    guard let paymentPointer = PayIDUtils.parse(payID: payID) else {
-      return completion(.failure(.invalidPaymentPointer(paymentPointer: payID)))
+    guard let payIDComponents = PayIDUtils.parse(payID: payID) else {
+      return completion(.failure(.invalidPayID(payID: payID)))
     }
+    let host = payIDComponents.host
+    // Drop the leading '/' in the path, Swagger adds it for us.
+    let path = String(payIDComponents.path.dropFirst())
 
-    let path = String(paymentPointer.path.dropFirst())
-    let host = paymentPointer.host
     let acceptHeaderValue = "application/\(self.network)+json"
+    let client = APIClient(baseURL: "https://" + host)
+    client.defaultHeaders = [
+      Headers.Keys.accept: acceptHeaderValue,
+      Headers.Keys.payIDVersion: Headers.Values.version
+    ]
 
-    var endpoint = "/{host}/{path}"
+    let request = API.ResolvePayID.Request(path: path)
 
-    let hostPreEscape = "\(host)"
-    let hostPostEscape = hostPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
-    endpoint = endpoint.replacingOccurrences(of: "{host}", with: hostPostEscape, options: .literal, range: nil)
-
-    let pathPreEscape = "\(path)"
-    let pathPostEscape = pathPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
-    endpoint = endpoint.replacingOccurrences(of: "{path}", with: pathPostEscape, options: .literal, range: nil)
-
-    let URLString = SwaggerClientAPI.basePath + endpoint
-    let parameters: [String: Any]? = nil
-
-    let url = URLComponents(string: URLString)
-
-    let requestBuilder: RequestBuilder<PaymentInformation>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
-    let request = requestBuilder.init(
-      method: "GET",
-      URLString: (url?.string ?? URLString),
-      parameters: parameters,
-      isBody: false
-    ).addHeader(
-      name: "Accept",
-      value: acceptHeaderValue
-    )
-
-    request.execute { response, error in
-      if
-        let response = response,
-        let paymentInformation = response.body {
-        // With a specific network, exactly one address should be returned by a PayId lookup.
-        guard paymentInformation.addresses.count == 1 else {
-          let unexpectedResponseError = PayIDError.unexpectedResponse
-          completion(.failure(unexpectedResponseError))
-          return
+    client.makeRequest(request) { apiResponse in
+      switch apiResponse.result {
+      case .success(let response):
+        switch response {
+        case .status200(let paymentInformation):
+          // With a specific network, exactly one address should be returned by a PayId lookup.
+          guard paymentInformation.addresses.count == 1 else {
+            let unexpectedResponseError = PayIDError.unexpectedResponse
+            completion(.failure(unexpectedResponseError))
+            return
+          }
+          completion(.success(paymentInformation.addresses[0].addressDetails))
+        case .status404:
+          completion(.failure(.mappingNotFound(payID: payID, network: self.network)))
+        case .status415, .status503:
+          completion(.failure(.unexpectedResponse))
         }
-        completion(.success(paymentInformation.addresses[0].addressDetails))
-      } else if
-        let errorResponse = error as? ErrorResponse,
-        case let .error(code, _, underlyingError) = errorResponse,
-        let alamoFireError = underlyingError as? AFError
-      {
-        // Mapping not found
-        if code == 404 {
-          let mappingError = PayIDError.mappingNotFound(paymentPointer: payID, network: self.network)
-          completion(.failure(mappingError))
-          return
-        }
-        completion(.failure(.unknown(error: alamoFireError.underlyingError.debugDescription)))
-      } else {
-        completion(.failure(.unknown(error: nil)))
+
+      case .failure(let error):
+        completion(.failure(.unknown(error: "Unknown error making request: \(error)")))
       }
     }
   }
