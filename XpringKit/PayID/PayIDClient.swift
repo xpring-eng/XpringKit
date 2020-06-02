@@ -14,7 +14,6 @@ public class PayIDClient {
     }
   }
 
-
   /// The network this PayID client resolves on.
   private let network: String
 
