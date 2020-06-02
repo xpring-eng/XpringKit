@@ -1,14 +1,10 @@
+openapi: '3.0.0'
 info:
   title: PayID
   version: '0.0.1'
 paths:
-  '/{host}/{path}':
+  '/{path}':
     parameters:
-      - schema:
-          type: string
-        name: host
-        in: path
-        required: true
       - schema:
           type: string
         name: path
@@ -344,7 +340,3 @@ components:
       required:
         - invoiceHash
         - transactionConfirmation
-openapi: '3.0.0'
-servers:
-  - url: 'https:/'
-    description: ''
