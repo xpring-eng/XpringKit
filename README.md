@@ -193,7 +193,7 @@ let transactionStatus = xrpClient.paymentStatus(for: transactionHash) // Transac
 
 An `XRPClient` can retrieve a specific payment transaction by hash.
 
-```
+```swift
 import xpringkit
 
 let remoteURL = "alpha.test.xrp.xpring.io:50051"; // TestNet URL, use alpha.xrp.xpring.io:50051 for Mainnet
