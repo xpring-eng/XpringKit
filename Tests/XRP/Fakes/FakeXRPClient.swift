@@ -1,3 +1,4 @@
+import SwiftGRPC
 @testable import XpringKit
 
 /// A  fake XRPClient which returns the given iVars as results from XRPClientDecorator calls.
@@ -17,6 +18,7 @@ public class FakeXRPClient: XRPClientProtocol {
   public var rawTransactionStatusValue: Result<RawTransactionStatus, XRPLedgerError>
   public var paymentHistoryValue: Result<[XRPTransaction], XRPLedgerError>
   public var accountExistsValue: Result<Bool, XRPLedgerError>
+  public var getPaymentValue: Result<XRPTransaction?, RPCError>
 
   public init(
     network: XRPLNetwork = .test,
@@ -27,7 +29,8 @@ public class FakeXRPClient: XRPClientProtocol {
     latestValidatedLedgerValue: Result<UInt32, XRPLedgerError>,
     rawTransactionStatusValue: Result<RawTransactionStatus, XRPLedgerError>,
     paymentHistoryValue: Result<[XRPTransaction], XRPLedgerError>,
-    accountExistsValue: Result<Bool, XRPLedgerError>
+    accountExistsValue: Result<Bool, XRPLedgerError>,
+    getPaymentValue: Result<XRPTransaction?, RPCError>
   ) {
     self.network = xrplNetwork
     self.xrplNetwork = xrplNetwork
@@ -38,6 +41,7 @@ public class FakeXRPClient: XRPClientProtocol {
     self.rawTransactionStatusValue = rawTransactionStatusValue
     self.paymentHistoryValue = paymentHistoryValue
     self.accountExistsValue = accountExistsValue
+    self.getPaymentValue = getPaymentValue
   }
 }
 
@@ -72,6 +76,15 @@ extension FakeXRPClient: XRPClientDecorator {
 
   public func accountExists(for address: Address) throws -> Bool {
     return try returnOrThrow(result: accountExistsValue)
+  }
+
+  public func getPayment(for transactionHash: TransactionHash) throws -> XRPTransaction? {
+    switch getPaymentValue {
+    case .success(let value):
+      return value
+    case .failure(let error):
+      throw error
+    }
   }
 
   /// Given a result monad, return the value if the state is success, otherwise throw the error.

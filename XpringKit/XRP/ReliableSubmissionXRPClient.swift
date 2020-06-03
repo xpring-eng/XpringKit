@@ -86,4 +86,8 @@ extension ReliableSubmissionXRPClient: XRPClientDecorator {
   public func paymentHistory(for address: Address) throws -> [XRPTransaction] {
     return try decoratedClient.paymentHistory(for: address)
   }
+
+  func getPayment(for transactionHash: String) throws -> XRPTransaction? {
+    return try decoratedClient.getPayment(for: transactionHash)
+  }
 }

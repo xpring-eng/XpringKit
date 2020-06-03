@@ -141,7 +141,7 @@ wallet.verify(message, signature); // true
 import XpringKit
 
 let remoteURL = "test.xrp.xpring.io:50051"; // Testnet URL, use main.xrp.xpring.io:50051 for Mainnet
-let xrpClient = XRPClient(grpcURL: remoteURL)
+let xrpClient = XRPClient(grpcURL: remoteURL, network: XRPLNetwork.test)
 ```
 
 #### Retrieving a Balance
@@ -152,7 +152,7 @@ An `XRPClient` can check the balance of an account on the XRP Ledger.
 import XpringKit
 
 let remoteURL = "test.xrp.xpring.io:50051"; // Testnet URL, use main.xrp.xpring.io:50051 for Mainnet
-let xrpClient = XRPClient(grpcURL: remoteURL)
+let xrpClient = XRPClient(grpcURL: remoteURL, network: XRPLNetwork.test)
 
 let address = "XVMFQQBMhdouRqhPMuawgBMN1AVFTofPAdRsXG5RkPtUPNQ"
 
@@ -180,14 +180,30 @@ These states are determined by the `TransactionStatus` enum.
 import XpringKit
 
 let remoteURL = "test.xrp.xpring.io:50051"; // Testnet URL, use main.xrp.xpring.io:50051 for Mainnet
-let xrpClient = XRPClient(grpcURL: remoteURL)
+let xrpClient = XRPClient(grpcURL: remoteURL, network: XRPLNetwork.test)
 
 let transactionHash = "9FC7D277C1C8ED9CE133CC17AEA9978E71FC644CE6F5F0C8E26F1C635D97AF4A"
 
 let transactionStatus = xrpClient.paymentStatus(for: transactionHash) // TransactionStatus.succeeded
 ```
 
-**Note:** The example transactionHash may lead to a "Transaction not found." error because the TestNet is regularly reset, or the accessed node may only maintain one month of history.  Recent transaction hashes can be found in the [XRP Ledger Explorer ](https://livenet.xrpl.org/).
+**Note:** The example `transactionHash` may lead to a "Transaction not found." error because the TestNet is regularly reset, or the accessed node may only maintain one month of history.  Recent transaction hashes can be found in the [XRP Ledger Explorer ](https://livenet.xrpl.org/).
+
+#### Retrieve specific payment
+
+An `XRPClient` can retrieve a specific payment transaction by hash.
+
+```swift
+import XpringKit 
+
+let remoteURL = "alpha.test.xrp.xpring.io:50051"; // TestNet URL, use alpha.xrp.xpring.io:50051 for Mainnet
+let xrpClient = XRPClient(grpcURL: remoteURL, network: XRPLNetwork.test)
+
+let transactionHash = "9FC7D277C1C8ED9CE133CC17AEA9978E71FC644CE6F5F0C8E26F1C635D97AF4A"
+let payment = try! xrpClient.getPayment(for: transactionHash)
+```
+
+**Note:** The example `transactionHash` may lead to a "Transaction not found." error because the TestNet is regularly reset, or the accessed node may only maintain one month of history.  Recent transaction hashes can be found in the [XRP Ledger Explorer ](https://livenet.xrpl.org/).
 
 #### Retrieve speciic payment
 
@@ -210,10 +226,10 @@ let payment = try! xrpClient.getPayment(for: transactionHash)
 An `XRPClient` can return payments to and from an account.
 
 ```
-import xpringkit
+import XpringKit 
 
 let remoteURL = "alpha.test.xrp.xpring.io:50051"; // TestNet URL, use alpha.xrp.xpring.io:50051 for Mainnet
-let xrpClient = XRPClient(grpcURL: remoteURL, useNewProtocolBuffers: true)
+let xrpClient = XRPClient(grpcURL: remoteURL, network: XRPLNetwork.test)
 
 let address = "XVMFQQBMhdouRqhPMuawgBMN1AVFTofPAdRsXG5RkPtUPNQ"
 
@@ -230,7 +246,7 @@ An `XRPClient` can send XRP to other accounts on the XRP Ledger.
 import XpringKit
 
 let remoteURL = "test.xrp.xpring.io:50051"; // TestNet URL, use main.xrp.xpring.io:50051 for Mainnet
-let xrpClient = XRPClient(grpcURL: remoteURL)
+let xrpClient = XRPClient(grpcURL: remoteURL, network: XRPLNetwork.test)
 
 // Wallet which will send XRP
 let generationResult = Wallet.generateRandomWallet()!

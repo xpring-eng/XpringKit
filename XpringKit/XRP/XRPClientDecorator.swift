@@ -65,4 +65,14 @@ internal protocol XRPClientDecorator {
   /// - Throws: An error if there was a problem communicating with the XRP Ledger.
   /// - Returns: A boolean if the account is on the blockchain.
   func accountExists(for address: Address) throws -> Bool
+
+  /// Retrieve the payment transaction corresponding to the given transaction hash.
+  ///
+  /// - Note: This method can return transactions that are not included in a fully validated ledger.
+  ///         See the `validated` field to make this distinction.
+  ///
+  /// - Parameter transactionHash: The hash of the transaction to retrieve.
+  /// - Throws: An RPCError if the transaction hash was invalid.
+  /// - Returns: An XRPTransaction object representing an XRP Ledger transaction.
+  func getPayment(for transactionHash: String) throws -> XRPTransaction?
 }

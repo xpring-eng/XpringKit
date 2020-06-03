@@ -1,14 +1,14 @@
 /// Errors that originate from PayID.
 public enum PayIDError: Equatable, Error {
   /// The payment pointer was invalid.
-  /// - Parameter paymentPointer: The invalid payment pointer.
-  case invalidPaymentPointer(paymentPointer: String)
+  /// - Parameter payID: The invalid PayID.
+  case invalidPayID(payID: String)
 
   /// A mapping for the given payment pointer was not found.
   /// - Parameters:
-  ///   - paymentPointer: The invalid payment pointer.
+  ///   - payID: The PayID which failed resolution.
   ///   - network: The network resolution was attempted on.
-  case mappingNotFound(paymentPointer: String, network: String)
+  case mappingNotFound(payID: String, network: String)
 
   /// The response from PayID was in an unexpected format.
   case unexpectedResponse

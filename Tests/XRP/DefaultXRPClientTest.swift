@@ -622,7 +622,99 @@ final class DefaultXRPClientTest: XCTestCase {
     }
   }
 
+  // MARK: - GetPayment
+
+  func testGetPaymentWithSuccess() {
+    // GIVEN a DefaultXRPClient with mocked networking that will succeed for getTransaction.
+    let xrpClient = DefaultXRPClient(networkClient: FakeNetworkClient.successfulFakeNetworkClient)
+
+    // WHEN a transaction is requested.
+    guard let transaction = try? xrpClient.getPayment(for: .testTransactionHash) else {
+      XCTFail("Exception should not be thrown when trying to get a transaction")
+      return
+    }
+
+    // THEN the returned transaction is as expected.
+    XCTAssertEqual(transaction, XRPTransaction(getTransactionResponse: .testGetTransactionResponse))
+  }
+
+  func testGetPaymentWithNotFoundError() {
+    // GIVEN a DefaultXRPClient with mocked networking that will fail to retrieve a transaction w/ notFound error code.
+    let networkClient = FakeNetworkClient(
+      accountInfoResult: .success(.testGetAccountInfoResponse),
+      feeResult: .success(.testGetFeeResponse),
+      submitTransactionResult: .success(.testSubmitTransactionResponse),
+      transactionStatusResult: .failure(RPCError.callError(
+        CallResult(
+          success: false,
+          statusCode: StatusCode.notFound,
+          statusMessage: nil,
+          resultData: nil,
+          initialMetadata: nil,
+          trailingMetadata: nil
+          )
+        )
+      ),
+      transactionHistoryResult: .success(.testTransactionHistoryResponse)
+    )
+    let xrpClient = DefaultXRPClient(networkClient: networkClient)
+
+    // WHEN a transaction is requested, THEN the error is re-thrown.
+    XCTAssertThrowsError(try xrpClient.getPayment(for: .testTransactionHash), "Exception not thrown") { error in
+      guard
+        let rpcError = error as? RPCError
+      else {
+        XCTFail("Error thrown was not mocked error")
+        return
+      }
+
+      switch rpcError.callResult?.statusCode {
+      case .notFound:
+        break
+      default:
+        XCTFail("Wrong error type")
+      }
+    }
+  }
+
+  func testGetPaymentWithInvalidPaymentFields() {
+    // GIVEN a DefaultXRPClient with mocked networking that will return a malformed payment transaction.
+    let networkClient = FakeNetworkClient(
+      accountInfoResult: .success(.testGetAccountInfoResponse),
+      feeResult: .success(.testGetFeeResponse),
+      submitTransactionResult: .success(.testSubmitTransactionResponse),
+      transactionStatusResult: .success(.invalidTestGetTransactionResponse),
+      transactionHistoryResult: .success(.testTransactionHistoryResponse)
+    )
+    let xrpClient = DefaultXRPClient(networkClient: networkClient)
+
+    // WHEN a transaction is requested.
+    let transaction = try? xrpClient.getPayment(for: .testTransactionHash)
+
+    // THEN the result is nil.
+    XCTAssertNil(transaction)
+  }
+
+  func testGetPaymentWithUnsupportedTransactionType() {
+    // GIVEN a DefaultXRPClient with mocked networking that will return a malformed payment transaction.
+    let networkClient = FakeNetworkClient(
+      accountInfoResult: .success(.testGetAccountInfoResponse),
+      feeResult: .success(.testGetFeeResponse),
+      submitTransactionResult: .success(.testSubmitTransactionResponse),
+      transactionStatusResult: .success(.invalidGetTransactionResponseUnsupported),
+      transactionHistoryResult: .success(.testTransactionHistoryResponse)
+    )
+    let xrpClient = DefaultXRPClient(networkClient: networkClient)
+
+    // WHEN a transaction is requested.
+    let transaction = try? xrpClient.getPayment(for: .testTransactionHash)
+
+    // THEN the result is nil.
+    XCTAssertNil(transaction)
+  }
+
   // MARK: - Helpers
+
   private func makeGetTransactionResponse(
     validated: Bool,
     resultCode: String
