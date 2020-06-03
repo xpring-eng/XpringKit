@@ -10,14 +10,20 @@ internal extension XRPTransaction {
   /// - Parameters:
   ///     - transaction: an Org_Xrpl_Rpc_V1_Transaction (protobuf object) whose field values will be used to
   ///                 construct an XRPTransaction
+  ///     - xrplNetwork: The XRPL network from which this object was retrieved, defaults to XRPLNetwork.main (Mainnet).
   /// - Returns: an XRPTransaction with its fields set via the analogous protobuf fields.
-  init?(getTransactionResponse: Org_Xrpl_Rpc_V1_GetTransactionResponse) {
+  init?(getTransactionResponse: Org_Xrpl_Rpc_V1_GetTransactionResponse, xrplNetwork: XRPLNetwork = XRPLNetwork.main) {
 
     let transaction: Org_Xrpl_Rpc_V1_Transaction = getTransactionResponse.transaction
 
     let hashBytes = [UInt8](getTransactionResponse.hash)
     self.hash = hashBytes.toHex()
     self.account = transaction.account.value.address
+    self.accountXAddress = Utils.encode(
+      classicAddress: self.account,
+      tag: nil,
+      isTest: xrplNetwork == XRPLNetwork.test
+    )
     self.fee = transaction.fee.drops
     self.sequence = transaction.sequence.value
     self.signingPublicKey = transaction.signingPublicKey.value
@@ -32,7 +38,7 @@ internal extension XRPTransaction {
 
     switch transaction.transactionData {
     case .payment(let payment):
-      guard let paymentFields = XRPPayment(payment: payment) else {
+      guard let paymentFields = XRPPayment(payment: payment, xrplNetwork: xrplNetwork) else {
         return nil
       }
       self.paymentFields = paymentFields

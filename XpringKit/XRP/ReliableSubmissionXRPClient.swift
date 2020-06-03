@@ -3,9 +3,11 @@ import Foundation
 /// A XRPClient which blocks on `send` calls until the transaction has reached a deterministic state.
 public class ReliableSubmissionXRPClient {
   private let decoratedClient: XRPClientDecorator
+  internal let xrplNetwork: XRPLNetwork
 
-  internal init(decoratedClient: XRPClientDecorator) {
+  internal init(decoratedClient: XRPClientDecorator, xrplNetwork: XRPLNetwork) {
     self.decoratedClient = decoratedClient
+    self.xrplNetwork = xrplNetwork
   }
 }
 

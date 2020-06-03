@@ -13,6 +13,10 @@ public struct XRPTransaction: Equatable {
   /// The unique address of the account that initiated the transaction.
   public let account: Address
 
+  /// The unique address of the account that initiated the transaction, encoded in X-address format.
+  /// - SeeAlso: https://xrpaddress.info
+  public let accountXAddress: Address?
+
   /// (Optional) Hash value identifying another transaction. If provided, this transaction is only valid if
   /// the sending account's previously-sent transaction matches the provided hash.
   public let accountTransactionID: Data?
