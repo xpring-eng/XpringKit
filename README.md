@@ -301,41 +301,41 @@ print(classicAddressTuple.tag); // 12345
 ```
 
 ## Usage: ILP
-### IlpClient
-`IlpClient` is the main interface into the ILP network.  `IlpClient` must be initialized with the URL of a Hermes instance.
+### ILPClient
+`ILPClient` is the main interface into the ILP network.  `ILPClient` must be initialized with the URL of a Hermes instance.
 This can be found in your [wallet](https://xpring.io/portal/ilp-wallet).
 
-All calls to `IlpClient` must pass an access token, which can be generated in your [wallet](https://xpring.io/portal/ilp-wallet). 
+All calls to `ILPClient` must pass an access token, which can be generated in your [wallet](https://xpring.io/portal/ilp-wallet). 
 
 ```swift
 import XpringKit
 
 let grpcUrl = "hermes-grpc-test.xpring.dev" // TestNet Hermes URL
-let ilpClient = IlpClient(grpcURL: grpcUrl)
+let ilpClient = ILPClient(grpcURL: grpcUrl)
 ```
 
 #### Retreiving a Balance
-An `IlpClient` can check the balance of an account on a connector.
+An `ILPClient` can check the balance of an account on a connector.
 
 ```swift
 import XpringKit
 
 let grpcUrl = "hermes-grpc-test.xpring.dev" // TestNet Hermes URL
-let ilpClient = IlpClient(grpcURL: grpcUrl)
+let ilpClient = ILPClient(grpcURL: grpcUrl)
 
 let getBalance = try ilpClient.getBalance(for: "demo_user", withAuthorization: "2S1PZh3fEKnKg") // Just a demo user on Testnet
 print("Net balance was \(getBalance.netBalance) with asset scale \(getBalance.assetScale)")
 ```
 
 #### Sending a Payment
-An `IlpClient` can send an ILP payment to another ILP address by supplying a [Payment Pointer](https://github.com/interledger/rfcs/blob/master/0026-payment-pointers/0026-payment-pointers.md)
-and a sender's account ID
+An `ILPClient` can send an ILP payment to another ILP address by supplying a [Payment Pointer](https://github.com/interledger/rfcs/blob/master/0026-payment-pointers/0026-payment-pointers.md)
+and a sender's account ID.
 
 ```swift
 import XpringKit
 
 let grpcUrl = "hermes-grpc-test.xpring.dev" // TestNet Hermes URL
-let ilpClient = IlpClient(grpcURL: grpcUrl)
+let ilpClient = ILPClient(grpcURL: grpcUrl)
 
 let paymentRequest = PaymentRequest(
     100, 
