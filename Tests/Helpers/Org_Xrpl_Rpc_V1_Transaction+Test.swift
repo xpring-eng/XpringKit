@@ -34,4 +34,46 @@ extension Org_Xrpl_Rpc_V1_Transaction {
       }
     }
   }
+
+  public static let invalidTestTransactionBadPayment = Org_Xrpl_Rpc_V1_Transaction.with {
+    $0.account = Org_Xrpl_Rpc_V1_Account.with {
+      $0.value = Org_Xrpl_Rpc_V1_AccountAddress.with {
+        $0.address = .testAddress
+      }
+    }
+    $0.fee = Org_Xrpl_Rpc_V1_XRPDropsAmount.with {
+      $0.drops = .testFee
+    }
+    $0.sequence = Org_Xrpl_Rpc_V1_Sequence.with {
+      $0.value = .testSequence
+    }
+    $0.signingPublicKey = Org_Xrpl_Rpc_V1_SigningPublicKey.with {
+      $0.value = .testPublicKey
+    }
+    $0.transactionSignature = Org_Xrpl_Rpc_V1_TransactionSignature.with {
+      $0.value = .testTransactionSignature
+    }
+    $0.payment = Org_Xrpl_Rpc_V1_Payment()
+  }
+
+  public static let invalidTestTransactionUnsupportedType = Org_Xrpl_Rpc_V1_Transaction.with {
+    $0.account = Org_Xrpl_Rpc_V1_Account.with {
+      $0.value = Org_Xrpl_Rpc_V1_AccountAddress.with {
+        $0.address = .testAddress
+      }
+    }
+    $0.fee = Org_Xrpl_Rpc_V1_XRPDropsAmount.with {
+      $0.drops = .testFee
+    }
+    $0.sequence = Org_Xrpl_Rpc_V1_Sequence.with {
+      $0.value = .testSequence
+    }
+    $0.signingPublicKey = Org_Xrpl_Rpc_V1_SigningPublicKey.with {
+      $0.value = .testPublicKey
+    }
+    $0.transactionSignature = Org_Xrpl_Rpc_V1_TransactionSignature.with {
+      $0.value = .testTransactionSignature
+    }
+    $0.checkCash = Org_Xrpl_Rpc_V1_CheckCash() // Unsupported
+  }
 }
