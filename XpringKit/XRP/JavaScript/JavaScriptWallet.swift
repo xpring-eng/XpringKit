@@ -7,10 +7,13 @@ internal class JavaScriptWallet {
   private enum ResourceNames {
     public enum Methods {
       public static let getAddress = "getAddress"
-      public static let getPrivateKey = "getPrivateKey"
-      public static let getPublicKey = "getPublicKey"
       public static let sign = "sign"
       public static let verify = "verify"
+    }
+
+    public enum Properties {
+      public static let privateKey = "privateKey"
+      public static let publicKey = "publicKey"
     }
   }
 
@@ -25,13 +28,13 @@ internal class JavaScriptWallet {
 
   /// Returns a hex encoded public key corresponding to this `JavaScriptWallet`.
   public var publicKey: String {
-    let value = javaScriptWallet.invokeMethod(ResourceNames.Methods.getPublicKey, withArguments: [])!
+    let value = javaScriptWallet.objectForKeyedSubscript(ResourceNames.Properties.publicKey)!
     return value.toString()
   }
 
   /// Returns a hex encoded private key corresponding to this `JavaScriptWallet`.
   public var privateKey: String {
-    let value = javaScriptWallet.invokeMethod(ResourceNames.Methods.getPrivateKey, withArguments: [])!
+    let value = javaScriptWallet.objectForKeyedSubscript(ResourceNames.Properties.privateKey)!
     return value.toString()
   }
 
