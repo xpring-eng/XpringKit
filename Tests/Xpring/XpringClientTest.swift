@@ -1,6 +1,6 @@
 import Foundation
 import XCTest
-import XpringKit
+@testable import XpringKit
 
 final class XpringClientTest: XCTestCase {
   /// Default values for FakeXRPClient. These values must be provided but are not varied in testing.
@@ -12,6 +12,7 @@ final class XpringClientTest: XCTestCase {
   )
   private let fakePaymentHistoryValue: [XRPTransaction] = []
   private let fakeAccountExistsValue = true
+  private let fakeGetPaymentValue = XRPTransaction(getTransactionResponse: .testGetTransactionResponse)
 
   ///An amount to send.
   private let amount: UInt64 = 10
@@ -36,7 +37,8 @@ final class XpringClientTest: XCTestCase {
       latestValidatedLedgerValue: .success(fakeLastLedgerSequenceValue),
       rawTransactionStatusValue: .success(fakeRawTransactionStatusValue),
       paymentHistoryValue: .success(fakePaymentHistoryValue),
-      accountExistsValue: .success(fakeAccountExistsValue)
+      accountExistsValue: .success(fakeAccountExistsValue),
+      getPaymentValue: .success(fakeGetPaymentValue)
     )
 
     let fakeResolvedPayID = "r123"
@@ -69,7 +71,8 @@ final class XpringClientTest: XCTestCase {
       latestValidatedLedgerValue: .success(fakeLastLedgerSequenceValue),
       rawTransactionStatusValue: .success(fakeRawTransactionStatusValue),
       paymentHistoryValue: .success(fakePaymentHistoryValue),
-      accountExistsValue: .success(fakeAccountExistsValue)
+      accountExistsValue: .success(fakeAccountExistsValue),
+      getPaymentValue: .success(fakeGetPaymentValue)
     )
 
     let payIDClient = FakeXRPPayIDClient(addressResult: .failure(payIDError))
@@ -100,7 +103,8 @@ final class XpringClientTest: XCTestCase {
       latestValidatedLedgerValue: .success(fakeLastLedgerSequenceValue),
       rawTransactionStatusValue: .success(fakeRawTransactionStatusValue),
       paymentHistoryValue: .success(fakePaymentHistoryValue),
-      accountExistsValue: .success(fakeAccountExistsValue)
+      accountExistsValue: .success(fakeAccountExistsValue),
+      getPaymentValue: .success(fakeGetPaymentValue)
     )
 
     let fakeResolvedPayID = "r123"
@@ -133,7 +137,8 @@ final class XpringClientTest: XCTestCase {
       latestValidatedLedgerValue: .success(fakeLastLedgerSequenceValue),
       rawTransactionStatusValue: .success(fakeRawTransactionStatusValue),
       paymentHistoryValue: .success(fakePaymentHistoryValue),
-      accountExistsValue: .success(fakeAccountExistsValue)
+      accountExistsValue: .success(fakeAccountExistsValue),
+      getPaymentValue: .success(fakeGetPaymentValue)
     )
 
     let payIDClient = FakeXRPPayIDClient(addressResult: .failure(payIDError))
@@ -166,7 +171,8 @@ final class XpringClientTest: XCTestCase {
       latestValidatedLedgerValue: .success(fakeLastLedgerSequenceValue),
       rawTransactionStatusValue: .success(fakeRawTransactionStatusValue),
       paymentHistoryValue: .success(fakePaymentHistoryValue),
-      accountExistsValue: .success(fakeAccountExistsValue)
+      accountExistsValue: .success(fakeAccountExistsValue),
+      getPaymentValue: .success(fakeGetPaymentValue)
     )
 
     let fakeResolvedPayID = "r123"
