@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-### 3.2.0 - 2020-06-04
+## 3.2.0 - 2020-06-04
 
 ### Added
 - A new method, `getPayment`, added to `XRPClient` for retrieving payment transactions by hash.
