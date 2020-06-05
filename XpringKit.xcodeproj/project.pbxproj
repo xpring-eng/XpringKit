@@ -294,11 +294,13 @@
 		B09D4AF100CDCB0741C60B8D /* Originator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5FDA0EE747FA302E6B5B06 /* Originator.swift */; };
 		B180EE1E57B5A728CD894E6A /* create_account_response.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039730C4A0DBC063E08933F7 /* create_account_response.pb.swift */; };
 		B1A4C8F512E8E9D56472473E /* AccessToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8146CC286B878FA5F775D841 /* AccessToken.swift */; };
+		B1DA9E0375DA472CFBDF5EA0 /* PayIDClientTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB3D86D5D04AF8CF5AC9FA63 /* PayIDClientTest.swift */; };
 		B21EBDB2A7D45146B49520AD /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C30A59A92292C3FD27F32B8 /* Utils.swift */; };
 		B4C0803495F48AF2EA38F5A6 /* JavaScriptWalletGenerationResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A39FB2D5EF0857FA0E2A6F5 /* JavaScriptWalletGenerationResult.swift */; };
 		B5E13E35F73A09403BFD5486 /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A676831CAF09680DEF36CC0C /* NetworkClient.swift */; };
 		B655C9AAFA5682B68F139BD2 /* XRPIssuedCurrency.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00B6C56B8D9A9DF08EA6543 /* XRPIssuedCurrency.swift */; };
 		B82677FE5588B6FEF4C51449 /* ledger_objects.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2D27DE0D1F7A7A038E0B68 /* ledger_objects.pb.swift */; };
+		B84DB8DD7CC2A3ED5F7FED74 /* PayIDClientTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB3D86D5D04AF8CF5AC9FA63 /* PayIDClientTest.swift */; };
 		B99A3D964E44FA88511F4596 /* PaymentPointer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5394D193AE3E85D0BF835C30 /* PaymentPointer.swift */; };
 		BA20CFF2E7CA4C4A46E9E9CF /* PayIDError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BEAB6B3FEB64170C01A783E /* PayIDError.swift */; };
 		BB7F2FBF9503319AD3D9120F /* SwiftGRPC.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 58A74192BD297BC4E78F9B95 /* SwiftGRPC.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -634,6 +636,7 @@
 		D9255EAB215D171C857C5977 /* FakeXRPPayIDClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeXRPPayIDClient.swift; sourceTree = "<group>"; };
 		D949D04C8E46963B9D092591 /* create_account_request.pb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = create_account_request.pb.swift; sourceTree = "<group>"; };
 		D9713E57588F07A7974AB830 /* XpringKitTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = XpringKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DB3D86D5D04AF8CF5AC9FA63 /* PayIDClientTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayIDClientTest.swift; sourceTree = "<group>"; };
 		DCF6B999FCE0C29CC7A59D45 /* XpringKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = XpringKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDB8AF43576E755555235A22 /* JSContext+XpringKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JSContext+XpringKit.swift"; sourceTree = "<group>"; };
 		DE0B9773B47C926571988CFD /* XRPPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XRPPath.swift; sourceTree = "<group>"; };
@@ -1074,6 +1077,7 @@
 		BD48CE8554C5C17F3F38EB37 /* PayID */ = {
 			isa = PBXGroup;
 			children = (
+				DB3D86D5D04AF8CF5AC9FA63 /* PayIDClientTest.swift */,
 				BCFBCFB507A1F64489C83C96 /* PayIDIntegrationTests.swift */,
 				7D59BF92C942B39401A02C92 /* PayIDUtilsTests.swift */,
 				2029AF8132750D645624C67F /* XRPPayIDClientTests.swift */,
@@ -1557,6 +1561,7 @@
 				5A89E6357D16B50EA9F04548 /* Org_Xrpl_Rpc_V1_GetAccountTransactionHistoryResponse+Test.swift in Sources */,
 				BC0C566FC1BF10B675601964 /* Org_Xrpl_Rpc_V1_GetTransactionResponse+Test.swift in Sources */,
 				6A6873399EEAF5F6B9305F11 /* Org_Xrpl_Rpc_V1_Transaction+Test.swift in Sources */,
+				B1DA9E0375DA472CFBDF5EA0 /* PayIDClientTest.swift in Sources */,
 				448970DABE1D9571DDC30737 /* PayIDIntegrationTests.swift in Sources */,
 				94936C13496417DE22F8AE56 /* PayIDUtilsTests.swift in Sources */,
 				36F128DA2629F5D1C8AE5020 /* PaymentPointer+Test.swift in Sources */,
@@ -1615,6 +1620,7 @@
 				E89297B29010AACAC6D05131 /* Org_Xrpl_Rpc_V1_GetAccountTransactionHistoryResponse+Test.swift in Sources */,
 				8B1E27C492144A138ACD1E1D /* Org_Xrpl_Rpc_V1_GetTransactionResponse+Test.swift in Sources */,
 				C4CC8D60DAD8621751B2B14F /* Org_Xrpl_Rpc_V1_Transaction+Test.swift in Sources */,
+				B84DB8DD7CC2A3ED5F7FED74 /* PayIDClientTest.swift in Sources */,
 				6A2FF3960513FB5FCF7BFE5C /* PayIDIntegrationTests.swift in Sources */,
 				BCCC9EEFB201860BB5AF9B40 /* PayIDUtilsTests.swift in Sources */,
 				1C6814D8954A2880ECDE5355 /* PaymentPointer+Test.swift in Sources */,

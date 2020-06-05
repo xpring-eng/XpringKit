@@ -4,7 +4,7 @@ final class FakeURLProtocol: URLProtocol {
 
   enum ResponseType {
     case error(Error)
-    case success(HTTPURLResponse)
+    case success(HTTPURLResponse, String)
   }
   static var responseType: ResponseType!
 
@@ -47,8 +47,9 @@ extension FakeURLProtocol: URLSessionDataDelegate {
     switch FakeURLProtocol.responseType {
     case .error(let error)?:
       client?.urlProtocol(self, didFailWithError: error)
-    case .success(let response)?:
+    case .success(let response, let asciiString)?:
       client?.urlProtocol(self, didReceive: response, cacheStoragePolicy: .notAllowed)
+      client?.urlProtocol(self, didLoad: asciiString.data(using: .utf8)!)
     default:
       break
     }
@@ -67,9 +68,9 @@ extension FakeURLProtocol {
     FakeURLProtocol.responseType = FakeURLProtocol.ResponseType.error(MockError.none)
   }
 
-  static func responseWithStatusCode(code: Int) {
+  static func responseWithStatusCode(code: Int, asciiString: String) {
     let url = URL(string: "http://any.com")!
     let response = HTTPURLResponse(url: url, statusCode: code, httpVersion: nil, headerFields: nil)!
-    return FakeURLProtocol.responseType = FakeURLProtocol.ResponseType.success(response)
+    return FakeURLProtocol.responseType = FakeURLProtocol.ResponseType.success(response, asciiString)
   }
 }
