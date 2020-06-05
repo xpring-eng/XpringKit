@@ -254,6 +254,7 @@
 		99EC88A034D110E16D40D272 /* RawTransactionStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7670AFE8249A612BEC6D796 /* RawTransactionStatus.swift */; };
 		9A7B9B08558864D86D0CC627 /* RequestBehaviour.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0A965B0FD09BFBD4C33872A /* RequestBehaviour.swift */; };
 		9A89310C3FFBC5E0C5C1A24D /* XRPClientIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F45E1DF43583AFB9E57EC7E /* XRPClientIntegrationTests.swift */; };
+		9BF8381B2AC0719AFCE3B5AB /* FakeURLProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE466E8E72FE0A83AA77C86A /* FakeURLProtocol.swift */; };
 		9C845ADD29DEEC15E70EFD09 /* Rpc_V1_XRPLedgerAPIServiceServiceClient+NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8CA96E5AC5253D359755F4 /* Rpc_V1_XRPLedgerAPIServiceServiceClient+NetworkClient.swift */; };
 		9CB46A37BD4E169CCE9F8DB0 /* get_balance_request.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00153A0A30748AA993F153A9 /* get_balance_request.pb.swift */; };
 		9D219B7A4C3D863B09B10125 /* Wallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2BA278976D9647A3DB2DB0 /* Wallet.swift */; };
@@ -347,6 +348,7 @@
 		D41FBFAD75226077E9AE3550 /* meta.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB022AF22A0CFE65BE15CD66 /* meta.pb.swift */; };
 		D44F79D5499797CABF639052 /* Invoice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FF086761CDA5FA60BD96B13 /* Invoice.swift */; };
 		D46CEB4EEB226058EE99A903 /* Invoice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FF086761CDA5FA60BD96B13 /* Invoice.swift */; };
+		D6235E581421A73E9BA03AFC /* FakeURLProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE466E8E72FE0A83AA77C86A /* FakeURLProtocol.swift */; };
 		D858C69E1CD2F0830F13D3D3 /* XRPTransactionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5829FCE75C14EBAED939613E /* XRPTransactionType.swift */; };
 		D86EF1A7774A712D5A7E3C10 /* XRPCurrencyAmount.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A44415073DF3370D66A1C4 /* XRPCurrencyAmount.swift */; };
 		D8CD2F1D8AB9617002988E8C /* DefaultXRPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D6DA415167F4CB90A8826F /* DefaultXRPClient.swift */; };
@@ -649,6 +651,7 @@
 		EBB19BF8498C3EF5BD8E408F /* APIResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIResponse.swift; sourceTree = "<group>"; };
 		EC5906AEBA326613C48525A9 /* get_balance_response.pb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = get_balance_response.pb.swift; sourceTree = "<group>"; };
 		ED6BB0C6BE283CA6568B9027 /* Signer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Signer.swift; sourceTree = "<group>"; };
+		EE466E8E72FE0A83AA77C86A /* FakeURLProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeURLProtocol.swift; sourceTree = "<group>"; };
 		EF82A3DC94349FA07A5E330B /* Hex+ByteArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Hex+ByteArray.swift"; sourceTree = "<group>"; };
 		F00B6C56B8D9A9DF08EA6543 /* XRPIssuedCurrency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XRPIssuedCurrency.swift; sourceTree = "<group>"; };
 		F03A988086B5CF2A94060588 /* common.pb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = common.pb.swift; sourceTree = "<group>"; };
@@ -855,6 +858,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		4E7BC3F2B602862D732E8490 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				560482CD584976C1851AECB9 /* Helpers */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
 		4FD30E7BCD9455C5A0F325EF /* Generated */ = {
 			isa = PBXGroup;
 			children = (
@@ -872,6 +883,14 @@
 				EC1D0E9D4134C8AA84B645E5 /* Requests */,
 			);
 			path = Generated;
+			sourceTree = "<group>";
+		};
+		560482CD584976C1851AECB9 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				EE466E8E72FE0A83AA77C86A /* FakeURLProtocol.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		620578C9792069FE0E5EB4AB /* Fakes */ = {
@@ -1108,6 +1127,7 @@
 				7B9235E33F4B53ED0FD35D50 /* SignerTests.swift */,
 				C1D0F50AF49F103E1E0B3D50 /* UtilsTest.swift */,
 				D05F8765E9BE754C41FCEB39 /* WalletTest.swift */,
+				4E7BC3F2B602862D732E8490 /* Common */,
 				4B68BC3EC276CB975F2EA0F9 /* Fakes */,
 				07D01DAB4FF83BA669FDA499 /* Helpers */,
 				BD48CE8554C5C17F3F38EB37 /* PayID */,
@@ -1523,6 +1543,7 @@
 				A1D10FFE642CBB4415A7DA32 /* FakeIlpPaymentNetworkClient.swift in Sources */,
 				F3B0B83254481E6444F86C8D /* FakeNetworkClient+Test.swift in Sources */,
 				420A95F070E923678F61E8C5 /* FakeNetworkClient.swift in Sources */,
+				D6235E581421A73E9BA03AFC /* FakeURLProtocol.swift in Sources */,
 				709AE5B1DE61918ED6C9941D /* FakeWallet.swift in Sources */,
 				A4CC2AFFE73814C0FD223BFD /* FakeXRPClient.swift in Sources */,
 				9124ADC63FA103F96F2E4A63 /* FakeXRPPayIDClient.swift in Sources */,
@@ -1580,6 +1601,7 @@
 				4A421DF3F670E0AC08C52FC8 /* FakeIlpPaymentNetworkClient.swift in Sources */,
 				40156D93772298F5C8DFB1FF /* FakeNetworkClient+Test.swift in Sources */,
 				36E23EB76790F70E3A35D5FF /* FakeNetworkClient.swift in Sources */,
+				9BF8381B2AC0719AFCE3B5AB /* FakeURLProtocol.swift in Sources */,
 				ED48C60F86C5E79EFE0CAFE7 /* FakeWallet.swift in Sources */,
 				D0830AE16CE58CA84AD32A86 /* FakeXRPClient.swift in Sources */,
 				351D7742ACFA06F430531BC0 /* FakeXRPPayIDClient.swift in Sources */,

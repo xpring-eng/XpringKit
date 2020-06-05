@@ -1,3 +1,4 @@
+import Alamofire
 import Foundation
 
 /// Implements interaction with a PayID service.
@@ -17,9 +18,14 @@ public class PayIDClient {
   /// The network this PayID client resolves on.
   private let network: String
 
+  /// The `SessionManager` for network requests.
+  private let sessionManager: SessionManager
+
   /// Initialize a new PayID client.
   ///
-  /// - Parameter network: The network that addresses will be resolved on.
+  /// - Parameters:
+  ///   - network: The network that addresses will be resolved on.
+  ///   - sessionManager: A SessionManager which will administer network requests. Defaults to the default SessionManager.
   ///
   /// - Note: Networks in this constructor take the form of an asset and an optional network (<asset>-<network>).
   /// For instance:
@@ -29,8 +35,9 @@ public class PayIDClient {
   ///   - ach
   ///
   //  TODO: Link a canonical list at payid.org when available.
-  public init(network: String) {
+  public init(network: String, sessionManager: SessionManager = .default) {
     self.network = network
+    self.sessionManager = sessionManager
   }
 
   /// Resolve the given PayID to an address.
@@ -41,7 +48,7 @@ public class PayIDClient {
   // TODO(keefertaylor): Make this API synchronous to mirror functionality provided by ILP / XRP.
   public func address(
     for payID: String,
-    completion: @escaping (Result<CryptoAddressDetails, PayIDError>) -> Void
+    completion: @escaping (Swift.Result<CryptoAddressDetails, PayIDError>) -> Void
   ) {
     guard let payIDComponents = PayIDUtils.parse(payID: payID) else {
       return completion(.failure(.invalidPayID(payID: payID)))
@@ -51,7 +58,7 @@ public class PayIDClient {
     let path = String(payIDComponents.path.dropFirst())
 
     let acceptHeaderValue = "application/\(self.network)+json"
-    let client = APIClient(baseURL: "https://" + host)
+    let client = APIClient(baseURL: "https://" + host, sessionManager: self.sessionManager)
     client.defaultHeaders = [
       Headers.Keys.accept: acceptHeaderValue,
       Headers.Keys.payIDVersion: Headers.Values.version
