@@ -17,19 +17,24 @@ final class PayIDClientTest: XCTestCase {
     }()
 
     // TODO(keefertaylor): We can probably encode a native dictionary rather than inlining JSON.
-    let response = """
-    {
-      "addresses": [{
-        "addressDetailsType": "CryptoAddressDetails",
-        "addressDetails": {
-          "address": "my-address-here"
-        },
-        "paymentNetwork": "xrpl"
-      }]
-    }
-    """
+    let address = "rKeefer"
+    let paymentNetwork = "xrpl-testnet"
+    let addressDetailsType = "CryptoAddressDetails"
+    let jsonEncoder = JSONEncoder()
+    let paymentInformation = PaymentInformation(
+      addresses: [
+        PayIdAddress(
+          paymentNetwork: paymentNetwork,
+          addressDetailsType: "",
+          addressDetails: CryptoAddressDetails(
+            address: address
+          )
+        )
+      ]
+    )
+    let response = try! jsonEncoder.encode(paymentInformation)
 
-    FakeURLProtocol.responseWithStatusCode(code: 200, asciiString: response)
+    FakeURLProtocol.responseWithStatusCode(code: 200, asciiString: String(data: response, encoding: .utf8)!)
     let expectation = XCTestExpectation(description: "Got a response")
 
     let payIDClient = PayIDClient(network: "xrpl-testnet", sessionManager: manager)
