@@ -4,23 +4,10 @@ import XCTest
 import XpringKit
 
 final class PayIDClientTest: XCTestCase {
-  // TODO(keefertaylor): Better naming.
-  func testGet() {
-    let manager: SessionManager = {
-      let configuration: URLSessionConfiguration = {
-        let configuration = URLSessionConfiguration.default
-        configuration.protocolClasses = [FakeURLProtocol.self]
-        return configuration
-      }()
-
-      return SessionManager(configuration: configuration)
-    }()
-
-    // TODO(keefertaylor): We can probably encode a native dictionary rather than inlining JSON.
-    let address = "rKeefer"
+  func testAddressWithSuccessResponse() {
+    // GIVEN A PayIDClient with faked networking to return a successful response.
+    let address = "X7cBcY4bdTTzk3LHmrKAK6GyrirkXfLHGFxzke5zTmYMfw4"
     let paymentNetwork = "xrpl-testnet"
-    let addressDetailsType = "CryptoAddressDetails"
-    let jsonEncoder = JSONEncoder()
     let paymentInformation = PaymentInformation(
       addresses: [
         PayIdAddress(
@@ -32,16 +19,31 @@ final class PayIDClientTest: XCTestCase {
         )
       ]
     )
+
+    let jsonEncoder = JSONEncoder()
     let response = try! jsonEncoder.encode(paymentInformation)
 
-    FakeURLProtocol.responseWithStatusCode(code: 200, asciiString: String(data: response, encoding: .utf8)!)
-    let expectation = XCTestExpectation(description: "Got a response")
+    let manager: SessionManager = {
+      let configuration: URLSessionConfiguration = {
+        let configuration = URLSessionConfiguration.default
+        configuration.protocolClasses = [FakeURLProtocol.self]
+        return configuration
+      }()
 
-    let payIDClient = PayIDClient(network: "xrpl-testnet", sessionManager: manager)
-    payIDClient.address(for: "keefer$keefertaylor.com") { result in
+      return SessionManager(configuration: configuration)
+    }()
+
+    FakeURLProtocol.responseWithStatusCode(code: 200, asciiString: String(data: response, encoding: .utf8)!)
+
+    let payIDClient = PayIDClient(network: paymentNetwork, sessionManager: manager)
+
+    // WHEN the associated address is retrieved.
+    let expectation = XCTestExpectation(description: "Retrieved a PayID")
+    payIDClient.address(for: "georgewashington$xpring.money") { result in
+      // THEN the response contains the expected address.
       switch result {
       case .success(let addressDetails):
-        XCTAssertEqual(addressDetails.address, "my-address-here")
+        XCTAssertEqual(addressDetails.address, address)
       case .failure(let error):
         XCTFail("flagrant error: \(error)")
       }
@@ -50,7 +52,7 @@ final class PayIDClientTest: XCTestCase {
     }
 
     self.wait(for: [expectation], timeout: 10)
-
-    XCTAssertEqual(1 + 1, 2)
   }
+
+  // TODO(keefertaylor): Write additional PayID tests here in a follow up PR.
 }
