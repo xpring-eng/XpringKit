@@ -1,9 +1,14 @@
 import Foundation
 
+/// A fake implementation of URLProtocol.
+/// This class is heavily adapted from https://jeroenscode.com/mocking-alamofire/.
 final class FakeURLProtocol: URLProtocol {
-
+  // Types of responses.
   enum ResponseType {
+    // An error response and associated value.
     case error(Error)
+
+    // A success response type, with the given response and ASCII encoded data.
     case success(HTTPURLResponse, String)
   }
   static var responseType: ResponseType!
@@ -37,6 +42,7 @@ final class FakeURLProtocol: URLProtocol {
 }
 
 // MARK: - URLSessionDataDelegate
+
 extension FakeURLProtocol: URLSessionDataDelegate {
 
   func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive data: Data) {
