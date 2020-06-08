@@ -1,2 +1,15 @@
-ignore:
-- "XpringKit/*/Generated/**/*"
+  
+coverage:
+  status:
+    patch:
+      default:
+        target: 80%
+        threshold: 1%
+        base: auto 
+        if_ci_failed: error
+    project:
+      default:
+        target: 80%
+        threshold: 1%
+        base: auto 
+        if_ci_failed: errorignore:

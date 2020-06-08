@@ -2,7 +2,7 @@ version: 2.1
 jobs:
   build:
     macos:
-      xcode: "11.1.0"
+      xcode: "11.2.0"
     resource_class: large
 
     steps:
@@ -17,15 +17,16 @@ jobs:
           command: xcodebuild -version
       - run:
           name: Set Ruby Version
-          command:  echo "ruby-2.6.4" > ~/.ruby-version
-  
+          command: echo 'chruby ruby-2.6' >> ~/.bash_profile
+ 
       - run:
           name: "Install Tooling"
           command: |
             brew update
-            brew install grpc-swift swagger-codegen swift-protobuf swiftlint xcodegen
+            brew tap yonaskolb/SwagGen https://github.com/yonaskolb/SwagGen.git
+            brew install grpc-swift swagger-codegen swift-protobuf swiftlint xcodegen SwagGen
             npm i -g grpc-tools
-            sudo gem install slather cocoapods
+            sudo gem install cocoapods slather xcpretty
 
       - run:
           name: "Pull Submodules"
@@ -55,11 +56,11 @@ jobs:
 
       - run:
           name: "Build and Test (Carthage)"
-          command: set -o pipefail && xcodebuild test -scheme XpringKit_iOS -destination 'platform=iOS Simulator,name=iPhone 11,OS=13.1' ONLY_ACTIVE_ARCH=YES | xcpretty
+          command: set -o pipefail && xcodebuild test -scheme XpringKit_iOS -destination 'platform=iOS Simulator,name=iPhone 8,OS=12.4' ONLY_ACTIVE_ARCH=YES | xcpretty
 
       - run:
           name: "Build and Test (CocoaPods)"
-          command: pod lib lint --verbose
+          command: pod lib lint  --allow-warnings --verbose
 
       - run:
           name: "Generate and Upload Code Coverage"
