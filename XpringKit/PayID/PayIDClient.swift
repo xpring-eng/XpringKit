@@ -25,7 +25,8 @@ public class PayIDClient {
   ///
   /// - Parameters:
   ///   - network: The network that addresses will be resolved on.
-  ///   - sessionManager: A SessionManager which will administer network requests. Defaults to the default SessionManager.
+  ///   - sessionManager: A SessionManager which will administer network 
+  ///                     requests. Defaults to the default SessionManager.
   ///
   /// - Note: Networks in this constructor take the form of an asset and an optional network (<asset>-<network>).
   /// For instance:
