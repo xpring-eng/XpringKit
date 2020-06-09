@@ -571,14 +571,13 @@ final class ProtocolBufferConversionTests: XCTestCase {
     let transaction = XRPTransaction(getTransactionResponse: getTransactionResponseProto)
     let expectedXAddress = Utils.encode(
       classicAddress: transaction!.account,
-      tag: nil,
+      tag: transaction!.sourceTag,
       isTest: false
     )
 
     // THEN all fields are present and converted correctly.
     XCTAssertEqual(transaction?.hash, [UInt8](hash).toHex())
     XCTAssertEqual(transaction?.account, account)
-    XCTAssertEqual(transaction?.accountXAddress, expectedXAddress)
     XCTAssertEqual(transaction?.fee, fee)
     XCTAssertEqual(transaction?.sequence, sequence)
     XCTAssertEqual(transaction?.signingPublicKey, signingPublicKey)
@@ -589,6 +588,7 @@ final class ProtocolBufferConversionTests: XCTestCase {
     XCTAssertEqual(transaction?.memos, [ XRPMemo(memo: memoProto) ])
     XCTAssertEqual(transaction?.signers, [ XRPSigner(signer: signerProto) ])
     XCTAssertEqual(transaction?.sourceTag, sourceTag)
+    XCTAssertEqual(transaction?.sourceXAddress, expectedXAddress)
     XCTAssertEqual(transaction?.timestamp, .expectedTimestamp)
     XCTAssertEqual(transaction?.deliveredAmount, String(deliveredAmount))
     XCTAssertEqual(transaction?.validated, validated)
@@ -649,14 +649,13 @@ final class ProtocolBufferConversionTests: XCTestCase {
 
     let expectedXAddress = Utils.encode(
       classicAddress: transaction!.account,
-      tag: nil,
+      tag: transaction!.sourceTag,
       isTest: true
     )
 
     // THEN all fields are present and converted correctly.
     XCTAssertEqual(transaction?.hash, [UInt8](hash).toHex())
     XCTAssertEqual(transaction?.account, account)
-    XCTAssertEqual(transaction?.accountXAddress, expectedXAddress)
     XCTAssertEqual(transaction?.fee, fee)
     XCTAssertEqual(transaction?.sequence, sequence)
     XCTAssertEqual(transaction?.signingPublicKey, signingPublicKey)
@@ -667,6 +666,7 @@ final class ProtocolBufferConversionTests: XCTestCase {
     XCTAssertNil(transaction?.memos)
     XCTAssertNil(transaction?.signers)
     XCTAssertNil(transaction?.sourceTag)
+    XCTAssertEqual(transaction?.sourceXAddress, expectedXAddress)
     XCTAssertNil(transaction?.timestamp)
     XCTAssertNil(transaction?.deliveredAmount)
   }
