@@ -626,7 +626,10 @@ final class DefaultXRPClientTest: XCTestCase {
 
   func testGetPaymentWithSuccess() {
     // GIVEN a DefaultXRPClient with mocked networking that will succeed for getTransaction.
-    let xrpClient = DefaultXRPClient(networkClient: FakeNetworkClient.successfulFakeNetworkClient, xrplNetwork: XRPLNetwork.test)
+    let xrpClient = DefaultXRPClient(
+      networkClient: FakeNetworkClient.successfulFakeNetworkClient,
+      xrplNetwork: XRPLNetwork.test
+    )
 
     // WHEN a transaction is requested.
     guard let transaction = try? xrpClient.getPayment(for: .testTransactionHash) else {
@@ -635,7 +638,13 @@ final class DefaultXRPClientTest: XCTestCase {
     }
 
     // THEN the returned transaction is as expected.
-    XCTAssertEqual(transaction, XRPTransaction(getTransactionResponse: .testGetTransactionResponse, xrplNetwork: XRPLNetwork.test))
+    XCTAssertEqual(
+      transaction,
+      XRPTransaction(
+        getTransactionResponse: .testGetTransactionResponse,
+        xrplNetwork: XRPLNetwork.test
+      )
+    )
   }
 
   func testGetPaymentWithNotFoundError() {
