@@ -11,9 +11,9 @@ internal extension XRPPayment {
   /// - Parameters:
   ///     - payment: an Org_Xrpl_Rpc_V1_Payment (protobuf object) whose field values will be used to
   ///             construct an XRPPayment
-  ///     - xrplNetwork: The XRPL network from which this object was retrieved, defaults to XRPLNetwork.main (Mainnet).
+  ///     - xrplNetwork: The XRPL network from which this object was retrieved.
   /// - Returns: an XRPPayment with its fields set via the analogous protobuf fields.
-  init?(payment: Org_Xrpl_Rpc_V1_Payment, xrplNetwork: XRPLNetwork = XRPLNetwork.main) {
+  init?(payment: Org_Xrpl_Rpc_V1_Payment, xrplNetwork: XRPLNetwork) {
     guard let amount = XRPCurrencyAmount(currencyAmount: payment.amount.value) else {
       return nil
     }

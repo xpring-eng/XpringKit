@@ -10,9 +10,9 @@ internal extension XRPTransaction {
   /// - Parameters:
   ///     - transaction: an Org_Xrpl_Rpc_V1_Transaction (protobuf object) whose field values will be used to
   ///                 construct an XRPTransaction
-  ///     - xrplNetwork: The XRPL network from which this object was retrieved, defaults to XRPLNetwork.main (Mainnet).
+  ///     - xrplNetwork: The XRPL network from which this object was retrieved.
   /// - Returns: an XRPTransaction with its fields set via the analogous protobuf fields.
-  init?(getTransactionResponse: Org_Xrpl_Rpc_V1_GetTransactionResponse, xrplNetwork: XRPLNetwork = XRPLNetwork.main) {
+  init?(getTransactionResponse: Org_Xrpl_Rpc_V1_GetTransactionResponse, xrplNetwork: XRPLNetwork) {
 
     let transaction: Org_Xrpl_Rpc_V1_Transaction = getTransactionResponse.transaction
 

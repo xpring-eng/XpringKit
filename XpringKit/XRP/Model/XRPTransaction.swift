@@ -9,7 +9,7 @@ public struct XRPTransaction: Equatable {
 
   /// The identifying hash of the transaction.
   public let hash: String
-  
+
   /// The unique address of the account that initiated the transaction.
   @available(*, deprecated, message: "Please use sourceXAddress, which encodes both the account and sourceTag")
   public let account: Address
@@ -52,7 +52,7 @@ public struct XRPTransaction: Equatable {
   /// The unique address and source tag of the sender that initiated the transaction, encoded as an X-address.
   /// - SeeAlso: "https://xrpaddress.info"
   public let sourceXAddress: Address?
-  
+
   /// The signature that verifies this transaction as originating from the account it says it is from.
   public let transactionSignature: Data
 
