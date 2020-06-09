@@ -300,7 +300,7 @@ final class ProtocolBufferConversionTests: XCTestCase {
     let expectedXAddress = Utils.encode(
       classicAddress: payment!.destination,
       tag: payment?.destinationTag,
-      isTest: false
+      isTest: true
     )
     // THEN the result is as expected.
     XCTAssertEqual(payment?.amount, XRPCurrencyAmount(currencyAmount: paymentProto.amount.value))
@@ -572,7 +572,7 @@ final class ProtocolBufferConversionTests: XCTestCase {
     let expectedXAddress = Utils.encode(
       classicAddress: transaction!.account,
       tag: transaction!.sourceTag,
-      isTest: false
+      isTest: true
     )
 
     // THEN all fields are present and converted correctly.
