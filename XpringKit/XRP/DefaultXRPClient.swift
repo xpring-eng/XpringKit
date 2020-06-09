@@ -210,7 +210,7 @@ extension DefaultXRPClient: XRPClientDecorator {
   internal func getLatestValidatedLedgerSequence(address: Address) throws -> UInt32 {
     // rippled doesn't support a gRPC call that tells us the latest validated ledger sequence. To get around this,
     // query the account info for an account which will exist, using a shortcut for the latest validated ledger. The
-    // response will contain the ledger the information was retrieved at.
+    // response will contain the ledger index the information was retrieved at.
     let getAccountInfoRequest = Org_Xrpl_Rpc_V1_GetAccountInfoRequest.with {
       $0.account = Org_Xrpl_Rpc_V1_AccountAddress.with {
         $0.address = address

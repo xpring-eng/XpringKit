@@ -1,2 +1,3 @@
 /// Conforms Org_Interledger_Stream_Proto_IlpOverHttpServiceServiceClient to IlpNetworkPaymentClient
 extension Org_Interledger_Stream_Proto_IlpOverHttpServiceServiceClient: IlpNetworkPaymentClient {}
+extension Org_Interledger_Stream_Proto_IlpOverHttpServiceServiceClient: ILPNetworkPaymentClient {}
