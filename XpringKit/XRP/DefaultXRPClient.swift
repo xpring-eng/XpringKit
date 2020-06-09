@@ -337,6 +337,6 @@ extension DefaultXRPClient: XRPClientDecorator {
 
     let getTransactionResponse = try self.networkClient.getTransaction(request)
 
-    return XRPTransaction(getTransactionResponse: getTransactionResponse)
+    return XRPTransaction(getTransactionResponse: getTransactionResponse, xrplNetwork: self.xrplNetwork)
   }
 }

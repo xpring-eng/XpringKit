@@ -12,7 +12,7 @@ final class XpringClientTest: XCTestCase {
   )
   private let fakePaymentHistoryValue: [XRPTransaction] = []
   private let fakeAccountExistsValue = true
-  private let fakeGetPaymentValue = XRPTransaction(getTransactionResponse: .testGetTransactionResponse)
+  private let fakeGetPaymentValue = XRPTransaction(getTransactionResponse: .testGetTransactionResponse, xrplNetwork: XRPLNetwork.test)
 
   ///An amount to send.
   private let amount: UInt64 = 10

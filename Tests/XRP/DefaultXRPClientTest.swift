@@ -482,7 +482,7 @@ final class DefaultXRPClientTest: XCTestCase {
       .testTransactionHistoryResponse
       .transactions
       .map { transactionResponse in
-        return XRPTransaction(getTransactionResponse: transactionResponse)
+        return XRPTransaction(getTransactionResponse: transactionResponse, xrplNetwork: XRPLNetwork.test)
       }
 
     // WHEN the transactionHistory is requested.
@@ -549,7 +549,7 @@ final class DefaultXRPClientTest: XCTestCase {
     // Generate expected transactions from the default response, which only contains payments.
     var transactionHistory = Org_Xrpl_Rpc_V1_GetAccountTransactionHistoryResponse.testTransactionHistoryResponse
     let expectedTransactions = transactionHistory.transactions.map { transactionResponse in
-      return XRPTransaction(getTransactionResponse: transactionResponse)
+      return XRPTransaction(getTransactionResponse: transactionResponse, xrplNetwork: XRPLNetwork.test)
     }
 
     // Append a non-payment transaction. This is not one of the expected outputs because it is not a payment.
@@ -635,7 +635,7 @@ final class DefaultXRPClientTest: XCTestCase {
     }
 
     // THEN the returned transaction is as expected.
-    XCTAssertEqual(transaction, XRPTransaction(getTransactionResponse: .testGetTransactionResponse))
+    XCTAssertEqual(transaction, XRPTransaction(getTransactionResponse: .testGetTransactionResponse, xrplNetwork: XRPLNetwork.test))
   }
 
   func testGetPaymentWithNotFoundError() {
