@@ -12,7 +12,10 @@ internal class JavaScriptWalletFactory {
       public static let generateRandomWallet = "generateRandomWallet"
       public static let generateWalletFromMnemonic = "generateWalletFromMnemonic"
       public static let generateWalletFromSeed = "generateWalletFromSeed"
-      public static let getDefaultDerivationPath = "getDefaultDerivationPath"
+    }
+
+    public enum Properties {
+      public static let defaultDerivationPath = "defaultDerivationPath"
     }
   }
 
@@ -21,7 +24,7 @@ internal class JavaScriptWalletFactory {
 
   /// Returns the default derivation path used during `Wallet` creation.
   public var defaultDerivationPath: String {
-    let result = walletClass.invokeMethod(ResourceNames.Methods.getDefaultDerivationPath, withArguments: [])!
+    let result = walletClass.objectForKeyedSubscript(ResourceNames.Properties.defaultDerivationPath)!
     return result.toString()
   }
 
