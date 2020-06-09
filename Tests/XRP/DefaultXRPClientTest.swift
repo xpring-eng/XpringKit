@@ -626,7 +626,7 @@ final class DefaultXRPClientTest: XCTestCase {
 
   func testGetPaymentWithSuccess() {
     // GIVEN a DefaultXRPClient with mocked networking that will succeed for getTransaction.
-    let xrpClient = DefaultXRPClient(networkClient: FakeNetworkClient.successfulFakeNetworkClient)
+    let xrpClient = DefaultXRPClient(networkClient: FakeNetworkClient.successfulFakeNetworkClient, xrplNetwork: XRPLNetwork.test)
 
     // WHEN a transaction is requested.
     guard let transaction = try? xrpClient.getPayment(for: .testTransactionHash) else {
@@ -657,7 +657,7 @@ final class DefaultXRPClientTest: XCTestCase {
       ),
       transactionHistoryResult: .success(.testTransactionHistoryResponse)
     )
-    let xrpClient = DefaultXRPClient(networkClient: networkClient)
+    let xrpClient = DefaultXRPClient(networkClient: networkClient, xrplNetwork: XRPLNetwork.test)
 
     // WHEN a transaction is requested, THEN the error is re-thrown.
     XCTAssertThrowsError(try xrpClient.getPayment(for: .testTransactionHash), "Exception not thrown") { error in
@@ -686,7 +686,7 @@ final class DefaultXRPClientTest: XCTestCase {
       transactionStatusResult: .success(.invalidTestGetTransactionResponse),
       transactionHistoryResult: .success(.testTransactionHistoryResponse)
     )
-    let xrpClient = DefaultXRPClient(networkClient: networkClient)
+    let xrpClient = DefaultXRPClient(networkClient: networkClient, xrplNetwork: XRPLNetwork.test)
 
     // WHEN a transaction is requested.
     let transaction = try? xrpClient.getPayment(for: .testTransactionHash)
@@ -704,7 +704,7 @@ final class DefaultXRPClientTest: XCTestCase {
       transactionStatusResult: .success(.invalidGetTransactionResponseUnsupported),
       transactionHistoryResult: .success(.testTransactionHistoryResponse)
     )
-    let xrpClient = DefaultXRPClient(networkClient: networkClient)
+    let xrpClient = DefaultXRPClient(networkClient: networkClient, xrplNetwork: XRPLNetwork.test)
 
     // WHEN a transaction is requested.
     let transaction = try? xrpClient.getPayment(for: .testTransactionHash)
