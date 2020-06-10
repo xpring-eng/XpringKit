@@ -23,7 +23,10 @@ final class ReliableSubmissionClientTest: XCTestCase {
   )
   let defaultPaymentHistoryValue: [XRPTransaction] = [ .testTransaction, .testTransaction, .testTransaction ]
   let defaultAccountExistsValue = true
-  let defaultGetPaymentValue = XRPTransaction(getTransactionResponse: .testGetTransactionResponse)
+  let defaultGetPaymentValue = XRPTransaction(
+    getTransactionResponse: .testGetTransactionResponse,
+    xrplNetwork: XRPLNetwork.test
+  )
 
   var fakeXRPClient: FakeXRPClient!
   var reliableSubmissionClient: ReliableSubmissionXRPClient!
@@ -42,7 +45,10 @@ final class ReliableSubmissionClientTest: XCTestCase {
       getPaymentValue: .success(defaultGetPaymentValue)
     )
 
-    reliableSubmissionClient = ReliableSubmissionXRPClient(decoratedClient: fakeXRPClient)
+    reliableSubmissionClient = ReliableSubmissionXRPClient(
+      decoratedClient: fakeXRPClient,
+      xrplNetwork: fakeXRPClient.network
+    )
   }
 
   func testGetBalance() {

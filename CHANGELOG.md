@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+- `XRPPayment` and `XRPTransaction` now contain X-address representations of their address and tag fields.
+  (See https://xrpaddress.info/)
+	
+### Deprecated
+- `XRPTransaction.account` and `XRPTransaction.sourceTag` are deprecated.
+   Please use the X-address encoded field `sourceXAddress` instead.
+- `XRPPayment.destination` and `XRPPayment.destinationTag` are deprecated.  
+   Please use the X-address encoded field `destinationXAddress` instead.
+
 ## 3.2.0 - 2020-06-04
 
 ### Added

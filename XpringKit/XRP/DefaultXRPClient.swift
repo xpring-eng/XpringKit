@@ -6,22 +6,26 @@ public class DefaultXRPClient {
   /// A margin to pad the current ledger sequence with when submitting transactions.
   private let maxLedgerVersionOffset: UInt32 = 10
 
+  /// The XRPL network this XRPClient is connecting to.
+  internal let network: XRPLNetwork
+
   /// A network client that will make and receive requests.
   private let networkClient: NetworkClient
 
   /// Initialize a new XRPClient.
   ///
   /// - Parameter grpcURL: A url for a remote gRPC service which will handle network requests.
-  public convenience init(grpcURL: String) {
+  public convenience init(grpcURL: String, xrplNetwork: XRPLNetwork) {
     let networkClient = Org_Xrpl_Rpc_V1_XRPLedgerAPIServiceServiceClient(address: grpcURL, secure: false)
-    self.init(networkClient: networkClient)
+    self.init(networkClient: networkClient, xrplNetwork: xrplNetwork)
   }
 
   /// Initialize a new XRPClient.
   ///
   /// - Parameter networkClient: A network client which will make requests.
-  internal init(networkClient: NetworkClient) {
+  internal init(networkClient: NetworkClient, xrplNetwork: XRPLNetwork) {
     self.networkClient = networkClient
+    self.network = xrplNetwork
   }
 
   /// Retrieve the current fee to submit a transaction to the XRP Ledger.
@@ -297,7 +301,11 @@ extension DefaultXRPClient: XRPClientDecorator {
       switch transaction.transactionData {
       case .payment:
         // If a payment can't be converted throw an error to prevent returning incomplete data.
-        guard let xrpTransaction = XRPTransaction(getTransactionResponse: transactionResponse) else {
+        guard let xrpTransaction = XRPTransaction(
+          getTransactionResponse: transactionResponse,
+          xrplNetwork: self.network
+        )
+        else {
           throw XRPLedgerError.unknown(
             "Could not convert payment transaction: \(transaction). " +
             "Please file a bug at https://github.com/xpring-eng/xpringkit"
@@ -329,6 +337,6 @@ extension DefaultXRPClient: XRPClientDecorator {
 
     let getTransactionResponse = try self.networkClient.getTransaction(request)
 
-    return XRPTransaction(getTransactionResponse: getTransactionResponse)
+    return XRPTransaction(getTransactionResponse: getTransactionResponse, xrplNetwork: self.network)
   }
 }
