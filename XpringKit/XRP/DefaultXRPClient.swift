@@ -7,7 +7,7 @@ public class DefaultXRPClient {
   private let maxLedgerVersionOffset: UInt32 = 10
 
   /// The XRPL network this XRPClient is connecting to.
-  internal let xrplNetwork: XRPLNetwork
+  internal let network: XRPLNetwork
 
   /// A network client that will make and receive requests.
   private let networkClient: NetworkClient
@@ -25,7 +25,7 @@ public class DefaultXRPClient {
   /// - Parameter networkClient: A network client which will make requests.
   internal init(networkClient: NetworkClient, xrplNetwork: XRPLNetwork) {
     self.networkClient = networkClient
-    self.xrplNetwork = xrplNetwork
+    self.network = xrplNetwork
   }
 
   /// Retrieve the current fee to submit a transaction to the XRP Ledger.
@@ -303,7 +303,7 @@ extension DefaultXRPClient: XRPClientDecorator {
         // If a payment can't be converted throw an error to prevent returning incomplete data.
         guard let xrpTransaction = XRPTransaction(
           getTransactionResponse: transactionResponse,
-          xrplNetwork: self.xrplNetwork
+          xrplNetwork: self.network
         )
         else {
           throw XRPLedgerError.unknown(
@@ -337,6 +337,6 @@ extension DefaultXRPClient: XRPClientDecorator {
 
     let getTransactionResponse = try self.networkClient.getTransaction(request)
 
-    return XRPTransaction(getTransactionResponse: getTransactionResponse, xrplNetwork: self.xrplNetwork)
+    return XRPTransaction(getTransactionResponse: getTransactionResponse, xrplNetwork: self.network)
   }
 }

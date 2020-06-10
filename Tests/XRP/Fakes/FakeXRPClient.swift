@@ -7,7 +7,6 @@ import SwiftGRPC
 ///         can be changed after it is instantiated.
 public class FakeXRPClient: XRPClientProtocol {
   public let network: XRPLNetwork
-  public let xrplNetwork: XRPLNetwork
 
   public let networkClient = FakeNetworkClient.successfulFakeNetworkClient
 
@@ -22,7 +21,6 @@ public class FakeXRPClient: XRPClientProtocol {
 
   public init(
     network: XRPLNetwork = .test,
-    xrplNetwork: XRPLNetwork = .test,
     getBalanceValue: Result<UInt64, XRPLedgerError>,
     paymentStatusValue: Result<TransactionStatus, XRPLedgerError>,
     sendValue: Result<TransactionHash, XRPLedgerError>,
@@ -32,8 +30,7 @@ public class FakeXRPClient: XRPClientProtocol {
     accountExistsValue: Result<Bool, XRPLedgerError>,
     getPaymentValue: Result<XRPTransaction?, RPCError>
   ) {
-    self.network = xrplNetwork
-    self.xrplNetwork = xrplNetwork
+    self.network = network
     self.getBalanceValue = getBalanceValue
     self.paymentStatusValue = paymentStatusValue
     self.sendValue = sendValue

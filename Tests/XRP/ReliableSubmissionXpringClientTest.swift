@@ -47,7 +47,7 @@ final class ReliableSubmissionClientTest: XCTestCase {
 
     reliableSubmissionClient = ReliableSubmissionXRPClient(
       decoratedClient: fakeXRPClient,
-      xrplNetwork: fakeXRPClient.xrplNetwork
+      xrplNetwork: fakeXRPClient.network
     )
   }
 
