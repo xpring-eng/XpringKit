@@ -45,8 +45,8 @@ class PayIDUtilsTest: XCTestCase {
 
   func testParsePayIDHostEndsWithDollarSign() {
     // GIVEN a Pay ID in which the host ends with a $.
-    let host = "xpring.money$";
-    let path = "georgewashington";
+    let host = "xpring.money$"
+    let path = "georgewashington"
     let rawPayID = "\(path)\(host)"
 
     // WHEN it is parsed to components.
@@ -55,7 +55,7 @@ class PayIDUtilsTest: XCTestCase {
     // THEN the Pay ID failed to parse.
     XCTAssertNil(payIDComponents)
   }
-  
+
   func testParsePayIDEmptyHost() {
     // GIVEN a Pay ID with an empty host.
     let host = ""
