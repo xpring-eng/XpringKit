@@ -17,9 +17,14 @@ public class PayIDClient {
   /// The network this PayID client resolves on.
   private let network: String
 
+  // The queue to execute callbacks on.
+  private let completionQueue: DispatchQueue
+
   /// Initialize a new PayID client.
   ///
-  /// - Parameter network: The network that addresses will be resolved on.
+  /// - Parameters:
+  ///   - network: The network that addresses will be resolved on.
+  ///   - completionQueue: The queue that callback blocks will be executed on.  Defaults to the main queue.
   ///
   /// - Note: Networks in this constructor take the form of an asset and an optional network (<asset>-<network>).
   /// For instance:
@@ -29,8 +34,31 @@ public class PayIDClient {
   ///   - ach
   ///
   //  TODO: Link a canonical list at payid.org when available.
-  public init(network: String) {
+  public init(network: String, completionQueue: DispatchQueue = DispatchQueue.main) {
     self.network = network
+    self.completionQueue = completionQueue
+  }
+
+  public func address(for payID: String) throws -> Result<CryptoAddressDetails, PayIDError> {
+    var retrunResult: Result<CryptoAddressDetails, PayIDError>!
+
+    // TODO: Use a semaphore.
+    let group = DispatchGroup()
+    group.enter()
+
+    let queue = DispatchQueue.global(qos: .userInitiated)
+
+   queue.async {
+    print("Queue Executing")
+      self.address(for: payID, completionQueue: queue) { result in
+        print("Queue called back")
+        retrunResult = result
+        group.leave()
+      }
+   }
+    group.wait()
+
+    return retrunResult
   }
 
   /// Resolve the given PayID to an address.
@@ -41,6 +69,7 @@ public class PayIDClient {
   // TODO(keefertaylor): Make this API synchronous to mirror functionality provided by ILP / XRP.
   public func address(
     for payID: String,
+    completionQueue: DispatchQueue = DispatchQueue.main,
     completion: @escaping (Result<CryptoAddressDetails, PayIDError>) -> Void
   ) {
     guard let payIDComponents = PayIDUtils.parse(payID: payID) else {
@@ -59,7 +88,7 @@ public class PayIDClient {
 
     let request = API.ResolvePayID.Request(path: path)
 
-    client.makeRequest(request) { apiResponse in
+    client.makeRequest(request, completionQueue: completionQueue) { apiResponse in
       switch apiResponse.result {
       case .success(let response):
         switch response {

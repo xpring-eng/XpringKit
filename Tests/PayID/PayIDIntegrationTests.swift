@@ -10,27 +10,29 @@ extension PaymentPointer {
 
 /// Integration tests run against a live PayID service.
 final class PayIDIntegrationTests: XCTestCase {
-  func testResolvePaymentPointerKnownPointerMainnet() {
-    let expectation = XCTestExpectation(description: "resolveToXRP completion called.")
-
-    // GIVEN a Pay ID that will resolve on Mainnet and a PayID client.
-    let payIDClient = XRPPayIDClient(xrplNetwork: .main)
-
-    // WHEN it is resolved to an XRP address.
-    payIDClient.xrpAddress(for: .testPointer) { result in
-      // THEN the address is the expected value.
-      switch result {
-      case .success(let resolvedAddress):
-        XCTAssertEqual(resolvedAddress, "X7zmKiqEhMznSXgj9cirEnD5sWo3iZSbeFRexSFN1xZ8Ktn")
-      case .failure(let error):
-        XCTFail("Failed to resolve address: \(error)")
-      }
-
-      expectation.fulfill()
-    }
-
-    self.wait(for: [ expectation ], timeout: 10)
-  }
+//  func testResolvePaymentPointerKnownPointerMainnet() {
+//    let expectation = XCTestExpectation(description: "resolveToXRP completion called.")
+//
+//    // GIVEN a Pay ID that will resolve on Mainnet and a PayID client.
+//    let payIDClient = XRPPayIDClient(xrplNetwork: .main)
+//
+//    // WHEN it is resolved to an XRP address.
+//    let result = payIDClient.xrpAddress(for: .testPointer)
+//
+//
+//      // THEN the address is the expected value.
+//      switch result {
+//      case .success(let resolvedAddress):
+//        XCTAssertEqual(resolvedAddress, "X7zmKiqEhMznSXgj9cirEnD5sWo3iZSbeFRexSFN1xZ8Ktn")
+//      case .failure(let error):
+//        XCTFail("Failed to resolve address: \(error)")
+//      }
+//
+////      expectation.fulfill()
+////    }
+//
+////    self.wait(for: [ expectation ], timeout: 10)
+//  }
 
   func testResolvePaymentPointerKnownPointerTestnet() {
     let expectation = XCTestExpectation(description: "resolveToXRP completion called.")
@@ -80,12 +82,12 @@ final class PayIDIntegrationTests: XCTestCase {
   }
 
   func testResolveKnownPayIDToBTCTestNet() {
-    let expectation = XCTestExpectation(description: "resolveToBTC completion called.")
+//    let expectation = XCTestExpectation(description: "resolveToBTC completion called.")
 
     // GIVEN a Pay ID that will resolve on Mainnet.
     // WHEN it is resolved to an XRP address
     let payIDClient = PayIDClient(network: "btc-testnet")
-    payIDClient.address(for: .testPointer) { result in
+    let result = try! payIDClient.address(for: .testPointer)// { result in
       // THEN the address is the expected value.
       switch result {
       case .success(let resolvedAddress):
@@ -93,8 +95,8 @@ final class PayIDIntegrationTests: XCTestCase {
       case .failure(let error):
         XCTFail("Failed to resolve address: \(error)")
       }
-      expectation.fulfill()
-    }
-    self.wait(for: [ expectation ], timeout: 10)
+//      expectation.fulfill()
+//    }
+//    self.wait(for: [ expectation ], timeout: 10)
   }
 }
