@@ -17,7 +17,7 @@ final class PayIDIntegrationTests: XCTestCase {
     let payIDClient = XRPPayIDClient(xrplNetwork: .main)
 
     // WHEN it is resolved to an XRP address.
-    let result = payIDClient.xrpAddress(for: .testPointer) { result in
+    payIDClient.xrpAddress(for: .testPointer) { result in
       // THEN the address is the expected value.
       switch result {
       case .success(let resolvedAddress):
@@ -85,13 +85,12 @@ final class PayIDIntegrationTests: XCTestCase {
     let payIDClient = PayIDClient(network: "btc-testnet")
     let result = try! payIDClient.address(for: .testPointer)
 
-
-      // THEN the address is the expected value.
-      switch result {
-      case .success(let resolvedAddress):
-        XCTAssertEqual(resolvedAddress.address, "2NF9H32iwQcVcoAiiBmAtjpGmQfsmU5L6SR")
-      case .failure(let error):
-        XCTFail("Failed to resolve address: \(error)")
-      }
+    // THEN the address is the expected value.
+    switch result {
+    case .success(let resolvedAddress):
+      XCTAssertEqual(resolvedAddress.address, "2NF9H32iwQcVcoAiiBmAtjpGmQfsmU5L6SR")
+    case .failure(let error):
+      XCTFail("Failed to resolve address: \(error)")
+    }
   }
 }

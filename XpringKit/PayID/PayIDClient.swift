@@ -40,7 +40,6 @@ public class PayIDClient {
   /// Resolve the given PayID to an address.
   ///
   /// - Parameter payID: The PayID to resolve for an address.
-  /// - Parameter completion: A closure called with the result of the operation.
   /// - Returns: An address representing the given PayID.
   public func address(for payID: String) throws -> Result<CryptoAddressDetails, PayIDError> {
     // Assign a bogus value. This will get overwritten when the asynchronous call is made.
@@ -49,7 +48,7 @@ public class PayIDClient {
     // Use a semaphore to block and wait for the asynchronous call to complete.
     // Capture the resolved data in result.
     let semaphore = DispatchSemaphore(value: 0)
-    self.address(for: payID) { resolvedResult in
+    self.address(for: payID, callbackQueue: self.networkQueue) { resolvedResult in
       // Capture the result of the call.
       result = resolvedResult
 
@@ -65,13 +64,20 @@ public class PayIDClient {
 
   /// Resolve the given PayID to an address.
   ///
-  /// - Parameter payID: The PayID to resolve for an address.
-  /// - Parameter completion: A closure called with the result of the operation.
-  /// - Returns: An address representing the given PayID.
+  /// - Parameters:
+  ///   - payID: The PayID to resolve for an address.
+  ///   - callbackQueue: The queue to run a callback on. Defaults to the main thread.
+  ///   - completion: A closure called with the result of the operation.
   public func address(
     for payID: String,
+    callbackQueue: DispatchQueue = .main,
     completion: @escaping (Result<CryptoAddressDetails, PayIDError>) -> Void
   ) {
+    // Wrap completion calls in a closure which will dispatch to the callback queue.
+    let queueSafeCompletion: (Result<CryptoAddressDetails, PayIDError>) -> Void = {
+      completion($0)
+    }
+
     guard let payIDComponents = PayIDUtils.parse(payID: payID) else {
       return completion(.failure(.invalidPayID(payID: payID)))
     }
@@ -96,18 +102,18 @@ public class PayIDClient {
           // With a specific network, exactly one address should be returned by a PayId lookup.
           guard paymentInformation.addresses.count == 1 else {
             let unexpectedResponseError = PayIDError.unexpectedResponse
-            completion(.failure(unexpectedResponseError))
+            queueSafeCompletion(.failure(unexpectedResponseError))
             return
           }
-          completion(.success(paymentInformation.addresses[0].addressDetails))
+          queueSafeCompletion(.success(paymentInformation.addresses[0].addressDetails))
         case .status404:
-          completion(.failure(.mappingNotFound(payID: payID, network: self.network)))
+          queueSafeCompletion(.failure(.mappingNotFound(payID: payID, network: self.network)))
         case .status415, .status503:
-          completion(.failure(.unexpectedResponse))
+          queueSafeCompletion(.failure(.unexpectedResponse))
         }
 
       case .failure(let error):
-        completion(.failure(.unknown(error: "Unknown error making request: \(error)")))
+        queueSafeCompletion(.failure(.unknown(error: "Unknown error making request: \(error)")))
       }
     }
   }
