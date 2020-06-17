@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - `XRPPayment` and `XRPTransaction` now contain X-address representations of their address and tag fields.
   (See https://xrpaddress.info/)
+- A new method on `PayIDClient`, `address(for:)`, provides a synchronous implementation of `address(for:completion:)`. 
 	
 ### Deprecated
 - `XRPTransaction.account` and `XRPTransaction.sourceTag` are deprecated.
