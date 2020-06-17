@@ -10,7 +10,7 @@ internal class JavaScriptPayIDUtils {
     }
 
     public enum Methods {
-      public static let parsePayID = "parsePayID"
+      public static let parsePayID = "parsePayId"
     }
 
     public enum Properties {
