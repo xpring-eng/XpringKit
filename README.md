@@ -316,6 +316,53 @@ print(classicAddressTuple.classicAddress); // rnysDDrRXxz9z66DmCmfWpq4Z5s4TyUP3G
 print(classicAddressTuple.tag); // 12345
 ```
 
+## Usage: PayID
+
+Two classes are used to work with PayID: `PayIDClient` and `XRPPayIDClient`.
+
+`PayIdClient` can resolve addresses on arbitrary cryptocurrency networks.
+
+```swift
+import XpringKit
+
+// Resolve on Bitcoin Mainnet.
+let network = "btc-mainnet"
+let payIdClient = PayIDClient(network: network)
+
+let payID = "georgewashington$xpring.money"
+payIDClient.address(for: payID) { result in
+  switch result {
+  case .success(let btcAddressComponents)
+    print("Resolved to \(btcAddressComponents.address)")
+    print("")
+  case .failure(let error):
+    fatalError("Unknown error resolving address: \(error)")
+  }
+}
+```
+
+### XrpPayIdClient
+
+`XrpPayIdClient` can resolve addresses on the XRP Ledger network. The class always coerces returned addresses into an X-Address. (See https://xrpaddress.info/)
+
+```swift
+import XpringKit
+
+// Use XrplNetwork.main for Mainnet.
+let xrpPayIDClient = XRPPayIDClient(xrplNetwork: .main)
+
+let payID = 'georgewashington$xpring.money'
+xrpPayIDClient.xrpAddress(for: payID) { result in
+  switch result {
+  case .success(let xrpAddress):
+    print("Resolved to \(xrpAddress)")
+    print("")
+  case .failure(let error):
+    fatalError("Unknown error resolving address: \(error)")
+  }
+}
+```
+
 ## Usage: ILP
 ### ILPClient
 `ILPClient` is the main interface into the ILP network.  `ILPClient` must be initialized with the URL of a Hermes instance.
@@ -362,6 +409,42 @@ let payment = try ilpClient.sendPayment(
     paymentRequest,
     withAuthorization: "2S1PZh3fEKnKg"
 )
+```
+
+## Usage: Xpring
+
+Xpring components compose PayID and XRP components to make complex interactions easy.
+
+```swift
+import XpringKit
+
+let network = XRPLNetwork.test
+
+// Build an XRPClient
+let rippledUrl = "test.xrp.xpring.io:50051"
+let xrpClient = XRPClient(rippledUrl, network)
+
+// Build a PayIDClient
+let payIDClient = XRPPayIDClient(network)
+
+// XpringClient combines functionality from XRP and PayID
+let xpringClient = XpringClient(payIdClient, xrpClient)
+
+// A wallet with some balance on TestNet.
+let wallet = Wallet(seed: "snYP7oArxKepd3GPDcrjMsJYiJeJB")!
+
+// A PayID which will receive the payment.
+let payId = "georgewashington$xpring.money"
+
+// Send XRP to the given PayID.
+xpringClient.send(dropsToSend, to: payID, from: wallet) { result in
+  switch result {
+  case .success(let hash):
+    print("Hash for transaction:\n\(hash)\n")
+  case .failure:
+    fatalError("Unable to send transaction.")
+  }
+}
 ```
 
 # Contributing
