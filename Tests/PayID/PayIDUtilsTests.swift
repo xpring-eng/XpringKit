@@ -16,11 +16,25 @@ class PayIDUtilsTest: XCTestCase {
     XCTAssertEqual(payIDComponents?.path, "/\(path)")
   }
 
-  func testParsePayIDTooManyDollarSigns() {
-    // GIVEN a Pay ID with too many '$'.
-    let host = "xpring$money" // Extra '$'
-    let path = "georgewashington"
+  func testParsePayIDMultipleDollarSigns() {
+    // GIVEN a Pay ID with more than one '$'.
+    let host = "xpring.money"
+    let path = "george$$$washington$$$" // Extra '$'s
     let rawPayID = "\(path)$\(host)"
+
+    // WHEN it is parsed to components.
+    let payIDComponents = PayIDUtils.parse(payID: rawPayID)
+
+    // THEN the host and path are set correctly.
+    XCTAssertEqual(payIDComponents?.host, host)
+    XCTAssertEqual(payIDComponents?.path, "/\(path)")
+  }
+
+  func testParsePayIDNoDollarSigns() {
+    // GIVEN a Pay ID with no '$'.
+    let host = "xpring.money"
+    let path = "georgewashington"
+    let rawPayID = "\(path)\(host)"  // Assembled without $
 
     // WHEN it is parsed to components.
     let payIDComponents = PayIDUtils.parse(payID: rawPayID)
@@ -29,6 +43,19 @@ class PayIDUtilsTest: XCTestCase {
     XCTAssertNil(payIDComponents)
   }
 
+  func testParsePayIDHostEndsWithDollarSign() {
+    // GIVEN a Pay ID in which the host ends with a $.
+    let host = "xpring.money$";
+    let path = "georgewashington";
+    let rawPayID = "\(path)\(host)"
+
+    // WHEN it is parsed to components.
+    let payIDComponents = PayIDUtils.parse(payID: rawPayID)
+
+    // THEN the Pay ID failed to parse.
+    XCTAssertNil(payIDComponents)
+  }
+  
   func testParsePayIDEmptyHost() {
     // GIVEN a Pay ID with an empty host.
     let host = ""
