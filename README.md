@@ -320,7 +320,7 @@ print(classicAddressTuple.tag); // 12345
 
 Two classes are used to work with PayID: `PayIDClient` and `XRPPayIDClient`.
 
-`PayIdClient` can resolve addresses on arbitrary cryptocurrency networks.
+`PayIDClient` can resolve addresses on arbitrary cryptocurrency networks.
 
 ```swift
 import XpringKit
