@@ -343,7 +343,7 @@ payIDClient.address(for: payID) { result in
 
 ### XRPPayIDClient
 
-`XrpPayIdClient` can resolve addresses on the XRP Ledger network. The class always coerces returned addresses into an X-Address. (See https://xrpaddress.info/)
+`XRPPayIDClient` can resolve addresses on the XRP Ledger network. The class always coerces returned addresses into an X-Address. (See https://xrpaddress.info/)
 
 ```swift
 import XpringKit
