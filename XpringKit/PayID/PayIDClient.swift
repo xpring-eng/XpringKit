@@ -74,8 +74,10 @@ public class PayIDClient {
     completion: @escaping (Result<CryptoAddressDetails, PayIDError>) -> Void
   ) {
     // Wrap completion calls in a closure which will dispatch to the callback queue.
-    let queueSafeCompletion: (Result<CryptoAddressDetails, PayIDError>) -> Void = {
-      completion($0)
+    let queueSafeCompletion: (Result<CryptoAddressDetails, PayIDError>) -> Void = { result in
+      callbackQueue.async {
+        completion(result)
+      }
     }
 
     guard let payIDComponents = PayIDUtils.parse(payID: payID) else {

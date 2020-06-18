@@ -32,6 +32,24 @@ final class PayIDIntegrationTests: XCTestCase {
     self.wait(for: [ expectation ], timeout: 10)
   }
 
+  // TODO(keefertaylor): This should really be a unit test. Migrate when
+  // https://github.com/xpring-eng/XpringKit/pull/238 is landed.
+  func testResolvePaymentPointerKnownPointerMainnetOnCustomThread() {
+    let expectation = XCTestExpectation(description: "resolveToXRP completion called.")
+
+    // GIVEN a Pay ID that will resolve on Mainnet and a PayID client and a custom callback queue.
+    let customCallbackQueue = DispatchQueue(label: "io.xpring.XpringKit.test")
+    let payIDClient = PayIDClient(network: "xrpl-main")
+
+    // WHEN it is resolved to an XRP address and provided a custom queue and not on the main thread.
+    payIDClient.address(for: .testPointer, callbackQueue: customCallbackQueue) { _ in
+      XCTAssertFalse(Thread.isMainThread)
+      expectation.fulfill()
+    }
+
+    self.wait(for: [ expectation ], timeout: 10)
+  }
+
   func testResolvePaymentPointerKnownPointerTestnet() {
     let expectation = XCTestExpectation(description: "resolveToXRP completion called.")
 
