@@ -33,7 +33,7 @@ public class PayIDClient {
   ///   - ach
   ///
   //  TODO: Link a canonical list at payid.org when available.
-  public init(network: String, completionQueue: DispatchQueue = DispatchQueue.main) {
+  public init(network: String) {
     self.network = network
   }
 
