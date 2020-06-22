@@ -132,7 +132,7 @@ extension DefaultXRPClient: XRPClientDecorator {
     var payment = Org_Xrpl_Rpc_V1_Payment.with {
       $0.destination = Org_Xrpl_Rpc_V1_Destination.with {
         $0.value = Org_Xrpl_Rpc_V1_AccountAddress.with {
-          $0.address = destinationClassicAddressComponents.classicAddress
+          $0.address = destinationAddress
         }
       }
 
@@ -142,11 +142,6 @@ extension DefaultXRPClient: XRPClientDecorator {
             $0.drops = amount
           }
         }
-      }
-    }
-    if let destinationTag = destinationClassicAddressComponents.tag {
-      payment.destinationTag = Org_Xrpl_Rpc_V1_DestinationTag.with {
-        $0.value = destinationTag
       }
     }
 
