@@ -12,7 +12,7 @@ final class PayIDClientTest: XCTestCase {
       addresses: [
         PayIdAddress(
           paymentNetwork: paymentNetwork,
-          addressDetailsType: "",
+          addressDetailsType: "CryptoAddressDetails",
           addressDetails: CryptoAddressDetails(
             address: address
           )
