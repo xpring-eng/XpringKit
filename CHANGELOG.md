@@ -5,7 +5,22 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## 3.2.2 - 2020-06-18
+
+### Fixed
+- Destination tags were being dropped from payments. This release fixes the issue.
+
+## 3.2.1 - 2020-06-16
+
+### Added
+- `XRPPayment` and `XRPTransaction` now contain X-address representations of their address and tag fields.
+  (See https://xrpaddress.info/)
+	
+### Deprecated
+- `XRPTransaction.account` and `XRPTransaction.sourceTag` are deprecated.
+   Please use the X-address encoded field `sourceXAddress` instead.
+- `XRPPayment.destination` and `XRPPayment.destinationTag` are deprecated.  
+   Please use the X-address encoded field `destinationXAddress` instead.
 
 ## 3.2.0 - 2020-06-04
 

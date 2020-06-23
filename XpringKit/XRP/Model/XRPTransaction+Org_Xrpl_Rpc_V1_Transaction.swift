@@ -10,8 +10,9 @@ internal extension XRPTransaction {
   /// - Parameters:
   ///     - transaction: an Org_Xrpl_Rpc_V1_Transaction (protobuf object) whose field values will be used to
   ///                 construct an XRPTransaction
+  ///     - xrplNetwork: The XRPL network from which this object was retrieved.
   /// - Returns: an XRPTransaction with its fields set via the analogous protobuf fields.
-  init?(getTransactionResponse: Org_Xrpl_Rpc_V1_GetTransactionResponse) {
+  init?(getTransactionResponse: Org_Xrpl_Rpc_V1_GetTransactionResponse, xrplNetwork: XRPLNetwork) {
 
     let transaction: Org_Xrpl_Rpc_V1_Transaction = getTransactionResponse.transaction
 
@@ -22,17 +23,20 @@ internal extension XRPTransaction {
     self.sequence = transaction.sequence.value
     self.signingPublicKey = transaction.signingPublicKey.value
     self.transactionSignature = transaction.transactionSignature.value
-
     self.accountTransactionID = transaction.hasAccountTransactionID ? transaction.accountTransactionID.value : nil
     self.flags = transaction.hasFlags ? RippledFlags(rawValue: transaction.flags.value) : nil
     self.lastLedgerSequence = transaction.hasLastLedgerSequence ? transaction.lastLedgerSequence.value : nil
     self.memos = !transaction.memos.isEmpty ? transaction.memos.map { memo in XRPMemo(memo: memo) } : nil
     self.signers = !transaction.signers.isEmpty ? transaction.signers.map { signer in XRPSigner(signer: signer) } : nil
     self.sourceTag = transaction.hasSourceTag ? transaction.sourceTag.value : nil
-
+    self.sourceXAddress = Utils.encode(
+      classicAddress: self.account,
+      tag: self.sourceTag,
+      isTest: xrplNetwork == XRPLNetwork.test
+    )
     switch transaction.transactionData {
     case .payment(let payment):
-      guard let paymentFields = XRPPayment(payment: payment) else {
+      guard let paymentFields = XRPPayment(payment: payment, xrplNetwork: xrplNetwork) else {
         return nil
       }
       self.paymentFields = paymentFields
