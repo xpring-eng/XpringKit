@@ -42,10 +42,10 @@ final class PayIDIntegrationTests: XCTestCase {
     let queueLabel = "io.xpring.XpringKit.test"
     let customCallbackQueue = DispatchQueue(label: queueLabel)
     DispatchQueue.registerDetection(of: customCallbackQueue)
-    let payIDClient = PayIDClient(network: "xrpl-main")
+    let payIDClient = PayIDClient()
 
     // WHEN it is resolved to an XRP address and provided a custom queue and not on the main thread.
-    payIDClient.address(for: .testPointer, callbackQueue: customCallbackQueue) { _ in
+    payIDClient.cryptoAddress(for: .testPointer, on: "xrpl-main", callbackQueue: customCallbackQueue) { _ in
       XCTAssertEqual(DispatchQueue.currentQueueLabel, queueLabel)
       expectation.fulfill()
     }
@@ -103,8 +103,8 @@ final class PayIDIntegrationTests: XCTestCase {
   func testResolveKnownPayIDToBTCTestNet() {
     // GIVEN a Pay ID that will resolve on Mainnet.
     // WHEN it is resolved to an XRP address
-    let payIDClient = PayIDClient(network: "btc-testnet")
-    let result = try! payIDClient.address(for: .testPointer)
+    let payIDClient = PayIDClient()
+    let result = try! payIDClient.cryptoAddress(for: .testPointer, on: "btc-testnet")
 
     // THEN the address is the expected value.
     switch result {
