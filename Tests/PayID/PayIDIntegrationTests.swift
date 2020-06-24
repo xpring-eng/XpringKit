@@ -104,7 +104,7 @@ final class PayIDIntegrationTests: XCTestCase {
     // GIVEN a Pay ID that will resolve on Mainnet.
     // WHEN it is resolved to an XRP address
     let payIDClient = PayIDClient()
-    let result = try! payIDClient.cryptoAddress(for: .testPointer, on: "btc-testnet")
+    let result = payIDClient.cryptoAddress(for: .testPointer, on: "btc-testnet")
 
     // THEN the address is the expected value.
     switch result {
@@ -113,5 +113,39 @@ final class PayIDIntegrationTests: XCTestCase {
     case .failure(let error):
       XCTFail("Failed to resolve address: \(error)")
     }
+  }
+
+  func testAllAddressesSync() {
+    // GIVEN a PayID with multiple addresses.
+    // WHEN all addresses are synchronously resolved.
+    let payIDClient = PayIDClient()
+    let result = payIDClient.allAddresses(for: .testPointer)
+
+    // THEN multiple results are returned.
+    switch result {
+    case .success(let resolvedAddress):
+      XCTAssertTrue(resolvedAddress.count > 1)
+    case .failure(let error):
+      XCTFail("Failed to resolve address: \(error)")
+    }
+  }
+
+  func testAllAddressesASync() {
+    let expectation = XCTestExpectation(description: "completion called.")
+
+    // GIVEN a PayID with multiple addresses.
+    // WHEN all addresses are synchronously resolved.
+    let payIDClient = PayIDClient()
+    payIDClient.allAddresses(for: .testPointer) { result in
+      // THEN multiple results are returned.
+      switch result {
+      case .success(let resolvedAddress):
+        XCTAssertTrue(resolvedAddress.count > 1)
+      case .failure(let error):
+        XCTFail("Failed to resolve address: \(error)")
+      }
+      expectation.fulfill()
+    }
+    self.wait(for: [ expectation ], timeout: 10)
   }
 }
