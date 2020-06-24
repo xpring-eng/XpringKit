@@ -64,6 +64,40 @@ final class XpringClientTest: XCTestCase {
     self.wait(for: [completionCalledExpectation], timeout: 10)
   }
 
+  func testSendSuccessAsyncWithCustomQueue() throws {
+    // GIVEN a custom callback queue and a XpringClient which will succeed at sending XRP.
+    let queueLabel = "io.xpring.XpringKit.test"
+    let customCallbackQueue = DispatchQueue(label: queueLabel)
+    DispatchQueue.registerDetection(of: customCallbackQueue)
+
+    let expectedTransactionHash = "deadbeefdeadbeefdeadbeef"
+    let xrpClient: XRPClientProtocol = FakeXRPClient(
+      getBalanceValue: .success(fakeBalanceValue),
+      paymentStatusValue: .success(fakeTransactionStatusValue),
+      sendValue: .success(expectedTransactionHash),
+      latestValidatedLedgerValue: .success(fakeLastLedgerSequenceValue),
+      rawTransactionStatusValue: .success(fakeRawTransactionStatusValue),
+      paymentHistoryValue: .success(fakePaymentHistoryValue),
+      accountExistsValue: .success(fakeAccountExistsValue),
+      getPaymentValue: .success(fakeGetPaymentValue)
+    )
+
+    let fakeResolvedPayID = "r123"
+    let payIDClient = FakeXRPPayIDClient(addressResult: .success(fakeResolvedPayID))
+
+    let xpringClient = try XpringClient(payIDClient: payIDClient, xrpClient: xrpClient)
+
+    // WHEN it is resolved to an address and provided a custom queue
+    // THEN the callback is performed on the custom queue.
+    let completionCalledExpectation = XCTestExpectation(description: "Completion called")
+    xpringClient.send(amount, to: payID, from: wallet, callbackQueue: customCallbackQueue) { _ in
+      XCTAssertEqual(DispatchQueue.currentQueueLabel, queueLabel)
+      completionCalledExpectation.fulfill()
+    }
+
+    self.wait(for: [completionCalledExpectation], timeout: 10)
+  }
+
   func testSendFailureInPayIDAsync() throws {
     // GIVEN a XpringClient composed of an XRPPayIDClient which will throw an error.
     let expectedTransactionHash = "deadbeefdeadbeefdeadbeef"
