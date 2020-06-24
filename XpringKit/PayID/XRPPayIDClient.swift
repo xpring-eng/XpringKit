@@ -20,6 +20,35 @@ public class XRPPayIDClient: PayIDClient, XRPPayIDClientProtocol {
   /// - SeeAlso: https://xrpaddress.info/
   ///
   /// - Parameter payID: The payID to resolve for an address.
+  /// - Returns: A result with the given X-Address or an error.
+  public func xrpAddress(for payID: String, completion: @escaping (Result<String, PayIDError>) -> Void) {
+    super.address(for: payID) { [weak self] result in
+      guard let self = self else {
+        return
+      }
+
+      switch result {
+      case .success(let resolvedAddress):
+        do {
+          let encodedXAddress = try self.toXAddress(cryptoAddressDetails: resolvedAddress)
+          completion(.success(encodedXAddress))
+        } catch PayIDError.unexpectedResponse {
+          completion(.failure(PayIDError.unexpectedResponse))
+        } catch {
+          completion(.failure(PayIDError.unknown(error: "Unknown error occurred while converting to XAddress.")))
+        }
+      case .failure(let error):
+        completion(.failure(error))
+      }
+    }
+  }
+
+  /// Retrieve the XRP address associated with a PayID.
+  ///
+  /// - Note: Addresses are always in the X-Address format.
+  /// - SeeAlso: https://xrpaddress.info/
+  ///
+  /// - Parameter payID: The payID to resolve for an address.
   /// - Parameter completion: A closure called with the result of the operation.
   /// - Returns: An address representing the given PayID.
   public func xrpAddress(for payID: String, completion: @escaping (Result<String, PayIDError>) -> Void) {
