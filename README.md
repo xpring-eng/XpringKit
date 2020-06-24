@@ -194,7 +194,7 @@ let transactionStatus = xrpClient.paymentStatus(for: transactionHash) // Transac
 An `XRPClient` can retrieve a specific payment transaction by hash.
 
 ```swift
-import XpringKit 
+import XpringKit
 
 let remoteURL = "alpha.test.xrp.xpring.io:50051"; // TestNet URL, use alpha.xrp.xpring.io:50051 for Mainnet
 let xrpClient = XRPClient(grpcURL: remoteURL, network: XRPLNetwork.test)
@@ -226,7 +226,7 @@ let payment = try! xrpClient.getPayment(for: transactionHash)
 An `XRPClient` can return payments to and from an account.
 
 ```
-import XpringKit 
+import XpringKit
 
 let remoteURL = "alpha.test.xrp.xpring.io:50051"; // TestNet URL, use alpha.xrp.xpring.io:50051 for Mainnet
 let xrpClient = XRPClient(grpcURL: remoteURL, network: XRPLNetwork.test)
@@ -320,6 +320,9 @@ print(classicAddressTuple.tag); // 12345
 
 Two classes are used to work with PayID: `PayIDClient` and `XRPPayIDClient`.
 
+### PayIDClient
+#### Single Address Resolution
+
 `PayIDClient` can resolve addresses on arbitrary cryptocurrency networks.
 
 ```swift
@@ -327,19 +330,36 @@ import XpringKit
 
 // Resolve on Bitcoin Mainnet.
 let network = "btc-mainnet"
-let payIdClient = PayIDClient(network: network)
+let payIDClient = PayIDClient()
+let payID = "georgewashington$xpring.money"
+
+let result = payIDClient.address(for: payID, on: network)
+switch result {
+case .success(let btcAddressComponents)
+  print("Resolved to \(btcAddressComponents.address)")
+case .failure(let error):
+  fatalError("Unknown error resolving address: \(error)")
+}
+
+#### Single Address Resolution
+
+`PayIdClient` can retrieve all available addresses.
+
+```swift
+import XpringKit
 
 let payID = "georgewashington$xpring.money"
-payIDClient.address(for: payID) { result in
-  switch result {
-  case .success(let btcAddressComponents)
-    print("Resolved to \(btcAddressComponents.address)")
-    print("")
-  case .failure(let error):
-    fatalError("Unknown error resolving address: \(error)")
-  }
+let payIDClient = new PayIDClient()
+
+let allAddresses = payIDClient.allAddresses(for: payID)
+case .success(let addresses)
+  print("All addresses: \(btcAddressComponents.address)")
+case .failure(let error):
+  fatalError("Unknown error retrieving all addresses: \(error)")
 }
 ```
+
+Asynchronous APIs are also provided.
 
 ### XRPPayIDClient
 
@@ -368,7 +388,7 @@ xrpPayIDClient.xrpAddress(for: payID) { result in
 `ILPClient` is the main interface into the ILP network.  `ILPClient` must be initialized with the URL of a Hermes instance.
 This can be found in your [wallet](https://xpring.io/portal/ilp-wallet).
 
-All calls to `ILPClient` must pass an access token, which can be generated in your [wallet](https://xpring.io/portal/ilp-wallet). 
+All calls to `ILPClient` must pass an access token, which can be generated in your [wallet](https://xpring.io/portal/ilp-wallet).
 
 ```swift
 import XpringKit
@@ -401,8 +421,8 @@ let grpcUrl = "hermes-grpc-test.xpring.dev" // TestNet Hermes URL
 let ilpClient = ILPClient(grpcURL: grpcUrl)
 
 let paymentRequest = PaymentRequest(
-    100, 
-    to: "$xpring.money/demo_receiver", 
+    100,
+    to: "$xpring.money/demo_receiver",
     from: "demo_user"
 )
 let payment = try ilpClient.sendPayment(

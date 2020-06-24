@@ -12,7 +12,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 - A new method, `cryptoAddress(for:on:callbackQueue:completion:)`, replaces `address(for:callbackQueue:completion:)` method in `PayIDClient`.
-- A new method, `cryptoAddress(for:on:)`, replaces `address(for:)` method in `PayIDClient`.
+- A new method, `cryptoAddress(for:on:)`, replaces `address(for:)`, method in `PayIDClient`.
+- A new method, `allAddresses(for:callbackQueue:completion:)`, is added to `PayIDClient`.
+- A new method, `allAddresses(for:)`, is added to `PayIDClient`.
 
 ### Removed
 - The `network` parameter in `PayIDClient`'s initializer is removed.
