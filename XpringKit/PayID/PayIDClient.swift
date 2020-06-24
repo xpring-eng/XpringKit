@@ -17,9 +17,13 @@ public class PayIDClient {
   /// The network this PayID client resolves on.
   private let network: String
 
+  // A queue to perform networking on.
+  private let networkQueue = DispatchQueue(label: "io.xpring.PayIDClient", qos: .userInitiated)
+
   /// Initialize a new PayID client.
   ///
-  /// - Parameter network: The network that addresses will be resolved on.
+  /// - Parameters:
+  ///   - network: The network that addresses will be resolved on.
   ///
   /// - Note: Networks in this constructor take the form of an asset and an optional network (<asset>-<network>).
   /// For instance:
@@ -36,13 +40,46 @@ public class PayIDClient {
   /// Resolve the given PayID to an address.
   ///
   /// - Parameter payID: The PayID to resolve for an address.
-  /// - Parameter completion: A closure called with the result of the operation.
   /// - Returns: An address representing the given PayID.
-  // TODO(keefertaylor): Make this API synchronous to mirror functionality provided by ILP / XRP.
+  public func address(for payID: String) throws -> Result<CryptoAddressDetails, PayIDError> {
+    // Assign a bogus value. This will get overwritten when the asynchronous call is made.
+    var result: Result<CryptoAddressDetails, PayIDError> = .failure(.unknown(error: "Unknown error."))
+
+    // Use a semaphore to block and wait for the asynchronous call to complete.
+    // Capture the resolved data in result.
+    let semaphore = DispatchSemaphore(value: 0)
+    self.address(for: payID, callbackQueue: self.networkQueue) { resolvedResult in
+      // Capture the result of the call.
+      result = resolvedResult
+
+      // Signal to the semaphore to unblock the thread.
+      semaphore.signal()
+    }
+
+    // Wait for networking to complete.
+    semaphore.wait()
+
+    return result
+  }
+
+  /// Resolve the given PayID to an address.
+  ///
+  /// - Parameters:
+  ///   - payID: The PayID to resolve for an address.
+  ///   - callbackQueue: The queue to run a callback on. Defaults to the main thread.
+  ///   - completion: A closure called with the result of the operation.
   public func address(
     for payID: String,
+    callbackQueue: DispatchQueue = .main,
     completion: @escaping (Result<CryptoAddressDetails, PayIDError>) -> Void
   ) {
+    // Wrap completion calls in a closure which will dispatch to the callback queue.
+    let queueSafeCompletion: (Result<CryptoAddressDetails, PayIDError>) -> Void = { result in
+      callbackQueue.async {
+        completion(result)
+      }
+    }
+
     guard let payIDComponents = PayIDUtils.parse(payID: payID) else {
       return completion(.failure(.invalidPayID(payID: payID)))
     }
@@ -59,7 +96,7 @@ public class PayIDClient {
 
     let request = API.ResolvePayID.Request(path: path)
 
-    client.makeRequest(request) { apiResponse in
+    client.makeRequest(request, completionQueue: self.networkQueue) { apiResponse in
       switch apiResponse.result {
       case .success(let response):
         switch response {
@@ -67,18 +104,18 @@ public class PayIDClient {
           // With a specific network, exactly one address should be returned by a PayId lookup.
           guard paymentInformation.addresses.count == 1 else {
             let unexpectedResponseError = PayIDError.unexpectedResponse
-            completion(.failure(unexpectedResponseError))
+            queueSafeCompletion(.failure(unexpectedResponseError))
             return
           }
-          completion(.success(paymentInformation.addresses[0].addressDetails))
+          queueSafeCompletion(.success(paymentInformation.addresses[0].addressDetails))
         case .status404:
-          completion(.failure(.mappingNotFound(payID: payID, network: self.network)))
+          queueSafeCompletion(.failure(.mappingNotFound(payID: payID, network: self.network)))
         case .status415, .status503:
-          completion(.failure(.unexpectedResponse))
+          queueSafeCompletion(.failure(.unexpectedResponse))
         }
 
       case .failure(let error):
-        completion(.failure(.unknown(error: "Unknown error making request: \(error)")))
+        queueSafeCompletion(.failure(.unknown(error: "Unknown error making request: \(error)")))
       }
     }
   }
