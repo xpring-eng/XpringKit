@@ -17,7 +17,7 @@ public class PayIDClient {
   /// The network this PayID client resolves on.
   private let network: String
 
-  // A queue to perform networking on.
+  /// A queue to perform networking on.
   private let networkQueue = DispatchQueue(label: "io.xpring.PayIDClient", qos: .userInitiated)
 
   /// Initialize a new PayID client.
@@ -41,7 +41,7 @@ public class PayIDClient {
   ///
   /// - Parameter payID: The PayID to resolve for an address.
   /// - Returns: An address representing the given PayID.
-  public func address(for payID: String) throws -> Result<CryptoAddressDetails, PayIDError> {
+  public func address(for payID: String) -> Result<CryptoAddressDetails, PayIDError> {
     // Assign a bogus value. This will get overwritten when the asynchronous call is made.
     var result: Result<CryptoAddressDetails, PayIDError> = .failure(.unknown(error: "Unknown error."))
 
