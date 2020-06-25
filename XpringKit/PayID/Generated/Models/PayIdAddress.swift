@@ -5,7 +5,7 @@
 
 import Foundation
 
-public class PayIdAddress: APIModel {
+public class PayIDAddress: APIModel {
 
     public var paymentNetwork: String
 
@@ -41,7 +41,7 @@ public class PayIdAddress: APIModel {
     }
 
     public func isEqual(to object: Any?) -> Bool {
-      guard let object = object as? PayIdAddress else { return false }
+      guard let object = object as? PayIDAddress else { return false }
       guard self.paymentNetwork == object.paymentNetwork else { return false }
       guard self.addressDetailsType == object.addressDetailsType else { return false }
       guard self.addressDetails == object.addressDetails else { return false }
@@ -49,7 +49,7 @@ public class PayIdAddress: APIModel {
       return true
     }
 
-    public static func == (lhs: PayIdAddress, rhs: PayIdAddress) -> Bool {
+    public static func == (lhs: PayIDAddress, rhs: PayIDAddress) -> Bool {
         return lhs.isEqual(to: rhs)
     }
 }

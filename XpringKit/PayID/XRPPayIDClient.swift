@@ -6,12 +6,12 @@ public class XRPPayIDClient: PayIDClient, XRPPayIDClientProtocol {
   /// The XRP Ledger network that this client attaches to.
   public let xrplNetwork: XRPLNetwork
 
-  /// Initialize a new XRPPayIDclient
+  /// Initialize a new XRPPayIDClient
   ///
   /// - Parameter xrplNetwork: The XRP Ledger network that this client attaches to.
   public init(xrplNetwork: XRPLNetwork) {
     self.xrplNetwork = xrplNetwork
-    super.init(network: "xrpl-\(xrplNetwork.rawValue)")
+    super.init()
   }
 
   /// Retrieve the XRP address associated with a PayID.
@@ -23,7 +23,8 @@ public class XRPPayIDClient: PayIDClient, XRPPayIDClientProtocol {
   /// - Parameter completion: A closure called with the result of the operation.
   /// - Returns: An address representing the given PayID.
   public func xrpAddress(for payID: String, completion: @escaping (Result<String, PayIDError>) -> Void) {
-    super.address(for: payID) { [weak self] result in
+    let network = "xrpl-\(self.xrplNetwork.rawValue)"
+    super.cryptoAddress(for: payID, on: network) { [weak self] result in
       guard let self = self else {
         return
       }
