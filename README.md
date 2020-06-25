@@ -320,6 +320,9 @@ print(classicAddressTuple.tag); // 12345
 
 Two classes are used to work with PayID: `PayIDClient` and `XRPPayIDClient`.
 
+### PayIDClient
+#### Single Address Resolution
+
 `PayIDClient` can resolve addresses on arbitrary cryptocurrency networks.
 
 ```swift
@@ -327,15 +330,32 @@ import XpringKit
 
 // Resolve on Bitcoin Mainnet.
 let network = "btc-mainnet"
-let payIdClient = PayIDClient(network: network)
-
+let payIDClient = PayIDClient()
 let payID = "georgewashington$xpring.money"
-let result = payIDClient.address(for: payID)
+
+let result = payIDClient.cryptoAddress(for: payID, on: network)
 switch result {
 case .success(let btcAddressComponents)
   print("Resolved to \(btcAddressComponents.address)")
 case .failure(let error):
   fatalError("Unknown error resolving address: \(error)")
+}
+
+#### Single Address Resolution
+
+`PayIdClient` can retrieve all available addresses.
+
+```swift
+import XpringKit
+
+let payID = "georgewashington$xpring.money"
+let payIDClient = new PayIDClient()
+
+let allAddresses = payIDClient.allAddresses(for: payID)
+case .success(let addresses)
+  print("All addresses: \(allAddresses)")
+case .failure(let error):
+  fatalError("Unknown error retrieving all addresses: \(error)")
 }
 ```
 

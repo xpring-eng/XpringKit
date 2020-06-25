@@ -9,12 +9,12 @@ public class XRPPayIDClient: PayIDClient, XRPPayIDClientProtocol {
   /// A queue to perform async operations on.
   private let asyncQueue = DispatchQueue(label: "io.xpring.XRPPayIDClient", qos: .userInitiated)
 
-  /// Initialize a new XRPPayIDclient
+  /// Initialize a new XRPPayIDClient
   ///
   /// - Parameter xrplNetwork: The XRP Ledger network that this client attaches to.
   public init(xrplNetwork: XRPLNetwork) {
     self.xrplNetwork = xrplNetwork
-    super.init(network: "xrpl-\(xrplNetwork.rawValue)")
+    super.init()
   }
 
   /// Retrieve the XRP address associated with a PayID.
