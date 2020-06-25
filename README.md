@@ -333,7 +333,7 @@ let network = "btc-mainnet"
 let payIDClient = PayIDClient()
 let payID = "georgewashington$xpring.money"
 
-let result = payIDClient.address(for: payID, on: network)
+let result = payIDClient.cryptoAddress(for: payID, on: network)
 switch result {
 case .success(let btcAddressComponents)
   print("Resolved to \(btcAddressComponents.address)")
