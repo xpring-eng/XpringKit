@@ -353,7 +353,7 @@ let payIDClient = new PayIDClient()
 
 let allAddresses = payIDClient.allAddresses(for: payID)
 case .success(let addresses)
-  print("All addresses: \(btcAddressComponents.address)")
+  print("All addresses: \(allAddresses)")
 case .failure(let error):
   fatalError("Unknown error retrieving all addresses: \(error)")
 }
