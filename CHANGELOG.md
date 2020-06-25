@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+### 4.0.0 - 2020-06-25
+
+This new release contains production ready classes for [PayID](https://payid.org).
+
 ### Breaking Changes
 - `PayIDClient` is no longer bound to a single network at initialization time. Instead, networks are passed to the class as method parameters.
 
