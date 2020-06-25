@@ -101,7 +101,7 @@ final class PayIDIntegrationTests: XCTestCase {
   }
 
   func testResolveKnownPayIDToBTCTestNet() {
-    // GIVEN a Pay ID that will resolve on Mainnet.
+    // GIVEN a Pay ID that will resolve on BTC Testnet.
     // WHEN it is resolved to an XRP address
     let payIDClient = PayIDClient()
     let result = payIDClient.cryptoAddress(for: .testPointer, on: "btc-testnet")
