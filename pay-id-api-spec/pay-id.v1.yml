@@ -144,8 +144,8 @@ components:
           type: string
       required:
         - address
-    PayIdAddress:
-      title: PayIdAddress
+    PayIDAddress:
+      title: PayIDAddress
       type: object
       properties:
         paymentNetwork:
@@ -167,7 +167,7 @@ components:
         addresses:
           type: array
           items:
-            $ref: '#/components/schemas/PayIdAddress'
+            $ref: '#/components/schemas/PayIDAddress'
         proofOfControlSignature:
           type: string
         payId:
