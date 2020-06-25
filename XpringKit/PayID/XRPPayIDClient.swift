@@ -25,7 +25,8 @@ public class XRPPayIDClient: PayIDClient, XRPPayIDClientProtocol {
   /// - Parameter payID: The payID to resolve for an address.
   /// - Returns: A result with the given X-Address or an error.
   public func xrpAddress(for payID: String) -> Result<Address, PayIDError> {
-    let result = super.address(for: payID)
+    let network = "xrpl-\(self.xrplNetwork.rawValue)"
+    let result = super.cryptoAddress(for: payID, on: network)
     switch result {
     case .success(let resolvedAddress):
       do {

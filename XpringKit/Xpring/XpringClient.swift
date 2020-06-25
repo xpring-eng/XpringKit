@@ -29,12 +29,12 @@ public class XpringClient {
   ///
   /// - Parameters:
   ///    - amount: An unsigned integer representing the amount of XRP to send.
-  ///    - destinationPaymentPointer: The payment pointer which will receive the XRP.
+  ///    - destinationPayID: The PayID which will receive the XRP.
   ///    - sourceWallet: The wallet sending the XRP.
   /// - Returns: A result containing the transaction hash if successful.
   public func send(
     _ amount: UInt64,
-    to destinationPayID: PaymentPointer,
+    to destinationPayID: String,
     from sourceWallet: Wallet
   ) -> Result<TransactionHash, Error> {
     let result = self.payIDClient.xrpAddress(for: destinationPayID)
@@ -55,13 +55,13 @@ public class XpringClient {
   ///
   /// - Parameters:
   ///    - amount: An unsigned integer representing the amount of XRP to send.
-  ///    - destinationPaymentPointer: The payment pointer which will receive the XRP.
+  ///    - destinationPayID: The PayID which will receive the XRP.
   ///    - sourceWallet: The wallet sending the XRP.
   ///    - callbackQueue: The queue to run a callback on. Defaults to the main thread.
   ///    - completion: A completion handler with the result of the operation.
   public func send(
     _ amount: UInt64,
-    to destinationPayID: PaymentPointer,
+    to destinationPayID: String,
     from sourceWallet: Wallet,
     callbackQueue: DispatchQueue = .main,
     completion: @escaping (Result<TransactionHash, Error>) -> Void
