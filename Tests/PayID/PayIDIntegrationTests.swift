@@ -1,3 +1,4 @@
+import Foundation
 import XCTest
 import XpringKit
 
@@ -26,6 +27,26 @@ final class PayIDIntegrationTests: XCTestCase {
         XCTFail("Failed to resolve address: \(error)")
       }
 
+      expectation.fulfill()
+    }
+
+    self.wait(for: [ expectation ], timeout: 10)
+  }
+
+  // TODO(keefertaylor): This should  be a unit test. Migrate when
+  // https://github.com/xpring-eng/XpringKit/pull/238 is landed.
+  func testResolvePaymentPointerKnownPointerMainnetOnCustomThread() {
+    let expectation = XCTestExpectation(description: "resolveToXRP completion called.")
+
+    // GIVEN a Pay ID that will resolve on Mainnet and a PayID client and a custom callback queue.
+    let queueLabel = "io.xpring.XpringKit.test"
+    let customCallbackQueue = DispatchQueue(label: queueLabel)
+    DispatchQueue.registerDetection(of: customCallbackQueue)
+    let payIDClient = PayIDClient(network: "xrpl-main")
+
+    // WHEN it is resolved to an XRP address and provided a custom queue and not on the main thread.
+    payIDClient.address(for: .testPointer, callbackQueue: customCallbackQueue) { _ in
+      XCTAssertEqual(DispatchQueue.currentQueueLabel, queueLabel)
       expectation.fulfill()
     }
 
@@ -80,21 +101,17 @@ final class PayIDIntegrationTests: XCTestCase {
   }
 
   func testResolveKnownPayIDToBTCTestNet() {
-    let expectation = XCTestExpectation(description: "resolveToBTC completion called.")
-
     // GIVEN a Pay ID that will resolve on Mainnet.
     // WHEN it is resolved to an XRP address
     let payIDClient = PayIDClient(network: "btc-testnet")
-    payIDClient.address(for: .testPointer) { result in
-      // THEN the address is the expected value.
-      switch result {
-      case .success(let resolvedAddress):
-        XCTAssertEqual(resolvedAddress.address, "2NF9H32iwQcVcoAiiBmAtjpGmQfsmU5L6SR")
-      case .failure(let error):
-        XCTFail("Failed to resolve address: \(error)")
-      }
-      expectation.fulfill()
+    let result = try! payIDClient.address(for: .testPointer)
+
+    // THEN the address is the expected value.
+    switch result {
+    case .success(let resolvedAddress):
+      XCTAssertEqual(resolvedAddress.address, "2NF9H32iwQcVcoAiiBmAtjpGmQfsmU5L6SR")
+    case .failure(let error):
+      XCTFail("Failed to resolve address: \(error)")
     }
-    self.wait(for: [ expectation ], timeout: 10)
   }
 }
