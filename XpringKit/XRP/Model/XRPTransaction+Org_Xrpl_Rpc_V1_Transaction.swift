@@ -27,7 +27,7 @@ internal extension XRPTransaction {
     self.lastLedgerSequence = transaction.hasLastLedgerSequence ? transaction.lastLedgerSequence.value : nil
     self.memos = !transaction.memos.isEmpty ? transaction.memos.map { memo in XRPMemo(memo: memo) } : nil
     self.signers = !transaction.signers.isEmpty ? transaction.signers.map { signer in XRPSigner(signer: signer) } : nil
-    
+
     let account = transaction.account.value.address
     let sourceTag = transaction.hasSourceTag ? transaction.sourceTag.value : nil
     self.sourceXAddress = Utils.encode(
@@ -35,7 +35,7 @@ internal extension XRPTransaction {
       tag: sourceTag,
       isTest: xrplNetwork == XRPLNetwork.test
     )
-    
+
     switch transaction.transactionData {
     case .payment(let payment):
       guard let paymentFields = XRPPayment(payment: payment, xrplNetwork: xrplNetwork) else {
