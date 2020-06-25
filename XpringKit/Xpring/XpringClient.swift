@@ -8,6 +8,9 @@ public class XpringClient {
   /// An XRPClient used to interact with the XRP Ledger protocol.
   private let xrpClient: XRPClientProtocol
 
+  /// A queue to perform async operations on.
+  private let asyncQueue = DispatchQueue(label: "io.xpring.XpringClient", qos: .userInitiated)
+
   /// Create a new XpringClient.
   ///
   /// - Parameters:
@@ -26,33 +29,52 @@ public class XpringClient {
   ///
   /// - Parameters:
   ///    - amount: An unsigned integer representing the amount of XRP to send.
-  ///    - destinationPaymentPointer: The payment pointer which will receive the XRP.
+  ///    - destinationPayID: The PayID which will receive the XRP.
   ///    - sourceWallet: The wallet sending the XRP.
-  ///    - completion: A completion handler with the result of the operation.
-  /// - Throws: An error if there was a problem communicating with the XRP Ledger or the inputs were invalid.
-  // TODO(keefertaylor): Make this API synchronous to mirror functionality provided by ILP / XRP.
+  /// - Returns: A result containing the transaction hash if successful.
   public func send(
     _ amount: UInt64,
-    to destinationPayID: PaymentPointer,
+    to destinationPayID: String,
+    from sourceWallet: Wallet
+  ) -> Result<TransactionHash, Error> {
+    let result = self.payIDClient.xrpAddress(for: destinationPayID)
+    switch result {
+    case .success(let address):
+      do {
+        let transactionHash = try self.xrpClient.send(amount, to: address, from: sourceWallet)
+        return .success(transactionHash)
+      } catch {
+        return .failure(error)
+      }
+    case .failure(let payIDError):
+      return .failure(payIDError)
+    }
+  }
+
+  /// Send XRP to a recipient on the XRP Ledger.
+  ///
+  /// - Parameters:
+  ///    - amount: An unsigned integer representing the amount of XRP to send.
+  ///    - destinationPayID: The PayID which will receive the XRP.
+  ///    - sourceWallet: The wallet sending the XRP.
+  ///    - callbackQueue: The queue to run a callback on. Defaults to the main thread.
+  ///    - completion: A completion handler with the result of the operation.
+  public func send(
+    _ amount: UInt64,
+    to destinationPayID: String,
     from sourceWallet: Wallet,
+    callbackQueue: DispatchQueue = .main,
     completion: @escaping (Result<TransactionHash, Error>) -> Void
   ) {
-    self.payIDClient.xrpAddress(for: destinationPayID) { [weak self] result in
-      guard let self = self else {
-        return
+    let queueSafeCompletion: (Result<TransactionHash, Error>) -> Void = { result in
+      callbackQueue.async {
+        completion(result)
       }
+    }
 
-      switch result {
-      case .success(let address):
-        do {
-          let transactionHash = try self.xrpClient.send(amount, to: address, from: sourceWallet)
-          completion(.success(transactionHash))
-        } catch {
-          completion(.failure(error))
-        }
-      case .failure(let payIDError):
-        completion(.failure(payIDError))
-      }
+    asyncQueue.async {
+      let result = self.send(amount, to: destinationPayID, from: sourceWallet)
+      queueSafeCompletion(result)
     }
   }
 }

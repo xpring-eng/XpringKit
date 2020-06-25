@@ -15,6 +15,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - A new method, `cryptoAddress(for:on:)`, replaces `address(for:)`, method in `PayIDClient`.
 - A new method, `allAddresses(for:callbackQueue:completion:)`, is added to `PayIDClient`.
 - A new method, `allAddresses(for:)`, is added to `PayIDClient`.
+- A new parameter, `callbackQueue` is added to `PayIDClient`'s  `address(for:completion)` method.
+- A new method, `address(for:)` is added to `PayIDClient` to provide synchronous resolution functionality.
+- A new parameter, `callbackQueue` is added to `XRPPayIDClient`'s  `xrpAddress(for:completion)` method.
+- A new method, `xrpAddress(for:)` is added to `XRPPayIDClient` to provide synchronous resolution functionality.
+- A new parameter, `callbackQueue` is added to `XpringClient`'s  `send(_:to:from:completion)` method.
+- A new method, `send(_:to:from:)` is added to `XpringClient` to provide synchronous send functionality.
 
 ### Removed
 - The `network` parameter in `PayIDClient`'s initializer is removed.

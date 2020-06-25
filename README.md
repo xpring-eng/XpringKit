@@ -372,16 +372,16 @@ import XpringKit
 let xrpPayIDClient = XRPPayIDClient(xrplNetwork: .main)
 
 let payID = 'georgewashington$xpring.money'
-xrpPayIDClient.xrpAddress(for: payID) { result in
-  switch result {
-  case .success(let xrpAddress):
-    print("Resolved to \(xrpAddress)")
-    print("")
-  case .failure(let error):
-    fatalError("Unknown error resolving address: \(error)")
-  }
+let result = xrpPayIDClient.xrpAddress(for: payID)
+switch result {
+case .success(let xrpAddress):
+  print("Resolved to \(xrpAddress)")
+case .failure(let error):
+  fatalError("Unknown error resolving address: \(error)")
 }
 ```
+
+Asynchronous APIs are also provided.
 
 ## Usage: ILP
 ### ILPClient
@@ -457,15 +457,16 @@ let wallet = Wallet(seed: "snYP7oArxKepd3GPDcrjMsJYiJeJB")!
 let payId = "georgewashington$xpring.money"
 
 // Send XRP to the given PayID.
-xpringClient.send(dropsToSend, to: payID, from: wallet) { result in
-  switch result {
-  case .success(let hash):
-    print("Hash for transaction:\n\(hash)\n")
-  case .failure:
-    fatalError("Unable to send transaction.")
-  }
+let result = xpringClient.send(dropsToSend, to: payID, from: wallet)
+switch result {
+case .success(let hash):
+  print("Hash for transaction:\n\(hash)\n")
+case .failure:
+  fatalError("Unable to send transaction.")
 }
 ```
+
+Asynchronous APIs are also provided.
 
 # Contributing
 

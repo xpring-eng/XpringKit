@@ -30,7 +30,9 @@ public class PayIDClient {
 
   /// Resolve the given PayID to an address.
   ///
-  /// - Parameter payID: The PayID to resolve for an address.
+  /// - Parameters:
+  ///   - payID: The PayID to resolve for an address.
+  ///   - network: The network to resolve the PayID on.
   /// - Returns: An address representing the given PayID.
   public func cryptoAddress(for payID: String, on network: String) -> Result<CryptoAddressDetails, PayIDError> {
     // Assign a bogus value. This will get overwritten when the asynchronous call is made.
@@ -82,6 +84,7 @@ public class PayIDClient {
   ///
   /// - Parameters:
   ///   - payID: The PayID to resolve for an address.
+  ///   - network: The network to resolve the PayID on.  
   ///   - callbackQueue: The queue to run a callback on. Defaults to the main thread.
   ///   - completion: A closure called with the result of the operation.
   public func cryptoAddress(
