@@ -1,3 +1,4 @@
+import Alamofire
 import Foundation
 
 /// Implements interaction with a PayID service.
@@ -16,7 +17,14 @@ public class PayIDClient {
   /// A queue to perform networking on.
   private let networkQueue = DispatchQueue(label: "io.xpring.PayIDClient", qos: .userInitiated)
 
+  /// The `SessionManager` for network requests.
+  private let sessionManager: SessionManager
+
   /// Initialize a new PayID client.
+  ///
+  /// - Parameters:
+  ///   - sessionManager: A SessionManager which will administer network 
+  ///                     requests. Defaults to the default SessionManager.
   ///
   /// - Note: Networks in this constructor take the form of an asset and an optional network (<asset>-<network>).
   /// For instance:
@@ -26,7 +34,9 @@ public class PayIDClient {
   ///   - ach
   ///
   //  TODO: Link a canonical list at payid.org when available.
-  public init() {}
+  public init(sessionManager: SessionManager = .default) {
+    self.sessionManager = sessionManager
+  }
 
   /// Resolve the given PayID to an address.
   ///
@@ -34,9 +44,9 @@ public class PayIDClient {
   ///   - payID: The PayID to resolve for an address.
   ///   - network: The network to resolve the PayID on.
   /// - Returns: An address representing the given PayID.
-  public func cryptoAddress(for payID: String, on network: String) -> Result<CryptoAddressDetails, PayIDError> {
+  public func cryptoAddress(for payID: String, on network: String) -> Swift.Result<CryptoAddressDetails, PayIDError> {
     // Assign a bogus value. This will get overwritten when the asynchronous call is made.
-    var result: Result<CryptoAddressDetails, PayIDError> = .failure(.unknown(error: "Unknown error."))
+    var result: Swift.Result<CryptoAddressDetails, PayIDError> = .failure(.unknown(error: "Unknown error."))
 
     // Use a semaphore to block and wait for the asynchronous call to complete.
     // Capture the resolved data in result.
@@ -59,9 +69,9 @@ public class PayIDClient {
   ///
   /// - Parameter payID: The PayID to resolve for an address.
   /// - Returns: All addresses for the PayID.
-  public func allAddresses(for payID: String) -> Result<[PayIDAddress], PayIDError> {
+  public func allAddresses(for payID: String) -> Swift.Result<[PayIDAddress], PayIDError> {
     // Assign a bogus value. This will get overwritten when the asynchronous call is made.
-    var result: Result<[PayIDAddress], PayIDError> = .failure(.unknown(error: "Unknown error."))
+    var result: Swift.Result<[PayIDAddress], PayIDError> = .failure(.unknown(error: "Unknown error."))
 
     // Use a semaphore to block and wait for the asynchronous call to complete.
     // Capture the resolved data in result.
@@ -91,10 +101,10 @@ public class PayIDClient {
     for payID: String,
     on network: String,
     callbackQueue: DispatchQueue = .main,
-    completion: @escaping (Result<CryptoAddressDetails, PayIDError>) -> Void
+    completion: @escaping (Swift.Result<CryptoAddressDetails, PayIDError>) -> Void
   ) {
     // Wrap completion calls in a closure which will dispatch to the callback queue.
-    let queueSafeCompletion: (Result<CryptoAddressDetails, PayIDError>) -> Void = { result in
+    let queueSafeCompletion: (Swift.Result<CryptoAddressDetails, PayIDError>) -> Void = { result in
       callbackQueue.async {
         completion(result)
       }
@@ -125,10 +135,10 @@ public class PayIDClient {
   public func allAddresses(
     for payID: String,
     callbackQueue: DispatchQueue = .main,
-    completion: @escaping (Result<[PayIDAddress], PayIDError>) -> Void
+    completion: @escaping (Swift.Result<[PayIDAddress], PayIDError>) -> Void
   ) {
     // Wrap completion calls in a closure which will dispatch to the callback queue.
-    let queueSafeCompletion: (Result<[PayIDAddress], PayIDError>) -> Void = { result in
+    let queueSafeCompletion: (Swift.Result<[PayIDAddress], PayIDError>) -> Void = { result in
       callbackQueue.async {
         completion(result)
       }
@@ -149,10 +159,10 @@ public class PayIDClient {
     for payID: String,
     on network: String,
     callbackQueue: DispatchQueue = .main,
-    completion: @escaping (Result<[PayIDAddress], PayIDError>) -> Void
+    completion: @escaping (Swift.Result<[PayIDAddress], PayIDError>) -> Void
   ) {
     // Wrap completion calls in a closure which will dispatch to the callback queue.
-    let queueSafeCompletion: (Result<[PayIDAddress], PayIDError>) -> Void = { result in
+    let queueSafeCompletion: (Swift.Result<[PayIDAddress], PayIDError>) -> Void = { result in
       callbackQueue.async {
         completion(result)
       }
@@ -166,7 +176,7 @@ public class PayIDClient {
     let path = String(payIDComponents.path.dropFirst())
 
     let acceptHeaderValue = "application/\(network)+json"
-    let client = APIClient(baseURL: "https://" + host)
+    let client = APIClient(baseURL: "https://" + host, sessionManager: self.sessionManager)
     client.defaultHeaders = [
       Headers.Keys.accept: acceptHeaderValue,
       Headers.Keys.payIDVersion: Headers.Values.version
