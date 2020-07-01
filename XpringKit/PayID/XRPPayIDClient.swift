@@ -1,8 +1,8 @@
+import Alamofire
 import Foundation
 
 /// Provides functionality for XRP in the PayID protocol.
 public class XRPPayIDClient: PayIDClient, XRPPayIDClientProtocol {
-
   /// The XRP Ledger network that this client attaches to.
   public let xrplNetwork: XRPLNetwork
 
@@ -11,10 +11,17 @@ public class XRPPayIDClient: PayIDClient, XRPPayIDClientProtocol {
 
   /// Initialize a new XRPPayIDClient
   ///
-  /// - Parameter xrplNetwork: The XRP Ledger network that this client attaches to.
-  public init(xrplNetwork: XRPLNetwork) {
+  /// - Parameters:
+  ///   - xrplNetwork: The XRP Ledger network that this client attaches to.
+  ///   - sessionManager: A SessionManager which will administer network
+  ///                     requests. Defaults to the default SessionManager.
+
+  public init(
+    xrplNetwork: XRPLNetwork,
+    sessionManager: SessionManager = .default
+  ) {
     self.xrplNetwork = xrplNetwork
-    super.init()
+    super.init(sessionManager: sessionManager)
   }
 
   /// Retrieve the XRP address associated with a PayID.
@@ -22,9 +29,14 @@ public class XRPPayIDClient: PayIDClient, XRPPayIDClientProtocol {
   /// - Note: Addresses are always in the X-Address format.
   /// - SeeAlso: https://xrpaddress.info/
   ///
-  /// - Parameter payID: The payID to resolve for an address.
+  /// - Parameters:
+  ///   - payID: The payID to resolve for an address.
+  ///   - sessionManager: A SessionManager which will administer network
+  ///                     requests. Defaults to the default SessionManager.
   /// - Returns: A result with the given X-Address or an error.
-  public func xrpAddress(for payID: String) -> Result<Address, PayIDError> {
+  public func xrpAddress(
+    for payID: String
+  ) -> Swift.Result<Address, PayIDError> {
     let network = "xrpl-\(self.xrplNetwork.rawValue)"
     let result = super.cryptoAddress(for: payID, on: network)
     switch result {
@@ -56,9 +68,9 @@ public class XRPPayIDClient: PayIDClient, XRPPayIDClientProtocol {
   public func xrpAddress(
     for payID: String,
     callbackQueue: DispatchQueue = .main,
-    completion: @escaping (Result<Address, PayIDError>) -> Void
+    completion: @escaping (Swift.Result<Address, PayIDError>) -> Void
   ) {
-    let queueSafeCompletion: (Result<Address, PayIDError>) -> Void = { result in
+    let queueSafeCompletion: (Swift.Result<Address, PayIDError>) -> Void = { result in
       callbackQueue.async {
         completion(result)
       }
