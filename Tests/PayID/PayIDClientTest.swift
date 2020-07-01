@@ -102,7 +102,7 @@ final class PayIDClientTest: XCTestCase {
       XCTAssertEqual(error, PayIDError.unexpectedResponse)
     }
   }
-  
+
   func testAddressWithGenericServerError() {
     // GIVEN mocked networking to return a 415 for a request to resolve a PayID.
     let payID = "georgewashington$xpring.money"
