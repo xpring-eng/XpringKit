@@ -5,6 +5,32 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## Unreleased
+
+### 4.0.0 - 2020-06-25
+
+This new release contains production ready classes for [PayID](https://payid.org).
+
+### Breaking Changes
+- `PayIDClient` is no longer bound to a single network at initialization time. Instead, networks are passed to the class as method parameters.
+
+### Added
+- A new method, `cryptoAddress(for:on:callbackQueue:completion:)`, replaces `address(for:callbackQueue:completion:)` method in `PayIDClient`.
+- A new method, `cryptoAddress(for:on:)`, replaces `address(for:)`, method in `PayIDClient`.
+- A new method, `allAddresses(for:callbackQueue:completion:)`, is added to `PayIDClient`.
+- A new method, `allAddresses(for:)`, is added to `PayIDClient`.
+- A new parameter, `callbackQueue` is added to `PayIDClient`'s  `address(for:completion)` method.
+- A new method, `address(for:)` is added to `PayIDClient` to provide synchronous resolution functionality.
+- A new parameter, `callbackQueue` is added to `XRPPayIDClient`'s  `xrpAddress(for:completion)` method.
+- A new method, `xrpAddress(for:)` is added to `XRPPayIDClient` to provide synchronous resolution functionality.
+- A new parameter, `callbackQueue` is added to `XpringClient`'s  `send(_:to:from:completion)` method.
+- A new method, `send(_:to:from:)` is added to `XpringClient` to provide synchronous send functionality.
+
+### Removed
+- The `network` parameter in `PayIDClient`'s initializer is removed.
+- `address(for:callbackQueue:completion:)` is removed from `PayIDClient.`
+- `address(for:)` is removed from `PayIDClient.`
+
 ## 3.2.2 - 2020-06-18
 
 ### Fixed
@@ -15,7 +41,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - `XRPPayment` and `XRPTransaction` now contain X-address representations of their address and tag fields.
   (See https://xrpaddress.info/)
-	
+- A new method on `PayIDClient`, `address(for:)`, provides a synchronous implementation of `address(for:completion:)`.
+- A new parameter, `callbackQueue`, in `PayIDClient`'s `address(for:callbackQueue:completion:)` allows callers to specify the queue to run the callback on.  
+
 ### Deprecated
 - `XRPTransaction.account` and `XRPTransaction.sourceTag` are deprecated.
    Please use the X-address encoded field `sourceXAddress` instead.
@@ -26,13 +54,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 - A new method, `getPayment`, added to `XRPClient` for retrieving payment transactions by hash.
-- A new class, `DefaultILPCLient`, provides the functionality of `DefaultIlpClient` under an idiomatic name. 
-- A new class, `ILPClient`, provides the functionality of `IlpClient` under an idiomatic name. 
-- A new protocol, `ILPClientDecorator`, provides the functionality of `IlpClientDecorator` under an idiomatic name. 
-- A new enum, `ILPError`, provides the functionality of `IlpError` under an idiomatic name. 
-- A new class, `ILPNetworkBalanceClient`, provides the functionality of `IlpNetworkBalanceClient` under an idiomatic name. 
-- A new class, `ILPNetworkPaymentClient`, provides the functionality of `IlpNetworkPaymentClient` under an idiomatic name. 
-- A new class, `ILPCredentials`, provides the functionality of `IlpCredentials` under an idiomatic name. 
+- A new class, `DefaultILPCLient`, provides the functionality of `DefaultIlpClient` under an idiomatic name.
+- A new class, `ILPClient`, provides the functionality of `IlpClient` under an idiomatic name.
+- A new protocol, `ILPClientDecorator`, provides the functionality of `IlpClientDecorator` under an idiomatic name.
+- A new enum, `ILPError`, provides the functionality of `IlpError` under an idiomatic name.
+- A new class, `ILPNetworkBalanceClient`, provides the functionality of `IlpNetworkBalanceClient` under an idiomatic name.
+- A new class, `ILPNetworkPaymentClient`, provides the functionality of `IlpNetworkPaymentClient` under an idiomatic name.
+- A new class, `ILPCredentials`, provides the functionality of `IlpCredentials` under an idiomatic name.
 
 ### Deprecated
 - `DefaultIlpClient` is now deprecated. Please use `DefaultILPClient` instead.
@@ -58,7 +86,7 @@ This release contains serveral breaking changes that are required in order to:
 - Support more protocols than just XRP Ledger (ILP, etc)
 - Migrate the library to use the rippled node directly
 
-Please note the changes and deprecations below. 
+Please note the changes and deprecations below.
 
 #### Removed
 

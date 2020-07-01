@@ -7,7 +7,7 @@ import Foundation
 
 public class PaymentInformation: APIModel {
 
-    public var addresses: [PayIdAddress]
+    public var addresses: [PayIDAddress]
 
     public var memo: String?
 
@@ -15,7 +15,7 @@ public class PaymentInformation: APIModel {
 
     public var proofOfControlSignature: String?
 
-    public init(addresses: [PayIdAddress], memo: String? = nil, payId: String? = nil, proofOfControlSignature: String? = nil) {
+    public init(addresses: [PayIDAddress], memo: String? = nil, payId: String? = nil, proofOfControlSignature: String? = nil) {
         self.addresses = addresses
         self.memo = memo
         self.payId = payId

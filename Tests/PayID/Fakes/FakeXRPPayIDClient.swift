@@ -14,10 +14,17 @@ public class FakeXRPPayIDClient: XRPPayIDClientProtocol {
     self.addressResult = addressResult
   }
 
+  public func xrpAddress(for payID: String) -> Result<Address, PayIDError> {
+    return addressResult
+  }
+
   public func xrpAddress(
     for payID: String,
-    completion: @escaping (Result<String, PayIDError>) -> Void
+    callbackQueue: DispatchQueue = .main,
+    completion: @escaping (Result<Address, PayIDError>) -> Void
   ) {
-    completion(self.addressResult)
+    callbackQueue.async {
+      completion(self.addressResult)
+    }
   }
 }
