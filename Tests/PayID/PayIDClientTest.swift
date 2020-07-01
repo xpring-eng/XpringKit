@@ -10,7 +10,7 @@ final class PayIDClientTest: XCTestCase {
     let paymentNetwork = "xrpl-testnet"
     let paymentInformation = PaymentInformation(
       addresses: [
-        PayIdAddress(
+        PayIDAddress(
           paymentNetwork: paymentNetwork,
           addressDetailsType: "CryptoAddressDetails",
           addressDetails: CryptoAddressDetails(
@@ -35,11 +35,11 @@ final class PayIDClientTest: XCTestCase {
 
     FakeURLProtocol.responseWithStatusCode(code: 200, asciiString: String(data: response, encoding: .utf8)!)
 
-    let payIDClient = PayIDClient(network: paymentNetwork, sessionManager: manager)
+    let payIDClient = PayIDClient(sessionManager: manager)
 
     // WHEN the associated address is retrieved.
     let expectation = XCTestExpectation(description: "Retrieved a PayID")
-    payIDClient.address(for: "georgewashington$xpring.money") { result in
+    payIDClient.cryptoAddress(for: "georgewashington$xpring.money", on: paymentNetwork) { result in
       // THEN the response contains the expected address.
       switch result {
       case .success(let addressDetails):
