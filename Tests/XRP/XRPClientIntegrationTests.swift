@@ -31,6 +31,23 @@ final class XRPClientIntegrationTests: XCTestCase {
     }
   }
 
+  func testSendXRPWithDestinationTag() {
+    // GIVEN a transaction hash representing a payment with a destination tag.
+    let tag: UInt32 = 123
+    let address = "rPEPPER7kfTD9w2To4CQk6UCfuHM9c6GDY"
+    let taggedXAddress = Utils.encode(classicAddress: address, tag: tag, isTest: true)!
+    let transactionHash = try! client.send(.testSendAmount, to: taggedXAddress, from: .testWallet)
+
+    // WHEN the payment is retrieved
+    let transaction = try! client.getPayment(for: transactionHash)
+
+    // THEN the payment has the correct destination.
+    let destinationXAddress = transaction?.paymentFields?.destinationXAddress
+    let destinationAddressComponents = Utils.decode(xAddress: destinationXAddress!)!
+    XCTAssertEqual(destinationAddressComponents.classicAddress, address)
+    XCTAssertEqual(destinationAddressComponents.tag, tag)
+  }
+
   func testPaymentStatus() {
     do {
       let transactionHash = try client.send(.testSendAmount, to: .recipientAddress, from: .testWallet)
