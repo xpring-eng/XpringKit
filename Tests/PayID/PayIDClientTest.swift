@@ -124,7 +124,7 @@ final class PayIDClientTest: XCTestCase {
   }
 
   func testAddressWithSuccessResponseUnknownResponseFormat() {
-    // GIVEN mocked networking to return a 200 with an unexpected format..
+    // GIVEN mocked networking to return a 200 with an unexpected format.
     let payID = "georgewashington$xpring.money"
     let malformedResponse = [
       "address": "X7cBcY4bdTTzk3LHmrKAK6GyrirkXfLHGFxzke5zTmYMfw4"
