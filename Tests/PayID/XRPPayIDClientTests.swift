@@ -82,7 +82,7 @@ final class XRPPayIDClientTest: XCTestCase {
     // GIVEN An XRPPayIDClient with faked networking to return a successful response as a classic address and tag
     let paymentNetwork = "xrpl-testnet"
     let address = "rPEPPER7kfTD9w2To4CQk6UCfuHM9c6GDY"
-    let tag: UInt32 = 12345
+    let tag: UInt32 = 12_345
     let paymentInformation = PaymentInformation(
       addresses: [
         PayIDAddress(
@@ -113,7 +113,7 @@ final class XRPPayIDClientTest: XCTestCase {
     // GIVEN An XRPPayIDClient with faked networking to return a successful response with multiple classic addresses.
     let paymentNetwork = "xrpl-testnet"
     let address = "rPEPPER7kfTD9w2To4CQk6UCfuHM9c6GDY"
-    let tag: UInt32 = 12345
+    let tag: UInt32 = 12_345
     let paymentInformation = PaymentInformation(
       addresses: [
         PayIDAddress(
