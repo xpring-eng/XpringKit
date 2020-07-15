@@ -25,20 +25,13 @@ public class PayIDClient {
   /// - Parameters:
   ///   - sessionManager: A SessionManager which will administer network 
   ///                     requests. Defaults to the default SessionManager.
-  ///
-  /// - Note: Networks in this constructor take the form of an asset and an optional network (<asset>-<network>).
-  /// For instance:
-  ///   - xrpl-testnet
-  ///   - xrpl-mainnet
-  ///   - eth-rinkeby
-  ///   - ach
-  ///
-  //  TODO: Link a canonical list at payid.org when available.
   public init(sessionManager: SessionManager = .default) {
     self.sessionManager = sessionManager
   }
 
-  /// Resolve the given PayID to an address.
+  /// Resolve the given PayID to an address on the given network.
+  ///
+  /// - SeeAlso: https://docs.payid.org/payid-headers
   ///
   /// - Parameters:
   ///   - payID: The PayID to resolve for an address.
