@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+### Removed
+- `XRPTransaction.account` and `XRPTransaction.sourceTag` were deprecated for two releases and have been removed.
+   Please use the X-address encoded field `sourceXAddress` instead.
+- `XRPPayment.destination` and `XRPPayment.destinationTag` were deprecated for two releases and have been removed.
+   Please use the X-address encoded field `destinationXAddress` instead.
+
 ### 4.0.0 - 2020-06-25
 
 This new release contains production ready classes for [PayID](https://payid.org).

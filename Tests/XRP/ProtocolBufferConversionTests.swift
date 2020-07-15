@@ -298,14 +298,12 @@ final class ProtocolBufferConversionTests: XCTestCase {
     // WHEN the protocol buffer is converted to a native Swift type.
     let payment = XRPPayment(payment: paymentProto, xrplNetwork: XRPLNetwork.test)
     let expectedXAddress = Utils.encode(
-      classicAddress: payment!.destination,
-      tag: payment?.destinationTag,
+      classicAddress: paymentProto.destination.value.address,
+      tag: paymentProto.destinationTag.value,
       isTest: true
     )
     // THEN the result is as expected.
     XCTAssertEqual(payment?.amount, XRPCurrencyAmount(currencyAmount: paymentProto.amount.value))
-    XCTAssertEqual(payment?.destination, paymentProto.destination.value.address)
-    XCTAssertEqual(payment?.destinationTag, paymentProto.destinationTag.value)
     XCTAssertEqual(payment?.destinationXAddress, expectedXAddress)
     XCTAssertEqual(payment?.deliverMin, XRPCurrencyAmount(currencyAmount: paymentProto.deliverMin.value))
     XCTAssertEqual(payment?.invoiceID, paymentProto.invoiceID.value)
@@ -331,15 +329,13 @@ final class ProtocolBufferConversionTests: XCTestCase {
     // WHEN the protocol buffer is converted to a native Swift type.
     let payment = XRPPayment(payment: paymentProto, xrplNetwork: XRPLNetwork.test)
     let expectedXAddress = Utils.encode(
-      classicAddress: payment!.destination,
-      tag: payment?.destinationTag,
+      classicAddress: paymentProto.destination.value.address,
+      tag: paymentProto.destinationTag.value,
       isTest: true
     )
 
     // THEN the result is as expected.
     XCTAssertEqual(payment?.amount, XRPCurrencyAmount(currencyAmount: paymentProto.amount.value))
-    XCTAssertEqual(payment?.destination, paymentProto.destination.value.address)
-    XCTAssertNil(payment?.destinationTag)
     XCTAssertEqual(payment?.destinationXAddress, expectedXAddress)
     XCTAssertNil(payment?.deliverMin)
     XCTAssertNil(payment?.invoiceID)
@@ -570,14 +566,13 @@ final class ProtocolBufferConversionTests: XCTestCase {
     // WHEN the protocol buffer is converted to a native Swift type.
     let transaction = XRPTransaction(getTransactionResponse: getTransactionResponseProto, xrplNetwork: XRPLNetwork.test)
     let expectedXAddress = Utils.encode(
-      classicAddress: transaction!.account,
-      tag: transaction!.sourceTag,
+      classicAddress: transactionProto.account.value.address,
+      tag: transactionProto.sourceTag.value,
       isTest: true
     )
 
     // THEN all fields are present and converted correctly.
     XCTAssertEqual(transaction?.hash, [UInt8](hash).toHex())
-    XCTAssertEqual(transaction?.account, account)
     XCTAssertEqual(transaction?.fee, fee)
     XCTAssertEqual(transaction?.sequence, sequence)
     XCTAssertEqual(transaction?.signingPublicKey, signingPublicKey)
@@ -587,7 +582,6 @@ final class ProtocolBufferConversionTests: XCTestCase {
     XCTAssertEqual(transaction?.lastLedgerSequence, lastLedgerSequence)
     XCTAssertEqual(transaction?.memos, [ XRPMemo(memo: memoProto) ])
     XCTAssertEqual(transaction?.signers, [ XRPSigner(signer: signerProto) ])
-    XCTAssertEqual(transaction?.sourceTag, sourceTag)
     XCTAssertEqual(transaction?.sourceXAddress, expectedXAddress)
     XCTAssertEqual(transaction?.timestamp, .expectedTimestamp)
     XCTAssertEqual(transaction?.deliveredAmount, String(deliveredAmount))
@@ -648,14 +642,13 @@ final class ProtocolBufferConversionTests: XCTestCase {
     )
 
     let expectedXAddress = Utils.encode(
-      classicAddress: transaction!.account,
-      tag: transaction!.sourceTag,
+      classicAddress: transactionProto.account.value.address,
+      tag: transactionProto.sourceTag.value,
       isTest: true
     )
 
     // THEN all fields are present and converted correctly.
     XCTAssertEqual(transaction?.hash, [UInt8](hash).toHex())
-    XCTAssertEqual(transaction?.account, account)
     XCTAssertEqual(transaction?.fee, fee)
     XCTAssertEqual(transaction?.sequence, sequence)
     XCTAssertEqual(transaction?.signingPublicKey, signingPublicKey)
@@ -665,7 +658,6 @@ final class ProtocolBufferConversionTests: XCTestCase {
     XCTAssertNil(transaction?.lastLedgerSequence)
     XCTAssertNil(transaction?.memos)
     XCTAssertNil(transaction?.signers)
-    XCTAssertNil(transaction?.sourceTag)
     XCTAssertEqual(transaction?.sourceXAddress, expectedXAddress)
     XCTAssertNil(transaction?.timestamp)
     XCTAssertNil(transaction?.deliveredAmount)

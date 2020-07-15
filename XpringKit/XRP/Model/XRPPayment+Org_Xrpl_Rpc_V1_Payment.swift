@@ -18,11 +18,11 @@ internal extension XRPPayment {
       return nil
     }
     self.amount = amount
-    self.destination = payment.destination.value.address
-    self.destinationTag = payment.hasDestinationTag ? payment.destinationTag.value : nil
+    let destination = payment.destination.value.address
+    let destinationTag = payment.hasDestinationTag ? payment.destinationTag.value : nil
     self.destinationXAddress = Utils.encode(
-      classicAddress: self.destination,
-      tag: self.destinationTag,
+      classicAddress: destination,
+      tag: destinationTag,
       isTest: xrplNetwork == XRPLNetwork.test
     )
 
