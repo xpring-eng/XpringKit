@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+## 5.0.0 - 2020-07-15
+
 ### Removed
 - `XRPTransaction.account` and `XRPTransaction.sourceTag` were deprecated for two releases and have been removed.
    Please use the X-address encoded field `sourceXAddress` instead.
