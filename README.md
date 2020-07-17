@@ -397,7 +397,7 @@ let grpcUrl = "hermes-grpc-test.xpring.dev" // TestNet Hermes URL
 let ilpClient = ILPClient(grpcURL: grpcUrl)
 ```
 
-#### Retreiving a Balance
+#### Retrieving a Balance
 An `ILPClient` can check the balance of an account on a connector.
 
 ```swift
