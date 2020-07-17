@@ -6,7 +6,7 @@ internal class JavaScriptUtils {
   /// String constants which refer to named JavaScript resources.
   private enum ResourceNames {
     public enum Classes {
-      public static let utils = "Utils"
+      public static let utils = "XrpUtils"
     }
 
     public enum Methods {
