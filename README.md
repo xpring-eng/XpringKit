@@ -162,7 +162,7 @@ print(balance) // Logs a balance in drops of XRP
 
 ### Checking Payment Status
 
-An `XRPClient` can check the status of an payment on the XRP Ledger.
+An `XRPClient` can check the status of a payment on the XRP Ledger.
 
 This method can only determine the status of [payment transactions](https://xrpl.org/payment.html) which do not have the partial payment flag ([tfPartialPayment](https://xrpl.org/payment.html#payment-flags)) set.
 
@@ -397,7 +397,7 @@ let grpcUrl = "hermes-grpc-test.xpring.dev" // TestNet Hermes URL
 let ilpClient = ILPClient(grpcURL: grpcUrl)
 ```
 
-#### Retreiving a Balance
+#### Retrieving a Balance
 An `ILPClient` can check the balance of an account on a connector.
 
 ```swift
