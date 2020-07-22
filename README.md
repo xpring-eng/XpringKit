@@ -162,7 +162,7 @@ print(balance) // Logs a balance in drops of XRP
 
 ### Checking Payment Status
 
-An `XRPClient` can check the status of an payment on the XRP Ledger.
+An `XRPClient` can check the status of a payment on the XRP Ledger.
 
 This method can only determine the status of [payment transactions](https://xrpl.org/payment.html) which do not have the partial payment flag ([tfPartialPayment](https://xrpl.org/payment.html#payment-flags)) set.
 
@@ -194,7 +194,7 @@ let transactionStatus = xrpClient.paymentStatus(for: transactionHash) // Transac
 An `XRPClient` can retrieve a specific payment transaction by hash.
 
 ```swift
-import XpringKit 
+import XpringKit
 
 let remoteURL = "alpha.test.xrp.xpring.io:50051"; // TestNet URL, use alpha.xrp.xpring.io:50051 for Mainnet
 let xrpClient = XRPClient(grpcURL: remoteURL, network: XRPLNetwork.test)
@@ -205,12 +205,28 @@ let payment = try! xrpClient.getPayment(for: transactionHash)
 
 **Note:** The example `transactionHash` may lead to a "Transaction not found." error because the TestNet is regularly reset, or the accessed node may only maintain one month of history.  Recent transaction hashes can be found in the [XRP Ledger Explorer ](https://livenet.xrpl.org/).
 
+#### Retrieve speciic payment
+
+An `XRPClient` can retrieve a specific payment transaction by hash.
+
+```
+import xpringkit
+
+let remoteURL = "alpha.test.xrp.xpring.io:50051"; // TestNet URL, use alpha.xrp.xpring.io:50051 for Mainnet
+let xrpClient = XRPClient(grpcURL: remoteURL, useNewProtocolBuffers: true)
+
+let transactionHash = "9FC7D277C1C8ED9CE133CC17AEA9978E71FC644CE6F5F0C8E26F1C635D97AF4A"
+let payment = try! xrpClient.getPayment(for: transactionHash)
+```
+
+**Note:** The example transactionHash may lead to a "Transaction not found." error because the TestNet is regularly reset, or the accessed node may only maintain one month of history.  Recent transaction hashes can be found in the [XRP Ledger Explorer ](https://livenet.xrpl.org/).
+
 #### Payment history
 
 An `XRPClient` can return payments to and from an account.
 
 ```
-import XpringKit 
+import XpringKit
 
 let remoteURL = "alpha.test.xrp.xpring.io:50051"; // TestNet URL, use alpha.xrp.xpring.io:50051 for Mainnet
 let xrpClient = XRPClient(grpcURL: remoteURL, network: XRPLNetwork.test)
@@ -300,12 +316,79 @@ print(classicAddressTuple.classicAddress); // rnysDDrRXxz9z66DmCmfWpq4Z5s4TyUP3G
 print(classicAddressTuple.tag); // 12345
 ```
 
+## Usage: PayID
+
+Two classes are used to work with PayID: `PayIDClient` and `XRPPayIDClient`.
+
+### PayIDClient
+#### Single Address Resolution
+
+`PayIDClient` can resolve addresses on arbitrary cryptocurrency networks.
+
+```swift
+import XpringKit
+
+// Resolve on Bitcoin Mainnet.
+let network = "btc-mainnet"
+let payIDClient = PayIDClient()
+let payID = "georgewashington$xpring.money"
+
+let result = payIDClient.cryptoAddress(for: payID, on: network)
+switch result {
+case .success(let btcAddressComponents)
+  print("Resolved to \(btcAddressComponents.address)")
+case .failure(let error):
+  fatalError("Unknown error resolving address: \(error)")
+}
+
+#### Single Address Resolution
+
+`PayIdClient` can retrieve all available addresses.
+
+```swift
+import XpringKit
+
+let payID = "georgewashington$xpring.money"
+let payIDClient = new PayIDClient()
+
+let allAddresses = payIDClient.allAddresses(for: payID)
+case .success(let addresses)
+  print("All addresses: \(allAddresses)")
+case .failure(let error):
+  fatalError("Unknown error retrieving all addresses: \(error)")
+}
+```
+
+Asynchronous APIs are also provided.
+
+### XRPPayIDClient
+
+`XRPPayIDClient` can resolve addresses on the XRP Ledger network. The class always coerces returned addresses into an X-Address. (See https://xrpaddress.info/)
+
+```swift
+import XpringKit
+
+// Use XrplNetwork.main for Mainnet.
+let xrpPayIDClient = XRPPayIDClient(xrplNetwork: .main)
+
+let payID = 'georgewashington$xpring.money'
+let result = xrpPayIDClient.xrpAddress(for: payID)
+switch result {
+case .success(let xrpAddress):
+  print("Resolved to \(xrpAddress)")
+case .failure(let error):
+  fatalError("Unknown error resolving address: \(error)")
+}
+```
+
+Asynchronous APIs are also provided.
+
 ## Usage: ILP
 ### ILPClient
 `ILPClient` is the main interface into the ILP network.  `ILPClient` must be initialized with the URL of a Hermes instance.
 This can be found in your [wallet](https://xpring.io/portal/ilp-wallet).
 
-All calls to `ILPClient` must pass an access token, which can be generated in your [wallet](https://xpring.io/portal/ilp-wallet). 
+All calls to `ILPClient` must pass an access token, which can be generated in your [wallet](https://xpring.io/portal/ilp-wallet).
 
 ```swift
 import XpringKit
@@ -314,7 +397,7 @@ let grpcUrl = "hermes-grpc-test.xpring.dev" // TestNet Hermes URL
 let ilpClient = ILPClient(grpcURL: grpcUrl)
 ```
 
-#### Retreiving a Balance
+#### Retrieving a Balance
 An `ILPClient` can check the balance of an account on a connector.
 
 ```swift
@@ -338,8 +421,8 @@ let grpcUrl = "hermes-grpc-test.xpring.dev" // TestNet Hermes URL
 let ilpClient = ILPClient(grpcURL: grpcUrl)
 
 let paymentRequest = PaymentRequest(
-    100, 
-    to: "$xpring.money/demo_receiver", 
+    100,
+    to: "$xpring.money/demo_receiver",
     from: "demo_user"
 )
 let payment = try ilpClient.sendPayment(
@@ -347,6 +430,43 @@ let payment = try ilpClient.sendPayment(
     withAuthorization: "2S1PZh3fEKnKg"
 )
 ```
+
+## Usage: Xpring
+
+Xpring components compose PayID and XRP components to make complex interactions easy.
+
+```swift
+import XpringKit
+
+let network = XRPLNetwork.test
+
+// Build an XRPClient
+let rippledUrl = "test.xrp.xpring.io:50051"
+let xrpClient = XRPClient(rippledUrl, network)
+
+// Build a PayIDClient
+let payIDClient = XRPPayIDClient(network)
+
+// XpringClient combines functionality from XRP and PayID
+let xpringClient = XpringClient(payIdClient, xrpClient)
+
+// A wallet with some balance on TestNet.
+let wallet = Wallet(seed: "snYP7oArxKepd3GPDcrjMsJYiJeJB")!
+
+// A PayID which will receive the payment.
+let payId = "georgewashington$xpring.money"
+
+// Send XRP to the given PayID.
+let result = xpringClient.send(dropsToSend, to: payID, from: wallet)
+switch result {
+case .success(let hash):
+  print("Hash for transaction:\n\(hash)\n")
+case .failure:
+  fatalError("Unable to send transaction.")
+}
+```
+
+Asynchronous APIs are also provided.
 
 # Contributing
 

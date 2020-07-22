@@ -10,9 +10,6 @@ public struct XRPTransaction: Equatable {
   /// The identifying hash of the transaction.
   public let hash: String
 
-  /// The unique address of the account that initiated the transaction.
-  public let account: Address
-
   /// (Optional) Hash value identifying another transaction. If provided, this transaction is only valid if
   /// the sending account's previously-sent transaction matches the provided hash.
   public let accountTransactionID: Data?
@@ -42,10 +39,9 @@ public struct XRPTransaction: Equatable {
   /// If an empty string, indicates a multi-signature is present in the Signers field instead.
   public let signingPublicKey: Data
 
-  /// (Optional) Arbitrary integer used to identify the reason for this payment or a sender on whose behalf this
-  /// transaction is made.
-  /// Conventionally, a refund should specify the initial payment's SourceTag as the refund payment's DestinationTag.
-  public let sourceTag: UInt32?
+  /// The unique address and source tag of the sender that initiated the transaction, encoded as an X-address.
+  /// - SeeAlso: "https://xrpaddress.info"
+  public let sourceXAddress: Address?
 
   /// The signature that verifies this transaction as originating from the account it says it is from.
   public let transactionSignature: Data
