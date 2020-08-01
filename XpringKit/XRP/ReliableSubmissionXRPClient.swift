@@ -49,8 +49,11 @@ extension ReliableSubmissionXRPClient: XRPClientDecorator {
   func getPayment(for transactionHash: String) throws -> XRPTransaction? {
     return try decoratedClient.getPayment(for: transactionHash)
   }
-  
-  private func awaitFinalTransactionResult(transactionHash: String, sourceWallet: Wallet) throws -> RawTransactionStatus {
+
+  private func awaitFinalTransactionResult(
+    transactionHash: String,
+    sourceWallet: Wallet
+  ) throws -> RawTransactionStatus {
     let ledgerCloseTime: TimeInterval = 4
 
     Thread.sleep(forTimeInterval: ledgerCloseTime)
