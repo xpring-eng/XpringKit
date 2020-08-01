@@ -141,7 +141,7 @@ extension DefaultXRPClient: XRPClientDecorator {
     }
 
     var transaction = try  self.prepareBaseTransaction(wallet: sourceWallet)
-    
+
     transaction.payment = payment
 
     return try self.signAndSubmitTransaction(transaction: transaction, wallet: sourceWallet)
@@ -302,14 +302,15 @@ extension DefaultXRPClient: XRPClientDecorator {
 
     return XRPTransaction(getTransactionResponse: getTransactionResponse, xrplNetwork: self.network)
   }
-  
+
   /// Populates the required fields common to all transaction types.
   ///
-  /// @see https://xrpl.org/transaction-common-fields.html
+  /// - SeeAlso: https://xrpl.org/transaction-common-fields.html
   ///
   /// Note: The returned Transaction object must still be assigned transaction-specific details.
-  /// Some transaction types require a different fee (or no fee), in which case the fee should be overwritten appropriately
-  /// when constructing the transaction-specific details. (See https://xrpl.org/transaction-cost.html)
+  /// Some transaction types require a different fee (or no fee), in which case the fee should be overwritten
+  /// appropriately when constructing the transaction-specific details.
+  /// - SeeAlso: https://xrpl.org/transaction-cost.html
   ///
   /// - Parameter wallet: The wallet that will sign and submit this transaction.
   /// - Returns: A Transaction protobuf with the required common fields populated.
@@ -344,10 +345,10 @@ extension DefaultXRPClient: XRPClientDecorator {
         $0.value = Data(signingPublicKeyBytes)
       }
     }
-    
+
     return transaction
   }
-  
+
   /// Signs the provided transaction using the wallet and submits to the XRPL network.
   ///
   /// - Parameters:
