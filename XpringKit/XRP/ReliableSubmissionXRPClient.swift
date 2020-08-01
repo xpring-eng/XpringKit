@@ -33,10 +33,26 @@ extension ReliableSubmissionXRPClient: XRPClientDecorator {
     to destinationAddress: Address,
     from sourceWallet: Wallet
   ) throws -> TransactionHash {
+    let transactionHash = try decoratedClient.send(amount, to: destinationAddress, from: sourceWallet)
+    try self.awaitFinalTransactionResult(transactionHash: transactionHash, sourceWallet: sourceWallet)
+    return transactionHash
+  }
+
+  public func accountExists(for address: Address) throws -> Bool {
+    return try decoratedClient.accountExists(for: address)
+  }
+
+  public func paymentHistory(for address: Address) throws -> [XRPTransaction] {
+    return try decoratedClient.paymentHistory(for: address)
+  }
+
+  func getPayment(for transactionHash: String) throws -> XRPTransaction? {
+    return try decoratedClient.getPayment(for: transactionHash)
+  }
+  
+  private func awaitFinalTransactionResult(transactionHash: String, sourceWallet: Wallet) throws -> RawTransactionStatus {
     let ledgerCloseTime: TimeInterval = 4
 
-    // Submit a transaction hash and wait for a ledger to close.
-    let transactionHash = try decoratedClient.send(amount, to: destinationAddress, from: sourceWallet)
     Thread.sleep(forTimeInterval: ledgerCloseTime)
 
     // Get transaction status.
@@ -76,18 +92,6 @@ extension ReliableSubmissionXRPClient: XRPClientDecorator {
       transactionStatus = try getRawTransactionStatus(for: transactionHash)
     }
 
-    return transactionHash
-  }
-
-  public func accountExists(for address: Address) throws -> Bool {
-    return try decoratedClient.accountExists(for: address)
-  }
-
-  public func paymentHistory(for address: Address) throws -> [XRPTransaction] {
-    return try decoratedClient.paymentHistory(for: address)
-  }
-
-  func getPayment(for transactionHash: String) throws -> XRPTransaction? {
-    return try decoratedClient.getPayment(for: transactionHash)
+    return transactionStatus
   }
 }
