@@ -15,4 +15,8 @@ public struct AccountRootFlag: OptionSet {
   public init(rawValue: UInt32) {
     self.rawValue = rawValue
   }
+  
+  public func check(flag: AccountRootFlag, flags: UInt32) -> Bool {
+    return (flag.rawValue & flags) == flag.rawValue;
+  }
 }
