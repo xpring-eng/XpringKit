@@ -86,7 +86,7 @@ extension FakeXRPClient: XRPClientDecorator {
       throw error
     }
   }
-  
+
   public func enableDepositAuth(for wallet: Wallet) throws -> TransactionResult {
     return try returnOrThrow(result: enableDepositAuthValue)
   }
