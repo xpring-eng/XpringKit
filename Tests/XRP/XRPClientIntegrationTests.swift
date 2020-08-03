@@ -1,6 +1,5 @@
-import SwiftGRPC
 import XCTest
-import XpringKit
+@testable import XpringKit
 
 extension String {
   /// The URL of a remote rippled node with gRPC enabled.
@@ -95,7 +94,7 @@ final class XRPClientIntegrationTests: XCTestCase {
     let transactionStatus = result.status
 
     // get the account data and check the flag bitmap to see if it was correctly set
-    let networkClient = Org_Xrpl_Rpc_V1_XRPLedgerAPIServiceServiceClient(address: self.remoteURL, secure: false)
+    let networkClient = Org_Xrpl_Rpc_V1_XRPLedgerAPIServiceServiceClient(address: .remoteURL, secure: false)
 
     let address = Utils.decode(xAddress: Wallet.testWallet.address)!.classicAddress
     let account = Org_Xrpl_Rpc_V1_AccountAddress.with {
@@ -110,7 +109,7 @@ final class XRPClientIntegrationTests: XCTestCase {
       $0.account = account
     }
 
-    let accountInfo: Org_Xrpl_Rpc_V1_GetAccountInfoResponse = networkClient.getAccountInfo(request)
+    let accountInfo: Org_Xrpl_Rpc_V1_GetAccountInfoResponse = try! networkClient.getAccountInfo(request)
     let accountData = accountInfo.accountData
     let flags = accountData.flags.value
 
