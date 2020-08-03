@@ -68,7 +68,6 @@
 		26E489E7A27EDB433E16B895 /* Data+Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69CCAD7A1BD799F748A87B19 /* Data+Test.swift */; };
 		26EE88020DB1F32AB536BD19 /* XRPClientProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8AD8F98933683BA06DC15C /* XRPClientProtocol.swift */; };
 		276473DC50F9CEAB7E1E48D1 /* IlpIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A3D163B09CEBBAA00F1C39B /* IlpIntegrationTests.swift */; };
-		2953ACAC1545DC593A4359FA /* RippledFlags.swift in Sources */ = {isa = PBXBuildFile; fileRef = 990F4CBAC56F16C64938FD26 /* RippledFlags.swift */; };
 		297E11F25FF848797EDE2F3E /* transaction.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A1CF6E9F5D21D960DDEF19B /* transaction.pb.swift */; };
 		29C8CC092CD17230CFACE561 /* PayIDClientProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F6C217A974EF62195C91714 /* PayIDClientProtocol.swift */; };
 		2A73E3379D1A97F59F33EFFA /* XRPPayIDClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37C7F87483E0F598BD76DB8E /* XRPPayIDClient.swift */; };
@@ -130,7 +129,6 @@
 		4A86EEBB2771FDB971EBCCD4 /* get_account_info.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 461258601CDB60E1D09C0819 /* get_account_info.pb.swift */; };
 		4B0C0815EB64F95297CAA409 /* AccountBalance+Org_Interledger_Stream_Proto_GetBalanceResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D73DB53F39DE4AB8C9372EED /* AccountBalance+Org_Interledger_Stream_Proto_GetBalanceResponse.swift */; };
 		4D2ACB9451D11AA51390FFEA /* XRPPayment+Org_Xrpl_Rpc_V1_Payment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53275FFD536E0D7A61A2C1BC /* XRPPayment+Org_Xrpl_Rpc_V1_Payment.swift */; };
-		4D569D26A30FBC42DBAA7168 /* RippledFlags.swift in Sources */ = {isa = PBXBuildFile; fileRef = 990F4CBAC56F16C64938FD26 /* RippledFlags.swift */; };
 		4E6DF8CC85604569631CD182 /* XpringClientIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B336F74E36F64F8D7DE75C20 /* XpringClientIntegrationTests.swift */; };
 		4FE68CD72F220720240BAF40 /* IlpError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D0334A12A512478CC6F1303 /* IlpError.swift */; };
 		50B188F73E35377249BE074D /* Int32+Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4561FFF3695EDE52A63C3A1 /* Int32+Test.swift */; };
@@ -228,6 +226,7 @@
 		897EA2C4E392FFEB2472CB4B /* FakeIlpBalanceNetworkClient+Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1C7A870F6A536D32F84C5A /* FakeIlpBalanceNetworkClient+Test.swift */; };
 		8A3F97E6C0D715A56C2274AE /* DispatchQueue+Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7D03FD0E94B4BE488D492F /* DispatchQueue+Test.swift */; };
 		8AE4A6FEF0F045BF21E24CD6 /* send_payment_request.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E23041846F93763A0728711 /* send_payment_request.pb.swift */; };
+		8B051DDF6DBDFAF997058064 /* PaymentFlags.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC270017EA2CED9495570295 /* PaymentFlags.swift */; };
 		8B1E27C492144A138ACD1E1D /* Org_Xrpl_Rpc_V1_GetTransactionResponse+Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F77CCF884CC7677A66315EB /* Org_Xrpl_Rpc_V1_GetTransactionResponse+Test.swift */; };
 		8D18C4538BFC9A307CD4659E /* BigInt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3E837E32019F19EDE7F76CC /* BigInt.framework */; };
 		8DA13B8F6244BD0BB4332F67 /* ilp_over_http_service.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = D648D6DF94C4AD7D2D62DD23 /* ilp_over_http_service.grpc.swift */; };
@@ -334,6 +333,7 @@
 		C7D65F835858AFD28FE7FA45 /* APIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB19BF8498C3EF5BD8E408F /* APIResponse.swift */; };
 		CA4B6043DB1B629A1430A694 /* account_service.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28B9BF5201AF6504807DE0CB /* account_service.grpc.swift */; };
 		CADAC949AE0F7C8413F71680 /* PayIDUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87675498A19D191B1C64AF43 /* PayIDUtils.swift */; };
+		CB473F29EB173584407C8EA1 /* PaymentFlags.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC270017EA2CED9495570295 /* PaymentFlags.swift */; };
 		CB62F88DE1B1CDCB09A56329 /* IlpIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A3D163B09CEBBAA00F1C39B /* IlpIntegrationTests.swift */; };
 		CBBE7AECF7E18424E6D58AFE /* XpringClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 161B7F046E7CC2194DC644CE /* XpringClient.swift */; };
 		CD116E62344EE02F42721786 /* Receipt.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B42EBEA6F84C15A44CC2CE /* Receipt.swift */; };
@@ -578,7 +578,6 @@
 		936154C6013FA34EBED32C27 /* JavaScriptWallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JavaScriptWallet.swift; sourceTree = "<group>"; };
 		93D359F32A772F877A173DDB /* XRPLNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XRPLNetwork.swift; sourceTree = "<group>"; };
 		9903F8C2AAC8B3CF5AB634DB /* Org_Xrpl_Rpc_V1_GetAccountTransactionHistoryResponse+Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Org_Xrpl_Rpc_V1_GetAccountTransactionHistoryResponse+Test.swift"; sourceTree = "<group>"; };
-		990F4CBAC56F16C64938FD26 /* RippledFlags.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RippledFlags.swift; sourceTree = "<group>"; };
 		9BBCEC49991A2A3F4CF51170 /* Value.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Value.swift; sourceTree = "<group>"; };
 		9CFB488E4272B8CB54F11F4A /* Wallet+Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Wallet+Test.swift"; sourceTree = "<group>"; };
 		9ECF4F3AF6450DECF4DF6EA9 /* PaymentPointer+Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PaymentPointer+Test.swift"; sourceTree = "<group>"; };
@@ -623,6 +622,7 @@
 		CB2D27DE0D1F7A7A038E0B68 /* ledger_objects.pb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ledger_objects.pb.swift; sourceTree = "<group>"; };
 		CC19070DF8E97E101CCACE5D /* FakeIlpPaymentNetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeIlpPaymentNetworkClient.swift; sourceTree = "<group>"; };
 		CC1E4BD45BB559AE45D49D46 /* PaymentInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentInformation.swift; sourceTree = "<group>"; };
+		CC270017EA2CED9495570295 /* PaymentFlags.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentFlags.swift; sourceTree = "<group>"; };
 		CC8297246A38A843C88376EC /* CgRPC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CgRPC.framework; sourceTree = "<group>"; };
 		D05F8765E9BE754C41FCEB39 /* WalletTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletTest.swift; sourceTree = "<group>"; };
 		D2A44415073DF3370D66A1C4 /* XRPCurrencyAmount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XRPCurrencyAmount.swift; sourceTree = "<group>"; };
@@ -785,10 +785,10 @@
 				6E3DD7F7849850E454579FAB /* Hex.swift */,
 				EF82A3DC94349FA07A5E330B /* Hex+ByteArray.swift */,
 				A676831CAF09680DEF36CC0C /* NetworkClient.swift */,
+				CC270017EA2CED9495570295 /* PaymentFlags.swift */,
 				459D2BE2C00AE711514D1F9D /* RandomBytesUtil.swift */,
 				F7670AFE8249A612BEC6D796 /* RawTransactionStatus.swift */,
 				C40259FA3F9F9E9680E535A1 /* ReliableSubmissionXRPClient.swift */,
-				990F4CBAC56F16C64938FD26 /* RippledFlags.swift */,
 				4D8CA96E5AC5253D359755F4 /* Rpc_V1_XRPLedgerAPIServiceServiceClient+NetworkClient.swift */,
 				ED6BB0C6BE283CA6568B9027 /* Signer.swift */,
 				0E9424A41D18492198557AE1 /* TransactionHash.swift */,
@@ -1451,6 +1451,7 @@
 				78BD03105F29EDDF0F470EDA /* PayIDError.swift in Sources */,
 				CADAC949AE0F7C8413F71680 /* PayIDUtils.swift in Sources */,
 				A8DECEA80A3761052F8A60F6 /* PayIdAddress.swift in Sources */,
+				8B051DDF6DBDFAF997058064 /* PaymentFlags.swift in Sources */,
 				5BEB4221B72678D1C8C6946C /* PaymentInformation.swift in Sources */,
 				BC45DD13A3BE45AC55F1D931 /* PaymentPointer.swift in Sources */,
 				2A75FBB29DC1967D03AA6F6E /* PaymentRequest+Org_Interledger_Stream_Proto_SendPaymentRequest.swift in Sources */,
@@ -1465,7 +1466,6 @@
 				D219F12082633EBCA2B78F50 /* ReliableSubmissionXRPClient.swift in Sources */,
 				7F8F89092735E8FB2DAC56C6 /* RequestBehaviour.swift in Sources */,
 				2D93AD752C3D8B9B968D4694 /* ResolvePayID.swift in Sources */,
-				2953ACAC1545DC593A4359FA /* RippledFlags.swift in Sources */,
 				9C845ADD29DEEC15E70EFD09 /* Rpc_V1_XRPLedgerAPIServiceServiceClient+NetworkClient.swift in Sources */,
 				D09F544912E0B4B1AAEA0F62 /* SignatureWrapperCompliance.swift in Sources */,
 				E81011DFE25B690283D89D71 /* SignatureWrapperInvoice.swift in Sources */,
@@ -1710,6 +1710,7 @@
 				BA20CFF2E7CA4C4A46E9E9CF /* PayIDError.swift in Sources */,
 				616F464F1ED2AC93FE27A9FB /* PayIDUtils.swift in Sources */,
 				47BDF3487FF041B6A8A7B652 /* PayIdAddress.swift in Sources */,
+				CB473F29EB173584407C8EA1 /* PaymentFlags.swift in Sources */,
 				188130DF2160AF7EC0C42EC4 /* PaymentInformation.swift in Sources */,
 				B99A3D964E44FA88511F4596 /* PaymentPointer.swift in Sources */,
 				398D1D8A022C89E4569F6B19 /* PaymentRequest+Org_Interledger_Stream_Proto_SendPaymentRequest.swift in Sources */,
@@ -1724,7 +1725,6 @@
 				BDAB07C7FA7950269A0B1C7F /* ReliableSubmissionXRPClient.swift in Sources */,
 				9A7B9B08558864D86D0CC627 /* RequestBehaviour.swift in Sources */,
 				026C1D170BED15A3218D179C /* ResolvePayID.swift in Sources */,
-				4D569D26A30FBC42DBAA7168 /* RippledFlags.swift in Sources */,
 				1C74784C6B857863F74CF36F /* Rpc_V1_XRPLedgerAPIServiceServiceClient+NetworkClient.swift in Sources */,
 				C07413561F87FC2D68AF37A8 /* SignatureWrapperCompliance.swift in Sources */,
 				7F4104A9C7A4564B970F3521 /* SignatureWrapperInvoice.swift in Sources */,
