@@ -27,6 +27,11 @@ final class ReliableSubmissionClientTest: XCTestCase {
     getTransactionResponse: .testGetTransactionResponse,
     xrplNetwork: XRPLNetwork.test
   )
+  let defaultEnableDepositAuthValue = TransactionResult(
+    hash: "DEADBEEF",
+    status: TransactionStatus.succeeded,
+    validated: true
+  )
 
   var fakeXRPClient: FakeXRPClient!
   var reliableSubmissionClient: ReliableSubmissionXRPClient!
@@ -42,7 +47,8 @@ final class ReliableSubmissionClientTest: XCTestCase {
       rawTransactionStatusValue: .success(defaultRawTransactionStatusValue),
       paymentHistoryValue: .success(defaultPaymentHistoryValue),
       accountExistsValue: .success(defaultAccountExistsValue),
-      getPaymentValue: .success(defaultGetPaymentValue)
+      getPaymentValue: .success(defaultGetPaymentValue),
+      enableDepositAuthValue: .success(defaultEnableDepositAuthValue)
     )
 
     reliableSubmissionClient = ReliableSubmissionXRPClient(
