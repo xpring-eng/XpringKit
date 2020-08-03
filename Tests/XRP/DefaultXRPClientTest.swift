@@ -338,7 +338,7 @@ final class DefaultXRPClientTest: XCTestCase {
       $0.transaction = Org_Xrpl_Rpc_V1_Transaction.with {
         $0.payment = Org_Xrpl_Rpc_V1_Payment()
         $0.flags = Org_Xrpl_Rpc_V1_Flags.with {
-          $0.value = RippledFlags.tfPartialPayment.rawValue
+          $0.value = PaymentFlag.tfPartialPayment.rawValue
         }
       }
     }

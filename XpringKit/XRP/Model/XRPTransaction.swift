@@ -18,7 +18,7 @@ public struct XRPTransaction: Equatable {
   public let fee: UInt64
 
   /// (Optional) Set of bit-flags for this transaction.
-  public let flags: RippledFlags?
+  public let flags: PaymentFlag?
 
   /// (Optional; strongly recommended) Highest ledger index this transaction can appear in.
   /// Specifying this field places a strict upper limit on how long the transaction can wait to be

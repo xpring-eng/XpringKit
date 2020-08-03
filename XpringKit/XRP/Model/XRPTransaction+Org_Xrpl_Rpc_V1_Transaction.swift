@@ -23,7 +23,7 @@ internal extension XRPTransaction {
     self.signingPublicKey = transaction.signingPublicKey.value
     self.transactionSignature = transaction.transactionSignature.value
     self.accountTransactionID = transaction.hasAccountTransactionID ? transaction.accountTransactionID.value : nil
-    self.flags = transaction.hasFlags ? RippledFlags(rawValue: transaction.flags.value) : nil
+    self.flags = transaction.hasFlags ? PaymentFlag(rawValue: transaction.flags.value) : nil
     self.lastLedgerSequence = transaction.hasLastLedgerSequence ? transaction.lastLedgerSequence.value : nil
     self.memos = !transaction.memos.isEmpty ? transaction.memos.map { memo in XRPMemo(memo: memo) } : nil
     self.signers = !transaction.signers.isEmpty ? transaction.signers.map { signer in XRPSigner(signer: signer) } : nil
