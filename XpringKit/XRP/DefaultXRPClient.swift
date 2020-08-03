@@ -311,8 +311,23 @@ extension DefaultXRPClient: XRPClientDecorator {
   /// - Throws: An error if there was a problem communicating with the XRP Ledger.
   /// - Returns: A TransactionResult object that contains the hash of the submitted AccountSet transaction and the
   ///            final status of the transaction.
-  public func enableDepositAuth(for wallet: Wallet) throws -> TransactionHash {
-    return "abcd"
+  public func enableDepositAuth(for wallet: Wallet) throws -> TransactionResult {
+    let setFlag = Org_Xrpl_Rpc_V1_SetFlag.with {
+      $0.value = AccountSetFlag.asfDepositAuth.rawValue
+    }
+    
+    let accountSet = Org_Xrpl_Rpc_V1_AccountSet.with {
+      $0.setFlag = setFlag
+    }
+    
+    var transaction = try self.prepareBaseTransaction(wallet: wallet)
+    transaction.accountSet = accountSet
+
+    let transactionHash = try self.signAndSubmitTransaction(transaction: transaction, wallet: wallet);
+    let status = try self.paymentStatus(for: <#T##TransactionHash#>);
+    let rawStatus = try self.getRawTransactionStatus(for: transactionHash);
+
+    return TransactionResult(hash: transactionHash, status: status, validated: rawStatus.validated);
   }
 
   /// Populates the required fields common to all transaction types.

@@ -50,7 +50,7 @@ extension ReliableSubmissionXRPClient: XRPClientDecorator {
     return try decoratedClient.getPayment(for: transactionHash)
   }
 
-  public func enableDepositAuth(for wallet: Wallet) throws -> TransactionHash {
+  public func enableDepositAuth(for wallet: Wallet) throws -> TransactionResult {
     return try decoratedClient.enableDepositAuth(for: wallet)
   }
 

@@ -96,7 +96,7 @@ public class XRPClient: XRPClientProtocol {
   /// - Throws: An error if there was a problem communicating with the XRP Ledger.
   /// - Returns: A TransactionResult object that contains the hash of the submitted AccountSet transaction and the
   ///            final status of the transaction.
-  public func enableDepositAuth(for wallet: Wallet) throws -> TransactionHash {
+  public func enableDepositAuth(for wallet: Wallet) throws -> TransactionResult {
     return try decoratedClient.enableDepositAuth(for: wallet)
   }
 }
