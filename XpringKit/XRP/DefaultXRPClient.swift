@@ -315,19 +315,19 @@ extension DefaultXRPClient: XRPClientDecorator {
     let setFlag = Org_Xrpl_Rpc_V1_SetFlag.with {
       $0.value = AccountSetFlag.asfDepositAuth.rawValue
     }
-    
+
     let accountSet = Org_Xrpl_Rpc_V1_AccountSet.with {
       $0.setFlag = setFlag
     }
-    
+
     var transaction = try self.prepareBaseTransaction(wallet: wallet)
     transaction.accountSet = accountSet
 
-    let transactionHash = try self.signAndSubmitTransaction(transaction: transaction, wallet: wallet);
-    let status = try self.paymentStatus(for: <#T##TransactionHash#>);
-    let rawStatus = try self.getRawTransactionStatus(for: transactionHash);
+    let transactionHash = try self.signAndSubmitTransaction(transaction: transaction, wallet: wallet)
+    let status = try self.paymentStatus(for: transactionHash)
+    let rawStatus = try self.getRawTransactionStatus(for: transactionHash)
 
-    return TransactionResult(hash: transactionHash, status: status, validated: rawStatus.validated);
+    return TransactionResult(hash: transactionHash, status: status, validated: rawStatus.validated)
   }
 
   /// Populates the required fields common to all transaction types.

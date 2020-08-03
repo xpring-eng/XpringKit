@@ -54,12 +54,12 @@ extension ReliableSubmissionXRPClient: XRPClientDecorator {
     let initialResult = try self.decoratedClient.enableDepositAuth(for: wallet)
     let transactionHash = initialResult.hash
     let finalStatus = try self.awaitFinalTransactionResult(transactionHash: transactionHash, sourceWallet: wallet)
-    
+
     return TransactionResult(
       hash: initialResult.hash,
       status: try self.paymentStatus(for: transactionHash),
       validated: finalStatus.validated
-    );
+    )
   }
 
   private func awaitFinalTransactionResult(
