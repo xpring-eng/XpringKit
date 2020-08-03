@@ -75,7 +75,7 @@ internal protocol XRPClientDecorator {
   /// - Throws: An RPCError if the transaction hash was invalid.
   /// - Returns: An XRPTransaction object representing an XRP Ledger transaction.
   func getPayment(for transactionHash: String) throws -> XRPTransaction?
-  
+
   /// Enable Deposit Authorization for this XRPL account.
   /// - seeAlso: https://xrpl.org/depositauth.html
   ///

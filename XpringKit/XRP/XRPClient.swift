@@ -88,7 +88,7 @@ public class XRPClient: XRPClientProtocol {
   public func getPayment(for transactionHash: String) throws -> XRPTransaction? {
     return try decoratedClient.getPayment(for: transactionHash)
   }
-  
+
   /// Enable Deposit Authorization for this XRPL account.
   /// - seeAlso: https://xrpl.org/depositauth.html
   ///
