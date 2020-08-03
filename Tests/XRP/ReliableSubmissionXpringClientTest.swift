@@ -232,7 +232,7 @@ final class ReliableSubmissionClientTest: XCTestCase {
     // THEN the function returns
     self.wait(for: [ expectation ], timeout: 10)
   }
-  
+
   func testEnableDepositAuthWithUnexpiredLedgerSequenceAndValidatedTransaction() throws {
     // GIVEN A ledger sequence number that will increment in 60s.
     let lastLedgerSequence: UInt32 = 20
@@ -282,7 +282,7 @@ final class ReliableSubmissionClientTest: XCTestCase {
     // THEN the function returns
     self.wait(for: [ expectation ], timeout: 10)
   }
-  
+
   func testEnableDepositAuthWithNoLastLedgerSequence() throws {
     // GIVEN a `ReliableSubmissionXRPClient` decorating a `FakeXRPClient` which will return a transaction
     // that did not have a last ledger sequence attached.
@@ -300,7 +300,7 @@ final class ReliableSubmissionClientTest: XCTestCase {
     // WHEN enableDepositAuth is called THEN an error is thrown.
     XCTAssertThrowsError(try reliableSubmissionClient.enableDepositAuth(for: .testWallet))
   }
-  
+
   // MARK: - Helpers
 
   func runAfterOneSecond(_ task: @escaping () -> Void) {
