@@ -107,6 +107,7 @@ final class XRPClientIntegrationTests: XCTestCase {
 
     let request = Org_Xrpl_Rpc_V1_GetAccountInfoRequest.with {
       $0.account = account
+      $0.ledger = ledger
     }
 
     let accountInfo: Org_Xrpl_Rpc_V1_GetAccountInfoResponse = try! networkClient.getAccountInfo(request)
