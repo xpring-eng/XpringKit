@@ -11,6 +11,8 @@ XpringKit provides the following features:
 - Address validation
 - Account balance retrieval
 - Sending XRP payments
+- Retrieval of payment transactions and account payment history
+- Enabling of Deposit Authorization for an XRPL account
 
 ## Installation
 ### Client Side Library
@@ -263,6 +265,22 @@ let transactionHash = try! xrpClient.send(amount, to: destinationAddress, from: 
 
 **Note:** The above example will yield an "Account not found." error because
 the randomly generated wallet contains no XRP.
+
+### Enabling Deposit Authorization
+
+```swift
+
+let remoteURL = "test.xrp.xpring.io:50051" // TestNet URL, use main.xrp.xpring.io:50051 for Mainnet
+let xrpClient = new XRPClient(remoteURL, XRPLNetwork.test)
+
+// Wallet for which to enable Deposit Authorization
+let seedWallet = Wallet("snRiAJGeKCkPVddbjB3zRwwoiYDBm1M")
+
+let transactionResult: TransactionResult = xrpClient.enableDepositAuth(seedWallet)
+let transactionHash: String = transactionResult.hash
+let transactionStatus: TransactionStatus = transactionResult.status
+let validated: Bool = transactionResult.validated
+```
 
 ### Utilities
 #### Address validation
