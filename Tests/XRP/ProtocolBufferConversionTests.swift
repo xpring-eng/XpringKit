@@ -464,7 +464,7 @@ final class ProtocolBufferConversionTests: XCTestCase {
     let signingPublicKey = Data([1, 2, 3])
     let transactionSignature = Data([4, 5, 6])
     let accountTransactionID = Data([7, 8, 9])
-    let flags = RippledFlags(rawValue: 4)
+    let flags = PaymentFlag(rawValue: 4)
     let lastLedgerSequence: UInt32 = 5
     let memoData = Data([1, 2, 3])
     let memoFormat = Data([4, 5, 6])

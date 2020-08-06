@@ -19,7 +19,7 @@ public struct RawTransactionStatus {
     self.lastLedgerSequence = getTransactionResponse.transaction.lastLedgerSequence.value
     self.transactionStatusCode = getTransactionResponse.meta.transactionResult.result
 
-    let flags = RippledFlags(rawValue: getTransactionResponse.transaction.flags.value)
+    let flags = PaymentFlag(rawValue: getTransactionResponse.transaction.flags.value)
 
     let isPayment = RawTransactionStatus.isPayment(transaction: getTransactionResponse.transaction)
     let isPartialPayment = flags.contains(.tfPartialPayment)
