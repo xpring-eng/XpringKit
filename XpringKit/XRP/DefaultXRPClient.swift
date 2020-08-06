@@ -119,17 +119,12 @@ extension DefaultXRPClient: XRPClientDecorator {
     from sourceWallet: Wallet
   ) throws -> TransactionHash {
     guard
-      let destinationClassicAddressComponents = Utils.decode(xAddress: destinationAddress),
-      let sourceClassicAddressComponents = Utils.decode(xAddress: sourceWallet.address)
+      Utils.decode(xAddress: destinationAddress) != nil
       else {
         throw XRPLedgerError.invalidInputs("Please use the X-Address format. See: https://xrpaddress.info/.")
     }
 
-    let accountInfo = try getAccountInfo(for: sourceClassicAddressComponents.classicAddress)
-    let fee = try getFee()
-    let lastValidatedLedgerSequence = try getOpenLedgerSequence()
-
-    var payment = Org_Xrpl_Rpc_V1_Payment.with {
+    let payment = Org_Xrpl_Rpc_V1_Payment.with {
       $0.destination = Org_Xrpl_Rpc_V1_Destination.with {
         $0.value = Org_Xrpl_Rpc_V1_AccountAddress.with {
           $0.address = destinationAddress
@@ -145,38 +140,11 @@ extension DefaultXRPClient: XRPClientDecorator {
       }
     }
 
-    let signingPublicKeyBytes = try sourceWallet.publicKey.toBytes()
+    var transaction = try  self.prepareBaseTransaction(wallet: sourceWallet)
 
-    let transaction = Org_Xrpl_Rpc_V1_Transaction.with {
-      $0.account = Org_Xrpl_Rpc_V1_Account.with {
-        $0.value = Org_Xrpl_Rpc_V1_AccountAddress.with {
-          $0.address = sourceClassicAddressComponents.classicAddress
-        }
-      }
+    transaction.payment = payment
 
-      $0.fee = fee
-      $0.sequence = accountInfo.accountData.sequence
-      $0.payment = payment
-
-      $0.lastLedgerSequence = Org_Xrpl_Rpc_V1_LastLedgerSequence.with {
-        $0.value = lastValidatedLedgerSequence + maxLedgerVersionOffset
-      }
-      $0.signingPublicKey = Org_Xrpl_Rpc_V1_SigningPublicKey.with {
-        $0.value = Data(signingPublicKeyBytes)
-      }
-    }
-
-    guard let signedTransaction = Signer.sign(transaction, with: sourceWallet) else {
-      throw XRPLedgerError.signingError
-    }
-
-    let submitTransactionRequest = Org_Xrpl_Rpc_V1_SubmitTransactionRequest.with {
-      $0.signedTransaction = Data(signedTransaction)
-    }
-
-    let submitTransactionResponse = try networkClient.submitTransaction(submitTransactionRequest)
-
-    return [UInt8](submitTransactionResponse.hash).toHex()
+    return try self.signAndSubmitTransaction(transaction: transaction, wallet: sourceWallet)
   }
 
   /// Retrieve the open ledger sequence index.
@@ -333,5 +301,72 @@ extension DefaultXRPClient: XRPClientDecorator {
     let getTransactionResponse = try self.networkClient.getTransaction(request)
 
     return XRPTransaction(getTransactionResponse: getTransactionResponse, xrplNetwork: self.network)
+  }
+
+  /// Populates the required fields common to all transaction types.
+  ///
+  /// - SeeAlso: https://xrpl.org/transaction-common-fields.html
+  ///
+  /// Note: The returned Transaction object must still be assigned transaction-specific details.
+  /// Some transaction types require a different fee (or no fee), in which case the fee should be overwritten
+  /// appropriately when constructing the transaction-specific details.
+  /// - SeeAlso: https://xrpl.org/transaction-cost.html
+  ///
+  /// - Parameter wallet: The wallet that will sign and submit this transaction.
+  /// - Returns: A Transaction protobuf with the required common fields populated.
+  ///
+  private func prepareBaseTransaction(wallet: Wallet) throws -> Org_Xrpl_Rpc_V1_Transaction {
+    guard
+      let sourceClassicAddressComponents = Utils.decode(xAddress: wallet.address)
+      else {
+        throw XRPLedgerError.invalidInputs("Please use the X-Address format. See: https://xrpaddress.info/.")
+    }
+
+    let accountInfo = try getAccountInfo(for: sourceClassicAddressComponents.classicAddress)
+    let fee = try getFee()
+    let lastValidatedLedgerSequence = try getOpenLedgerSequence()
+
+    let signingPublicKeyBytes = try wallet.publicKey.toBytes()
+
+    let transaction = Org_Xrpl_Rpc_V1_Transaction.with {
+      $0.account = Org_Xrpl_Rpc_V1_Account.with {
+        $0.value = Org_Xrpl_Rpc_V1_AccountAddress.with {
+          $0.address = sourceClassicAddressComponents.classicAddress
+        }
+      }
+
+      $0.fee = fee
+      $0.sequence = accountInfo.accountData.sequence
+
+      $0.lastLedgerSequence = Org_Xrpl_Rpc_V1_LastLedgerSequence.with {
+        $0.value = lastValidatedLedgerSequence + maxLedgerVersionOffset
+      }
+      $0.signingPublicKey = Org_Xrpl_Rpc_V1_SigningPublicKey.with {
+        $0.value = Data(signingPublicKeyBytes)
+      }
+    }
+
+    return transaction
+  }
+
+  /// Signs the provided transaction using the wallet and submits to the XRPL network.
+  ///
+  /// - Parameters:
+  ///   - transaction: The transaction to be signed and submitted.
+  ///   - wallet: The wallet that will sign and submit this transaction.
+  /// - Returns: a string representing the hash of the submitted transaction.
+  ///
+  private func signAndSubmitTransaction(transaction: Org_Xrpl_Rpc_V1_Transaction, wallet: Wallet) throws -> String {
+    guard let signedTransaction = Signer.sign(transaction, with: wallet) else {
+      throw XRPLedgerError.signingError
+    }
+
+    let submitTransactionRequest = Org_Xrpl_Rpc_V1_SubmitTransactionRequest.with {
+      $0.signedTransaction = Data(signedTransaction)
+    }
+
+    let submitTransactionResponse = try networkClient.submitTransaction(submitTransactionRequest)
+
+    return [UInt8](submitTransactionResponse.hash).toHex()
   }
 }
