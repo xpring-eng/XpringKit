@@ -5,6 +5,6 @@ public struct MemoField {
   /// The string to be passed to the Memo
   public let value: String
 
-  /// Whether this string is already hex-encoded or not.
+  /// Whether the value field is already hex-encoded or not.
   public let isHex: Bool
 }
