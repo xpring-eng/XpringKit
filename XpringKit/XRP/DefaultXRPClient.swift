@@ -290,7 +290,7 @@ extension DefaultXRPClient: XRPClientDecorator {
   /// - Parameter transactionHash: The hash of the transaction to retrieve.
   /// - Throws: An RPCError if the transaction hash was invalid.
   /// - Returns: An XRPTransaction object representing an XRP Ledger transaction.
-  func getPayment(for transactionHash: String) throws -> XRPTransaction? {
+  public func getPayment(for transactionHash: String) throws -> XRPTransaction? {
     let transactionHashBytes = try transactionHash.toBytes()
     let transactionHashData = Data(transactionHashBytes)
 
@@ -301,6 +301,33 @@ extension DefaultXRPClient: XRPClientDecorator {
     let getTransactionResponse = try self.networkClient.getTransaction(request)
 
     return XRPTransaction(getTransactionResponse: getTransactionResponse, xrplNetwork: self.network)
+  }
+
+  /// Enable Deposit Authorization for this XRPL account.
+  /// - seeAlso: https://xrpl.org/depositauth.html
+  ///
+  /// - Parameter wallet: The wallet associated with the XRPL account enabling Deposit Authorization and that will
+  ///                     sign the request.
+  /// - Throws: An error if there was a problem communicating with the XRP Ledger.
+  /// - Returns: A TransactionResult object that contains the hash of the submitted AccountSet transaction and the
+  ///            final status of the transaction.
+  public func enableDepositAuth(for wallet: Wallet) throws -> TransactionResult {
+    let setFlag = Org_Xrpl_Rpc_V1_SetFlag.with {
+      $0.value = AccountSetFlag.asfDepositAuth.rawValue
+    }
+
+    let accountSet = Org_Xrpl_Rpc_V1_AccountSet.with {
+      $0.setFlag = setFlag
+    }
+
+    var transaction = try self.prepareBaseTransaction(wallet: wallet)
+    transaction.accountSet = accountSet
+
+    let transactionHash = try self.signAndSubmitTransaction(transaction: transaction, wallet: wallet)
+    let status = try self.paymentStatus(for: transactionHash)
+    let rawStatus = try self.getRawTransactionStatus(for: transactionHash)
+
+    return TransactionResult(hash: transactionHash, status: status, validated: rawStatus.validated)
   }
 
   /// Populates the required fields common to all transaction types.

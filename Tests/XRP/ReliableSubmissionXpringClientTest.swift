@@ -27,6 +27,11 @@ final class ReliableSubmissionClientTest: XCTestCase {
     getTransactionResponse: .testGetTransactionResponse,
     xrplNetwork: XRPLNetwork.test
   )
+  let defaultEnableDepositAuthValue = TransactionResult(
+    hash: "DEADBEEF",
+    status: TransactionStatus.succeeded,
+    validated: true
+  )
 
   var fakeXRPClient: FakeXRPClient!
   var reliableSubmissionClient: ReliableSubmissionXRPClient!
@@ -42,7 +47,8 @@ final class ReliableSubmissionClientTest: XCTestCase {
       rawTransactionStatusValue: .success(defaultRawTransactionStatusValue),
       paymentHistoryValue: .success(defaultPaymentHistoryValue),
       accountExistsValue: .success(defaultAccountExistsValue),
-      getPaymentValue: .success(defaultGetPaymentValue)
+      getPaymentValue: .success(defaultGetPaymentValue),
+      enableDepositAuthValue: .success(defaultEnableDepositAuthValue)
     )
 
     reliableSubmissionClient = ReliableSubmissionXRPClient(
@@ -192,6 +198,107 @@ final class ReliableSubmissionClientTest: XCTestCase {
 
     // WHEN a reliable send is submitted THEN an error is thrown.
     XCTAssertThrowsError(try reliableSubmissionClient.send(UInt64(10), to: .testAddress, from: .testWallet))
+  }
+
+  func testEnableDepositAuthWithExpiredLastLedgerSequenceAndUnvalidatedTransaction() throws {
+    // GIVEN A ledger sequence number that will increment past the lastLedgerSequence in 60s.
+    let lastLedgerSequence: UInt32 = 20
+    fakeXRPClient.rawTransactionStatusValue = .success(RawTransactionStatus(
+      getTransactionResponse: Org_Xrpl_Rpc_V1_GetTransactionResponse.with {
+        $0.transaction = Org_Xrpl_Rpc_V1_Transaction.with {
+          $0.lastLedgerSequence = Org_Xrpl_Rpc_V1_LastLedgerSequence.with {
+            $0.value = lastLedgerSequence
+          }
+        }
+        $0.meta = Org_Xrpl_Rpc_V1_Meta.with {
+          $0.transactionResult = Org_Xrpl_Rpc_V1_TransactionResult.with {
+            $0.result = "tesSuccess"
+          }
+        }
+        $0.validated = false
+      }
+    ))
+    runAfterOneSecond { self.fakeXRPClient.latestValidatedLedgerValue = .success(lastLedgerSequence + 1) }
+
+    // WHEN enableDepositAuth is called
+    let expectation = XCTestExpectation(description: "enableDepositAuth returned")
+    do {
+      _ = try reliableSubmissionClient.enableDepositAuth(for: .testWallet)
+      expectation.fulfill()
+    } catch {
+      XCTFail("Caught unexpected error while calling `enableDepositAuth`: \(error)")
+    }
+
+    // THEN the function returns
+    self.wait(for: [ expectation ], timeout: 10)
+  }
+
+  func testEnableDepositAuthWithUnexpiredLedgerSequenceAndValidatedTransaction() throws {
+    // GIVEN A ledger sequence number that will increment in 60s.
+    let lastLedgerSequence: UInt32 = 20
+    fakeXRPClient.rawTransactionStatusValue = .success(RawTransactionStatus(
+      getTransactionResponse: Org_Xrpl_Rpc_V1_GetTransactionResponse.with {
+        $0.transaction = Org_Xrpl_Rpc_V1_Transaction.with {
+          $0.lastLedgerSequence = Org_Xrpl_Rpc_V1_LastLedgerSequence.with {
+            $0.value = lastLedgerSequence
+          }
+        }
+        $0.meta = Org_Xrpl_Rpc_V1_Meta.with {
+          $0.transactionResult = Org_Xrpl_Rpc_V1_TransactionResult.with {
+            $0.result = "tesSuccess"
+          }
+        }
+        $0.validated = false
+      }
+    ))
+    runAfterOneSecond {
+      self.fakeXRPClient.rawTransactionStatusValue = .success(RawTransactionStatus(
+        getTransactionResponse: Org_Xrpl_Rpc_V1_GetTransactionResponse.with {
+          $0.transaction = Org_Xrpl_Rpc_V1_Transaction.with {
+            $0.lastLedgerSequence = Org_Xrpl_Rpc_V1_LastLedgerSequence.with {
+              $0.value = lastLedgerSequence
+            }
+          }
+          $0.meta = Org_Xrpl_Rpc_V1_Meta.with {
+            $0.transactionResult = Org_Xrpl_Rpc_V1_TransactionResult.with {
+              $0.result = "tesSuccess"
+            }
+          }
+          $0.validated = true
+        }
+      )
+      )
+    }
+
+    // WHEN enableDepositAuth is called
+    let expectation = XCTestExpectation(description: "enableDepositAuth returned")
+    do {
+      _ = try reliableSubmissionClient.enableDepositAuth(for: .testWallet)
+      expectation.fulfill()
+    } catch {
+      XCTFail("Caught unexpected error while calling `enableDepositAuth`: \(error)")
+    }
+
+    // THEN the function returns
+    self.wait(for: [ expectation ], timeout: 10)
+  }
+
+  func testEnableDepositAuthWithNoLastLedgerSequence() throws {
+    // GIVEN a `ReliableSubmissionXRPClient` decorating a `FakeXRPClient` which will return a transaction
+    // that did not have a last ledger sequence attached.
+    fakeXRPClient.rawTransactionStatusValue = .success(RawTransactionStatus(
+      getTransactionResponse: Org_Xrpl_Rpc_V1_GetTransactionResponse.with {
+        $0.meta = Org_Xrpl_Rpc_V1_Meta.with {
+          $0.transactionResult = Org_Xrpl_Rpc_V1_TransactionResult.with {
+            $0.result = "tesSuccess"
+          }
+        }
+        $0.validated = false
+      }
+    ))
+
+    // WHEN enableDepositAuth is called THEN an error is thrown.
+    XCTAssertThrowsError(try reliableSubmissionClient.enableDepositAuth(for: .testWallet))
   }
 
   // MARK: - Helpers

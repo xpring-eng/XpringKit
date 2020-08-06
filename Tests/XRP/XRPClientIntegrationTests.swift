@@ -1,5 +1,5 @@
 import XCTest
-import XpringKit
+@testable import XpringKit
 
 extension String {
   /// The URL of a remote rippled node with gRPC enabled.
@@ -83,5 +83,39 @@ final class XRPClientIntegrationTests: XCTestCase {
     } catch {
       XCTFail("Failed retrieving payment transaction with error: \(error)")
     }
+  }
+
+  func testEnableDepositAuth() {
+    // GIVEN an existing testnet account, WHEN enableDepositAuth is called
+    let result = try! client.enableDepositAuth(for: .testWallet)
+
+    // THEN the transaction was successfully submitted and the correct flag was set on the account.
+    let transactionHash = result.hash
+    let transactionStatus = result.status
+
+    // get the account data and check the flag bitmap to see if it was correctly set
+    let networkClient = Org_Xrpl_Rpc_V1_XRPLedgerAPIServiceServiceClient(address: .remoteURL, secure: false)
+
+    let address = Utils.decode(xAddress: Wallet.testWallet.address)!.classicAddress
+    let account = Org_Xrpl_Rpc_V1_AccountAddress.with {
+      $0.address = address
+    }
+
+    let ledger = Org_Xrpl_Rpc_V1_LedgerSpecifier.with {
+      $0.ledger = Org_Xrpl_Rpc_V1_LedgerSpecifier.OneOf_Ledger.shortcut(.validated)
+    }
+
+    let request = Org_Xrpl_Rpc_V1_GetAccountInfoRequest.with {
+      $0.account = account
+      $0.ledger = ledger
+    }
+
+    let accountInfo: Org_Xrpl_Rpc_V1_GetAccountInfoResponse = try! networkClient.getAccountInfo(request)
+    let accountData = accountInfo.accountData
+    let flags = accountData.flags.value
+
+    XCTAssertNotNil(transactionHash)
+    XCTAssertEqual(transactionStatus, .succeeded)
+    XCTAssertTrue(AccountRootFlag.check(flag: .lsfDepositAuth, flags: flags))
   }
 }

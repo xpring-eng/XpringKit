@@ -15,4 +15,14 @@ public struct AccountRootFlag: OptionSet {
   public init(rawValue: UInt32) {
     self.rawValue = rawValue
   }
+
+  /// Check if the given AccountRootFlag is present in the given flags bitmap.
+  ///
+  /// - Parameters:
+  ///   - flag  The AccountRootFlag to check the presence of.
+  ///   - flags The bitmap of flags to check
+  /// - Returns: A boolean indicating if the flag was present.
+  public static func check(flag: AccountRootFlag, flags: UInt32) -> Bool {
+    return (flag.rawValue & flags) == flag.rawValue
+  }
 }

@@ -722,6 +722,41 @@ final class DefaultXRPClientTest: XCTestCase {
     XCTAssertNil(transaction)
   }
 
+  // MARK: - EnableDepositAuth
+
+  func testEnableDepositAuthSuccessfulResponse() {
+    // GIVEN a DefaultXrpClient with mocked networking that will return a successful hash for submitTransaction
+    let xrpClient = DefaultXRPClient(
+      networkClient: FakeNetworkClient.successfulFakeNetworkClient,
+      xrplNetwork: XRPLNetwork.test
+    )
+
+    let wallet = Wallet.generateRandomWallet().wallet
+
+    // WHEN enableDepositAuth is called
+    let transactionResult = try! xrpClient.enableDepositAuth(for: wallet)
+
+    // THEN a transaction hash exists and is the expected hash
+    XCTAssertEqual(transactionResult.hash, .testTransactionHash)
+  }
+
+  func enableDepositAuthSubmissionFailure() {
+    // GIVEN a DefaultXRPClient which will fail to submit a transaction.
+    let networkClient = FakeNetworkClient(
+      accountInfoResult: .success(.testGetAccountInfoResponse),
+      feeResult: .success(.testGetFeeResponse),
+      submitTransactionResult: .failure(XpringKitTestError.mockFailure),
+      transactionStatusResult: .success(.testGetTransactionResponse),
+      transactionHistoryResult: .success(.testTransactionHistoryResponse)
+    )
+    let xrpClient = DefaultXRPClient(networkClient: networkClient, xrplNetwork: XRPLNetwork.test)
+
+    let wallet = Wallet.generateRandomWallet().wallet
+
+    // WHEN enableDepositAuth is called THEN an error is thrown.
+    XCTAssertThrowsError(try xrpClient.enableDepositAuth(for: wallet))
+  }
+
   // MARK: - Helpers
 
   private func makeGetTransactionResponse(
