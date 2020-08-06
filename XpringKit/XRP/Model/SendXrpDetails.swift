@@ -12,5 +12,5 @@ public struct SendXrpDetails {
   public let sender: Wallet
   
   /// A list of memos to attach to this payment transaction.
-  public let memosList: Array<XRPMemo>
+  public let memosList: Array<XRPMemo>?
 }
