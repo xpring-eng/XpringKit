@@ -7,7 +7,8 @@ public struct TransactionResult {
   /// The TransactionStatus indicating the outcome of this transaction.
   public let status: TransactionStatus
 
-  /// Whether this transaction is included in a validated ledger.  The transactions status is only final if this field is true.
+  /// Whether this transaction is included in a validated ledger.
+  /// The transactions status is only final if this field is true.
   public let validated: Bool
 
   /// Create a new TransactionResult object.
