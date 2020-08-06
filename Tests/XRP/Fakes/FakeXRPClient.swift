@@ -18,6 +18,7 @@ public class FakeXRPClient: XRPClientProtocol {
   public var paymentHistoryValue: Result<[XRPTransaction], XRPLedgerError>
   public var accountExistsValue: Result<Bool, XRPLedgerError>
   public var getPaymentValue: Result<XRPTransaction?, RPCError>
+  public var enableDepositAuthValue: Result<TransactionResult, XRPLedgerError>
 
   public init(
     network: XRPLNetwork = .test,
@@ -28,7 +29,8 @@ public class FakeXRPClient: XRPClientProtocol {
     rawTransactionStatusValue: Result<RawTransactionStatus, XRPLedgerError>,
     paymentHistoryValue: Result<[XRPTransaction], XRPLedgerError>,
     accountExistsValue: Result<Bool, XRPLedgerError>,
-    getPaymentValue: Result<XRPTransaction?, RPCError>
+    getPaymentValue: Result<XRPTransaction?, RPCError>,
+    enableDepositAuthValue: Result<TransactionResult, XRPLedgerError>
   ) {
     self.network = network
     self.getBalanceValue = getBalanceValue
@@ -39,6 +41,7 @@ public class FakeXRPClient: XRPClientProtocol {
     self.paymentHistoryValue = paymentHistoryValue
     self.accountExistsValue = accountExistsValue
     self.getPaymentValue = getPaymentValue
+    self.enableDepositAuthValue = enableDepositAuthValue
   }
 }
 
@@ -82,6 +85,10 @@ extension FakeXRPClient: XRPClientDecorator {
     case .failure(let error):
       throw error
     }
+  }
+
+  public func enableDepositAuth(for wallet: Wallet) throws -> TransactionResult {
+    return try returnOrThrow(result: enableDepositAuthValue)
   }
 
   /// Given a result monad, return the value if the state is success, otherwise throw the error.

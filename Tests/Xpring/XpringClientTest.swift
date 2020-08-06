@@ -16,6 +16,11 @@ final class XpringClientTest: XCTestCase {
     getTransactionResponse: .testGetTransactionResponse,
     xrplNetwork: XRPLNetwork.test
   )
+  private let fakeEnableDepositAuthValue = TransactionResult(
+    hash: "deadbeefdeadbeefdeadbeef",
+    status: TransactionStatus.succeeded,
+    validated: true
+  )
 
   ///An amount to send.
   private let amount: UInt64 = 10
@@ -41,7 +46,8 @@ final class XpringClientTest: XCTestCase {
       rawTransactionStatusValue: .success(fakeRawTransactionStatusValue),
       paymentHistoryValue: .success(fakePaymentHistoryValue),
       accountExistsValue: .success(fakeAccountExistsValue),
-      getPaymentValue: .success(fakeGetPaymentValue)
+      getPaymentValue: .success(fakeGetPaymentValue),
+      enableDepositAuthValue: .success(fakeEnableDepositAuthValue)
     )
 
     let fakeResolvedPayID = "r123"
@@ -79,7 +85,8 @@ final class XpringClientTest: XCTestCase {
       rawTransactionStatusValue: .success(fakeRawTransactionStatusValue),
       paymentHistoryValue: .success(fakePaymentHistoryValue),
       accountExistsValue: .success(fakeAccountExistsValue),
-      getPaymentValue: .success(fakeGetPaymentValue)
+      getPaymentValue: .success(fakeGetPaymentValue),
+      enableDepositAuthValue: .success(fakeEnableDepositAuthValue)
     )
 
     let fakeResolvedPayID = "r123"
@@ -109,7 +116,8 @@ final class XpringClientTest: XCTestCase {
       rawTransactionStatusValue: .success(fakeRawTransactionStatusValue),
       paymentHistoryValue: .success(fakePaymentHistoryValue),
       accountExistsValue: .success(fakeAccountExistsValue),
-      getPaymentValue: .success(fakeGetPaymentValue)
+      getPaymentValue: .success(fakeGetPaymentValue),
+      enableDepositAuthValue: .success(fakeEnableDepositAuthValue)
     )
 
     let payIDClient = FakeXRPPayIDClient(addressResult: .failure(payIDError))
@@ -141,7 +149,8 @@ final class XpringClientTest: XCTestCase {
       rawTransactionStatusValue: .success(fakeRawTransactionStatusValue),
       paymentHistoryValue: .success(fakePaymentHistoryValue),
       accountExistsValue: .success(fakeAccountExistsValue),
-      getPaymentValue: .success(fakeGetPaymentValue)
+      getPaymentValue: .success(fakeGetPaymentValue),
+      enableDepositAuthValue: .success(fakeEnableDepositAuthValue)
     )
 
     let fakeResolvedPayID = "r123"
@@ -175,7 +184,8 @@ final class XpringClientTest: XCTestCase {
       rawTransactionStatusValue: .success(fakeRawTransactionStatusValue),
       paymentHistoryValue: .success(fakePaymentHistoryValue),
       accountExistsValue: .success(fakeAccountExistsValue),
-      getPaymentValue: .success(fakeGetPaymentValue)
+      getPaymentValue: .success(fakeGetPaymentValue),
+      enableDepositAuthValue: .success(fakeEnableDepositAuthValue)
     )
 
     let payIDClient = FakeXRPPayIDClient(addressResult: .failure(payIDError))
@@ -209,7 +219,8 @@ final class XpringClientTest: XCTestCase {
       rawTransactionStatusValue: .success(fakeRawTransactionStatusValue),
       paymentHistoryValue: .success(fakePaymentHistoryValue),
       accountExistsValue: .success(fakeAccountExistsValue),
-      getPaymentValue: .success(fakeGetPaymentValue)
+      getPaymentValue: .success(fakeGetPaymentValue),
+      enableDepositAuthValue: .success(fakeEnableDepositAuthValue)
     )
 
     let fakeResolvedPayID = "r123"
@@ -232,7 +243,8 @@ final class XpringClientTest: XCTestCase {
       rawTransactionStatusValue: .success(fakeRawTransactionStatusValue),
       paymentHistoryValue: .success(fakePaymentHistoryValue),
       accountExistsValue: .success(fakeAccountExistsValue),
-      getPaymentValue: .success(fakeGetPaymentValue)
+      getPaymentValue: .success(fakeGetPaymentValue),
+      enableDepositAuthValue: .success(fakeEnableDepositAuthValue)
     )
 
     let fakeResolvedPayID = "r123"
@@ -263,7 +275,8 @@ final class XpringClientTest: XCTestCase {
       rawTransactionStatusValue: .success(fakeRawTransactionStatusValue),
       paymentHistoryValue: .success(fakePaymentHistoryValue),
       accountExistsValue: .success(fakeAccountExistsValue),
-      getPaymentValue: .success(fakeGetPaymentValue)
+      getPaymentValue: .success(fakeGetPaymentValue),
+      enableDepositAuthValue: .success(fakeEnableDepositAuthValue)
     )
 
     let payIDClient = FakeXRPPayIDClient(addressResult: .failure(payIDError))
@@ -292,7 +305,8 @@ final class XpringClientTest: XCTestCase {
       rawTransactionStatusValue: .success(fakeRawTransactionStatusValue),
       paymentHistoryValue: .success(fakePaymentHistoryValue),
       accountExistsValue: .success(fakeAccountExistsValue),
-      getPaymentValue: .success(fakeGetPaymentValue)
+      getPaymentValue: .success(fakeGetPaymentValue),
+      enableDepositAuthValue: .success(fakeEnableDepositAuthValue)
     )
 
     let fakeResolvedPayID = "r123"
@@ -322,7 +336,8 @@ final class XpringClientTest: XCTestCase {
       rawTransactionStatusValue: .success(fakeRawTransactionStatusValue),
       paymentHistoryValue: .success(fakePaymentHistoryValue),
       accountExistsValue: .success(fakeAccountExistsValue),
-      getPaymentValue: .success(fakeGetPaymentValue)
+      getPaymentValue: .success(fakeGetPaymentValue),
+      enableDepositAuthValue: .success(fakeEnableDepositAuthValue)
     )
 
     let payIDClient = FakeXRPPayIDClient(addressResult: .failure(payIDError))

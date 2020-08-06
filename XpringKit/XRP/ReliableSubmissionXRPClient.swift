@@ -34,7 +34,7 @@ extension ReliableSubmissionXRPClient: XRPClientDecorator {
     from sourceWallet: Wallet
   ) throws -> TransactionHash {
     let transactionHash = try decoratedClient.send(amount, to: destinationAddress, from: sourceWallet)
-    try self.awaitFinalTransactionResult(transactionHash: transactionHash, sourceWallet: sourceWallet)
+    _ = try self.awaitFinalTransactionResult(transactionHash: transactionHash, sourceWallet: sourceWallet)
     return transactionHash
   }
 
@@ -46,8 +46,31 @@ extension ReliableSubmissionXRPClient: XRPClientDecorator {
     return try decoratedClient.paymentHistory(for: address)
   }
 
-  func getPayment(for transactionHash: String) throws -> XRPTransaction? {
+  public func getPayment(for transactionHash: String) throws -> XRPTransaction? {
     return try decoratedClient.getPayment(for: transactionHash)
+  }
+
+  public func enableDepositAuth(for wallet: Wallet) throws -> TransactionResult {
+    let initialResult = try self.decoratedClient.enableDepositAuth(for: wallet)
+    let transactionHash = initialResult.hash
+    let finalTransactionStatus = try self.awaitFinalTransactionResult(
+      transactionHash: transactionHash,
+      sourceWallet: wallet
+    )
+
+    // Return pending if the transaction is not validated.
+    guard finalTransactionStatus.validated else {
+      return TransactionResult(hash: transactionHash, status: .pending, validated: false)
+    }
+
+    let status: TransactionStatus =
+      finalTransactionStatus.transactionStatusCode.starts(with: "tes") ? .succeeded : .failed
+
+    return TransactionResult(
+      hash: initialResult.hash,
+      status: status,
+      validated: true
+    )
   }
 
   private func awaitFinalTransactionResult(
