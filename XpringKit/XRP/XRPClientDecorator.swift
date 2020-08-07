@@ -30,6 +30,16 @@ internal protocol XRPClientDecorator {
   /// - Returns: A transaction hash for the submitted transaction.
   func send(_ amount: UInt64, to destinationAddress: Address, from sourceWallet: Wallet) throws -> TransactionHash
 
+  /// Send the given amount of XRP from the source wallet to the destination PayID, allowing
+  /// for additional details to be specified for use with supplementary features of the XRP ledger.
+  ///
+  /// - Parameters:
+  ///   - sendXrpDetails: a SendXRPDetails wrapper object containing details for constructing a transaction.
+  /// - Throws: XRPException If the given inputs were invalid.
+  /// - Returns: A string representing the hash of the submitted transaction.
+  public String sendWithDetails(final SendXrpDetails sendXrpDetails) throws -> TransactionHash
+  
+  
   /// Retrieve the latest validated ledger sequence on the XRP Ledger.
   ///
   /// - Note: This call will throw if the given account does not exist on the ledger at the current time. It is the

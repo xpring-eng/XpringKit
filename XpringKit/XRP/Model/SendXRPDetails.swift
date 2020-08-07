@@ -1,6 +1,6 @@
 /// Describes the fine grained details for sending XRP. The destination field may be a PayID, XAddress,
 /// or other type of address. Handling of the given destination type is the responsibility of the client.
-public struct SendXrpDetails {
+public struct SendXRPDetails {
   
   /// The amount of XRP, in drops, to send.
   public let amount: UInt64
