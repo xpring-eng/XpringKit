@@ -33,11 +33,22 @@ extension ReliableSubmissionXRPClient: XRPClientDecorator {
     to destinationAddress: Address,
     from sourceWallet: Wallet
   ) throws -> TransactionHash {
-    let transactionHash = try decoratedClient.send(amount, to: destinationAddress, from: sourceWallet)
-    _ = try self.awaitFinalTransactionResult(transactionHash: transactionHash, sourceWallet: sourceWallet)
+    let sendXRPDetails = SendXRPDetails(
+      amount: amount,
+      destination: destinationAddress,
+      sender: sourceWallet,
+      memosList: nil
+    )
+    let transactionHash = try decoratedClient.sendWithDetails(withDetails: sendXRPDetails)
     return transactionHash
   }
 
+  public func sendWithDetails(withDetails sendXRPDetails: SendXRPDetails) throws -> TransactionHash {
+    let transactionHash = try decoratedClient.sendWithDetails(withDetails: sendXRPDetails)
+    _ = try self.awaitFinalTransactionResult(transactionHash: transactionHash, sourceWallet: sendXRPDetails.sender)
+    return transactionHash
+  }
+  
   public func accountExists(for address: Address) throws -> Bool {
     return try decoratedClient.accountExists(for: address)
   }

@@ -118,11 +118,35 @@ extension DefaultXRPClient: XRPClientDecorator {
     to destinationAddress: Address,
     from sourceWallet: Wallet
   ) throws -> TransactionHash {
+    let sendXRPDetails = SendXRPDetails(
+      amount: amount,
+      destination: destinationAddress,
+      sender: sourceWallet,
+      memosList: nil
+    )
+    return try self.sendWithDetails(withDetails: sendXRPDetails)
+  }
+
+  /// Send the given amount of XRP from the source wallet to the destination address, allowing for
+  /// additional details to be specified for use with supplementary features of the XRP ledger.
+  ///
+  /// - Parameters:
+  ///   - sendXrpDetails: a SendXRPDetails wrapper object containing details for constructing a transaction.
+  /// - Throws: XRPException If the given inputs were invalid.
+  /// - Returns: A string representing the hash of the submitted transaction.
+  func sendWithDetails(withDetails sendXRPDetails: SendXRPDetails) throws -> TransactionHash {
+    let amount = sendXRPDetails.amount
+    let destinationAddress = sendXRPDetails.destination
+    let sourceWallet = sendXRPDetails.sender
+    let memos = sendXRPDetails.memosList
+    
     guard
       Utils.decode(xAddress: destinationAddress) != nil
       else {
         throw XRPLedgerError.invalidInputs("Please use the X-Address format. See: https://xrpaddress.info/.")
     }
+
+    var transaction = try  self.prepareBaseTransaction(wallet: sourceWallet)
 
     let payment = Org_Xrpl_Rpc_V1_Payment.with {
       $0.destination = Org_Xrpl_Rpc_V1_Destination.with {
@@ -140,13 +164,41 @@ extension DefaultXRPClient: XRPClientDecorator {
       }
     }
 
-    var transaction = try  self.prepareBaseTransaction(wallet: sourceWallet)
-
     transaction.payment = payment
 
+    if let xrpMemoList = memos {
+      let memoList: [Org_Xrpl_Rpc_V1_Memo] = xrpMemoList.map({(memo: XRPMemo) -> Org_Xrpl_Rpc_V1_Memo in
+        let memoProto = Org_Xrpl_Rpc_V1_Memo.with {
+          $0.memoData = Org_Xrpl_Rpc_V1_MemoData.with {
+            if let data = memo.data {
+              $0.value = data
+            } else {
+              $0.value = Data()
+            }
+          }
+          $0.memoFormat = Org_Xrpl_Rpc_V1_MemoFormat.with {
+            if let format = memo.format {
+              $0.value = format
+            } else {
+              $0.value = Data()
+            }
+          }
+          $0.memoType = Org_Xrpl_Rpc_V1_MemoType.with {
+            if let type = memo.type {
+              $0.value = type
+            } else {
+              $0.value = Data()
+            }
+          }
+        }
+        return memoProto
+      })
+      transaction.memos = memoList
+    }
+    
     return try self.signAndSubmitTransaction(transaction: transaction, wallet: sourceWallet)
   }
-
+  
   /// Retrieve the open ledger sequence index.
   ///
   /// - Throws: An error if there was a problem communicating with the XRP Ledger.
