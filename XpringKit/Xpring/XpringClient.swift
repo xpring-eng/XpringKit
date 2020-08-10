@@ -77,8 +77,7 @@ public class XpringClient {
       queueSafeCompletion(result)
     }
   }
-  
-  
+
   /// Send the given amount of XRP from the source wallet to the destination PayID, allowing for
   /// additional details to be specified for use with supplementary features of the XRP ledger.
   ///
@@ -87,7 +86,7 @@ public class XpringClient {
   /// - Throws: XRPException If the given inputs were invalid.
   /// - Throws: PayIDException if the provided PayID was invalid.
   /// - Returns: A string representing the hash of the submitted transaction.
-  func sendWithDetails(withDetails sendXRPDetails: SendXRPDetails) throws -> Result<TransactionHash, Error>  {
+  func sendWithDetails(withDetails sendXRPDetails: SendXRPDetails) throws -> Result<TransactionHash, Error> {
     let result = self.payIDClient.xrpAddress(for: sendXRPDetails.destination)
     switch result {
     case .success(let address):

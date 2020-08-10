@@ -139,7 +139,7 @@ extension DefaultXRPClient: XRPClientDecorator {
     let destinationAddress = sendXRPDetails.destination
     let sourceWallet = sendXRPDetails.sender
     let memos = sendXRPDetails.memosList
-    
+
     guard
       Utils.decode(xAddress: destinationAddress) != nil
       else {
@@ -195,10 +195,10 @@ extension DefaultXRPClient: XRPClientDecorator {
       })
       transaction.memos = memoList
     }
-    
+
     return try self.signAndSubmitTransaction(transaction: transaction, wallet: sourceWallet)
   }
-  
+
   /// Retrieve the open ledger sequence index.
   ///
   /// - Throws: An error if there was a problem communicating with the XRP Ledger.

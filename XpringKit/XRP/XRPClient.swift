@@ -65,7 +65,7 @@ public class XRPClient: XRPClientProtocol {
   public func sendWithDetails(withDetails sendXRPDetails: SendXRPDetails) throws -> TransactionHash {
     return try decoratedClient.sendWithDetails(withDetails: sendXRPDetails)
   }
-  
+
   /// Check if an address exists on the XRP Ledger
   ///
   /// - Parameter address: The address to check the existence of.

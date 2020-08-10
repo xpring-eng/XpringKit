@@ -38,8 +38,7 @@ internal protocol XRPClientDecorator {
   /// - Throws: XRPException If the given inputs were invalid.
   /// - Returns: A string representing the hash of the submitted transaction.
   func sendWithDetails(withDetails sendXRPDetails: SendXRPDetails) throws -> TransactionHash
-  
-  
+
   /// Retrieve the latest validated ledger sequence on the XRP Ledger.
   ///
   /// - Note: This call will throw if the given account does not exist on the ledger at the current time. It is the

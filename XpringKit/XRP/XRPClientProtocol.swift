@@ -38,7 +38,7 @@ public protocol XRPClientProtocol {
   /// - Throws: XRPException If the given inputs were invalid.
   /// - Returns: A string representing the hash of the submitted transaction.
   func sendWithDetails(withDetails sendXRPDetails: SendXRPDetails) throws -> TransactionHash
-  
+
   /// Check if an address exists on the XRP Ledger
   ///
   /// - Parameter address: The address to check the existence of.

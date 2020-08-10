@@ -48,7 +48,7 @@ extension ReliableSubmissionXRPClient: XRPClientDecorator {
     _ = try self.awaitFinalTransactionResult(transactionHash: transactionHash, sourceWallet: sendXRPDetails.sender)
     return transactionHash
   }
-  
+
   public func accountExists(for address: Address) throws -> Bool {
     return try decoratedClient.accountExists(for: address)
   }
