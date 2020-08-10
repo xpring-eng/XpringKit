@@ -1,8 +1,12 @@
-//
-//  MemoField+Test.swift
-//  XpringKitTests_iOS
-//
-//  Created by Amie Corso on 8/10/20.
-//
+import XpringKit
 
-import Foundation
+extension MemoField {
+  static let memoField1 = MemoField(
+    value: "I forgot to pick up Carl...",
+    isHex: false
+  )
+
+  static let memoField2 = MemoField(value: "jaypeg", isHex: false)
+
+  static let memoField3 = MemoField(value: "meme", isHex: false)
+}
