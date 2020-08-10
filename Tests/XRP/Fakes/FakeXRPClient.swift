@@ -61,7 +61,7 @@ extension FakeXRPClient: XRPClientDecorator {
   ) throws -> TransactionHash {
     return try returnOrThrow(result: sendValue)
   }
-  
+
   public func sendWithDetails(
     withDetails sendXRPDetails: SendXRPDetails
   ) throws -> TransactionHash {

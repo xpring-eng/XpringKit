@@ -26,7 +26,7 @@ internal extension XRPMemo {
   ///  - format:  an optional MemoField with a string which may or may not be converted to a hex string.
   ///  - type:  an optional MemoField with a string which may or may not be converted to a hex string.
   /// - Returns: an XRPMemo with each potentially hex-encoded field set to the Data version of said field.
-  func fromMemoFields(data: MemoField?, format: MemoField?, type: MemoField?) -> XRPMemo {
+  static func fromMemoFields(data: MemoField?, format: MemoField?, type: MemoField?) -> XRPMemo {
     var dataBytes: Data?
     var formatBytes: Data?
     var typeBytes: Data?
