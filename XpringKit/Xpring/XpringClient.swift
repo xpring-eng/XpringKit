@@ -86,7 +86,7 @@ public class XpringClient {
   /// - Throws: XRPException If the given inputs were invalid.
   /// - Throws: PayIDException if the provided PayID was invalid.
   /// - Returns: A string representing the hash of the submitted transaction.
-  func sendWithDetails(withDetails sendXRPDetails: SendXRPDetails) throws -> Result<TransactionHash, Error> {
+  func sendWithDetails(withDetails sendXRPDetails: SendXRPDetails) -> Result<TransactionHash, Error> {
     let result = self.payIDClient.xrpAddress(for: sendXRPDetails.destination)
     switch result {
     case .success(let address):
@@ -105,6 +105,31 @@ public class XpringClient {
       }
     case .failure(let payIDError):
       return .failure(payIDError)
+    }
+  }
+  
+  /// Send the given amount of XRP from the source wallet to the destination PayID, allowing for
+  /// additional details to be specified for use with supplementary features of the XRP ledger.
+  ///
+  /// - Parameters:
+  ///   - sendXrpDetails: a SendXRPDetails wrapper object containing details for constructing a transaction.
+  /// - Throws: XRPException If the given inputs were invalid.
+  /// - Throws: PayIDException if the provided PayID was invalid.
+  /// - Returns: A string representing the hash of the submitted transaction.
+  func sendWithDetails(
+    withDetails sendXRPDetails: SendXRPDetails,
+    callbackQueue: DispatchQueue = .main,
+    completion: @escaping (Result<TransactionHash, Error>) -> Void
+  ) {
+    let queueSafeCompletion: (Result<TransactionHash, Error>) -> Void = { result in
+      callbackQueue.async {
+        completion(result)
+      }
+    }
+
+    asyncQueue.async {
+      let result = self.sendWithDetails(withDetails: sendXRPDetails)
+      queueSafeCompletion(result)
     }
   }
 }
