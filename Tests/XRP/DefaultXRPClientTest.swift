@@ -201,9 +201,9 @@ final class DefaultXRPClientTest: XCTestCase {
   }
 
   // MARK: - Send With Details
-/*
+
   func testSendWithDetailsIncludingMemo() {
-    // GIVEN a DefaultXRPClient, a wallet, a UInt64 denominated amount and a memo.
+    // GIVEN a DefaultXRPClient, a wallet, a UInt64 denominated amount, and a memo.
     let xrpClient = DefaultXRPClient(
       networkClient: FakeNetworkClient.successfulFakeNetworkClient,
       xrplNetwork: XRPLNetwork.test
@@ -211,20 +211,21 @@ final class DefaultXRPClientTest: XCTestCase {
     let wallet = Wallet.generateRandomWallet().wallet
     let destinationAddress = "X76YZJgkFzdSLZQTa7UzVSs34tFgyV2P16S3bvC8AWpmwdH"
     let amount = UInt64(10)
-    let memos: [XRPMemo] =
-    List<XrpMemo> memos = Arrays.asList(XrpTestUtils.iForgotToPickUpCarlMemo)
+    let memos: [XRPMemo] = [.iForgotToPickUpCarlMemo]
 
     // WHEN the account makes a transaction with a memo.
-    SendXrpDetails sendXrpDetails = SendXrpDetails.builder()
-                                                  .amount(amount)
-                                                  .destination(destinationAddress)
-                                                  .sender(wallet)
-                                                  .memosList(memos)
-                                                  .build()
+    let sendXRPDetails = SendXRPDetails(
+      amount: amount,
+      destination: destinationAddress,
+      sender: wallet,
+      memosList: memos
+    )
+    
     // THEN the transaction is submitted without error and a hash is returned.
-    String transactionHash = xrpClient.sendWithDetails(sendXrpDetails)
+    let transactionHash = try? xrpClient.sendWithDetails(withDetails: sendXRPDetails)
+    XCTAssertEqual(transactionHash, TransactionHash.testTransactionHash)
   }
-*/
+
   // MARK: - Payment Status
 
   func testGetPaymentStatusWithUnvalidatedTransactionAndFailureCode() {
