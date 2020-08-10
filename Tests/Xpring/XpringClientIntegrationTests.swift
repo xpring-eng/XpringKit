@@ -56,7 +56,6 @@ public class XpringClientIntegrationTest: XCTestCase {
 
     let payID = "alice$dev.payid.xpring.money"
     let wallet = Wallet(seed: "snYP7oArxKepd3GPDcrjMsJYiJeJB")!
-    let amount = UInt64(10)
     let memos: [XRPMemo] = [
       .iForgotToPickUpCarlMemo,
       .expectedNoDataMemo,
@@ -66,7 +65,7 @@ public class XpringClientIntegrationTest: XCTestCase {
 
     // WHEN XRP is sent to the PayID, including a memo.
     let sendXRPDetails = SendXRPDetails(
-      amount: amount,
+      amount: .testSendAmount,
       destination: payID,
       sender: wallet,
       memosList: memos

@@ -48,6 +48,44 @@ final class XRPClientIntegrationTests: XCTestCase {
     XCTAssertEqual(destinationAddressComponents.tag, tag)
   }
 
+  func testSendWithDetailsWithMemos() throws {
+    // GIVEN an XRPClient, and some SendXRPDetails that include memos.
+    let xrpClient = XRPClient(grpcURL: .remoteURL, network: .test)
+
+    let wallet = Wallet(seed: "snYP7oArxKepd3GPDcrjMsJYiJeJB")!
+    let memos: [XRPMemo] = [
+      .iForgotToPickUpCarlMemo,
+      .expectedNoDataMemo,
+      .expectedNoFormatMemo,
+      .expectedNoTypeMemo
+    ]
+
+    // WHEN XRP is sent to the address, including memos.
+    let sendXRPDetails = SendXRPDetails(
+      amount: .testSendAmount,
+      destination: .recipientAddress,
+      sender: wallet,
+      memosList: memos
+    )
+
+    let transactionHash = try xrpClient.sendWithDetails(withDetails: sendXRPDetails)
+
+    // THEN a transaction hash is returned
+    XCTAssertNotNil(transactionHash)
+
+    // AND the memos are present and correct in the on-ledger transaction
+    let transaction = try xrpClient.getPayment(for: transactionHash)
+    XCTAssertEqual(
+      transaction?.memos,
+      [
+        .iForgotToPickUpCarlMemo,
+        .expectedNoDataMemo,
+        .expectedNoFormatMemo,
+        .expectedNoTypeMemo
+      ]
+    )
+  }
+
   func testPaymentStatus() {
     do {
       let transactionHash = try client.send(.testSendAmount, to: .recipientAddress, from: .testWallet)
