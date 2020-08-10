@@ -47,4 +47,45 @@ public class XpringClientIntegrationTest: XCTestCase {
       XCTFail("Error making transaction")
     }
   }
+
+  func testSendWithDetailsWithMemos() throws {
+    // GIVEN a XpringClient, a Pay ID that will resolve, and some memos.
+    let payIDClient = XRPPayIDClient(xrplNetwork: network)
+    let xrpClient = XRPClient(grpcURL: "test.xrp.xpring.io:50051", network: .test)
+    let xpringClient = try XpringClient(payIDClient: payIDClient, xrpClient: xrpClient)
+
+    let payID = "alice$dev.payid.xpring.money"
+    let wallet = Wallet(seed: "snYP7oArxKepd3GPDcrjMsJYiJeJB")!
+    let amount = UInt64(10)
+    let memos: [XRPMemo] = [
+      .iForgotToPickUpCarlMemo,
+      .expectedNoDataMemo,
+      .expectedNoFormatMemo,
+      .expectedNoTypeMemo
+    ]
+
+    // WHEN XRP is sent to the PayID, including a memo.
+    let sendXRPDetails = SendXRPDetails(
+      amount: amount,
+      destination: payID,
+      sender: wallet,
+      memosList: memos
+    )
+
+    let transactionHash = try xpringClient.sendWithDetails(withDetails: sendXRPDetails).get()
+
+    // THEN a transaction hash is returned and the memos are present and correct.
+    XCTAssertNotNil(transactionHash)
+
+    let transaction = try xrpClient.getPayment(for: transactionHash)
+    XCTAssertEqual(
+      transaction?.memos,
+      [
+        .iForgotToPickUpCarlMemo,
+        .expectedNoDataMemo,
+        .expectedNoFormatMemo,
+        .expectedNoTypeMemo
+      ]
+    )
+  }
 }

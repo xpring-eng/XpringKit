@@ -86,7 +86,7 @@ public class XpringClient {
   /// - Throws: XRPException If the given inputs were invalid.
   /// - Throws: PayIDException if the provided PayID was invalid.
   /// - Returns: A string representing the hash of the submitted transaction.
-  func sendWithDetails(withDetails sendXRPDetails: SendXRPDetails) -> Result<TransactionHash, Error> {
+  public func sendWithDetails(withDetails sendXRPDetails: SendXRPDetails) -> Result<TransactionHash, Error> {
     let result = self.payIDClient.xrpAddress(for: sendXRPDetails.destination)
     switch result {
     case .success(let address):
@@ -116,7 +116,7 @@ public class XpringClient {
   /// - Throws: XRPException If the given inputs were invalid.
   /// - Throws: PayIDException if the provided PayID was invalid.
   /// - Returns: A string representing the hash of the submitted transaction.
-  func sendWithDetails(
+  public func sendWithDetails(
     withDetails sendXRPDetails: SendXRPDetails,
     callbackQueue: DispatchQueue = .main,
     completion: @escaping (Result<TransactionHash, Error>) -> Void

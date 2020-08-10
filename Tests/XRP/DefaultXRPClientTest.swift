@@ -220,7 +220,7 @@ final class DefaultXRPClientTest: XCTestCase {
       sender: wallet,
       memosList: memos
     )
-    
+
     // THEN the transaction is submitted without error and a hash is returned.
     let transactionHash = try? xrpClient.sendWithDetails(withDetails: sendXRPDetails)
     XCTAssertEqual(transactionHash, TransactionHash.testTransactionHash)
