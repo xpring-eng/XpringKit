@@ -39,7 +39,7 @@ extension ReliableSubmissionXRPClient: XRPClientDecorator {
       sender: sourceWallet,
       memosList: nil
     )
-    let transactionHash = try decoratedClient.sendWithDetails(withDetails: sendXRPDetails)
+    let transactionHash = try self.sendWithDetails(withDetails: sendXRPDetails)
     return transactionHash
   }
 

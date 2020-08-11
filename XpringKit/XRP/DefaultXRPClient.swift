@@ -167,8 +167,7 @@ extension DefaultXRPClient: XRPClientDecorator {
     transaction.payment = payment
 
     if let xrpMemoList = memos {
-      let memoList: [Org_Xrpl_Rpc_V1_Memo] = xrpMemoList.map {
-        (memo: XRPMemo) -> Org_Xrpl_Rpc_V1_Memo in
+      let memoList: [Org_Xrpl_Rpc_V1_Memo] = xrpMemoList.map {(memo: XRPMemo) -> Org_Xrpl_Rpc_V1_Memo in
         let memoProto = Org_Xrpl_Rpc_V1_Memo.with {
           $0.memoData = Org_Xrpl_Rpc_V1_MemoData.with {
             if let data = memo.data {
