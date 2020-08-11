@@ -14,7 +14,7 @@ final class XRPClientIntegrationTests: XCTestCase {
   private let client = XRPClient(grpcURL: .remoteURL, network: .test)
 
   private let wallet = try! Wallet.randomWalletFromFaucet()
-  
+
   // MARK: - rippled Protocol Buffers
 
   func testGetBalance() {
