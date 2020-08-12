@@ -3,6 +3,7 @@ import Foundation
 /// A payment on the XRP Ledger
 /// - SeeAlso: https://xrpl.org/payment.html
 public struct XRPPayment: Equatable {
+  // TODO(keefertaylor): Modify this object to use X-Address format.
 
   /// The amount of currency to deliver.
   public let amount: XRPCurrencyAmount
