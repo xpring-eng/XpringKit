@@ -6,7 +6,8 @@ internal extension XRPAccountSet {
 
   /// Constructs an XRPAccountSet from an Org_Xrpl_Rpc_V1_AccountSet
   /// - SeeAlso: [AccountSet Protocol Buffer]
-  /// (https://github.com/ripple/rippled/blob/3d86b49dae8173344b39deb75e53170a9b6c5284/src/ripple/proto/org/xrpl/rpc/v1/transaction.proto#L100)
+  /// (https://github.com/ripple/rippled/blob/3d86b49dae8173344b39deb75e53170a9b6c5284/
+  /// src/ripple/proto/org/xrpl/rpc/v1/transaction.proto#L100)
   ///
   /// - Parameters:
   ///     - accountSet: an Org_Xrpl_Rpc_V1_AccountSet (protobuf object) whose field values will be used to
