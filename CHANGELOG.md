@@ -8,6 +8,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## Unreleased
 
 ### Added
+- A new method, `sendWithDetails`, is exposed on the `XRPClient` and `XpringClient`,
+allowing memo data to be attached to the transaction when sending XRP.
+
 - A new method `enableDepositAuth` is added to `XRPClient` which enables Deposit Authorization for the specified XRPL account.
 (See https://xrpl.org/depositauth.html)
 

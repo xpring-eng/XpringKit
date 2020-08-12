@@ -30,6 +30,15 @@ public protocol XRPClientProtocol {
   /// - Returns: A transaction hash for the submitted transaction.
   func send(_ amount: UInt64, to destinationAddress: Address, from sourceWallet: Wallet) throws -> TransactionHash
 
+  /// Send the given amount of XRP from the source wallet to the destination address, allowing for
+  /// additional details to be specified for use with supplementary features of the XRP ledger.
+  ///
+  /// - Parameters:
+  ///   - sendXrpDetails: a SendXRPDetails wrapper object containing details for constructing a transaction.
+  /// - Throws: XRPException If the given inputs were invalid.
+  /// - Returns: A string representing the hash of the submitted transaction.
+  func sendWithDetails(withDetails sendXRPDetails: SendXRPDetails) throws -> TransactionHash
+
   /// Check if an address exists on the XRP Ledger
   ///
   /// - Parameter address: The address to check the existence of.
