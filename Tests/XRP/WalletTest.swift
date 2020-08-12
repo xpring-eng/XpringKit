@@ -211,4 +211,27 @@ class WalletTest: XCTestCase {
     // WHEN a wallet is generated THEN it is constructed successfully.
     XCTAssertNotNil(Wallet(publicKey: publicKey, privateKey: privateKey, isTest: false))
   }
+
+  func testRandomWalletFromFaucet() {
+    // GIVEN a new, randomly generated wallet that is funded by the Testnet faucet
+    var wallet: Wallet?
+    do {
+      wallet = try Wallet.randomWalletFromFaucet()
+    } catch {
+      XCTFail(error.localizedDescription)
+      return
+    }
+
+    // WHEN the wallet is examined
+    // THEN it exists
+    XCTAssertNotNil(wallet)
+
+    // AND it has a non-zero balance
+    let xrpClient = XRPClient(
+      grpcURL: "test.xrp.xpring.io:50051",
+      network: XRPLNetwork.test
+    )
+    let balance = try? xrpClient.getBalance(for: wallet!.address)
+    XCTAssertTrue(balance! > UInt64(0))
+  }
 }
