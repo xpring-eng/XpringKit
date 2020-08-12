@@ -13,7 +13,7 @@ internal extension XRPAccountSet {
   ///             construct an XRPAccountSet
   ///     - xrplNetwork: The XRPL network from which this object was retrieved.
   /// - Returns: an XRPAccountSet with its fields set via the analogous protobuf fields.
-  init?(accountSet: Org_Xrpl_Rpc_V1_AccountSet, xrplNetwork: XRPLNetwork) {
+  init?(accountSet: Org_Xrpl_Rpc_V1_AccountSet) {
     self.clearFlag = accountSet.hasClearFlag_p ? accountSet.clearFlag_p.value : nil
     self.domain = accountSet.hasDomain ? accountSet.domain.value : nil
     self.emailHash = accountSet.hasEmailHash ? accountSet.emailHash.value : nil
