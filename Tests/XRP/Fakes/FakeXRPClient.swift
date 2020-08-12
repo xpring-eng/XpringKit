@@ -62,6 +62,12 @@ extension FakeXRPClient: XRPClientDecorator {
     return try returnOrThrow(result: sendValue)
   }
 
+  public func sendWithDetails(
+    withDetails sendXRPDetails: SendXRPDetails
+  ) throws -> TransactionHash {
+    return try returnOrThrow(result: sendValue)
+  }
+
   public func getLatestValidatedLedgerSequence(address: Address) throws -> UInt32 {
     return try returnOrThrow(result: latestValidatedLedgerValue)
   }
