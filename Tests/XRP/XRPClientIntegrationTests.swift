@@ -13,11 +13,13 @@ extension String {
 final class XRPClientIntegrationTests: XCTestCase {
   private let client = XRPClient(grpcURL: .remoteURL, network: .test)
 
+  private let wallet = try! Wallet.randomWalletFromFaucet()
+
   // MARK: - rippled Protocol Buffers
 
   func testGetBalance() {
     do {
-      _ = try client.getBalance(for: Wallet.testWallet.address)
+      _ = try client.getBalance(for: wallet.address)
     } catch {
       XCTFail("Failed retrieving balance with error: \(error)")
     }
@@ -25,7 +27,7 @@ final class XRPClientIntegrationTests: XCTestCase {
 
   func testSendXRP() {
     do {
-      _ = try client.send(.testSendAmount, to: .recipientAddress, from: .testWallet)
+      _ = try client.send(.testSendAmount, to: .recipientAddress, from: wallet)
     } catch {
       XCTFail("Failed sending XRP with error: \(error)")
     }
@@ -36,7 +38,7 @@ final class XRPClientIntegrationTests: XCTestCase {
     let tag: UInt32 = 123
     let address = "rPEPPER7kfTD9w2To4CQk6UCfuHM9c6GDY"
     let taggedXAddress = Utils.encode(classicAddress: address, tag: tag, isTest: true)!
-    let transactionHash = try! client.send(.testSendAmount, to: taggedXAddress, from: .testWallet)
+    let transactionHash = try! client.send(.testSendAmount, to: taggedXAddress, from: wallet)
 
     // WHEN the payment is retrieved
     let transaction = try! client.getPayment(for: transactionHash)
@@ -50,7 +52,7 @@ final class XRPClientIntegrationTests: XCTestCase {
 
   func testPaymentStatus() {
     do {
-      let transactionHash = try client.send(.testSendAmount, to: .recipientAddress, from: .testWallet)
+      let transactionHash = try client.send(.testSendAmount, to: .recipientAddress, from: wallet)
       let transactionStatus = try client.paymentStatus(for: transactionHash)
       XCTAssertEqual(transactionStatus, .succeeded)
     } catch {
@@ -60,7 +62,7 @@ final class XRPClientIntegrationTests: XCTestCase {
 
   func testAccountExists() {
     do {
-      _ = try client.accountExists(for: Wallet.testWallet.address)
+      _ = try client.accountExists(for: wallet.address)
     } catch {
       XCTFail("Failed checking account existence with error: \(error)")
     }
@@ -68,7 +70,7 @@ final class XRPClientIntegrationTests: XCTestCase {
 
   func testPaymentHistory() {
     do {
-      let payments = try client.paymentHistory(for: Wallet.testWallet.address)
+      let payments = try client.paymentHistory(for: wallet.address)
       XCTAssert(!payments.isEmpty)
     } catch {
       XCTFail("Failed retrieving payment history with error: \(error)")
@@ -77,7 +79,7 @@ final class XRPClientIntegrationTests: XCTestCase {
 
   func testGetPayment() {
     do {
-      let transactionHash = try client.send(.testSendAmount, to: .recipientAddress, from: .testWallet)
+      let transactionHash = try client.send(.testSendAmount, to: .recipientAddress, from: wallet)
       let transaction = try client.getPayment(for: transactionHash)
       XCTAssertNotNil(transaction)
     } catch {
@@ -87,7 +89,7 @@ final class XRPClientIntegrationTests: XCTestCase {
 
   func testEnableDepositAuth() {
     // GIVEN an existing testnet account, WHEN enableDepositAuth is called
-    let result = try! client.enableDepositAuth(for: .testWallet)
+    let result = try! client.enableDepositAuth(for: wallet)
 
     // THEN the transaction was successfully submitted and the correct flag was set on the account.
     let transactionHash = result.hash
@@ -96,7 +98,7 @@ final class XRPClientIntegrationTests: XCTestCase {
     // get the account data and check the flag bitmap to see if it was correctly set
     let networkClient = Org_Xrpl_Rpc_V1_XRPLedgerAPIServiceServiceClient(address: .remoteURL, secure: false)
 
-    let address = Utils.decode(xAddress: Wallet.testWallet.address)!.classicAddress
+    let address = Utils.decode(xAddress: wallet.address)!.classicAddress
     let account = Org_Xrpl_Rpc_V1_AccountAddress.with {
       $0.address = address
     }
