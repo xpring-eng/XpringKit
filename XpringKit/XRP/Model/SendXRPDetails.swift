@@ -13,4 +13,16 @@ public struct SendXRPDetails {
 
   /// A list of memos to attach to the payment transaction constructed from these details.
   public let memosList: [XRPMemo]?
+
+  public init(
+    amount: UInt64,
+    destination: Address,
+    sender: Wallet,
+    memosList: [XRPMemo]?
+  ) {
+    self.amount = amount
+    self.destination = destination
+    self.sender = sender
+    self.memosList = memosList
+  }
 }
