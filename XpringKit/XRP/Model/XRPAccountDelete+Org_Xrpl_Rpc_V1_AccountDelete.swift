@@ -17,7 +17,7 @@ internal extension XRPAccountDelete {
   init?(accountDelete: Org_Xrpl_Rpc_V1_AccountDelete, xrplNetwork: XRPLNetwork) {
     let destination = accountDelete.destination.value.address
     let destinationTag = accountDelete.destinationTag.value
-    
+
     guard let destinationXAddress = Utils.encode(
       classicAddress: destination,
       tag: destinationTag,

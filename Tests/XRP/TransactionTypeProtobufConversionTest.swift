@@ -39,4 +39,49 @@ final class TransactionTypeProtobufConversionTests: XCTestCase {
     XCTAssertNil(xrpAccountSet.transferRate)
     XCTAssertNil(xrpAccountSet.tickSize)
   }
+
+  // MARK: - Org_Xrpl_Rpc_V1_AccountDelete
+
+  func testConvertAccountDeleteAllFields() {
+    // GIVEN an AccountDelete protocol buffer with all fields set.
+    let accountDelete = Org_Xrpl_Rpc_V1_AccountDelete.testAccountDeleteAllFields
+
+    // WHEN the protocol buffer is converted to a native Swift type.
+    let xrpAccountDelete = XRPAccountDelete(accountDelete: accountDelete, xrplNetwork: XRPLNetwork.test)
+
+    // THEN the AccountDelete converted as expected.
+    let expectedXAddress = Utils.encode(
+      classicAddress: accountDelete.destination.value.address,
+      tag: accountDelete.destinationTag.value,
+      isTest: true
+    )
+    XCTAssertEqual(xrpAccountDelete!.destinationXAddress, expectedXAddress)
+  }
+
+  func testConvertAccountDeleteNoTag() {
+    // GIVEN an AccountDelete protocol buffer with only destination field set.
+    let accountDelete = Org_Xrpl_Rpc_V1_AccountDelete.testAccountDeleteNoTag
+
+    // WHEN the protocol buffer is converted to a native Swift type.
+    let xrpAccountDelete = XRPAccountDelete(accountDelete: accountDelete, xrplNetwork: XRPLNetwork.test)
+
+    // THEN the AccountDelete converted as expected.
+    let expectedXAddress = Utils.encode(
+      classicAddress: accountDelete.destination.value.address,
+      tag: accountDelete.destinationTag.value,
+      isTest: true
+    )
+    XCTAssertEqual(xrpAccountDelete!.destinationXAddress, expectedXAddress)
+  }
+
+  func testConvertAccountDeleteNoFields() {
+    // GIVEN an AccountDelete protocol buffer missing the destination field.
+    let accountDelete = Org_Xrpl_Rpc_V1_AccountDelete.testAccountDeleteNoFields
+
+    // WHEN the protocol buffer is converted to a native Swift type.
+    let xrpAccountDelete = XRPAccountDelete(accountDelete: accountDelete, xrplNetwork: XRPLNetwork.test)
+
+    // THEN the result is nil.
+    XCTAssertNil(xrpAccountDelete)
+  }
 }
