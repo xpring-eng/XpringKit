@@ -4,4 +4,5 @@ extension String {
   static let testTransactionStatusCodeSuccess = "tesSUCCESS"
   static let testTransactionStatusCodeFailure = "tecFAILURE"
   static let testAssetCode = "XRP"
+  static let testDomainValue = "testdomain"
 }
