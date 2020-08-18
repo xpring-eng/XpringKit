@@ -5,4 +5,7 @@
 /// - SeeAlso: https://xrpl.org/transaction-formats.html
 public enum XRPTransactionType {
   case payment
+  case accountSet
+  case accountDelete
+  case checkCancel
 }
