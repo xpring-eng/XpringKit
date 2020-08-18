@@ -15,5 +15,8 @@ internal extension XRPCheckCancel {
   /// - Returns: an XRPCheckCancel with its fields set via the analogous protobuf fields.
   init?(checkCancel: Org_Xrpl_Rpc_V1_CheckCancel) {
     self.checkId = String(decoding: checkCancel.checkID.value, as: UTF8.self)
+    if self.checkId.isEmpty {
+      return nil
+    }
   }
 }
