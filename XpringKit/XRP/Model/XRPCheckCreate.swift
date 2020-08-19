@@ -13,7 +13,8 @@ public struct XRPCheckCreate: Equatable {
   /// - SeeAlso:  https://xrpaddress.info
   public let destinationXAddress: String
 
-  /// Maximum amount of source currency the Check is allowed to debit the sender, including transfer fees on non-XRP currencies.
+  /// Maximum amount of source currency the Check is allowed to debit the sender,
+  /// including transfer fees on non-XRP currencies.
   /// The Check can only credit the destination with the same currency (from the same issuer, for non-XRP currencies).
   /// For non-XRP amounts, the nested field names MUST be lower-case.
   public let sendMax: XRPCurrencyAmount
