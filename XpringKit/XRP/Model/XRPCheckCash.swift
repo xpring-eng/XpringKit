@@ -1,8 +1,6 @@
 import Foundation
 
 /// Represents a CheckCash transaction on the XRP Ledger.
-///
-/// Represents a CheckCash transaction on the XRP Ledger.
 /// A CheckCash transaction attempts to redeem a Check object in the ledger to receive up to the amount
 /// authorized by the corresponding CheckCreate transaction.
 ///
