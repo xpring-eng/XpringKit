@@ -111,4 +111,49 @@ final class TransactionTypeProtobufConversionTests: XCTestCase {
     // THEN the result is nil.
     XCTAssertNil(xrpCheckCancel)
   }
+
+  // MARK: - Org_Xrpl_Rpc_V1_CheckCash
+
+  func testConvertCheckCashWithAmountField() {
+    // GIVEN a valid CheckCash protocol buffer with amount field set.
+    let checkCash = Org_Xrpl_Rpc_V1_CheckCash.testCheckCashWithAmount
+
+    // WHEN the protocol buffer is converted to a native Swift type.
+    let xrpCheckCash = XRPCheckCash(checkCash: checkCash)
+
+    // THEN the CheckCash converted as expected.
+    XCTAssertEqual(
+      xrpCheckCash?.checkId,
+      String(data: checkCash.checkID.value, encoding: .utf8)
+    )
+    XCTAssertEqual(xrpCheckCash?.amount, XRPCurrencyAmount(currencyAmount: checkCash.amount.value))
+    XCTAssertNil(xrpCheckCash?.deliverMin)
+  }
+
+  func testConvertCheckCashWithDeliverMinField() {
+    // GIVEN a valid CheckCash protocol buffer with deliverMin field set.
+    let checkCash = Org_Xrpl_Rpc_V1_CheckCash.testCheckCashWithDeliverMin
+
+    // WHEN the protocol buffer is converted to a native Swift type.
+    let xrpCheckCash = XRPCheckCash(checkCash: checkCash)
+
+    // THEN the CheckCash converted as expected.
+    XCTAssertEqual(
+      xrpCheckCash?.checkId,
+      String(data: checkCash.checkID.value, encoding: .utf8)
+    )
+    XCTAssertNil(xrpCheckCash?.amount)
+    XCTAssertEqual(xrpCheckCash?.deliverMin, XRPCurrencyAmount(currencyAmount: checkCash.deliverMin.value))
+  }
+
+  func testConvertCheckCashMissingCheckId() {
+    // GIVEN a valid CheckCash protocol buffer missing the checkId field.
+    let checkCash = Org_Xrpl_Rpc_V1_CheckCash.testCheckCashMissingCheckId
+
+    // WHEN the protocol buffer is converted to a native Swift type.
+    let xrpCheckCash = XRPCheckCash(checkCash: checkCash)
+
+    // THEN the result is nil.
+    XCTAssertNil(xrpCheckCash)
+  }
 }
