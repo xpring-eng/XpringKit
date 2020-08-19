@@ -8,4 +8,5 @@ public enum XRPTransactionType {
   case accountSet
   case accountDelete
   case checkCancel
+  case checkCash
 }
