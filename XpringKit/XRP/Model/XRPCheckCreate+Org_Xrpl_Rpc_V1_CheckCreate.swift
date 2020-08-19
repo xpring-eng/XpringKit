@@ -26,14 +26,14 @@ internal extension XRPCheckCreate {
       return nil
     }
     self.destinationXAddress = destinationXAddress
-    
+
     // sendMax is required
     let sendMaxCurrencyAmount = checkCreate.sendMax.value
     guard let sendMax = XRPCurrencyAmount(currencyAmount: sendMaxCurrencyAmount) else {
       return nil
     }
     self.sendMax = sendMax
-    
+
     self.expiration = checkCreate.expiration.value
     self.invoiceId = String(decoding: checkCreate.invoiceID.value, as: UTF8.self)
   }

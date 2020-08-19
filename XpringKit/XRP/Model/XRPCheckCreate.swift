@@ -7,7 +7,7 @@ import Foundation
 ///
 /// - SeeAlso: https://xrpl.org/checkcreate.html
 public struct XRPCheckCreate: Equatable {
-  
+
   /// The unique address and (optional) destination tag of the account that can cash the Check,
   /// encoded as an X-address.
   /// - SeeAlso:  https://xrpaddress.info
