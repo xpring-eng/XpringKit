@@ -2,7 +2,8 @@ import Foundation
 
 /// Represents a DepositPreauth transaction on the XRP Ledger.
 ///
-/// A DepositPreauth transaction gives another account pre-approval to deliver payments to the sender of this transaction.
+/// A DepositPreauth transaction gives another account pre-approval to deliver payments to the sender
+/// of this transaction.
 /// This is only useful if the sender of this transaction is using (or plans to use) Deposit Authorization.
 ///
 /// - SeeAlso: https://xrpl.org/depositpreauth.html
