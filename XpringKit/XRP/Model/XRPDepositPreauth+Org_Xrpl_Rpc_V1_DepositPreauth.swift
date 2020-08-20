@@ -14,20 +14,23 @@ internal extension XRPDepositPreauth {
   ///             construct an XRPDepositPreauth
   /// - Returns: an XRPDepositPreauth with its fields set via the analogous protobuf fields.
   init?(depositPreauth: Org_Xrpl_Rpc_V1_DepositPreauth, xrplNetwork: XRPLNetwork) {
-    guard let authorizeXAddress = Utils.encode(
+    if let authorizeXAddress = Utils.encode(
       classicAddress: depositPreauth.authorize.value.address,
       isTest: xrplNetwork != XRPLNetwork.main
-      ) else {
-        return nil
+      ) {
+      self.authorizeXAddress = authorizeXAddress
+      self.unauthorizeXAddress = nil
+      return
     }
-    
-    guard let unauthorizeXAddress = Utils.encode(
+
+    if let unauthorizeXAddress = Utils.encode(
       classicAddress: depositPreauth.unauthorize.value.address,
       isTest: xrplNetwork != XRPLNetwork.main
-      ) else {
+      ) {
+      self.authorizeXAddress = nil
+      self.unauthorizeXAddress = unauthorizeXAddress
+    } else {
         return nil
-    }
-    self.authorizeXAddress = authorizeXAddress
-    self.unauthorizeXAddress = unauthorizeXAddress
+      }
   }
 }

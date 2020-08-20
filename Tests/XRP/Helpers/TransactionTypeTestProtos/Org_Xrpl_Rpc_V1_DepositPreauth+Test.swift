@@ -8,7 +8,7 @@ extension Org_Xrpl_Rpc_V1_DepositPreauth {
       }
     }
   }
-  
+
   public static let testDepositPreauthWithUnauthorize = Org_Xrpl_Rpc_V1_DepositPreauth.with {
     $0.unauthorize = Org_Xrpl_Rpc_V1_Unauthorize.with {
       $0.value = Org_Xrpl_Rpc_V1_AccountAddress.with {
@@ -16,6 +16,6 @@ extension Org_Xrpl_Rpc_V1_DepositPreauth {
       }
     }
   }
-  
+
   public static let testDepositPreauthWithNoFields = Org_Xrpl_Rpc_V1_DepositPreauth()
 }
