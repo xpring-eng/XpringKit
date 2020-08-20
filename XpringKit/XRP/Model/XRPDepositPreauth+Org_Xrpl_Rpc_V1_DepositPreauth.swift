@@ -30,7 +30,7 @@ internal extension XRPDepositPreauth {
       self.authorizeXAddress = nil
       self.unauthorizeXAddress = unauthorizeXAddress
     } else {
-        return nil
-      }
+      return nil
+    }
   }
 }
