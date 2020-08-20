@@ -10,4 +10,5 @@ public enum XRPTransactionType {
   case checkCancel
   case checkCash
   case checkCreate
+  case depositPreauth
 }
