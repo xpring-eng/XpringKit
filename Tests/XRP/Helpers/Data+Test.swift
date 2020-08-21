@@ -12,4 +12,5 @@ extension Data {
   public static let testInvoiceIdValue = "6F1DFD1D0FE8A32E40E1F2C05CF1C15545BAB56B617F9C6C2D63A6B704BEF59B".data(
     using: .utf8
   )!
+  public static let testConditionValue = "condition".data(using: .utf8)!
 }

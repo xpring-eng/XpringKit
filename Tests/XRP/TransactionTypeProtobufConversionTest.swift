@@ -303,4 +303,63 @@ final class TransactionTypeProtobufConversionTests: XCTestCase {
     // THEN the result is nil.
     XCTAssertNil(xrpEscrowCancel)
   }
+
+  // MARK: - Org_Xrpl_Rpc_V1_EscrowCreate
+
+  func testConvertEscrowCreateAllFields() {
+    // GIVEN an EscrowCreate protocol buffer with all fields set.
+    let escrowCreate = Org_Xrpl_Rpc_V1_EscrowCreate.testEscrowCreateAllFields
+
+    // WHEN the protocol buffer is converted to a native Swift type.
+    let xrpEscrowCreate = XRPEscrowCreate(escrowCreate: escrowCreate, xrplNetwork: XRPLNetwork.test)
+
+    // THEN the EscrowCreate converted as expected.
+    let expectedXAddress = Utils.encode(
+      classicAddress: escrowCreate.destination.value.address,
+      tag: escrowCreate.destinationTag.value,
+      isTest: true
+    )
+    XCTAssertEqual(
+      xrpEscrowCreate?.amount,
+      XRPCurrencyAmount(currencyAmount: escrowCreate.amount.value)
+    )
+    XCTAssertEqual(xrpEscrowCreate?.destinationXAddress, expectedXAddress)
+    XCTAssertEqual(xrpEscrowCreate?.cancelAfter, escrowCreate.cancelAfter.value)
+    XCTAssertEqual(xrpEscrowCreate?.finishAfter, escrowCreate.finishAfter.value)
+    XCTAssertEqual(xrpEscrowCreate?.condition, String(decoding: escrowCreate.condition.value, as: UTF8.self))
+  }
+
+  func testConvertEscrowCreateMandatoryFields() {
+    // GIVEN an EscrowCreate protocol buffer with only mandatory fields set.
+    let escrowCreate = Org_Xrpl_Rpc_V1_EscrowCreate.testEscrowCreateMandatoryFields
+
+    // WHEN the protocol buffer is converted to a native Swift type.
+    let xrpEscrowCreate = XRPEscrowCreate(escrowCreate: escrowCreate, xrplNetwork: XRPLNetwork.test)
+
+    // THEN the EscrowCreate converted as expected.
+    let expectedXAddress = Utils.encode(
+      classicAddress: escrowCreate.destination.value.address,
+      tag: escrowCreate.destinationTag.value,
+      isTest: true
+    )
+    XCTAssertEqual(
+      xrpEscrowCreate?.amount,
+      XRPCurrencyAmount(currencyAmount: escrowCreate.amount.value)
+    )
+    XCTAssertEqual(xrpEscrowCreate?.destinationXAddress, expectedXAddress)
+    XCTAssertNil(xrpEscrowCreate?.cancelAfter)
+    XCTAssertNil(xrpEscrowCreate?.finishAfter)
+    XCTAssertNil(xrpEscrowCreate?.condition)
+  }
+
+  func testConvertEscrowCreateMissingDestination() {
+    // GIVEN an EscrowCreate protocol buffer that's missing a mandatory field.
+    let escrowCreate = Org_Xrpl_Rpc_V1_EscrowCreate.testEscrowCreateMissingDestination
+
+    // WHEN the protocol buffer is converted to a native Swift type.
+    let xrpEscrowCreate = XRPEscrowCreate(escrowCreate: escrowCreate, xrplNetwork: XRPLNetwork.test)
+
+    // THEN the result is nil.
+    XCTAssertNil(xrpEscrowCreate)
+  }
 }

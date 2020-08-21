@@ -34,7 +34,7 @@ internal extension XRPEscrowCreate {
     } else {
       return nil
     }
-    
+
     self.cancelAfter = escrowCreate.hasCancelAfter ? escrowCreate.cancelAfter.value : nil
     self.finishAfter = escrowCreate.hasFinishAfter ? escrowCreate.finishAfter.value : nil
     self.condition = escrowCreate.hasCondition
