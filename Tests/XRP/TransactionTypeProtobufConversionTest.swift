@@ -84,4 +84,31 @@ final class TransactionTypeProtobufConversionTests: XCTestCase {
     // THEN the result is nil.
     XCTAssertNil(xrpAccountDelete)
   }
+
+  // MARK: - Org_Xrpl_Rpc_V1_CheckCancel
+
+  func testConvertCheckCancelAllFields() {
+    // GIVEN a CheckCancel protocol buffer.
+    let checkCancel = Org_Xrpl_Rpc_V1_CheckCancel.testCheckCancelAllFields
+
+    // WHEN the protocol buffer is converted to a native Swift type.
+    let xrpCheckCancel = XRPCheckCancel(checkCancel: checkCancel)
+
+    // THEN the CheckCancel converted as expected.
+    XCTAssertEqual(
+      xrpCheckCancel?.checkId,
+      String(data: checkCancel.checkID.value, encoding: .utf8)
+    )
+  }
+
+  func testConvertCheckCancelMissingCheckId() {
+    // GIVEN a CheckCancel protocol buffer without a checkId.
+    let checkCancel = Org_Xrpl_Rpc_V1_CheckCancel.testCheckCancelMissingCheckId
+
+    // WHEN the protocol buffer is converted to a native Swift type.
+    let xrpCheckCancel = XRPCheckCancel(checkCancel: checkCancel)
+
+    // THEN the result is nil.
+    XCTAssertNil(xrpCheckCancel)
+  }
 }
