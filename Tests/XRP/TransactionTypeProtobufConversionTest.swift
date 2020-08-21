@@ -362,4 +362,72 @@ final class TransactionTypeProtobufConversionTests: XCTestCase {
     // THEN the result is nil.
     XCTAssertNil(xrpEscrowCreate)
   }
+
+  // MARK: - Org_Xrpl_Rpc_V1_EscrowFinish
+
+  func testConvertEscrowFinishAllFields() {
+    // GIVEN an EscrowFinish protocol buffer with all fields set.
+    let escrowFinish = Org_Xrpl_Rpc_V1_EscrowFinish.testEscrowFinishAllFields
+
+    // WHEN the protocol buffer is converted to a native Swift type.
+    let xrpEscrowFinish = XRPEscrowFinish(
+      escrowFinish: escrowFinish,
+      xrplNetwork: XRPLNetwork.test
+    )
+
+    // THEN the EscrowFinish converted as expected.
+    let expectedXAddress = Utils.encode(
+      classicAddress: escrowFinish.owner.value.address,
+      isTest: true
+    )
+
+    XCTAssertEqual(xrpEscrowFinish?.ownerXAddress, expectedXAddress)
+    XCTAssertEqual(xrpEscrowFinish?.offerSequence, escrowFinish.offerSequence.value)
+
+    XCTAssertEqual(
+      xrpEscrowFinish?.condition,
+      String(decoding: escrowFinish.condition.value, as: UTF8.self)
+    )
+    XCTAssertEqual(
+      xrpEscrowFinish?.fulfillment,
+      String(decoding: escrowFinish.fulfillment.value, as: UTF8.self)
+    )
+  }
+
+  func testConvertEscrowFinishMandatoryFields() {
+    // GIVEN an EscrowFinish protocol buffer with all fields set.
+    let escrowFinish = Org_Xrpl_Rpc_V1_EscrowFinish.testEscrowFinishMandatoryFields
+
+    // WHEN the protocol buffer is converted to a native Swift type.
+    let xrpEscrowFinish = XRPEscrowFinish(
+      escrowFinish: escrowFinish,
+      xrplNetwork: XRPLNetwork.test
+    )
+
+    // THEN the EscrowFinish converted as expected.
+    let expectedXAddress = Utils.encode(
+      classicAddress: escrowFinish.owner.value.address,
+      isTest: true
+    )
+
+    XCTAssertEqual(xrpEscrowFinish?.ownerXAddress, expectedXAddress)
+    XCTAssertEqual(xrpEscrowFinish?.offerSequence, escrowFinish.offerSequence.value)
+
+    XCTAssertNil(xrpEscrowFinish?.condition)
+    XCTAssertNil(xrpEscrowFinish?.fulfillment)
+  }
+
+  func testConvertEscrowFinishMissingOwner() {
+    // GIVEN an EscrowFinish protocol buffer with all fields set.
+    let escrowFinish = Org_Xrpl_Rpc_V1_EscrowFinish.testEscrowFinishMissingOwner
+
+    // WHEN the protocol buffer is converted to a native Swift type.
+    let xrpEscrowFinish = XRPEscrowFinish(
+      escrowFinish: escrowFinish,
+      xrplNetwork: XRPLNetwork.test
+    )
+
+    // THEN the result is nil.
+    XCTAssertNil(xrpEscrowFinish)
+  }
 }

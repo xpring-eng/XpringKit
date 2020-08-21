@@ -22,17 +22,17 @@ internal extension XRPEscrowFinish {
     } else {
       return nil
     }
-    
+
     if escrowFinish.hasOfferSequence {
       self.offerSequence = escrowFinish.offerSequence.value
     } else {
       return nil
     }
-    
+
     self.condition = escrowFinish.hasCondition
       ? String(decoding: escrowFinish.condition.value, as: UTF8.self)
       : nil
-    
+
     self.fulfillment = escrowFinish.hasFulfillment
       ? String(decoding: escrowFinish.fulfillment.value, as: UTF8.self)
       : nil

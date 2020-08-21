@@ -13,4 +13,5 @@ extension Data {
     using: .utf8
   )!
   public static let testConditionValue = "condition".data(using: .utf8)!
+  public static let testFulfillmentValue = "A0028000".data(using: .utf8)!
 }
