@@ -15,6 +15,7 @@
 		026C1D170BED15A3218D179C /* ResolvePayID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C228BF8DBCE5EB7989F5D9 /* ResolvePayID.swift */; };
 		02FFA28A80B08505F42BA007 /* XpringClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 161B7F046E7CC2194DC644CE /* XpringClient.swift */; };
 		03CF0E5F10D2D4C4E69A09E3 /* Org_Interledger_Stream_Proto_SendPaymentResponse+Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = F068FCCFDE06480E7873D452 /* Org_Interledger_Stream_Proto_SendPaymentResponse+Test.swift */; };
+		03D2C7234CFADD6F1AC18D5F /* XRPAccountDelete.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F2747DF42D0D47BE9DECCA0 /* XRPAccountDelete.swift */; };
 		0505C7ACCEEB9E56FB3E8F56 /* common.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = F03A988086B5CF2A94060588 /* common.pb.swift */; };
 		05718831D54CA98A8B38A913 /* get_account_request.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862E4DD338057756005EBC87 /* get_account_request.pb.swift */; };
 		064E5E9B9059EBCCDFDA0D99 /* send_payment_response.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFDFB8650F93E23E8309FA86 /* send_payment_response.pb.swift */; };
@@ -108,6 +109,7 @@
 		3B2A80AB60DDE58CFAA4ADF0 /* DefaultXRPClientTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D0ACB8C603AC86CAF32923B /* DefaultXRPClientTest.swift */; };
 		3B67570DC4DC7CEDF3094DAD /* XRPTransaction+Org_Xrpl_Rpc_V1_Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873AD6590979FDB99E3F6E51 /* XRPTransaction+Org_Xrpl_Rpc_V1_Transaction.swift */; };
 		3C022EE65E26DAC4AA2D16B7 /* balance_service.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06E3645C4D25B6E2E62D55B7 /* balance_service.grpc.swift */; };
+		3CDF77F7609ED88A65B81AC1 /* XRPAccountDelete+Org_Xrpl_Rpc_V1_AccountDelete.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72C8D93C2E9C4C73FB73E213 /* XRPAccountDelete+Org_Xrpl_Rpc_V1_AccountDelete.swift */; };
 		3DDE42F8020564340798527E /* JSValue+JavaScriptWalletGenerationResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B9C08356530894A338AB09B /* JSValue+JavaScriptWalletGenerationResult.swift */; };
 		3E049690E598F17EFD247C6C /* IlpClientDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56259EB063F354CA78095B0A /* IlpClientDecorator.swift */; };
 		3F42AEDB2FF1E3713F9BA16E /* XRPLedgerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE85810A964EB1307F4CB219 /* XRPLedgerError.swift */; };
@@ -194,6 +196,7 @@
 		698A28EE00473E0C1C4444B0 /* IlpNetworkBalanceClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334F52A4395C8AC41032C3F1 /* IlpNetworkBalanceClient.swift */; };
 		69CF7DCBEAAD331A6503FC70 /* PostPathInvoice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 481EA1F3826F028BE4CD3269 /* PostPathInvoice.swift */; };
 		6A2FF3960513FB5FCF7BFE5C /* PayIDIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCFBCFB507A1F64489C83C96 /* PayIDIntegrationTests.swift */; };
+		6A6D7174968E7C07461F355F /* XRPAccountDelete.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F2747DF42D0D47BE9DECCA0 /* XRPAccountDelete.swift */; };
 		6ACDA00F31CE3225A8318749 /* ProtocolBufferConversionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE651C903053F4C1078671EF /* ProtocolBufferConversionTests.swift */; };
 		6B2E96FBDEA6B49A6B212598 /* PaymentResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D1416C0788AA834D2EA7CD /* PaymentResult.swift */; };
 		6D311F4695A8AFCE6BF78526 /* BigInt.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A3E837E32019F19EDE7F76CC /* BigInt.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -225,6 +228,7 @@
 		801073442732409311803CF7 /* Org_Xrpl_Rpc_V1_GetAccountTransactionHistoryResponse+Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = A960004158EBD86F387EF44C /* Org_Xrpl_Rpc_V1_GetAccountTransactionHistoryResponse+Test.swift */; };
 		81696621C0B84D6070610A93 /* SwiftProtobuf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E488ABD93CCADA4769887E2 /* SwiftProtobuf.framework */; };
 		818EDC48AA3C70A615099A0C /* get_fee.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAFFCD0E594DA22514DEC01 /* get_fee.pb.swift */; };
+		836A796C5422D9389A434D88 /* Org_Xrpl_Rpc_V1_AccountDelete+Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5258C6AB2F1552C7D9CF93B8 /* Org_Xrpl_Rpc_V1_AccountDelete+Test.swift */; };
 		857D9CDEACB8D8A6EEBE0A8E /* Org_Interledger_Stream_Proto_GetBalanceResponse+Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59841301C850376F77AA7470 /* Org_Interledger_Stream_Proto_GetBalanceResponse+Test.swift */; };
 		85C917BFAAD1E8C3B93CF2CB /* ProtocolBufferConversionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE651C903053F4C1078671EF /* ProtocolBufferConversionTests.swift */; };
 		864BF8D9C529D8E26D6CB424 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C30A59A92292C3FD27F32B8 /* Utils.swift */; };
@@ -320,6 +324,7 @@
 		B82677FE5588B6FEF4C51449 /* ledger_objects.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2D27DE0D1F7A7A038E0B68 /* ledger_objects.pb.swift */; };
 		B84DB8DD7CC2A3ED5F7FED74 /* PayIDClientTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB3D86D5D04AF8CF5AC9FA63 /* PayIDClientTest.swift */; };
 		B99A3D964E44FA88511F4596 /* PaymentPointer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5394D193AE3E85D0BF835C30 /* PaymentPointer.swift */; };
+		B99DEB164875938D868BD61E /* Org_Xrpl_Rpc_V1_AccountDelete+Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5258C6AB2F1552C7D9CF93B8 /* Org_Xrpl_Rpc_V1_AccountDelete+Test.swift */; };
 		BA20CFF2E7CA4C4A46E9E9CF /* PayIDError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BEAB6B3FEB64170C01A783E /* PayIDError.swift */; };
 		BB1C256AAFFF973BAC4C50B0 /* XRPTransaction+Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA4D48A1E4D5EAF490D729F /* XRPTransaction+Test.swift */; };
 		BB7F2FBF9503319AD3D9120F /* SwiftGRPC.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 58A74192BD297BC4E78F9B95 /* SwiftGRPC.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -410,6 +415,7 @@
 		EF4566B752ABFA56E75A18CF /* BigInt.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EA714A0B484B0B0CB6D39B77 /* BigInt.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		EFCB119388225280AABFD96E /* XRPPathElement+Org_Xrpl_Rpc_V1_Payment.PathElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0739B8545F537741E2221EF4 /* XRPPathElement+Org_Xrpl_Rpc_V1_Payment.PathElement.swift */; };
 		F07E925E8555752497C97FAC /* TransactionHash.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9424A41D18492198557AE1 /* TransactionHash.swift */; };
+		F26849C0411336A3B42816FD /* XRPAccountDelete+Org_Xrpl_Rpc_V1_AccountDelete.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72C8D93C2E9C4C73FB73E213 /* XRPAccountDelete+Org_Xrpl_Rpc_V1_AccountDelete.swift */; };
 		F2F99F745A88C8AF29BEDF98 /* IlpClientDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56259EB063F354CA78095B0A /* IlpClientDecorator.swift */; };
 		F3875C393B9979390424784D /* meta.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB022AF22A0CFE65BE15CD66 /* meta.pb.swift */; };
 		F38F776C3B017933CC87745E /* ledger.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231F83DBB326AC016CE0C48E /* ledger.pb.swift */; };
@@ -559,6 +565,7 @@
 		4D8CA96E5AC5253D359755F4 /* Rpc_V1_XRPLedgerAPIServiceServiceClient+NetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Rpc_V1_XRPLedgerAPIServiceServiceClient+NetworkClient.swift"; sourceTree = "<group>"; };
 		4F4BF74236C57B57C333850F /* JavaScriptUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JavaScriptUtils.swift; sourceTree = "<group>"; };
 		4FF16FB3501F6CC396992442 /* TransactionStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionStatus.swift; sourceTree = "<group>"; };
+		5258C6AB2F1552C7D9CF93B8 /* Org_Xrpl_Rpc_V1_AccountDelete+Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Org_Xrpl_Rpc_V1_AccountDelete+Test.swift"; sourceTree = "<group>"; };
 		53275FFD536E0D7A61A2C1BC /* XRPPayment+Org_Xrpl_Rpc_V1_Payment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XRPPayment+Org_Xrpl_Rpc_V1_Payment.swift"; sourceTree = "<group>"; };
 		5394D193AE3E85D0BF835C30 /* PaymentPointer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentPointer.swift; sourceTree = "<group>"; };
 		548039C8EC4A45FE256937A2 /* TransactionTypeProtobufConversionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionTypeProtobufConversionTest.swift; sourceTree = "<group>"; };
@@ -582,10 +589,12 @@
 		6E04C7C44AFFDD411D0BC7E6 /* SignatureWrapperInvoice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignatureWrapperInvoice.swift; sourceTree = "<group>"; };
 		6E3DD7F7849850E454579FAB /* Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hex.swift; sourceTree = "<group>"; };
 		6EAEDAA921168010A9EBDB48 /* PaymentPointer+Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PaymentPointer+Test.swift"; sourceTree = "<group>"; };
+		6F2747DF42D0D47BE9DECCA0 /* XRPAccountDelete.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XRPAccountDelete.swift; sourceTree = "<group>"; };
 		6F8C75871DC366FE38882FA1 /* FakeIlpBalanceNetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeIlpBalanceNetworkClient.swift; sourceTree = "<group>"; };
 		6FD55DF8B130C66FC505E26F /* get_account_transaction_history.pb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = get_account_transaction_history.pb.swift; sourceTree = "<group>"; };
 		716EC2AEC9B0EED54D53DE98 /* JSValue+JavaScriptWallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JSValue+JavaScriptWallet.swift"; sourceTree = "<group>"; };
 		725F238844F5C4FE29FFEAE2 /* Rpc_V1_GetFeeResponse+Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Rpc_V1_GetFeeResponse+Test.swift"; sourceTree = "<group>"; };
+		72C8D93C2E9C4C73FB73E213 /* XRPAccountDelete+Org_Xrpl_Rpc_V1_AccountDelete.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XRPAccountDelete+Org_Xrpl_Rpc_V1_AccountDelete.swift"; sourceTree = "<group>"; };
 		735068C7A64DC6AF7A54259E /* XRPPayment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XRPPayment.swift; sourceTree = "<group>"; };
 		76CFB08E7F3C0EECF55DB9A5 /* PaymentResult+Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PaymentResult+Test.swift"; sourceTree = "<group>"; };
 		7A6B72DBA5D33D9087C6BB48 /* amount.pb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = amount.pb.swift; sourceTree = "<group>"; };
@@ -1070,6 +1079,8 @@
 				03A3DAAABA9DD67A41019E5F /* PaymentFlag.swift */,
 				BA2E4F73B1E7C30531C927CA /* SendXRPDetails.swift */,
 				6643CFE7C2B5B40B67701230 /* TransactionResult.swift */,
+				6F2747DF42D0D47BE9DECCA0 /* XRPAccountDelete.swift */,
+				72C8D93C2E9C4C73FB73E213 /* XRPAccountDelete+Org_Xrpl_Rpc_V1_AccountDelete.swift */,
 				7C4999525E7F38DFF75DB00F /* XRPAccountSet.swift */,
 				1DCD2F4DD6196A994F0B6AAB /* XRPAccountSet+Org_Xrpl_Rpc_V1_AccountSet.swift */,
 				C1E60E57E0D6A0FF8BBFC144 /* XRPCurrency.swift */,
@@ -1140,6 +1151,7 @@
 		B8869DA913AEDFA04B46385C /* TransactionTypeTestProtos */ = {
 			isa = PBXGroup;
 			children = (
+				5258C6AB2F1552C7D9CF93B8 /* Org_Xrpl_Rpc_V1_AccountDelete+Test.swift */,
 				F314E4015173B942F5CF7DCD /* Org_Xrpl_Rpc_V1_AccountSet+Test.swift */,
 			);
 			path = TransactionTypeTestProtos;
@@ -1566,6 +1578,8 @@
 				5A18C0EBC6D7D9A38F59B79B /* Value.swift in Sources */,
 				AE00E22FF302A3966F0A0AE5 /* Wallet.swift in Sources */,
 				BB8579B208B242DEAD1134F9 /* WalletGenerationResult.swift in Sources */,
+				F26849C0411336A3B42816FD /* XRPAccountDelete+Org_Xrpl_Rpc_V1_AccountDelete.swift in Sources */,
+				03D2C7234CFADD6F1AC18D5F /* XRPAccountDelete.swift in Sources */,
 				62D231E1C293D190C751C638 /* XRPAccountSet+Org_Xrpl_Rpc_V1_AccountSet.swift in Sources */,
 				44117512B896274F43C0A904 /* XRPAccountSet.swift in Sources */,
 				55A865A1BF7C94359CC85F71 /* XRPClient.swift in Sources */,
@@ -1656,6 +1670,7 @@
 				248865D43233ABFF97400C47 /* MemoField+Test.swift in Sources */,
 				2B966569AD0068F117964112 /* Org_Interledger_Stream_Proto_GetBalanceResponse+Test.swift in Sources */,
 				FEE4682CC59B57CB514CBE5B /* Org_Interledger_Stream_Proto_SendPaymentResponse+Test.swift in Sources */,
+				836A796C5422D9389A434D88 /* Org_Xrpl_Rpc_V1_AccountDelete+Test.swift in Sources */,
 				AD61D5A4A6C82AB4AC194AD0 /* Org_Xrpl_Rpc_V1_AccountSet+Test.swift in Sources */,
 				801073442732409311803CF7 /* Org_Xrpl_Rpc_V1_GetAccountTransactionHistoryResponse+Test.swift in Sources */,
 				BE0808BE5B0DDCCE9FF6A41E /* Org_Xrpl_Rpc_V1_GetTransactionResponse+Test.swift in Sources */,
@@ -1720,6 +1735,7 @@
 				40E4362BFA9088C5CCD9B579 /* MemoField+Test.swift in Sources */,
 				857D9CDEACB8D8A6EEBE0A8E /* Org_Interledger_Stream_Proto_GetBalanceResponse+Test.swift in Sources */,
 				03CF0E5F10D2D4C4E69A09E3 /* Org_Interledger_Stream_Proto_SendPaymentResponse+Test.swift in Sources */,
+				B99DEB164875938D868BD61E /* Org_Xrpl_Rpc_V1_AccountDelete+Test.swift in Sources */,
 				191F12178457A2318A18CE7F /* Org_Xrpl_Rpc_V1_AccountSet+Test.swift in Sources */,
 				2AF9EAB5DA6E0392EE46D1A7 /* Org_Xrpl_Rpc_V1_GetAccountTransactionHistoryResponse+Test.swift in Sources */,
 				F3FCB85078C703F1105CE565 /* Org_Xrpl_Rpc_V1_GetTransactionResponse+Test.swift in Sources */,
@@ -1840,6 +1856,8 @@
 				250D209F8CCBCC213C8173B2 /* Value.swift in Sources */,
 				9D219B7A4C3D863B09B10125 /* Wallet.swift in Sources */,
 				A29C596F179AFA58110A32AD /* WalletGenerationResult.swift in Sources */,
+				3CDF77F7609ED88A65B81AC1 /* XRPAccountDelete+Org_Xrpl_Rpc_V1_AccountDelete.swift in Sources */,
+				6A6D7174968E7C07461F355F /* XRPAccountDelete.swift in Sources */,
 				F521DF53D1DF00641E71323B /* XRPAccountSet+Org_Xrpl_Rpc_V1_AccountSet.swift in Sources */,
 				4751B385C955CEFD0252138E /* XRPAccountSet.swift in Sources */,
 				0FEA27C970EE6D5EF7120EA9 /* XRPClient.swift in Sources */,
