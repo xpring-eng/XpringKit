@@ -13,20 +13,20 @@ internal extension XRPOfferCreate {
   ///     - offerCreate: an Org_Xrpl_Rpc_V1_OfferCreate (protobuf object) whose field values will be used to
   ///             construct an XRPOfferCreate
   /// - Returns: an XRPOfferCreate with its fields set via the analogous protobuf fields.
-  init?(offerCreate: Org_Xrpl_Rpc_V1_OfferCreate, xrplNetwork: XRPLNetwork) {
-    
+  init?(offerCreate: Org_Xrpl_Rpc_V1_OfferCreate) {
+
     if let takerGets = XRPCurrencyAmount(currencyAmount: offerCreate.takerGets.value) {
       self.takerGets = takerGets
     } else {
       return nil
     }
-    
+
     if let takerPays = XRPCurrencyAmount(currencyAmount: offerCreate.takerPays.value) {
       self.takerPays = takerPays
     } else {
       return nil
     }
-    
+
     self.expiration = offerCreate.hasExpiration ? offerCreate.expiration.value : nil
     self.offerSequence = offerCreate.hasOfferSequence
       ? offerCreate.offerSequence.value

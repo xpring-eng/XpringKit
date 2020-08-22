@@ -9,16 +9,16 @@ import Foundation
 ///
 /// - SeeAlso: https://xrpl.org/offercreate.html
 public struct XRPOfferCreate: Equatable {
-  
+
   /// The amount and type of currency being provided by the offer creator.
   public let takerGets: XRPCurrencyAmount
-  
+
   /// The amount and type of currency being requested by the offer creator.
   public let takerPays: XRPCurrencyAmount
-  
+
   /// (Optional) Time after which the offer is no longer active, in seconds since the Ripple Epoch.
   public let expiration: UInt32?
-  
+
   /// (Optional) An offer to delete first, specified in the same way as OfferCancel.
   public let offerSequence: UInt32?
 }
