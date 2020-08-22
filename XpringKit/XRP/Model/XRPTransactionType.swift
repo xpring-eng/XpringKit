@@ -13,5 +13,6 @@ public enum XRPTransactionType {
   case escrowCancel
   case escrowCreate
   case offerCancel
+  case offerCreate
   case payment
 }
