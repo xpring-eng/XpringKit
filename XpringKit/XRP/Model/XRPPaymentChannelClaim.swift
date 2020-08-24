@@ -2,7 +2,8 @@ import Foundation
 
 /// Represents a PaymentChannelClaim transaction on the XRP Ledger.
 ///
-/// A PaymentChannelClaim transaction claims XRP from a payment channel, adjusts the payment channel's expiration, or both.
+/// A PaymentChannelClaim transaction claims XRP from a payment channel,
+/// adjusts the payment channel's expiration, or both.
 /// - SeeAlso: https://xrpl.org/paymentchannelclaim.html
 public struct XRPPaymentChannelClaim: Equatable {
 
