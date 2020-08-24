@@ -1,7 +1,7 @@
 import Foundation
 
-/// Conforms to XRPPaymentChannelClaim struct while providing an initializer that can construct an XRPPaymentChannelClaim
-/// from an Org_Xrpl_Rpc_V1_PaymentChannelClaim
+/// Conforms to XRPPaymentChannelClaim struct while providing an initializer that can construct
+/// an XRPPaymentChannelClaim from an Org_Xrpl_Rpc_V1_PaymentChannelClaim
 internal extension XRPPaymentChannelClaim {
 
   /// Constructs an XRPPaymentChannelClaim from an Org_Xrpl_Rpc_V1_PaymentChannelClaim
@@ -10,8 +10,8 @@ internal extension XRPPaymentChannelClaim {
   /// src/ripple/proto/org/xrpl/rpc/v1/transaction.proto#L258)
   ///
   /// - Parameters:
-  ///     - paymentChannelClaim: an Org_Xrpl_Rpc_V1_PaymentChannelClaim (protobuf object) whose field values will be used to
-  ///     construct an XRPPaymentChannelClaim
+  ///     - paymentChannelClaim: an Org_Xrpl_Rpc_V1_PaymentChannelClaim (protobuf object) whose
+  ///                            field values will be used to construct an XRPPaymentChannelClaim
   /// - Returns: an XRPPaymentChannelClaim with its fields set via the analogous protobuf fields.
   init?(paymentChannelClaim: Org_Xrpl_Rpc_V1_PaymentChannelClaim) {
     if paymentChannelClaim.hasChannel {
