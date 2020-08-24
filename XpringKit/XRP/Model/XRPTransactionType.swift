@@ -10,5 +10,6 @@ public enum XRPTransactionType {
   case checkCash
   case checkCreate
   case depositPreauth
+  case escrowCancel
   case payment
 }

@@ -7,4 +7,5 @@ extension UInt32 {
   public static let testTickSizeValue: UInt32 = 7
   public static let testDestinationTag: UInt32 = 2
   public static let testExpirationValue: UInt32 = 570_113_521
+  public static let testOfferSequenceValue: UInt32 = 23
 }

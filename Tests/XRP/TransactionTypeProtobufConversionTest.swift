@@ -268,4 +268,39 @@ final class TransactionTypeProtobufConversionTests: XCTestCase {
     // THEN the DepositPreauth converts to nil.
     XCTAssertNil(xrpDepositPreauth)
   }
+
+  // MARK: - Org_Xrpl_Rpc_V1_EscrowCancel
+
+  func testConvertEscrowCancelAllFields() {
+    // GIVEN an EscrowCancel protocol buffer with all fields set.
+    let escrowCancel = Org_Xrpl_Rpc_V1_EscrowCancel.testEscrowCancelAllFields
+
+    // WHEN the protocol buffer is converted to a native Swift type.
+    let xrpEscrowCancel = XRPEscrowCancel(
+      escrowCancel: escrowCancel,
+      xrplNetwork: XRPLNetwork.test
+    )
+
+    // THEN the EscrowCancel converted as expected.
+    let expectedXAddress = Utils.encode(
+      classicAddress: escrowCancel.owner.value.address,
+      isTest: true
+    )
+    XCTAssertEqual(xrpEscrowCancel?.ownerXAddress, expectedXAddress)
+    XCTAssertEqual(xrpEscrowCancel?.offerSequence, escrowCancel.offerSequence.value)
+  }
+
+  func testConvertEscrowCancelMissingOwner() {
+    // GIVEN an EscrowCancel protocol buffer missing required fields.
+    let escrowCancel = Org_Xrpl_Rpc_V1_EscrowCancel.testEscrowCancelMissingOwner
+
+    // WHEN the protocol buffer is converted to a native Swift type.
+    let xrpEscrowCancel = XRPEscrowCancel(
+      escrowCancel: escrowCancel,
+      xrplNetwork: XRPLNetwork.test
+    )
+
+    // THEN the result is nil.
+    XCTAssertNil(xrpEscrowCancel)
+  }
 }
