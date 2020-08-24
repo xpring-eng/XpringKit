@@ -156,4 +156,64 @@ final class TransactionTypeProtobufConversionTests: XCTestCase {
     // THEN the result is nil.
     XCTAssertNil(xrpCheckCash)
   }
+
+  // MARK: - Org_Xrpl_Rpc_V1_CheckCreate
+
+  func testConvertCheckCreateAllfields() {
+    // GIVEN a CheckCreate protocol buffer with all fields set.
+    let checkCreate = Org_Xrpl_Rpc_V1_CheckCreate.testCheckCreateAllFields
+
+    // WHEN the protocol buffer is converted to a native Swift type.
+    let xrpCheckCreate = XRPCheckCreate(checkCreate: checkCreate, xrplNetwork: XRPLNetwork.test)
+
+    // THEN the CheckCreate converted as expected.
+    let expectedXAddress = Utils.encode(
+      classicAddress: checkCreate.destination.value.address,
+      tag: checkCreate.destinationTag.value,
+      isTest: true
+    )
+    XCTAssertEqual(xrpCheckCreate?.destinationXAddress, expectedXAddress)
+    XCTAssertEqual(
+      xrpCheckCreate?.sendMax,
+      XRPCurrencyAmount(currencyAmount: checkCreate.sendMax.value)
+    )
+    XCTAssertEqual(xrpCheckCreate?.expiration, checkCreate.expiration.value)
+    XCTAssertEqual(
+      xrpCheckCreate?.invoiceId,
+      String(data: checkCreate.invoiceID.value, encoding: .utf8)
+    )
+  }
+
+  func testConvertCheckCreateMandatoryFields() {
+    // GIVEN a CheckCreate protocol buffer with only mandatory fields set.
+    let checkCreate = Org_Xrpl_Rpc_V1_CheckCreate.testCheckCreateMandatoryFields
+
+    // WHEN the protocol buffer is converted to a native Swift type.
+    let xrpCheckCreate = XRPCheckCreate(checkCreate: checkCreate, xrplNetwork: XRPLNetwork.test)
+
+    // THEN the CheckCreate converted as expected.
+    let expectedXAddress = Utils.encode(
+      classicAddress: checkCreate.destination.value.address,
+      tag: checkCreate.destinationTag.value,
+      isTest: true
+    )
+    XCTAssertEqual(xrpCheckCreate?.destinationXAddress, expectedXAddress)
+    XCTAssertEqual(
+      xrpCheckCreate?.sendMax,
+      XRPCurrencyAmount(currencyAmount: checkCreate.sendMax.value)
+    )
+    XCTAssertNil(xrpCheckCreate?.expiration)
+    XCTAssertNil(xrpCheckCreate?.invoiceId)
+  }
+
+  func testConvertCheckCreateMissingDestination() {
+    // GIVEN an invalid CheckCreate protocol buffer missing the destination field.
+    let checkCreate = Org_Xrpl_Rpc_V1_CheckCreate.testCheckCreateMissingDestination
+
+    // WHEN the protocol buffer is converted to a native Swift type.
+    let xrpCheckCreate = XRPCheckCreate(checkCreate: checkCreate, xrplNetwork: XRPLNetwork.test)
+
+    // THEN the result is nil.
+    XCTAssertNil(xrpCheckCreate)
+  }
 }
