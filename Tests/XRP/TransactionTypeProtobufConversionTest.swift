@@ -568,4 +568,93 @@ final class TransactionTypeProtobufConversionTests: XCTestCase {
     // THEN the result is nil.
     XCTAssertNil(xrpPaymentChannelClaim)
   }
+
+  // MARK: - Org_Xrpl_Rpc_V1_PaymentChannelCreate
+
+  func testConvertPaymentChannelCreateAllFields() {
+    // GIVEN a PaymentChannelCreate protocol buffer with all fields set.
+    let paymentChannelCreate = Org_Xrpl_Rpc_V1_PaymentChannelCreate.testPaymentChannelCreateAllFields
+
+    // WHEN the protocol buffer is converted to a native Swift type.
+    let xrpPaymentChannelCreate = XRPPaymentChannelCreate(
+      paymentChannelCreate: paymentChannelCreate,
+      xrplNetwork: XRPLNetwork.test
+    )
+
+    // THEN the PaymentChannelCreate converted as expected.
+    let expectedXAddress = Utils.encode(
+      classicAddress: paymentChannelCreate.destination.value.address,
+      tag: paymentChannelCreate.destinationTag.value,
+      isTest: true
+    )
+    XCTAssertEqual(
+      xrpPaymentChannelCreate?.amount,
+      XRPCurrencyAmount(currencyAmount: paymentChannelCreate.amount.value)
+    )
+    XCTAssertEqual(
+      xrpPaymentChannelCreate?.destinationXAddress,
+      expectedXAddress
+    )
+    XCTAssertEqual(
+      xrpPaymentChannelCreate?.settleDelay,
+      paymentChannelCreate.settleDelay.value
+    )
+    XCTAssertEqual(
+      xrpPaymentChannelCreate?.publicKey,
+      String(decoding: paymentChannelCreate.publicKey.value, as: UTF8.self)
+    )
+    XCTAssertEqual(
+      xrpPaymentChannelCreate?.cancelAfter,
+      paymentChannelCreate.cancelAfter.value
+    )
+  }
+
+  func testConvertPaymentChannelCreateMandatoryFields() {
+    // GIVEN a PaymentChannelCreate protocol buffer with mandatory fields set.
+    let paymentChannelCreate = Org_Xrpl_Rpc_V1_PaymentChannelCreate.testPaymentChannelCreateMandatoryFields
+
+    // WHEN the protocol buffer is converted to a native Swift type.
+    let xrpPaymentChannelCreate = XRPPaymentChannelCreate(
+      paymentChannelCreate: paymentChannelCreate,
+      xrplNetwork: XRPLNetwork.test
+    )
+
+    // THEN the PaymentChannelCreate converted as expected.
+    let expectedXAddress = Utils.encode(
+      classicAddress: paymentChannelCreate.destination.value.address,
+      tag: paymentChannelCreate.destinationTag.value,
+      isTest: true
+    )
+    XCTAssertEqual(
+      xrpPaymentChannelCreate?.amount,
+      XRPCurrencyAmount(currencyAmount: paymentChannelCreate.amount.value)
+    )
+    XCTAssertEqual(
+      xrpPaymentChannelCreate?.destinationXAddress,
+      expectedXAddress
+    )
+    XCTAssertEqual(
+      xrpPaymentChannelCreate?.settleDelay,
+      paymentChannelCreate.settleDelay.value
+    )
+    XCTAssertEqual(
+      xrpPaymentChannelCreate?.publicKey,
+      String(decoding: paymentChannelCreate.publicKey.value, as: UTF8.self)
+    )
+    XCTAssertNil(xrpPaymentChannelCreate?.cancelAfter)
+  }
+
+  func testConvertPaymentChannelCreateMissingDestination() {
+    // GIVEN a PaymentChannelCreate protocol buffer missing the destination field.
+    let paymentChannelCreate = Org_Xrpl_Rpc_V1_PaymentChannelCreate.testPaymentChannelCreateMissingDestination
+
+    // WHEN the protocol buffer is converted to a native Swift type.
+    let xrpPaymentChannelCreate = XRPPaymentChannelCreate(
+      paymentChannelCreate: paymentChannelCreate,
+      xrplNetwork: XRPLNetwork.test
+    )
+
+    // THEN the result is nil.
+    XCTAssertNil(xrpPaymentChannelCreate)
+  }
 }

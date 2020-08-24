@@ -20,7 +20,7 @@ internal extension XRPPaymentChannelCreate {
     } else {
       return nil
     }
-    
+
     if let destinationXAddress = Utils.encode(
       classicAddress: paymentChannelCreate.destination.value.address,
       tag: paymentChannelCreate.destinationTag.value,
@@ -30,19 +30,19 @@ internal extension XRPPaymentChannelCreate {
     } else {
       return nil
     }
-    
+
     if paymentChannelCreate.hasSettleDelay {
       self.settleDelay = paymentChannelCreate.settleDelay.value
     } else {
       return nil
     }
-    
+
     if paymentChannelCreate.hasPublicKey {
       self.publicKey = String(decoding: paymentChannelCreate.publicKey.value, as: UTF8.self)
     } else {
       return nil
     }
-    
+
     self.cancelAfter = paymentChannelCreate.hasCancelAfter
       ? paymentChannelCreate.cancelAfter.value
       : nil

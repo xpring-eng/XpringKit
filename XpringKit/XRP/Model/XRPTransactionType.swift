@@ -16,4 +16,5 @@ public enum XRPTransactionType {
   case offerCreate
   case payment
   case paymentChannelClaim
+  case paymentChannelCreate
 }
