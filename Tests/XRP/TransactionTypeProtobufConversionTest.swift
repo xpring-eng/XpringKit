@@ -646,7 +646,7 @@ final class TransactionTypeProtobufConversionTests: XCTestCase {
 
   func testConvertPaymentChannelCreateMissingDestination() {
     // GIVEN a PaymentChannelCreate protocol buffer missing the destination field.
-    let paymentChannelCreate = Org_Xrpl_Rpc_V1_PaymentChannelCreate.testPaymentChannelCreateMissingDestination
+    let paymentChannelCreate = Org_Xrpl_Rpc_V1_PaymentChannelCreate.testPaymentChannelCreateMissingDest
 
     // WHEN the protocol buffer is converted to a native Swift type.
     let xrpPaymentChannelCreate = XRPPaymentChannelCreate(

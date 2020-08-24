@@ -41,7 +41,7 @@ extension Org_Xrpl_Rpc_V1_PaymentChannelCreate {
     }
   }
 
-  public static let testPaymentChannelCreateMissingDestination = Org_Xrpl_Rpc_V1_PaymentChannelCreate.with {
+  public static let testPaymentChannelCreateMissingDest = Org_Xrpl_Rpc_V1_PaymentChannelCreate.with {
     $0.amount = Org_Xrpl_Rpc_V1_Amount.with {
       $0.value = .testCurrencyAmountXrpDrops
     }
