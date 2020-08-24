@@ -216,4 +216,56 @@ final class TransactionTypeProtobufConversionTests: XCTestCase {
     // THEN the result is nil.
     XCTAssertNil(xrpCheckCreate)
   }
+
+  // MARK: - Org_Xrpl_Rpc_V1_DepositPreauth
+
+  func testConvertDepositPreauthWithAuthorize() {
+    // GIVEN a DepositPreauth protocol buffer with authorize field set.
+    let depositPreauth = Org_Xrpl_Rpc_V1_DepositPreauth.testDepositPreauthWithAuthorize
+
+    // WHEN the protocol buffer is converted to a native Swift type.
+    let xrpDepositPreauth = XRPDepositPreauth(
+      depositPreauth: depositPreauth,
+      xrplNetwork: XRPLNetwork.test
+    )
+
+    // THEN the DepositPreauth converted as expected.
+    let expectedXAddress = Utils.encode(
+      classicAddress: depositPreauth.authorize.value.address,
+      isTest: true
+    )
+    XCTAssertEqual(xrpDepositPreauth?.authorizeXAddress, expectedXAddress)
+  }
+
+  func testConvertDepositPreauthWithUnauthorize() {
+    // GIVEN a DepositPreauth protocol buffer with unauthorize field set.
+    let depositPreauth = Org_Xrpl_Rpc_V1_DepositPreauth.testDepositPreauthWithUnauthorize
+
+    // WHEN the protocol buffer is converted to a native Swift type.
+    let xrpDepositPreauth = XRPDepositPreauth(
+      depositPreauth: depositPreauth,
+      xrplNetwork: XRPLNetwork.test
+    )
+
+    // THEN the DepositPreauth converted as expected.
+    let expectedXAddress = Utils.encode(
+      classicAddress: depositPreauth.unauthorize.value.address,
+      isTest: true
+    )
+    XCTAssertEqual(xrpDepositPreauth?.unauthorizeXAddress, expectedXAddress)
+  }
+
+  func testConvertDepositPreauthNoFields() {
+    // GIVEN a DepositPreauth protocol buffer with no fields set.
+    let depositPreauth = Org_Xrpl_Rpc_V1_DepositPreauth.testDepositPreauthWithNoFields
+
+    // WHEN the protocol buffer is converted to a native Swift type.
+    let xrpDepositPreauth = XRPDepositPreauth(
+      depositPreauth: depositPreauth,
+      xrplNetwork: XRPLNetwork.test
+    )
+
+    // THEN the DepositPreauth converts to nil.
+    XCTAssertNil(xrpDepositPreauth)
+  }
 }
