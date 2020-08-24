@@ -22,7 +22,7 @@ internal extension XRPPaymentChannelClaim {
     } else {
       return nil
     }
-    
+
     if paymentChannelClaim.hasBalance {
       if let balance = XRPCurrencyAmount(currencyAmount: paymentChannelClaim.balance.value) {
         self.balance = balance
@@ -33,7 +33,7 @@ internal extension XRPPaymentChannelClaim {
     } else {
       self.balance = nil
     }
-    
+
     if paymentChannelClaim.hasAmount {
       if let amount = XRPCurrencyAmount(currencyAmount: paymentChannelClaim.amount.value) {
         self.amount = amount
@@ -44,7 +44,7 @@ internal extension XRPPaymentChannelClaim {
     } else {
       self.amount = nil
     }
-    
+
     self.signature = paymentChannelClaim.hasPaymentChannelSignature
       ? String(decoding: paymentChannelClaim.paymentChannelSignature.value, as: UTF8.self)
       : nil

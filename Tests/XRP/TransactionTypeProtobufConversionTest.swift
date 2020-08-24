@@ -507,4 +507,65 @@ final class TransactionTypeProtobufConversionTests: XCTestCase {
     // THEN the result is nil.
     XCTAssertNil(xrpOfferCreate)
   }
+
+  // MARK: - Org_Xrpl_Rpc_V1_PaymentChannelClaim
+
+  func testPaymentChannelClaimAllFields() {
+    // GIVEN a PaymentChannelClaim protocol buffer with all fields set.
+    let paymentChannelClaim = Org_Xrpl_Rpc_V1_PaymentChannelClaim.testPaymentChannelClaimAllFields
+
+    // WHEN the protocol buffer is converted to a native Swift type.
+    let xrpPaymentChannelClaim = XRPPaymentChannelClaim(paymentChannelClaim: paymentChannelClaim)
+
+    // THEN the PaymentChannelClaim converted as expected.
+    XCTAssertEqual(
+      xrpPaymentChannelClaim?.channel,
+      String(decoding: paymentChannelClaim.channel.value, as: UTF8.self)
+    )
+    XCTAssertEqual(
+      xrpPaymentChannelClaim?.balance,
+      XRPCurrencyAmount(currencyAmount: paymentChannelClaim.balance.value)
+    )
+    XCTAssertEqual(
+      xrpPaymentChannelClaim?.amount,
+      XRPCurrencyAmount(currencyAmount: paymentChannelClaim.amount.value)
+    )
+    XCTAssertEqual(
+      xrpPaymentChannelClaim?.signature,
+      String(decoding: paymentChannelClaim.paymentChannelSignature.value, as: UTF8.self)
+    )
+    XCTAssertEqual(
+      xrpPaymentChannelClaim?.publicKey,
+      String(decoding: paymentChannelClaim.publicKey.value, as: UTF8.self)
+    )
+  }
+
+  func testPaymentChannelClaimMandatoryFields() {
+    // GIVEN a PaymentChannelClaim protocol buffer with only mandatory fields set.
+    let paymentChannelClaim = Org_Xrpl_Rpc_V1_PaymentChannelClaim.testPaymentChannelClaimMandatoryFields
+
+    // WHEN the protocol buffer is converted to a native Swift type.
+    let xrpPaymentChannelClaim = XRPPaymentChannelClaim(paymentChannelClaim: paymentChannelClaim)
+
+    // THEN the PaymentChannelClaim converted as expected.
+    XCTAssertEqual(
+      xrpPaymentChannelClaim?.channel,
+      String(decoding: paymentChannelClaim.channel.value, as: UTF8.self)
+    )
+    XCTAssertNil(xrpPaymentChannelClaim?.balance)
+    XCTAssertNil(xrpPaymentChannelClaim?.amount)
+    XCTAssertNil(xrpPaymentChannelClaim?.signature)
+    XCTAssertNil(xrpPaymentChannelClaim?.publicKey)
+  }
+
+  func testPaymentChannelClaimMissingChannel() {
+    // GIVEN a PaymentChannelClaim protocol buffer missing the channel field.
+    let paymentChannelClaim = Org_Xrpl_Rpc_V1_PaymentChannelClaim.testPaymentChannelClaimMissingChannel
+
+    // WHEN the protocol buffer is converted to a native Swift type.
+    let xrpPaymentChannelClaim = XRPPaymentChannelClaim(paymentChannelClaim: paymentChannelClaim)
+
+    // THEN the result is nil.
+    XCTAssertNil(xrpPaymentChannelClaim)
+  }
 }
