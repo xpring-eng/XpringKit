@@ -7,14 +7,14 @@ import Foundation
 /// (Transactions from other addresses fail with the error tecNO_PERMISSION.)
 /// - SeeAlso: https://xrpl.org/paymentchannelfund.html
 public struct XRPPaymentChannelFund: Equatable {
-  
+
   /// The unique ID of the channel to fund, as a 64-character hexadecimal string.
   public let channel: String
-  
+
   /// Amount of XRP, in drops to add to the channel. To set the expiration for a channel without
   /// adding more XRP, set this to "0".
   public let amount: XRPCurrencyAmount
-  
+
   /// (Optional) New Expiration time to set for the channel, in seconds since the Ripple Epoch.
   /// This must be later than either the current time plus the SettleDelay of the channel,
   /// or the existing Expiration of the channel. After the Expiration time, any transaction

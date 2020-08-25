@@ -657,4 +657,58 @@ final class TransactionTypeProtobufConversionTests: XCTestCase {
     // THEN the result is nil.
     XCTAssertNil(xrpPaymentChannelCreate)
   }
+
+  // MARK: - Org_Xrpl_Rpc_V1_PaymentChannelFund
+
+  func testConvertPaymentChannelFundAllFields() {
+    // GIVEN a PaymentChannelFund protocol buffer with all fields set.
+    let paymentChannelFund = Org_Xrpl_Rpc_V1_PaymentChannelFund.testPaymentChannelFundAllFields
+
+    // WHEN the protocol buffer is converted to a native Swift type.
+    let xrpPaymentChannelFund = XRPPaymentChannelFund(paymentChannelFund: paymentChannelFund)
+
+    // THEN the PaymentChannelFund converted as expected.
+    XCTAssertEqual(
+      xrpPaymentChannelFund?.channel,
+      String(decoding: paymentChannelFund.channel.value, as: UTF8.self)
+    )
+    XCTAssertEqual(
+      xrpPaymentChannelFund?.amount,
+      XRPCurrencyAmount(currencyAmount: paymentChannelFund.amount.value)
+    )
+    XCTAssertEqual(
+      xrpPaymentChannelFund?.expiration,
+      paymentChannelFund.expiration.value
+    )
+  }
+
+  func testConvertPaymentChannelFundMandatoryFields() {
+    // GIVEN a PaymentChannelFund protocol buffer with mandatory fields set.
+    let paymentChannelFund = Org_Xrpl_Rpc_V1_PaymentChannelFund.testPaymentChannelFundMandatoryFields
+
+    // WHEN the protocol buffer is converted to a native Swift type.
+    let xrpPaymentChannelFund = XRPPaymentChannelFund(paymentChannelFund: paymentChannelFund)
+
+    // THEN the PaymentChannelFund converted as expected.
+    XCTAssertEqual(
+      xrpPaymentChannelFund?.channel,
+      String(decoding: paymentChannelFund.channel.value, as: UTF8.self)
+    )
+    XCTAssertEqual(
+      xrpPaymentChannelFund?.amount,
+      XRPCurrencyAmount(currencyAmount: paymentChannelFund.amount.value)
+    )
+    XCTAssertNil(xrpPaymentChannelFund?.expiration)
+  }
+
+  func testConvertPaymentChannelFundMissingFields() {
+    // GIVEN a PaymentChannelFund protocol buffer missing the amount field.
+    let paymentChannelFund = Org_Xrpl_Rpc_V1_PaymentChannelFund.testPaymentChannelFundMissingAmount
+
+    // WHEN the protocol buffer is converted to a native Swift type.
+    let xrpPaymentChannelFund = XRPPaymentChannelFund(paymentChannelFund: paymentChannelFund)
+
+    // THEN the result is nil.
+    XCTAssertNil(xrpPaymentChannelFund)
+  }
 }

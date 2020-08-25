@@ -19,7 +19,7 @@ internal extension XRPPaymentChannelFund {
     } else {
       return nil
     }
-    
+
     if paymentChannelFund.hasAmount {
       if let amount = XRPCurrencyAmount(currencyAmount: paymentChannelFund.amount.value) {
         self.amount = amount
@@ -29,7 +29,7 @@ internal extension XRPPaymentChannelFund {
     } else {
       return nil
     }
-    
+
     self.expiration = paymentChannelFund.hasExpiration
       ? paymentChannelFund.expiration.value
       : nil
