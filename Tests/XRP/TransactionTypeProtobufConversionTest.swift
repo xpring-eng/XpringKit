@@ -735,4 +735,46 @@ final class TransactionTypeProtobufConversionTests: XCTestCase {
     // THEN the SetRegularKey converted as expected.
     XCTAssertNil(xrpSetRegularKey?.regularKey)
   }
+
+  // MARK: - Org_Xrpl_Rpc_V1_SignerListSet
+
+  func testConvertSignerListSetAllFields() {
+    // GIVEN a SetRegularKey protocol buffer with all fields set.
+    let signerListSet = Org_Xrpl_Rpc_V1_SignerListSet.testSignerListSetAllFields
+
+    // WHEN the protocol buffer is converted to a native Swift type.
+    let xrpSignerListSet = XRPSignerListSet(signerListSet: signerListSet)
+
+    // THEN the SignerListSet converted as expected.
+    let expectedSignerEntries = [
+      XRPSignerEntry(signerEntry: .testSignerEntry1),
+      XRPSignerEntry(signerEntry: .testSignerEntry2)
+    ]
+
+    XCTAssertEqual(xrpSignerListSet?.signerQuorum, signerListSet.signerQuorum.value)
+    XCTAssertEqual(xrpSignerListSet?.signerEntries, expectedSignerEntries)
+  }
+
+  func testConvertSignerListSetNoEntries() {
+    // GIVEN a SignerListSet protocol buffer without signer entries.
+    let signerListSet = Org_Xrpl_Rpc_V1_SignerListSet.testSignerListSetNoEntries
+
+    // WHEN the protocol buffer is converted to a native Swift type.
+    let xrpSignerListSet = XRPSignerListSet(signerListSet: signerListSet)
+
+    // THEN the protocol buffer converted as expected.
+    XCTAssertEqual(xrpSignerListSet?.signerQuorum, signerListSet.signerQuorum.value)
+    XCTAssertNil(xrpSignerListSet?.signerEntries)
+  }
+
+  func testConvertSignerListSetMissingQuorum() {
+    // GIVEN a SignerListSet protocol buffer without signerQuorum set.
+    let signerListSet = Org_Xrpl_Rpc_V1_SignerListSet.testSignerListSetMissingQuorum
+
+    // WHEN the protocol buffer is converted to a native Swift type.
+    let xrpSignerListSet = XRPSignerListSet(signerListSet: signerListSet)
+
+    // THEN the result is nil.
+    XCTAssertNil(xrpSignerListSet)
+  }
 }
