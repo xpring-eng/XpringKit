@@ -6,4 +6,5 @@ extension String {
   static let testAssetCode = "XRP"
   static let testDomainValue = "testdomain"
   static let testClassicAddress = "rPEPPER7kfTD9w2To4CQk6UCfuHM9c6GDY"
+  static let testRegularKey = "rAR8rR8sUkBoCZFawhkWzY4Y5YoyuznwD"
 }
