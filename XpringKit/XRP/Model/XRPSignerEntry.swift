@@ -1,4 +1,4 @@
-import XpringKit
+import Foundation
 
 /// Represents a SignerEntry object on the XRP Ledger.
 /// - seeAlso: https://xrpl.org/signerlist.html#signerentry-object
