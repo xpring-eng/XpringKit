@@ -23,9 +23,8 @@ internal extension XRPTrustSet {
     } else {
       return nil
     }
-    
+
     self.qualityIn = trustSet.hasQualityIn ? trustSet.qualityIn.value : nil
     self.qualityOut = trustSet.hasQualityOut ? trustSet.qualityOut.value : nil
   }
 }
-

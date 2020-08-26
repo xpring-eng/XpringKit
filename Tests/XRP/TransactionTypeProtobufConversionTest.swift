@@ -777,4 +777,49 @@ final class TransactionTypeProtobufConversionTests: XCTestCase {
     // THEN the result is nil.
     XCTAssertNil(xrpSignerListSet)
   }
+
+  // MARK: - Org_Xrpl_Rpc_V1_TrustSet
+
+  func testConvertTrustSetAllFields() {
+    // GIVEN a TrustSet protocol buffer with all fields set.
+    let trustSet = Org_Xrpl_Rpc_V1_TrustSet.testTrustSetAllFields
+
+    // WHEN the protocol buffer is converted to a native Swift type.
+    let xrpTrustSet = XRPTrustSet(trustSet: trustSet)
+
+    // THEN the TrustSet converted as expected.
+    XCTAssertEqual(
+      xrpTrustSet?.limitAmount,
+      XRPCurrencyAmount(currencyAmount: trustSet.limitAmount.value)
+    )
+    XCTAssertEqual(xrpTrustSet?.qualityIn, trustSet.qualityIn.value)
+    XCTAssertEqual(xrpTrustSet?.qualityOut, trustSet.qualityOut.value)
+  }
+
+  func testConvertTrustSetMandatoryFields() {
+    // GIVEN a TrustSet protocol buffer with only mandatory fields set.
+    let trustSet = Org_Xrpl_Rpc_V1_TrustSet.testTrustSetMandatoryFields
+
+    // WHEN the protocol buffer is converted to a native Swift type.
+    let xrpTrustSet = XRPTrustSet(trustSet: trustSet)
+
+    // THEN the TrustSet converted as expected.
+    XCTAssertEqual(
+      xrpTrustSet?.limitAmount,
+      XRPCurrencyAmount(currencyAmount: trustSet.limitAmount.value)
+    )
+    XCTAssertNil(xrpTrustSet?.qualityIn)
+    XCTAssertNil(xrpTrustSet?.qualityOut)
+  }
+
+  func testConvertTrustSetMissingFields() {
+    // GIVEN a TrustSet protocol buffer missing the limitAmount field.
+    let trustSet = Org_Xrpl_Rpc_V1_TrustSet.testTrustSetMissingLimitAmount
+
+    // WHEN the protocol buffer is converted to a native Swift type.
+    let xrpTrustSet = XRPTrustSet(trustSet: trustSet)
+
+    // THEN the result is nil.
+    XCTAssertNil(xrpTrustSet)
+  }
 }
