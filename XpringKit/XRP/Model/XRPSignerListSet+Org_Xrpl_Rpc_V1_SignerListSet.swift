@@ -20,7 +20,7 @@ internal extension XRPSignerListSet {
     self.signerQuorum = signerListSet.signerQuorum.value
 
     self.signerEntries = !signerListSet.signerEntries.isEmpty
-      ? signerListSet.signerEntries.map { signerEntry in XRPSignerEntry(signerEntry: signerEntry)! }
+      ? signerListSet.signerEntries.map { signerEntry in XRPSignerEntry(signerEntry: signerEntry) }
       : nil
   }
 }
