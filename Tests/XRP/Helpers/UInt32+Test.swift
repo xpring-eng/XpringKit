@@ -8,4 +8,6 @@ extension UInt32 {
   public static let testDestinationTag: UInt32 = 2
   public static let testExpirationValue: UInt32 = 570_113_521
   public static let testOfferSequenceValue: UInt32 = 23
+  public static let testCancelAfterValue: UInt32 = 533_257_958
+  public static let testFinishAfterValue: UInt32 = 533_171_558
 }
