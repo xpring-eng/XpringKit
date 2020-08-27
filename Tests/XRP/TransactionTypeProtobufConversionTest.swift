@@ -430,4 +430,28 @@ final class TransactionTypeProtobufConversionTests: XCTestCase {
     // THEN the result is nil.
     XCTAssertNil(xrpEscrowFinish)
   }
+
+  // MARK: - Org_Xrpl_Rpc_V1_OfferCancel
+
+  func testConvertOfferCancelFieldSet() {
+    // GIVEN an OfferCancel protocol buffer with offerSequence field set.
+    let offerCancel = Org_Xrpl_Rpc_V1_OfferCancel.testOfferCancelFieldSet
+
+    // WHEN the protocol buffer is converted to a native Swift type.
+    let xrpOfferCancel = XRPOfferCancel(offerCancel: offerCancel)
+
+    // THEN the OfferCancel converted as expected.
+    XCTAssertEqual(xrpOfferCancel?.offerSequence, offerCancel.offerSequence.value)
+  }
+
+  func testConvertOfferCancelMissingOfferSequence() {
+    // GIVEN an OfferCancel protocol buffer missing the offerSequence field.
+    let offerCancel = Org_Xrpl_Rpc_V1_OfferCancel.testOfferCancelMissingOfferSequence
+
+    // WHEN the protocol buffer is converted to a native Swift type.
+    let xrpOfferCancel = XRPOfferCancel(offerCancel: offerCancel)
+
+    // THEN the result is nil.
+    XCTAssertNil(xrpOfferCancel)
+  }
 }
