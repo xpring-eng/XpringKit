@@ -28,7 +28,7 @@ internal extension XRPEscrowCreate {
     if let destinationXAddress = Utils.encode(
       classicAddress: destination,
       tag: destinationTag,
-      isTest: xrplNetwork != XRPLNetwork.main
+      isTest: xrplNetwork.isTest
       ) {
       self.destinationXAddress = destinationXAddress
     } else {

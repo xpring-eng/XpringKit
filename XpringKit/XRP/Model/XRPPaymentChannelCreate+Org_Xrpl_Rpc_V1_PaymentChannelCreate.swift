@@ -24,7 +24,7 @@ internal extension XRPPaymentChannelCreate {
     if let destinationXAddress = Utils.encode(
       classicAddress: paymentChannelCreate.destination.value.address,
       tag: paymentChannelCreate.destinationTag.value,
-      isTest: xrplNetwork != XRPLNetwork.main
+      isTest: xrplNetwork.isTest
       ) {
       self.destinationXAddress = destinationXAddress
     } else {

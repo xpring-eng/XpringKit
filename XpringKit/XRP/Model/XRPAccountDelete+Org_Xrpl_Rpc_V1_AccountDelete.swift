@@ -21,7 +21,7 @@ internal extension XRPAccountDelete {
     guard let destinationXAddress = Utils.encode(
       classicAddress: destination,
       tag: destinationTag,
-      isTest: xrplNetwork == XRPLNetwork.test
+      isTest: xrplNetwork.isTest
       ) else {
         return nil
     }

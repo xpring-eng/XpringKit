@@ -33,7 +33,7 @@ internal extension XRPTransaction {
     self.sourceXAddress = Utils.encode(
       classicAddress: account,
       tag: sourceTag,
-      isTest: xrplNetwork == XRPLNetwork.test
+      isTest: xrplNetwork.isTest
     )
 
     switch transaction.transactionData {
