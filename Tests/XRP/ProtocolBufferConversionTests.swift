@@ -747,4 +747,29 @@ final class ProtocolBufferConversionTests: XCTestCase {
     // THEN the result is nil
     XCTAssertNil(transaction)
   }
+
+  // MARK: - Org_Xrpl_Rpc_V1_SignerEntry
+
+  func testConvertSignerEntryAllFields() {
+    // GIVEN a SignerEntry protocol buffer with all fields set.
+    let signerEntry = Org_Xrpl_Rpc_V1_SignerEntry.testSignerEntry1
+
+    // WHEN the protocol buffer is converted to a native Swift type.
+    let xrpSignerEntry = XRPSignerEntry(signerEntry: signerEntry)
+
+    // THEN all fields are present and converted correctly.
+    XCTAssertEqual(xrpSignerEntry?.account, signerEntry.account.value.address)
+    XCTAssertEqual(xrpSignerEntry?.signerWeight, signerEntry.signerWeight.value)
+  }
+
+  func testConvertSignerEntryNoFields() {
+    // GIVEN a SignerEntry protocol buffer with no fields set.
+    let signerEntry = Org_Xrpl_Rpc_V1_SignerEntry()
+
+    // WHEN the protocol buffer is converted to a native Swift type.
+    let xrpSignerEntry = XRPSignerEntry(signerEntry: signerEntry)
+
+    // THEN the result is nil.
+    XCTAssertNil(xrpSignerEntry)
+  }
 }
