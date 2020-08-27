@@ -454,4 +454,57 @@ final class TransactionTypeProtobufConversionTests: XCTestCase {
     // THEN the result is nil.
     XCTAssertNil(xrpOfferCancel)
   }
+
+  // MARK: - Org_Xrpl_Rpc_V1_OfferCreate
+
+  func testConvertOfferCreateAllFields() {
+    // GIVEN an OfferCreate protocol buffer with all fields set.
+    let offerCreate = Org_Xrpl_Rpc_V1_OfferCreate.testOfferCreateAllFields
+
+    // WHEN the protocol buffer is converted to a native Swift type.
+    let xrpOfferCreate = XRPOfferCreate(offerCreate: offerCreate)
+
+    // THEN the OfferCreate converted as expected.
+    XCTAssertEqual(
+      xrpOfferCreate?.takerGets,
+      XRPCurrencyAmount(currencyAmount: offerCreate.takerGets.value)
+    )
+    XCTAssertEqual(
+      xrpOfferCreate?.takerPays,
+      XRPCurrencyAmount(currencyAmount: offerCreate.takerPays.value)
+    )
+    XCTAssertEqual(xrpOfferCreate?.expiration, offerCreate.expiration.value)
+    XCTAssertEqual(xrpOfferCreate?.offerSequence, offerCreate.offerSequence.value)
+  }
+
+  func testConvertOfferCreateMandatoryFields() {
+    // GIVEN an OfferCreate protocol buffer with only mandatory fields set.
+    let offerCreate = Org_Xrpl_Rpc_V1_OfferCreate.testOfferCreateMandatoryFields
+
+    // WHEN the protocol buffer is converted to a native Swift type.
+    let xrpOfferCreate = XRPOfferCreate(offerCreate: offerCreate)
+
+    // THEN the OfferCreate converted as expected.
+    XCTAssertEqual(
+      xrpOfferCreate?.takerGets,
+      XRPCurrencyAmount(currencyAmount: offerCreate.takerGets.value)
+    )
+    XCTAssertEqual(
+      xrpOfferCreate?.takerPays,
+      XRPCurrencyAmount(currencyAmount: offerCreate.takerPays.value)
+    )
+    XCTAssertNil(xrpOfferCreate?.expiration)
+    XCTAssertNil(xrpOfferCreate?.offerSequence)
+  }
+
+  func testConvertOfferCreateMissingTakerGets() {
+    // GIVEN an OfferCreate protocol buffer missing a required field.
+    let offerCreate = Org_Xrpl_Rpc_V1_OfferCreate.testOfferCreateMissingTakerGets
+
+    // WHEN the protocol buffer is converted to a native Swift type.
+    let xrpOfferCreate = XRPOfferCreate(offerCreate: offerCreate)
+
+    // THEN the result is nil.
+    XCTAssertNil(xrpOfferCreate)
+  }
 }
