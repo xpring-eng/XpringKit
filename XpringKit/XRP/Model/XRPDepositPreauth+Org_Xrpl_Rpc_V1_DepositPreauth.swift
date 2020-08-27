@@ -12,6 +12,7 @@ internal extension XRPDepositPreauth {
   /// - Parameters:
   ///     - depositPreauth: an Org_Xrpl_Rpc_V1_DepositPreauth (protobuf object) whose field values will be used to
   ///             construct an XRPDepositPreauth
+  ///     - xrplNetwork: The XRPL network from which this object was retrieved.
   /// - Returns: an XRPDepositPreauth with its fields set via the analogous protobuf fields.
   init?(depositPreauth: Org_Xrpl_Rpc_V1_DepositPreauth, xrplNetwork: XRPLNetwork) {
     if let authorizeXAddress = Utils.encode(

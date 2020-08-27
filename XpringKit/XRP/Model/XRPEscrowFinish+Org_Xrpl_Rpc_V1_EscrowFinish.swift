@@ -12,6 +12,7 @@ internal extension XRPEscrowFinish {
   /// - Parameters:
   ///     - escrowFinish: an Org_Xrpl_Rpc_V1_EscrowFinish (protobuf object) whose field values will be used to
   ///             construct an XRPEscrowFinish
+  ///     - xrplNetwork: The XRPL network from which this object was retrieved.
   /// - Returns: an XRPEscrowFinish with its fields set via the analogous protobuf fields.
   init?(escrowFinish: Org_Xrpl_Rpc_V1_EscrowFinish, xrplNetwork: XRPLNetwork) {
     if let ownerXAddress = Utils.encode(
