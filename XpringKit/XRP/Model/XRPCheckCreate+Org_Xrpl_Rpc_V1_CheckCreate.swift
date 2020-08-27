@@ -35,15 +35,12 @@ internal extension XRPCheckCreate {
     }
     self.sendMax = sendMax
 
-    if checkCreate.hasExpiration {
-      self.expiration = checkCreate.expiration.value
-    } else {
-      self.expiration = nil
-    }
-    if checkCreate.hasInvoiceID {
-      self.invoiceId = String(decoding: checkCreate.invoiceID.value, as: UTF8.self)
-    } else {
-      self.invoiceId = nil
-    }
+    self.expiration = checkCreate.hasExpiration
+      ? checkCreate.expiration.value
+      : nil
+    
+    self.invoiceId = checkCreate.hasInvoiceID
+      ? String(decoding: checkCreate.invoiceID.value, as: UTF8.self)
+      : nil
   }
 }

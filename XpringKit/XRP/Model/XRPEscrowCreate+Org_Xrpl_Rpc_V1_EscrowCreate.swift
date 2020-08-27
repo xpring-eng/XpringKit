@@ -17,23 +17,21 @@ internal extension XRPEscrowCreate {
   init?(escrowCreate: Org_Xrpl_Rpc_V1_EscrowCreate, xrplNetwork: XRPLNetwork) {
     // amount is a required field
     let currencyAmount = escrowCreate.amount.value
-    if let xrpCurrencyAmount = XRPCurrencyAmount(currencyAmount: currencyAmount) {
-      self.amount = xrpCurrencyAmount
-    } else {
+    guard let xrpCurrencyAmount = XRPCurrencyAmount(currencyAmount: currencyAmount) else {
       return nil
     }
+    self.amount = xrpCurrencyAmount
 
     let destination = escrowCreate.destination.value.address
     let destinationTag = escrowCreate.destinationTag.value
-    if let destinationXAddress = Utils.encode(
+    guard let destinationXAddress = Utils.encode(
       classicAddress: destination,
       tag: destinationTag,
       isTest: xrplNetwork.isTest
-      ) {
-      self.destinationXAddress = destinationXAddress
-    } else {
+      ) else {
       return nil
     }
+    self.destinationXAddress = destinationXAddress
 
     self.cancelAfter = escrowCreate.hasCancelAfter ? escrowCreate.cancelAfter.value : nil
     self.finishAfter = escrowCreate.hasFinishAfter ? escrowCreate.finishAfter.value : nil

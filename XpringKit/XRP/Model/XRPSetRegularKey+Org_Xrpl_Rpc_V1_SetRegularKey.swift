@@ -14,10 +14,8 @@ internal extension XRPSetRegularKey {
   ///                            field values will be used to construct an XRPSetRegularKey
   /// - Returns: an XRPSetRegularKey with its fields set via the analogous protobuf fields.
   init?(setRegularKey: Org_Xrpl_Rpc_V1_SetRegularKey) {
-    if setRegularKey.hasRegularKey {
-      self.regularKey = setRegularKey.regularKey.value.address
-    } else {
-      self.regularKey = nil
-    }
+    self.regularKey = setRegularKey.hasRegularKey
+      ? setRegularKey.regularKey.value.address
+      : nil
   }
 }

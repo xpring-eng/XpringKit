@@ -21,7 +21,7 @@ internal extension XRPEscrowCancel {
       ) else {
         return nil
     }
-    if !escrowCancel.hasOfferSequence {
+    guard escrowCancel.hasOfferSequence else {
       return nil
     }
     self.ownerXAddress = ownerXAddress

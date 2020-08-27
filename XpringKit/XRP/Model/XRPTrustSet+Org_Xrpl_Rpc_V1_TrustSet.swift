@@ -15,14 +15,13 @@ internal extension XRPTrustSet {
   /// - Returns: an XRPTrustSet with its fields set via the analogous protobuf fields.
   init?(trustSet: Org_Xrpl_Rpc_V1_TrustSet) {
     // limitAmount is required and must be convertable to an XRPCurrencyAmount
-    if !trustSet.hasLimitAmount {
+    guard trustSet.hasLimitAmount else {
       return nil
     }
-    if let limitAmount = XRPCurrencyAmount(currencyAmount: trustSet.limitAmount.value) {
-      self.limitAmount = limitAmount
-    } else {
+    guard let limitAmount = XRPCurrencyAmount(currencyAmount: trustSet.limitAmount.value) else {
       return nil
     }
+    self.limitAmount = limitAmount
 
     self.qualityIn = trustSet.hasQualityIn ? trustSet.qualityIn.value : nil
     self.qualityOut = trustSet.hasQualityOut ? trustSet.qualityOut.value : nil

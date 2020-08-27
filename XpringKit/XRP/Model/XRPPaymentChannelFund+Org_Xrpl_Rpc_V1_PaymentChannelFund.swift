@@ -14,21 +14,19 @@ internal extension XRPPaymentChannelFund {
   ///                            field values will be used to construct an XRPPaymentChannelFund
   /// - Returns: an XRPPaymentChannelFund with its fields set via the analogous protobuf fields.
   init?(paymentChannelFund: Org_Xrpl_Rpc_V1_PaymentChannelFund) {
-    if paymentChannelFund.hasChannel {
-      self.channel = String(decoding: paymentChannelFund.channel.value, as: UTF8.self)
-    } else {
+    guard paymentChannelFund.hasChannel else {
       return nil
     }
+    self.channel = String(decoding: paymentChannelFund.channel.value, as: UTF8.self)
 
-    if paymentChannelFund.hasAmount {
-      if let amount = XRPCurrencyAmount(currencyAmount: paymentChannelFund.amount.value) {
-        self.amount = amount
-      } else {
-        return nil
-      }
-    } else {
+    guard paymentChannelFund.hasAmount else {
       return nil
     }
+    guard let amount = XRPCurrencyAmount(currencyAmount: paymentChannelFund.amount.value)
+    else {
+      return nil
+    }
+    self.amount = amount
 
     self.expiration = paymentChannelFund.hasExpiration
       ? paymentChannelFund.expiration.value
