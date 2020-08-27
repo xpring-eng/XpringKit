@@ -711,4 +711,28 @@ final class TransactionTypeProtobufConversionTests: XCTestCase {
     // THEN the result is nil.
     XCTAssertNil(xrpPaymentChannelFund)
   }
+
+  // MARK: - Org_Xrpl_Rpc_V1_SetRegularKey
+
+  func testConvertSetRegularKeyWithKeySet() {
+    // GIVEN a SetRegularKey protocol buffer with regularKey set.
+    let setRegularKey = Org_Xrpl_Rpc_V1_SetRegularKey.testSetRegularKeyWithKeySet
+
+    // WHEN the protocol buffer is converted to a native Swift type.
+    let xrpSetRegularKey = XRPSetRegularKey(setRegularKey: setRegularKey)
+
+    // THEN the SetRegularKey converted as expected.
+    XCTAssertEqual(xrpSetRegularKey?.regularKey, setRegularKey.regularKey.value.address)
+  }
+
+  func testConvertSetRegularKeyWithNoKey() {
+    // GIVEN a SetRegularKey protocol buffer without regularKey set.
+    let setRegularKey = Org_Xrpl_Rpc_V1_SetRegularKey.testSetRegularKeyNoKey
+
+    // WHEN the protocol buffer is converted to a native Swift type.
+    let xrpSetRegularKey = XRPSetRegularKey(setRegularKey: setRegularKey)
+
+    // THEN the SetRegularKey converted as expected.
+    XCTAssertNil(xrpSetRegularKey?.regularKey)
+  }
 }

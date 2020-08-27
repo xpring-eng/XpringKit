@@ -18,4 +18,5 @@ public enum XRPTransactionType {
   case paymentChannelClaim
   case paymentChannelCreate
   case paymentChannelFund
+  case setRegularKey
 }
