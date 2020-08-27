@@ -20,12 +20,10 @@ internal extension XRPOfferCreate {
     }
     self.takerGets = takerGets
 
-
     guard let takerPays = XRPCurrencyAmount(currencyAmount: offerCreate.takerPays.value) else {
       return nil
     }
     self.takerPays = takerPays
-
 
     self.expiration = offerCreate.hasExpiration ? offerCreate.expiration.value : nil
     self.offerSequence = offerCreate.hasOfferSequence

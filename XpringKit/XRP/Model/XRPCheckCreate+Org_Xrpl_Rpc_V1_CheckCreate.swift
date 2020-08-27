@@ -38,7 +38,7 @@ internal extension XRPCheckCreate {
     self.expiration = checkCreate.hasExpiration
       ? checkCreate.expiration.value
       : nil
-    
+
     self.invoiceId = checkCreate.hasInvoiceID
       ? String(decoding: checkCreate.invoiceID.value, as: UTF8.self)
       : nil
