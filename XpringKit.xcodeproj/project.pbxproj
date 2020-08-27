@@ -44,7 +44,7 @@
 		0E675BFD098EE98B459B4727 /* MemoField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24B32C9E54F24A0FFC7C375 /* MemoField.swift */; };
 		0F5CD6D12C520997A59796E5 /* JavaScriptWalletFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56B4FD52E768D874E108FB6 /* JavaScriptWalletFactory.swift */; };
 		0FEA27C970EE6D5EF7120EA9 /* XRPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FC92647E802B2F2D838021C /* XRPClient.swift */; };
-		102C856D95C47D61D438245D /* XRPCurrency+Org_Xrpl_Rpc_V1_CurrencyAmount.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF59AC0A2C8F4E921D00E796 /* XRPCurrency+Org_Xrpl_Rpc_V1_CurrencyAmount.swift */; };
+		102C856D95C47D61D438245D /* XRPCurrency+Org_Xrpl_Rpc_V1_Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF59AC0A2C8F4E921D00E796 /* XRPCurrency+Org_Xrpl_Rpc_V1_Currency.swift */; };
 		111661C6DDEE76948914B22E /* get_balance_response.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC5906AEBA326613C48525A9 /* get_balance_response.pb.swift */; };
 		1285A61D173346CCE49DFAB3 /* PaymentPointer+Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EAEDAA921168010A9EBDB48 /* PaymentPointer+Test.swift */; };
 		14658F9DBA751F3C4C7FC15A /* AccessToken+Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4503B580029D0BAD8BFE14 /* AccessToken+Test.swift */; };
@@ -403,7 +403,7 @@
 		BDAB07C7FA7950269A0B1C7F /* ReliableSubmissionXRPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40259FA3F9F9E9680E535A1 /* ReliableSubmissionXRPClient.swift */; };
 		BDF761E691D27609479CB792 /* XRPLedgerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE85810A964EB1307F4CB219 /* XRPLedgerError.swift */; };
 		BE0808BE5B0DDCCE9FF6A41E /* Org_Xrpl_Rpc_V1_GetTransactionResponse+Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = D590F042014DE8E02E9859B9 /* Org_Xrpl_Rpc_V1_GetTransactionResponse+Test.swift */; };
-		BE62F92E3166FFA5DF09B001 /* XRPCurrency+Org_Xrpl_Rpc_V1_CurrencyAmount.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF59AC0A2C8F4E921D00E796 /* XRPCurrency+Org_Xrpl_Rpc_V1_CurrencyAmount.swift */; };
+		BE62F92E3166FFA5DF09B001 /* XRPCurrency+Org_Xrpl_Rpc_V1_Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF59AC0A2C8F4E921D00E796 /* XRPCurrency+Org_Xrpl_Rpc_V1_Currency.swift */; };
 		BE6650F504BBBB65FC42AE17 /* Beneficiary.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6B2C88E146F5BCB6B89AAD5 /* Beneficiary.swift */; };
 		BF381615F7AA429846E1D040 /* XRPTrustSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A90A70A53B7C2D09AE42032 /* XRPTrustSet.swift */; };
 		BFBF992EFB2BDC1D7A18076D /* UInt64+Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5876E70A990EAE71B4FCC69A /* UInt64+Test.swift */; };
@@ -835,7 +835,7 @@
 		DDB8AF43576E755555235A22 /* JSContext+XpringKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JSContext+XpringKit.swift"; sourceTree = "<group>"; };
 		DE0B9773B47C926571988CFD /* XRPPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XRPPath.swift; sourceTree = "<group>"; };
 		DE5FDA0EE747FA302E6B5B06 /* Originator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Originator.swift; sourceTree = "<group>"; };
-		DF59AC0A2C8F4E921D00E796 /* XRPCurrency+Org_Xrpl_Rpc_V1_CurrencyAmount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XRPCurrency+Org_Xrpl_Rpc_V1_CurrencyAmount.swift"; sourceTree = "<group>"; };
+		DF59AC0A2C8F4E921D00E796 /* XRPCurrency+Org_Xrpl_Rpc_V1_Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XRPCurrency+Org_Xrpl_Rpc_V1_Currency.swift"; sourceTree = "<group>"; };
 		E0A965B0FD09BFBD4C33872A /* RequestBehaviour.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestBehaviour.swift; sourceTree = "<group>"; };
 		E195F7BD793215716767C840 /* get_transaction.pb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = get_transaction.pb.swift; sourceTree = "<group>"; };
 		E25833532C9B12DD6073E3AC /* ilp_over_http_service.pb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ilp_over_http_service.pb.swift; sourceTree = "<group>"; };
@@ -1251,7 +1251,7 @@
 				D8D6E4EC320D10C47A43FE2F /* XRPCheckCreate.swift */,
 				71FD5DFBB780B89B28D81391 /* XRPCheckCreate+Org_Xrpl_Rpc_V1_CheckCreate.swift */,
 				C1E60E57E0D6A0FF8BBFC144 /* XRPCurrency.swift */,
-				DF59AC0A2C8F4E921D00E796 /* XRPCurrency+Org_Xrpl_Rpc_V1_CurrencyAmount.swift */,
+				DF59AC0A2C8F4E921D00E796 /* XRPCurrency+Org_Xrpl_Rpc_V1_Currency.swift */,
 				D2A44415073DF3370D66A1C4 /* XRPCurrencyAmount.swift */,
 				5C7A1E75352FB2218BA2697D /* XRPCurrencyAmount+Org_Xrpl_Rpc_V1_IssuedCurrencyAmount.swift */,
 				53D71CEC9F69873FE21E87B8 /* XRPDepositPreauth.swift */,
@@ -1603,8 +1603,6 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 1020;
-				TargetAttributes = {
-				};
 			};
 			buildConfigurationList = C0A52FC1F46AB2CDA8428A29 /* Build configuration list for PBXProject "XpringKit" */;
 			compatibilityVersion = "Xcode 10.0";
@@ -1799,7 +1797,7 @@
 				55A865A1BF7C94359CC85F71 /* XRPClient.swift in Sources */,
 				38BCFD93B3EC15CD520F4466 /* XRPClientDecorator.swift in Sources */,
 				26EE88020DB1F32AB536BD19 /* XRPClientProtocol.swift in Sources */,
-				102C856D95C47D61D438245D /* XRPCurrency+Org_Xrpl_Rpc_V1_CurrencyAmount.swift in Sources */,
+				102C856D95C47D61D438245D /* XRPCurrency+Org_Xrpl_Rpc_V1_Currency.swift in Sources */,
 				A76C1D9320D26E9ABDAC8741 /* XRPCurrency.swift in Sources */,
 				F61C45965D94387DD184F116 /* XRPCurrencyAmount+Org_Xrpl_Rpc_V1_IssuedCurrencyAmount.swift in Sources */,
 				7D875FC54EB5B86DD2742BDC /* XRPCurrencyAmount.swift in Sources */,
@@ -2148,7 +2146,7 @@
 				0FEA27C970EE6D5EF7120EA9 /* XRPClient.swift in Sources */,
 				168A866A039B6438107A7ACC /* XRPClientDecorator.swift in Sources */,
 				0B2882C0DD355BCBEA3E07AF /* XRPClientProtocol.swift in Sources */,
-				BE62F92E3166FFA5DF09B001 /* XRPCurrency+Org_Xrpl_Rpc_V1_CurrencyAmount.swift in Sources */,
+				BE62F92E3166FFA5DF09B001 /* XRPCurrency+Org_Xrpl_Rpc_V1_Currency.swift in Sources */,
 				CF1D7CB1E7128069E5934CB6 /* XRPCurrency.swift in Sources */,
 				AD86B7474F6C54CC547B23FE /* XRPCurrencyAmount+Org_Xrpl_Rpc_V1_IssuedCurrencyAmount.swift in Sources */,
 				D86EF1A7774A712D5A7E3C10 /* XRPCurrencyAmount.swift in Sources */,
@@ -2318,7 +2316,12 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks $(PROJECT_DIR)/Carthage/Build/iOS";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -2511,7 +2514,12 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks $(PROJECT_DIR)/Carthage/Build/iOS";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
