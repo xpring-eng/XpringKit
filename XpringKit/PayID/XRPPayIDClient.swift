@@ -88,13 +88,20 @@ public class XRPPayIDClient: PayIDClient, XRPPayIDClientProtocol {
     }
     if let rawTag = cryptoAddressDetails.tag {
       let tag = UInt32(rawTag)
-      guard let encodedXAddress = Utils.encode(classicAddress: cryptoAddressDetails.address, tag: tag, isTest: self.xrplNetwork.isTest)
+      guard let encodedXAddress = Utils.encode(
+        classicAddress: cryptoAddressDetails.address,
+        tag: tag,
+        isTest: self.xrplNetwork.isTest
+      )
         else {
           throw PayIDError.unexpectedResponse
         }
       return encodedXAddress
     } else { // There is no tag
-      guard let encodedXAddress = Utils.encode(classicAddress: cryptoAddressDetails.address, isTest: self.xrplNetwork.isTest)
+      guard let encodedXAddress = Utils.encode(
+        classicAddress: cryptoAddressDetails.address,
+        isTest: self.xrplNetwork.isTest
+      )
       else {
         throw PayIDError.unexpectedResponse
       }
