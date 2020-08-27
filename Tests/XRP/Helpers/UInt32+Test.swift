@@ -10,4 +10,5 @@ extension UInt32 {
   public static let testOfferSequenceValue: UInt32 = 23
   public static let testCancelAfterValue: UInt32 = 533_257_958
   public static let testFinishAfterValue: UInt32 = 533_171_558
+  public static let testSettleDelay: UInt32 = 86_400
 }
