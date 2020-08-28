@@ -16,7 +16,7 @@ internal extension XRPEscrowFinish {
   init?(escrowFinish: Org_Xrpl_Rpc_V1_EscrowFinish, xrplNetwork: XRPLNetwork) {
     if let ownerXAddress = Utils.encode(
       classicAddress: escrowFinish.owner.value.address,
-      isTest: xrplNetwork != XRPLNetwork.main
+      isTest: xrplNetwork.isTest
       ) {
       self.ownerXAddress = ownerXAddress
     } else {

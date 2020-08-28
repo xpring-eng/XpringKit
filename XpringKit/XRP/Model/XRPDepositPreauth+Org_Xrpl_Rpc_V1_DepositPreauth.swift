@@ -16,7 +16,7 @@ internal extension XRPDepositPreauth {
   init?(depositPreauth: Org_Xrpl_Rpc_V1_DepositPreauth, xrplNetwork: XRPLNetwork) {
     if let authorizeXAddress = Utils.encode(
       classicAddress: depositPreauth.authorize.value.address,
-      isTest: xrplNetwork != XRPLNetwork.main
+      isTest: xrplNetwork.isTest
       ) {
       self.authorizeXAddress = authorizeXAddress
       self.unauthorizeXAddress = nil
@@ -25,7 +25,7 @@ internal extension XRPDepositPreauth {
 
     if let unauthorizeXAddress = Utils.encode(
       classicAddress: depositPreauth.unauthorize.value.address,
-      isTest: xrplNetwork != XRPLNetwork.main
+      isTest: xrplNetwork.isTest
       ) {
       self.authorizeXAddress = nil
       self.unauthorizeXAddress = unauthorizeXAddress

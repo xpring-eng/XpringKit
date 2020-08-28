@@ -21,7 +21,7 @@ internal extension XRPCheckCreate {
     guard let destinationXAddress = Utils.encode(
       classicAddress: destination,
       tag: destinationTag,
-      isTest: xrplNetwork == XRPLNetwork.test || xrplNetwork == XRPLNetwork.dev
+      isTest: xrplNetwork.isTest
       ) else {
       return nil
     }

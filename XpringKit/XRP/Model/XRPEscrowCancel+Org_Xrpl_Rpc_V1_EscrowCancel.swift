@@ -16,7 +16,7 @@ internal extension XRPEscrowCancel {
   init?(escrowCancel: Org_Xrpl_Rpc_V1_EscrowCancel, xrplNetwork: XRPLNetwork) {
     guard let ownerXAddress = Utils.encode(
       classicAddress: escrowCancel.owner.value.address,
-      isTest: xrplNetwork != XRPLNetwork.main
+      isTest: xrplNetwork.isTest
       ) else {
         return nil
     }
