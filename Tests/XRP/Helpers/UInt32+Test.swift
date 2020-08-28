@@ -14,4 +14,6 @@ extension UInt32 {
   public static let testSignerWeight1: UInt32 = 1
   public static let testSignerWeight2: UInt32 = 2
   public static let testSignerQuorum: UInt32 = 3
+  public static let testQualityInValue: UInt32 = 5
+  public static let testQualityOutValue: UInt32 = 2
 }
