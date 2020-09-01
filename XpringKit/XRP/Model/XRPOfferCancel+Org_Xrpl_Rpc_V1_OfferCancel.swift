@@ -14,10 +14,10 @@ internal extension XRPOfferCancel {
   ///             construct an XRPOfferCancel
   /// - Returns: an XRPOfferCancel with its fields set via the analogous protobuf fields.
   init?(offerCancel: Org_Xrpl_Rpc_V1_OfferCancel) {
-    if offerCancel.hasOfferSequence {
-      self.offerSequence = offerCancel.offerSequence.value
-    } else {
+    guard offerCancel.hasOfferSequence else {
       return nil
     }
+    self.offerSequence = offerCancel.offerSequence.value
+
   }
 }

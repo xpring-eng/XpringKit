@@ -14,7 +14,7 @@ internal extension XRPSignerListSet {
   ///                            field values will be used to construct an XRPSignerListSet
   /// - Returns: an XRPSignerListSet with its fields set via the analogous protobuf fields.
   init?(signerListSet: Org_Xrpl_Rpc_V1_SignerListSet) {
-    if !signerListSet.hasSignerQuorum {
+    guard signerListSet.hasSignerQuorum else {
       return nil
     }
     self.signerQuorum = signerListSet.signerQuorum.value

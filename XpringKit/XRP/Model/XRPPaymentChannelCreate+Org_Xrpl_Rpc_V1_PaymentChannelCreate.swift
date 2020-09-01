@@ -15,33 +15,29 @@ internal extension XRPPaymentChannelCreate {
   ///     - xrplNetwork: The XRPL network from which this object was retrieved.
   /// - Returns: an XRPPaymentChannelCreate with its fields set via the analogous protobuf fields.
   init?(paymentChannelCreate: Org_Xrpl_Rpc_V1_PaymentChannelCreate, xrplNetwork: XRPLNetwork) {
-    if let amount = XRPCurrencyAmount(currencyAmount: paymentChannelCreate.amount.value) {
-      self.amount = amount
-    } else {
+    guard let amount = XRPCurrencyAmount(currencyAmount: paymentChannelCreate.amount.value) else {
       return nil
     }
+    self.amount = amount
 
-    if let destinationXAddress = Utils.encode(
+    guard let destinationXAddress = Utils.encode(
       classicAddress: paymentChannelCreate.destination.value.address,
       tag: paymentChannelCreate.destinationTag.value,
       isTest: xrplNetwork.isTest
-      ) {
-      self.destinationXAddress = destinationXAddress
-    } else {
+      ) else {
       return nil
     }
+    self.destinationXAddress = destinationXAddress
 
-    if paymentChannelCreate.hasSettleDelay {
-      self.settleDelay = paymentChannelCreate.settleDelay.value
-    } else {
+    guard paymentChannelCreate.hasSettleDelay else {
       return nil
     }
+    self.settleDelay = paymentChannelCreate.settleDelay.value
 
-    if paymentChannelCreate.hasPublicKey {
-      self.publicKey = String(decoding: paymentChannelCreate.publicKey.value, as: UTF8.self)
-    } else {
+    guard paymentChannelCreate.hasPublicKey else {
       return nil
     }
+    self.publicKey = String(decoding: paymentChannelCreate.publicKey.value, as: UTF8.self)
 
     self.cancelAfter = paymentChannelCreate.hasCancelAfter
       ? paymentChannelCreate.cancelAfter.value

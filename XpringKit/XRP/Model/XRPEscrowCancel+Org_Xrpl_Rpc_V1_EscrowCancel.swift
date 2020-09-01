@@ -12,6 +12,7 @@ internal extension XRPEscrowCancel {
   /// - Parameters:
   ///     - escrowCancel: an Org_Xrpl_Rpc_V1_EscrowCancel (protobuf object) whose field values will be used to
   ///             construct an XRPEscrowCancel
+  ///     - xrplNetwork: The XRPL network from which this object was retrieved.
   /// - Returns: an XRPEscrowCancel with its fields set via the analogous protobuf fields.
   init?(escrowCancel: Org_Xrpl_Rpc_V1_EscrowCancel, xrplNetwork: XRPLNetwork) {
     guard let ownerXAddress = Utils.encode(
@@ -20,7 +21,7 @@ internal extension XRPEscrowCancel {
       ) else {
         return nil
     }
-    if !escrowCancel.hasOfferSequence {
+    guard escrowCancel.hasOfferSequence else {
       return nil
     }
     self.ownerXAddress = ownerXAddress

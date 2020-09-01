@@ -14,33 +14,31 @@ internal extension XRPPaymentChannelClaim {
   ///                            field values will be used to construct an XRPPaymentChannelClaim
   /// - Returns: an XRPPaymentChannelClaim with its fields set via the analogous protobuf fields.
   init?(paymentChannelClaim: Org_Xrpl_Rpc_V1_PaymentChannelClaim) {
-    if paymentChannelClaim.hasChannel {
-      self.channel = String(
-        decoding: paymentChannelClaim.channel.value,
-        as: UTF8.self
-      )
-    } else {
+    guard paymentChannelClaim.hasChannel else {
       return nil
     }
+    self.channel = String(
+      decoding: paymentChannelClaim.channel.value,
+      as: UTF8.self
+    )
 
     if paymentChannelClaim.hasBalance {
-      if let balance = XRPCurrencyAmount(currencyAmount: paymentChannelClaim.balance.value) {
-        self.balance = balance
-      } else {
+      guard let balance = XRPCurrencyAmount(currencyAmount: paymentChannelClaim.balance.value) else {
         // if balance is explicitly set, it must be convertable to an XRPCurrencyAmount
         return nil
       }
+      self.balance = balance
+
     } else {
       self.balance = nil
     }
 
     if paymentChannelClaim.hasAmount {
-      if let amount = XRPCurrencyAmount(currencyAmount: paymentChannelClaim.amount.value) {
-        self.amount = amount
-      } else {
+      guard let amount = XRPCurrencyAmount(currencyAmount: paymentChannelClaim.amount.value) else {
         // if amount is explicitly set, it must be convertable to an XRPCurrencyAmount
         return nil
       }
+      self.amount = amount
     } else {
       self.amount = nil
     }
