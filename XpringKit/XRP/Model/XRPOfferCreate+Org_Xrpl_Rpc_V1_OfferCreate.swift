@@ -15,17 +15,15 @@ internal extension XRPOfferCreate {
   /// - Returns: an XRPOfferCreate with its fields set via the analogous protobuf fields.
   init?(offerCreate: Org_Xrpl_Rpc_V1_OfferCreate) {
 
-    if let takerGets = XRPCurrencyAmount(currencyAmount: offerCreate.takerGets.value) {
-      self.takerGets = takerGets
-    } else {
+    guard let takerGets = XRPCurrencyAmount(currencyAmount: offerCreate.takerGets.value) else {
       return nil
     }
+    self.takerGets = takerGets
 
-    if let takerPays = XRPCurrencyAmount(currencyAmount: offerCreate.takerPays.value) {
-      self.takerPays = takerPays
-    } else {
+    guard let takerPays = XRPCurrencyAmount(currencyAmount: offerCreate.takerPays.value) else {
       return nil
     }
+    self.takerPays = takerPays
 
     self.expiration = offerCreate.hasExpiration ? offerCreate.expiration.value : nil
     self.offerSequence = offerCreate.hasOfferSequence

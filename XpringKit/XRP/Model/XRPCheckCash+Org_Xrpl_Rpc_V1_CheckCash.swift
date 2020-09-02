@@ -19,7 +19,6 @@ internal extension XRPCheckCash {
     if self.checkId.isEmpty {
       return nil
     }
-
     // amount and deliverMin fields should be mutually exclusive
     switch checkCash.amountOneof {
     case .amount(let amount):

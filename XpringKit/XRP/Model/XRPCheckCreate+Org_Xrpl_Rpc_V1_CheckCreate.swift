@@ -12,6 +12,7 @@ internal extension XRPCheckCreate {
   /// - Parameters:
   ///     - checkCreate: an Org_Xrpl_Rpc_V1_CheckCreate (protobuf object) whose field values will be used to
   ///             construct an XRPCheckCreate
+  ///     - xrplNetwork: The XRPL network from which this object was retrieved.
   /// - Returns: an XRPCheckCreate with its fields set via the analogous protobuf fields.
   init?(checkCreate: Org_Xrpl_Rpc_V1_CheckCreate, xrplNetwork: XRPLNetwork) {
     let destination = checkCreate.destination.value.address
@@ -21,7 +22,7 @@ internal extension XRPCheckCreate {
     guard let destinationXAddress = Utils.encode(
       classicAddress: destination,
       tag: destinationTag,
-      isTest: xrplNetwork == XRPLNetwork.test || xrplNetwork == XRPLNetwork.dev
+      isTest: xrplNetwork.isTest
       ) else {
       return nil
     }
@@ -34,15 +35,12 @@ internal extension XRPCheckCreate {
     }
     self.sendMax = sendMax
 
-    if checkCreate.hasExpiration {
-      self.expiration = checkCreate.expiration.value
-    } else {
-      self.expiration = nil
-    }
-    if checkCreate.hasInvoiceID {
-      self.invoiceId = String(decoding: checkCreate.invoiceID.value, as: UTF8.self)
-    } else {
-      self.invoiceId = nil
-    }
+    self.expiration = checkCreate.hasExpiration
+      ? checkCreate.expiration.value
+      : nil
+
+    self.invoiceId = checkCreate.hasInvoiceID
+      ? String(decoding: checkCreate.invoiceID.value, as: UTF8.self)
+      : nil
   }
 }

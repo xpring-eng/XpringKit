@@ -19,4 +19,5 @@ public enum XRPTransactionType {
   case paymentChannelCreate
   case paymentChannelFund
   case setRegularKey
+  case signerListSet
 }
