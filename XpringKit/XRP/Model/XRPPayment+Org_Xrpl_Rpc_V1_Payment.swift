@@ -1,7 +1,7 @@
 import Foundation
 
-/// Conforms to XRPPayment struct while providing an initializer that can construct an XRPPayment
-/// from an Org_Xrpl_Rpc_V1_Payment
+/// Conforms to XRPPayment struct while providing an initializer that can construct
+/// an XRPPayment from an Org_Xrpl_Rpc_V1_Payment
 internal extension XRPPayment {
 
   /// Constructs an XRPPayment from an Org_Xrpl_Rpc_V1_Payment
@@ -9,8 +9,8 @@ internal extension XRPPayment {
   /// (https://github.com/ripple/rippled/blob/develop/src/ripple/proto/org/xrpl/rpc/v1/transaction.proto#L224)
   ///
   /// - Parameters:
-  ///     - payment: an Org_Xrpl_Rpc_V1_Payment (protobuf object) whose field values will be used to
-  ///             construct an XRPPayment
+  ///     - payment: an Org_Xrpl_Rpc_V1_Payment (protobuf object) whose field values will
+  ///                be used to construct an XRPPayment
   ///     - xrplNetwork: The XRPL network from which this object was retrieved.
   /// - Returns: an XRPPayment with its fields set via the analogous protobuf fields.
   init?(payment: Org_Xrpl_Rpc_V1_Payment, xrplNetwork: XRPLNetwork) {
@@ -23,7 +23,7 @@ internal extension XRPPayment {
     self.destinationXAddress = Utils.encode(
       classicAddress: destination,
       tag: destinationTag,
-      isTest: xrplNetwork == XRPLNetwork.test
+      isTest: xrplNetwork.isTest
     )
 
     // If the deliverMin field is set, it must be able to be transformed into a XRPCurrencyAmount.
