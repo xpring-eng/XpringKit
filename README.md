@@ -3,6 +3,8 @@
 
 # XpringKit
 
+**DEPRECATION NOTICE:** This library is no longer actively maintained. 
+
 XpringKit is the Swift client side library of the Xpring SDK.
 
 ## Features
