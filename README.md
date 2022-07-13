@@ -1,10 +1,10 @@
-[![No Maintenance Intended](http://unmaintained.tech/badge.svg)](https://github.com/xpring-eng/XpringKit)
-[![CircleCI](https://img.shields.io/circleci/build/github/xpring-eng/XpringKit/master?style=flat-square)](https://circleci.com/gh/xpring-eng/XpringKit/tree/master)
-[![CodeCov](https://img.shields.io/codecov/c/github/xpring-eng/xpringkit/master?style=flat-square&token=08b799e2895a4dd6add40c4621880c1a)]((https://codecov.io/gh/xpring-eng/xpringkit))
+# This library is deprecated
+
+In mobile apps (e.g. iOS and Android), you can integrate with the XRP Ledger using JavaScript libraries ([example: XUMM](https://github.com/XRPL-Labs/XUMM-App)).
 
 # **\*DEPRECATED\*** XpringKit
 
-**DEPRECATION NOTICE:** This library is no longer actively maintained. If you are interested in a Swift library please open an issue in this repo.
+**DEPRECATION NOTICE:** This library is no longer actively maintained.
 
 XpringKit is the Swift client side library of the Xpring SDK.
 
@@ -488,17 +488,3 @@ case .failure:
 ```
 
 Asynchronous APIs are also provided.
-
-# Contributing
-
-Pull requests are welcome! To get started with building this library and opening pull requests, please see [contributing.md](CONTRIBUTING.md).
-
-Thank you to all the users who have contributed to this library!
-
-<a href="https://github.com/xpring-eng/xpringkit/graphs/contributors">
-  <img src="https://contributors-img.firebaseapp.com/image?repo=xpring-eng/xpringkit" />
-</a>
-
-# License
-
-Xpring SDK is available under the MIT license. See the [LICENSE](LICENSE) file for more info.
